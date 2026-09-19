@@ -1,0 +1,2 @@
+# kvsplit hashes its rule files: checkouts must be byte-identical on every machine.
+* text=auto eol=lf
