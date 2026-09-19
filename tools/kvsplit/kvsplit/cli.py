@@ -65,8 +65,59 @@ def _cmd_apply(a: argparse.Namespace) -> int:
     from kvsplit.transforms import REGISTRY
     rules = load_rules(Path(a.rules), set(REGISTRY))
     ids = a.repo or rules.layout.ids()
-    for line in apply(Path(a.staging), Path(a.workspace), rules.layout, ids, rules.digest, a.confirm_migration_start):
+    for line in apply(Path(a.staging), Path(a.workspace), rules.layout, ids, rules.digest, a.confirm_migration_start,
+                      allow_residue=a.allow_residue):
         print(line)
+    return 0
+
+
+def _cmd_hash(a: argparse.Namespace) -> int:
+    from kvsplit import hashes
+    from kvsplit.rules import load_rules
+    from kvsplit.transforms import REGISTRY
+    if a.source:
+        m = hashes.source_manifest(Path(a.source), a.rev)
+    else:
+        m = hashes.workspace_manifest(Path(a.workspace), load_rules(Path(a.rules), set(REGISTRY)).layout)
+    hashes.dump(m, Path(a.out))
+    print(f"{m['kind']} manifest: {len(m['files'])} files -> {a.out}")
+    return 0
+
+
+def _load(p) -> dict:
+    return json.loads(Path(p).read_text(encoding="utf-8"))
+
+
+def _cmd_lossy(a: argparse.Namespace) -> int:
+    from kvsplit import hashes
+    from kvsplit.rules import load_rules
+    from kvsplit.transforms import REGISTRY
+    losses = hashes.lossy_check(_load(a.source_manifest), _load(Path(a.staging) / "report.json"),
+                                _load(a.target_manifest), load_rules(Path(a.rules), set(REGISTRY)).layout)
+    hashes.dump({"losses": [x.to_json() for x in losses]}, Path(a.out))
+    by: dict[str, int] = {}
+    for x in losses:
+        by[x.kind] = by.get(x.kind, 0) + 1
+    print(f"lossy check: {len(losses)} finding(s) {dict(sorted(by.items()))} -> {a.out}")
+    return 0 if not losses else 1
+
+
+def _cmd_index(a: argparse.Namespace) -> int:
+    from kvsplit import hashes, index
+    idx = index.build(_load(a.target_manifest), _load(Path(a.staging) / "report.json"))
+    hashes.dump(idx.to_json(), Path(a.out))
+    print(f"index: {len(idx.files)} files, {len(idx.moves)} moves -> {a.out}")
+    return 0
+
+
+def _cmd_reindex(a: argparse.Namespace) -> int:
+    from kvsplit import index, reindex
+    cfg = reindex.load_config(Path(a.rules) / "reindex.v1.json")
+    res = reindex.reindex(Path(a.workspace), index.load(Path(a.index)), cfg)
+    reindex.write(res, Path(a.workspace), a.apply, Path(a.out))
+    mode = "applied" if a.apply else "dry run"
+    print(f"reindex ({mode}): {len(res.rewritten)} rewritten in {len(res.changed)} document(s), "
+          f"{len(res.stale)} stale, {len(res.pre_existing)} already broken before the move -> {a.out}")
     return 0
 
 
@@ -92,8 +143,34 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--rules", default=str(DEFAULT_RULES))
     ap.add_argument("--repo", action="append")
     ap.add_argument("--confirm-migration-start", action="store_true")
+    ap.add_argument("--allow-residue", action="store_true",
+                    help="move-first flow: carry residue into the post-move reindex and agent reconcile")
+    h = sub.add_parser("hash")
+    g = h.add_mutually_exclusive_group(required=True)
+    g.add_argument("--source")
+    g.add_argument("--workspace")
+    h.add_argument("--rev", default="HEAD")
+    h.add_argument("--rules", default=str(DEFAULT_RULES))
+    h.add_argument("--out", required=True)
+    lc = sub.add_parser("lossy-check")
+    lc.add_argument("--source-manifest", required=True)
+    lc.add_argument("--target-manifest", required=True)
+    lc.add_argument("--staging", required=True)
+    lc.add_argument("--rules", default=str(DEFAULT_RULES))
+    lc.add_argument("--out", required=True)
+    ix = sub.add_parser("index")
+    ix.add_argument("--target-manifest", required=True)
+    ix.add_argument("--staging", required=True)
+    ix.add_argument("--out", required=True)
+    ri = sub.add_parser("reindex")
+    ri.add_argument("--workspace", required=True)
+    ri.add_argument("--index", required=True)
+    ri.add_argument("--rules", default=str(DEFAULT_RULES))
+    ri.add_argument("--out", required=True)
+    ri.add_argument("--apply", action="store_true")
     a = p.parse_args(argv)
-    return {"stage": _cmd_stage, "residue": _cmd_residue, "verify": _cmd_verify, "apply": _cmd_apply}[a.verb](a)
+    return {"stage": _cmd_stage, "residue": _cmd_residue, "verify": _cmd_verify, "apply": _cmd_apply,
+            "hash": _cmd_hash, "lossy-check": _cmd_lossy, "index": _cmd_index, "reindex": _cmd_reindex}[a.verb](a)
 
 
 if __name__ == "__main__":

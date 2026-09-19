@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "docGlobs": ["**/*.md", "docs/**/*.json", "gk-*/docs/**/*.json"],
+  "skip": ["tasks/sessions/**", "**/node_modules/**"],
+  "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks", "packs"]
+}

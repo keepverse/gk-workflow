@@ -2,7 +2,8 @@
 
 The only verb that writes outside the staging directory. It refuses unless:
   * the caller passes the explicit migration-start confirmation (owner gate GM);
-  * residue.json is empty;
+  * residue.json is empty, unless the move-first flow carries it (allow_residue) into the
+    post-move lossy check, reindex and agent reconcile;
   * the target repo is a git repo with a clean status;
   * for the root repo, the staged .gitignore excludes every sub-repo directory.
 Tracked files not matched by the repo's `preserve` globs are replaced by the staged tree.
@@ -12,6 +13,7 @@ It commits locally only; it never pushes.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -24,32 +26,45 @@ class ApplyError(RuntimeError):
 
 
 def _git(repo: Path, *args: str) -> str:
-    p = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, encoding="utf-8")
+    # core.longpaths: moved trees nest deeper than the legacy repo; Windows MAX_PATH must not decide the move.
+    p = subprocess.run(["git", "-c", "core.longpaths=true", "-C", str(repo), *args],
+                       capture_output=True, text=True, encoding="utf-8")
     if p.returncode != 0:
         raise ApplyError(f"git {' '.join(args)} in {repo}: {p.stderr.strip()}")
     return p.stdout
 
 
-def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], rules_digest: str,
-          confirm_migration_start: bool) -> list[str]:
-    if not confirm_migration_start:
-        raise ApplyError("apply is held behind gate GM: pass --confirm-migration-start only on the owner's command")
-    staging, workspace = Path(staging), Path(workspace)
-    residue = json.loads((staging / "residue.json").read_text(encoding="utf-8"))
-    if residue["items"]:
-        raise ApplyError(f"residue is not empty ({len(residue['items'])} items); reconcile first")
-    report = json.loads((staging / "report.json").read_text(encoding="utf-8"))
-    if report["rulesDigest"] != rules_digest:
-        raise ApplyError("staging was produced by different rules; re-run stage")
-    commits = []
+def _git_in(repo: Path, stdin: str, *args: str) -> str:
+    p = subprocess.run(["git", "-c", "core.longpaths=true", "-C", str(repo), *args],
+                       input=stdin.encode("utf-8"), capture_output=True)
+    if p.returncode != 0:
+        raise ApplyError(f"git {' '.join(args)} in {repo}: {p.stderr.decode(errors='replace').strip()}")
+    return p.stdout.decode("utf-8")
+
+
+def long_path(p: Path) -> Path:
+    """An absolute path usable past MAX_PATH on Windows (extended-length prefix); unchanged elsewhere."""
+    if os.name != "nt":
+        return p
+    s = str(Path(p).resolve())
+    return Path(s if s.startswith("\\\\?\\") else "\\\\?\\" + s)
+
+
+def _target(workspace: Path, layout: Layout, rid: str) -> Path:
+    repo = layout.repo(rid)
+    return workspace if repo.dir in (".", "") else workspace / repo.dir
+
+
+def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], report: dict) -> None:
+    """Every check for every repo, before a single byte is written: no half-applied workspace."""
+    sub_dirs = [r.dir for r in layout.repos if r.dir not in (".", "")]
     for rid in repo_ids:
         repo = layout.repo(rid)
-        target = workspace if repo.dir in (".", "") else workspace / repo.dir
+        target = _target(workspace, layout, rid)
         if not (target / ".git").exists():
             raise ApplyError(f"{target} is not a git repository")
-        sub_dirs = [r.dir for r in layout.repos if r.dir not in (".", "")]
         status = [ln for ln in _git(target, "status", "--porcelain").splitlines() if ln.strip()]
-        if rid == "root" or repo.dir in (".", ""):
+        if repo.dir in (".", ""):
             status = [ln for ln in status if not any(ln[3:].rstrip("/") == d for d in sub_dirs)]
             gi = staging / "workspace" / ".gitignore"
             lines = gi.read_text(encoding="utf-8").splitlines() if gi.exists() else []
@@ -58,17 +73,40 @@ def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], r
                 raise ApplyError(f"staged root .gitignore must exclude sub-repo dirs {missing}")
         if status:
             raise ApplyError(f"{target} is not clean:\n" + "\n".join(status))
+    for r in report["files"]:
+        if r["repo"] in repo_ids and not long_path(staging / "workspace" / r["workspacePath"]).is_file():
+            raise ApplyError(f"staged file missing: {r['workspacePath']}; re-run stage")
+
+
+def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], rules_digest: str,
+          confirm_migration_start: bool, allow_residue: bool = False) -> list[str]:
+    if not confirm_migration_start:
+        raise ApplyError("apply is held behind gate GM: pass --confirm-migration-start only on the owner's command")
+    staging, workspace = Path(staging), Path(workspace)
+    residue = json.loads((staging / "residue.json").read_text(encoding="utf-8"))
+    if residue["items"] and not allow_residue:
+        raise ApplyError(f"residue is not empty ({len(residue['items'])} items); reconcile first")
+    report = json.loads((staging / "report.json").read_text(encoding="utf-8"))
+    if report["rulesDigest"] != rules_digest:
+        raise ApplyError("staging was produced by different rules; re-run stage")
+    _preflight(staging, workspace, layout, repo_ids, report)
+    commits = []
+    for rid in repo_ids:
+        repo = layout.repo(rid)
+        target = _target(workspace, layout, rid)
         keep = [compile_glob(g) for g in repo.preserve]
         for tracked in _git(target, "ls-files", "-z").split("\0"):
             if tracked and not any(k.match(tracked) for k in keep):
-                (target / tracked).unlink()
-        rows = [r for r in report["files"] if r["repo"] == rid]
-        for r in rows:
-            src = staging / "workspace" / r["workspacePath"]
-            dest = target / r["path"]
+                long_path(target / tracked).unlink()
+        for r in (r for r in report["files"] if r["repo"] == rid):
+            dest = long_path(target / r["path"])
             dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_bytes(src.read_bytes())
-        _git(target, "add", "-A", "--", ".")
+            dest.write_bytes(long_path(staging / "workspace" / r["workspacePath"]).read_bytes())
+        _git(target, "add", "-A", "--", ".")  # records deletions
+        # force-add every planned file: a copied .gitignore must never silently drop a tracked legacy file
+        planned = [r["path"] for r in report["files"] if r["repo"] == rid]
+        if planned:  # pathspec on stdin: no command-line length limit, no quoting
+            _git_in(target, "\0".join(planned) + "\0", "add", "-f", "--pathspec-from-file=-", "--pathspec-file-nul")
         msg = (f"Import snapshot from legacy repo {report['sourceSha']}\n\n"
                f"Produced by kvsplit {report['toolVersion']}, rules digest {report['rulesDigest']},\n"
                f"output digest {report['outputDigest']}. Do not edit by hand: change the rules and re-run.\n")

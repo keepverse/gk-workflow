@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from kvsplit import __version__
+from kvsplit.apply import long_path
 from kvsplit.check import run_checks
 from kvsplit.classify import Classification, classify
 from kvsplit.globmatch import compile_glob
@@ -116,6 +117,7 @@ def compute(source: GitSource, rules: Rules) -> StageResult:
         if f.source is not None:
             row["source"] = f.source
             row["blob"] = f.blob
+            row["primary"] = f.repo == cls.place(f.source).repo  # type: ignore[union-attr]
         if f.transforms:
             row["transforms"] = list(f.transforms)
         rows.append(row)
@@ -133,6 +135,7 @@ def compute(source: GitSource, rules: Rules) -> StageResult:
             "balanced": sum(counts.values()) + dropped + unplaced == len(entries),
         },
         "residueByKind": _by_kind(residue),
+        "dropped": sorted(p for p in blobs if (pl := cls.place(p)) is not None and pl.repo == DROP),
         "files": rows,
     }
     return StageResult(files, residue, report, cls)
@@ -151,7 +154,7 @@ def _prepare_out(out: Path) -> None:
             if any(out.iterdir()):
                 raise StageError(f"{out} is not empty and has no {MARKER} marker; refusing to clear it")
         else:
-            shutil.rmtree(out)
+            shutil.rmtree(long_path(out))
     out.mkdir(parents=True, exist_ok=True)
     (out / MARKER).write_bytes(b"kvsplit staging directory; cleared on every stage run\n")
 
@@ -161,7 +164,7 @@ def write(result: StageResult, out: Path) -> None:
     _prepare_out(out)
     ws = out / "workspace"
     for f in result.files:
-        dest = ws / result.cls.workspace_path(f.repo, f.path)
+        dest = long_path(ws / result.cls.workspace_path(f.repo, f.path))
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(f.data)
     (out / "report.json").write_bytes(_dumps(result.report))
