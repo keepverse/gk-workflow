@@ -128,6 +128,7 @@ SCAN = {
     "pathRoots": ["src", "tests", "tools", "data", "docs"],
     "skip": [],
     "citationGlobs": ["data/**"],
+    "packRoots": {"gk-data": "packs/fusion/"},
     "tokens": [
         {"kind": "repo-root-discovery", "regex": "App\\.slnx", "allowedFix": "source",
          "detail": "repo root found through the legacy solution file"},

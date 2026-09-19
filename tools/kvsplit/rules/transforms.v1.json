@@ -16,6 +16,7 @@
     { "id": "comments-psm1", "kind": "comment-citations", "pattern": "**/*.psm1", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
     { "id": "comments-yml", "kind": "comment-citations", "pattern": "**/*.yml", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
     { "id": "comments-yaml", "kind": "comment-citations", "pattern": "**/*.yaml", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "docs-json-citations", "kind": "text-citations", "pattern": "docs/**/*.json", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
     { "id": "markdown",        "kind": "markdown-citations", "pattern": "**/*.md",
       "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } }
   ]

@@ -193,7 +193,7 @@ def test_citation_files_skip_workspace_relative_citations_but_not_code():
     cls = _cls(("docs/a.md", "src/x.cs", "data/seed/s.json"),
                (_r("d", "docs/**", "root"), _r("c", "src/**", "gk-core"),
                 _r("s", "data/seed/**", "gk-data", relocate={"from": "data/seed/", "to": "packs/fusion/seed/"})))
-    cfg = ScanConfig(frozenset({".json", ".cs"}), ("docs", "src", "data"), (), ("data/**",), ())
+    cfg = ScanConfig(frozenset({".json", ".cs"}), ("docs", "src", "data"), (), ("data/**",), {}, ())
     blobs = {"data/seed/s.json": b'{"spec": "docs/a.md", "src": "src/x.cs"}',
              "src/x.cs": b'var d = "docs/a.md";', "docs/a.md": b""}
     res = scan(blobs, cls, cfg, set())
@@ -211,6 +211,27 @@ def test_comment_citations_rewrite_comments_only_and_scan_skips_them():
     rule = TransformRule("t", "comment-citations", "**/*.cs", {"citationRoots": ["data"]})
     out, res = REGISTRY["comment-citations"](Ctx(cls, "src/x.cs", "gk-core", "src/x.cs", rule), src)
     assert out == b'/// see `gk-data/packs/fusion/seed/a.json`\nvar p = "data/seed/a.json";\n'
-    cfg = ScanConfig(frozenset({".cs"}), ("data",), (), (), ())
+    cfg = ScanConfig(frozenset({".cs"}), ("data",), (), (), {}, ())
     found = scan({"src/x.cs": src}, cls, cfg, set(), {"src/x.cs"})
     assert [(r.line, r.anchor) for r in found] == [(2, "data/seed/a.json")]
+
+
+def test_pack_relative_content_paths_become_one_item_per_consuming_file():
+    cls = _cls(("src/x.cs", "data/seed/a.json", "data/seed/b.json"),
+               (_r("c", "src/**", "gk-core"),
+                _r("s", "data/**", "gk-data", relocate={"from": "data/", "to": "packs/fusion/data/"})))
+    cfg = ScanConfig(frozenset({".cs", ".json"}), ("data",), (), ("data/**",), {"gk-data": "packs/fusion/"}, ())
+    blobs = {"src/x.cs": b'var a = "data/seed/a.json";\nvar b = "data/seed/b.json";\n',
+             "data/seed/a.json": b'{"see": "data/seed/b.json"}'}
+    res = scan(blobs, cls, cfg, set())
+    assert [(r.kind, r.path, r.line) for r in res] == [("content-root-consumer", "src/x.cs", 1)]
+
+
+def test_comment_lines_cover_docstrings_and_blocks_but_not_code_strings():
+    from kvsplit.transforms import comment_lines
+    py = '"""Module doc: data/a.json\nmore"""\nx = "data/a.json"\n# note data/a.json\ndef f():\n    """doc"""\n    return 1\n'
+    assert comment_lines(py, ".py") == {1, 2, 4, 6}
+    cs = '/* block\n   data/a.json\n*/\nvar s = "x";\n// line\n'
+    assert comment_lines(cs, ".cs") == {1, 2, 3, 5}
+    ps = '<#\n help data/a.json\n#>\n$x = "y"\n# c\n'
+    assert comment_lines(ps, ".ps1") == {1, 2, 3, 5}

@@ -101,10 +101,10 @@
     { "id": "drop-tsbuildinfo", "pattern": "web/**/*.tsbuildinfo", "target": "drop", "priority": 10, "reason": "tracked build artifact" },
 
     { "id": "core-tuning", "pattern": "data/tuning/**", "target": "gk-core", "priority": 0, "reason": "D6: numbers, Server-loaded, authored via publish.py" },
-    { "id": "data-seed", "pattern": "data/seed/**", "target": "gk-data", "priority": 0, "reason": "D6/D7: content -> private gk-data, fusion pack",
-      "relocate": { "from": "data/seed/", "to": "packs/fusion/seed/" } },
+    { "id": "data-seed", "pattern": "data/seed/**", "target": "gk-data", "priority": 0, "reason": "D6/D7: content -> private gk-data, fusion pack; a pack mirrors the legacy repo root so repo-relative content paths survive",
+      "relocate": { "from": "data/seed/", "to": "packs/fusion/data/seed/" } },
     { "id": "data-generated", "pattern": "data/generated/**", "target": "gk-data", "priority": 0, "reason": "D6/D7: generated content -> private gk-data, fusion pack",
-      "relocate": { "from": "data/generated/", "to": "packs/fusion/generated/" } },
+      "relocate": { "from": "data/generated/", "to": "packs/fusion/data/generated/" } },
     { "id": "data-content-display", "pattern": "content/**", "target": "gk-data", "priority": 0, "reason": "D6: display strings carry names/flavor text",
       "relocate": { "from": "content/", "to": "packs/fusion/content/" } }
   ]

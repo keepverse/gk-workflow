@@ -66,6 +66,64 @@ def is_comment_line(line: str, ext: str) -> bool:
     return False
 
 
+def comment_lines(text: str, ext: str) -> set[int]:
+    """1-based line numbers that are wholly comment or documentation, never executable strings.
+
+    Python: # lines plus every bare string-expression statement (docstrings), found with st.
+    C-like: //, /*, * lines and the interior of /* ... */ blocks.
+    PowerShell: # lines and <# ... #> blocks. Other hash languages: # lines.
+    """
+    lines = text.splitlines()
+    out: set[int] = set()
+    if ext == ".py":
+        import ast
+        for i, line in enumerate(lines, 1):
+            if line.lstrip().startswith("#"):
+                out.add(i)
+        try:
+            tree = ast.parse(text)
+        except (SyntaxError, ValueError):
+            return out
+        for node in ast.walk(tree):
+            if (isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant)
+                    and isinstance(node.value.value, str) and node.end_lineno is not None):
+                out.update(range(node.lineno, node.end_lineno + 1))
+        return out
+    if ext in _C_LIKE:
+        in_block = False
+        for i, line in enumerate(lines, 1):
+            s = line.lstrip()
+            if in_block:
+                out.add(i)
+                if "*/" in s:
+                    in_block = False
+                continue
+            if s.startswith(("//", "*")):
+                out.add(i)
+            elif s.startswith("/*"):
+                out.add(i)
+                in_block = "*/" not in s[2:]
+        return out
+    if ext in (".ps1", ".psm1"):
+        in_block = False
+        for i, line in enumerate(lines, 1):
+            s = line.lstrip()
+            if in_block:
+                out.add(i)
+                if "#>" in s:
+                    in_block = False
+                continue
+            if s.startswith("<#"):
+                out.add(i)
+                in_block = "#>" not in s[2:]
+            elif s.startswith("#"):
+                out.add(i)
+        return out
+    if ext in _HASH:
+        return {i for i, line in enumerate(lines, 1) if line.lstrip().startswith("#")}
+    return out
+
+
 def file_ext(path: str) -> str:
     base = posixpath.basename(path)
     return base[base.rfind("."):].lower() if "." in base else ""
@@ -249,10 +307,29 @@ def comment_citations(ctx: Ctx, data: bytes) -> tuple[bytes, list[Residue]]:
             return m.group(0)
         return cls.workspace_path(*mapped) + m.group(2)
 
+    doc = comment_lines(text, ext)
     out = []
-    for line in text.splitlines(keepends=True):
-        out.append(rx.sub(cite, line) if is_comment_line(line, ext) else line)
+    for i, line in enumerate(text.splitlines(keepends=True), 1):
+        out.append(rx.sub(cite, line) if i in doc else line)
     return (bom + "".join(out)).encode("utf-8"), []
+
+
+@register("text-citations")
+def text_citations(ctx: Ctx, data: bytes) -> tuple[bytes, list[Residue]]:
+    """Rewrite every repo-relative path citation in a citation-only text file (research JSON, notes)."""
+    text, bom, res = _decode(ctx, data)
+    if text is None:
+        return data, res
+    rx = _cite_regex(tuple(ctx.rule.params.get("citationRoots", [])))
+    cls = ctx.cls
+
+    def cite(m: re.Match[str]) -> str:
+        mapped = cls.map_any(m.group(1))
+        if mapped is None:
+            return m.group(0)
+        return cls.workspace_path(*mapped) + m.group(2)
+
+    return (bom + rx.sub(cite, text)).encode("utf-8"), []
 
 
 _MD_LINK = re.compile(r"(\]\()([^)\s#]+)((?:#[^)\s]*)?\))")

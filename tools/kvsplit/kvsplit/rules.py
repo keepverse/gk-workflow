@@ -119,6 +119,7 @@ class ScanConfig:
     path_roots: tuple[str, ...]
     skip: tuple[str, ...]
     citation_globs: tuple[str, ...]  # files whose path literals are citations (workspace-relative)
+    pack_roots: dict[str, str]       # repo -> prefix under which legacy repo-relative content paths survive
     tokens: tuple[ScanToken, ...]
 
 
@@ -236,7 +237,7 @@ def parse_transforms(doc: Any, known_kinds: set[str]) -> tuple[TransformRule, ..
 def parse_scan(doc: Any) -> ScanConfig:
     w = "scan"
     _schema(doc, w)
-    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "tokens"}, w)
+    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "tokens"}, w)
     toks: list[ScanToken] = []
     for i, t in enumerate(_req(doc, "tokens", list, w)):
         wi = f"{w}.tokens[{i}]"
@@ -254,8 +255,18 @@ def parse_scan(doc: Any) -> ScanConfig:
         tuple(_req(doc, "pathRoots", list, w)),
         skip,
         cites,
+        _pack_roots(_req(doc, "packRoots", dict, w), w),
         tuple(toks),
     )
+
+
+def _pack_roots(raw: dict, where: str) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for k, v in raw.items():
+        if not isinstance(v, str) or not v.endswith("/"):
+            raise RulesError(f"{where}.packRoots.{k}: must be a string ending in '/'")
+        out[k] = v
+    return out
 
 
 def load_rules(rules_dir: Path, known_transform_kinds: set[str]) -> Rules:

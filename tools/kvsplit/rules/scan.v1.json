@@ -3,9 +3,7 @@
   "extensions": [".cs", ".ps1", ".psm1", ".py", ".ts", ".tsx", ".js", ".mjs", ".cjs", ".json", ".yml", ".yaml", ".toml", ".sh", ".cmd", ".bat"],
   "pathRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"],
   "skip": ["tasks/sessions/**"],
-  "citationGlobs": ["data/**", "content/**"],
-  "tokens": [
-    { "kind": "repo-root-discovery", "regex": "FusionRpg\\.slnx", "allowedFix": "source",
-      "detail": "finds the repo root through the legacy solution file; after the split each repo has its own root - use a workspace/repo-root property or env var" }
-  ]
+  "citationGlobs": ["data/**", "content/**", "docs/**"],
+  "packRoots": { "gk-data": "packs/fusion/" },
+  "tokens": []
 }
