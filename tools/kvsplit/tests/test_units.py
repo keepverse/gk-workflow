@@ -193,7 +193,7 @@ def test_citation_files_skip_workspace_relative_citations_but_not_code():
     cls = _cls(("docs/a.md", "src/x.cs", "data/seed/s.json"),
                (_r("d", "docs/**", "root"), _r("c", "src/**", "gk-core"),
                 _r("s", "data/seed/**", "gk-data", relocate={"from": "data/seed/", "to": "packs/fusion/seed/"})))
-    cfg = ScanConfig(frozenset({".json", ".cs"}), ("docs", "src", "data"), (), ("data/**",), {}, {}, ())
+    cfg = ScanConfig(frozenset({".json", ".cs"}), ("docs", "src", "data"), (), ("data/**",), {}, {}, (), ())
     blobs = {"data/seed/s.json": b'{"spec": "docs/a.md", "src": "src/x.cs"}',
              "src/x.cs": b'var d = "docs/a.md";', "docs/a.md": b""}
     res = scan(blobs, cls, cfg, set())
@@ -211,7 +211,7 @@ def test_comment_citations_rewrite_comments_only_and_scan_skips_them():
     rule = TransformRule("t", "comment-citations", "**/*.cs", {"citationRoots": ["data"]})
     out, res = REGISTRY["comment-citations"](Ctx(cls, "src/x.cs", "gk-core", "src/x.cs", rule), src)
     assert out == b'/// see `gk-data/packs/fusion/seed/a.json`\nvar p = "data/seed/a.json";\n'
-    cfg = ScanConfig(frozenset({".cs"}), ("data",), (), (), {}, {}, ())
+    cfg = ScanConfig(frozenset({".cs"}), ("data",), (), (), {}, {}, (), ())
     found = scan({"src/x.cs": src}, cls, cfg, set(), {"src/x.cs"})
     assert [(r.line, r.anchor) for r in found] == [(2, "data/seed/a.json")]
 
@@ -220,7 +220,7 @@ def test_pack_relative_content_paths_become_one_item_per_consuming_file():
     cls = _cls(("src/x.cs", "data/seed/a.json", "data/seed/b.json"),
                (_r("c", "src/**", "gk-core"),
                 _r("s", "data/**", "gk-data", relocate={"from": "data/", "to": "packs/fusion/data/"})))
-    cfg = ScanConfig(frozenset({".cs", ".json"}), ("data",), (), ("data/**",), {"gk-data": "packs/fusion/"}, {}, ())
+    cfg = ScanConfig(frozenset({".cs", ".json"}), ("data",), (), ("data/**",), {"gk-data": "packs/fusion/"}, {}, (), ())
     blobs = {"src/x.cs": b'var a = "data/seed/a.json";\nvar b = "data/seed/b.json";\n',
              "data/seed/a.json": b'{"see": "data/seed/b.json"}'}
     res = scan(blobs, cls, cfg, set())
@@ -242,8 +242,19 @@ def test_a_file_that_uses_the_repo_resolver_is_accepted():
                (_r("g", "tools/**", "gk-forge"), _r("t", "data/tuning/**", "gk-core"),
                 _r("s", "data/seed/**", "gk-data", relocate={"from": "data/", "to": "packs/fusion/data/"})))
     cfg = ScanConfig(frozenset({".py"}), ("data",), (), (), {"gk-data": "packs/fusion/"},
-                     {"gk-core": r"core_root\(", "gk-data": r"content_root\("}, ())
+                     {"gk-core": r"core_root\(", "gk-data": r"content_root\("}, (), ())
     before = {"tools/g.py": b'a = ROOT / "data/tuning/t.json"\nb = ROOT / "data/seed/a.json"\n'}
     after = {"tools/g.py": b'a = core_root() / "data/tuning/t.json"\nb = content_root() / "data/seed/a.json"\n'}
     assert {r.kind for r in scan(before, cls, cfg, set())} == {"path-literal-moves", "content-root-consumer"}
     assert scan(after, cls, cfg, set()) == []
+
+
+def test_output_relative_runtime_code_keeps_pack_relative_content_paths():
+    cls = _cls(("src/S/p.cs", "data/seed/a.json"),
+               (_r("c", "src/**", "gk-core"),
+                _r("s", "data/seed/**", "gk-data", relocate={"from": "data/", "to": "packs/fusion/data/"})))
+    blobs = {"src/S/p.cs": b'var a = Path.Combine(AppContext.BaseDirectory, "data/seed/a.json");\n'}
+    plain = ScanConfig(frozenset({".cs"}), ("data",), (), (), {"gk-data": "packs/fusion/"}, {}, (), ())
+    outrel = ScanConfig(frozenset({".cs"}), ("data",), (), (), {"gk-data": "packs/fusion/"}, {}, ("src/**",), ())
+    assert [r.kind for r in scan(blobs, cls, plain, set())] == ["content-root-consumer"]
+    assert scan(blobs, cls, outrel, set()) == []

@@ -121,6 +121,7 @@ class ScanConfig:
     citation_globs: tuple[str, ...]  # files whose path literals are citations (workspace-relative)
     pack_roots: dict[str, str]       # repo -> prefix under which legacy repo-relative content paths survive
     resolvers: dict[str, str]        # repo -> regex; a file matching it resolves that repo's root itself
+    output_relative_globs: tuple[str, ...]  # runtime code resolving content against a build output laid out by <Link>
     tokens: tuple[ScanToken, ...]
 
 
@@ -238,7 +239,7 @@ def parse_transforms(doc: Any, known_kinds: set[str]) -> tuple[TransformRule, ..
 def parse_scan(doc: Any) -> ScanConfig:
     w = "scan"
     _schema(doc, w)
-    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "resolvers", "tokens"}, w)
+    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "resolvers", "outputRelativeGlobs", "tokens"}, w)
     toks: list[ScanToken] = []
     for i, t in enumerate(_req(doc, "tokens", list, w)):
         wi = f"{w}.tokens[{i}]"
@@ -258,6 +259,7 @@ def parse_scan(doc: Any) -> ScanConfig:
         cites,
         _pack_roots(_req(doc, "packRoots", dict, w), w),
         _resolvers(_req(doc, "resolvers", dict, w), w),
+        tuple(_req(doc, "outputRelativeGlobs", list, w)),
         tuple(toks),
     )
 

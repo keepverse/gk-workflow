@@ -41,6 +41,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
     tokens = [(t, re.compile(t.regex)) for t in cfg.tokens]
     prx = _path_regex(cfg.path_roots) if cfg.path_roots else None
     resolvers = {repo: re.compile(rx) for repo, rx in cfg.resolvers.items()}
+    output_rel = [compile_glob(g) for g in cfg.output_relative_globs]
     for path in sorted(blobs):
         place = cls.place(path)
         if place is None or place.repo == DROP:
@@ -71,6 +72,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
         owns_comments = path in comment_owned
         content_hits: list[int] = []
         resolved_repos = {repo for repo, rx in resolvers.items() if rx.search(text)}
+        output_relative = any(g.match(path) for g in output_rel)
         ext = file_ext(path)
         doc_lines = comment_lines(text, ext) if owns_comments else set()
         for m in prx.finditer(text):
@@ -99,7 +101,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
             if prefix is not None and not norm.startswith("../") and new_target == prefix + old_target:
                 # pack-relative content path: the literal survives; what changes is the root it is
                 # resolved from. Citations are fine as they are; code gets one item per file.
-                if not citation_file:
+                if not citation_file and not output_relative:
                     content_hits.append(line_of(m.start()))
                 continue
             same_place = repo == place.repo and new_target == old_target and place.path == path

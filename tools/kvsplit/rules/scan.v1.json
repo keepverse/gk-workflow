@@ -6,5 +6,6 @@
   "citationGlobs": ["data/**", "content/**", "docs/**"],
   "packRoots": { "gk-data": "packs/fusion/" },
   "resolvers": {},
+  "outputRelativeGlobs": ["src/FusionRpg.Core/**", "src/FusionRpg.Data/**", "src/FusionRpg.Server/**"],
   "tokens": []
 }

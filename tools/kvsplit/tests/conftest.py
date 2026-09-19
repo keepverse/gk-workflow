@@ -130,6 +130,7 @@ SCAN = {
     "citationGlobs": ["data/**"],
     "packRoots": {"gk-data": "packs/fusion/"},
     "resolvers": {},
+    "outputRelativeGlobs": [],
     "tokens": [
         {"kind": "repo-root-discovery", "regex": "App\\.slnx", "allowedFix": "source",
          "detail": "repo root found through the legacy solution file"},
