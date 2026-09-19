@@ -5,7 +5,11 @@
   "skip": ["tasks/sessions/**"],
   "citationGlobs": ["data/**", "content/**", "docs/**"],
   "packRoots": { "gk-data": "packs/fusion/" },
-  "resolvers": {},
+  "resolvers": {
+    "gk-data": "content_root\\(|ContentRoot\\.|Get-ContentRoot",
+    "gk-core": "core_root\\(|CoreRoot\\.|Get-CoreRoot",
+    "root": "workspace_root\\(|WorkspaceRoot\\.|Get-WorkspaceRoot"
+  },
   "outputRelativeGlobs": ["src/FusionRpg.Core/**", "src/FusionRpg.Data/**", "src/FusionRpg.Server/**"],
   "tokens": []
 }
