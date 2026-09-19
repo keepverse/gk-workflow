@@ -114,6 +114,14 @@ class ScanToken:
 
 
 @dataclass(frozen=True)
+class Accept:
+    path: str
+    kind: str
+    anchor: str | None
+    reason: str
+
+
+@dataclass(frozen=True)
 class ScanConfig:
     extensions: frozenset[str]
     path_roots: tuple[str, ...]
@@ -123,6 +131,7 @@ class ScanConfig:
     resolvers: dict[str, str]        # repo -> regex; a file matching it resolves that repo's root itself
     output_relative_globs: tuple[str, ...]  # runtime code resolving content against a build output laid out by <Link>
     tokens: tuple[ScanToken, ...]
+    accept: tuple[Accept, ...] = ()
 
 
 @dataclass
@@ -239,7 +248,7 @@ def parse_transforms(doc: Any, known_kinds: set[str]) -> tuple[TransformRule, ..
 def parse_scan(doc: Any) -> ScanConfig:
     w = "scan"
     _schema(doc, w)
-    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "resolvers", "outputRelativeGlobs", "tokens"}, w)
+    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "resolvers", "outputRelativeGlobs", "tokens", "accept"}, w)
     toks: list[ScanToken] = []
     for i, t in enumerate(_req(doc, "tokens", list, w)):
         wi = f"{w}.tokens[{i}]"
@@ -261,7 +270,21 @@ def parse_scan(doc: Any) -> ScanConfig:
         _resolvers(_req(doc, "resolvers", dict, w), w),
         tuple(_req(doc, "outputRelativeGlobs", list, w)),
         tuple(toks),
+        _accept(_req(doc, "accept", list, w), w),
     )
+
+
+def _accept(raw: list, where: str) -> tuple[Accept, ...]:
+    out = []
+    for i, a in enumerate(raw):
+        wi = f"{where}.accept[{i}]"
+        _no_extra(a, {"path", "kind", "anchor", "reason"}, wi)
+        reason = _req(a, "reason", str, wi)
+        if not reason.strip():
+            raise RulesError(f"{wi}.reason: must not be empty")
+        compile_glob(_req(a, "path", str, wi))
+        out.append(Accept(a["path"], _req(a, "kind", str, wi), _opt(a, "anchor", str, wi), reason))
+    return tuple(out)
 
 
 def _pack_roots(raw: dict, where: str) -> dict[str, str]:

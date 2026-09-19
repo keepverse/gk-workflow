@@ -11,5 +11,6 @@
     "root": "workspace_root\\(|WorkspaceRoot\\.|Get-WorkspaceRoot"
   },
   "outputRelativeGlobs": ["src/FusionRpg.Core/**", "src/FusionRpg.Data/**", "src/FusionRpg.Server/**"],
-  "tokens": []
+  "tokens": [],
+  "accept": []
 }

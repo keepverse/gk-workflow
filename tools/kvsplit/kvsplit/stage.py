@@ -24,7 +24,7 @@ from kvsplit.globmatch import compile_glob
 from kvsplit.graph import build as build_graph
 from kvsplit.residue import Residue, dedupe_sorted
 from kvsplit.rules import DROP, Rules, load_rules
-from kvsplit.scan import scan
+from kvsplit.scan import accepted, scan
 from kvsplit.source import GitSource
 from kvsplit.transforms import OWNS, REGISTRY, Ctx
 
@@ -98,7 +98,7 @@ def compute(source: GitSource, rules: Rules) -> StageResult:
     residue += scan(kept, cls, rules.scan, transformed, comment_owned)
     files.sort(key=lambda f: (cls.workspace_path(f.repo, f.path)))
     residue += run_checks(files, cls, rules)
-    residue = dedupe_sorted(residue)
+    residue = dedupe_sorted(accepted(residue, rules.scan))
 
     counts: dict[str, int] = {r: 0 for r in rules.layout.ids()}
     for f in files:

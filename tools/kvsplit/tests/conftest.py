@@ -131,6 +131,7 @@ SCAN = {
     "packRoots": {"gk-data": "packs/fusion/"},
     "resolvers": {},
     "outputRelativeGlobs": [],
+    "accept": [],
     "tokens": [
         {"kind": "repo-root-discovery", "regex": "App\\.slnx", "allowedFix": "source",
          "detail": "repo root found through the legacy solution file"},

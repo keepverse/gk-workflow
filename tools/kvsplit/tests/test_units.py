@@ -258,3 +258,25 @@ def test_output_relative_runtime_code_keeps_pack_relative_content_paths():
     outrel = ScanConfig(frozenset({".cs"}), ("data",), (), (), {"gk-data": "packs/fusion/"}, {}, ("src/**",), ())
     assert [r.kind for r in scan(blobs, cls, plain, set())] == ["content-root-consumer"]
     assert scan(blobs, cls, outrel, set()) == []
+
+
+def test_segment_literals_are_paths_too():
+    cls = _cls(("tools/g.py", "src/Inj/a.cs", "tests/t.cs"),
+               (_r("g", "tools/**", "gk-forge"), _r("i", "src/Inj/**", "gk-fusion"), _r("t", "tests/**", "gk-core")))
+    cfg = ScanConfig(frozenset({".cs", ".py"}), ("src",), (), (), {}, {}, (), ())
+    blobs = {"tests/t.cs": b'if (Directory.Exists(Path.Combine(dir.FullName, "src", "Inj"))) return dir;\n',
+             "tools/g.py": b'p = ROOT / "src" / "Inj" / "a.cs"\n'}
+    got = {(r.path, r.anchor) for r in scan(blobs, cls, cfg, set())}
+    assert ("tests/t.cs", "src/Inj") in got
+    assert ("tools/g.py", "src/Inj/a.cs") in got
+
+
+def test_accept_rule_drops_only_the_named_residue():
+    from kvsplit.rules import Accept
+    from kvsplit.residue import Residue
+    from kvsplit.scan import accepted
+    cfg = ScanConfig(frozenset(), (), (), (), {}, {}, (), (),
+                     (Accept("tests/x.cs", "content-root-consumer", None, "prefix strings, not paths"),))
+    keep = Residue("path-literal-moves", "tests/x.cs", "a", 1, "d", "source")
+    drop = Residue("content-root-consumer", "tests/x.cs", "content-root", 1, "d", "source")
+    assert accepted([keep, drop], cfg) == [keep]

@@ -31,6 +31,21 @@ def _path_regex(roots: tuple[str, ...]) -> re.Pattern[str]:
     return re.compile(r"(?<![\w.\-/\\])((?:\.\.[\\/])*(?:" + alt + r")[\\/][\w.\-\\/]*[\w\-])")
 
 
+def _segment_regex(roots: tuple[str, ...]) -> re.Pattern[str]:
+    """A path spelled as separate string literals: Path.Combine(root, "data", "seed") or root / "data" / "seed"."""
+    alt = "|".join(re.escape(r) for r in roots)
+    seg = r'"[\w.\-]+"'
+    return re.compile(r'"(?:' + alt + r')"(?:\s*,\s*' + seg + r')+|"(?:' + alt + r')"(?:\s*/\s*' + seg + r')+')
+
+
+def _literals(text: str, prx: re.Pattern[str], srx: re.Pattern[str]):
+    for m in prx.finditer(text):
+        yield m.start(), m.group(1)
+    for m in srx.finditer(text):
+        parts = re.findall(r'"([\w.\-]+)"', m.group(0))
+        yield m.start(), "/".join(parts)
+
+
 def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transformed: set[str],
          comment_owned: set[str] | None = None) -> list[Residue]:
     from kvsplit.transforms import comment_lines, file_ext
@@ -40,6 +55,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
     cites = [compile_glob(g) for g in cfg.citation_globs]
     tokens = [(t, re.compile(t.regex)) for t in cfg.tokens]
     prx = _path_regex(cfg.path_roots) if cfg.path_roots else None
+    srx = _segment_regex(cfg.path_roots) if cfg.path_roots else None
     resolvers = {repo: re.compile(rx) for repo, rx in cfg.resolvers.items()}
     output_rel = [compile_glob(g) for g in cfg.output_relative_globs]
     for path in sorted(blobs):
@@ -65,7 +81,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
 
         for t, rx in tokens:
             for m in rx.finditer(text):
-                out.append(Residue(t.kind, path, m.group(0), line_of(m.start()), t.detail, t.allowed_fix))
+                out.append(Residue(t.kind, path, m.group(0), line_of(start), t.detail, t.allowed_fix))
         if prx is None or path in transformed:
             continue
         citation_file = any(c.match(path) for c in cites)
@@ -75,10 +91,9 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
         output_relative = any(g.match(path) for g in output_rel)
         ext = file_ext(path)
         doc_lines = comment_lines(text, ext) if owns_comments else set()
-        for m in prx.finditer(text):
-            if owns_comments and line_of(m.start()) in doc_lines:
+        for start, lit in _literals(text, prx, srx):
+            if owns_comments and line_of(start) in doc_lines:
                 continue
-            lit = m.group(1)
             norm = lit.replace("\\", "/")
             if norm.startswith("../"):
                 old_target = posixpath.normpath(posixpath.join(posixpath.dirname(path), norm))
@@ -90,7 +105,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
             if mapped is None:
                 if cls.place(old_target) is None and not _is_known_prefix(cls, old_target):
                     continue  # prose or a path that never existed: not a reference we can judge
-                out.append(Residue("path-literal-unmappable", path, lit, line_of(m.start()),
+                out.append(Residue("path-literal-unmappable", path, lit, line_of(start),
                                    f"'{old_target}' splits across repos or is dropped", "source"))
                 continue
             repo, new_target = mapped
@@ -102,14 +117,14 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
                 # pack-relative content path: the literal survives; what changes is the root it is
                 # resolved from. Citations are fine as they are; code gets one item per file.
                 if not citation_file and not output_relative:
-                    content_hits.append(line_of(m.start()))
+                    content_hits.append(line_of(start))
                 continue
             same_place = repo == place.repo and new_target == old_target and place.path == path
             if citation_file and not norm.startswith("../") and cls.workspace_path(repo, new_target) == old_target:
                 continue  # a workspace-relative citation that still resolves
             if not same_place:
                 ws = cls.workspace_path(repo, new_target)
-                out.append(Residue("path-literal-moves", path, lit, line_of(m.start()),
+                out.append(Residue("path-literal-moves", path, lit, line_of(start),
                                    f"'{old_target}' -> {repo}:{new_target} (workspace '{ws}'); "
                                    f"file moves {place.repo}:{place.path}", "source"))
         if content_hits:
@@ -117,6 +132,13 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
                                f"{len(content_hits)} repo-relative content path(s); resolve them from the content "
                                f"pack root (GkDataRoot + packs/<pack>/) instead of the repo root", "source"))
     return out
+
+
+def accepted(residue: list[Residue], cfg: ScanConfig) -> list[Residue]:
+    """Drop residue an authored accept rule covers (each rule carries its reason in scan.v1.json)."""
+    rules = [(compile_glob(a.path), a.kind, a.anchor) for a in cfg.accept]
+    return [r for r in residue
+            if not any(g.match(r.path) and k == r.kind and (anc is None or anc == r.anchor) for g, k, anc in rules)]
 
 
 def _is_known_prefix(cls: Classification, p: str) -> bool:
