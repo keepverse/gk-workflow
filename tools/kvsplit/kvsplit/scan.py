@@ -40,6 +40,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
     cites = [compile_glob(g) for g in cfg.citation_globs]
     tokens = [(t, re.compile(t.regex)) for t in cfg.tokens]
     prx = _path_regex(cfg.path_roots) if cfg.path_roots else None
+    resolvers = {repo: re.compile(rx) for repo, rx in cfg.resolvers.items()}
     for path in sorted(blobs):
         place = cls.place(path)
         if place is None or place.repo == DROP:
@@ -69,6 +70,7 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
         citation_file = any(c.match(path) for c in cites)
         owns_comments = path in comment_owned
         content_hits: list[int] = []
+        resolved_repos = {repo for repo, rx in resolvers.items() if rx.search(text)}
         ext = file_ext(path)
         doc_lines = comment_lines(text, ext) if owns_comments else set()
         for m in prx.finditer(text):
@@ -91,6 +93,9 @@ def scan(blobs: dict[str, bytes], cls: Classification, cfg: ScanConfig, transfor
                 continue
             repo, new_target = mapped
             prefix = cfg.pack_roots.get(repo)
+            repo_relative_kept = new_target == (prefix or "") + old_target
+            if repo in resolved_repos and not norm.startswith("../") and repo_relative_kept:
+                continue  # this file resolves the target repo's root through its sanctioned resolver
             if prefix is not None and not norm.startswith("../") and new_target == prefix + old_target:
                 # pack-relative content path: the literal survives; what changes is the root it is
                 # resolved from. Citations are fine as they are; code gets one item per file.

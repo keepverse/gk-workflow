@@ -120,6 +120,7 @@ class ScanConfig:
     skip: tuple[str, ...]
     citation_globs: tuple[str, ...]  # files whose path literals are citations (workspace-relative)
     pack_roots: dict[str, str]       # repo -> prefix under which legacy repo-relative content paths survive
+    resolvers: dict[str, str]        # repo -> regex; a file matching it resolves that repo's root itself
     tokens: tuple[ScanToken, ...]
 
 
@@ -237,7 +238,7 @@ def parse_transforms(doc: Any, known_kinds: set[str]) -> tuple[TransformRule, ..
 def parse_scan(doc: Any) -> ScanConfig:
     w = "scan"
     _schema(doc, w)
-    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "tokens"}, w)
+    _no_extra(doc, {"schemaVersion", "extensions", "pathRoots", "skip", "citationGlobs", "packRoots", "resolvers", "tokens"}, w)
     toks: list[ScanToken] = []
     for i, t in enumerate(_req(doc, "tokens", list, w)):
         wi = f"{w}.tokens[{i}]"
@@ -256,6 +257,7 @@ def parse_scan(doc: Any) -> ScanConfig:
         skip,
         cites,
         _pack_roots(_req(doc, "packRoots", dict, w), w),
+        _resolvers(_req(doc, "resolvers", dict, w), w),
         tuple(toks),
     )
 
@@ -265,6 +267,20 @@ def _pack_roots(raw: dict, where: str) -> dict[str, str]:
     for k, v in raw.items():
         if not isinstance(v, str) or not v.endswith("/"):
             raise RulesError(f"{where}.packRoots.{k}: must be a string ending in '/'")
+        out[k] = v
+    return out
+
+
+def _resolvers(raw: dict, where: str) -> dict[str, str]:
+    import re as _re
+    out: dict[str, str] = {}
+    for k, v in raw.items():
+        if not isinstance(v, str):
+            raise RulesError(f"{where}.resolvers.{k}: must be a regex string")
+        try:
+            _re.compile(v)
+        except _re.error as ex:
+            raise RulesError(f"{where}.resolvers.{k}: {ex}") from None
         out[k] = v
     return out
 
