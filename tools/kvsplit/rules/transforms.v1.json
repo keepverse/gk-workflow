@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "transforms": [
+    { "id": "msbuild-csproj",  "kind": "msbuild-paths", "pattern": "**/*.csproj", "params": {} },
+    { "id": "msbuild-props",   "kind": "msbuild-paths", "pattern": "**/*.props", "params": {} },
+    { "id": "msbuild-targets", "kind": "msbuild-paths", "pattern": "**/*.targets", "params": {} },
+    { "id": "repo-roots",      "kind": "msbuild-props-inject", "pattern": "Directory.Build.props", "params": {} },
+    { "id": "solution",        "kind": "solution-split", "pattern": "FusionRpg.slnx", "params": {} },
+    { "id": "comments-cs", "kind": "comment-citations", "pattern": "**/*.cs", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-ts", "kind": "comment-citations", "pattern": "**/*.ts", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-tsx", "kind": "comment-citations", "pattern": "**/*.tsx", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-js", "kind": "comment-citations", "pattern": "**/*.js", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-mjs", "kind": "comment-citations", "pattern": "**/*.mjs", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-py", "kind": "comment-citations", "pattern": "**/*.py", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-ps1", "kind": "comment-citations", "pattern": "**/*.ps1", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-psm1", "kind": "comment-citations", "pattern": "**/*.psm1", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-yml", "kind": "comment-citations", "pattern": "**/*.yml", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "comments-yaml", "kind": "comment-citations", "pattern": "**/*.yaml", "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } },
+    { "id": "markdown",        "kind": "markdown-citations", "pattern": "**/*.md",
+      "params": { "citationRoots": ["src", "tests", "tools", "data", "docs", "web", "scripts", "content", "tasks"] } }
+  ]
+}

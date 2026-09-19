@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# kvsplit staging output (regenerated every run)
+/.staging*/
+

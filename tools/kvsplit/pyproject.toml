@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kvsplit"
+version = "0.1.0"
+description = "Deterministic migration of the legacy monorepo into the Keepverse multi-repo workspace."
+requires-python = ">=3.11"
+
+# EXACT pins, never ranges: the tool's central claim is byte-identical output for the same inputs.
+# The runtime is standard library only on purpose; there are no runtime dependencies.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.0.2",
+]
+
+[project.scripts]
+kvsplit = "kvsplit.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["kvsplit*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

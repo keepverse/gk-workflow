@@ -1,0 +1,22 @@
+name: kvsplit
+
+on:
+  push:
+    paths: ["tools/kvsplit/**", ".github/workflows/kvsplit.yml"]
+  pull_request:
+    paths: ["tools/kvsplit/**", ".github/workflows/kvsplit.yml"]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: tools/kvsplit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -r requirements.lock
+      - run: python -m pip install -e . --no-deps
+      - run: python -m pytest -q

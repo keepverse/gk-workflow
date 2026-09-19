@@ -1,0 +1,23 @@
+# Keepverse workspace root (gk-workflow). Sub-repos are independent git repositories.
+/gk-core/
+/gk-forge/
+/gk-data/
+/gk-assets/
+/gk-fusion/
+
+# kvsplit staging output
+/.staging*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# Local tool state
+.codegraph/*
+!.codegraph/.gitignore
+.remember/
+.kilo/sessions/
+.env
