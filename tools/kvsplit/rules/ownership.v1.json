@@ -120,6 +120,9 @@
     { "id": "assets-blender-agents", "pattern": "blender/AGENTS.md", "target": "gk-assets", "priority": 0, "reason": "the asset-work rules for blender/; kept as a nested instruction file so the repo-root AGENTS.md stays the single front door",
       "relocate": { "from": "blender/AGENTS.md", "to": "vfx/AGENTS.md" } },
 
-    { "id": "core-build-targets", "pattern": "Directory.Build.targets", "target": "gk-core", "priority": 0, "reason": "the build-matrix half of the pair; MSBuild imports props and targets together, so a cell profile gk-core declares must resolve in the same repo" }
+    { "id": "core-build-targets", "pattern": "Directory.Build.targets", "target": "gk-core", "priority": 0, "reason": "the build-matrix half of the pair; MSBuild imports props and targets together, so a cell profile gk-core declares must resolve in the same repo" },
+
+    { "id": "drop-claude-skill-links", "pattern": ".claude/skills/*", "target": "drop", "priority": 20, "reason": "a symlink aliasing ../../.agents/skills/<name>. The canonical skill content migrates to root; a symlink does not survive a checkout without core.symlinks, and tools/bootstrap_skills.py recreates the alias" },
+    { "id": "drop-kiro-skill-links", "pattern": ".kiro/skills/*", "target": "drop", "priority": 20, "reason": "the same 111 skills aliased a second time for a second tool. One alias set is enough; see drop-claude-skill-links" }
   ]
 }

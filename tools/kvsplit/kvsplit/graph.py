@@ -13,8 +13,9 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 
 from kvsplit.classify import Classification
+from kvsplit.globmatch import matches
 from kvsplit.residue import Residue
-from kvsplit.rules import DROP
+from kvsplit.rules import DROP, Layout
 
 PROJECT_EXT = (".csproj", ".fsproj", ".vbproj")
 UNITY_REF = re.compile(r"\b(UnityEngine|Il2Cpp\w*|HarmonyLib|0Harmony|BepInEx|MelonLoader)\b")
@@ -42,6 +43,11 @@ def resolve_rel(base_file: str, value: str) -> str | None:
     if joined.startswith("../") or joined == "..":
         return None
     return joined
+
+
+def _is_test_project(layout: Layout, path: str) -> bool:
+    """True when layout.testProjectGlobs claims this project file."""
+    return any(matches(g, path) for g in layout.test_projects)
 
 
 def build(blobs: dict[str, bytes], cls: Classification) -> tuple[list[Edge], list[Residue]]:
@@ -72,9 +78,13 @@ def build(blobs: dict[str, bytes], cls: Classification) -> tuple[list[Edge], lis
                     continue
                 edges.append(Edge(path, target, place.repo, tplace.repo))
                 if tplace.repo != place.repo and tplace.repo not in cls.layout.compile_deps[place.repo]:
-                    residue.append(Residue("direction-violation", path, inc, None,
-                                           f"{place.repo} may not compile against {tplace.repo} (layout.compileDeps)",
-                                           "source"))
+                    # A test project may drive a generator in a repo it may not compile
+                    # against. The edge above is still real and still in the graph; only
+                    # the shipped direction is being waived, and only for a test project.
+                    if not _is_test_project(cls.layout, path):
+                        residue.append(Residue("direction-violation", path, inc, None,
+                                               f"{place.repo} may not compile against {tplace.repo} (layout.compileDeps)",
+                                               "source"))
             elif name in ("Reference", "PackageReference"):
                 inc = el.get("Include") or ""
                 if UNITY_REF.search(inc) and place.repo not in cls.layout.unity_repos:

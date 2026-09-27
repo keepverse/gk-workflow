@@ -88,6 +88,22 @@ def classify(entries: list[Entry], rules: tuple[OwnershipRule, ...], layout: Lay
     placements: dict[str, Placement] = {}
     for e in entries:
         if e.kind != "blob" or e.mode == "120000":
+            # A rule targeting `drop` is an explicit statement that this path must not
+            # exist in the output, so it authorises dropping a non-blob entry too. That
+            # is the only way to retire a symlink: a symlink cannot be migrated (git
+            # checks it out as plain text without core.symlinks), and it never reaches
+            # ordinary classification, so without this it would be unresolvable residue.
+            droppers = [r for r, rx in compiled if r.target == DROP and rx.match(e.path)]
+            if droppers:
+                top = max(r.priority for r in droppers)
+                winner = next(r for r in droppers if r.priority == top)
+                for r in droppers:
+                    hits[r.id] += 1
+                # Record the placement so the reconciliation counts this path as dropped
+                # rather than unplaced: a `dropped` total that excludes retired symlinks
+                # is a smaller number than the work actually done.
+                placements[e.path] = Placement(DROP, e.path, winner.id, ())
+                continue
             residue.append(Residue("unsupported-entry", e.path, e.mode, None,
                                    f"git entry kind={e.kind} mode={e.mode} (submodule/symlink) is not migrated automatically",
                                    "rule"))

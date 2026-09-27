@@ -105,7 +105,9 @@ def compute(source: GitSource, rules: Rules) -> StageResult:
     for f in files:
         if f.origin == "source" and f.repo == cls.place(f.source).repo:  # type: ignore[arg-type]
             counts[f.repo] += 1
-    dropped = sum(1 for p in blobs if (pl := cls.place(p)) is not None and pl.repo == DROP)
+    # Counted over `entries`, not `blobs`: a retired symlink is a tracked entry with no
+    # blob, and it is exactly the case that must still appear in the reconciliation.
+    dropped = sum(1 for e in entries if (pl := cls.place(e.path)) is not None and pl.repo == DROP)
     unplaced = sum(1 for e in entries if cls.place(e.path) is None)
     digest = hashlib.sha256()
     rows = []
@@ -135,7 +137,7 @@ def compute(source: GitSource, rules: Rules) -> StageResult:
             "balanced": sum(counts.values()) + dropped + unplaced == len(entries),
         },
         "residueByKind": _by_kind(residue),
-        "dropped": sorted(p for p in blobs if (pl := cls.place(p)) is not None and pl.repo == DROP),
+        "dropped": sorted(e.path for e in entries if (pl := cls.place(e.path)) is not None and pl.repo == DROP),
         "files": rows,
     }
     return StageResult(files, residue, report, cls)

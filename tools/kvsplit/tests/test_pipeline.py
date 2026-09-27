@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,19 @@ from kvsplit.transforms import REGISTRY
 
 def _staged(out: Path, ws_path: str) -> str:
     return (out / "workspace" / ws_path).read_text(encoding="utf-8")
+
+
+def _add_symlink(repo: Path, path: str, target: str) -> None:
+    """Plant a real mode=120000 index entry.
+
+    `git add` on a symlink is not usable here: without core.symlinks git records the
+    link target as an ordinary file, so the entry never becomes a symlink and the test
+    would silently exercise the wrong path. Writing the index entry directly is how a
+    symlink is authored anyway.
+    """
+    blob = subprocess.run(["git", "-C", str(repo), "hash-object", "-w", "--stdin"],
+                          input=target, capture_output=True, text=True, check=True).stdout.strip()
+    git(repo, "update-index", "--add", "--cacheinfo", f"120000,{blob},{path}")
 
 
 def _kinds(result) -> dict[str, list]:
@@ -118,6 +132,99 @@ def test_two_runs_are_byte_identical(legacy, rules_dir, tmp_path):
     b = (tmp_path / "v/run-2/report.json").read_bytes()
     assert a == b
     assert (tmp_path / "v/run-1/residue.json").read_bytes() == (tmp_path / "v/run-2/residue.json").read_bytes()
+
+
+def test_a_test_project_may_drive_a_generator_it_may_not_compile_against(rules_dir, tmp_path):
+    """compileDeps governs what ships. A test project verifies a generator's output, so
+    layout.testProjectGlobs waives the direction for it - but only for it."""
+    lay = json.loads((rules_dir / "layout.v1.json").read_text())
+    lay["testProjectGlobs"] = ["tests/**/*.Tests.csproj"]
+    (rules_dir / "layout.v1.json").write_text(json.dumps(lay))
+
+    proj = ('<Project Sdk="x">\n  <ItemGroup>\n'
+            '    <ProjectReference Include="..\\..\\tools\\Gen\\Gen.csproj" />\n'
+            '  </ItemGroup>\n</Project>\n')
+    files = {
+        "src/App.Core/App.Core.csproj": '<Project Sdk="x">\n</Project>\n',
+        "src/App.Host/App.Host.csproj": proj,
+        "tests/App.Tests/App.Tests.csproj": proj,
+        "tools/Gen/Gen.csproj": '<Project Sdk="x">\n</Project>\n',
+        "docs/a.md": "x", "docs/injector/b.md": "x", "README.md": "x", "tests/t.cs": "x",
+        "Directory.Build.props": "<Project>\n</Project>\n",
+        "data/seed/a.json": "{}", "data/tuning/t.json": "{}", "App.slnx": "x",
+    }
+    repo = make_repo(tmp_path / "testproj", files)
+    k = _kinds(stage(repo, "HEAD", rules_dir, tmp_path / "staging"))
+    bad = [x.path for x in k.get("direction-violation", [])]
+    assert "tests/App.Tests/App.Tests.csproj" not in bad   # exempted
+    assert "src/App.Host/App.Host.csproj" in bad             # still refused
+
+
+def test_without_test_project_globs_a_test_project_is_still_refused(rules_dir, tmp_path):
+    """The waiver is opt-in. Absent the field, nothing changes."""
+    proj = ('<Project Sdk="x">\n  <ItemGroup>\n'
+            '    <ProjectReference Include="..\\..\\tools\\Gen\\Gen.csproj" />\n'
+            '  </ItemGroup>\n</Project>\n')
+    files = {
+        "src/App.Core/App.Core.csproj": '<Project Sdk="x">\n</Project>\n',
+        "src/App.Host/App.Host.csproj": proj,
+        "tests/App.Tests/App.Tests.csproj": proj,
+        "tools/Gen/Gen.csproj": '<Project Sdk="x">\n</Project>\n',
+        "docs/a.md": "x", "docs/injector/b.md": "x", "README.md": "x", "tests/t.cs": "x",
+        "Directory.Build.props": "<Project>\n</Project>\n",
+        "data/seed/a.json": "{}", "data/tuning/t.json": "{}", "App.slnx": "x",
+    }
+    repo = make_repo(tmp_path / "notestproj", files)
+    k = _kinds(stage(repo, "HEAD", rules_dir, tmp_path / "staging"))
+    bad = [x.path for x in k.get("direction-violation", [])]
+    assert "tests/App.Tests/App.Tests.csproj" in bad
+
+
+def test_a_drop_rule_retires_a_symlink_and_the_reconciliation_counts_it(rules_dir, tmp_path):
+    """A symlink cannot be migrated, and it never reaches ordinary classification, so a
+    `drop` rule is the only way to resolve one - and it must land in `dropped`."""
+    own = json.loads((rules_dir / "ownership.v1.json").read_text())
+    own["rules"].append({"id": "t-drop-links", "pattern": ".claude/skills/*",
+                         "target": "drop", "priority": 20, "reason": "retire the alias"})
+    (rules_dir / "ownership.v1.json").write_text(json.dumps(own))
+
+    files = {
+        "src/App.Core/App.Core.csproj": '<Project Sdk="x">\n</Project>\n',
+        "docs/a.md": "x", "docs/injector/b.md": "x", "README.md": "x", "tests/t.cs": "x",
+        "Directory.Build.props": "<Project>\n</Project>\n",
+        "data/seed/a.json": "{}", "data/tuning/t.json": "{}", "App.slnx": "x",
+    }
+    repo = make_repo(tmp_path / "links", files)
+    baseline = stage(repo, "HEAD", rules_dir, tmp_path / "baseline").report["reconciliation"]
+    for name in ("alpha", "beta"):
+        _add_symlink(repo, f".claude/skills/{name}", f"../../.agents/skills/{name}")
+    git(repo, "commit", "-q", "--allow-empty", "-m", "links")
+
+    r = stage(repo, "HEAD", rules_dir, tmp_path / "staging")
+    k = _kinds(r)
+    assert "unsupported-entry" not in k
+    rec = r.report["reconciliation"]
+    # The fixture already drops App.slnx, so the claim under test is the delta: the drop
+    # rule adds exactly the two symlinks, and they are named in the report.
+    assert rec["dropped"] - baseline["dropped"] == 2
+    assert {".claude/skills/alpha", ".claude/skills/beta"} <= set(r.report["dropped"])
+    assert rec["tracked"] - baseline["tracked"] == 2
+    assert rec["unplaced"] == 0
+    assert rec["balanced"]
+
+
+def test_a_symlink_without_a_drop_rule_is_still_refused(rules_dir, tmp_path):
+    files = {
+        "src/App.Core/App.Core.csproj": '<Project Sdk="x">\n</Project>\n',
+        "docs/a.md": "x", "docs/injector/b.md": "x", "README.md": "x", "tests/t.cs": "x",
+        "Directory.Build.props": "<Project>\n</Project>\n",
+        "data/seed/a.json": "{}", "data/tuning/t.json": "{}", "App.slnx": "x",
+    }
+    repo = make_repo(tmp_path / "nolinks", files)
+    _add_symlink(repo, ".claude/skills/alpha", "../../.agents/skills/alpha")
+    git(repo, "commit", "-q", "--allow-empty", "-m", "link")
+    k = _kinds(stage(repo, "HEAD", rules_dir, tmp_path / "staging"))
+    assert [x.path for x in k["unsupported-entry"]] == [".claude/skills/alpha"]
 
 
 def test_residue_ids_are_stable_across_unrelated_changes(legacy, rules_dir, tmp_path):

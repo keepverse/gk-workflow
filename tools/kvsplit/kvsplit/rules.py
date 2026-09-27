@@ -69,6 +69,7 @@ class Layout:
     repos: tuple[Repo, ...]
     compile_deps: dict[str, frozenset[str]]  # repo -> repos it may ProjectReference
     unity_repos: frozenset[str]               # the only repos allowed to reference Unity/Il2Cpp/Harmony
+    test_projects: tuple[str, ...] = ()       # globs exempt from compileDeps (they verify, they do not ship)
 
     def repo(self, repo_id: str) -> Repo:
         for r in self.repos:
@@ -159,7 +160,7 @@ def _load_json(path: Path) -> Any:
 def parse_layout(doc: Any) -> Layout:
     w = "layout"
     _schema(doc, w)
-    _no_extra(doc, {"schemaVersion", "repos", "compileDeps", "unityRepos"}, w)
+    _no_extra(doc, {"schemaVersion", "repos", "compileDeps", "unityRepos", "testProjectGlobs"}, w)
     repos: list[Repo] = []
     for i, r in enumerate(_req(doc, "repos", list, w)):
         wi = f"{w}.repos[{i}]"
@@ -186,7 +187,14 @@ def parse_layout(doc: Any) -> Layout:
     unity = _req(doc, "unityRepos", list, w)
     if any(x not in ids for x in unity):
         raise RulesError(f"{w}.unityRepos: unknown repo id")
-    return Layout(tuple(repos), deps, frozenset(unity))
+    # A test project may drive a generator in a repo it may not compile against: it
+    # verifies that generator's output, it does not ship against it. The edge is still
+    # recorded in the graph, so the dependency stays visible - it is only the shipped
+    # direction that compileDeps governs.
+    test_globs = tuple(_opt(doc, "testProjectGlobs", list, w) or ())
+    for g in test_globs:
+        compile_glob(g)
+    return Layout(tuple(repos), deps, frozenset(unity), test_globs)
 
 
 def parse_ownership(doc: Any, layout: Layout) -> tuple[OwnershipRule, ...]:

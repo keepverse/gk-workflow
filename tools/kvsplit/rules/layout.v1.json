@@ -21,5 +21,10 @@
     "gk-forge": ["gk-core"],
     "gk-fusion": ["gk-core"]
   },
+  "testProjectGlobs": [
+    "tests/**/*.Tests.csproj",
+    "tests/**/*.Test.csproj",
+    "src/**/*.Tests.csproj"
+  ],
   "unityRepos": ["gk-fusion"]
 }
