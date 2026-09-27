@@ -107,18 +107,7 @@
       "relocate": { "from": "data/generated/", "to": "packs/fusion/data/generated/" } },
     { "id": "content-authored", "pattern": "content/**", "target": "gk-content", "priority": 0, "reason": "authored display content is OURS: names, flavor, registries. It is the original content, not the derived corpus, so it does not sit beside a corpus derived from another game" },
 
-    { "id": "assets-blender-scenes", "pattern": "blender/assets/**", "target": "gk-assets", "priority": 0, "reason": "source .blend scenes and their textures; gk-assets already carries assets/vfx/<effect>/, so the subtree relocates onto the layout it was hand-migrated into",
-      "relocate": { "from": "blender/assets/", "to": "assets/" } },
-    { "id": "assets-vfx-programs", "pattern": "blender/vfx/**", "target": "gk-assets", "priority": 0, "reason": "one VFX sub-program per effect, effect.json authoritative; gk-assets already carries vfx/<effect>/, so the subtree relocates onto it",
-      "relocate": { "from": "blender/vfx/", "to": "vfx/" } },
-    { "id": "assets-blender-tools", "pattern": "blender/tools/**", "target": "gk-assets", "priority": 0, "reason": "the asset build and preview scripts; gk-assets/tools/ is their declared home, and they are MIT-licensed tooling beside CC BY art",
-      "relocate": { "from": "blender/tools/", "to": "tools/" } },
-    { "id": "assets-blender-viewer", "pattern": "blender/viewer/**", "target": "gk-assets", "priority": 0, "reason": "the sheet viewer is an asset-tooling surface, not a game surface",
-      "relocate": { "from": "blender/viewer/", "to": "tools/viewer/" } },
-    { "id": "assets-blender-readme", "pattern": "blender/README.md", "target": "gk-assets", "priority": 0, "reason": "the general VFX sub-program pipeline, which belongs beside vfx/; named PIPELINE.md because vfx/README.md is already the fire-shield set's own document, and it must not overwrite the repo README, the front door of all eight repos",
-      "relocate": { "from": "blender/README.md", "to": "vfx/PIPELINE.md" } },
-    { "id": "assets-blender-agents", "pattern": "blender/AGENTS.md", "target": "gk-assets", "priority": 0, "reason": "the asset-work rules for blender/; kept as a nested instruction file so the repo-root AGENTS.md stays the single front door",
-      "relocate": { "from": "blender/AGENTS.md", "to": "vfx/AGENTS.md" } },
+    { "id": "drop-blender-already-migrated", "pattern": "blender/**", "target": "drop", "priority": 0, "reason": "the art is already merged into gk-assets, which owns the whole tree now; what remained here was never migrated (superseded renders, lookdev references) and is the owner's own cleanup, not migration input. Dropping rather than importing is what keeps the improved art in gk-assets authoritative instead of being reverted by a legacy copy" },
 
     { "id": "core-build-targets", "pattern": "Directory.Build.targets", "target": "gk-core", "priority": 0, "reason": "the build-matrix half of the pair; MSBuild imports props and targets together, so a cell profile gk-core declares must resolve in the same repo" },
 

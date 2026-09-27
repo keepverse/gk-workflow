@@ -313,6 +313,57 @@ def test_a_repo_that_receives_nothing_is_reported_not_failed(rules_dir, tmp_path
     assert (hand / "LICENSE").read_text() == "L"
 
 
+def _preserve_one(rules_dir: Path, rid: str, path: str) -> Path:
+    """Make `rules_dir` preserve exactly `path` in `rid`. Re-run stage after calling this."""
+    lay = json.loads((rules_dir / "layout.v1.json").read_text())
+    for r in lay["repos"]:
+        if r["id"] == rid:
+            r["preserve"] = [path]
+    (rules_dir / "layout.v1.json").write_text(json.dumps(lay))
+    return rules_dir
+
+
+def test_a_preserved_path_is_kept_not_overwritten(rules_dir, tmp_path):
+    """preserve means this path is the repo's, not the split's. It already stopped apply
+    deleting the file; it must also stop apply writing over it, or a hand-authored
+    AGENTS.md is replaced by the weaker template that exists only to seed a repo that
+    lacks one."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    probe = tmp_path / "probe"
+    stage(src, "HEAD", rules_dir, probe)
+    target = [r for r in json.loads((probe / "report.json").read_text())["files"]
+              if r["repo"] == "gk-core"][0]["path"]
+    _preserve_one(rules_dir, "gk-core", target)
+
+    out = tmp_path / "staging"          # staged AFTER the rules change, so the digest matches
+    stage(src, "HEAD", rules_dir, out)
+    ws = _workspace(tmp_path)
+    make_repo(ws / "gk-core", {target: "the repo's own version\n"})
+    rules = load_rules(rules_dir, set(REGISTRY))
+    res = apply(out, ws, rules.layout, ["gk-core"], rules.digest, True, allow_residue=True)
+    assert (ws / "gk-core" / target).read_text() == "the repo's own version\n"
+    assert any("kept 1 preserved" in line for line in res), res
+
+
+def test_a_preserved_path_is_not_counted_as_an_overwrite(rules_dir, tmp_path):
+    """The guard and the write loop must agree, or apply refuses on a file it would keep."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    probe = tmp_path / "probe"
+    stage(src, "HEAD", rules_dir, probe)
+    target = [r for r in json.loads((probe / "report.json").read_text())["files"]
+              if r["repo"] == "gk-core"][0]["path"]
+    _preserve_one(rules_dir, "gk-core", target)
+
+    out = tmp_path / "staging"
+    stage(src, "HEAD", rules_dir, out)
+    ws = _workspace(tmp_path)
+    make_repo(ws / "gk-core", {target: "DIFFERENT\n"})
+    rules = load_rules(rules_dir, set(REGISTRY))
+    res = apply(out, ws, rules.layout, ["gk-core"], rules.digest, True, allow_residue=True)
+    assert not any("would overwrite" in line for line in res), res
+    assert (ws / "gk-core" / target).read_text() == "DIFFERENT\n"
+
+
 def test_residue_ids_are_stable_across_unrelated_changes(legacy, rules_dir, tmp_path):
     r1 = stage(legacy, "HEAD", rules_dir, tmp_path / "s1")
     (legacy / "src/App.Core/Other.cs").write_text("class O {}\n")

@@ -68,22 +68,26 @@ def _overwrites(staging: Path, workspace: Path, layout: Layout, repo_ids: list[s
                 report: dict) -> list[str]:
     """Staged paths that already exist in a target repo with different content.
 
-    `preserve` stops apply from DELETING a file, but the write loop below overwrites any
-    staged path regardless, so a preserved file is only safe when the split does not
-    produce it. Without this list an owner who has already migrated and then improved a
-    file loses the improvement with no warning - and a .blend scene or a rendered sheet
-    is not something a text diff would make obvious afterwards.
+    A path the repo preserves is kept rather than written, so it can never be an
+    overwrite and is not listed. Everything else: without this an owner who already
+    migrated and then improved a file loses the improvement with no warning, and a
+    .blend scene or a rendered sheet is not something a text diff would make obvious
+    afterwards. The staged `.gitignore` is the case that must land here - the live ones
+    are generic templates without `**/dist/`, `**/node_modules/` or the runtime
+    databases, so overwriting the template with it is a correction, not a loss.
     """
     out: list[str] = []
-    for r in report["files"]:
-        if r["repo"] not in repo_ids:
-            continue
-        live = _target(workspace, layout, r["repo"]) / r["path"]
-        src = long_path(staging / "workspace" / r["workspacePath"])
-        if not live.is_file() or not src.is_file():
-            continue
-        if _digest(live) != _digest(src):
-            out.append(f"{r['repo']}/{r['path']}")
+    for rid in repo_ids:
+        keep = [compile_glob(g) for g in layout.repo(rid).preserve]
+        for r in report["files"]:
+            if r["repo"] != rid or any(k.match(r["path"]) for k in keep):
+                continue
+            live = _target(workspace, layout, rid) / r["path"]
+            src = long_path(staging / "workspace" / r["workspacePath"])
+            if not live.is_file() or not src.is_file():
+                continue
+            if _digest(live) != _digest(src):
+                out.append(f"{rid}/{r['path']}")
     return out
 
 
@@ -144,13 +148,22 @@ def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], r
         for tracked in _git(target, "ls-files", "-z").split("\0"):
             if tracked and not any(k.match(tracked) for k in keep):
                 long_path(target / tracked).unlink()
+        kept: list[str] = []
         for r in (r for r in report["files"] if r["repo"] == rid):
+            # `preserve` means this path is the repo's, not the split's. It already stops
+            # apply deleting the file; it must also stop apply writing over it, or a
+            # hand-authored AGENTS.md is silently replaced by the weaker template that
+            # exists only to seed a repo that lacks one. Reported, never silent.
+            if any(k.match(r["path"]) for k in keep):
+                kept.append(r["path"])
+                continue
             dest = long_path(target / r["path"])
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(long_path(staging / "workspace" / r["workspacePath"]).read_bytes())
         _git(target, "add", "-A", "--", ".")  # records deletions
         # force-add every planned file: a copied .gitignore must never silently drop a tracked legacy file
-        planned = [r["path"] for r in report["files"] if r["repo"] == rid]
+        planned = [r["path"] for r in report["files"]
+                   if r["repo"] == rid and not any(k.match(r["path"]) for k in keep)]
         if planned:  # pathspec on stdin: no command-line length limit, no quoting
             _git_in(target, "\0".join(planned) + "\0", "add", "-f", "--pathspec-from-file=-", "--pathspec-file-nul")
         # A repo that receives nothing and loses nothing has no commit to make, and
@@ -158,12 +171,14 @@ def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], r
         # that holds hand-authored gate definitions is meant to receive zero migrated
         # files - so it is reported, not treated as a failure.
         pending = [ln for ln in _git(target, "status", "--porcelain").splitlines() if ln.strip()]
+        note = ("  [kept " + str(len(kept)) + " preserved: " + ", ".join(sorted(kept))
+                + (", ..." if len(kept) > 3 else "") + "]") if kept else ""
         if not pending:
-            commits.append(f"{rid}: unchanged (nothing staged for this repo)")
+            commits.append(f"{rid}: unchanged (nothing staged for this repo){note}")
             continue
         msg = (f"Import snapshot from legacy repo {report['sourceSha']}\n\n"
                f"Produced by kvsplit {report['toolVersion']}, rules digest {report['rulesDigest']},\n"
                f"output digest {report['outputDigest']}. Do not edit by hand: change the rules and re-run.\n")
         _git(target, "commit", "-q", "-m", msg)
-        commits.append(f"{rid}: {_git(target, 'rev-parse', 'HEAD').strip()}")
+        commits.append(f"{rid}: {_git(target, 'rev-parse', 'HEAD').strip()}{note}")
     return commits

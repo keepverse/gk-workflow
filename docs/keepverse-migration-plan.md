@@ -19,7 +19,7 @@ permanently-unchecked acceptance boxes.
 
 ## 1. Measured state
 
-Reproduced by running the tools, not carried forward. Two stamps: **source `75f64001f`**
+Reproduced by running the tools, not carried forward. Two stamps: **source `b212e868`**
 (2026-09-28, branch `features/mega-merge`) and **gk-workflow `5d0df61`**.
 
 > The source branch is still moving. Every figure below was reproduced against the stamped
@@ -30,30 +30,32 @@ Reproduced by running the tools, not carried forward. Two stamps: **source `75f6
 
 ### 1.1 The split reconciles
 
-`python -m kvsplit stage --source <src> --rev 75f64001f --rules rules --out <dir>`
+`python -m kvsplit stage --source <src> --rev b212e868 --rules rules --out <dir>`
 
 ```
-source 75f64001f…  rules 5a1de009e5c3
-tracked 14900   dropped 224   unplaced 0   balanced True
+source b212e868…  rules b4a328ac0a62  output 2655c5543cd0
+tracked 14900   dropped 482   unplaced 0   balanced True
   root        5105    gk-data     3172
   gk-core     3784    gk-web      1108
   gk-forge     785    gk-tests       0
   gk-fusion    463    gk-content     1
-                     gk-assets    258
-residue 2515:  path-literal-moves 2120 · content-root-consumer 388 ·
+                     gk-assets      0   (art already migrated; blender/ dropped)
+residue 2514:  path-literal-moves 2119 · content-root-consumer 388 ·
               dead-rule 6 · content-in-public-repo 1
 ```
 
 `unplaced 0` means every tracked path has an owner. The reconciliation identity is
-`tracked 14900 = placed 14676 + dropped 224 + unplaced 0`, and it holds.
+`tracked 14900 = placed 14418 + dropped 482 + unplaced 0`, and it holds.
 
 **A property worth preserving:** staging tracks file *paths*, so a content-only commit
 cannot invalidate the rules. HEAD moved three times during the writing of this document
 (`421cac07b` → `0923dfe03` → `26e6d75aa`) and produced byte-identical placement every time.
-Residue is also unchanged at 2,515 across all three, because the commits touched no paths.
+Residue was unchanged across all three for the same reason. It reads 2,514 today, the one
+change being the `blender/` decision in §6.1 rather than anything a branch move did.
 
-`dropped 224` is 222 skill symlinks plus 2 build artifacts, and every one is named in
-`report.json`'s `dropped` list.
+`dropped 482` is 222 skill symlinks, 258 `blender/` files (the art already lives in
+gk-assets, so importing them again would revert the improved copies) and 2 build
+artifacts. Every one is named in `report.json`'s `dropped` list.
 
 ### 1.2 The source repository is not yet on one branch
 
@@ -134,7 +136,7 @@ Keepverse/                gk-workflow   workflow, docs, agent config, tasks, kvs
 ├── gk-fusion/            Injector + 3 hosts, Launcher, game-profiles, live-probe, release
 ├── gk-content/  PRIVATE  authored content: our names, flavour, registries
 ├── gk-data/    PRIVATE  the derived corpus: packs/fusion/data/{seed,generated}/
-└── gk-assets/            art, icons, and the migrated blender/ tree
+└── gk-assets/            art and icons. Already migrated; receives 0 split files
 ```
 
 Four boundaries the 2026-09-19 plan left open, now decided:
@@ -153,8 +155,10 @@ Four boundaries the 2026-09-19 plan left open, now decided:
   this itself — "MIT on art lets anyone reuse Keepverse art commercially". Splitting code
   from art is deliberate: CC BY on source code is an anti-pattern.
 
-`blender/**` (258 tracked files) had no owner at all until 2026-09-27; each subtree
-relocates onto the layout already hand-migrated into gk-assets.
+`blender/**` (258 tracked files) had no owner at all until 2026-09-27. It was then given six
+migration rules, and on 2026-09-28 the owner ruled the art **already merged** and the folder
+is theirs to clean up. It is now a single `drop` rule, so gk-assets receives 0 split files and
+its improved copies cannot be reverted. See §6.1 for what that discards.
 
 ### 1.7 Direction contract
 
@@ -188,6 +192,7 @@ rather than by design, and none of them is in the 2026-09-19 plan:
 | `apply` refuses to overwrite a committed file that differs | `preserve` stopped deletion, never overwriting: 38 files, 28 in gk-assets including 7 `.blend` scenes and 8 rendered sheets |
 | `apply` reports a repo that receives nothing as `unchanged` | `git commit` on an empty index is an error, and gk-tests is that case |
 | `preserve` must list every live file the split does not produce | measured, not guessed: 96 hand-authored files would have been deleted, 84 in gk-assets |
+| `preserve` also stops apply **writing** a path, not only deleting it | it stopped deletion but not overwriting, so the 25-line template `AGENTS.md` would have replaced 7 hand-authored 40-line guides. A preserved path is the repo's, not the split's |
 | refusals are messages, not tracebacks | `main()` had no error handling, so gate GM and residue-not-empty printed a stack trace |
 
 Two kvsplit modules are **partially** delivered, and both remaining halves matter here:
@@ -208,116 +213,61 @@ gap**, not a completed decision: it is 1 item on the residue queue's successor l
 
 ---
 
-## 2. Phase A — consolidate the source repository to one branch
+## 2. Phase A — the precondition: one branch
 
-**This is the precondition for everything in §3 onward. No migration work starts until the
-source repository has exactly one branch, `main`, and every other branch — local, remote,
-and every linked worktree — is deleted.**
+**No migration work starts until the source repository holds exactly one branch, `main`,
+with every other branch — local, remote, and every linked worktree — deleted.**
 
-The rationale is specific, not procedural preference. `kvsplit` reads a pinned SHA, so a
-moving branch cannot corrupt a stage; but a *branch* is a claim about what the import
-contains, and this repository currently makes several contradictory ones. A green
-rehearsal against a 3-day-old SHA, a `KS4.1` that merges 201 commits, and an import SHA
-chosen from a branch that four unpushed commits are still moving are three different
-things. Phase A removes the ambiguity so the import SHA is a fact rather than a guess.
+**This phase belongs to the owner and their other agents, not to this program.** It is
+recorded here as a gate condition with an exit test, and nothing more: the branch-by-branch
+merge-or-abandon decisions, the session closures and the deletions are that stream's work,
+carried out under their own fences. This program does not touch a branch, a worktree or a
+session record.
 
-### A.1 Freeze the inputs
+### A.0 Why it gates the migration
 
-| Step | Action | Evidence it worked |
-|---|---|---|
-| **A.1.1** | Push the 4 unpushed `features/mega-merge` commits | `git rev-list --count @{u}..HEAD` is 0 |
-| **A.1.2** | Resolve the 1 dirty untracked file `scripts/guard-verification-boundaries.py` | It belongs to `ps1-ban-manager-20260926`. Commit it under that session, or record it abandoned. **Do not delete it and do not commit it under this program.** |
-| **A.1.3** | Write a ledger row recording the head SHA Phase A froze at | `tasks/keepverse-split-ledger.jsonl` gains a row |
+`kvsplit` reads a pinned SHA, so a moving branch cannot corrupt a stage. But a *branch* is a
+claim about what the import contains, and while several exist the repository makes several
+contradictory ones: a green rehearsal against an older SHA, a 201-commit gap between `main`
+and the working branch, four unpushed commits, and three session records that still read
+`active`. Phase A removes the ambiguity so the import SHA is a fact rather than a guess.
 
-### A.2 Close the three active sessions
+### A.1 Exit test — five checks, all must hold
 
-Each must end as `merged` or `abandoned` in its own record — a third status is invalid and
-the boundary checker rejects it. An `active` worktree record must still own a live branch
-and a resolvable worktree path.
+Run against the source repository when the owner declares Phase A met:
 
-| Record | What closing means |
-|---|---|
-| `ps1-ban-manager-20260926` | The largest fence (451 paths). Either its 8 open blocks land or they are explicitly deferred with the deferral recorded. Its work is **in flight and wanted** — do not abandon it silently. |
-| `mega-merge-program-manager-20260925-f78e` | Manager session. Close after its programs are handed over. |
-| `resume-34-cai2-2-20260925` | One data/server task (CAI2.2 replay-identity B). Land or abandon. |
+| # | Check | Command | Passes when |
+|---|---|---|---|
+| 1 | One local branch | `git branch` | exactly one line: `main` |
+| 2 | One remote branch | `git ls-remote --heads origin` | exactly one ref: `refs/heads/main` |
+| 3 | No linked worktrees | `git worktree list` | exactly one entry, the main checkout |
+| 4 | Clean tree on main | `git status --porcelain` | empty, on `main` |
+| 5 | No active fences | `python scripts/session-boundary-check.py` | no record reads `active`; `DRIFT (n)` is 0 |
 
-Validate with `python scripts/session-boundary-check.py --session <id>`. Drift naming
-another session is printed under its own heading and does not fail ours.
-
-### A.3 Decide the branches that hold work nobody has merged
-
-**These are the only destructive decisions in Phase A, and three of them have real work in
-them. None may be deleted on a "probably merged" assumption.**
-
-| Branch | Ahead of mega-merge | Verdict needed | What it holds |
-|---|--:|---|---|
-| `ps1ban/l3-checks` | **3** | merge or abandon | deletes the 16 PowerShell wrappers, repoints the registry at the `.py` |
-| `ps1ban/l4-artifacts` | **1** | merge or abandon | opens the L4 artifacts lane |
-| `rescue/corpus-bcu211-itemseedgen-run` | **1** | merge or abandon | the item-seedgen full run, 56 files, gaps 931 → 770 |
-| `origin/worktree-rift-gate-20260914` | **1** | merge or abandon | 1 unmerged commit on a stale worktree branch |
-| `origin/features/derived-stat-extension` | 0 | delete | fully merged |
-| `origin/features/mega-merge` | 0 | delete after the merge | fully merged |
-| 5 × `origin/worktree-*` | 0 | delete | fully merged worktree branches |
-| `local/*`, `origin-local/*` (5 refs) | — | delete | stale refs from an earlier remote layout; no upstream worth keeping |
-
-The first two belong to the `ps1-ban-manager` session and are that session's call. The
-third is a corpus rescue whose value is measurable — `rescue/...` is 2,518 commits behind,
-so merging it is a real merge, and its own subject line carries the number that decides it
-(§A.6).
-
-### A.4 Merge mega-merge into main and prove it is trivial
+Measured when this was written, for reference only — **re-read, do not quote**:
 
 ```
-git switch main
-git merge --no-ff features/mega-merge
+current branch   features/mega-merge   (upstream +4)
+local branches   5      remote branches  9 under origin/, plus 5 stale refs
+worktrees        3      main vs working  201 behind, 4 ahead (merge markers #18-21 only)
+active records   3      dirty            1 untracked file
 ```
 
-Expect trivial. Expect it anyway to be checked:
+Four branches held work that is not in the working branch — `ps1ban/l3-checks` (3
+commits), `ps1ban/l4-artifacts` (1), `rescue/corpus-bcu211-itemseedgen-run` (1) and
+`origin/worktree-rift-gate-20260914` (1). One of them, `ps1ban/l3-checks`, is **not**
+redundant: it carries 17 ports built on a shared 426-line `checks_lib.py` harness with a
+408-line test, against 16 standalone ports on the working branch, and neither imports the
+other's approach. That is flagged here as **information for that stream**, not a
+recommendation from this one. `origin/worktree-rift-gate-20260914` is provably empty — 0
+files differ from the working branch.
 
-| Step | Action | Evidence |
-|---|---|---|
-| **A.4.1** | Dry-run the merge on a scratch branch first | no conflict markers, no unexpected file count |
-| **A.4.2** | Merge for real; if conflicts appear, **stop and report** — a conflict here means two programs touched one path and that is a finding, not a merge to resolve | `git log --oneline main..features/mega-merge` empty afterwards |
-| **A.4.3** | Verify the merged `main` is content-identical to mega-merge | the 4 "ahead" commits are merge markers only; confirm the trees match |
-| **A.4.4** | Run the build gate on the merged head. `post_merge_check.py` lives in the **source** repository, so run it from there: `python .claude/cmdc-agents/scripts/post_merge_check.py` with the source repo as cwd | Build is proven at HEAD (75/80 non-game projects); **tests are not** — this is the first time the merged head is test-gated |
-| **A.4.5** | `git push origin main` | `origin/main` == local `main` |
+### A.2 What is NOT re-pinned here
 
-`post_merge_check.py` is the merged-head gate and is the only evidence that the merge did
-not break something that 201 commits of parallel work each believed was fine.
-
-### A.5 Retire the worktrees, then delete the branches
-
-Order matters: the branch cannot be deleted while a worktree holds it.
-
-| Step | Action | Evidence |
-|---|---|---|
-| **A.5.1** | For each linked worktree, confirm it is clean **and** its branch is merged or decided in A.3 | `git -C <wt> status --porcelain` empty |
-| **A.5.2** | Remove the worktrees | `git worktree list` shows only the main checkout |
-| **A.5.3** | Delete the local branches | `git branch` lists only `main` |
-| **A.5.4** | Delete the remote branches | `git ls-remote --heads origin` lists only `refs/heads/main` |
-| **A.5.5** | Prune stale refs | `git remote prune origin`; the `local/*` and `origin-local/*` refs are gone |
-
-Two worktrees exist and both are clean: `ps1ban-l3-checks` and `ps1ban-l4-artifacts`, each
-under the temp opencode directory, each holding a branch from A.3. A branch with a live
-worktree is the one way this phase can lose work silently, so A.5.1 runs before A.5.3.
-
-### A.6 Phase A exit criteria
-
-All five, checked, not asserted:
-
-1. `git branch` → exactly one line: `main`.
-2. `git ls-remote --heads origin` → exactly one ref: `refs/heads/main`.
-3. `git worktree list` → exactly one entry, the main checkout.
-4. `git status --porcelain` → empty, on `main`.
-5. Every session record reads `merged` or `abandoned`; `session-boundary-check.py` is clean
-   for this program.
-6. A ledger row records the frozen `main` SHA. **That SHA is the migration's import
-   candidate**, and §4 pins it.
-
-**A.7 — the import candidate is not the import SHA.** Phase 3 still runs after Phase A and
-still lands source commits. The import SHA is re-read at KS4.1, and the re-run is cheap
-because staging is deterministic. What Phase A guarantees is that *one branch* carries the
-work, so the candidate SHA means one thing.
+**The import candidate is not the import SHA.** Phase 3 still runs after Phase A and still
+lands source commits, so the import SHA is re-read at KS4.1 (§4.1). Re-running is cheap
+because staging is deterministic and tracks paths: four branch moves during the writing of
+this document each added and deleted zero files and left the placement figures identical.
 
 ---
 
@@ -381,7 +331,7 @@ python -m kvsplit apply --staging <staging> --workspace D:/Works/source/Keepvers
 ```
 
 **`--allow-residue` is the designed flow, not a workaround.** Under D10 the residue moves
-with the tree and is reconciled in Phase 6; KS3.2 says so in as many words. The 2,515
+with the tree and is reconciled in Phase 6; KS3.2 says so in as many words. The 2,514
 items are Phase 6's queue, **not a blocker on the move** — an earlier framing in this
 workspace's plan extension had that backwards and this document corrects it.
 
@@ -461,17 +411,33 @@ reason** (D8).
 
 ## 6. Work that is outstanding and still unowned
 
-### 6.1 The 38 overwrite clashes — an owner decision, not an agent brief
+### 6.1 The 3 remaining overwrite clashes — all three are `.gitignore`
 
-The owner hand-migrated art into gk-assets and then improved it. The split now produces the
-same paths from `blender/`. Of 77 staged paths that are already committed somewhere, **38
-differ in content**, 28 of them in gk-assets: 7 `.blend` scenes, 8 rendered sheets,
-`vfx/index.json`, `vfx/README.md`, four skill and tool files, and every `AGENTS.md`.
+This was 38 and is now 3, for two separate reasons worth keeping distinct.
 
-For each, one of two is canonical: the newer gk-assets file, or the legacy `blender/` one.
-There is no rule that decides this and no transform can — it is authorship. `apply` refuses
-until it is settled, which is the correct behaviour. Suggested order: `vfx/index.json` and
-the 7 `.blend` files first, since a silently reverted scene is the hardest to notice.
+**28 of them were `blender/` and are gone by decision.** The art was already merged into
+gk-assets and improved there; the split re-importing the legacy copies would have reverted
+7 `.blend` scenes and 8 rendered sheets. `blender/**` is now a single `drop` rule, so
+gk-assets receives nothing and its improved files are untouchable. The owner accepted that
+this also discards what was never migrated: 102 superseded `v2` renders, 42 lookdev
+reference renders, 3 ice-shield authoring workbenches, and the whole `vfx/hit_impact/`
+sub-program (README, `effect.json`, `.blend`, 4 sheets). That is recoverable from the source
+repository's history for as long as it is not archived, which makes **G3 a real deadline for
+that one decision** rather than a formality.
+
+**7 were `AGENTS.md` and are gone by fixing the tool.** `preserve` stopped apply *deleting*
+a file but not *writing over* it, so the split's 25-line template would have replaced the
+hand-authored 40-line guide in seven repos. `preserve` now means what everyone assumed:
+**this path is the repo's, not the split's.** A preserved staged path is kept, not written,
+and is reported on the result line. `AGENTS.md` is preserved in all nine repos.
+
+**The 3 that remain are `.gitignore` in gk-core, gk-forge and gk-fusion, and the staged
+version should win.** The live ones are 57-line generic templates; the staged one is 208
+lines carrying `**/dist/`, `**/node_modules/`, `**/data/icons/`, the live SQLite databases
+and the `artifacts/*` + `!artifacts/ci-drop-into-game/` nuance. Overwriting the template with
+it is a correction, not a loss — without it, build output and a live database appear as
+untracked in three repos. So KS4.2 runs with `--accept-overwrites`, and the commit message
+should say why those three were accepted.
 
 ### 6.2 gk-assets is dirty
 
@@ -482,7 +448,7 @@ the 7 `.blend` files first, since a silently reverted scene is the hardest to no
 correctly. It must be committed under its own session before KS4.2 — and re-measured then,
 because the count is growing while the art session works.
 
-### 6.3 The 2,515 residue items
+### 6.3 The 2,514 residue items
 
 | Kind | Count | Nature |
 |---|--:|---|
@@ -491,7 +457,7 @@ because the count is growing while the art session works.
 | `dead-rule` | 6 | **pre-existing and not ours**: 6 ownership rules name `.ps1` files the ps1-ban program already ported to `.py` |
 | `content-in-public-repo` | 1 | a **synthetic test fixture** — `tools/ip-censor/tests/fixtures/registry/remediation/top-level-meta.json` carries `"model": "fixture-model"`, `"promptVersion": "fixture/1"` |
 
-Residue is **growing, not regressing**: 951 → 383 at legacy `50d174e0`, and 2,515 now,
+Residue is **growing, not regressing**: 951 → 383 at legacy `50d174e0`, and 2,514 now,
 because the repository added content and paths while the residue work was in progress. The
 6 dead rules are the one class that should be *removed* rather than reconciled — the rules
 name files that no longer exist.
@@ -530,6 +496,72 @@ contract gap rather than on effort. This is the last open item in §1.8's L4 lan
 17 rows, last entry 2026-09-24, while HEAD moved three times since. The ledger is the
 program's memory; a reader reconstructing it from git is doing work the ledger exists to
 prevent.
+
+---
+
+## 6A. Auditing the migration
+
+Everything below is a **measurement with a stated threshold**, not a judgement. Each row
+names what would make it fail, so a reader can disagree with the threshold rather than
+guess at the intent. "It looks fine" is not a row.
+
+### 6A.1 Completeness — did everything arrive?
+
+| # | Check | Command | Passes when |
+|---|---|---|---|
+| A1 | The reconciliation balances | `stage` | `tracked = placed + dropped + unplaced` and `unplaced 0`. Today: `14900 = 14418 + 482 + 0` |
+| A2 | Nothing is unaccounted for | `hash --source <sha>` then `lossy-check` | **0 findings.** Every legacy file is placed with its staged bytes or dropped by a rule; every moved file is explained by a report row, a template or a preserve glob |
+| A3 | Every drop is deliberate | `report.json` → `dropped[]` | 482 entries, each traceable to a rule. 258 are `blender/` (art already in gk-assets), 222 are skill symlinks |
+| A4 | Per-repo arrivals match the plan | `report.json` → `placedPerRepo` | root 5105, gk-core 3784, gk-data 3172, gk-web 1108, gk-forge 785, gk-fusion 463, gk-content 1, gk-tests 0, gk-assets 0 |
+| A5 | Byte-for-byte, not just present | sha256 in `report.json` | the staged sha256 of each file matches the file in the target repo after `apply` |
+
+A5 is the one that catches a partial write, which a file count never would.
+
+### 6A.2 Fidelity — is it the same content?
+
+| # | Check | Passes when |
+|---|---|---|
+| B1 | Determinism | Two `stage` runs from the same SHA and rules give the same `outputDigest`. Verified today: `2655c5543cd0` twice |
+| B2 | Rule stability under content churn | Re-stage at a newer SHA: placement is unchanged when the new commits add and delete no paths. This held across 4 branch moves today |
+| B3 | Generators reproduce | every `*Gen --check` is byte-identical to the import SHA |
+| B4 | Goldens unchanged | the guard suite's golden files compare equal pre- and post-move |
+| B5 | No silent overwrite | `apply` refuses on any committed file that differs, except the 3 accepted `.gitignore` in §6.1 |
+
+### 6A.3 Function — does it actually work?
+
+| # | Check | Passes when |
+|---|---|---|
+| C1 | gk-core builds and tests with **every sibling absent** | green. This is the public-CI condition: gk-core is public and gk-data/gk-content are private, so a core test that needs real content is a defect, not a local pass |
+| C2 | Each repo builds and tests with siblings at lock SHAs | green per repo |
+| C3 | Content resolves through the pack root | the 45 routed C# readers and 4 of 6 Python consumers resolve `ContentRoot` / `content_root()` in the split layout. A **missing root throws**; a silent fallback is a failure |
+| C4 | gk-web ships as one release with the server | its static build is served from the server's `wwwroot` and binds the same `Contracts` DTOs |
+| C5 | Public repos contain no derived content | no `data/seed/**` or `data/generated/**` path in a public repo; no generator provenance (`_meta.model` / `promptVersion`) outside a fixture |
+| C6 | The private boundary holds | gk-data and gk-content are private and stay private; no public repo's history contains their content |
+
+C1 and C6 are the two that catch the failure this migration is most likely to have: content
+leaking into a repo the public can read, or a core test that only passes because a private
+sibling happens to be checked out on the author's machine.
+
+### 6A.4 Live — does the game run from the new layout?
+
+| # | Check | Passes when |
+|---|---|---|
+| D1 | The lawn is entered from the Keepverse layout | a real level loads, not a fixture |
+| D2 | A real write is read back through the normal path | `/api/aptitudes/unique/allocate` allocates, then the allocation is read back through the ordinary endpoint — not through a debug surface |
+| D3 | The injector connects to the server in its own slot | the slot's own port on both sides, never a hard-coded one |
+
+**A response body is not proof of any of D1–D3.** Read the changed state back through
+the normal path. The `bound-loadout-hub` incident shipped end-to-end `ok:true`-shaped
+evidence for a feature that was broken, because the probe read back through the same
+injector that produced it. That is the failure mode this section exists to prevent.
+
+### 6A.5 What the audit does not prove
+
+- That the residue is *closed*, only that it is counted. 2,514 items move to Phase 6.
+- That a preserved file is *correct*, only that the repo's own copy survived.
+- That a private repo's content is legally clean. That is the ip-censor guard and it is a
+  gate (G2), not an audit row.
+- Anything about whether the split was the right call. That is the owner's.
 
 ---
 
@@ -586,11 +618,12 @@ These hold for every agent that picks up a row. They are not advice.
 1. **Is the trademark/IP risk time-sensitive?** Unanswered since first raised, and it is
    the only open item with a clock on it. `gk-content` and `gk-data` are private for this
    reason, and G2 and G3 both wait on it. Every other item in this document is sequencing.
-2. **The A.3 branch decisions** — merge or abandon, per branch, for the 4 holding unmerged
-   work.
-3. **KS3.0 / KS6.0 owner charter** — runtimes, models, budget, stop rule, recorded before
+2. **KS3.0 / KS6.0 owner charter** — runtimes, models, budget, stop rule, recorded before
    any reconcile worker starts.
-4. **Docs placement (D1)** — 2,145 files currently all route to the root. Host docs going to
+3. **Docs placement (D1)** — 2,145 files currently all route to the root. Host docs going to
    `gk-fusion/docs/` is a decision that has not been expressed as rules. Confirm the
    boundary, or accept everything in the root.
-5. **gk-assets' 37 dirty entries** — commit under the art session, or park them.
+4. **The 3 `.gitignore` overwrites** — §6.1 argues the staged version must win. Confirm, so
+   KS4.2's `--accept-overwrites` is a decision on the record rather than a convenience.
+5. **G3 as a deadline for `vfx/hit_impact/`** — dropping `blender/` discards that sub-program
+   recoverably only while the source repository exists. Archiving at G3 makes it gone.
