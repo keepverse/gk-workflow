@@ -1,13 +1,15 @@
 {
   "schemaVersion": 1,
   "repos": [
-    { "id": "root",      "dir": ".",         "visibility": "public",  "property": "GkWorkflowRoot",
-      "preserve": ["LICENSE", "README.md", "Keepverse.code-workspace", "tools/kvsplit/**", ".github/workflows/kvsplit.yml"] },
-    { "id": "gk-core",   "dir": "gk-core",   "visibility": "public",  "property": "GkCoreRoot",   "preserve": ["LICENSE"] },
-    { "id": "gk-forge",  "dir": "gk-forge",  "visibility": "public",  "property": "GkForgeRoot",  "preserve": ["LICENSE"] },
-    { "id": "gk-data",   "dir": "gk-data",   "visibility": "private", "property": "GkDataRoot",   "preserve": ["LICENSE"] },
-    { "id": "gk-assets", "dir": "gk-assets", "visibility": "public",  "property": "GkAssetsRoot", "preserve": ["LICENSE"] },
-    { "id": "gk-fusion", "dir": "gk-fusion", "visibility": "public",  "property": "GkFusionRoot", "preserve": ["LICENSE"] }
+    { "id": "root",      "dir": ".",         "visibility": "public",  "property": "GkWorkflowRoot", "preserve": ["LICENSE", "README.md", "AGENTS.md", "Keepverse.code-workspace", "tools/kvsplit/**", ".github/workflows/kvsplit.yml"] },
+    { "id": "gk-core",   "dir": "gk-core",   "visibility": "public",  "property": "GkCoreRoot",    "preserve": ["LICENSE"] },
+    { "id": "gk-forge",  "dir": "gk-forge",  "visibility": "public",  "property": "GkForgeRoot",   "preserve": ["LICENSE"] },
+    { "id": "gk-web",    "dir": "gk-web",    "visibility": "public",  "property": "GkWebRoot",     "preserve": ["LICENSE"] },
+    { "id": "gk-tests",  "dir": "gk-tests",  "visibility": "public",  "property": "GkTestsRoot",   "preserve": ["LICENSE"] },
+    { "id": "gk-fusion", "dir": "gk-fusion", "visibility": "public",  "property": "GkFusionRoot",  "preserve": ["LICENSE"] },
+    { "id": "gk-content","dir": "gk-content","visibility": "private", "property": "GkContentRoot", "preserve": ["LICENSE"] },
+    { "id": "gk-data",   "dir": "gk-data",   "visibility": "private", "property": "GkDataRoot",    "preserve": ["LICENSE"] },
+    { "id": "gk-assets", "dir": "gk-assets", "visibility": "public",  "property": "GkAssetsRoot",  "preserve": ["LICENSE"] }
   ],
   "compileDeps": {
     "gk-forge": ["gk-core"],

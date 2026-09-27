@@ -97,7 +97,7 @@
     { "id": "fusion-realrun", "pattern": "scripts/collect-class-system-realrun.ps1", "target": "gk-fusion", "priority": 10, "reason": "collects a live run" },
     { "id": "fusion-first-session", "pattern": "scripts/first-session-progression-harness.ps1", "target": "gk-fusion", "priority": 10, "reason": "live first-session harness" },
 
-    { "id": "core-web", "pattern": "web/**", "target": "gk-core", "priority": 0, "reason": "served by the Server from wwwroot; one release, same Contracts" },
+    { "id": "web-app", "pattern": "web/**", "target": "gk-web", "priority": 0, "reason": "the browser control room is a separate toolchain, bundle and failure mode from the C# server; Node is developer-only and never ships" },
     { "id": "drop-tsbuildinfo", "pattern": "web/**/*.tsbuildinfo", "target": "drop", "priority": 10, "reason": "tracked build artifact" },
 
     { "id": "core-tuning", "pattern": "data/tuning/**", "target": "gk-core", "priority": 0, "reason": "D6: numbers, Server-loaded, authored via publish.py" },
@@ -105,7 +105,6 @@
       "relocate": { "from": "data/seed/", "to": "packs/fusion/data/seed/" } },
     { "id": "data-generated", "pattern": "data/generated/**", "target": "gk-data", "priority": 0, "reason": "D6/D7: generated content -> private gk-data, fusion pack",
       "relocate": { "from": "data/generated/", "to": "packs/fusion/data/generated/" } },
-    { "id": "data-content-display", "pattern": "content/**", "target": "gk-data", "priority": 0, "reason": "D6: display strings carry names/flavor text",
-      "relocate": { "from": "content/", "to": "packs/fusion/content/" } }
+    { "id": "content-authored", "pattern": "content/**", "target": "gk-content", "priority": 0, "reason": "authored display content is OURS: names, flavor, registries. It is the original content, not the derived corpus, so it does not sit beside a corpus derived from another game" }
   ]
 }
