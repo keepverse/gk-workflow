@@ -227,6 +227,92 @@ def test_a_symlink_without_a_drop_rule_is_still_refused(rules_dir, tmp_path):
     assert [x.path for x in k["unsupported-entry"]] == [".claude/skills/alpha"]
 
 
+_CLEAN = {
+    "src/App.Core/App.Core.csproj": '<Project Sdk="x">\n</Project>\n',
+    "src/App.Core/Thing.cs": "class T {}\n",
+    "src/App.Host/h.cs": "x", "docs/a.md": "x", "docs/injector/b.md": "x", "README.md": "x",
+    "tests/t.cs": "x", "Directory.Build.props": "<Project>\n</Project>\n", "tools/Gen/g.cs": "x",
+    "data/seed/a.json": "{}", "data/tuning/t.json": "{}", "App.slnx": "x",
+}
+
+
+def _collision_case(tmp_path, rules_dir):
+    """A staged file that is ALSO already committed in the target, with other content."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    stage(src, "HEAD", rules_dir, tmp_path / "staging")
+    ws = _workspace(tmp_path)
+    make_repo(ws / "gk-core", {"src/App.Core/Thing.cs": "// the owner's newer version\n"})
+    return tmp_path / "staging", ws
+
+
+def test_apply_refuses_to_overwrite_a_committed_file_that_differs(rules_dir, tmp_path):
+    """preserve stops apply DELETING a file; it does not stop the write loop overwriting
+    one. An owner who already migrated and then improved a file must not lose it silently."""
+    staging, ws = _collision_case(tmp_path, rules_dir)
+    rules = load_rules(rules_dir, set(REGISTRY))
+    with pytest.raises(ApplyError) as ex:
+        apply(staging, ws, rules.layout, ["gk-core"], rules.digest, True, allow_residue=True)
+    msg = str(ex.value)
+    assert "would overwrite" in msg
+    assert "gk-core/src/App.Core/Thing.cs" in msg
+    assert "silent data loss" in msg
+    assert (ws / "gk-core/src/App.Core/Thing.cs").read_text() == "// the owner's newer version\n"
+
+
+def test_accept_overwrites_lets_the_owner_proceed_deliberately(rules_dir, tmp_path):
+    staging, ws = _collision_case(tmp_path, rules_dir)
+    rules = load_rules(rules_dir, set(REGISTRY))
+    out = apply(staging, ws, rules.layout, ["gk-core"], rules.digest, True,
+                allow_residue=True, accept_overwrites=True)
+    assert out and out[0].startswith("gk-core:")
+    assert (ws / "gk-core/src/App.Core/Thing.cs").read_text() == "class T {}\n"
+
+
+def test_apply_writes_a_collision_whose_content_is_identical(rules_dir, tmp_path):
+    """Identical bytes are not a conflict, so the happy path stays happy."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    stage(src, "HEAD", rules_dir, tmp_path / "staging")
+    ws = _workspace(tmp_path)
+    make_repo(ws / "gk-core", {"src/App.Core/Thing.cs": "class T {}\n"})
+    rules = load_rules(rules_dir, set(REGISTRY))
+    out = apply(tmp_path / "staging", ws, rules.layout, ["gk-core"], rules.digest, True,
+                allow_residue=True)
+    assert out
+
+
+def test_a_repo_that_receives_nothing_is_reported_not_failed(rules_dir, tmp_path):
+    """A repo holding hand-authored content that the split hands zero files to is a
+    legitimate state. `git commit` on an empty index is an error, and that must not fail
+    the migration."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    out = tmp_path / "staging"
+    # Empty one repo on purpose: the fixture stages into all of them otherwise.
+    own = json.loads((rules_dir / "ownership.v1.json").read_text())
+    own["rules"].append({"id": "t-empty-gk-data", "pattern": "data/seed/**", "target": "drop",
+                         "priority": 99, "reason": "test: leave gk-data with no migrated files"})
+    (rules_dir / "ownership.v1.json").write_text(json.dumps(own))
+    stage(src, "HEAD", rules_dir, out)
+    report = json.loads((out / "report.json").read_text())
+    per_repo: dict[str, int] = {r: 0 for r in report["reconciliation"]["placedPerRepo"]}
+    for r in report["files"]:
+        per_repo[r["repo"]] = per_repo.get(r["repo"], 0) + 1
+    empty = [rid for rid, n in per_repo.items() if n == 0 and rid != "root"]
+    assert empty, f"fixture stages into every repo, so this case is untestable here: {per_repo}"
+    rid = empty[0]
+    rules = load_rules(rules_dir, set(REGISTRY))
+
+    ws = _workspace(tmp_path)
+    # _workspace seeds each sub-repo with LICENSE, which the synthetic layout preserves.
+    # Adding anything else here would give apply a legitimate deletion to commit, which is
+    # a different case.
+    hand = ws / rid
+    before = git(hand, "rev-parse", "HEAD")
+    res = apply(out, ws, rules.layout, [rid], rules.digest, True, allow_residue=True)
+    assert res == [f"{rid}: unchanged (nothing staged for this repo)"]
+    assert git(hand, "rev-parse", "HEAD") == before
+    assert (hand / "LICENSE").read_text() == "L"
+
+
 def test_residue_ids_are_stable_across_unrelated_changes(legacy, rules_dir, tmp_path):
     r1 = stage(legacy, "HEAD", rules_dir, tmp_path / "s1")
     (legacy / "src/App.Core/Other.cs").write_text("class O {}\n")

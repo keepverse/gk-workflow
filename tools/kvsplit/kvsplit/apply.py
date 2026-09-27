@@ -12,6 +12,7 @@ It commits locally only; it never pushes.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -55,7 +56,39 @@ def _target(workspace: Path, layout: Layout, rid: str) -> Path:
     return workspace if repo.dir in (".", "") else workspace / repo.dir
 
 
-def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], report: dict) -> None:
+def _digest(p: Path) -> str:
+    h = hashlib.sha256()
+    with open(p, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _overwrites(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str],
+                report: dict) -> list[str]:
+    """Staged paths that already exist in a target repo with different content.
+
+    `preserve` stops apply from DELETING a file, but the write loop below overwrites any
+    staged path regardless, so a preserved file is only safe when the split does not
+    produce it. Without this list an owner who has already migrated and then improved a
+    file loses the improvement with no warning - and a .blend scene or a rendered sheet
+    is not something a text diff would make obvious afterwards.
+    """
+    out: list[str] = []
+    for r in report["files"]:
+        if r["repo"] not in repo_ids:
+            continue
+        live = _target(workspace, layout, r["repo"]) / r["path"]
+        src = long_path(staging / "workspace" / r["workspacePath"])
+        if not live.is_file() or not src.is_file():
+            continue
+        if _digest(live) != _digest(src):
+            out.append(f"{r['repo']}/{r['path']}")
+    return out
+
+
+def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str],
+               report: dict, accept_overwrites: bool = False) -> None:
     """Every check for every repo, before a single byte is written: no half-applied workspace."""
     sub_dirs = [r.dir for r in layout.repos if r.dir not in (".", "")]
     for rid in repo_ids:
@@ -76,10 +109,23 @@ def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[st
     for r in report["files"]:
         if r["repo"] in repo_ids and not long_path(staging / "workspace" / r["workspacePath"]).is_file():
             raise ApplyError(f"staged file missing: {r['workspacePath']}; re-run stage")
+    if not accept_overwrites:
+        clashes = _overwrites(staging, workspace, layout, repo_ids, report)
+        if clashes:
+            shown = "\n".join(f"  {c}" for c in clashes[:20])
+            more = f"\n  ... and {len(clashes) - 20} more" if len(clashes) > 20 else ""
+            raise ApplyError(
+                f"apply would overwrite {len(clashes)} existing file(s) with different "
+                f"content. These are already-committed files in the target repos, so this "
+                f"is silent data loss, not a fresh write.\n{shown}{more}\n"
+                f"Reconcile them (move the newer file, or drop it from preserve and let the "
+                f"split own the path), or pass --accept-overwrites to overwrite deliberately."
+            )
 
 
 def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], rules_digest: str,
-          confirm_migration_start: bool, allow_residue: bool = False) -> list[str]:
+          confirm_migration_start: bool, allow_residue: bool = False,
+          accept_overwrites: bool = False) -> list[str]:
     if not confirm_migration_start:
         raise ApplyError("apply is held behind gate GM: pass --confirm-migration-start only on the owner's command")
     staging, workspace = Path(staging), Path(workspace)
@@ -89,7 +135,7 @@ def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], r
     report = json.loads((staging / "report.json").read_text(encoding="utf-8"))
     if report["rulesDigest"] != rules_digest:
         raise ApplyError("staging was produced by different rules; re-run stage")
-    _preflight(staging, workspace, layout, repo_ids, report)
+    _preflight(staging, workspace, layout, repo_ids, report, accept_overwrites)
     commits = []
     for rid in repo_ids:
         repo = layout.repo(rid)
@@ -107,6 +153,14 @@ def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], r
         planned = [r["path"] for r in report["files"] if r["repo"] == rid]
         if planned:  # pathspec on stdin: no command-line length limit, no quoting
             _git_in(target, "\0".join(planned) + "\0", "add", "-f", "--pathspec-from-file=-", "--pathspec-file-nul")
+        # A repo that receives nothing and loses nothing has no commit to make, and
+        # `git commit` on an empty index is an error. That is a legitimate state - a repo
+        # that holds hand-authored gate definitions is meant to receive zero migrated
+        # files - so it is reported, not treated as a failure.
+        pending = [ln for ln in _git(target, "status", "--porcelain").splitlines() if ln.strip()]
+        if not pending:
+            commits.append(f"{rid}: unchanged (nothing staged for this repo)")
+            continue
         msg = (f"Import snapshot from legacy repo {report['sourceSha']}\n\n"
                f"Produced by kvsplit {report['toolVersion']}, rules digest {report['rulesDigest']},\n"
                f"output digest {report['outputDigest']}. Do not edit by hand: change the rules and re-run.\n")

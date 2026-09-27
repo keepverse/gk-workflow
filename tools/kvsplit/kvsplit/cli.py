@@ -66,7 +66,7 @@ def _cmd_apply(a: argparse.Namespace) -> int:
     rules = load_rules(Path(a.rules), set(REGISTRY))
     ids = a.repo or rules.layout.ids()
     for line in apply(Path(a.staging), Path(a.workspace), rules.layout, ids, rules.digest, a.confirm_migration_start,
-                      allow_residue=a.allow_residue):
+                      allow_residue=a.allow_residue, accept_overwrites=a.accept_overwrites):
         print(line)
     return 0
 
@@ -145,6 +145,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--confirm-migration-start", action="store_true")
     ap.add_argument("--allow-residue", action="store_true",
                     help="move-first flow: carry residue into the post-move reindex and agent reconcile")
+    ap.add_argument("--accept-overwrites", action="store_true",
+                    help="apply even though staged files differ from files already committed in the "
+                         "target repos; without it apply refuses, because that is silent data loss")
     h = sub.add_parser("hash")
     g = h.add_mutually_exclusive_group(required=True)
     g.add_argument("--source")
@@ -169,8 +172,20 @@ def main(argv: list[str] | None = None) -> int:
     ri.add_argument("--out", required=True)
     ri.add_argument("--apply", action="store_true")
     a = p.parse_args(argv)
-    return {"stage": _cmd_stage, "residue": _cmd_residue, "verify": _cmd_verify, "apply": _cmd_apply,
-            "hash": _cmd_hash, "lossy-check": _cmd_lossy, "index": _cmd_index, "reindex": _cmd_reindex}[a.verb](a)
+    handler = {"stage": _cmd_stage, "residue": _cmd_residue, "verify": _cmd_verify, "apply": _cmd_apply,
+               "hash": _cmd_hash, "lossy-check": _cmd_lossy, "index": _cmd_index, "reindex": _cmd_reindex}[a.verb]
+    # A refusal is this tool's normal way of speaking, not a crash. It goes to stderr as one
+    # named message with a non-zero exit; a traceback would bury the one line that says
+    # what to fix, and a reader could mistake the trace for a tool defect.
+    from kvsplit.apply import ApplyError
+    from kvsplit.rules import RulesError
+    from kvsplit.source import SourceError
+    from kvsplit.stage import StageError
+    try:
+        return handler(a)
+    except (ApplyError, RulesError, SourceError, StageError) as ex:
+        print(f"kvsplit {a.verb}: {ex}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
