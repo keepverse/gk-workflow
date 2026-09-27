@@ -220,3 +220,15 @@ __marimo__/
 # kvsplit staging output (regenerated every run)
 /.staging*/
 
+# The eight sub-repos are INDEPENDENT repositories, not submodules and not
+# content of this one. Each has its own remote under github.com/keepverse/.
+# Ignoring them here is what makes git status in the root mean "workflow
+# changes" instead of "a sub-repo moved 30,000 files".
+/gk-core/
+/gk-forge/
+/gk-web/
+/gk-tests/
+/gk-fusion/
+/gk-content/
+/gk-data/
+/gk-assets/

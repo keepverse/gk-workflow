@@ -1,0 +1,41 @@
+{
+	"folders": [
+		{
+			"name": "gk-core",
+			"path": "gk-core"
+		},
+		{
+			"name": "gk-web",
+			"path": "gk-web"
+		},
+		{
+			"name": "gk-tests",
+			"path": "gk-tests"
+		},
+		{
+			"name": "gk-forge",
+			"path": "gk-forge"
+		},
+		{
+			"name": "gk-content",
+			"path": "gk-content"
+		},
+		{
+			"name": "gk-data",
+			"path": "gk-data"
+		},
+		{
+			"name": "gk-assets",
+			"path": "gk-assets"
+		},
+		{
+			"name": "gk-fusion",
+			"path": "gk-fusion"
+		},
+		{
+			"name": "workflow",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
