@@ -12,6 +12,28 @@ Measurements taken 2026-09-30 against source `effc51d9b55f78aa7a5c47e14eef0e61b6
 
 ---
 
+## CORRECTIONS — read before the tables below
+
+The lane's snapshot was accurate when taken. Four claims in it were made stale within the
+hour by the manager, and two of them were the lane's most valuable findings. The lane's
+reasoning stands; only the state moved. Nothing below has been edited, so the snapshot
+remains auditable.
+
+| The lane says | Now | Why |
+|---|---|---|
+| §0.1 and conditions 1, 12: **"the authoritative plan is missing"** | **FALSE — it was deleted, and is restored** | The import's delete loop removed `docs/keepverse-migration-plan.md`: it existed before the import, the source repo has no such file, and it was not `preserve`d. This is hazard H1 in the goal prompt, firing on the manager's own file. Restored byte-identical from `1a3e508` (35,951 bytes, 630 lines, sha256 verified) and committed `be7d335`, which also **preserves** the plan, the goal prompt, the lane-setup notes, the measured state and `docs/migration-*.md` at the root, so it cannot recur. The lane's finding was correct and load-bearing. |
+| Condition 13: **"six repositories are +1 ahead — NOT MET"** | **MET** | The manager pushed them under authorization 7 after the lane measured: gk-core `34bf27d`, gk-forge `2c2978c`, gk-web `c732330`, gk-fusion `d740f2d`, gk-content `d2337d8`, gk-data `9467b58`. All nine repositories are now 0 behind / 0 ahead and clean. No force was used. |
+| Condition 2 caveat: **"the charter ledger record is uncommitted"** | **RESOLVED** | The five uncommitted ledger rows are committed in the source repo as `11eff9c4c`, which also leaves that repository clean — the lane correctly identified that five uncommitted lines were standing between the migration and Phase A's clean-tree exit check. Deliberately not pushed: Phase A is the owner's separate stream working in that repository. |
+| Conditions 3, 4, 6, 7: artefact **not on disk** | **partly resolved** | The lane is right that no on-disk artefact carried the import-SHA figures. The lossy-check run and its report now exist on disk, and the preservation fix is verified by computing what a re-apply would delete rather than running one: root is in scope and **0** tracked control documents would be removed. |
+
+**A lesson worth carrying, in the lane's own words:** it recorded that a first, looser A7
+scan reported four contaminated public repositories and that those hits were code and
+documentation paths merely *mentioning* creatures. A needle that matches a word is not a
+check. That is the same failure as reporting "unplaced 0" from a count that excludes
+copies — arithmetic that looks like evidence.
+
+---
+
 ## 0. Four things a reader must know before using this file
 
 **0.1 — The authoritative plan is not on disk.** `docs/keepverse-migration-plan.md` does not
