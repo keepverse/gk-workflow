@@ -18,7 +18,10 @@
         "docs/migration-goal-prompt.md",
         "docs/migration-lane-setup.md",
         "docs/migration-state-measured.md",
-        "docs/migration-*.md"
+        "docs/migration-*.md",
+        "docs/gk-tests-topology-reconciliation.md",
+        "docs/keepverse-*-reconciliation.md",
+        "docs/architecture/decisions/*.md"
       ]
     },
     {
