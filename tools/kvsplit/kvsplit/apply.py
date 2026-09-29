@@ -91,11 +91,31 @@ def _overwrites(staging: Path, workspace: Path, layout: Layout, repo_ids: list[s
     return out
 
 
+def _unmigrated(repo_ids: list[str], report: dict) -> set[str]:
+    """Repos the split places zero files into: gk-assets, and gk-tests by design.
+
+    These are not part of the migration, so preflight must not validate them as if they
+    were. The delete loop runs regardless of what a repo receives, so a repo in this set
+    that went through it would lose every unpreserved tracked file - for gk-assets that was
+    209 of 228, the whole art tree. Decided once, here, so preflight and the write loop
+    cannot disagree about whether such a repo is in scope.
+    """
+    counts: dict[str, int] = {}
+    for r in report["files"]:
+        counts[r["repo"]] = counts.get(r["repo"], 0) + 1
+    return {rid for rid in repo_ids if not counts.get(rid)}
+
+
 def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str],
-               report: dict, accept_overwrites: bool = False) -> None:
-    """Every check for every repo, before a single byte is written: no half-applied workspace."""
+               report: dict, accept_overwrites: bool = False) -> set[str]:
+    """Every check for every repo, before a single byte is written: no half-applied workspace.
+
+    Returns the repos that are out of scope, so the caller writes nothing to them.
+    """
+    unmigrated = _unmigrated(repo_ids, report)
+    in_scope = [rid for rid in repo_ids if rid not in unmigrated]
     sub_dirs = [r.dir for r in layout.repos if r.dir not in (".", "")]
-    for rid in repo_ids:
+    for rid in in_scope:
         repo = layout.repo(rid)
         target = _target(workspace, layout, rid)
         if not (target / ".git").exists():
@@ -111,10 +131,10 @@ def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[st
         if status:
             raise ApplyError(f"{target} is not clean:\n" + "\n".join(status))
     for r in report["files"]:
-        if r["repo"] in repo_ids and not long_path(staging / "workspace" / r["workspacePath"]).is_file():
+        if r["repo"] in in_scope and not long_path(staging / "workspace" / r["workspacePath"]).is_file():
             raise ApplyError(f"staged file missing: {r['workspacePath']}; re-run stage")
     if not accept_overwrites:
-        clashes = _overwrites(staging, workspace, layout, repo_ids, report)
+        clashes = _overwrites(staging, workspace, layout, in_scope, report)
         if clashes:
             shown = "\n".join(f"  {c}" for c in clashes[:20])
             more = f"\n  ... and {len(clashes) - 20} more" if len(clashes) > 20 else ""
@@ -125,6 +145,7 @@ def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[st
                 f"Reconcile them (move the newer file, or drop it from preserve and let the "
                 f"split own the path), or pass --accept-overwrites to overwrite deliberately."
             )
+    return unmigrated
 
 
 def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], rules_digest: str,
@@ -139,11 +160,18 @@ def apply(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str], r
     report = json.loads((staging / "report.json").read_text(encoding="utf-8"))
     if report["rulesDigest"] != rules_digest:
         raise ApplyError("staging was produced by different rules; re-run stage")
-    _preflight(staging, workspace, layout, repo_ids, report, accept_overwrites)
+    unmigrated = _preflight(staging, workspace, layout, repo_ids, report, accept_overwrites)
     commits = []
     for rid in repo_ids:
         repo = layout.repo(rid)
         target = _target(workspace, layout, rid)
+        # Out of scope, decided in preflight: no delete loop, no write, no commit. A repo
+        # the split places nothing into is not part of the migration, and the delete loop
+        # runs regardless of what a repo receives - so letting one through would strip
+        # every unpreserved file for no reason.
+        if rid in unmigrated:
+            commits.append(f"{rid}: untouched (the split places no files here)")
+            continue
         keep = [compile_glob(g) for g in repo.preserve]
         for tracked in _git(target, "ls-files", "-z").split("\0"):
             if tracked and not any(k.match(tracked) for k in keep):

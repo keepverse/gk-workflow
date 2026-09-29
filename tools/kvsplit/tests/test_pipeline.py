@@ -308,7 +308,7 @@ def test_a_repo_that_receives_nothing_is_reported_not_failed(rules_dir, tmp_path
     hand = ws / rid
     before = git(hand, "rev-parse", "HEAD")
     res = apply(out, ws, rules.layout, [rid], rules.digest, True, allow_residue=True)
-    assert res == [f"{rid}: unchanged (nothing staged for this repo)"]
+    assert res == [f"{rid}: untouched (the split places no files here)"]
     assert git(hand, "rev-parse", "HEAD") == before
     assert (hand / "LICENSE").read_text() == "L"
 
@@ -362,6 +362,58 @@ def test_a_preserved_path_is_not_counted_as_an_overwrite(rules_dir, tmp_path):
     res = apply(out, ws, rules.layout, ["gk-core"], rules.digest, True, allow_residue=True)
     assert not any("would overwrite" in line for line in res), res
     assert (ws / "gk-core" / target).read_text() == "DIFFERENT\n"
+
+
+def _empty_one_repo(rules_dir: Path, src: Path, tmp_path: Path, name: str):
+    """Drop a repo's only content kind so the split places nothing into it.
+
+    The fixture stages into every repo, so the case has to be created rather than found.
+    Returns (staging, rid)."""
+    own = json.loads((rules_dir / "ownership.v1.json").read_text())
+    own["rules"].append({"id": f"t-empty-{name}", "pattern": "data/seed/**", "target": "drop",
+                         "priority": 99, "reason": f"test: leave {name} with no migrated files"})
+    (rules_dir / "ownership.v1.json").write_text(json.dumps(own))
+    out = tmp_path / f"staging-{name}"
+    stage(src, "HEAD", rules_dir, out)          # staged AFTER the rules change
+    layout = load_rules(rules_dir, set(REGISTRY)).layout
+    per: dict[str, int] = {}
+    for f in json.loads((out / "report.json").read_text())["files"]:
+        per[f["repo"]] = per.get(f["repo"], 0) + 1
+    empty = [r.id for r in layout.repos if r.id != "root" and not per.get(r.id)]
+    assert empty, f"could not empty a repo: {per}"
+    return out, empty[0]
+
+
+def test_a_repo_the_split_places_nothing_into_is_untouched(rules_dir, tmp_path):
+    """The delete loop runs regardless of what a repo receives, so 'it gets 0 files' does
+    not mean 'nothing happens'. A repo the migration has no opinion about must not be
+    rewritten by it - for gk-assets that was 209 of 228 files, the whole art tree."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    out, rid = _empty_one_repo(rules_dir, src, tmp_path, "untouched")
+    rules = load_rules(rules_dir, set(REGISTRY))
+    ws = _workspace(tmp_path)
+    victim = ws / rules.layout.repo(rid).dir
+    make_repo(victim, {"a.blend": "binary-ish", "vfx/x/sheet.png": "png", "assets/y/z.png": "png"})
+    before = sorted(p.as_posix() for p in victim.rglob("*") if p.is_file())
+    res = apply(out, ws, rules.layout, [rid], rules.digest, True, allow_residue=True)
+    after = sorted(p.as_posix() for p in victim.rglob("*") if p.is_file())
+    assert res == [f"{rid}: untouched (the split places no files here)"], res
+    assert after == before, f"files changed: {sorted(set(after) ^ set(before))}"
+
+
+def test_a_repo_the_split_places_nothing_into_is_untouched_even_if_dirty(rules_dir, tmp_path):
+    """gk-assets is dirty and receives nothing. Both facts together must be a no-op rather
+    than a refusal that tempts someone into a blanket override."""
+    src = make_repo(tmp_path / "legacy", _CLEAN)
+    out, rid = _empty_one_repo(rules_dir, src, tmp_path, "dirty")
+    rules = load_rules(rules_dir, set(REGISTRY))
+    ws = _workspace(tmp_path)
+    victim = ws / rules.layout.repo(rid).dir
+    make_repo(victim, {"a.blend": "x"})
+    (victim / "a.blend").write_text("locally improved\n", encoding="utf-8")
+    res = apply(out, ws, rules.layout, [rid], rules.digest, True, allow_residue=True)
+    assert res and res[0].startswith(f"{rid}: untouched"), res
+    assert (victim / "a.blend").read_text() == "locally improved\n"
 
 
 def test_residue_ids_are_stable_across_unrelated_changes(legacy, rules_dir, tmp_path):

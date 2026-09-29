@@ -1,117 +1,633 @@
 {
   "schemaVersion": 1,
   "rules": [
-    { "id": "root-agent-config", "pattern": ".agents/**", "target": "root", "priority": 0, "reason": "D1: agent config is workspace-wide and inherited by directory" },
-    { "id": "root-claude", "pattern": ".claude/**", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-commandcode", "pattern": ".commandcode/**", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-cursor", "pattern": ".cursor/**", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-kilo", "pattern": ".kilo/**", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-opencode", "pattern": ".opencode/**", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-codegraph", "pattern": ".codegraph/**", "target": "root", "priority": 0, "reason": "one CodeGraph index at the workspace root" },
-    { "id": "root-mcp", "pattern": ".mcp.json", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-kilo-json", "pattern": "kilo.json", "target": "root", "priority": 0, "reason": "D1: agent config" },
-    { "id": "root-agents-md", "pattern": "AGENTS.md", "target": "root", "priority": 0, "reason": "D1: binding rules; loaded for every sub-repo by directory inheritance" },
-    { "id": "root-claude-md", "pattern": "CLAUDE.md", "target": "root", "priority": 0, "reason": "D1: binding rules" },
-    { "id": "root-community", "pattern": "CODE_OF_CONDUCT.md", "target": "root", "priority": 0, "reason": "D1: project-wide community docs" },
-    { "id": "root-contributing", "pattern": "CONTRIBUTING.md", "target": "root", "priority": 0, "reason": "D1: workflow doc" },
-    { "id": "root-security", "pattern": "SECURITY.md", "target": "root", "priority": 0, "reason": "D1: project-wide policy" },
-    { "id": "root-support", "pattern": "SUPPORT.md", "target": "root", "priority": 0, "reason": "D1: project-wide doc" },
-    { "id": "root-notice", "pattern": "NOTICE", "target": "root", "priority": 0, "reason": "D1: project-wide notice" },
-    { "id": "legacy-readme", "pattern": "README.md", "target": "root", "priority": 0, "reason": "D1: becomes docs/legacy-README.md input; root README.md is preserved (owner-authored)",
-      "relocate": { "from": "README.md", "to": "docs/legacy-README.md" } },
-    { "id": "drop-license", "pattern": "LICENSE", "target": "drop", "priority": 0, "reason": "every Keepverse repo keeps its own LICENSE (layout preserve)" },
-    { "id": "root-github-meta", "pattern": ".github/**", "target": "root", "priority": 0, "reason": "D1: issue/PR templates and CODEOWNERS are workspace-wide" },
-    { "id": "core-ci", "pattern": ".github/workflows/ci.yml", "target": "gk-core", "priority": 10, "reason": "CI builds the engine; per-repo split is residue for the CI-split transform" },
-    { "id": "core-nightly", "pattern": ".github/workflows/nightly.yml", "target": "gk-core", "priority": 10, "reason": "nightly engine suite" },
-    { "id": "fusion-release", "pattern": ".github/workflows/release.yml", "target": "gk-fusion", "priority": 10, "reason": "the player release is the fusion mod package" },
-
-    { "id": "root-docs", "pattern": "docs/**", "target": "root", "priority": 0, "reason": "D1: docs live in the root" },
-    { "id": "fusion-docs-injector", "pattern": "docs/injector/**", "target": "gk-fusion", "priority": 10, "reason": "game-host docs travel with the host" },
-    { "id": "fusion-docs-launcher", "pattern": "docs/launcher/**", "target": "gk-fusion", "priority": 10, "reason": "the Launcher installs loaders into the game; host doc" },
-    { "id": "root-tasks", "pattern": "tasks/**", "target": "root", "priority": 0, "reason": "D1: plans, todos and session records are workflow" },
-
-    { "id": "core-editorconfig", "pattern": ".editorconfig", "target": "gk-core", "priority": 0, "reason": "code style for every code repo", "copies": ["gk-forge", "gk-fusion", "root"] },
-    { "id": "core-gitattributes", "pattern": ".gitattributes", "target": "gk-core", "priority": 0, "reason": "LF checkouts; tests compare bytes", "copies": ["gk-forge", "gk-data", "gk-assets", "gk-fusion", "root"] },
-    { "id": "core-gitignore", "pattern": ".gitignore", "target": "gk-core", "priority": 0, "reason": "build-output ignores for .NET/web repos", "copies": ["gk-forge", "gk-fusion"] },
-    { "id": "core-build-props", "pattern": "Directory.Build.props", "target": "gk-core", "priority": 0, "reason": "shared MSBuild settings + injected repo-root properties", "copies": ["gk-forge", "gk-fusion"] },
-    { "id": "core-runsettings", "pattern": "test.runsettings", "target": "gk-core", "priority": 0, "reason": "test settings for every .NET repo", "copies": ["gk-forge", "gk-fusion"] },
-    { "id": "core-solution", "pattern": "FusionRpg.slnx", "target": "gk-core", "priority": 0, "reason": "solution-split transform gives each .NET repo its own projects", "copies": ["gk-forge", "gk-fusion"] },
-    { "id": "fusion-game-profiles", "pattern": "game-profiles*.json", "target": "gk-fusion", "priority": 0, "reason": "game version catalog is host-only" },
-
-    { "id": "core-src", "pattern": "src/**", "target": "gk-core", "priority": 0, "reason": "engine: Contracts, Core, Data, CheatCore, Server" },
-    { "id": "fusion-src-injector", "pattern": "src/FusionRpg.Injector*/**", "target": "gk-fusion", "priority": 10, "reason": "game-host injector and loader hosts" },
-    { "id": "fusion-src-launcher", "pattern": "src/FusionRpg.Launcher/**", "target": "gk-fusion", "priority": 10, "reason": "installs loaders and starts the game" },
-
-    { "id": "core-tests", "pattern": "tests/**", "target": "gk-core", "priority": 0, "reason": "engine tests follow the engine" },
-    { "id": "fusion-tests-injector", "pattern": "tests/FusionRpg.Injector.Tests/**", "target": "gk-fusion", "priority": 10, "reason": "tests follow their subject" },
-    { "id": "fusion-tests-launcher", "pattern": "tests/FusionRpg.Launcher.Tests/**", "target": "gk-fusion", "priority": 10, "reason": "tests follow their subject" },
-    { "id": "forge-tests-atomimporter", "pattern": "tests/FusionRpg.AtomImporter.Tests/**", "target": "gk-forge", "priority": 10, "reason": "tests follow their subject" },
-    { "id": "forge-tests-itemseed", "pattern": "tests/FusionRpg.ItemSeedValidator.Tests/**", "target": "gk-forge", "priority": 10, "reason": "tests follow their subject" },
-    { "id": "forge-tests-rostergen", "pattern": "tests/FusionRpg.PassiveTreeRosterGen.Tests/**", "target": "gk-forge", "priority": 10, "reason": "tests follow their subject" },
-    { "id": "forge-tests-treebinder", "pattern": "tests/FusionRpg.TreeBinder.Tests/**", "target": "gk-forge", "priority": 10, "reason": "tests follow their subject" },
-    { "id": "forge-tests-elementenum", "pattern": "tests/FusionRpg.ElementEnumGen.Tests/**", "target": "gk-forge", "priority": 10, "reason": "tests follow their subject" },
-
-    { "id": "core-tools-default", "pattern": "tools/**", "target": "gk-core", "priority": 0, "reason": "balance/probe tools reading only code and tuning stay with the engine" },
-    { "id": "forge-seedsmith", "pattern": "tools/seedsmith/**", "target": "gk-forge", "priority": 10, "reason": "D3: content generator" },
-    { "id": "forge-tempseed", "pattern": "tools/_TempSeedSpecies/**", "target": "gk-forge", "priority": 10, "reason": "writes data/seed + data/generated" },
-    { "id": "forge-almanac-backfill", "pattern": "tools/AlmanacSeedBackfill/**", "target": "gk-forge", "priority": 10, "reason": "writes data/seed from the almanac dump" },
-    { "id": "forge-atomimporter", "pattern": "tools/AtomImporter/**", "target": "gk-forge", "priority": 10, "reason": "reads private content (data/seed)" },
-    { "id": "forge-affixgate", "pattern": "tools/AffixMetricsGate/**", "target": "gk-forge", "priority": 10, "reason": "measures private content (data/seed)" },
-    { "id": "forge-creature-tools", "pattern": "tools/Creature*/**", "target": "gk-forge", "priority": 10, "reason": "creature corpus generators/importers/reports: read or write data/seed + data/generated" },
-    { "id": "forge-familyexpand", "pattern": "tools/FamilyExpandGen/**", "target": "gk-forge", "priority": 10, "reason": "writes data/seed/atoms/generated" },
-    { "id": "forge-itemseed", "pattern": "tools/ItemSeedValidator/**", "target": "gk-forge", "priority": 10, "reason": "validates private content" },
-    { "id": "forge-rostergen", "pattern": "tools/PassiveTreeRosterGen/**", "target": "gk-forge", "priority": 10, "reason": "writes data/seed" },
-    { "id": "forge-treebinder", "pattern": "tools/TreeBinder/**", "target": "gk-forge", "priority": 10, "reason": "writes data/generated/passive-tree" },
-    { "id": "forge-elementenum", "pattern": "tools/ElementEnumGen/**", "target": "gk-forge", "priority": 10, "reason": "input is private content (data/seed); public gk-core CI cannot read gk-data" },
-    { "id": "forge-dominance", "pattern": "tools/DominanceBaseline/**", "target": "gk-forge", "priority": 10, "reason": "input is private content (data/seed)" },
-    { "id": "forge-provehub", "pattern": "tools/ProveHubCombat/**", "target": "gk-forge", "priority": 10, "reason": "input is private content (data/seed)" },
-    { "id": "fusion-debug-mcp", "pattern": "tools/debug-mcp/**", "target": "gk-fusion", "priority": 10, "reason": "drives the live game" },
-    { "id": "fusion-gamemeta", "pattern": "tools/GameMetaDump/**", "target": "gk-fusion", "priority": 10, "reason": "reads the game install" },
-    { "id": "fusion-lawnobserver", "pattern": "tools/LawnCombatObserver*/**", "target": "gk-fusion", "priority": 10, "reason": "observes a live lawn" },
-    { "id": "fusion-live-test", "pattern": "tools/live_test/**", "target": "gk-fusion", "priority": 10, "reason": "live game probes" },
-    { "id": "fusion-proveliveprobe", "pattern": "tools/ProveLiveProbe*/**", "target": "gk-fusion", "priority": 10, "reason": "live game probe" },
-    { "id": "fusion-sprite-debug", "pattern": "tools/sprite-debug/**", "target": "gk-fusion", "priority": 10, "reason": "game sprite debugging" },
-    { "id": "fusion-packsmoke", "pattern": "tools/FusionRpg.PackSmoke/**", "target": "gk-fusion", "priority": 10, "reason": "smoke-tests the Launcher player pack" },
-
-    { "id": "core-scripts", "pattern": "scripts/**", "target": "gk-core", "priority": 0, "reason": "engine guards, audits and verification" },
-    { "id": "root-session-boundary", "pattern": "scripts/session-boundary-check.ps1", "target": "root", "priority": 10, "reason": "D1: workflow (session records live in root tasks/)" },
-    { "id": "root-doc-citations", "pattern": "scripts/audit-doc-citations.py", "target": "root", "priority": 10, "reason": "D1: audits root docs" },
-    { "id": "fusion-deploy", "pattern": "scripts/deploy-play.ps1", "target": "gk-fusion", "priority": 10, "reason": "deploys into the game" },
-    { "id": "fusion-publish", "pattern": "scripts/publish-player.ps1", "target": "gk-fusion", "priority": 10, "reason": "builds the player pack" },
-    { "id": "fusion-dump", "pattern": "scripts/dump-*.ps1", "target": "gk-fusion", "priority": 10, "reason": "reads the game install" },
-    { "id": "fusion-refs", "pattern": "scripts/*-refs.ps1", "target": "gk-fusion", "priority": 10, "reason": "game interop references" },
-    { "id": "fusion-probe", "pattern": "scripts/probe-*.ps1", "target": "gk-fusion", "priority": 10, "reason": "live game probes" },
-    { "id": "fusion-prove", "pattern": "scripts/prove-*.ps1", "target": "gk-fusion", "priority": 10, "reason": "live game proofs" },
-    { "id": "fusion-smoke", "pattern": "scripts/smoke-*.ps1", "target": "gk-fusion", "priority": 10, "reason": "live/pack smoke tests" },
-    { "id": "fusion-setup", "pattern": "scripts/setup-*.ps1", "target": "gk-fusion", "priority": 10, "reason": "live lab setup" },
-    { "id": "fusion-restart", "pattern": "scripts/restart-game.ps1", "target": "gk-fusion", "priority": 10, "reason": "game process" },
-    { "id": "fusion-wait-deploy", "pattern": "scripts/wait-for-deploy.ps1", "target": "gk-fusion", "priority": 10, "reason": "deploy helper" },
-    { "id": "fusion-sync-drop", "pattern": "scripts/sync-ci-drop-into-game.ps1", "target": "gk-fusion", "priority": 10, "reason": "game drop folder" },
-    { "id": "fusion-lawn-observer-script", "pattern": "scripts/lawn-combat-observer.ps1", "target": "gk-fusion", "priority": 10, "reason": "live lawn" },
-    { "id": "fusion-burst", "pattern": "scripts/burst-repro.ps1", "target": "gk-fusion", "priority": 10, "reason": "live game repro" },
-    { "id": "fusion-stress", "pattern": "scripts/stress-test.ps1", "target": "gk-fusion", "priority": 10, "reason": "live game stress" },
-    { "id": "fusion-guard-injector", "pattern": "scripts/guard-injector-compile.ps1", "target": "gk-fusion", "priority": 10, "reason": "guards the injector build" },
-    { "id": "fusion-guard-profile", "pattern": "scripts/guard-game-profile.ps1", "target": "gk-fusion", "priority": 10, "reason": "guards game profiles" },
-    { "id": "fusion-guard-writer", "pattern": "scripts/guard-single-writer.ps1", "target": "gk-fusion", "priority": 10, "reason": "guards injector combat writes (EntityStatWriter)" },
-    { "id": "fusion-guard-funnel", "pattern": "scripts/guard-funnel-delta.ps1", "target": "gk-fusion", "priority": 10, "reason": "guards injector HP deltas (Funnel -> FA10)" },
-    { "id": "fusion-realrun", "pattern": "scripts/collect-class-system-realrun.ps1", "target": "gk-fusion", "priority": 10, "reason": "collects a live run" },
-    { "id": "fusion-first-session", "pattern": "scripts/first-session-progression-harness.ps1", "target": "gk-fusion", "priority": 10, "reason": "live first-session harness" },
-
-    { "id": "web-app", "pattern": "web/**", "target": "gk-web", "priority": 0, "reason": "the browser control room is a separate toolchain, bundle and failure mode from the C# server; Node is developer-only and never ships" },
-    { "id": "drop-tsbuildinfo", "pattern": "web/**/*.tsbuildinfo", "target": "drop", "priority": 10, "reason": "tracked build artifact" },
-
-    { "id": "core-tuning", "pattern": "data/tuning/**", "target": "gk-core", "priority": 0, "reason": "D6: numbers, Server-loaded, authored via publish.py" },
-    { "id": "data-seed", "pattern": "data/seed/**", "target": "gk-data", "priority": 0, "reason": "D6/D7: content -> private gk-data, fusion pack; a pack mirrors the legacy repo root so repo-relative content paths survive",
-      "relocate": { "from": "data/seed/", "to": "packs/fusion/data/seed/" } },
-    { "id": "data-generated", "pattern": "data/generated/**", "target": "gk-data", "priority": 0, "reason": "D6/D7: generated content -> private gk-data, fusion pack",
-      "relocate": { "from": "data/generated/", "to": "packs/fusion/data/generated/" } },
-    { "id": "content-authored", "pattern": "content/**", "target": "gk-content", "priority": 0, "reason": "authored display content is OURS: names, flavor, registries. It is the original content, not the derived corpus, so it does not sit beside a corpus derived from another game" },
-
-    { "id": "drop-blender-already-migrated", "pattern": "blender/**", "target": "drop", "priority": 0, "reason": "the art is already merged into gk-assets, which owns the whole tree now; what remained here was never migrated (superseded renders, lookdev references) and is the owner's own cleanup, not migration input. Dropping rather than importing is what keeps the improved art in gk-assets authoritative instead of being reverted by a legacy copy" },
-
-    { "id": "core-build-targets", "pattern": "Directory.Build.targets", "target": "gk-core", "priority": 0, "reason": "the build-matrix half of the pair; MSBuild imports props and targets together, so a cell profile gk-core declares must resolve in the same repo" },
-
-    { "id": "drop-claude-skill-links", "pattern": ".claude/skills/*", "target": "drop", "priority": 20, "reason": "a symlink aliasing ../../.agents/skills/<name>. The canonical skill content migrates to root; a symlink does not survive a checkout without core.symlinks, and tools/bootstrap_skills.py recreates the alias" },
-    { "id": "drop-kiro-skill-links", "pattern": ".kiro/skills/*", "target": "drop", "priority": 20, "reason": "the same 111 skills aliased a second time for a second tool. One alias set is enough; see drop-claude-skill-links" }
+    {
+      "id": "root-agent-config",
+      "pattern": ".agents/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config is workspace-wide and inherited by directory"
+    },
+    {
+      "id": "root-claude",
+      "pattern": ".claude/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-commandcode",
+      "pattern": ".commandcode/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-cursor",
+      "pattern": ".cursor/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-kilo",
+      "pattern": ".kilo/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-opencode",
+      "pattern": ".opencode/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-codegraph",
+      "pattern": ".codegraph/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "one CodeGraph index at the workspace root"
+    },
+    {
+      "id": "root-mcp",
+      "pattern": ".mcp.json",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-kilo-json",
+      "pattern": "kilo.json",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: agent config"
+    },
+    {
+      "id": "root-agents-md",
+      "pattern": "AGENTS.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: binding rules; loaded for every sub-repo by directory inheritance"
+    },
+    {
+      "id": "root-claude-md",
+      "pattern": "CLAUDE.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: binding rules"
+    },
+    {
+      "id": "root-community",
+      "pattern": "CODE_OF_CONDUCT.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: project-wide community docs"
+    },
+    {
+      "id": "root-contributing",
+      "pattern": "CONTRIBUTING.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: workflow doc"
+    },
+    {
+      "id": "root-security",
+      "pattern": "SECURITY.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: project-wide policy"
+    },
+    {
+      "id": "root-support",
+      "pattern": "SUPPORT.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: project-wide doc"
+    },
+    {
+      "id": "root-notice",
+      "pattern": "NOTICE",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: project-wide notice"
+    },
+    {
+      "id": "legacy-readme",
+      "pattern": "README.md",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: becomes docs/legacy-README.md input; root README.md is preserved (owner-authored)",
+      "relocate": {
+        "from": "README.md",
+        "to": "docs/legacy-README.md"
+      }
+    },
+    {
+      "id": "drop-license",
+      "pattern": "LICENSE",
+      "target": "drop",
+      "priority": 0,
+      "reason": "every Keepverse repo keeps its own LICENSE (layout preserve)"
+    },
+    {
+      "id": "root-github-meta",
+      "pattern": ".github/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: issue/PR templates and CODEOWNERS are workspace-wide"
+    },
+    {
+      "id": "core-ci",
+      "pattern": ".github/workflows/ci.yml",
+      "target": "gk-core",
+      "priority": 10,
+      "reason": "CI builds the engine; per-repo split is residue for the CI-split transform"
+    },
+    {
+      "id": "core-nightly",
+      "pattern": ".github/workflows/nightly.yml",
+      "target": "gk-core",
+      "priority": 10,
+      "reason": "nightly engine suite"
+    },
+    {
+      "id": "fusion-release",
+      "pattern": ".github/workflows/release.yml",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "the player release is the fusion mod package"
+    },
+    {
+      "id": "root-docs",
+      "pattern": "docs/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: docs live in the root"
+    },
+    {
+      "id": "fusion-docs-injector",
+      "pattern": "docs/injector/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "game-host docs travel with the host"
+    },
+    {
+      "id": "fusion-docs-launcher",
+      "pattern": "docs/launcher/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "the Launcher installs loaders into the game; host doc"
+    },
+    {
+      "id": "root-tasks",
+      "pattern": "tasks/**",
+      "target": "root",
+      "priority": 0,
+      "reason": "D1: plans, todos and session records are workflow"
+    },
+    {
+      "id": "core-editorconfig",
+      "pattern": ".editorconfig",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "code style for every code repo",
+      "copies": [
+        "gk-forge",
+        "gk-fusion",
+        "root"
+      ]
+    },
+    {
+      "id": "core-gitattributes",
+      "pattern": ".gitattributes",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "LF checkouts; tests compare bytes",
+      "copies": [
+        "gk-forge",
+        "gk-data",
+        "gk-assets",
+        "gk-fusion",
+        "root"
+      ]
+    },
+    {
+      "id": "core-gitignore",
+      "pattern": ".gitignore",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "build-output ignores for .NET/web repos",
+      "copies": [
+        "gk-forge",
+        "gk-fusion"
+      ]
+    },
+    {
+      "id": "core-build-props",
+      "pattern": "Directory.Build.props",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "shared MSBuild settings + injected repo-root properties",
+      "copies": [
+        "gk-forge",
+        "gk-fusion"
+      ]
+    },
+    {
+      "id": "core-runsettings",
+      "pattern": "test.runsettings",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "test settings for every .NET repo",
+      "copies": [
+        "gk-forge",
+        "gk-fusion"
+      ]
+    },
+    {
+      "id": "core-solution",
+      "pattern": "FusionRpg.slnx",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "solution-split transform gives each .NET repo its own projects",
+      "copies": [
+        "gk-forge",
+        "gk-fusion"
+      ]
+    },
+    {
+      "id": "fusion-game-profiles",
+      "pattern": "game-profiles*.json",
+      "target": "gk-fusion",
+      "priority": 0,
+      "reason": "game version catalog is host-only"
+    },
+    {
+      "id": "core-src",
+      "pattern": "src/**",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "engine: Contracts, Core, Data, CheatCore, Server"
+    },
+    {
+      "id": "fusion-src-injector",
+      "pattern": "src/FusionRpg.Injector*/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "game-host injector and loader hosts"
+    },
+    {
+      "id": "fusion-src-launcher",
+      "pattern": "src/FusionRpg.Launcher/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "installs loaders and starts the game"
+    },
+    {
+      "id": "core-tests",
+      "pattern": "tests/**",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "engine tests follow the engine"
+    },
+    {
+      "id": "fusion-tests-injector",
+      "pattern": "tests/FusionRpg.Injector.Tests/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "fusion-tests-launcher",
+      "pattern": "tests/FusionRpg.Launcher.Tests/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "forge-tests-atomimporter",
+      "pattern": "tests/FusionRpg.AtomImporter.Tests/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "forge-tests-itemseed",
+      "pattern": "tests/FusionRpg.ItemSeedValidator.Tests/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "forge-tests-rostergen",
+      "pattern": "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "forge-tests-treebinder",
+      "pattern": "tests/FusionRpg.TreeBinder.Tests/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "forge-tests-elementenum",
+      "pattern": "tests/FusionRpg.ElementEnumGen.Tests/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "tests follow their subject"
+    },
+    {
+      "id": "core-tools-default",
+      "pattern": "tools/**",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "balance/probe tools reading only code and tuning stay with the engine"
+    },
+    {
+      "id": "forge-seedsmith",
+      "pattern": "tools/seedsmith/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "D3: content generator"
+    },
+    {
+      "id": "forge-tempseed",
+      "pattern": "tools/_TempSeedSpecies/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "writes data/seed + data/generated"
+    },
+    {
+      "id": "forge-almanac-backfill",
+      "pattern": "tools/AlmanacSeedBackfill/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "writes data/seed from the almanac dump"
+    },
+    {
+      "id": "forge-atomimporter",
+      "pattern": "tools/AtomImporter/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "reads private content (data/seed)"
+    },
+    {
+      "id": "forge-affixgate",
+      "pattern": "tools/AffixMetricsGate/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "measures private content (data/seed)"
+    },
+    {
+      "id": "forge-creature-tools",
+      "pattern": "tools/Creature*/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "creature corpus generators/importers/reports: read or write data/seed + data/generated"
+    },
+    {
+      "id": "forge-familyexpand",
+      "pattern": "tools/FamilyExpandGen/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "writes data/seed/atoms/generated"
+    },
+    {
+      "id": "forge-itemseed",
+      "pattern": "tools/ItemSeedValidator/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "validates private content"
+    },
+    {
+      "id": "forge-rostergen",
+      "pattern": "tools/PassiveTreeRosterGen/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "writes data/seed"
+    },
+    {
+      "id": "forge-treebinder",
+      "pattern": "tools/TreeBinder/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "writes data/generated/passive-tree"
+    },
+    {
+      "id": "forge-elementenum",
+      "pattern": "tools/ElementEnumGen/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "input is private content (data/seed); public gk-core CI cannot read gk-data"
+    },
+    {
+      "id": "forge-dominance",
+      "pattern": "tools/DominanceBaseline/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "input is private content (data/seed)"
+    },
+    {
+      "id": "forge-provehub",
+      "pattern": "tools/ProveHubCombat/**",
+      "target": "gk-forge",
+      "priority": 10,
+      "reason": "input is private content (data/seed)"
+    },
+    {
+      "id": "fusion-debug-mcp",
+      "pattern": "tools/debug-mcp/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "drives the live game"
+    },
+    {
+      "id": "fusion-gamemeta",
+      "pattern": "tools/GameMetaDump/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "reads the game install"
+    },
+    {
+      "id": "fusion-lawnobserver",
+      "pattern": "tools/LawnCombatObserver*/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "observes a live lawn"
+    },
+    {
+      "id": "fusion-live-test",
+      "pattern": "tools/live_test/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "live game probes"
+    },
+    {
+      "id": "fusion-proveliveprobe",
+      "pattern": "tools/ProveLiveProbe*/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "live game probe"
+    },
+    {
+      "id": "fusion-sprite-debug",
+      "pattern": "tools/sprite-debug/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "game sprite debugging"
+    },
+    {
+      "id": "fusion-packsmoke",
+      "pattern": "tools/FusionRpg.PackSmoke/**",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "smoke-tests the Launcher player pack"
+    },
+    {
+      "id": "core-scripts",
+      "pattern": "scripts/**",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "engine guards, audits and verification"
+    },
+    {
+      "id": "root-session-boundary",
+      "pattern": "scripts/session-boundary-check.py",
+      "target": "root",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the root surface"
+    },
+    {
+      "id": "root-doc-citations",
+      "pattern": "scripts/audit-doc-citations.py",
+      "target": "root",
+      "priority": 10,
+      "reason": "D1: audits root docs"
+    },
+    {
+      "id": "fusion-deploy",
+      "pattern": "scripts/deploy-play.py",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the gk-fusion surface"
+    },
+    {
+      "id": "fusion-prove",
+      "pattern": "scripts/prove-*.py",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the gk-fusion surface"
+    },
+    {
+      "id": "fusion-guard-injector",
+      "pattern": "scripts/guard-injector-compile.py",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the gk-fusion surface"
+    },
+    {
+      "id": "fusion-guard-profile",
+      "pattern": "scripts/guard-game-profile.py",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the gk-fusion surface"
+    },
+    {
+      "id": "fusion-guard-writer",
+      "pattern": "scripts/guard-single-writer.py",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the gk-fusion surface"
+    },
+    {
+      "id": "fusion-guard-funnel",
+      "pattern": "scripts/guard-funnel-delta.py",
+      "target": "gk-fusion",
+      "priority": 10,
+      "reason": "ps1-ban ported this to Python; the rule followed the file so the tool lands beside the rest of the gk-fusion surface"
+    },
+    {
+      "id": "web-app",
+      "pattern": "web/**",
+      "target": "gk-web",
+      "priority": 0,
+      "reason": "the browser control room is a separate toolchain, bundle and failure mode from the C# server; Node is developer-only and never ships"
+    },
+    {
+      "id": "drop-tsbuildinfo",
+      "pattern": "web/**/*.tsbuildinfo",
+      "target": "drop",
+      "priority": 10,
+      "reason": "tracked build artifact"
+    },
+    {
+      "id": "core-tuning",
+      "pattern": "data/tuning/**",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "D6: numbers, Server-loaded, authored via publish.py"
+    },
+    {
+      "id": "data-seed",
+      "pattern": "data/seed/**",
+      "target": "gk-data",
+      "priority": 0,
+      "reason": "D6/D7: content -> private gk-data, fusion pack; a pack mirrors the legacy repo root so repo-relative content paths survive",
+      "relocate": {
+        "from": "data/seed/",
+        "to": "packs/fusion/data/seed/"
+      }
+    },
+    {
+      "id": "data-generated",
+      "pattern": "data/generated/**",
+      "target": "gk-data",
+      "priority": 0,
+      "reason": "D6/D7: generated content -> private gk-data, fusion pack",
+      "relocate": {
+        "from": "data/generated/",
+        "to": "packs/fusion/data/generated/"
+      }
+    },
+    {
+      "id": "content-authored",
+      "pattern": "content/**",
+      "target": "gk-content",
+      "priority": 0,
+      "reason": "authored display content is OURS: names, flavor, registries. It is the original content, not the derived corpus, so it does not sit beside a corpus derived from another game"
+    },
+    {
+      "id": "drop-blender-already-migrated",
+      "pattern": "blender/**",
+      "target": "drop",
+      "priority": 0,
+      "reason": "the art is already merged into gk-assets, which owns the whole tree now; what remained here was never migrated (superseded renders, lookdev references) and is the owner's own cleanup, not migration input. Dropping rather than importing is what keeps the improved art in gk-assets authoritative instead of being reverted by a legacy copy"
+    },
+    {
+      "id": "core-build-targets",
+      "pattern": "Directory.Build.targets",
+      "target": "gk-core",
+      "priority": 0,
+      "reason": "the build-matrix half of the pair; MSBuild imports props and targets together, so a cell profile gk-core declares must resolve in the same repo"
+    },
+    {
+      "id": "drop-claude-skill-links",
+      "pattern": ".claude/skills/*",
+      "target": "drop",
+      "priority": 20,
+      "reason": "a symlink aliasing ../../.agents/skills/<name>. The canonical skill content migrates to root; a symlink does not survive a checkout without core.symlinks, and tools/bootstrap_skills.py recreates the alias"
+    },
+    {
+      "id": "drop-kiro-skill-links",
+      "pattern": ".kiro/skills/*",
+      "target": "drop",
+      "priority": 20,
+      "reason": "the same 111 skills aliased a second time for a second tool. One alias set is enough; see drop-claude-skill-links"
+    }
   ]
 }
