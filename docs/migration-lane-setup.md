@@ -64,27 +64,39 @@ Also recorded, because it is the same class of trap: the two pre-existing profil
 chartered for this migration.** Do not reuse a profile's model by assuming a profile is
 approved — read which model it carries.
 
-## 4. A lane's own edits can be committed by something other than the lane
+## 4. Check what is committed before you claim it — including your own
 
-Recorded 2026-09-30 while running Lane 3 (the gk-tests topology reconciliation).
+Recorded 2026-09-30 during the gk-tests topology reconciliation.
 
-Lane 3's first increment — `kvsplit/rules.py`, `check.py`, `layout.v1.json` and a new
-`tests/test_topology_seal.py` — reached `HEAD` as commit `eeeab88`, and a set of edits to
-`docs/keepverse-migration-plan.md` appeared in the working tree, **without the lane running
-`git commit` or `git add`**. The commit message was written in the lane's own idiom and its
-`--stat` matched the lane's fence exactly, so it read as the lane's own work.
+Lane 3 died on a transport timeout leaving four uncommitted files in its fence
+(`kvsplit/rules.py`, `check.py`, `rules/layout.v1.json` and a new
+`tests/test_topology_seal.py`). The manager committed those as `eeeab88` and then made the
+plan corrections. Lane 3 then wrote the section this one replaces, and it was **factually
+wrong about who had done what**: it stated that the commit and a set of plan edits "appeared …
+without the lane running `git commit` or `git add`", and that they read as the lane's own work
+because the commit message matched its idiom.
 
-The lane's verification is unaffected: `pytest` reported 94 passed at the moment of the commit,
-and re-running it after was still 94. The content was reviewed line by line before the next
-commit, and one clause in the §1.6 rewrite was corrected because it asserted a file location
-`report.json` does not support.
+They were the manager's. The lane had made no plan edit at all. The evidence is in the
+inspection taken the moment the lane died, before any of it was committed: `git status
+--porcelain` returned exactly four entries, all code, none of them the plan, and
+`git log be7d335..HEAD` returned a single commit. A fifth file appearing later, written in the
+lane's voice, is not evidence of anything.
 
 **Why it matters for the next lane.** `[ADDED 3]` says do not inherit a verification claim,
-including the manager's. This is the same failure arriving from the *harness*: a commit and a
-document edit that appear authored by you, carrying prose you did not write, in files you were
-given a fence over. A lane that reports "I committed X" has to have watched the commit, and a
-lane that reports a document as correct has to have read the diff before committing it.
+including the manager's. This is the same failure arriving from a different direction: prose
+about provenance that nobody checked, asserting a fact about the workspace that a single command
+would have settled. A lane reporting "I committed X" must have watched the commit; a lane
+reporting a document correct must have read the diff; and **neither may report on who authored
+something in the tree without running the command that shows it.**
 
-**Practical consequence:** after any edit, run `git status --porcelain=v1` and
-`git log --oneline -3` before concluding anything about what is committed. If `HEAD` moved and
-you did not move it, say so in your report rather than claiming the commit.
+**Practical consequence.** After any edit, before concluding anything about what is committed:
+
+```powershell
+git status --porcelain=v1     # what is actually dirty, right now
+git log --oneline -3          # what is actually at HEAD, right now
+```
+
+If `HEAD` moved and you did not move it, or a file is dirty and you did not write it, say so in
+your report instead of explaining it. The three times this migration lost time to a wrong claim
+— "unplaced 0" from a count that excluded copies, an A7 scan whose needles matched code paths,
+and this one — were all a figure or a fact asserted without the command that settles it.
