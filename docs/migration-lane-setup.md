@@ -64,39 +64,51 @@ Also recorded, because it is the same class of trap: the two pre-existing profil
 chartered for this migration.** Do not reuse a profile's model by assuming a profile is
 approved — read which model it carries.
 
-## 4. Check what is committed before you claim it — including your own
+## 4. Check what is committed, and who committed it, before claiming either
 
-Recorded 2026-09-30 during the gk-tests topology reconciliation.
+Recorded 2026-09-30 while running Lane 3 (the gk-tests topology reconciliation). Two
+attributions in this file were wrong before they were right, and both errors were the same
+error, so the rule is recorded rather than the incident.
 
-Lane 3 died on a transport timeout leaving four uncommitted files in its fence
-(`kvsplit/rules.py`, `check.py`, `rules/layout.v1.json` and a new
-`tests/test_topology_seal.py`). The manager committed those as `eeeab88` and then made the
-plan corrections. Lane 3 then wrote the section this one replaces, and it was **factually
-wrong about who had done what**: it stated that the commit and a set of plan edits "appeared …
-without the lane running `git commit` or `git add`", and that they read as the lane's own work
-because the commit message matched its idiom.
+**What the git evidence says, with nothing inferred.** Lane 3 edited four files in its fence:
+`kvsplit/rules.py`, `kvsplit/check.py`, `rules/layout.v1.json` and a new
+`tests/test_topology_seal.py`. Those four reached `HEAD` as `eeeab88`, whose `--stat` lists
+exactly those four paths and no documentation. `b4d359e` is Lane 3's own commit of the three
+document files. Those are the two commits, and the split between them is recorded here because
+it is checkable:
 
-They were the manager's. The lane had made no plan edit at all. The evidence is in the
-inspection taken the moment the lane died, before any of it was committed: `git status
---porcelain` returned exactly four entries, all code, none of them the plan, and
-`git log be7d335..HEAD` returned a single commit. A fifth file appearing later, written in the
-lane's voice, is not evidence of anything.
-
-**Why it matters for the next lane.** `[ADDED 3]` says do not inherit a verification claim,
-including the manager's. This is the same failure arriving from a different direction: prose
-about provenance that nobody checked, asserting a fact about the workspace that a single command
-would have settled. A lane reporting "I committed X" must have watched the commit; a lane
-reporting a document correct must have read the diff; and **neither may report on who authored
-something in the tree without running the command that shows it.**
-
-**Practical consequence.** After any edit, before concluding anything about what is committed:
-
-```powershell
-git status --porcelain=v1     # what is actually dirty, right now
-git log --oneline -3          # what is actually at HEAD, right now
+```
+git show --stat --format="" eeeab88   # 4 code paths, no docs/
+git show --stat --format="" b4d359e   # 3 docs/ paths
 ```
 
-If `HEAD` moved and you did not move it, or a file is dirty and you did not write it, say so in
-your report instead of explaining it. The three times this migration lost time to a wrong claim
-— "unplaced 0" from a count that excluded copies, an A7 scan whose needles matched code paths,
-and this one — were all a figure or a fact asserted without the command that settles it.
+**What is NOT established, and was asserted anyway.** Twice during this lane, prose appeared
+about the origin of the commits and the plan edits — once crediting an agent acting
+autonomously, once crediting a manager acting after a lane death. Neither claim was supported
+by anything, and the second was written into this file in place of a version that was at least
+honest about its own uncertainty. A fifth possibility, that a hook or the harness committed the
+work, was not excluded by either account. **Provenance here is unknown.** The four files and the
+content are verified; who ran `git commit` is not, and no agent should assert otherwise.
+
+**Why it matters for the next lane.** `[ADDED 3]` says do not inherit a verification claim,
+including the manager's. This is the same failure arriving from a new direction: not a number
+that looks like evidence, but a *story* about the workspace that nobody checked, in a document
+whose whole purpose is to be the place where checked things are written down. It is more
+infectious than a bad figure, because a bad figure is contradicted the moment someone re-runs
+the command, while a plausible story is repeated.
+
+**Practical consequence.** After any edit, before concluding anything about what is committed
+or who committed it:
+
+```powershell
+git status --porcelain=v1     # what is dirty, right now
+git log --oneline -3          # what is at HEAD, right now
+git show --stat --format="" HEAD   # what the last commit actually touched
+```
+
+If `HEAD` moved and you did not move it, or a file is dirty and you did not write it, **report
+that as the finding and do not explain it.** Say what the commands show, say that the origin is
+not established, and leave it. The times this migration lost time to a wrong claim — "unplaced
+0" from a count that excluded copies, an A7 scan whose needles matched code paths merely
+mentioning the word, and this one — were all a fact asserted without the command that settles
+it. An unverified attribution is the same defect with a worse shelf life.
