@@ -92,18 +92,24 @@ def _overwrites(staging: Path, workspace: Path, layout: Layout, repo_ids: list[s
 
 
 def _unmigrated(repo_ids: list[str], report: dict) -> set[str]:
-    """Repos the split places zero files into: gk-assets, and gk-tests by design.
+    """Repos the split places no SOURCE content into: gk-assets, and gk-tests by design.
 
-    These are not part of the migration, so preflight must not validate them as if they
-    were. The delete loop runs regardless of what a repo receives, so a repo in this set
-    that went through it would lose every unpreserved tracked file - for gk-assets that was
-    209 of 228, the whole art tree. Decided once, here, so preflight and the write loop
-    cannot disagree about whether such a repo is in scope.
+    A repo is out of scope when it has no *primary* placement from the source tree. The
+    predicate counts only `origin == "source"` rows, because a repo can hold rows without
+    the migration having anything to say about it: a `copies` row (the same file also
+    staged elsewhere) and a `template` row (kvsplit emitting an AGENTS.md to seed a repo
+    that lacks one). Counting those is what let gk-assets look non-empty while holding
+    228 art files - and the delete loop then removed 209 of them, because it runs
+    regardless of what a repo receives.
+
+    Decided once, in preflight, so preflight and the write loop cannot disagree about
+    whether a repo is in scope.
     """
-    counts: dict[str, int] = {}
+    primary: set[str] = set()
     for r in report["files"]:
-        counts[r["repo"]] = counts.get(r["repo"], 0) + 1
-    return {rid for rid in repo_ids if not counts.get(rid)}
+        if r.get("origin") == "source" and r.get("primary"):
+            primary.add(r["repo"])
+    return {rid for rid in repo_ids if rid not in primary}
 
 
 def _preflight(staging: Path, workspace: Path, layout: Layout, repo_ids: list[str],

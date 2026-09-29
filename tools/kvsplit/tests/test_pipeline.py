@@ -416,6 +416,28 @@ def test_a_repo_the_split_places_nothing_into_is_untouched_even_if_dirty(rules_d
     assert (victim / "a.blend").read_text() == "locally improved\n"
 
 
+def test_out_of_scope_predicate_ignores_copy_and_template_rows():
+    """The regression that cost 209 art files, tested at the predicate.
+
+    gk-assets held 228 tracked files and the split placed nothing primary into it, yet it
+    still had two report rows: a `copies` row, and the `template` AGENTS.md kvsplit emits
+    to every repo. Counting rows made it look in scope; the delete loop then removed 209
+    files. A repo with no primary source placement is out of scope whatever else it has
+    rows for."""
+    from kvsplit.apply import _unmigrated
+    report = {"files": [
+        {"repo": "gk-assets", "path": ".gitattributes", "origin": "source", "primary": False},
+        {"repo": "gk-assets", "path": "AGENTS.md", "origin": "template"},
+        {"repo": "gk-core", "path": "src/App.Core/A.cs", "origin": "source", "primary": True},
+        {"repo": "gk-data", "path": "packs/fusion/seed/a.json", "origin": "source", "primary": True},
+    ]}
+    out = _unmigrated(["gk-core", "gk-web", "gk-tests", "gk-fusion", "gk-content",
+                       "gk-data", "gk-assets"], report)
+    assert "gk-assets" in out, "a repo with only a copy and a template row must be out of scope"
+    assert "gk-tests" in out and "gk-web" in out and "gk-fusion" in out
+    assert "gk-core" not in out and "gk-data" not in out
+
+
 def test_residue_ids_are_stable_across_unrelated_changes(legacy, rules_dir, tmp_path):
     r1 = stage(legacy, "HEAD", rules_dir, tmp_path / "s1")
     (legacy / "src/App.Core/Other.cs").write_text("class O {}\n")
