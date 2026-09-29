@@ -213,9 +213,47 @@ source is exactly the unverifiable change this migration has been bitten by. (3)
 residue anchors that other lanes own, and `[ADDED 7]` warns that an id which moves means the fix
 changed the shape of the problem.
 
-**Owner:** the `scripts/**` boundary in `tools/kvsplit/rules/ownership.v1.json`. Recorded here
-so it is an open item with an owner and a reason, which is what `[ADDED 8]` condition 5 asks
-for, and not a silent pass.
+**The obvious move is also the wrong one, and this was measured rather than assumed.** Re-routing
+`scripts/**` to gk-workflow looks like a one-rule edit. It is not, because the consumers are inside
+gk-core and name those scripts by relative path:
+
+| Consumer | References |
+|---|---|
+| `gk-core/.github/workflows/ci.yml` | `scripts/audit-magic-numbers.py`, `audit-overflow.py`, `audit-program-pipeline.py`, `enforcement-registry.v1.json`, `fix-doc-citations.py`, `test_fast.py`, `test_sharded.py`, `test_substrate_leak_alarm.py`, `guard-verification-boundaries.py`, `run_guards.py`, `session-boundary-check.py` |
+| `gk-core/.github/workflows/nightly.yml` | `test_fast.py`, `test_substrate_leak_alarm.py`, `run_guards.py`, `session-boundary-check.py` |
+| `gk-core/Directory.Build.targets` | `run_guards.py`, `guard-game-profile.py`/`.ps1` |
+| `tools/SquadHarness/SquadHarness.csproj` | `scripts/guard-dal.ps1` |
+| `tests/FusionRpg.Guard.Tests/…csproj` | `scripts/regen-class-system-baselines.ps1` |
+| `src/FusionRpg.Server/…csproj` | `scripts/publish_player.py` |
+
+`Directory.Build.targets` is imported by **every** project in gk-core, so a target naming
+`../scripts/run_guards.py` fails for anyone who clones gk-core alone — which is the entire point of
+a public repository, and the same self-containment §8 notes gk-core is supposed to have. Moving the
+tooling without rewiring its consumers does not relocate the policy; it breaks the build of the
+repository the policy exists to help validate.
+
+ADDITION 5 already names the shape of the answer — *"where a platform requires a CI file inside a
+sub-repository it stays a thin entrypoint to workflow-owned policy and tooling"* — so the correct
+change set is four things, not one:
+
+1. the tooling moves to gk-workflow;
+2. gk-core's `Directory.Build.targets` guard invocation becomes **conditional** on the root being
+   present, so a standalone clone still builds and skips the cross-repo gate;
+3. gk-core's CI gets a thin entrypoint that invokes root-owned tooling instead of holding a copy;
+4. the three project-file references are resolved individually — and two of them are `.ps1`, which
+   the ps1-ban program is retiring, so they must not be given a new home.
+
+**A classification by content-reference was tried and rejected as evidence.** It files
+`guard-dal.py` and `verification-boundaries.v1.json` as engine-facing, because they mention
+`SqliteConnection` and `data/seed` — as *strings they grep for*. A guard's subject matter is the
+product; its job is the process. The discriminator that holds is ADDITION 5's own enumeration plus
+the shape of the file, not which words appear inside it. Recorded because the wrong discriminator
+produces a confident 132-file answer, and a confident wrong answer here would have been shipped into
+a re-apply.
+
+**Owner:** the `scripts/**` boundary in `tools/kvsplit/rules/ownership.v1.json`, together with the
+four consumers above. Recorded here so it is an open item with an owner and a reason, which is what
+`[ADDED 8]` condition 5 asks for, and not a silent pass.
 
 ## 9. Also in scope, also a stale authority
 
