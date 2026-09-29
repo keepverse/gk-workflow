@@ -60,6 +60,9 @@
       "dir": "gk-tests",
       "visibility": "public",
       "property": "GkTestsRoot",
+      "seal": {
+        "reason": "gk-tests holds cross-repo test suites and nothing else. Shared gate definitions, shared harness logic and workspace policy are gk-workflow's single source of truth, and a second copy of one inside a sub-repository is a competing copy. Nothing in the legacy monorepo is a cross-repo suite, because before the split there were no repositories to span, so the split places nothing here - and this seal is what makes that a stated rule rather than an accident of no pattern matching. The one exception is a CI file a platform requires inside a sub-repository: it stays a thin entrypoint to workflow-owned policy, so a rule that wants to put one here must set 'entrypoint': true and carry its own reason."
+      },
       "preserve": [
         ".gitignore",
         "LICENSE",

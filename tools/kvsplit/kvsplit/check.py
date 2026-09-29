@@ -3,7 +3,8 @@
   * every ProjectReference in a staged project resolves to a staged project (repo-root
     properties evaluated to their sibling-folder defaults);
   * no public repo contains generated content (seedsmith provenance) or a content-data tree;
-  * no repo outside layout.unityRepos imports a game-host namespace.
+  * no repo outside layout.unityRepos imports a game-host namespace;
+  * no file is staged into a sealed repo, whatever route put it there.
 """
 
 from __future__ import annotations
@@ -32,9 +33,24 @@ def run_checks(files: list["StagedFile"], cls: Classification, rules: Rules) -> 
     layout = rules.layout
     staged = {cls.workspace_path(f.repo, f.path) for f in files}
     props = {r.property: ("" if r.dir in (".", "") else r.dir + "/") for r in layout.repos if r.property}
+    # The one route a sealed repo has: a rule that declared itself a thin entrypoint to
+    # workflow-owned policy. Resolved from the same ownership the parser enforced, so `check`
+    # cannot be stricter than the rules and cannot be talked round by a rule's target alone.
+    entrypoint_rules = {r.id for r in rules.ownership if r.entrypoint}
+    declared_entrypoints = {(repo, pl.path) for old, pl in cls.placements.items()
+                            if pl.rule in entrypoint_rules for repo in (pl.repo, *pl.copies)}
     for f in files:
         ws = cls.workspace_path(f.repo, f.path)
         repo = layout.repo(f.repo)
+        # The seal is refused at rules-load time, so a staged tree cannot contain one of these
+        # through the rules. It is asserted here anyway, and it is asserted on every route:
+        # a primary placement, a `copies` row and a `template` row all end up in `files`, and
+        # gk-assets held 228 art files behind two non-primary rows, so a check that only
+        # looked at placements would have read that repository as untouched.
+        if f.repo in layout.sealed and (f.repo, f.path) not in declared_entrypoints:
+            out.append(Residue("sealed-repo-received-file", ws, f.path, None,
+                               f"{f.repo} is sealed ({layout.seal_reason(f.repo)}) and received a "
+                               f"{f.origin} file anyway", "rule"))
         if f.path.endswith(PROJECT_EXT):
             text = f.data.decode("utf-8-sig", errors="replace")
             for m in _PROJREF.finditer(text):
