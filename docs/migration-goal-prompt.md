@@ -24,7 +24,7 @@ Measured at the time of writing, and to be re-verified rather than trusted:
 | `gk-tests` | **untouched by design** — the split places no primary content here |
 | `gk-assets` | **untouched by owner decision** — the art was migrated by hand |
 
-- Source SHA imported: `effc51d9b55f78ea7a5c47e14eef0e61b690e5eb`
+- Source SHA imported: `effc51d9b55f78aa7a5c47e14eef0e61b690e5eb`
 - Rules digest at import: `0fe37c774d29`
 - Output digest at import: `b464968fa8e6`
 - Import commits are **local and unpushed** in 7 repos. The owner's authorization 7 covers
