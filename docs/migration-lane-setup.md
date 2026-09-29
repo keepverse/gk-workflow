@@ -63,3 +63,28 @@ Also recorded, because it is the same class of trap: the two pre-existing profil
 `opencode-go/muse-spark-1.3-contributor` and `anthropic/claude-opus-5`. **Neither is
 chartered for this migration.** Do not reuse a profile's model by assuming a profile is
 approved — read which model it carries.
+
+## 4. A lane's own edits can be committed by something other than the lane
+
+Recorded 2026-09-30 while running Lane 3 (the gk-tests topology reconciliation).
+
+Lane 3's first increment — `kvsplit/rules.py`, `check.py`, `layout.v1.json` and a new
+`tests/test_topology_seal.py` — reached `HEAD` as commit `eeeab88`, and a set of edits to
+`docs/keepverse-migration-plan.md` appeared in the working tree, **without the lane running
+`git commit` or `git add`**. The commit message was written in the lane's own idiom and its
+`--stat` matched the lane's fence exactly, so it read as the lane's own work.
+
+The lane's verification is unaffected: `pytest` reported 94 passed at the moment of the commit,
+and re-running it after was still 94. The content was reviewed line by line before the next
+commit, and one clause in the §1.6 rewrite was corrected because it asserted a file location
+`report.json` does not support.
+
+**Why it matters for the next lane.** `[ADDED 3]` says do not inherit a verification claim,
+including the manager's. This is the same failure arriving from the *harness*: a commit and a
+document edit that appear authored by you, carrying prose you did not write, in files you were
+given a fence over. A lane that reports "I committed X" has to have watched the commit, and a
+lane that reports a document as correct has to have read the diff before committing it.
+
+**Practical consequence:** after any edit, run `git status --porcelain=v1` and
+`git log --oneline -3` before concluding anything about what is committed. If `HEAD` moved and
+you did not move it, say so in your report rather than claiming the commit.

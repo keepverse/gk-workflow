@@ -4,11 +4,19 @@ Move the `plant-vs-zombie-rise-of-summoner` monorepo into the Keepverse multi-re
 workspace: one `gk-workflow` root plus eight sub-repositories, split by a deterministic
 tool (`kvsplit`) whose residue is the work queue.
 
-This document replaces `tasks/keepverse-split-plan.md` (2026-09-19) and its 2026-09-27
-extension. It is self-contained: a fresh agent can execute it end to end without reading
-the superseded files. It is versioned in the workspace it builds, next to the tool that
-performs the move, because the source repository is archived at G3 and a plan describing
-the move *out* of a repository dies with it.
+This document **supersedes** `tasks/keepverse-split-plan.md` (2026-09-19) and its 2026-09-27
+extension. Both are historical: where they disagree with this document, this document is
+right, and a citation to either is a stale authority. It is self-contained — a fresh agent can
+execute it end to end without reading the superseded files. It is versioned in the workspace it
+builds, next to the tool that performs the move, because the source repository is archived at
+G3 and a plan describing the move *out* of a repository dies with it.
+
+**A citation to a superseded plan is itself a defect, and one survives in a repository this
+plan cannot edit.** `gk-core/Directory.Build.props:27` names `tasks/keepverse-split-plan.md` as
+the authority for the resolver contract. The file it should name is this one. It is not fixed
+here because `gk-core` is outside the fence of the change that found it, and its source of
+truth is the legacy repository; the fix is a one-line comment and belongs to whoever owns that
+line. Recorded, not silently left.
 
 **Task blocks live in `tasks/keepverse-split-todo.md` in the source repository.** Every
 step below carries its `KS*` id. This document is the narrative and the ordering; the todo
@@ -21,6 +29,13 @@ permanently-unchecked acceptance boxes.
 
 Reproduced by running the tools, not carried forward. Two stamps: **source `b212e868`**
 (2026-09-28, branch `features/mega-merge`) and **gk-workflow `5d0df61`**.
+
+> **§1.1 is a pre-merge reproduction and its per-repository figures are stale.** It is kept
+> unedited because it is a reproduction at a named SHA, and rewriting a measurement to match a
+> later one falsifies it. The current figures are the remeasured import-SHA ones in §6A.1
+> (`tracked 15020 = 14538 + 482 + 0`; root 5108, gk-core 3860, gk-data 3232, gk-web 1108,
+> gk-forge 791, gk-fusion 438) — the merge of `features/mega-merge` into `main` moved every one
+> of them. Read §6A.1, not the block below, for a current number.
 
 > The source branch is still moving. Every figure below was reproduced against the stamped
 > SHA, and the stamp moved three times while this document was written
@@ -113,6 +128,9 @@ must be written as work lands, not reconstructed afterwards.
 Nine repositories, each with its own `origin` under `github.com/keepverse/`, **untracked**
 in the root rather than submodules. All were at `0 behind / 0 ahead` when measured.
 
+> The **Receives** column is the pre-merge projection and is stale for six of the nine repos.
+> The remeasured import-SHA column is A4 in §6A.1. Read A4, not this table.
+
 | Repo | Visibility | Licence | Tracked now | Receives |
 |---|---|---|--:|--:|
 | `gk-workflow` | public | AGPL-3.0 | 47 | 5,105 |
@@ -132,7 +150,7 @@ Keepverse/                gk-workflow   workflow, docs, agent config, tasks, kvs
 ├── gk-core/              Contracts, Core, Data, CheatCore, Server, data/tuning, engine tools + tests
 ├── gk-forge/             seedsmith, generator tools (code only)
 ├── gk-web/               the browser control room
-├── gk-tests/             gate definitions and cross-repo suites — hand-written, zero migrated files
+├── gk-tests/             SEALED — cross-repo suites only; the split places 0 files and check enforces it
 ├── gk-fusion/            Injector + 3 hosts, Launcher, game-profiles, live-probe, release
 ├── gk-content/  PRIVATE  authored content: our names, flavour, registries
 ├── gk-data/    PRIVATE  the derived corpus: packs/fusion/data/{seed,generated}/
@@ -148,9 +166,23 @@ Four boundaries the 2026-09-19 plan left open, now decided:
 - **`gk-content` vs `gk-data` is authored vs derived.** One repository may not carry the
   game's own written identity and a corpus derived from another game and stay honestly
   private.
-- **`gk-tests` holds gate definitions and cross-repo suites only.** It deliberately
-  receives **zero** migrated files: path-owned verification co-locates a test with the code
-  it tests, and a cross-repo lookup rots. `apply` reports it `unchanged`.
+- **`gk-tests` is sealed, and it is empty by decision rather than by accident.**
+  It deliberately receives **zero** migrated files: path-owned verification co-locates a test
+  with the code it tests, and a cross-repo lookup rots. `apply` reports it `unchanged`.
+  Shared gate definitions, shared harness logic and workspace policy are **gk-workflow's**
+  single source of truth, and a second copy of one inside a sub-repository is the competing
+  copy the ownership principle forbids — so they do not move to gk-tests. They are gk-workflow's,
+  which is a different statement from where they are today: `report.json` at the import SHA puts
+  `scripts/verification-boundaries.v1.json`, `scripts/enforcement-registry.v1.json` and
+  `scripts/guard-verification-boundaries.py` in **gk-core**, under the blanket `scripts/**` rule.
+  Re-routing that shared-gate surface to the root is the same class of defect and is **not**
+  changed here — see §6.4, which names it as an open item with the file that owns it. Nothing in
+  the legacy monorepo is a cross-repo suite, because before the split there were no
+  repositories to span.
+  This is enforced, not described: `gk-tests` carries a `seal` in `layout.v1.json`, `load_rules`
+  refuses any rule targeting it unless the rule sets `"entrypoint": true` **and** carries its
+  own reason, and `check` asserts the staged tree on every route (primary, `copies`, `template`).
+  See [gk-tests-topology-reconciliation.md](gk-tests-topology-reconciliation.md).
 - **`gk-assets` is CC BY 4.0 for art, MIT for `tools/**`.** The 2026-09-19 plan flagged
   this itself — "MIT on art lets anyone reuse Keepverse art commercially". Splitting code
   from art is deliberate: CC BY on source code is an anti-pattern.
@@ -178,9 +210,11 @@ that is 7 direction-violations.
 
 ### 1.8 Tool state
 
-kvsplit is 15 implementation modules in Python plus `__main__`, **74 tests green** across 4
-test files, CI at `.github/workflows/kvsplit.yml`. Two runs from the same SHA and the same
-rules produce the same output digest.
+kvsplit is 15 implementation modules in Python plus `__main__`, **94 tests green** across 5
+test files (measured 2026-09-30: `python -m pytest tests/ -q` → `94 passed`; it was 80 across
+4 before the gk-tests seal added `tests/test_topology_seal.py`), CI at
+`.github/workflows/kvsplit.yml`. Two runs from the same SHA and the same rules produce the
+same output digest.
 
 Six contracts were added on 2026-09-27, each discovered by measuring the real workspace
 rather than by design, and none of them is in the 2026-09-19 plan:
@@ -278,7 +312,7 @@ this document each added and deleted zero files and left the placement figures i
 | 0 — decide | KS0.1 | `docs/architecture/decisions/world.md:27` "Locked (owner-approved plan, gate G1)" |
 | 1 — build kvsplit | KS1.1–1.3, 1.10–1.15 | 15 implementation modules; `hash`, `lossy-check`, `index`, `reindex`, `apply`; rehearsal 2026-09-19 with **0 lossy findings over 11,133 files**, second run a no-op |
 | 1b — move-first tools | D10 ruling | the `hash` → `lossy-check` → `index` → `reindex` chain above |
-| 2 — rules, dry runs | — | `unplaced 0`, `balanced True`, deterministic, 74 tests green |
+| 2 — rules, dry runs | — | `unplaced 0`, `balanced True`, deterministic, 94 tests green (2026-09-30) |
 
 **Two modules are partial and are the only unfinished Phase 1 work:** KS1.4
 (`package.json`/`pyproject.toml` graph edges — so gk-web's Node graph is unmodelled) and
@@ -467,13 +501,35 @@ generator provenance and all of them are in private repos; only this synthetic o
 public one. Either the guard learns a fixture from its `fixture/` path, or the fixture's
 values stop looking like provenance. Both are one-line changes; neither is urgent.
 
-### 6.4 gk-tests holds nothing yet
+### 6.4 gk-tests is sealed and empty, and that is the whole design
 
-By design, and `apply` reports it `unchanged`. But its **gate definitions are unwritten**,
-so the repository exists and is empty. It needs: the per-repo verification boundary
-declarations (currently `scripts/verification-boundaries.v1.json` in the root, which is
-wrong the moment there are nine repos), the cross-repo suite, and the `ContentIntegration`
-category for the tests that genuinely need private gk-data.
+`apply` reports it `unchanged` because the split places nothing there, and that is now a
+**rule** rather than the absence of a matching pattern. `gk-tests` carries a `seal` in
+`layout.v1.json` carrying its own reason; `load_rules` refuses any ownership rule that targets
+it unless the rule sets `"entrypoint": true` and carries its own reason; and `check` asserts
+the staged tree on every route — primary placement, `copies` row and `template` row alike.
+
+**It does not need the gate definitions, and moving them there would be the defect.** The
+earlier revision of this section proposed handing gk-tests the per-repo verification boundary
+declarations, the cross-repo suite and a `ContentIntegration` category. That is wrong, and the
+error is the one the workspace ownership principle exists to prevent: a second copy of shared
+gate policy inside a sub-repository is a competing copy, and two copies of a boundary map
+diverge silently. Those declarations are workflow-owned path rules, so they belong to
+`gk-workflow` — one copy, reachable by every repository's CI.
+
+What legitimately belongs in gk-tests is only a suite that **spans repositories**, and nothing
+in the legacy monorepo qualifies: before the split there were no repositories to span. If a
+genuinely cross-repository suite is ever written it is committed to `gk-tests` directly, as
+`README.md` and `AGENTS.md` already were — never routed there by the split, because no
+ownership rule may name a sealed repo. The `entrypoint` exception is for a CI file, not for
+content.
+
+The one capability a platform can force is a CI file inside a sub-repository. That stays a thin
+entrypoint to workflow-owned policy and tooling — never a copy of it.
+
+See [gk-tests-topology-reconciliation.md](gk-tests-topology-reconciliation.md), which also
+records the larger finding this section's correction exposed: the same principle violation
+exists at `scripts/**` in gk-core, and it is not confined to gk-tests.
 
 ### 6.5 The CI split is not built
 
@@ -509,13 +565,23 @@ guess at the intent. "It looks fine" is not a row.
 
 | # | Check | Command | Passes when |
 |---|---|---|---|
-| A1 | The reconciliation balances | `stage` | `tracked = placed + dropped + unplaced` and `unplaced 0`. Today: `14900 = 14418 + 482 + 0` |
-| A2 | Nothing is unaccounted for | `hash --source <sha>` then `lossy-check` | **0 findings.** Every legacy file is placed with its staged bytes or dropped by a rule; every moved file is explained by a report row, a template or a preserve glob |
+| A1 | The reconciliation balances | `stage` | `tracked = placed + dropped + unplaced` and `unplaced 0`. Remeasured at import SHA `effc51d9b`: `15020 = 14538 + 482 + 0`, balanced True. The figures this row originally carried (`14900 = 14418 + 482 + 0`) predate the merge of `features/mega-merge` into `main` and were stale |
+| A2 | Nothing is unaccounted for | `hash --source <sha>` then `lossy-check` | **0 findings.** Every legacy file is placed with its staged bytes or dropped by a rule; every moved file is explained by a report row, a template or a preserve glob. **Met at 0 losses** — see the note below this table |
 | A3 | Every drop is deliberate | `report.json` → `dropped[]` | 482 entries, each traceable to a rule. 258 are `blender/` (art already in gk-assets), 222 are skill symlinks |
-| A4 | Per-repo arrivals match the plan | `report.json` → `placedPerRepo` | root 5105, gk-core 3784, gk-data 3172, gk-web 1108, gk-forge 785, gk-fusion 463, gk-content 1, gk-tests 0, gk-assets 0 |
+| A4 | Per-repo arrivals match the plan | `report.json` → `placedPerRepo` | Remeasured at import SHA `effc51d9b`: root 5108, gk-core 3860, gk-data 3232, gk-web 1108, gk-forge 791, gk-fusion 438, gk-content 1, gk-tests 0, gk-assets 0. This row originally read root 5105, gk-core 3784, gk-data 3172, gk-forge 785, gk-fusion 463 — all pre-merge and stale |
 | A5 | Byte-for-byte, not just present | sha256 in `report.json` | the staged sha256 of each file matches the file in the target repo after `apply` |
 
 A5 is the one that catches a partial write, which a file count never would.
+
+**A2 needed the checker repaired before it could report anything true.** Run against the
+applied workspace it produced **221 findings where the rehearsal had produced zero**, and not
+one of the 221 was data loss: 209 were gk-assets (out of scope, so correctly untouched, but
+`lossy_check` derived "in scope" from the report's rows without the primary-placement rule
+`apply` uses), 9 were `preserve`d paths reported as `altered` (where different bytes is the
+design working), 1 was a `copies` row planned for an out-of-scope repository that `apply` never
+writes, and 2 were documents committed after the import. A gate that cannot pass on a workspace
+anyone has done any work in is not a gate. After the repair: **0 losses, exit 0**, with the 2
+post-import additions reported under their own kind and not counted as loss.
 
 ### 6A.2 Fidelity — is it the same content?
 
