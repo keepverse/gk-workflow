@@ -57,6 +57,26 @@ def test_altered_missing_and_unexplained_files_are_losses(moved):
     kinds = {(l.kind, l.path) for l in _check(legacy, ws, rules, report)}
     assert ("altered", "gk-core/src/App.Core/Thing.cs") in kinds
     assert ("missing", "gk-data/packs/fusion/seed/items/a.json") in kinds
+    # The stray file was committed AFTER the import commit, so it is post-import work and
+    # not a migration defect. Calling it `unexplained` made every later commit read as a
+    # migration failure, which is how the gate came to be unpassable on a live workspace.
+    assert ("post-import", "gk-core/stray.txt") in kinds
+    assert ("unexplained", "gk-core/stray.txt") not in kinds
+
+
+def test_a_file_explained_by_nothing_and_present_at_the_import_is_unexplained(moved):
+    """The distinction that matters: post-import work is excused, an unexplainable file that
+    the import itself brought in is a real defect."""
+    legacy, ws, rules, report = moved
+    ws_manifest = hashes.workspace_manifest(ws, rules.layout)
+    import_refs = ws_manifest["importRefs"]
+    assert import_refs, "apply must have written an import commit for this to be meaningful"
+    d = ws / "gk-core"
+    # plant the stray INSIDE the import commit by amending it, so it exists at import
+    (d / "stray.txt").write_text("planted at import time")
+    git(d, "add", "-A")
+    git(d, "commit", "-q", "--amend", "--no-edit", "-m", "Import snapshot from legacy repo test")
+    kinds = {(l.kind, l.path) for l in _check(legacy, ws, rules, report)}
     assert ("unexplained", "gk-core/stray.txt") in kinds
 
 

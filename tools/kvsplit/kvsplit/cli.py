@@ -98,8 +98,15 @@ def _cmd_lossy(a: argparse.Namespace) -> int:
     by: dict[str, int] = {}
     for x in losses:
         by[x.kind] = by.get(x.kind, 0) + 1
-    print(f"lossy check: {len(losses)} finding(s) {dict(sorted(by.items()))} -> {a.out}")
-    return 0 if not losses else 1
+    # `post-import` is informational: work committed after the import commit is not loss, and
+    # failing the gate on it would make the gate unpassable on any workspace anyone has done
+    # anything to. It is still counted and printed, never hidden.
+    informational = by.get("post-import", 0)
+    real = len(losses) - informational
+    print(f"lossy check: {real} loss(es) {dict(sorted((k, v) for k, v in by.items() if k != 'post-import'))}"
+          + (f"; {informational} post-import addition(s) not counted as loss" if informational else "")
+          + f" -> {a.out}")
+    return 0 if not real else 1
 
 
 def _cmd_index(a: argparse.Namespace) -> int:
