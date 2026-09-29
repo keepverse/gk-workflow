@@ -1,0 +1,21 @@
+{
+  "session": "convergence-resume-20260920",
+  "program": "summoner-convergence + backlog-clean-up (manager orchestration)",
+  "problem": "Resume the multi-lane pi run after the manager session handover: re-verify every open parent-todo row against the lane branches, publish the lane board, resume/relaunch the seven lanes under the owner's re-confirmed pi charter, review and merge each lane commit in a manager-owned clean checkout, close CC1-CC8 with evidence, then drive both programs' remaining sub-program bodies (EP2-EP4, CAI2-CAI4, SSH4-SSH6, TVB5.8/6.x, NS, BCU4/BCU8 tails) to zero open rows. Corpus-scale runs are manager-run detached jobs with a JSON report artefact, never agent polling loops. Hard edges H1/H2/H3/H7 bind by name; findings are routed to the owning program's todo in the same commit.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    ".claude/cmdc-agents/**"
+  ],
+  "started": "2026-09-20T22:14:00Z",
+  "status": "abandoned",
+  "closed": "2026-09-24T18:58:09Z",
+  "closeNote": "Owner transferred the manager plane to mega-merge-program-resume-20260925 after the prior session ended on a provider quota error. No unmerged work from this manager record was adopted; its historical notes and evidence remain preserved here.",
+  "boundaryNote": "Manager session. It edits the two programs' parent todos/ledgers and the lane briefs, and merges lane branches; it does not author product code. Sub-program todos (tasks/empire-progression-todo.md, tasks/strain-splice-host-todo.md, tasks/test-verification-boundary-todo.md, tasks/combat-ai-todo.md, ...) are edited by the lanes that own those programs, which work in their own worktrees under .claude/worktrees/cmdc-*; crossing warnings with keepverse-split / tvb-wave5 / summoner-convergence-lane-*-20260919 are pre-existing (those sessions claim tests/** and scripts/verification-boundaries.v1.json broadly) and are not this session's writes.",
+  "notes": [
+    "Paths narrowed 2026-09-21: this record no longer claims tasks/sessions/** or tasks/evidence-fragments/**. Those directories belong to the sessions that write them; a manager claim on a whole directory collides with every lane record that names its own file there, and a collision that names a lane blocks that lane's verify-change. The manager still retires records and writes fragments; it does so as individual committed edits, not as a standing claim.",
+    "Named files added then REVERTED 2026-09-22 (fence assignment, manager plane): the owner directed the manager to build and prove the pooled live-test path end to end, which required authoring real code -- the injector's silent-fallback hardening (IRpgConfig/FileRpgConfig/RpgHost/BepInEx Plugin) and the pool tooling (deploy-play/live-slot/lane-server/prove-slot-connection). Those eleven files were briefly claimed by name. The claim was withdrawn the same hour: tvb58 and test-verification-boundary-2 claim scripts/** and docs/** and empire-progression-4 claims src/FusionRpg.Injector/** while all three are ACTIVE, so ANY manager claim on a file under those globs raises 'narrow the scope or move one to a worktree' against a working lane -- and a collision that names a lane blocks that lane's verify-change. A manager claim is not worth blocking two lanes, so the manager holds no standing claim over them and commits them with explicit paths instead (the same pattern this record already uses for tasks/**). The files it authored under this directive: scripts/deploy-play.ps1, scripts/live-slot.ps1, scripts/lane-server.ps1 (new), scripts/prove-slot-connection.ps1 (new), src/FusionRpg.Injector/Host/{IRpgConfig,FileRpgConfig,RpgHost}.cs, src/FusionRpg.Injector.BepInEx/Plugin.cs, .agents/skills/live-probe-mcp/SKILL.md, docs/contributing/live-probe-standard.md.",
+    "Paths reduced to .claude/cmdc-agents/** on 2026-09-21: every worktree lane record claims a broad tasks/** (and several claim it wholesale), and session-boundary-check.ps1 skips a collision only when BOTH records are mode:worktree -- this record is mode:direct, so any tasks/ path it named collided with every lane and blocked that lane's verify-change (measured on notification-ssot-20260920 right after its merge). The manager does not run verify-change for its own doc/report commits, so it needs no claim under tasks/ at all."
+  ]
+}

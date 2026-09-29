@@ -1,0 +1,48 @@
+{
+  "session": "npc-story-events-1",
+  "program": "npc-story-events",
+  "problem": "Build the narrative runtime from tasks/npc-story-events-todo.md in dependency order: Phase 0 boundary (NR0.1 session record, NR0.2 focused verification boundaries), then Wave 0's runtime-only closed vocabularies (NR1.1 NarrativeEnums/SelectionBounds, NR1.2-NR1.3 registries, NR1.4 narrative.v1.json + guard-narrative.ps1, NR1.5 host wiring, NR1.6 spec propagation), taking each later row only where its acceptance is clear. Owner ruling 2026-09-22 authorized implementation lanes for this program.",
+  "mode": "worktree",
+  "branch": "cmdc/npc-story-events-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-npc-story-events-1",
+  "paths": [
+    "tasks/sessions/npc-story-events-1.json",
+    "tasks/npc-story-events-plan.md",
+    "tasks/npc-story-events-todo.md",
+    "tasks/npc-story-events-ledger.jsonl",
+    "tasks/reports/**",
+    "src/**",
+    "tests/**",
+    "tools/**",
+    "data/seed/**",
+    "data/tuning/narrative*.json",
+    "docs/architecture/npc-story-events/**",
+    "docs/architecture/npc-story-events-map.md",
+    "scripts/verification-boundaries.v1.json",
+    "scripts/guard-narrative.ps1",
+    "scripts/enforcement-registry.v1.json"
+  ],
+  "started": "2026-09-22T18:45:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Session id and branch come from the lane brief (lane npc-story-events-1, worktree .claude/worktrees/cmdc-npc-story-events-1, base 74b5312b5681).",
+    "The todo's own `<sid>` convention (`npc-story-events-<yyyymmdd>`) predates the cmdc lane-id convention; the lane brief's session id, which session-boundary-check.ps1 and verify-change.ps1 must resolve by file name, is `npc-story-events-1`. Recorded as the session id everywhere; the todo rows read `<sid>` = this.",
+    "Plan §7 crossings recorded here: identity-rename T13 shares WorldTemplateCatalog.cs/.TwoHearths.cs and the world goldens with NR2.32 (clean-or-skip; second lander re-runs the golden suite after the first and lists the full moved set); narrative-seed owns data/seed/narrative/** generation (this session reads it, never hand-edits it) and the 54 legacy Delve events; party-dungeon shares the Delve live path (NR2.20-NR2.27) and the storylet host move (NR2.2); world-continuity owns the production world-phase reader (NRX.1/NRX.2/NRX.3 wait on it); test-verification-boundary owns web/** verification lanes and the knownRed registry.",
+    "This record's `worktree` field is ABSOLUTE, as docs/contributing/session-boundary.md:27 requires and as verify-change.ps1's DRIFT check expects.",
+    "NR0.1 evidence for `Depends: owner approval of the plan`: the owner's 2026-09-22 ruling recorded in the plan/todo headers ('approved 2026-09-22, ready for lanes', 'owner approved implementation 2026-09-22') plus the lane brief that deployed this session to take the rows in dependency order. No separate owner round-trip is pending."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 227f675a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge. The dirty worktree was preserved and not inspected or modified.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/npc-story-events-1",
+    "branchTip": "227f675a",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 1,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 227f675a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge. The dirty worktree was preserved and not inspected or modified."
+  }
+}

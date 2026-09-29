@@ -1,0 +1,24 @@
+{
+  "session": "ps1-ban-l2-deletes-20260926",
+  "program": "ps1-ban",
+  "problem": "Delete the one-off PowerShell artefacts that should not be ported at all, after proving each is unreferenced. Two of the nine briefed files are NOT deletable and are reported instead: bcu212-full-run.ps1 has live test invocations, and resolve-append-only.ps1's Python twin does not cover the mid-merge driver it wraps.",
+  "mode": "worktree",
+  "branch": "ps1ban/l2-deletes",
+  "worktree": "C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\opencode\\ps1ban-l2-deletes",
+  "paths": [
+    "scripts/pi-web-windows-service.ps1",
+    ".claude/cmdc-agents/scripts/bcu211-detached.ps1",
+    ".claude/cmdc-agents/scripts/bcu211-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu211-apply-repair.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-proof.ps1",
+    ".claude/cmdc-agents/scripts/propagate-substrate-fix.ps1",
+    ".claude/cmdc-agents/scripts/_accept-sim-slice0.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    "tasks/passive-tree-todo.md",
+    "tasks/run-board-20260920.md",
+    "tasks/sessions/ps1-ban-l2-deletes-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "Seven deletions, not nine. bcu212-full-run.ps1 is kept because tools/seedsmith/tests/test_bcu212_launcher.py runs it three times via `pwsh -NoProfile -NonInteractive -File` (Windows-live, wired into the seedsmith-bcu212 boundary and CI), and both scripts/verification-boundaries.v1.json and tests/FusionRpg.Guard.Tests/VerificationBoundaryMappingRepairTests.cs are fenced by other sessions. resolve-append-only.ps1 is kept because union_append_only.py is a library, not a twin: the .ps1 adds the MERGE_HEAD precondition, unmerged-path discovery, git show :2:/:3: extraction, git add, and the anchor-ledger.py recheck. Three files are in the fence for citation fixes only, never history rewrites: .claude/cmdc-agents/scripts/bcu212-full-run.ps1 (two header comments) plus tasks/passive-tree-todo.md:7168 and tasks/run-board-20260920.md:1670, each annotated with the audit's own EXEMPT 2 wording rather than edited, because the citation audit reads only tracked .md and its default scope is docs/. No doc under docs/ or tasks/reports/ is touched; those citations are handoffs."
+}

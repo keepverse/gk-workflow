@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(show:*)",
+      "Shell(worktree:*)",
+      "powershell"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

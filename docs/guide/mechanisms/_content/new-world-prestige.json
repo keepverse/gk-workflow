@@ -1,0 +1,138 @@
+{
+  "slug": "new-world-prestige",
+  "title": "Advancing to a new world — keep who you are",
+  "status": "Vision",
+  "kicker": "Quests, failure, memory · advancing between worlds",
+  "pillar": {
+    "text": "The game",
+    "href": "the-game.md"
+  },
+  "loopLine": "Level up and power · Farm / hunt / defend",
+  "hook": "**You keep who you are. The worlds you leave keep going.** Advancing to a new world is progression — not a prestige wipe of the summoner, and not the end of the world you left.",
+  "blindSpots": [
+    {
+      "term": "Advance",
+      "meaning": "Moving on to a new, harder world — at any time. Roster, souls, and essence come with you; legions carry cargo up to a carry limit, larger after a win. Loam never crosses."
+    },
+    {
+      "term": "Vision status",
+      "meaning": "Approved design (world-continuity, 2026-09-19), not yet in the build. Today’s build runs one world at a time."
+    },
+    {
+      "term": "Prestige wipe",
+      "meaning": "The rejected idea that a new world deletes your summoner power. This game does not do that."
+    },
+    {
+      "term": "Old worlds",
+      "meaning": "The world you leave does not end. It hibernates (catching up on End Turn) or, with a warden stationed, goes idle. It keeps its enemy empires and upkeep, and an unguarded one can fall."
+    }
+  ],
+  "alsoTrue": [
+    "Win: take the seat of the world’s dominant enemy empire — the world becomes developing and keeps running. Lose: enemy empires take your seat — that world becomes fallen, and your save continues.",
+    "Same roster, same souls, same essence — whichever world you stand on."
+  ],
+  "sections": [
+    {
+      "title": "What it is",
+      "paras": [
+        "Advancing to a new world *is* the progression loop.",
+        "Identity (roster, souls, essence, the Garden Keeper’s power) banks. Place stays where it is: each world keeps its ground, structures and loam, and keeps running after you leave."
+      ],
+      "table": {
+        "cols": [
+          "Comes with you",
+          "Stays with the old world"
+        ],
+        "rows": [
+          [
+            "Roster / specimens",
+            "Loam (never crosses)"
+          ],
+          [
+            "Souls, essence, materials",
+            "Territory and structures"
+          ],
+          [
+            "Legions and their cargo, up to the carry limit",
+            "Anything past the carry limit; that world’s ground story"
+          ]
+        ]
+      },
+      "note": "Status is Vision — the design is approved; advancing and old-world states are not in the build yet."
+    },
+    {
+      "title": "Why it exists",
+      "paras": [
+        "Without a keep/stay split, empire play either wipes your summoner (punishing) or piles up free ground forever (boring).",
+        "You keep who you are so power and roster mean something across worlds. Old worlds keep their pressure and upkeep, and pay back only a reduced, collected trickle, so holding them stays a real choice."
+      ],
+      "diagram": [
+        "  advance (any time; carry more after a win)",
+        "        |",
+        "        +->  with you: roster, souls, essence, the Garden Keeper power, legions + cargo",
+        "        +->  stays: loam, ground, structures — the old world hibernates or idles"
+      ]
+    },
+    {
+      "title": "Where you meet it",
+      "groups": [
+        {
+          "title": "Win and lose",
+          "intro": "Defined on The game — the dominant enemy empire’s seat vs your own.",
+          "steps": [
+            "Play toward the dominant enemy empire’s seat — or hold your own.",
+            "Advance when you choose; a win first lets your legions carry more.",
+            "Open Chronicle / Creatures to confirm who you still are."
+          ],
+          "note": "The advance dialog and world list are designed, not built."
+        }
+      ]
+    }
+  ],
+  "doTitle": "What you do (first time)",
+  "doSteps": [
+    "Read win/lose on [The game](^the-game.md) once.",
+    "Check that souls and essence are player banks — loam is not.",
+    "Treat advancing as moving on, not a summoner delete — and not a delete of the world you left."
+  ],
+  "doNote": "Stop when advancing ≠ soft reset of the Garden Keeper. Related: [loam](loam), [souls](souls).",
+  "mixUps": [
+    {
+      "q": "Does a new world delete my creatures?",
+      "a": "No. Roster banks. Your old world’s ground and loam stay with that world."
+    },
+    {
+      "q": "Do souls reset?",
+      "a": "No. Souls and essence bank across worlds."
+    },
+    {
+      "q": "Can I take loam with me?",
+      "a": "No. Loam never crosses worlds. Rubble and ironwork can, only as legion cargo."
+    },
+    {
+      "q": "Does the old world disappear?",
+      "a": "No. It hibernates or idles, keeps its enemies and upkeep, and can fall if left unguarded."
+    },
+    {
+      "q": "Is this a paid prestige layer?",
+      "a": "No. Play is local with no payments — advancing is the place loop."
+    }
+  ],
+  "next": [
+    "loam"
+  ],
+  "related": [
+    "loam",
+    "souls",
+    "essence",
+    "dave-level",
+    "chronicle"
+  ],
+  "sources": [
+    "docs/guide/the-game.md §Win and lose",
+    "docs/guide/the-rift.md §Stocks",
+    "docs/guide/mechanisms/new-world-prestige.md (prior stub)",
+    "docs/guide/almanac.md §How progression lands",
+    "docs/architecture/world-continuity-ideal.md §6"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "session": "save-identity-spec-20260918",
+  "program": "solid-enforcement",
+  "problem": "Owner ruling R3 (docs/architecture/spec-rulings-2026-09-18.md): specify the save-identity module beside commander-identity (a Save owns its empires keyed (SaveId, EmpireId); the player row stops doubling as an empire; Zomboss stops being a player row), reconcile commander-identity, add the module to the solid-enforcement map, and add one cross-reference row to the species-progression and empire-progression maps' reconciliation sections. Docs only; no code, data, tuning or tasks/* edits. The two progression maps are also claimed by progression-rulings-20260918 and build-preset-spec-20260918; this session appends exactly one line to each map's reconciliation section and touches no other region.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/solid-enforcement/spec-save-identity.md",
+    "docs/architecture/solid-enforcement/spec-commander-identity.md",
+    "docs/architecture/solid-enforcement-map.md",
+    "docs/architecture/species-progression-map.md",
+    "docs/architecture/empire-progression-map.md",
+    "tasks/sessions/save-identity-spec-20260918.json"
+  ],
+  "started": "2026-09-18T16:00:00Z",
+  "status": "merged"
+}

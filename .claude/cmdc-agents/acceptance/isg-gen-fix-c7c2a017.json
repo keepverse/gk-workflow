@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-isg-gen-fix-20260922-005339\\boundary.log"
+    },
+    {
+      "check": "seedsmith-check",
+      "exit": 1,
+      "seconds": 4,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-isg-gen-fix-20260922-005339\\seedsmith-check.log"
+    },
+    {
+      "check": "items-adapter-tests",
+      "exit": 0,
+      "seconds": 17,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-isg-gen-fix-20260922-005339\\items-adapter-tests.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-isg-gen-fix-20260922-005339\\ledger.log"
+    }
+  ],
+  "lane": "isg-gen-fix",
+  "attribution": {
+    "unattributed": 2,
+    "newUnregistered": 0,
+    "knownRedMatched": 0
+  },
+  "logDir": "D:\\tmp\\accept-isg-gen-fix-20260922-005339",
+  "sha": "c7c2a017",
+  "verdict": "UNATTRIBUTED (2 red check(s); 2 with NO parsed failure -- read the log, this is NOT registered debt)",
+  "when": "2026-09-22T00:54:02",
+  "contendedTree": false
+}

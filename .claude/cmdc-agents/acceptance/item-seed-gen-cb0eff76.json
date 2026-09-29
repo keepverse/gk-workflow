@@ -1,0 +1,46 @@
+{
+  "logDir": "D:\\tmp\\accept-item-seed-gen-20260921-014449",
+  "contendedTree": false,
+  "checks": [
+    {
+      "check": "item-seed-validator",
+      "exit": 0,
+      "seconds": 7,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-item-seed-gen-20260921-014449\\item-seed-validator.log"
+    },
+    {
+      "check": "ci-guards",
+      "exit": 0,
+      "seconds": 64,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-item-seed-gen-20260921-014449\\ci-guards.log"
+    },
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-item-seed-gen-20260921-014449\\boundary.log"
+    }
+  ],
+  "lane": "item-seed-gen",
+  "when": "2026-09-21T01:46:02",
+  "verdict": "RED-KNOWN (1 check(s), registered debt only)",
+  "sha": "cb0eff76"
+}

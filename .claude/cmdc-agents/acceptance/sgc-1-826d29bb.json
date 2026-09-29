@@ -1,0 +1,58 @@
+{
+  "contendedTree": false,
+  "sha": "826d29bb",
+  "when": "2026-09-21T16:05:18",
+  "verdict": "GREEN",
+  "logDir": "D:\\tmp\\accept-sgc-1-20260921-160439",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-1-20260921-160439\\boundary.log"
+    },
+    {
+      "check": "core-items",
+      "exit": 0,
+      "seconds": 14,
+      "summary": "Passed!  - Failed:     0, Passed:    53, Skipped:     0, Total:    53, Duration: 88 ms - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-1-20260921-160439\\core-items.log"
+    },
+    {
+      "check": "seedsmith-successor",
+      "exit": 0,
+      "seconds": 22,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-1-20260921-160439\\seedsmith-successor.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-1-20260921-160439\\ledger.log"
+    }
+  ],
+  "lane": "sgc-1"
+}

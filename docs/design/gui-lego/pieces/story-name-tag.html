@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-name-tag — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-name-tag</code></h1>
+  <p class="lede">The current speaker's label, painted by the <strong>actor's pack</strong> — replacing a
+  hard-coded <code>text-ok</code> utility class, which is the same defect as a hard-coded hex. Absent
+  entirely on a narration beat. Spec:
+  <code>docs/architecture/story-scene/spec-name-tag.md</code>.</p>
+
+  <div class="lego-grid three">
+    <section class="lego-card">
+      <h2>Penny — <code>actor.penny</code></h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-name-tag" data-piece="name-tag"
+             style="--piece-accent:#6fb7d4; display:inline-block; padding:2px 10px; border-radius:4px; border:1px solid color-mix(in srgb, var(--piece-accent) 45%, #4a3a2a); background:color-mix(in srgb, var(--piece-accent) 12%, transparent)">
+          <span class="story-name-tag__label" style="color:var(--piece-accent); font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase">Penny</span>
+        </div>
+      </div>
+      <p class="note">Accent text on a 12% accent wash: <strong>6.66:1</strong> over the portal bed
+      (<strong>6.33:1</strong> over quarantine) — WCAG AA for body text.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Dave — <code>actor.dave</code></h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-name-tag" data-piece="name-tag"
+             style="--piece-accent:#d9a15c; display:inline-block; padding:2px 10px; border-radius:4px; border:1px solid color-mix(in srgb, var(--piece-accent) 45%, #4a3a2a); background:color-mix(in srgb, var(--piece-accent) 12%, transparent)">
+          <span class="story-name-tag__label" style="color:var(--piece-accent); font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase">Dave</span>
+        </div>
+      </div>
+      <p class="note">Accent text on a 12% accent wash: <strong>6.58:1</strong> over the portal bed
+      (<strong>6.29:1</strong> over quarantine) — WCAG AA. Two actors differ without either being a
+      hard-coded colour.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Narration — <strong>nothing rendered</strong></h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px; min-height:56px">
+        <span class="note" style="color:#a89880">(no name-tag node at all)</span>
+      </div>
+      <p class="note">A narration beat renders <strong>no</strong> tag — not an empty one, not a
+      placeholder, not a "Narrator" label. Ren'Py's say screen behaves the same way: the <code>who</code>
+      text appears only when a character spoke.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure and rules</h2>
+      <pre>.story-name-tag                 root; carries pack css custom properties
+  .story-name-tag__label        the display name</pre>
+      <ul class="note">
+        <li>Paint comes from <code>themeResolved.paint</code>; no <code>text-ok</code>, no identity utility class, no hex.</li>
+        <li>Uppercase and tracking are the <strong>pack's</strong> css, not a hard-coded utility, so a later scene can restyle the tag without touching the piece.</li>
+        <li>An empty <code>displayName</code> renders nothing — an upstream mistake cannot ship an empty tag.</li>
+        <li>The fold omits the payload entirely on a narration beat; the piece also guards, so absence holds even if that is missed.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Contrast evidence (computed)</h2>
+      <table class="note">
+        <tr><th>pair</th><th>ratio</th><th>verdict</th></tr>
+        <tr><td>penny accent on 12% wash (portal)</td><td>6.66</td><td>AA</td></tr>
+        <tr><td>penny accent on 12% wash (quarantine)</td><td>6.33</td><td>AA</td></tr>
+        <tr><td>dave accent on 12% wash (portal)</td><td>6.58</td><td>AA</td></tr>
+        <tr><td>dave accent on 12% wash (quarantine)</td><td>6.29</td><td>AA</td></tr>
+        <tr><td>penny <em>muted</em> on wash (portal)</td><td>4.06</td><td>fails AA — never paint the name muted</td></tr>
+        <tr><td>penny <em>muted</em> on wash (quarantine)</td><td>3.93</td><td>fails AA</td></tr>
+        <tr><td>dave <em>muted</em> on wash (portal)</td><td>3.70</td><td>fails AA</td></tr>
+        <tr><td>dave <em>muted</em> on wash (quarantine)</td><td>3.59</td><td>fails AA</td></tr>
+      </table>
+      <p class="note">The wash is <code>color-mix(in srgb, var(--piece-accent) 12%, transparent)</code>
+      over the scene bed — the shipped chip convention. It needs no new pack surface, because
+      <code>themeStyle</code> spreads a pack's <code>css</code> block only and never <code>paint</code>,
+      so <code>paint.onAccent</code> never reaches the DOM as a variable.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "name-tag",
+  "instanceId": "scene:name-tag",
+  "phase": "ready",
+  "displayName": "Penny",
+  "themeRef": { "kind": "actor", "id": "penny" }
+}</pre>
+    </section>
+    <section class="lego-card">
+      <h2>Narration: no payload at all</h2>
+      <pre>// The fold omits the slot when the beat has
+// no speakerId. bindSurface resolves the
+// absent bind to undefined and the mount is
+// skipped — there is no "empty tag" state.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

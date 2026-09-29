@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Deep-audit candidate C4 confirmed: committed collect has no durable result/replay response; active membership uses a non-unique partial index plus instance-local check; archived save IDs can pass PlayerExists; focused tests cover sequential idempotency only. Normal full-loop E2E passed."}
+{"kind":"fact","text":"Owner ruling: durable result manifest. SQL remains inside FusionRpg.Data; tests use in-memory substrate unless disk is the subject."}

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonder-sector-card — gui-lego recipe</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="../pieces/_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>wonder-sector-card</code></h1>
+  <p class="lede">Recipe — a held sector's Wonder, readable at a glance: authored identity (name + scope/rarity badges in pack paint) + one-line effect sentence + construction progress on the shared meter. Per <code>empire-wonder-surfaces/spec-wonder-display.md §Design 1</code>. Mounts inside the existing inspector host (<code>SectorInspector</code> slots block — no new route, GG-1/GG-7). Slot tree: <code>identity + effect-reading + progress + locked-slot + shelf-link</code> → <code>foldWonderCard</code> (pure) → events → <code>wonder-display.*</code> bus (closed). Shared density consumed by name (<code>capacity-meter[progress]</code>, <code>stock-row</code>, <code>wonder-relic-shelf</code> link) — forking a twin is the failure mode.</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> All sentences below are placeholders. Status: <strong>pending owner review</strong> (see <code>wonder-sector-card.ACCEPTANCE.md</code>). The React mount is built behind that recorded checkpoint per Task 4D.4 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage">
+        <div data-testid="wonder-sector-card" data-scope="Sector" data-rarity="Common" data-progress="rising" data-cap="pending" style="border:1px solid var(--border-control);border-radius:8px;overflow:hidden;background:var(--panel);max-width:560px;padding:12px;display:grid;gap:10px;">
+          <div data-testid="wonder-name" style="font-size:15px;color:var(--text);">DRAFT: Standing Stones</div>
+          <div style="display:flex;gap:6px;">
+            <span data-testid="wonder-scope-badge" data-theme="wonder-scope.Sector" style="font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #8a7a5c;color:#8a7a5c;">DRAFT: Sector</span>
+            <span data-testid="wonder-rarity-badge" data-theme="wonder-rarity.Common" style="font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #9a9a8e;color:#9a9a8e;">DRAFT: Common</span>
+          </div>
+          <div data-testid="wonder-effect" style="font-size:13px;color:var(--text);">DRAFT: this ground earns faster each night</div>
+          <div data-testid="wonder-progress" style="font-size:13px;">DRAFT: rising — 3 nights left</div>
+          <div data-testid="wonder-capacity-meter" data-piece="capacity-meter" data-density="progress" data-fraction="0.25" style="border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+            <div style="height:8px;border-radius:4px;background:var(--soil-raised);"><div style="width:25%;height:100%;border-radius:4px;background:#8a7a5c;"></div></div>
+          </div>
+          <div data-testid="wonder-cap-pending" style="font-size:12px;color:var(--muted);">DRAFT: the count of raised Wonders is not yet read — it arrives with the catalog</div>
+          <button type="button" data-testid="wonder-relic-shelf-link" data-shelf="wonder-relic-shelf" style="justify-self:start;font-size:12px;">DRAFT: foundation treasure — open the relic shelf</button>
+        </div>
+        <div data-testid="wonder-sector-card" data-scope="Empire" data-rarity="Unique" data-progress="built" data-cap="known" style="border:1px solid var(--border-control);border-radius:8px;overflow:hidden;background:var(--panel);max-width:560px;padding:12px;display:grid;gap:10px;margin-top:10px;">
+          <div data-testid="wonder-name" style="font-size:15px;color:var(--text);">DRAFT: Sunspire Throne</div>
+          <div style="display:flex;gap:6px;">
+            <span data-testid="wonder-scope-badge" data-theme="wonder-scope.Empire" style="font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #d8a93f;color:#d8a93f;">DRAFT: Empire</span>
+            <span data-testid="wonder-rarity-badge" data-theme="wonder-rarity.Unique" style="font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #a87fd0;color:#a87fd0;">DRAFT: Unique</span>
+          </div>
+          <div data-testid="wonder-effect" style="font-size:13px;color:var(--text);">DRAFT: every holding earns faster each night</div>
+          <div data-testid="wonder-cap-line" style="font-size:12px;color:var(--text);">DRAFT: 1 of 3 raised</div>
+          <button type="button" data-testid="wonder-relic-shelf-link" data-shelf="wonder-relic-shelf" style="justify-self:start;font-size:12px;">DRAFT: foundation treasure — open the relic shelf</button>
+        </div>
+        <div data-testid="wonder-sector-card" data-reading="locked-teaser" style="border:1px dashed var(--border);border-radius:8px;background:var(--panel);max-width:560px;padding:12px;display:grid;gap:8px;margin-top:10px;opacity:0.75;">
+          <span data-testid="wonder-scope-badge" data-theme="wonder-scope.World" style="font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #6a6a72;color:#6a6a72;justify-self:start;">DRAFT: World</span>
+          <div data-testid="wonder-locked-reason" style="font-size:13px;color:var(--muted);">DRAFT: not yet sung into the world</div>
+          <button type="button" data-testid="wonder-expand" style="justify-self:start;font-size:12px;">DRAFT: read more</button>
+        </div>
+        <div data-testid="wonder-sector-card" data-reading="placeholder" style="border:1px dashed var(--border);border-radius:8px;background:var(--panel);max-width:560px;padding:12px;display:grid;gap:8px;margin-top:10px;opacity:0.75;">
+          <div data-testid="wonder-placeholder" style="font-size:13px;color:var(--muted);">DRAFT: a work not yet named in the chronicle</div>
+          <button type="button" data-testid="wonder-expand" style="justify-self:start;font-size:12px;">DRAFT: read more</button>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload (fold in, recipe out)</h2>
+      <pre>{
+  "recipe": "wonder-sector-card",
+  "slot": { "slotIndex": 0, "slotTypeId": "rootbed", "structureId": "standing-stones" },
+  "facet": { "wonderScope": "Sector", "wonderRarity": "Common" },
+  "catalogRow": null,
+  "sector": { "wonderLiveCountSector": 0, "wonderLiveCountEmpire": 0 },
+  "reading": {
+    "kind": "wonder",
+    "name": "DRAFT: Standing Stones",
+    "scope": "Sector",
+    "rarity": "Common",
+    "effectSentence": "DRAFT: this ground earns faster each night",
+    "progress": { "state": "rising", "nightsLeft": 3 },
+    "cap": { "state": "pending" },
+    "lockedReason": null,
+    "themeRefs": [
+      { "kind": "wonder-scope", "id": "Sector" },
+      { "kind": "wonder-rarity", "id": "Common" }
+    ]
+  },
+  "bus": "wonder-display (closed: card.expand / reading.open / teaser.explain / retry)",
+  "landmarks": [
+    "wonder-sector-card", "wonder-name",
+    "wonder-scope-badge", "wonder-rarity-badge",
+    "wonder-effect", "wonder-progress",
+    "wonder-capacity-meter", "wonder-cap-line",
+    "wonder-cap-pending", "wonder-progress-pending",
+    "wonder-locked-reason", "wonder-placeholder",
+    "wonder-expand", "wonder-relic-shelf-link",
+    "wonder-retry"
+  ]
+}</pre>
+      <h2 style="margin-top:12px;">Recipe rules (no new strings)</h2>
+      <pre>Built renders name + badges + effect, no progress
+slot; under-construction renders name + rising
+sentence + the shared meter (capacity-meter
+[progress] by name — never a forked twin).
+Unique renders the live cap line from
+WonderPolicy numbers; Common renders no cap
+line (uncapped by construction). Pre-catalog
+cap reads render the designed pending state —
+never a guessed number, never a hidden row.
+Reserved scopes render as locked teasers with
+the catalog reason — never hidden, never
+buildable. Wire reasons map to catalog copy +
+next action (refusal toasts shared with the
+composer); nothing is consumed on refusal.
+Unknown ids render the placeholder + the
+card.expand reading action — never the id.
+Paint arrives from wonder-scope-*/wonder-
+rarity-* packs only; copy arrives from the
+display catalog only; the fold formats
+magnitudes and invents none.</pre>
+      <h2 style="margin-top:12px;">Packs (built once here — 4D.3 references by contract)</h2>
+      <pre>wonder-scope.Sector      stone  #8a7a5c  (local works read as stone)
+wonder-scope.Empire      gold   #d8a93f  (far-reaching works read as gold)
+wonder-scope.World       not-yet muted #6a6a72 (+ catalog locked reason)
+wonder-scope.Multiverse  not-yet muted #6a6a72 (one treatment, never per-surface)
+wonder-rarity.Common     plain  #9a9a8e  (uncapped — never a cap gauge, GG-64)
+wonder-rarity.Unique     violet #a87fd0  (live cap line, LOCKED shown)
+Pack ids use exact wire case (Sector, not
+sector) so the fold maps wire to paint with
+no case-folding. Every member: css + paint
+hex + vfx (nulls — GG-32 reduced-motion).</pre>
+      <h2 style="margin-top:12px;">Refusal rows (wire reason → copy + next action)</h2>
+      <pre>wonder.cap-reached →
+  this land already holds all it can /
+  raise no further Wonders of this kind,
+  or pick another ground
+relic.count-mismatch →
+  the foundation was not laid in the asked
+  count of treasure / re-lay the exact count
+relic.not-reachable →
+  that treasure isn't here / move the
+  treasure within reach first
+build.cannot-afford-materials →
+  the stores are short of stone and
+  ironwork / gather stores, or choose
+  a lesser work
+Every refusal appends: nothing was taken.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

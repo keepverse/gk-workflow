@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-28b-effect-pipeline-epl1-1-review-20260925",
+  "sha": "8334a1d617cdf68edd33929262315f8502c7ea91",
+  "expectedSha": "8334a1d617cdf68edd33929262315f8502c7ea91",
+  "shortSha": "8334a1d6",
+  "verdict": "GREEN",
+  "scope": "EPL1.1 closed power-class registry and C# mirror; manager review repaired invalid-enum ordinal handling and hardened schema/numeric-field fail-closed parsing; no classifier, model, tuning, generated output, runtime consumer, or live scope",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925",
+  "checks": [
+    {
+      "check": "epl11-python",
+      "command": "python -m pytest tools/seedsmith/tests/test_power_class_registry.py -q",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "12 passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-python.log",
+      "logSha256": "A02842062B5740B8BBED3B40BFE60F8A4911C8C8BF95FB0C5DE804505C47E8C4",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "epl11-core-atoms",
+      "command": "dotnet test tests/FusionRpg.Core.Atoms.Tests/FusionRpg.Core.Atoms.Tests.csproj --nologo --filter \"FullyQualifiedName~AffixPowerClass\"",
+      "exit": 0,
+      "seconds": 7,
+      "summary": "Passed: 10, Failed: 0, Skipped: 0",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-core-atoms.log",
+      "logSha256": "6125049F9F38ADE4D50BBDC11BFE2C653040DB60CAC9EE5B6E610D0BF7B045B8",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "epl11-generated-seed",
+      "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/guard-generated-seed.ps1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "guard-generated-seed clean; no changes versus working tree",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-generated-seed.log",
+      "logSha256": "F1E49375870F6C03513CE91CC3B457FD8D9323FFA67F3952E7C123591F297766",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "epl11-item-validator",
+      "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/checks/gen-item-seed-validator.ps1",
+      "exit": 0,
+      "seconds": 9,
+      "summary": "Item seed validator completed with errors 0; existing report-only warnings did not fail the check",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-item-validator.log",
+      "logSha256": "AD1C7F4F344DA75A7B9042A5F908F8F95039D173AE89A34CAD8BF06E8F97766D",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "epl11-items-gate",
+      "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/checks/gen-items-gate.ps1",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "items gate completed; existing report-only warnings/notes were non-gating",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-items-gate.log",
+      "logSha256": "187B0A79ABC757FF84D6020D9A315499E764AFD601746E582016E96BD64CFF88",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "epl11-verifier-plan",
+      "command": "verify-change.ps1 -Paths <all four EPL1.1 paths> -Session resume-28b-effect-pipeline-epl1-1-review-20260925 -PlanOnly",
+      "exit": 0,
+      "seconds": 17,
+      "summary": "Plan selected registry corpus/validator seams, Core effects owners, Core atoms, focused Seedsmith, generated-seed guard, and item validator/gate",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-verifier-plan.log",
+      "logSha256": "87AD6DA3C3442EE8059BA0FF5B215E03D5D5D6256E654AC8FDA44BF53AD7D3BE",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "epl11-clean",
+      "command": "git status --porcelain=v1 --untracked-files=all; git rev-parse HEAD; git diff --check 9b27ff0ebd09761a2df59779c96fbc341d84a65e..8334a1d617cdf68edd33929262315f8502c7ea91",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "Detached checkout clean at exact reviewed SHA; diff check clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-28b-effect-pipeline-epl1-1-review-20260925/epl11-clean.log",
+      "logSha256": "9C22F5904AD2D804E916607737F5FC75FB3B0B89D8BD86E75030CB3F2253DB3B",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "data/seed/items/_registry/power-classes.v1.json",
+    "src/FusionRpg.Core/Effects/Atoms/AffixPowerClass.cs",
+    "tests/FusionRpg.Core.Atoms.Tests/Atoms/AffixPowerClassTests.cs",
+    "tools/seedsmith/tests/test_power_class_registry.py",
+    "tasks/sessions/resume-28b-effect-pipeline-epl1-1-review-20260925.json"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "8334a1d617cdf68edd33929262315f8502c7ea91",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary checkout path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "The full path-owned verifier was attempted but stopped on an external MSB3021 access-denied output file in an unrelated CombatHitEmitPolicyTests project; the exact-SHA focused checks and PlanOnly evidence are green.",
+    "The worker source session ended failed after the same class of Bitdefender output lock; this acceptance is for the independently repaired exact SHA, not the worker status label.",
+    "EPL1.2, EPL1.3 model work, EPL2.1 channel SSOT work, runtime consumers, release, browser, and live proof remain out of scope."
+  ],
+  "mergeScope": "Accept only the EPL1.1 registry/mirror and its focused evidence. Merge is deferred until the dirty integration cleanup boundary is closed; no current-head gate or live claim is created here.",
+  "when": "2026-09-25T12:49:26Z"
+}

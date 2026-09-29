@@ -1,0 +1,9 @@
+# SE2.2 — Stop the pollution at its source; delete the four files
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| Residual-fit tool gains `--tuning-dir`, target derived from the same input as the measurement | read `gk-core/tools/ResidualFitLoop/Program.cs` | `tuningDirPath` now `ArgOrDefault(args, "--tuning-dir", .../data/tuning)`; used for `--input` default, the live-domain safety check, post-publish re-read, AND passed to `publish.py`'s new `--tuning-dir` flag | gk-core/tools/ResidualFitLoop/Program.cs, gk-core/tools/tuning/publish.py |
+| `ResidualFitLoopTests` publishes into a temp dir with a checked delete | `dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~ResidualFitLoopTests"` | **7/7 pass**; the two throwaway-domain tests now use `Directory.CreateTempSubdirectory` + `--tuning-dir`, cleanup is `Directory.Delete(tempDir, recursive: true)` with no try/catch (a failed delete now fails the test) | tests/FusionRpg.Core.Tests/Balance/ResidualFitLoopTests.cs |
+| No stray file lands under tracked `gk-core/data/tuning/` from running the tests | `git status --short gk-core/data/tuning/` | empty | — |
+| The four `loopwarntest*` files deleted, correction marker in the commit | `git rm` + commit message `tuning-immutability: correction <4 paths> ...` | guard confirmed detecting all 4 as T3 BEFORE the commit (`guard-tuning-immutability.py` exit 1, 4 findings); the commit itself carries the marker naming every path | data/tuning/loopwarntest13c4c662.v{1,2}.json, loopwarnteste194b09f.v{1,2}.json |
+| The guard gates | `gk-core/scripts/enforcement-registry.v1.json` edit + `run-guards.ps1 -Tier ci` post-commit | `backlog` -> `gating`; post-commit working tree is clean (nothing left to flag) | gk-core/scripts/enforcement-registry.v1.json |

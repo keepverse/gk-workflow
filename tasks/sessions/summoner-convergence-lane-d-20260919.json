@@ -1,0 +1,33 @@
+{
+  "session": "summoner-convergence-lane-d-20260919",
+  "program": "summoner-convergence-lane-d",
+  "problem": "Build lane D (infrastructure) of summoner-convergence to proven completion: test-verification-boundary (TVB, all waves), solid-enforcement (SE) waves 0-3 only (SE0.1-SE0.8, SE1.x-SE3.x; wave 4 is lane B's), then notification-ssot (NS) as the lane's later anchor. Starts with TVB0.1 (release.yml exit checks, a live defect), then SE0.1-SE0.8.",
+  "mode": "worktree",
+  "branch": "cmdc/lane-d",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-lane-d",
+  "paths": [
+    ".github/workflows/**",
+    "scripts/**",
+    "tests/**",
+    "tools/**",
+    "src/**",
+    "docs/**",
+    "data/**",
+    "web/**",
+    "tasks/test-verification-boundary-plan.md",
+    "tasks/test-verification-boundary-todo.md",
+    "tasks/solid-enforcement-plan.md",
+    "tasks/solid-enforcement-todo.md",
+    "tasks/notification-ssot-plan.md",
+    "tasks/notification-ssot-todo.md",
+    "tasks/summoner-convergence-lane-d-anchor.md",
+    "tasks/summoner-convergence-lane-d-goal.md",
+    "tasks/summoner-convergence-lane-d-ledger.jsonl",
+    "tasks/evidence-fragments/**",
+    "tasks/sessions/summoner-convergence-lane-d-20260919.json"
+  ],
+  "started": "2026-09-19T00:00:00Z",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retiredReason": "the lane is terminal and its branch is an ancestor of features/mega-merge"
+}

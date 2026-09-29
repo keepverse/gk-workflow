@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-35-slnx-topology-20260925",
+  "sha": "57a1224d3c8f1b764798213e4016ded73619a483",
+  "expectedSha": "57a1224d3c8f1b764798213e4016ded73619a483",
+  "verdict": "GREEN",
+  "scope": "TVB-F39 build topology: an injector cell owns its pack",
+  "checks": [
+    {
+      "check": "dotnet build <each of the 3 injector hosts> -c Debug, one environment",
+      "exit": 0,
+      "summary": "errors=0 succeeded=1 for each (was impossible: no single env could build all three)"
+    },
+    {
+      "check": "wrong pack -> cell refusal",
+      "exit": 1,
+      "summary": "FUSIONRPG0002 before the compiler; CS0266=0 (was 4x CS0266)"
+    },
+    {
+      "check": "FUSIONRPG_GAME_PROFILE=pvzrh-3.9 against the BepInEx cell",
+      "exit": 0,
+      "summary": "FUSIONRPG0001 warning, cell pvzrh-3.8.1 wins, Build succeeded (was 4x CS0266)"
+    },
+    {
+      "check": "scripts/guard-injector-compile.ps1",
+      "exit": 0,
+      "summary": "INJECTOR COMPILE GUARD OK"
+    },
+    {
+      "check": "scripts/guard-game-profile.ps1 (mismatched pack)",
+      "exit": 1,
+      "summary": "GAME-PROFILE GUARD FAILED - correct refusal, unchanged"
+    },
+    {
+      "check": "XML parse of 5 changed build files",
+      "exit": 0,
+      "summary": "all OK"
+    }
+  ],
+  "cleanCheckout": true,
+  "mergeCommit": null,
+  "notes": "The LANE returned PARTIAL, honestly: the whole-solution Build succeeded was not observed because an external process held an obj/bin sharing lock on one test project (MSB3021, reproduced with the new targets renamed away, so independent of the change). All three hosts compile in one environment, which is the defect TVB-F39 named. deploy-play.py / publish-player.ps1 were not run end-to-end; their exact build invocations were reproduced with temp OutputPath. The merged-head gate now needs the per-cell variables exported - tracked as the remaining half of TVB-F39."
+}

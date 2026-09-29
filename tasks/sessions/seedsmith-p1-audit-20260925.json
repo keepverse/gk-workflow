@@ -1,0 +1,21 @@
+{
+  "session": "seedsmith-p1-audit-20260925",
+  "program": "seedsmith-passive-tree-recovery",
+  "problem": "Audit and repair the interrupted BCU2.12 PassiveTree species-generation run before resume: classify the captured HTTP 400/500, degenerate-generation, retry, unresolved-codex, metadata, and interruption evidence; fix only confirmed tools/seedsmith or launcher/report defects with deterministic regression tests; never edit generated data or start the full run.",
+  "mode": "worktree",
+  "branch": "opencode/seedsmith-p1-audit-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-seedsmith-p1-audit-20260925",
+  "paths": [
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/seedsmith/pipeline/**",
+    "tools/seedsmith/seedsmith/adapters/trees/**",
+    "tools/seedsmith/seedsmith/workflow/**",
+    "tools/seedsmith/tests/**",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-report.py",
+    "tasks/reports/seedsmith-p1-audit-20260925.md"
+  ],
+  "started": "2026-09-24T20:06:17Z",
+  "status": "abandoned",
+  "notes": "Owner-directed recovery gate. Runtime is OpenCode CLI with opencode/space-bunny-free#max, no fallback, uncapped token budget, and no model-generated corpus run before manager review. The lane must read the captured corpus-bcu212 log/ledger without editing that worktree, classify A-E causes, add focused tests before fixes, leave the worktree dirty, and report exact evidence. Generated data/seed and data/generated are explicitly outside the fence. The previously active broad item-seedgen-genfix record was reconciled as merged at its already-integrated SHA before this fence was opened. The first audit worker was abandoned after the runtime auto-rejected its required external-directory reads; it made no changes and produced no report. A recovery lane receives a read-only evidence bundle inside its own worktree."
+}

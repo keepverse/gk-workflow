@@ -1,0 +1,25 @@
+{
+  "session": "resume-03-web-recovery-20260925",
+  "program": "web-control-room",
+  "problem": "Implement the owner-selected authoritative snapshot-on-recovery, match isolation, binding convergence, and distinct loading/error/empty/stale states for the web control room.",
+  "mode": "worktree",
+  "branch": "opencode/resume-03-web-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-03-web-recovery-20260925",
+  "paths": [
+    "web/fusion-rpg-web/src/features/lawn/LawnPage.tsx",
+    "web/fusion-rpg-web/src/features/lawn/lawnProjectorFold.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnSessionFold.ts",
+    "web/fusion-rpg-web/src/lib/bus/hub-provider.tsx",
+    "web/fusion-rpg-web/src/lib/bus/log-store.ts",
+    "src/FusionRpg.Server/RpgHub.cs",
+    "src/FusionRpg.Server/EventIngest.cs",
+    "src/FusionRpg.Contracts/**",
+    "web/fusion-rpg-web/src/features/lawn/lawnProjectorFold.test.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnSessionFold.test.ts",
+    "web/fusion-rpg-web/src/lib/bus/hub-provider.test.tsx",
+    "tasks/reports/resume-03-web-recovery-20260925.md"
+  ],
+  "started": "2026-09-25T06:57:43Z",
+  "status": "abandoned",
+  "notes": "Worker produced a ten-file dirty draft and a partial report, but its runner verification invoked npm from the repository root and falsely recorded ENOENT for package.json; the broader verify-change run also timed out entering Core tests. The draft is preserved, but no worker result is acceptance. Manager review must rerun web commands from web/fusion-rpg-web, inspect the cross-module DTO/server fold, and collect browser evidence separately."
+}

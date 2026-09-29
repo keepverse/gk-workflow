@@ -1,0 +1,159 @@
+{
+ "run": "2026-09-15 lawn-combat-wire L-N5 / T13 proof 7 \u2014 real Adventure 2, five debug-spawned Peashooters (no override), FUSIONRPG_LAWN_BASIC_ATTACK=1, FUSIONRPG_FSM_TRACE=1, no debug session, natural wave to victory",
+ "deaths_traced": 74,
+ "zombie_die_events": 74,
+ "ptrs_with_more_than_one_zombie_die": [],
+ "rpg_delta_force_kills": 72,
+ "rpg_force_kills_with_vanilla_lethal_hit_same_frame": 71,
+ "per_death_hook_counts": {
+  "die_calls_min": 1,
+  "die_calls_max": 158,
+  "destroy_calls_min": 0,
+  "destroy_calls_max": 1,
+  "first_for_ptr_per_death": [
+   1
+  ]
+ },
+ "examples": [
+  {
+   "ptr": "237F859B000",
+   "forceKill": [
+    "effect.fa10:lawn-basic-attack@237f8235d80",
+    5351
+   ],
+   "firstHooks": [
+    [
+     "Die",
+     5351,
+     "True"
+    ],
+    [
+     "Die",
+     5351,
+     "False"
+    ]
+   ],
+   "destroyHook": [
+    [
+     "DestoryZombie",
+     5422,
+     "False"
+    ]
+   ],
+   "hookCalls": 82,
+   "zombieDieEvents": 1
+  },
+  {
+   "ptr": "237F8137960",
+   "forceKill": [
+    "effect.fa10:lawn-basic-attack@237f8229240",
+    5700
+   ],
+   "firstHooks": [
+    [
+     "Die",
+     5700,
+     "True"
+    ],
+    [
+     "Die",
+     5700,
+     "False"
+    ]
+   ],
+   "destroyHook": [
+    [
+     "DestoryZombie",
+     5767,
+     "False"
+    ]
+   ],
+   "hookCalls": 78,
+   "zombieDieEvents": 1
+  },
+  {
+   "ptr": "237F8137640",
+   "forceKill": [
+    "effect.fa10:lawn-basic-attack@237f823c240",
+    5703
+   ],
+   "firstHooks": [
+    [
+     "Die",
+     5703,
+     "True"
+    ],
+    [
+     "Die",
+     5703,
+     "False"
+    ]
+   ],
+   "destroyHook": [
+    [
+     "DestoryZombie",
+     5761,
+     "False"
+    ]
+   ],
+   "hookCalls": 69,
+   "zombieDieEvents": 1
+  },
+  {
+   "ptr": "237F8137000",
+   "forceKill": [
+    "effect.fa10:lawn-basic-attack@237f823c240",
+    5813
+   ],
+   "firstHooks": [
+    [
+     "Die",
+     5813,
+     "True"
+    ],
+    [
+     "Die",
+     5813,
+     "False"
+    ]
+   ],
+   "destroyHook": [
+    [
+     "DestoryZombie",
+     5883,
+     "False"
+    ]
+   ],
+   "hookCalls": 80,
+   "zombieDieEvents": 1
+  },
+  {
+   "ptr": "237F8137320",
+   "forceKill": [
+    "effect.fa10:lawn-basic-attack@237f8229240",
+    6050
+   ],
+   "firstHooks": [
+    [
+     "Die",
+     6050,
+     "True"
+    ],
+    [
+     "Die",
+     6050,
+     "False"
+    ]
+   ],
+   "destroyHook": [
+    [
+     "DestoryZombie",
+     6112,
+     "False"
+    ]
+   ],
+   "hookCalls": 73,
+   "zombieDieEvents": 1
+  }
+ ]
+}

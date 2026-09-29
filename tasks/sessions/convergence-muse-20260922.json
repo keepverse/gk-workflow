@@ -1,0 +1,18 @@
+{
+  "session": "convergence-muse-20260922",
+  "program": "summoner-convergence + backlog-clean-up (manager orchestration)",
+  "problem": "Take over the manager role per tasks/manager-handoff-20260922.md: cut the pi charter to opencode-go/muse-spark-1.3-contributor at high effort for all next deployments (running lanes sim-map + sim-slice0 stay on deepseek-v4.1-flash to their own landing), then accept lanes on events only.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [],
+  "started": "2026-09-22T14:25:00Z",
+  "status": "abandoned",
+  "closed": "2026-09-24T18:58:09Z",
+  "closeNote": "Owner transferred manager ownership to mega-merge-program-resume-20260925. This empty-fence Muse manager record is retained as historical charter evidence and is no longer an active manager.",
+  "boundaryNote": "Manager takeover session. Paths intentionally empty: predecessor record convergence-resume-20260920 (still active) holds .claude/cmdc-agents/**, and ANY tasks/ claim in direct mode collides with active lanes holding broad tasks/** (tvb58, test-verification-boundary-2 measured) and blocks their verify-change. This mirrors the predecessor's own documented exception -- records and fragments are written as individual explicit-path commits (this record file only), never as a standing claim. No product code, no lane fences, no pipeline paths are touched.",
+  "notes": [
+    "Charter cutover recorded 2026-09-22 in the current conversation with the owner: runtimes pi only; model opencode-go/muse-spark-1.3-contributor at high effort, no fallback; tokensPerLane null; maxConcurrentLanes null (parallelism per program); stop rule stop-lane-and-report, never switch models. Backup at allowed-models.json.bak-20260922-muse-spark. Running lanes sim-map (ctx 184176) + sim-slice0 (ctx 168851) keep deepseek -- no re-model, no uncached re-warm -- per the owner's explicit cutover answer.",
+    "Open conflict, not fixed here: budget.maxConcurrentLanes is now null (per-program parallelism) while the goal objective still says at most 6 running lanes and is immutable without /goal-tweak (handoff section 3). Owner reconciles via /goal-tweak."
+  ]
+}

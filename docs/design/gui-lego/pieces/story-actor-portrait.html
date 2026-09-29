@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-actor-portrait — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-actor-portrait</code></h1>
+  <p class="lede">One actor in a slot array, carrying <code>speaking | inactive</code> state. The
+  speaker is distinguishable <strong>without color alone</strong> — Dialogic's portrait subsystem does
+  exactly this, updating the portrait on a speaker change and applying highlight/unhighlight so the
+  active speaker reads structurally. Spec:
+  <code>docs/architecture/story-scene/spec-actor-portrait.md</code>.</p>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Two actors, Penny speaking</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px; display:flex; gap:16px; align-items:flex-end">
+        <div class="story-actor-portrait" data-piece="actor-portrait" data-speaking="true"
+             style="--piece-accent:#6fb7d4; opacity:1">
+          <div class="story-actor-portrait__lift">
+            <div class="story-actor-sprite story-actor-sprite__placeholder">[Penny art]</div>
+          </div>
+          <span class="note">Penny · speaking — full size, lifted, ringed</span>
+        </div>
+        <div class="story-actor-portrait" data-piece="actor-portrait" data-speaking="false"
+             style="--piece-accent:#d9a15c; opacity:.55">
+          <div class="story-actor-portrait__settle">
+            <div class="story-actor-sprite story-actor-sprite__placeholder">[Dave art]</div>
+          </div>
+          <span class="note">Dave · inactive — smaller, settled, still readable</span>
+        </div>
+      </div>
+      <p class="note">Speaking is <strong>size + lift + ring weight + opacity</strong>, never color
+      alone: <code>scale(1)</code> vs <code>scale(.94)</code>, a 4px lift, a 3px ring vs 1px, full vs
+      55% opacity. The inactive actor stays visible and identifiable.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Width without color: grayscale check</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px; filter:grayscale(1)">
+        <div class="story-actor-portrait" data-piece="actor-portrait" data-speaking="true" style="opacity:1">
+          <div class="story-actor-portrait__lift"><div class="story-actor-sprite story-actor-sprite__placeholder">[A]</div></div>
+        </div>
+        <div class="story-actor-portrait" data-piece="actor-portrait" data-speaking="false" style="opacity:.55">
+          <div class="story-actor-portrait__settle"><div class="story-actor-sprite story-actor-sprite__placeholder">[B]</div></div>
+        </div>
+      </div>
+      <p class="note">With all color removed the speaker still reads: size, lift, ring and opacity
+      survive. Any treatment that disappears under grayscale is decoration, not signal.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure and rules</h2>
+      <pre>.story-actor-portrait            root; carries pack css, data-speaking
+  .story-actor-portrait__lift    speaking posture (size + lift + ring)
+  .story-actor-portrait__settle  inactive posture (smaller, dimmer)
+  .story-actor-portrait__body    -&gt; actor-sprite slot</pre>
+      <ul class="note">
+        <li>The <strong>fold</strong> owns which actor speaks and which variant each carries; the piece
+        renders what it is given and never resets a variant on a speaker change (Ren'Py's failure
+        mode is re-showing an image by tag and silently dropping its attributes).</li>
+        <li>Actors are decoration for focus purposes — no <code>tabIndex</code>, no button or link
+        role. The dialogue window is the focus target.</li>
+        <li><code>spriteUrl: null</code> falls through to the sprite's honest labelled shape.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "actor-portrait",
+  "instanceId": "scene:actor:dave",
+  "phase": "ready",
+  "actorId": "dave",
+  "speaking": true,
+  "variantId": "default",
+  "spriteUrl": null,
+  "themeRef": { "kind": "actor", "id": "dave" },
+  "slots": { "body": { "piece": "actor-sprite",
+    "instanceId": "scene:actor:dave:sprite" } }
+}</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# SE0.7 — verify-change onto the catalog; the duplicate map removed
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| `verification-boundaries.v1.json` has no `guards` section, and `schemaVersion` moves 1 → 2 | read `gk-core/scripts/verification-boundaries.v1.json:1-18` | `"schemaVersion": 2`; `projects` is followed directly by `boundaries` — no `guards` key | gk-core/scripts/verification-boundaries.v1.json |
+| `verify-change` resolves guard ids through the enforcement registry | `.\scripts\verify-change.ps1 -Paths gk-core/src/FusionRpg.Data/Sqlite/RpgStore.Sockets.cs -Session summoner-convergence-lane-d-20260919 -PlanOnly -Format json` | exit 0; checks list `guard dal` and `guard test-substrate`, resolved from the catalog (this file no longer carries a map) | scripts/verify-change.ps1 |
+| the integrity guard requires the absence and checks every `boundaries[].guards` id exists in the catalog | `python gk-core/scripts/guard-verification-boundaries.py` | `VERIFICATION BOUNDARY GUARD OK`, exit 0 | gk-core/scripts/guard-verification-boundaries.py |
+| R7 deleted; R1–R6 and R8 green | `dotnet test tests\FusionRpg.Guard.Tests\FusionRpg.Guard.Tests.csproj -c Release --verbosity minimal --filter "FullyQualifiedName~EnforcementRegistry"` | `Passed!  - Failed: 0, Passed: 17, Skipped: 0, Total: 17` (was 19 — R7's fact and falsifier are gone) | gk-core/tests/FusionRpg.Guard.Tests/EnforcementRegistryGuardTests.cs |
+| the fixture is rewritten to the schema-2 shape and the class is green | `dotnet test … --filter "FullyQualifiedName~VerificationBoundary"` | `Passed!  - Failed: 0, Passed: 14, Skipped: 0, Total: 14, 3 m 39 s`; `Integrity_guard_rejects_a_selector_that_matches_no_test_trait` passes on the `schemaVersion: 2` fixture | gk-core/tests/FusionRpg.Guard.Tests/VerificationBoundaryWorkflowTests.cs |
+| every former `guards`-map key still resolves | read `gk-core/scripts/enforcement-registry.v1.json` | all twelve former keys (incl. `magic-numbers`, `session-boundary`) are catalog rows, so nothing in `boundaries[].guards` lost its owner | — |
+| (load note) the two class runs before the green one | same class filter | 13 passed / 1 failed each, a DIFFERENT test each time, every one passing standalone — the tests' 120 s subprocess timeout under ~16 concurrent dotnet processes from other lanes | — |

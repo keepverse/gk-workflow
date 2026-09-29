@@ -1,0 +1,31 @@
+{
+  "session": "rulings-r20-r24-20260918",
+  "program": "multi",
+  "problem": "Apply owner rulings R20 (forge-gem price as combo-budget lever), R21 (tunable per-layer aptitude weight), R22 (multi-family drop roll, count as every family), R23 (Zomboss commander pool mirrors player assign-ladder side-wide) and R24 (wire LawnCombatObserver.Tests and ProveLiveProbe.Tests into ci.yml) from docs/architecture/spec-rulings-2026-09-18.md to the named maps and specs, closing each OWNER question; file unowned gap A33 battle-holder-wiring in action-map.md. Docs only; no code, data, CI, or tasks edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/architecture/strain-splice-host/spec-combo-budget.md",
+    "docs/architecture/strain-splice-host/spec-socket-pricing.md",
+    "docs/architecture/species-gear-chain/spec-gem-tier.md",
+    "docs/architecture/species-progression-map.md",
+    "docs/architecture/species-progression/spec-species-layer-delivery.md",
+    "docs/architecture/species-progression/spec-zomboss-commander-clock.md",
+    "docs/architecture/species-gear-chain-map.md",
+    "docs/architecture/species-gear-chain/spec-species-materials.md",
+    "docs/architecture/species-gear-chain/spec-creature-drop-tables.md",
+    "docs/architecture/empire-progression-map.md",
+    "docs/architecture/empire-progression/spec-assign-ladder.md",
+    "docs/architecture/empire-progression/spec-ai-empire-species.md",
+    "docs/architecture/test-verification-boundary-map.md",
+    "docs/architecture/test-verification-boundary/spec-core-split-wiring.md",
+    "docs/architecture/action-map.md",
+    "docs/architecture/action-enrich-map.md",
+    "docs/architecture/action-skill-tiers-map.md",
+    "tasks/sessions/rulings-r20-r24-20260918.json"
+  ],
+  "started": "2026-09-18T10:37:00Z",
+  "status": "merged"
+}

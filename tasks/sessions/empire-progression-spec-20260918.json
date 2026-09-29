@@ -1,0 +1,16 @@
+{
+  "session": "empire-progression-spec-20260918",
+  "program": "empire-progression",
+  "problem": "Graduate empire-progression-ideal.md (10 owner rulings) into a capability map and one spec per module. Docs only: no production code, no data, no commit.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/empire-progression-map.md",
+    "docs/architecture/empire-progression/**",
+    "docs/architecture/empire-progression-ideal.md",
+    "tasks/sessions/empire-progression-spec-20260918.json"
+  ],
+  "started": "2026-09-18T12:00:00Z",
+  "status": "merged"
+}

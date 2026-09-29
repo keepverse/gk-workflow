@@ -1,0 +1,3 @@
+{"kind": "handover", "text": "Predecessor cmdc/pd-d3 (pi, seg 27, state failed/DRAINED). WIP adopted as e14f02c8a on cmdc/pd-d3 (4 files: EncounterPreflight.cs + 2 Delve test files + todo row updates). Worktree now clean."}
+{"kind": "measurement", "text": "Full Delve filter regression on merged head: 1754/1754. 21 open rows with correct states. Slice scope: D4.13 (QuestPreflight.Run full signature) + D4.17 (DomainPreflight ten-row chain). D4.30/31/32, D5/F rows out of scope."}
+{"kind": "constraint", "text": "Fence narrowed to Delve files + party-dungeon todo/ledger. NEVER touch tests/FusionRpg.Core.Tests root helpers (keepverse L3b slice landing in parallel) or keepverse/content-stack files. Combat via EntityStatWriter/Funnel/ActorHub only."}

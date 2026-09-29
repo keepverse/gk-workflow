@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-03-web-acceptance-20260925",
+  "sha": "4ff99673b14dc919d654789b30c254f0d13efa77",
+  "shortSha": "4ff99673",
+  "mergedSha": "c7d2cc93798f27189483d29e93591b3712f014eb",
+  "verdict": "GREEN",
+  "scope": "Web lawn authoritative snapshot recovery, match-key isolation, binding convergence, and recovery UI states; shared DTO/server event path",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "web-focused-tests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "90 tests passed across 3 files",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-03-web-acceptance-20260925/web-focused-tests.log",
+      "command": "npm ci; npm test -- --run src/features/lawn/lawnProjectorFold.test.ts src/features/lawn/lawnSessionFold.test.ts src/lib/bus/hub-provider.test.tsx (from web/fusion-rpg-web)"
+    },
+    {
+      "check": "web-build",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "tsc --noEmit and Vite production build passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-03-web-acceptance-20260925/web-build.log",
+      "command": "npm run build (from web/fusion-rpg-web)"
+    },
+    {
+      "check": "server-build-and-test",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "restored Server build passed; 3 isolation tests passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-03-web-acceptance-20260925/server-build-and-test.log",
+      "command": "dotnet build src/FusionRpg.Server/FusionRpg.Server.csproj; dotnet test tests/FusionRpg.Server.Tests --filter FullyQualifiedName~EventIngestIsolationTests"
+    },
+    {
+      "check": "path-owned-aggregate",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "complete selected verification passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-03-web-acceptance-20260925/path-owned-aggregate.log",
+      "command": "scripts/verify-change.ps1 -Paths <all eleven concrete web/server/Contracts paths> -Session resume-03-web-acceptance-20260925",
+      "logSha256": "48E8910C977052AC7C4596FC07A4A889A1814C115AA090265707367A3B64705C",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused checks and PlanOnly passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-03-web-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> 4ff99673b14dc919d654789b30c254f0d13efa77; npm ci/tests/build; server build/test; PlanOnly; git status --porcelain=v1",
+      "logSha256": "9473B62D498A66FB284B84EE76C4D4E9B037A0616E20409222C9A4D21B5C2134",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "knownLimitations": [
+    "No browser/live SignalR proof has been collected; isolated hub tests emitted expected ECONNREFUSED messages but that is not browser evidence.",
+    "The initial no-restore Server build was invalid in a clean worktree and is excluded; the restored build is the accepted evidence."
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Contracts/Dtos.cs",
+    "src/FusionRpg.Server/EventIngest.cs",
+    "src/FusionRpg.Server/RpgHub.cs",
+    "web/fusion-rpg-web/src/features/lawn/LawnPage.tsx",
+    "web/fusion-rpg-web/src/features/lawn/lawnProjectorFold.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnSessionFold.ts",
+    "web/fusion-rpg-web/src/lib/bus/hub-provider.tsx",
+    "web/fusion-rpg-web/src/lib/bus/log-store.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnProjectorFold.test.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnSessionFold.test.ts",
+    "web/fusion-rpg-web/src/lib/bus/hub-provider.test.tsx",
+    "tasks/reports/resume-03-web-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "4ff99673b14dc919d654789b30c254f0d13efa77",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "mergeScope": "The reviewed SHA is accepted and merged for code/build/test scope only; browser and live recovery proof remain explicitly open.",
+  "when": "2026-09-25T09:20:00Z",
+  "expectedSha": "4ff99673b14dc919d654789b30c254f0d13efa77",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-03-web-acceptance-20260925"
+}

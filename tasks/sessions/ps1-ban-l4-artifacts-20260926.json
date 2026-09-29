@@ -1,0 +1,15 @@
+{
+  "session": "ps1-ban-l4-artifacts-20260926",
+  "program": "ps1-ban",
+  "problem": "Delete the one dated one-off proof artefact tasks/reports/f13-schema-upgrade-proof.ps1 after proving it unreferenced. docs/guide/mechanisms/_gen-stubs.ps1 is explicitly OUT of scope: its path is contractual in scripts/vocab-rename/identity-rename.v1.json and tests/FusionRpg.Guard.Tests/VocabRenameTests.cs, so it must stay a .ps1.",
+  "mode": "worktree",
+  "branch": "ps1ban/l4-artifacts",
+  "worktree": "C:/Users/NeneScarlet/AppData/Local/Temp/opencode/ps1ban-l4-artifacts",
+  "paths": [
+    "tasks/reports/f13-schema-upgrade-proof.ps1",
+    "tasks/sessions/ps1-ban-l4-artifacts-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "active",
+  "scopeNote": "Lane L4 of the ps1-ban program, scope corrected after sibling lane L6 reconnaissance contradicted the original brief. The worktree named in the brief did not exist on arrival; branch ps1ban/l4-artifacts existed at 887c60721 but was not checked out anywhere, so the worktree was created with git worktree add from the main checkout (main left untouched; its three dirty files belong to other sessions). Single logical change: remove one historical proof artefact. No scripts/**, no docs/guide/mechanisms/**, no tests/FusionRpg.Guard.Tests/**, no .github/workflows/**, no AGENTS.md/CLAUDE.md edits. A citation to this file in a doc may be annotated '(since deleted)'; a citation to any OTHER .ps1 is a handoff, never edited."
+}

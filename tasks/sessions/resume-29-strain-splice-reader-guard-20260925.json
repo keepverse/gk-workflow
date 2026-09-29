@@ -1,0 +1,28 @@
+{
+  "session": "resume-29-strain-splice-reader-guard-20260925",
+  "program": "strain-splice-host",
+  "problem": "Manager-owned SSH7.1 current-revision guard and reader conversion with SSH8.4 as the named materials companion.",
+  "mode": "worktree",
+  "branch": "opencode/resume-29-strain-splice-reader-guard-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-29-strain-splice-reader-guard-20260925",
+  "paths": [
+    "tests/FusionRpg.Guard.Tests/TuningRevisionLiteralGuardTests.cs",
+    "tools/seedsmith/tests/test_combogen.py",
+    "tests/FusionRpg.Core.Items.Tests/Items/CombinationCorpusTests.cs",
+    "tests/FusionRpg.Core.Items.Tests/Items/ComboContainerBuildTests.cs",
+    "tests/FusionRpg.Core.Items.Tests/Items/ItemUpgradeCostContractTests.cs",
+    "tests/FusionRpg.Core.Items.Tests/Items/StrainSpliceGridTests.cs",
+    "tests/FusionRpg.Data.Tests/Items/CraftWearInstanceOpTests.cs",
+    "tests/FusionRpg.Data.Tests/Items/MaterialSpendTests.cs",
+    "tests/FusionRpg.Server.Tests/CombinationImportTests.cs",
+    "tests/FusionRpg.Server.Tests/ComboPricingBootTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemUpgradeEndpointTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemWorkbenchAssuranceTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemWorkbenchEndpointsTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemWorkbenchSpeciesWiringTests.cs",
+    "tasks/reports/resume-29-strain-splice-reader-guard-20260925.md"
+  ],
+  "started": "2026-09-25T17:00:00Z",
+  "status": "abandoned",
+  "notes": "Worker returned terminal partial; manager harvested the exact 14-path diff and independently accepted SHA a120ce2d8f83617228017a020c063c35e3c37dd0 under resume-29-strain-reader-guard-review-20260925. The worker made no direct merge; the known Data sharded/external backup limitation remains recorded."
+}

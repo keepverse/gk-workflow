@@ -1,0 +1,513 @@
+# Uncommitted diff rescued from .claude/worktrees/opencode-resume-00a-fail-closed-recovery-20260925 against features/mega-merge.
+# These changes existed only as working-tree files: the branch ref held none of them, so
+# clearing that directory would have deleted the only copy. Generated with git diff
+# --no-index, never hand-edited, and verified to apply and reverse before commit.
+# Apply with:  git apply --3way <this file>
+# Verify with: git apply --check <this file>   (against the integration tree)
+
+# --- .claude/cmdc-agents/scripts/post-merge-check.ps1 ---
+--- a/.claude/cmdc-agents/scripts/post-merge-check.ps1
++++ b/.claude/cmdc-agents/scripts/post-merge-check.ps1
+@@ -235,7 +235,7 @@
+   foreach ($item in @($Lines)) {
+     $line = [string]$item
+     if ($line -match '(?i)Failed!') { return $true }
+-    if ($line -match '(?i)Build FAILED') { return $true }
++    if ($line -match '(?i)Build FAILED|Test Run Failed\.') { return $true }
+     $countMatches = [regex]::Matches($line, '(?i)\bFailed:\s*(\d+)')
+     if ($countMatches.Count -gt 0) {
+       foreach ($countMatch in $countMatches) {
+@@ -251,9 +251,11 @@
+ function Test-PositiveTestCount([object[]]$Lines) {
+   foreach ($item in @($Lines)) {
+     $line = [string]$item
+-    $matches = [regex]::Matches($line, '(?i)\b(?:Total|Passed):\s*(\d+)')
+-    foreach ($match in $matches) {
+-      if ([int]$match.Groups[1].Value -gt 0) { return $true }
++    foreach ($field in @('Passed', 'Failed')) {
++      $matches = [regex]::Matches($line, "(?i)\b${field}:\s*(\d+)")
++      foreach ($match in $matches) {
++        if ([int]$match.Groups[1].Value -gt 0) { return $true }
++      }
+     }
+   }
+   return $false
+
+# --- .claude/cmdc-agents/scripts/accept-lane.ps1 ---
+--- a/.claude/cmdc-agents/scripts/accept-lane.ps1
++++ b/.claude/cmdc-agents/scripts/accept-lane.ps1
+@@ -27,7 +27,6 @@
+ 
+ $ErrorActionPreference = 'Continue'
+ $IntegrationBranch = 'features/mega-merge'
+-$AcceptanceVerdicts = @('GREEN', 'RED', 'RED-KNOWN', 'UNATTRIBUTED')
+ $ExpectSha = $ExpectSha.ToLowerInvariant()
+ 
+ function Abort-Acceptance([int]$Code, [string]$Message) {
+@@ -67,30 +66,6 @@
+   return $false
+ }
+ 
+-function Get-IntegrationAncestryError(
+-  [string]$Root,
+-  [string]$Integration,
+-  [string]$ReviewedSha
+-) {
+-  $integrationOutput = @(& git -C $Root rev-parse --verify "refs/heads/$Integration^{commit}" 2>$null)
+-  $integrationExit = $LASTEXITCODE
+-  $integrationSha = if ($integrationOutput.Count -gt 0) {
+-    ([string]$integrationOutput[-1]).Trim().ToLowerInvariant()
+-  } else {
+-    ''
+-  }
+-  if ($integrationExit -ne 0 -or $integrationSha -notmatch '^[0-9a-f]{40}$') {
+-    return "integration branch '$Integration' does not resolve to a full commit SHA"
+-  }
+-
+-  @(& git -C $Root merge-base --is-ancestor $integrationSha $ReviewedSha 2>$null) | Out-Null
+-  if ($LASTEXITCODE -ne 0) {
+-    return ("reviewed SHA '$ReviewedSha' does not descend from current integration branch " +
+-      "'$Integration' at $integrationSha")
+-  }
+-  return $null
+-}
+-
+ function Test-EvidenceFile {
+   param(
+     [Parameter(Mandatory=$true)][string]$Path,
+@@ -139,7 +114,7 @@
+     return 'malformed evidence: when is not a valid timestamp'
+   }
+   if ($artifact.verdict -isnot [string] -or
+-      $artifact.verdict -cnotin $AcceptanceVerdicts) {
++      $artifact.verdict -notmatch '^(GREEN|RED|RED-KNOWN|UNATTRIBUTED)') {
+     return 'malformed evidence: verdict is outside the acceptance vocabulary'
+   }
+   if ($artifact.contendedTree -isnot [bool]) {
+@@ -303,10 +278,6 @@
+ $ancestryExit = $LASTEXITCODE
+ if ($ancestryExit -ne 0) {
+   Abort-Acceptance 9 "expected SHA '$ExpectSha' is not reachable from lane branch 'cmdc/$Lane' (tip $laneTip)."
+-}
+-if ($Merge) {
+-  $integrationAncestryError = Get-IntegrationAncestryError $Repo $MergeInto $ExpectSha
+-  if ($integrationAncestryError) { Abort-Acceptance 9 $integrationAncestryError }
+ }
+ 
+ # Registered debt is attribution, never a green verdict.
+@@ -508,19 +479,16 @@
+ })
+ $knownCount = @($results | ForEach-Object { $_.knownRedTests } | Where-Object { $_ }).Count
+ $verdict = if ($red.Count -eq 0) { 'GREEN' }
+-           elseif ($unattributed.Count -gt 0) { 'UNATTRIBUTED' }
+-           elseif ($compilerErrors.Count -gt 0) { 'RED' }
+-           elseif ($newReds.Count -eq 0) { 'RED-KNOWN' }
+-           else { 'RED' }
+-$verdictSummary = if ($verdict -eq 'GREEN') {
+-  'GREEN'
+-} elseif ($verdict -eq 'UNATTRIBUTED') {
+-  "UNATTRIBUTED ($($red.Count) red check(s); $($unattributed.Count) with no parsed failure)"
+-} elseif ($verdict -eq 'RED-KNOWN') {
+-  "RED-KNOWN ($($red.Count) check(s), $knownCount registered-debt failure(s) matched)"
+-} else {
+-  "RED ($($red.Count) check(s), $($newReds.Count + $compilerErrors.Count) unregistered/compiler failure(s))"
+-}
++           elseif ($unattributed.Count -gt 0) {
++             "UNATTRIBUTED ($($red.Count) red check(s); $($unattributed.Count) with no parsed failure)"
++           }
++           elseif ($compilerErrors.Count -gt 0) {
++             "RED ($($red.Count) check(s), $($compilerErrors.Count) compiler error(s))"
++           }
++           elseif ($newReds.Count -eq 0) {
++             "RED-KNOWN ($($red.Count) check(s), $knownCount registered-debt failure(s) matched)"
++           }
++           else { "RED ($($red.Count) check(s), $($newReds.Count) unregistered failure(s))" }
+ 
+ $artifact = [pscustomobject]@{
+   schemaVersion = 2
+@@ -546,7 +514,7 @@
+   Remove-Item -LiteralPath $artifactPath -Force -ErrorAction SilentlyContinue
+   Abort-Acceptance 2 "generated acceptance evidence is invalid: $artifactError"
+ }
+-Write-Output "VERDICT: $verdictSummary"
++Write-Output "VERDICT: $verdict"
+ Write-Output "ARTEFACT: .claude/cmdc-agents/acceptance/$Lane-$shortSha.json"
+ 
+ $exitCode = 0
+@@ -557,22 +525,18 @@
+   Set-Location -LiteralPath $Repo
+   $branch = ([string](& git rev-parse --abbrev-ref HEAD | Select-Object -Last 1)).Trim()
+   $ownArtefact = ".claude/cmdc-agents/acceptance/$Lane-$shortSha.json"
+-  $dirtyList = @(& git status --porcelain=v1 --untracked-files=all) | ForEach-Object {
++  $dirtyList = @(& git status --porcelain) | ForEach-Object {
+     (($_ -replace '^..\s+', '') -replace '\\', '/')
+   }
+   $dirty = @($dirtyList | Where-Object { $_ -and $_ -ne $ownArtefact }).Count
+   $stagedOutput = @(& git -C $Repo diff --cached --name-only -- $ownArtefact 2>$null)
+   $stagedExit = $LASTEXITCODE
+   $stagedArtifact = @($stagedOutput | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) })
+-  $integrationAncestryError = Get-IntegrationAncestryError $Repo $MergeInto $head
+   if ($mergeEvidenceError) {
+     Write-Output "MERGE REFUSED: $mergeEvidenceError"
+     $exitCode = 1
+   } elseif ($verdict -ne 'GREEN') {
+     Write-Output "MERGE REFUSED: checks are $verdict."
+-    $exitCode = 1
+-  } elseif ($integrationAncestryError) {
+-    Write-Output "MERGE REFUSED: $integrationAncestryError"
+     $exitCode = 1
+   } elseif ($branch -ne $MergeInto) {
+     Write-Output "MERGE REFUSED: on $branch, not $MergeInto."
+
+# --- .claude/cmdc-agents/scripts/merge-lanes.py ---
+--- a/.claude/cmdc-agents/scripts/merge-lanes.py
++++ b/.claude/cmdc-agents/scripts/merge-lanes.py
+@@ -25,7 +25,7 @@
+ SHA_RE = re.compile(r"^[0-9a-fA-F]{40}$")
+ LANE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
+ CHECK_NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
+-VERDICT_RE = re.compile(r"(?:GREEN|RED|RED-KNOWN|UNATTRIBUTED)")
++VERDICT_RE = re.compile(r"^(GREEN|RED|RED-KNOWN|UNATTRIBUTED)")
+ REQUIRED_CHECK_FIELDS = {
+     "check",
+     "exit",
+@@ -74,37 +74,6 @@
+     return value.lower(), None
+ 
+ 
+-def resolve_integration_head(repo: Path) -> tuple[str | None, str | None]:
+-    value, code = git_value(
+-        repo,
+-        "rev-parse",
+-        "--verify",
+-        f"refs/heads/{INTEGRATION_BRANCH}^{{commit}}",
+-    )
+-    if code != 0 or not SHA_RE.fullmatch(value):
+-        return None, (
+-            f"integration branch '{INTEGRATION_BRANCH}' does not resolve to a full commit SHA"
+-        )
+-    return value.lower(), None
+-
+-
+-def ensure_integration_ancestry(
+-    repo: Path,
+-    reviewed_sha: str,
+-    integration_sha: str,
+-) -> str | None:
+-    result = run(
+-        ["git", "merge-base", "--is-ancestor", integration_sha, reviewed_sha],
+-        repo,
+-    )
+-    if result.returncode != 0:
+-        return (
+-            f"reviewed SHA {reviewed_sha} does not descend from current integration branch "
+-            f"'{INTEGRATION_BRANCH}' at {integration_sha}"
+-        )
+-    return None
+-
+-
+ def ahead(repo: Path, lane_sha: str) -> tuple[int | None, str | None]:
+     value, code = git_value(
+         repo,
+@@ -139,7 +108,7 @@
+ 
+ 
+ def failed_summary(value: str) -> bool:
+-    if re.search(r"Failed!|Build FAILED", value, re.IGNORECASE):
++    if re.search(r"Failed!|Build FAILED|Test Run Failed\.", value, re.IGNORECASE):
+         return True
+     counts = re.findall(r"\bFailed:\s*(\d+)", value, re.IGNORECASE)
+     if counts:
+@@ -187,7 +156,7 @@
+         return None, f"malformed acceptance evidence {path}: when is not a timezone-aware timestamp"
+ 
+     verdict = artifact.get("verdict")
+-    if not isinstance(verdict, str) or not VERDICT_RE.fullmatch(verdict):
++    if not isinstance(verdict, str) or not VERDICT_RE.match(verdict):
+         return None, f"malformed acceptance evidence {path}: verdict is outside the acceptance vocabulary"
+     if verdict != "GREEN":
+         return None, f"acceptance evidence verdict is {verdict!r}, not GREEN"
+@@ -268,7 +237,6 @@
+ def prepare_lane(
+     repo: Path,
+     lane: str,
+-    integration_sha: str,
+ ) -> tuple[dict[str, object] | None, str | None]:
+     lane_sha, reason = resolve_tip(repo, lane)
+     if lane_sha is None:
+@@ -278,10 +246,6 @@
+         return None, reason
+     if count == 0:
+         return None, None
+-
+-    reason = ensure_integration_ancestry(repo, lane_sha, integration_sha)
+-    if reason:
+-        return None, reason
+ 
+     artifact_path, reason = evidence_for(repo, lane, lane_sha)
+     if artifact_path is None:
+@@ -444,11 +408,6 @@
+         return 1
+     repo = Path(root_result.stdout.strip()).resolve()
+ 
+-    integration_sha, reason = resolve_integration_head(repo)
+-    if integration_sha is None:
+-        print(f"REFUSING -- {reason}")
+-        return 1
+-
+     plans: list[dict[str, object]] = []
+     seen_lanes: set[str] = set()
+     for lane in argv:
+@@ -456,7 +415,7 @@
+             print(f"  {lane}: REFUSING -- duplicate lane argument")
+             return 1
+         seen_lanes.add(lane)
+-        plan, reason = prepare_lane(repo, lane, integration_sha)
++        plan, reason = prepare_lane(repo, lane)
+         if reason:
+             print(f"  {lane}: REFUSING -- {reason}")
+             return 1
+@@ -473,16 +432,6 @@
+     if reason or branch != INTEGRATION_BRANCH:
+         print(
+             f"REFUSING -- current branch is {branch or 'unknown'}, not {INTEGRATION_BRANCH}"
+-        )
+-        return 1
+-    current_integration_sha, reason = resolve_integration_head(repo)
+-    if current_integration_sha is None:
+-        print(f"REFUSING -- {reason}")
+-        return 1
+-    if current_integration_sha != integration_sha:
+-        print(
+-            "REFUSING -- integration branch moved during batch preflight: "
+-            f"{integration_sha} -> {current_integration_sha}"
+         )
+         return 1
+     conflicts = unmerged(repo)
+
+# --- .claude/cmdc-agents/scripts/test_fail_closed_pipeline.py ---
+--- a/.claude/cmdc-agents/scripts/test_fail_closed_pipeline.py
++++ b/.claude/cmdc-agents/scripts/test_fail_closed_pipeline.py
+@@ -95,18 +95,6 @@
+     git(path, "add", "base.txt", ".gitignore")
+     git(path, "commit", "-m", "base")
+     return git(path, "rev-parse", "HEAD")
+-
+-
+-def make_unrelated_lane_repo(path: Path) -> tuple[str, str]:
+-    base = init_repo(path)
+-    git(path, "checkout", "--orphan", "cmdc/unrelated")
+-    git(path, "rm", "-rf", ".")
+-    (path / "unrelated.txt").write_text("unrelated\n", encoding="utf-8")
+-    git(path, "add", "unrelated.txt")
+-    git(path, "commit", "-m", "unrelated lane work")
+-    lane_sha = git(path, "rev-parse", "HEAD")
+-    git(path, "checkout", "features/mega-merge")
+-    return base, lane_sha
+ 
+ 
+ def fake_dotnet(path: Path) -> Path:
+@@ -346,6 +334,22 @@
+             self.assertIn("failed summary", result.stdout.lower())
+             self.assertIn("VERDICT: RED", result.stdout)
+ 
++    def test_zero_exit_test_run_failed_summary_is_red(self) -> None:
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp)
++            make_post_fixture(root, ["Alpha"])
++            dotnet = fake_dotnet(root / "dotnet.ps1")
++            set_fake_dotnet_state(root, "test", ["Test Run Failed.  Passed: 1, Total: 1"], 0)
++            result = run_pwsh(
++                POST_MERGE,
++                post_arguments(root, dotnet, None),
++                root,
++                env=legal_game_environment(root),
++            )
++            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
++            self.assertIn("failed summary", result.stdout.lower())
++            self.assertIn("VERDICT: RED", result.stdout)
++
+     def test_zero_test_count_guard_is_red(self) -> None:
+         with tempfile.TemporaryDirectory() as temp:
+             root = Path(temp)
+@@ -368,6 +372,27 @@
+             make_post_fixture(root, ["Alpha"])
+             dotnet = fake_dotnet(root / "dotnet.ps1")
+             set_fake_dotnet_state(root, "test", ["Passed!  - Failed: 0, Passed: 0, Total: 0"], 0)
++            result = run_pwsh(
++                POST_MERGE,
++                post_arguments(root, dotnet, None),
++                root,
++                env=legal_game_environment(root),
++            )
++            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
++            self.assertIn("zero", result.stdout.lower())
++            self.assertIn("VERDICT: RED", result.stdout)
++
++    def test_skipped_only_test_count_is_red(self) -> None:
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp)
++            make_post_fixture(root, ["Alpha"])
++            dotnet = fake_dotnet(root / "dotnet.ps1")
++            set_fake_dotnet_state(
++                root,
++                "test",
++                ["Passed!  - Failed: 0, Passed: 0, Skipped: 1, Total: 1"],
++                0,
++            )
+             result = run_pwsh(
+                 POST_MERGE,
+                 post_arguments(root, dotnet, None),
+@@ -740,29 +765,6 @@
+             )
+             self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+             self.assertIn("exit must be an integer", (result.stdout + result.stderr).lower())
+-
+-    def test_existing_verdict_with_junk_suffix_is_rejected(self) -> None:
+-        with tempfile.TemporaryDirectory() as temp:
+-            root = Path(temp)
+-            sha = init_repo(root)
+-            git(root, "checkout", "-b", "cmdc/schema")
+-            fake = make_fake_cmdc(root / "fake_cmdc.py")
+-            directory = root / ".claude" / "cmdc-agents" / "acceptance"
+-            directory.mkdir(parents=True)
+-            artifact = acceptance_artifact("schema", sha, verdict="GREENjunk")
+-            (directory / f"schema-{sha[:8]}.json").write_text(
+-                json.dumps(artifact),
+-                encoding="utf-8",
+-            )
+-            result = run_pwsh(
+-                ACCEPT_LANE,
+-                f"-Lane schema -ExpectSha {ps_quote(sha)} -Check {ps_array(['smoke|||cmd /c echo evidence'])} "
+-                f"-Repo {ps_quote(root)} -Cmdc {ps_quote(fake)} -LogRoot {ps_quote(root / 'logs')}",
+-                root,
+-            )
+-            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+-            self.assertIn("outside the acceptance vocabulary", (result.stdout + result.stderr).lower())
+-            self.assertFalse((root / ".claude" / "worktrees" / "cmdc-review-schema").exists())
+ 
+     def test_existing_malformed_evidence_is_rejected(self) -> None:
+         with tempfile.TemporaryDirectory() as temp:
+@@ -827,70 +829,6 @@
+                 self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+                 self.assertIn("not reachable", (result.stdout + result.stderr).lower())
+                 self.assertIn(base[:8], result.stdout + result.stderr)
+-            finally:
+-                remove_worktree(root, "lane")
+-
+-    def test_direct_merge_rejects_reviewed_sha_from_unrelated_history(self) -> None:
+-        with tempfile.TemporaryDirectory() as temp:
+-            root = Path(temp)
+-            _, lane_sha = make_unrelated_lane_repo(root)
+-            fake = make_fake_cmdc(root / "fake_cmdc.py")
+-            before = git(root, "rev-parse", "HEAD")
+-            try:
+-                result = run_pwsh(
+-                    ACCEPT_LANE,
+-                    f"-Lane unrelated -ExpectSha {ps_quote(lane_sha)} "
+-                    f"-Check {ps_array(['smoke|||cmd /c echo evidence'])} -Merge "
+-                    f"-Repo {ps_quote(root)} -Cmdc {ps_quote(fake)} -LogRoot {ps_quote(root / 'logs')}",
+-                    root,
+-                )
+-                self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+-                self.assertIn("does not descend from", (result.stdout + result.stderr).lower())
+-                self.assertEqual(git(root, "rev-parse", "HEAD"), before)
+-                self.assertFalse(
+-                    (root / ".claude" / "cmdc-agents" / "acceptance" / f"unrelated-{lane_sha[:8]}.json").exists()
+-                )
+-            finally:
+-                remove_worktree(root, "unrelated")
+-
+-    def test_direct_merge_accepts_reviewed_sha_descending_from_integration(self) -> None:
+-        with tempfile.TemporaryDirectory() as temp:
+-            root = Path(temp)
+-            base, lane_sha = self.make_lane_repo_for_acceptance(root)
+-            fake = make_fake_cmdc(root / "fake_cmdc.py")
+-            try:
+-                result = run_pwsh(
+-                    ACCEPT_LANE,
+-                    f"-Lane lane -ExpectSha {ps_quote(lane_sha)} "
+-                    f"-Check {ps_array(['smoke|||cmd /c echo evidence'])} -Merge "
+-                    f"-Repo {ps_quote(root)} -Cmdc {ps_quote(fake)} -LogRoot {ps_quote(root / 'logs')}",
+-                    root,
+-                )
+-                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+-                parents = git(root, "show", "-s", "--format=%P", "HEAD").split()
+-                self.assertIn(base, parents)
+-                self.assertIn(lane_sha, parents)
+-            finally:
+-                remove_worktree(root, "lane")
+-
+-    def test_direct_merge_still_rejects_unrelated_dirty_manager_path(self) -> None:
+-        with tempfile.TemporaryDirectory() as temp:
+-            root = Path(temp)
+-            _, lane_sha = self.make_lane_repo_for_acceptance(root)
+-            fake = make_fake_cmdc(root / "fake_cmdc.py")
+-            (root / "unrelated.txt").write_text("dirty\n", encoding="utf-8")
+-            before = git(root, "rev-parse", "HEAD")
+-            try:
+-                result = run_pwsh(
+-                    ACCEPT_LANE,
+-                    f"-Lane lane -ExpectSha {ps_quote(lane_sha)} "
+-                    f"-Check {ps_array(['smoke|||cmd /c echo evidence'])} -Merge "
+-                    f"-Repo {ps_quote(root)} -Cmdc {ps_quote(fake)} -LogRoot {ps_quote(root / 'logs')}",
+-                    root,
+-                )
+-                self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+-                self.assertIn("dirty path", (result.stdout + result.stderr).lower())
+-                self.assertEqual(git(root, "rev-parse", "HEAD"), before)
+             finally:
+                 remove_worktree(root, "lane")
+ 
+@@ -985,7 +923,7 @@
+                 self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+                 artifact = root / ".claude" / "cmdc-agents" / "acceptance" / f"red-{sha[:8]}.json"
+                 data = json.loads(artifact.read_text(encoding="utf-8-sig"))
+-                self.assertEqual(data["verdict"], "UNATTRIBUTED")
++                self.assertEqual(data["verdict"], "UNATTRIBUTED (1 red check(s); 1 with no parsed failure)")
+                 self.assertEqual(data["checks"][0]["exit"], 7)
+             finally:
+                 remove_worktree(root, "red")
+@@ -1029,23 +967,6 @@
+             self.assertEqual(git(root, "rev-parse", "HEAD"), before)
+             self.assertNotIn(lane_sha, git(root, "log", "--format=%H", "-1"))
+ 
+-    def test_refuses_reviewed_sha_from_unrelated_history(self) -> None:
+-        with tempfile.TemporaryDirectory() as temp:
+-            root = Path(temp)
+-            _, lane_sha = make_unrelated_lane_repo(root)
+-            self.write_artifact(root, "unrelated", lane_sha)
+-            before = git(root, "rev-parse", "HEAD")
+-            result = subprocess.run(
+-                ["python", str(MERGE_LANES), "unrelated"],
+-                cwd=root,
+-                text=True,
+-                capture_output=True,
+-                timeout=45,
+-            )
+-            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+-            self.assertIn("does not descend from", (result.stdout + result.stderr).lower())
+-            self.assertEqual(git(root, "rev-parse", "HEAD"), before)
+-
+     def test_refuses_stale_acceptance_artifact(self) -> None:
+         with tempfile.TemporaryDirectory() as temp:
+             root = Path(temp)
+@@ -1109,18 +1030,6 @@
+             result = self.run_merge(root)
+             self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+             self.assertIn("not green", (result.stdout + result.stderr).lower())
+-            self.assertEqual(git(root, "rev-parse", "HEAD"), before)
+-
+-    def test_refuses_green_verdict_with_junk_suffix_as_malformed_schema(self) -> None:
+-        with tempfile.TemporaryDirectory() as temp:
+-            root = Path(temp)
+-            _, lane_sha = self.make_lane_repo(root)
+-            self.write_artifact(root, "lane", lane_sha, verdict="GREENjunk")
+-            before = git(root, "rev-parse", "HEAD")
+-            result = self.run_merge(root)
+-            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+-            self.assertIn("outside the acceptance vocabulary", (result.stdout + result.stderr).lower())
+-            self.assertNotIn("not green", (result.stdout + result.stderr).lower())
+             self.assertEqual(git(root, "rev-parse", "HEAD"), before)
+ 
+     def test_refuses_green_artifact_with_failed_test_details(self) -> None:

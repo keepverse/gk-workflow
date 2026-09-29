@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonder-relic-shelf — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>wonder-relic-shelf</code></h1>
+  <p class="lede">Reachable-first shelf — relics reachable <em>here</em> (issuing legion's cargo via the sheet tab + target sector's store) first; the full owned shelf one disclosure away. The shelf itself is owned by the sibling inventory program (4D.1 <code>stock-row</code> density, GG-9 link to the authoritative relic card) — this draft binds it by name, never re-specifies it. Picking is order-preserving; over-<code>N</code> picks refuse with the count line, never silently dropped. Candidate rows render at <code>stock-row</code> density, shared.</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> Status: <strong>pending-owner-review</strong> (see <code>recipes/wonder-composer.ACCEPTANCE.md</code>). Mount is built behind that recorded checkpoint per Task 4D.3 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage" style="display:grid;gap:8px;max-width:560px;">
+        <div data-testid="wonder-relic-shelf" style="display:grid;gap:8px;">
+          <p data-testid="wonder-shelf-count-line" style="margin:0;font-size:13px;">DRAFT: Laid into the foundation: 1 of 3 pieces of treasure</p>
+          <div data-testid="wonder-shelf-reachable" role="list" aria-label="Treasure within reach" style="display:grid;gap:6px;border:1px solid var(--border-control);border-radius:6px;padding:8px;background:var(--panel-inset);">
+            <button type="button" role="listitem" data-testid="wonder-shelf-row" data-instance-id="relic-a" data-where="legion-cargo" data-picked="true" style="text-align:left;font-size:13px;border:1px solid var(--border-control);border-radius:4px;padding:6px 8px;">DRAFT: relic-a · band packs · picked</button>
+            <button type="button" role="listitem" data-testid="wonder-shelf-row" data-instance-id="relic-b" data-where="sector-store" data-picked="false" style="text-align:left;font-size:13px;border:1px solid var(--border);border-radius:4px;padding:6px 8px;">DRAFT: relic-b · this ground's vault</button>
+          </div>
+          <details data-testid="wonder-shelf-disclosure">
+            <summary style="font-size:13px;cursor:pointer;">DRAFT: Full shelf (1 more, out of reach)</summary>
+            <div data-testid="wonder-shelf-remote" role="list" aria-label="Treasure elsewhere" style="display:grid;gap:6px;margin-top:6px;border:1px dashed var(--border);border-radius:6px;padding:8px;">
+              <div role="listitem" data-testid="wonder-shelf-row" data-instance-id="relic-far" data-where="elsewhere" data-picked="false" style="font-size:13px;color:var(--muted);">DRAFT: relic-far · sits with another band — bring it within reach first</div>
+            </div>
+          </details>
+          <div data-testid="wonder-shelf-empty" hidden style="font-size:13px;">DRAFT empty: No treasure within reach — march a laden band here or vault pieces in this ground's store.</div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "wonder-relic-shelf",
+  "needed": 3,
+  "picked": ["relic-a"],
+  "reachable": [
+    { "instanceId": "relic-a", "where": "legion-cargo", "picked": true },
+    { "instanceId": "relic-b", "where": "sector-store", "picked": false }
+  ],
+  "remote": [
+    { "instanceId": "relic-far", "where": "elsewhere", "picked": false }
+  ]
+}</pre>
+      <h2 style="margin-top:12px;">Contract notes</h2>
+      <pre>Reachable-first join: cargo-tab + sector-store rows above
+the fold, full shelf behind one disclosure (owner-locked).
+Where-it-sits truth stays the sibling overlay's; this fold
+only joins it. Empty shelf is an authored state (GG-17),
+never a blank panel.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

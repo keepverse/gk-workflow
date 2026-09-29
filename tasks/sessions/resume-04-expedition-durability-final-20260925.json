@@ -1,0 +1,20 @@
+{
+  "session": "resume-04-expedition-durability-final-20260925",
+  "program": "expedition",
+  "problem": "Close expedition durable collect replay, database-enforced active membership, archived-save admission, and deterministic concurrency/fault-window coverage without overlapping the web lane's shared Contracts fence.",
+  "mode": "worktree",
+  "branch": "opencode/resume-04-expedition-durability-final-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-04-expedition-durability-final-20260925",
+  "paths": [
+    "src/FusionRpg.Server/ExpeditionEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Expeditions.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.cs",
+    "tests/FusionRpg.Data.Tests/ExpeditionStoreTests.cs",
+    "tests/FusionRpg.Data.Tests/ExpeditionRewardApplyTests.cs",
+    "tests/FusionRpg.E2E.Tests/ExpeditionE2ETests.cs",
+    "tasks/reports/resume-04-expedition-durability-final-20260925.md"
+  ],
+  "started": "2026-09-25T07:04:52Z",
+  "status": "abandoned",
+  "notes": "Worker produced a six-file dirty draft and a partial report. Focused expedition tests passed, but the path-owned Data selection remains red on a reproducible out-of-fence Windows long-path SaveIdentity backup failure (1199/1200 selected Data tests). The draft is preserved; manager acceptance must review the schema/route semantics and keep the out-of-fence failure explicit."
+}

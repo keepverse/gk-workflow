@@ -1,0 +1,11 @@
+{
+  "rulesetVersion": 5,
+  "stompHash": "AF6A4F0C785DB30CB465A356B9F58D3C626AD85AB5827B74B33D1D023D0A59CD",
+  "closeHash": "2734593679CC89F6E1DDC81064FB1A7923B3D0D986B1E52C2D538AECACB085EC",
+  "wipeHash": "D8801D6403BD89B702299A083808AA81936F1BC2B1EA686E802EB8770F79CEF4",
+  "seedSweepHash": "38CCD2CDEF7C5009928B288700ED2938D31F21109159B2789A648EF2C1E5782F",
+  "_meta": {
+    "measuredAt": "2026-09-20T06:59:33.8298194Z",
+    "conditions": "Extracted from gk-core/tests/FusionRpg.Core.Tests/Battle/BattleGoldenTests.cs's four const string Hash declarations — never hand-retyped, so this file cannot itself drift from the test."
+  }
+}

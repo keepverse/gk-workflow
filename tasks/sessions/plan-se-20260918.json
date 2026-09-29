@@ -1,0 +1,15 @@
+{
+  "session": "plan-se-20260918",
+  "program": "solid-enforcement (+ save-identity)",
+  "problem": "Amend the solid-enforcement plan/todo: append save-identity (R3/R17) as wave-4 SE tasks after commander-identity, and re-align commander-identity's tasks with its strengthened spec (lane B foundation of summoner-convergence).",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "started": "2026-09-18T19:00:00Z",
+  "status": "merged",
+  "paths": [
+    "tasks/solid-enforcement-plan.md",
+    "tasks/solid-enforcement-todo.md",
+    "tasks/sessions/plan-se-20260918.json"
+  ]
+}

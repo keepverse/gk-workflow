@@ -1,0 +1,153 @@
+{
+  "job": "BCU2.12 passive-tree J9 species run + J10 census",
+  "head": "775b5a5bc",
+  "branch": "cmdc/seed-corpus-1",
+  "rosterSpecies": 904,
+  "ledgerDoneRows": 2200,
+  "census": {
+    "complete": {
+      "count": 0,
+      "sample": []
+    },
+    "nodesWithoutCodexSupplement": {
+      "count": 4,
+      "sample": [
+        "AbyssSwordStar",
+        "AllPeater",
+        "ArmoredImpZombie",
+        "BambooDragon"
+      ]
+    },
+    "startedIncomplete": {
+      "count": 12,
+      "sample": {
+        "AcientSunNut": {
+          "ledgerRows": 40,
+          "ledgerAccepted": 40,
+          "nodesOnDisk": 0
+        },
+        "Apple": {
+          "ledgerRows": 31,
+          "ledgerAccepted": 31,
+          "nodesOnDisk": 0
+        },
+        "ArmedGargantuar": {
+          "ledgerRows": 38,
+          "ledgerAccepted": 38,
+          "nodesOnDisk": 0
+        },
+        "AshThreePeater": {
+          "ledgerRows": 28,
+          "ledgerAccepted": 28,
+          "nodesOnDisk": 28
+        },
+        "BalloonZombie": {
+          "ledgerRows": 32,
+          "ledgerAccepted": 32,
+          "nodesOnDisk": 0
+        },
+        "Bamboo": {
+          "ledgerRows": 30,
+          "ledgerAccepted": 30,
+          "nodesOnDisk": 0
+        },
+        "BambooFurnace": {
+          "ledgerRows": 31,
+          "ledgerAccepted": 31,
+          "nodesOnDisk": 0
+        },
+        "BambooSpruce": {
+          "ledgerRows": 37,
+          "ledgerAccepted": 37,
+          "nodesOnDisk": 0
+        },
+        "BedRockSnowZombie": {
+          "ledgerRows": 25,
+          "ledgerAccepted": 25,
+          "nodesOnDisk": 0
+        },
+        "BedRockTallNut": {
+          "ledgerRows": 35,
+          "ledgerAccepted": 35,
+          "nodesOnDisk": 0
+        }
+      }
+    },
+    "untouched": 888,
+    "genericTrees": {
+      "count": 42,
+      "total": 1679
+    }
+  },
+  "batchResultsLastPassOnly": {
+    "path": "tools/seedsmith/_j9_batch_run_results.json",
+    "species": 2,
+    "favourUnresolved": [
+      [
+        "<resolved>",
+        2
+      ]
+    ],
+    "nodeKeyRefused": 1,
+    "codexUnresolved": [
+      [
+        "vote_unresolved",
+        1
+      ],
+      [
+        "<resolved>",
+        1
+      ]
+    ],
+    "metadataWritten": 0,
+    "acceptedNodesThisPass": 0,
+    "sample": [
+      {
+        "speciesId": "AbyssSwordStar",
+        "elapsedSeconds": 10.1,
+        "resolvedCell": {
+          "aptitude": "Pierce",
+          "element": "air",
+          "status": "nerve.afflicted"
+        },
+        "favourUnresolvedReason": null,
+        "nodeKeyRefusedReason": null,
+        "outcomeCounts": {},
+        "markedNodeCount": 0,
+        "codexSummary": null,
+        "codexUnresolvedReason": "vote_unresolved",
+        "metadataWritten": false
+      },
+      {
+        "speciesId": "AcientSunNut",
+        "elapsedSeconds": 24.3,
+        "resolvedCell": {
+          "aptitude": "Onslaught",
+          "element": "air",
+          "status": "cold"
+        },
+        "favourUnresolvedReason": null,
+        "nodeKeyRefusedReason": "nameKey 'tree.node.solar-marrow-2' is used by both node index 4 and node index 6 in the same tree — refused, never renamed out from under the model's answer",
+        "outcomeCounts": {},
+        "markedNodeCount": 0,
+        "codexSummary": null,
+        "codexUnresolvedReason": null,
+        "metadataWritten": false
+      }
+    ]
+  },
+  "checkFamilyPassiveTreeTail": [
+    "[NOTE] PassiveTree/QuotaDrift — wither:trigger=OnTimer: wither trigger='OnTimer': corpus shows 3 vs re-derived quota 3 (drift +0)",
+    "[NOTE] PassiveTree/QuotaDrift — wither:trigger=OnWave: wither trigger='OnWave': corpus shows 3 vs re-derived quota 3 (drift +0)",
+    "[NOTE] PassiveTree/SpeciesUniqueness — (corpus): reverse index built over 42 tree(s), 1679 node(s)",
+    "[NOTE] PassiveTree/TreeEqualValue — tree:agility, air, blight, bond, bulwark, butter, charm_pulse, cold, command, composure, dark, earth, ember, expose, ferocity, fire, focus, fortitude, freeze, hypno, ice, jala, kelp, leech, light, might, nerve.afflicted, nerve.shaken, nerve.unsettled, onslaught, pact_mark, pierce, poison, precision, rally, retribution, rot, shatter, spark, spore, vigor, wither: C1, R-A1, P-1 and P-2 all hold across 42 tree(s)",
+    "[NOTE] PassiveTree/UnresolvedCount — affixIds: affixIds: 1/1680 unresolved (0‰), target <= 50‰",
+    "[NOT_MEASURED] PassiveTree/ExclusionResolvable — (suite): blocked on the atom-tag registry (spec-tree-language.md §5.1) — until it lands, an exclusion predicate keys on posture and nothing else, and this gate cannot resolve one against a per-affix atom-tag pool",
+    "",
+    "3031 note, 542 gap, 1 not_measured"
+  ],
+  "gitStatusPorcelainCount": 6,
+  "diffStatTail": [
+    " 2 files changed, 650 insertions(+), 2 deletions(-)"
+  ]
+}

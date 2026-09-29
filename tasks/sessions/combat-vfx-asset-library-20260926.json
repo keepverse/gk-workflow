@@ -1,0 +1,15 @@
+{
+  "session": "combat-vfx-asset-library-20260926",
+  "program": "combat-vfx-asset-library",
+  "problem": "Brainstorm, generate, preserve and commit a reusable combat VFX asset library, beginning with universal action outcomes.",
+  "mode": "worktree",
+  "branch": "codex/actor-hud-bottom-anchor-20260916",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.kilo/worktrees/actor-hud-bottom-anchor-20260916",
+  "paths": [
+    "docs/ideas/combat-vfx-asset-library.md",
+    "src/FusionRpg.Injector/Assets/combat-action-vfx/**",
+    "tasks/sessions/combat-vfx-asset-library-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged"
+}

@@ -1,0 +1,24 @@
+{
+  "session": "strengthen-tvb-20260918",
+  "program": "test-verification-boundary",
+  "problem": "Adversarial strengthen pass over the test-verification-boundary map and specs: citations, R15 CI edits, coupling with solid-enforcement's guard-runner registry edits, Core split correctness, sharding completeness, pre-existing-failure lane behaviour.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/test-verification-boundary-map.md",
+    "docs/architecture/test-verification-boundary/spec-core-registry-rekey.md",
+    "docs/architecture/test-verification-boundary/spec-core-split-analyzer.md",
+    "docs/architecture/test-verification-boundary/spec-core-split-apply.md",
+    "docs/architecture/test-verification-boundary/spec-core-split-wiring.md",
+    "docs/architecture/test-verification-boundary/spec-data-tests-sharding.md",
+    "docs/architecture/test-verification-boundary/spec-python-test-lane.md",
+    "docs/architecture/test-verification-boundary/spec-registry-contract.md",
+    "docs/architecture/test-verification-boundary/spec-seam-coverage.md",
+    "docs/architecture/test-verification-boundary-ideal.md",
+    "docs/architecture/solid-enforcement-map.md",
+    "tasks/sessions/strengthen-tvb-20260918.json"
+  ],
+  "started": "2026-09-18T14:00:00Z",
+  "status": "merged"
+}

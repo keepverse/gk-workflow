@@ -1,0 +1,18 @@
+{
+  "session": "resume-00-fail-closed-merge-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Make merged-head, lane acceptance, and merge consumption fail closed with immutable evidence",
+  "mode": "worktree",
+  "branch": "opencode/resume-00-fail-closed-merge",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-00-fail-closed-merge",
+  "paths": [
+    ".claude/cmdc-agents/scripts/post-merge-check.ps1",
+    ".claude/cmdc-agents/scripts/accept-lane.ps1",
+    ".claude/cmdc-agents/scripts/merge-lanes.py",
+    ".claude/cmdc-agents/scripts/test_fail_closed_pipeline.py",
+    "tasks/sessions/resume-00-fail-closed-merge-20260925.json"
+  ],
+  "started": "2026-09-24T19:07:57Z",
+  "status": "abandoned",
+  "notes": "Manager-owned Phase 0 prerequisite. OpenCode CLI Space Bunny Free max effort, uncapped input/output, no fallback. The worker leaves changes dirty for manager review; no direct merge or push. The manager must review the exact SHA and persist the report before P1 lanes start. The first worker was abandoned after the runtime terminated on a failed read of an out-of-scope helper; its four dirty files remain preserved in the worktree. A recovery lane receives those files as an in-worktree starting point and must independently review and prove them before manager acceptance."
+}

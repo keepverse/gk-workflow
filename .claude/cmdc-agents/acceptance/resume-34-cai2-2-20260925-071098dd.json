@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-34-cai2-2-20260925",
+  "sha": "071098ddc99c247482e25b6e893ab627594aab4d",
+  "expectedSha": "071098ddc99c247482e25b6e893ab627594aab4d",
+  "verdict": "GREEN",
+  "scope": "combat-ai / replay identity (Data column + store read + pin wire)",
+  "checks": [
+    {
+      "check": "dotnet build src/FusionRpg.Server",
+      "exit": 0,
+      "summary": "Build succeeded"
+    },
+    {
+      "check": "dotnet test tests/FusionRpg.Data.Tests --filter WebMatchLogProfileStamp",
+      "exit": 0,
+      "summary": "3/3 passed"
+    },
+    {
+      "check": "dotnet test tests/FusionRpg.Server.Tests --filter CombatAiProfileFiles",
+      "exit": 0,
+      "summary": "8/8 passed"
+    },
+    {
+      "check": "scripts/guard-dal.ps1",
+      "exit": 0,
+      "summary": "DAL GUARD OK"
+    },
+    {
+      "check": "scripts/guard-test-substrate.ps1",
+      "exit": 0,
+      "summary": "TEST SUBSTRATE GUARD OK"
+    },
+    {
+      "check": "whole Server suite",
+      "exit": 1,
+      "summary": "881 passed / 1 failed; the failure reproduces at the parent with the diff stashed -> pre-existing, routed separately"
+    }
+  ],
+  "cleanCheckout": true,
+  "mergeCommit": null,
+  "notes": "The lane FAILED (segment rc=1 during verify-change, 20-min timeout). Manager applied its harvested diff and accepted on the evidence above. Lane never returned a final report; its turn log is the only self-record."
+}

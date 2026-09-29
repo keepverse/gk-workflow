@@ -1,0 +1,63 @@
+{
+  "lane": "sgc-4",
+  "when": "2026-09-22T03:12:21",
+  "sha": "4cc7b4c5",
+  "logDir": "D:\\tmp\\accept-sgc-4-20260922-031214",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-031214\\boundary.log"
+    },
+    {
+      "check": "tuning-publish",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-031214\\tuning-publish.log"
+    },
+    {
+      "check": "items-upgrade",
+      "exit": 0,
+      "seconds": 3,
+      "summary": "Passed!  - Failed:     0, Passed:    33, Skipped:     0, Total:    33, Duration: 128 ms - FusionRpg.Core.Items.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-031214\\items-upgrade.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-031214\\ledger.log"
+    }
+  ],
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 1
+  },
+  "contendedTree": false,
+  "verdict": "UNATTRIBUTED (1 red check(s); 1 with NO parsed failure -- read the log, this is NOT registered debt)"
+}

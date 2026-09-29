@@ -1,0 +1,24 @@
+{
+  "session": "narrative-spec-r5-20260920",
+  "program": "npc-story-events + narrative-seed",
+  "problem": "Apply owner rulings of 2026-09-20 (round 5) to the narrative specs: world claim loot pulled into npc-story-events, fog-correct counter-doctrine reading, climate derived from sector type. Docs only.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/narrative-spec-r5-20260920.json",
+    "docs/architecture/npc-story-events/**",
+    "docs/architecture/npc-story-events-map.md",
+    "docs/architecture/narrative-seed/**",
+    "docs/architecture/narrative-seed-map.md",
+    "docs/architecture/npc-story-events-ideal.md",
+    "docs/architecture/power/ssot-power-scale.md"
+  ],
+  "started": "2026-09-19T20:30:00Z",
+  "status": "merged",
+  "notes": [
+    "Owner answers 2026-09-20: world claim loot pulled into npc-story-events as a prerequisite module; the Rotwright reads only what his faction observed (fog-correct); world storylet climate derived from sector type; ssot-power-scale §8 row 6 corrected (a876f9f8).",
+    "Charter: same conversation charter - Claude Code native, opus, plan quota, stop on quota/limit error; one agent. Crossing with worktree lanes B/C/D broad globs as before.",
+    "Round 5 committed (34c161cd). Owner round 6 (2026-09-20): R20 world storylets read the sector's own climate (retire the sector-type registry); R21 add the Anomaly slot to some sector types as an npc-story-events prerequisite, new worlds only; R22 fix the mythic claim bonus seed inside world-claim-loot via WorldSeed.DeriveRollSeed.",
+    "Closed 2026-09-20: rounds 5-6 committed (34c161cd and the round-6 commit). Open dependencies, not owner questions: the anomaly template half waits on world-continuity's WorldCreation.Rebuild; no template places a Vault yet."
+  ]
+}

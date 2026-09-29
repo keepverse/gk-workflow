@@ -1,0 +1,58 @@
+{
+  "sha": "ed4a5a8a",
+  "when": "2026-09-21T12:11:24",
+  "lane": "ns-1",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ns-1-20260921-121052\\boundary.log"
+    },
+    {
+      "check": "core-fog",
+      "exit": 0,
+      "seconds": 14,
+      "summary": "Passed!  - Failed:     0, Passed:    88, Skipped:     0, Total:    88, Duration: 250 ms - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ns-1-20260921-121052\\core-fog.log"
+    },
+    {
+      "check": "server-notify",
+      "exit": 0,
+      "seconds": 16,
+      "summary": "Passed!  - Failed:     0, Passed:    57, Skipped:     0, Total:    57, Duration: 7 s - FusionRpg.Server.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ns-1-20260921-121052\\server-notify.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ns-1-20260921-121052\\ledger.log"
+    }
+  ],
+  "logDir": "D:\\tmp\\accept-ns-1-20260921-121052",
+  "contendedTree": false,
+  "verdict": "GREEN"
+}

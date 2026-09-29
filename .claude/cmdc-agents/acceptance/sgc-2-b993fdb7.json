@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-140411\\boundary.log"
+    },
+    {
+      "check": "seedsmith-setgen",
+      "exit": 0,
+      "seconds": 25,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-140411\\seedsmith-setgen.log"
+    },
+    {
+      "check": "boundaries-guard",
+      "exit": 0,
+      "seconds": 42,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-140411\\boundaries-guard.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-140411\\ledger.log"
+    }
+  ],
+  "sha": "b993fdb7",
+  "when": "2026-09-21T14:05:21",
+  "contendedTree": false,
+  "logDir": "D:\\tmp\\accept-sgc-2-20260921-140411",
+  "lane": "sgc-2",
+  "verdict": "GREEN"
+}

@@ -1,0 +1,17 @@
+{
+  "session": "resume-19-rpg-simulator-defeat-floor-acceptance-20260925",
+  "program": "rpg-simulator",
+  "problem": "Manager exact-SHA follow-up acceptance of the late RS-F27 tightening from non-empty ledger to a real player:defeat row.",
+  "mode": "worktree",
+  "branch": "review/rpg-simulator-defeat-floor-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-rpg-simulator-defeat-floor-20260925",
+  "paths": [
+    "tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs",
+    "tests/fixtures/rpg-scenarios/first-session-forward.json",
+    "tasks/reports/resume-13-rpg-simulator-rsf27-20260925.md",
+    "tasks/reports/resume-19-rpg-simulator-defeat-floor-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T14:00:00Z",
+  "status": "merged",
+  "notes": "Manager-owned follow-up review after stopping the late worker. No amend of the prior RS-F27 artifact; exact clean-SHA proof required."
+}

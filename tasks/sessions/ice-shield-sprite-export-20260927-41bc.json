@@ -1,0 +1,31 @@
+{
+  "session": "ice-shield-sprite-export-20260927-41bc",
+  "program": "blender-ice-shield",
+  "problem": "Consolidate the accepted Ice Shield V3 Blender source and its local assets into the main checkout, establish the Blender art workflow, and render four game-ready 2D sprite effects in Fire Shield's flipbook format.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/sessions/ice-shield-sprite-export-20260927-41bc.json",
+    "blender/AGENTS.md",
+    "blender/README.md",
+    "blender/assets/vfx/ice_shield/**",
+    "blender/tools/shield_ice_build.py",
+    "blender/tools/shield_ice_lifecycle_scene.py",
+    "blender/tools/shield_ice_v4_build.py",
+    "blender/tools/extract_ice_shield_v3_materials.py",
+    "blender/tools/shield_ice_lifecycle_export.py",
+    "blender/vfx/index.json",
+    "blender/vfx/shield_ice_lifecycle/**",
+    "blender/vfx/shield_ice_idle/**",
+    "blender/vfx/shield_ice_cast/**",
+    "blender/vfx/shield_ice_impact/**",
+    "blender/vfx/shield_ice_break/**"
+  ],
+  "started": "2026-09-27T05:06:39Z",
+  "status": "merged",
+  "sharedWith": [
+    "ps1-ban-manager-20260926"
+  ],
+  "sharedNote": "Owner explicitly confirmed that Blender is free to modify on features/mega-merge, then directed migration of the Ice Shield V3 artwork out of the unnecessary codex/ice-shield-vfx worktree and removal of that worktree. The ps1-ban session has an umbrella blender/ path but is not editing it. This session owns only the listed Ice source/asset/export paths, Blender-local workflow rule and README, and Ice effect index entries. Preserve unrelated Fire Shield assets and other sessions' files."
+}

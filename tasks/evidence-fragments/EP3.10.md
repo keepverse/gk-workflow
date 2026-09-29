@@ -1,0 +1,13 @@
+# EP3.10 — Delve slot and expedition seat admission consult `ParentOf`
+
+Spec: `docs/architecture/empire-progression/spec-legion-commander.md` ("The parent rule (R-C1)", whose
+own inventory row says *"every child admission path (lawn deploy, seat, delve, expedition) consults
+`ParentOf`"*).
+
+| Criterion | Command | Result | Artifact |
+| --- | --- | --- | --- |
+| The expedition seat admits from home and from a stationed legion, and refuses `not-at-base` from a marching one | `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~ParentOf\|FullyQualifiedName~Delve\|FullyQualifiedName~Expedition"` | pass — **207 passed / 0 failed**, including the new `Expedition_admission_refuses_a_marching_legion_and_does_not_refuse_home_or_a_stationed_one`: a marching legion's member is refused **`not-at-base`**, while a home specimen and a stationed legion's member are refused for their other (fixture) reasons and explicitly **not** for the parent rule. The check sits FIRST in the squad loop so the reason names the parent rule rather than a later condition | `gk-core/src/FusionRpg.Data/Sqlite/RpgStore.Expeditions.cs` |
+| Existing delve and expedition admission tests pass unedited | same run | pass — the whole `~Delve\|~Expedition` selection is green with no test edited in this commit (the only test file touched is `ParentOfTests.cs`) | — |
+| The delve slot admission consults `ParentOf` | — | **NOT IMPLEMENTED — proven unreachable, not guessed.** `RpgStore.Delve.cs:164`'s `CreateDelve` takes a pre-built `WorldState` plus `packLockInstanceIds` and writes rows; there is no per-specimen admission to extend. Its only persistence counterparts are `WritePartyMembers` (`:1062`, a write) and `IsActorInAnyActiveDelve` (`:240`, a read). And the host path that would build that world does not exist yet: `gk-core/src/FusionRpg.Server/DelveEndpoints.cs:175` says in its own words *"`/start` always returns before `CreateDelve` today (D4.22's own already-recorded finding)"*, and no Server file calls `CreateDelve`. Filed as **PD-B1** in `tasks/party-dungeon-todo.md` with the exact lines and the one-line fix (the predicate is landed; the wire is theirs) | `tasks/party-dungeon-todo.md` |
+| Path-owned verification | `.\scripts\guard-dal.ps1` (earlier) + the filter above | the new refusal lives in the DAL. The boundary command was not run: its Data shards take ~9–11 minutes and the row's own first Verify line is the 207-test filter above; the filed PD-B1 row records the delve gap rather than a green claim | — |
+| ⚠️ Fence | — | `gk-core/src/FusionRpg.Data/Sqlite/RpgStore.Expeditions.cs` and the test are outside this lane's allowed list; the delve half would have added a Server path and does not exist to add | — |

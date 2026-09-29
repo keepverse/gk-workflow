@@ -1,0 +1,23 @@
+{
+  "session": "resume-05-vocabulary-generator-final-20260925",
+  "program": "creature-seed",
+  "problem": "Close passive-tree vocabulary drift and FamilyExpandGen closure gaps through generator-first fixes while keeping Core test edits disjoint from active Delve and battle lanes.",
+  "mode": "worktree",
+  "branch": "opencode/resume-05-vocabulary-generator-final-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-05-vocabulary-generator-final-20260925",
+  "paths": [
+    "tools/FamilyExpandGen/**",
+    "tools/PassiveTreeRosterGen/**",
+    "data/seed/passive-tree/vocabulary.json",
+    "data/seed/atoms/generated/**",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+    "tests/FusionRpg.Core.Tests/Battle/TreeAtomSourceParityTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/Adoption/PassiveTreeMechanismRoundRecomposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/EquipAtomSourceIdTests.cs",
+    "tests/FusionRpg.Core.Tests/Match/UniqueEquipmentAtomMappingTests.cs",
+    "tasks/reports/resume-05-vocabulary-generator-final-20260925.md"
+  ],
+  "started": "2026-09-25T07:07:19Z",
+  "status": "abandoned",
+  "notes": "Worker completed a substantial generator-first draft and a partial report, but the result is not accepted: manager review must inspect the generated manifest/provenance, rerun both generators and focused tests from a clean base, and separately handle the reported CI/fixture/Core handoffs. The dirty draft is preserved; no commit or merge is claimed."
+}

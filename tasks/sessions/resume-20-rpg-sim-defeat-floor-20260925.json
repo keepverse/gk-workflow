@@ -1,0 +1,16 @@
+{
+  "session": "resume-20-rpg-sim-defeat-floor-20260925",
+  "program": "rpg-simulator",
+  "problem": "Implement and self-verify the RS-F27 real defeat progression-ledger floor in a fresh worktree.",
+  "mode": "worktree",
+  "branch": "opencode/resume-20-rpg-sim-defeat-floor-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-20-rpg-sim-defeat-floor-20260925",
+  "paths": [
+    "tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs",
+    "tasks/reports/resume-20-rpg-simulator-defeat-floor-20260925.md",
+    "tasks/sessions/resume-20-rpg-sim-defeat-floor-20260925.json"
+  ],
+  "started": "2026-09-25T10:20:13Z",
+  "status": "abandoned",
+  "notes": "Worker completed under the no-commit lane rule. Manager harvested its two owned paths into reviewed SHA 4f78ed6c9ebe744c2b69232d325a67348161326f, recorded clean-checkout acceptance, and left the worker branch unmerged pending the dirty integration cleanup boundary. The accepted resume-13 report was not rewritten."
+}

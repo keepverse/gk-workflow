@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-09-battle-guard-repin-20260925",
+  "sha": "78f4db6fd4d80dfd25feaad4b070bb2b955418bc",
+  "expectedSha": "78f4db6fd4d80dfd25feaad4b070bb2b955418bc",
+  "shortSha": "78f4db6f",
+  "mergedSha": "3036350b65316412bb6d54b49062996c8142293c",
+  "verdict": "GREEN",
+  "scope": "H1 deliberate BattleEffects byte-pin re-pin after accepted P1 battle repair; CAI-guard-1 ledger note",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-09-battle-guard-repin-20260925",
+  "checks": [
+    {
+      "check": "plant-side-status-clean",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter FullyQualifiedName~PlantSideStatus",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "6 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-09-battle-guard-repin-20260925/plant-side-status.log",
+      "logSha256": "C5E4DE78639638182AC638CDE6E50B9F168199B776A66D1BB3D611EF2F27BFAA",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git worktree add --detach <temporary-clean-checkout> 78f4db6fd4d80dfd25feaad4b070bb2b955418bc; focused test; git diff --check; git status --porcelain=v1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused test 6/6 and clean tree",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-09-battle-guard-repin-20260925/clean.log",
+      "logSha256": "C5E4DE78639638182AC638CDE6E50B9F168199B776A66D1BB3D611EF2F27BFAA",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs",
+    "tasks/combat-ai-todo.md",
+    "tasks/reports/resume-09-battle-guard-repin-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "78f4db6fd4d80dfd25feaad4b070bb2b955418bc",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "The earlier merged-head run that exposed this red was stale and also had legal-game/interops build errors; it is not current-head evidence.",
+    "The current-head post-merge gate must still be rerun after active lanes and reports stabilize."
+  ],
+  "mergeScope": "The H1 guard re-pin and CAI-guard-1 routing note are accepted and merged; no production behavior changed by this repair.",
+  "when": "2026-09-25T09:45:00Z"
+}

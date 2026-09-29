@@ -1,0 +1,16 @@
+{
+  "session": "strengthen-save-20260918",
+  "program": "solid-enforcement (save-identity + commander-identity)",
+  "problem": "Adversarial strengthen pass over the save-identity and commander-identity specs and their solid-enforcement map rows: R3/R17 conformance, migration safety, cross-program player-id keying sweep, injector surfaces, owed decisions.md rows (drafted in spec only).",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/solid-enforcement/spec-save-identity.md",
+    "docs/architecture/solid-enforcement/spec-commander-identity.md",
+    "docs/architecture/solid-enforcement-map.md",
+    "tasks/sessions/strengthen-save-20260918.json"
+  ],
+  "started": "2026-09-18T20:00:00Z",
+  "status": "merged"
+}

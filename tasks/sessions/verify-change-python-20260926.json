@@ -1,0 +1,28 @@
+{
+  "session": "verify-change-python-20260926",
+  "program": "test-verification-boundary",
+  "problem": "Port scripts/verify-change.ps1 to Python and fix the guard-step testhost race that breaks the scoped gate, so the verification plane stops blocking ordinary development cycles. Owner-authorized 2026-09-26: migrate to Python AND fix it now.",
+  "mode": "worktree",
+  "branch": "port/verify-change-python-20260926",
+  "worktree": ".claude/worktrees/verify-change-python-20260926",
+  "paths": [
+    "scripts/verify-change.py",
+    "scripts/verify-change.ps1",
+    "scripts/lib/VerificationBoundaries.ps1",
+    "scripts/lib/verification_boundaries.py",
+    "tests/tools/test_verify_change.py",
+    "tests/FusionRpg.Guard.Tests/VerificationBoundaryWorkflowTests.cs",
+    "tests/FusionRpg.Guard.Tests/SplitCoreVerificationMappingTests.cs",
+    "scripts/verification-boundaries.v1.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/contributing/testing-standard.md",
+    "docs/architecture/validation-ssot.md",
+    "docs/architecture/test-verification-boundary-ideal.md",
+    "tasks/reports/verify-change-python-20260926.md",
+    "tasks/sessions/verify-change-python-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "DELEGATED PATHS: the manager session mega-merge-program-manager-20260925-f78e carries a broad fence that also names scripts/verify-change.ps1 and scripts/run-guards.ps1. Those two are delegated to THIS lane for the port; the manager keeps every other path in its fence. No other active session claims them - ps1-ban-manager-20260926 claims only its own plan/todo/report/map. The ps1-ban program is retiring PowerShell separately and does NOT own this script, so the port is not duplicated. Agent does NOT merge; the manager reviews the exact SHA."
+}

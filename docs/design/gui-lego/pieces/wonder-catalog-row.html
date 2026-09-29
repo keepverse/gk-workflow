@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonder-catalog-row — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>wonder-catalog-row</code></h1>
+  <p class="lede">Catalog row — one buildable Wonder (identity piece, live cap-count line, locked teasers as peers). Consumed by the <code>wonder-composer</code> recipe; mount binds <code>foldWonderComposerVm.catalogRows</code>. Rows lead with price + requirement (relic count + nights); details behind the select. An unbuildable row names its blocker on the control (GG-55). Authored name only — never the raw id (GG-62). Scope/rarity badges declare pack slots (<code>wonder-scope-*</code> / <code>wonder-rarity-*</code>, owned by 4D.4 — referenced by contract, never painted here). <code>Common</code> never renders a painted-full gauge (GG-64).</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> Names/effect sentences below are placeholders (idea-ui-phase §1). Status: <strong>pending-owner-review</strong> (see <code>recipes/wonder-composer.ACCEPTANCE.md</code>). Mount is built behind that recorded checkpoint per Task 4D.3 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage" style="display:grid;gap:8px;max-width:560px;">
+        <div data-testid="wonder-catalog" role="list" aria-label="Buildable wonders" style="display:grid;gap:8px;">
+          <button type="button" role="listitem" data-testid="wonder-row" data-structure-id="standing-stones" data-selected="true" data-buildable="true" style="text-align:left;border:1px solid var(--border-control);border-radius:6px;padding:10px;background:var(--panel-inset);">
+            <span data-testid="wonder-row-name" style="display:block;font-size:14px;color:var(--text);">DRAFT: Standing Stones</span>
+            <span data-testid="wonder-row-price" style="display:block;font-size:12px;color:var(--muted);">DRAFT: Asks for 1 piece of treasure · rises over 4 nights</span>
+            <span data-testid="wonder-row-effect" style="display:block;font-size:12px;color:var(--muted);">DRAFT: this ground earns faster each night</span>
+            <span style="display:flex;gap:6px;margin-top:6px;">
+              <span data-testid="wonder-row-scope-badge" data-theme-ref="wonder-scope.Sector" style="font-size:11px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;">DRAFT: Sector</span>
+              <span data-testid="wonder-row-rarity-badge" data-theme-ref="wonder-rarity.Common" style="font-size:11px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;">DRAFT: Common</span>
+            </span>
+            <span data-testid="wonder-row-cap-line" data-cap-state="uncapped" style="display:block;margin-top:4px;font-size:11px;color:var(--muted);">DRAFT: raisable on any open ground — no cap</span>
+          </button>
+          <button type="button" role="listitem" data-testid="wonder-row" data-structure-id="sunspire-throne" data-selected="false" data-buildable="true" style="text-align:left;border:1px solid var(--border);border-radius:6px;padding:10px;background:var(--panel-inset);">
+            <span data-testid="wonder-row-name" style="display:block;font-size:14px;color:var(--text);">DRAFT: Sunspire Throne</span>
+            <span data-testid="wonder-row-price" style="display:block;font-size:12px;color:var(--muted);">DRAFT: Asks for 3 pieces of treasure · rises over 6 nights</span>
+            <span data-testid="wonder-row-effect" style="display:block;font-size:12px;color:var(--muted);">DRAFT: every holding earns faster each night</span>
+            <span style="display:flex;gap:6px;margin-top:6px;">
+              <span data-testid="wonder-row-scope-badge" data-theme-ref="wonder-scope.Empire" style="font-size:11px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;">DRAFT: Empire</span>
+              <span data-testid="wonder-row-rarity-badge" data-theme-ref="wonder-rarity.Unique" style="font-size:11px;border:1px solid var(--border);border-radius:4px;padding:2px 6px;">DRAFT: Unique</span>
+            </span>
+            <span data-testid="wonder-row-cap-line" data-cap-state="live" style="display:block;margin-top:4px;font-size:11px;color:var(--muted);">DRAFT: 0 of cap raised</span>
+          </button>
+          <div role="listitem" data-testid="wonder-row" data-structure-id="locked:World" data-selected="false" data-buildable="false" style="border:1px dashed var(--border);border-radius:6px;padding:10px;background:var(--soil-raised);opacity:.85;">
+            <span data-testid="wonder-row-name" style="display:block;font-size:14px;color:var(--muted);">DRAFT: A work beyond this age</span>
+            <span data-testid="wonder-row-locked-reason" style="display:block;font-size:12px;color:var(--muted);">DRAFT: not yet sung into the world — World-scope works are not raisable</span>
+            <span style="display:flex;gap:6px;margin-top:6px;">
+              <span data-testid="wonder-row-scope-badge" data-theme-ref="wonder-scope.World" data-not-yet="true" style="font-size:11px;border:1px dashed var(--border);border-radius:4px;padding:2px 6px;">DRAFT: World (not yet)</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "wonder-catalog-row",
+  "rows": [
+    {
+      "structureId": "standing-stones",
+      "name": "DRAFT: Standing Stones",
+      "scope": "Sector",
+      "rarity": "Common",
+      "relicCost": 1,
+      "buildTurns": 4,
+      "capLine": null,
+      "capState": "uncapped",
+      "buildable": true,
+      "blocker": null,
+      "themeRefs": {
+        "scope": "wonder-scope.Sector",
+        "rarity": "wonder-rarity.Common"
+      }
+    },
+    {
+      "structureId": "sunspire-throne",
+      "name": "DRAFT: Sunspire Throne",
+      "scope": "Empire",
+      "rarity": "Unique",
+      "relicCost": 3,
+      "buildTurns": 6,
+      "capLine": "DRAFT: 0 of cap raised",
+      "capState": "live",
+      "buildable": true,
+      "blocker": null,
+      "themeRefs": {
+        "scope": "wonder-scope.Empire",
+        "rarity": "wonder-rarity.Unique"
+      }
+    }
+  ],
+  "lockedTeasers": [
+    {
+      "id": "locked:World",
+      "scope": "World",
+      "reason": "DRAFT: not yet sung into the world",
+      "themeRef": "wonder-scope.World"
+    }
+  ]
+}</pre>
+      <h2 style="margin-top:12px;">Contract notes</h2>
+      <pre>Price-first rows, live cap lines on every capped row
+(owner-locked — the fold MUST render them).
+Common renders buildable-on-cap-grounds, never a gauge (GG-64).
+Reserved tiers render as locked peers with reason (GG-17/GG-44) —
+never buildable, never a promise of a date.
+Unknown ids fall to the designed placeholder, never id-words.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

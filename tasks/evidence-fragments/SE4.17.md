@@ -1,0 +1,17 @@
+# SE4.17 — Steps 3–4: seed every save's empires; rebuild the two Tier A tables
+
+Spec: docs/architecture/solid-enforcement/spec-save-identity.md (steps 3–4; decisions S2/S3)
+Dormant: reached only from the migration (SE4.20 activates it).
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| Step 3 seeds every save (all rows but a Zomboss-only legacy row) through the **one** `SeedSaveEmpiresUnlocked`, idempotent with SE4.12's current-save seeding | `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~SaveIdentity" --nologo` | pass — `Step_three_seeds_a_save_that_lost_its_empires` (rows deleted, migration restores them); the seeder is now `internal static` so `CreatePlayer`, `SetCurrentPlayer` and the migration all call the same function | `gk-core/src/FusionRpg.Data/Sqlite/Migrations/SaveIdentity.cs` (`SeedEverySave`); `RpgStore.SaveEmpires.cs` |
+| `rpg_actor_progression` / `rpg_xp_ledger` renamed `<name>__pre_save_identity` and kept; new tables `(save_id, empire_id, kind, type_id)` / `UNIQUE (save_id, empire_id, kind, type_id, reason, dedupe_key)`; **new** index names | same | pass — `A_progression_row_is_copied_onto_its_saves_human_empire_and_the_legacy_table_is_kept` asserts both legacy tables exist with rows; `The_rebuilt_tables_take_new_index_names_and_read_by_save_and_empire` asserts `ix_rpg_actor_progression_save_empire` + `ix_rpg_xp_ledger_save_empire`; the old names stay with the renamed tables | `SaveIdentity.cs` (`RebuildTierATables`) |
+| Every row copied onto `HumanEmpireOf(save)`, history never re-attributed | same | pass — the same fact asserts every new row's `empire_id` is the save's human empire and the row count matches; the copy is per-save (`HumanEmpireOfOrNull`, one query per save) | same |
+| A Zomboss-only row's rows stay behind and are counted | same | pass — `A_zomboss_only_rows_progression_stays_on_the_legacy_table_and_is_counted`: `leftBehind > 0` for both tables, the new tables are empty, the legacy table keeps the rows. Direct `RebuildTierATables(db, verdict)` call: a Zomboss-only row *with* progression is itself save evidence in step 2, so this branch is defense-in-depth for retained history | same |
+| Verify | `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~SaveIdentity" --nologo`; `.\scripts\verify-change.ps1 -Paths @('gk-core/src/FusionRpg.Data/Sqlite/Migrations/SaveIdentity.cs','gk-core/src/FusionRpg.Data/Sqlite/RpgStore.SaveEmpires.cs','gk-core/tests/FusionRpg.Data.Tests/Saves/SaveIdentityMigrationTests.cs','gk-core/tests/FusionRpg.Data.Tests/Saves/SaveIdentityFixtures.cs','gk-core/tests/FusionRpg.Data.Tests/Saves/SaveEmpiresStoreTests.cs','gk-core/tests/FusionRpg.Data.Tests/Saves/SpecimenOwnershipTests.cs','gk-core/tests/FusionRpg.Data.Tests/Saves/SaveOfRunTests.cs','gk-core/tests/FusionRpg.Data.Tests/Saves/NewSaveEmpiresHostWiringTests.cs','gk-core/scripts/verification-boundaries.v1.json') -Session summoner-convergence-lane-b-20260919` | pass — 18/18; verify-change exit 0 (dal + test-substrate; `data.save-identity` 18/18; `data.save-empires` 14/14; `guard.verification-boundaries` 14/14) | gate recorded |
+
+Boundary repair in the same commit: `RpgStore.SaveEmpires.cs` was on `data-fallback` (whole Data project,
+over the agent cap), and this task makes it the migration's seeder seam. Added owner `data-save-empires`
+→ `data.save-empires` over it and its four test files (`SaveEmpiresStoreTests`, `SpecimenOwnershipTests`,
+`SaveOfRunTests`, `NewSaveEmpiresHostWiringTests`); `guard-verification-boundaries.py` OK.

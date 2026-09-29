@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "debug-mcp": {
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/tools/debug-mcp/server.py"
+      ]
+    }
+  }
+}

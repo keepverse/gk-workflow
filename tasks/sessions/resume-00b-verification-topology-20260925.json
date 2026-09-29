@@ -1,0 +1,25 @@
+{
+  "session": "resume-00b-verification-topology-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Close executable verification-topology and release-superset false-green paths without overlapping the active build-preset registry edit",
+  "mode": "worktree",
+  "branch": "opencode/resume-00b-verification-topology",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-00b-verification-topology",
+  "paths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/nightly.yml",
+    "scripts/run-guards.ps1",
+    "scripts/guard-generated-seed.ps1",
+    "scripts/verify-change.ps1",
+    "scripts/session-boundary-check.ps1",
+    "scripts/enforcement-registry.v1.json",
+    "scripts/publish-player.ps1",
+    "tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs",
+    "tests/FusionRpg.Guard.Tests/VerificationTopologyTests.cs",
+    "tasks/sessions/resume-00b-verification-topology-20260925.json"
+  ],
+  "started": "2026-09-24T19:29:32Z",
+  "status": "abandoned",
+  "notes": "Phase 0B worker completed with runner state partial and a dirty, uncommitted diff. Its result JSON records focused tests and parse checks, but no worktree markdown report and no exact-SHA acceptance were produced; the runner's all-changed placeholder verification command was invalid. The dirty worktree is preserved. Manager acceptance is now owned by a separate clean review session; no direct commit, push, or merge from this worker."
+}

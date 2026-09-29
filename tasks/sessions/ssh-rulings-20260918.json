@@ -1,0 +1,22 @@
+{
+  "session": "ssh-rulings-20260918",
+  "program": "strain-splice-host",
+  "problem": "Apply owner rulings R11 (helm to 4 sockets in sockets.v2), R12 (no per-actor combination cap; retire maxCombosPerActor, price scarcity instead) and R13 (still-blocked grid cells reported by id, no auto-withdraw) from docs/architecture/spec-rulings-2026-09-18.md to the strain-splice-host map, its module specs, and the ideal's ruling-3 revision line. Docs only; no code, data, or tuning edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/architecture/strain-splice-host/spec-circuit-topology.md",
+    "docs/architecture/strain-splice-host/spec-combination-regen.md",
+    "docs/architecture/strain-splice-host/spec-combo-bind.md",
+    "docs/architecture/strain-splice-host/spec-combo-budget.md",
+    "docs/architecture/strain-splice-host/spec-socket-pricing.md",
+    "docs/architecture/strain-splice-host/spec-host-gate.md",
+    "docs/architecture/strain-splice-host/spec-tier-ladder.md",
+    "docs/architecture/strain-splice-host-ideal.md",
+    "tasks/sessions/ssh-rulings-20260918.json"
+  ],
+  "started": "2026-09-18T18:00:00Z",
+  "status": "merged"
+}

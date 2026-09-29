@@ -1,0 +1,302 @@
+{"ts":"2026-09-20T08:42:22Z","kind":"anchor","plan":"tasks/test-verification-boundary-plan.md","todo":"tasks/test-verification-boundary-todo.md","session":"tvb-wave5-20260920","specs":["docs/architecture/test-verification-boundary/spec-core-split-analyzer.md","docs/architecture/test-verification-boundary/spec-core-split-apply.md","docs/architecture/test-verification-boundary/spec-core-split-wiring.md"],"standards":"PRINCIPLES + DESIGN-GATE testing row + decisions locks, read 2026-09-20; own Wave 5 only, waves 4/6 owned by summoner-convergence-lane-d2 (its own ledger, never write it)","queue":["TVB5.1.k","TVB5.2","TVB5.3","TVB5.4","TVB5.5","TVB5.6","TVB5.7","TVB5.9"],"mark":"mk1-ce86134999fc90f7"}
+{"ts":"2026-09-20T08:42:32Z","kind":"note","text":"TVB1.10's real run (evidence tvb1-10.md) found 0 BLOCKS SPLIT findings repo-wide -- TVB5.1.k has zero real instances at this manifest's granularity. Will tick as satisfied vacuously, not invent a fix.","mark":"mk1-9695ee0e72cc8ec3"}
+{"ts":"2026-09-20T08:42:32Z","kind":"note","text":"TVB5.8.k's exact instances (one per remaining manifest project after TVB5.7) are not yet known until TVB5.5 authors the manifest from TVB1.10's 65-clean-project default. Queue will be extended via a queue update once the manifest exists.","mark":"mk1-e006d43b697ebfec"}
+{"ts":"2026-09-20T08:43:09Z","kind":"task","id":"TVB5.1.k","state":"started","mark":"mk1-a3fe1bb7a67a8edc"}
+{"ts":"2026-09-20T08:47:30Z","kind":"task","id":"TVB5.1.k","state":"done","evidence":"tasks/evidence-fragments/tvb5-1.md","mark":"mk1-c16c42a2aa3176f1"}
+{"ts":"2026-09-20T08:47:38Z","kind":"note","text":"Fresh run at HEAD 57710318: 68 clean (was 65), residual unchanged (10 folders). BLOCKS SPLIT empty. Workspace is now clean-candidate and collides with keepverse-split.json's live claim -- avoid as an early increment.","mark":"mk1-5326f8f1c9fc5df9"}
+{"ts":"2026-09-20T08:48:21Z","kind":"task","id":"TVB5.2","state":"started","mark":"mk1-55aae5347b828487"}
+{"ts":"2026-09-20T09:02:37Z","kind":"task","id":"TVB5.2","state":"done","evidence":"tasks/evidence-fragments/tvb5-2.md","mark":"mk1-f6d36b4a81ac1c7b"}
+{"ts":"2026-09-20T09:03:12Z","kind":"task","id":"TVB5.3","state":"started","mark":"mk1-95e9b5f197088803"}
+{"ts":"2026-09-20T09:14:54Z","kind":"task","id":"TVB5.3","state":"done","evidence":"tasks/evidence-fragments/tvb5-3.md","mark":"mk1-8d91353ee4d9ce57"}
+{"ts":"2026-09-20T09:16:56Z","kind":"task","id":"TVB5.4","state":"started","mark":"mk1-73a233d21d86c1fb"}
+{"ts":"2026-09-20T09:23:28Z","kind":"task","id":"TVB5.4","state":"done","evidence":"tasks/evidence-fragments/tvb5-4.md","mark":"mk1-a627468aabbe7df9"}
+{"ts":"2026-09-20T09:24:16Z","kind":"task","id":"TVB5.5","state":"started","mark":"mk1-b2afc531dcabe185"}
+{"ts":"2026-09-20T09:34:14Z","kind":"note","text":"TVB5.5 authoring found a real SplitPlanner (TVB5.3) bug: Links assumed residual-relative, wrong for the 2 real cases (Injector files, DataTestStore.cs). Fixed + tested.","mark":"mk1-0e259bd5abcd5520"}
+{"ts":"2026-09-20T09:34:14Z","kind":"note","text":"Also: 40/68 analyzer candidates are root files whose proposed include (Name/**) matches nothing -- fixed in the authored manifest (hand-authored per A1), not the analyzer.","mark":"mk1-b60579db44cf4588"}
+{"ts":"2026-09-20T10:15:44Z","kind":"note","text":"Coordinator: verify-change/VerificationBoundaryWorkflowTests time out under today's machine load (25+ dotnet procs), not a real check of this change; killed both bg runs, use direct evidence instead.","mark":"mk1-4e2456717125bdec"}
+{"ts":"2026-09-20T10:15:44Z","kind":"task","id":"TVB5.5","state":"done","evidence":"tasks/evidence-fragments/tvb5-5.md","mark":"mk1-27076d893a018c8b"}
+{"ts":"2026-09-20T10:17:05Z","kind":"task","id":"TVB5.6","state":"started","mark":"mk1-ad93ec3fefe6cf4e"}
+{"ts":"2026-09-20T10:28:51Z","kind":"task","id":"TVB5.6","state":"done","evidence":"tasks/evidence-fragments/tvb5-6.md","mark":"mk1-50278c79b34d94cf"}
+{"ts":"2026-09-20T10:38:55Z","kind":"note","text":"TVB5.7 first live apply attempt failed clean (exit 1, auto-reverted): generated csproj missing TargetFramework (NETSDK1013). Fixed + found a second bug (XML comment used // syntax, MSB4067). Both fixed, new real-dotnet-build regression test added.","mark":"mk1-ca3af841afeedc49"}
+{"ts":"2026-09-20T13:00:06Z","kind":"note","text":"Session tvb57 (worktree cmdc-tvb57) continues Wave 5, starting at TVB5.7.","mark":"mk1-a595f54336801cf3"}
+{"ts":"2026-09-20T13:00:06Z","kind":"note","text":"Finding: brief's allowed paths exclude src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs and FusionRpg.slnx, which split --apply writes. Task's own Files line names both; proceeding and flagging.","mark":"mk1-846240d16505bcda"}
+{"ts":"2026-09-20T13:00:06Z","kind":"task","id":"TVB5.7","state":"started","mark":"mk1-24fb7e077a10eb12"}
+{"ts":"2026-09-20T13:00:35Z","kind":"note","text":"BLOCKED: pipeline guard refuses edit of .github/workflows/ci.yml and release.yml (protected CI). TVB5.7 wiring needs both in the same commit; recording and continuing with eligible work.","mark":"mk1-d90ca6e905697d10"}
+{"ts":"2026-09-20T13:01:51Z","kind":"note","text":"Apply gate found a real defect: shared ContractTuningTestBootstrap.cs uses Core internals (PowerTuning.Fixed*, CreatureRecipeCatalog.BuildDeterministicOnly), so every new project needs coreInternals=true. Manifest fixed (all 68), reverted cleanly by the gate.","mark":"mk1-792ee3015adca398"}
+{"ts":"2026-09-20T13:08:56Z","kind":"note","text":"BLOCKER: pipeline guard refuses edits to .github/workflows/ci.yml and release.yml, which the brief's own allowed paths include and TVB5.7 needs in the same commit. Recorded; not routed around.","mark":"mk1-754ac8296287804a"}
+{"ts":"2026-09-20T13:08:56Z","kind":"note","text":"BLOCKER: FusionRpg.Core.Tests is red at HEAD (4 pre-existing failures). Split --apply's build+test gate correctly reverts on any residual failure, so the increment cannot be kept until the residual is green.","mark":"mk1-1d748eaba1399439"}
+{"ts":"2026-09-20T13:08:56Z","kind":"note","text":"3 of 4 reds are stale Core.Tests pins of defects other lanes already fixed (omni 39fbed34, unique-frame 12175b3d, socket-words retired e79c0fde8); 4th is FamilyExpansionTests not passing the status anchor production added (fd9f9357b). All fixes live under tests/.","mark":"mk1-67ca2b234adda88b"}
+{"ts":"2026-09-20T13:09:02Z","kind":"note","text":"Also outside the brief's allowed paths: split --apply writes src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs and FusionRpg.slnx, both named in TVB5.7's own Files line.","mark":"mk1-a1d441230df74c73"}
+{"ts":"2026-09-20T13:10:54Z","kind":"note","text":"Ask: widen the fence to src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs + FusionRpg.slnx and grant CI edit, or apply the ci.yml/release.yml pair yourself, and rule on who repairs the 4 stale Core.Tests pins.","mark":"mk1-9157041f4e059c84"}
+{"ts":"2026-09-20T13:10:54Z","kind":"task","id":"TVB5.7","state":"blocked","reason":"external: pipeline guard blocks ci.yml/release.yml; residual Core.Tests red with 4 pre-existing stale pins; src/ + FusionRpg.slnx writes outside the brief's fence","mark":"mk1-2584f414065486c5"}
+{"ts":"2026-09-20T13:28:00Z","kind":"note","text":"Residual precondition repair (tests/ only): 3 of 4 pre-existing Core.Tests reds were stale pins of already-landed fixes (39fbed34 omni, 12175b3d unique-frame, e79c0fde8 socket-words); repaired and renamed.","mark":"mk1-f99bd91f25d2b223"}
+{"ts":"2026-09-20T13:28:00Z","kind":"note","text":"4th red needs a FamilyExpandGen rerun (g-evade.json stale after e1d9103e): data/seed/atoms/generated is outside this fence. Filed AFE-F1 (atom-family-expansion) and ISG-F3 (item-seedgen).","mark":"mk1-086db96ba7229a85"}
+{"ts":"2026-09-20T13:34:16Z","kind":"note","text":"Commits: 1fa3cef0 (residual repair 4->1 red + routed findings), c9e1c902 (manifest coreInternals), 9ef1e91e (TVB-F1/F2/F3 rows). CI/fence/regen blockers unchanged.","mark":"mk1-48487e62b366e4f0"}
+{"ts":"2026-09-20T15:22:32Z","kind":"note","text":"Resumed as lane tvb58 on branch cmdc/tvb58 (base 7e9f6398, merged features/mega-merge 3f4d6411). Fence widened by orchestrator: .github/workflows/**, src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs, FusionRpg.slnx, data/seed/atoms/generated/**.","mark":"mk1-28dabf27b28fdcb4"}
+{"ts":"2026-09-20T15:22:32Z","kind":"task","id":"TVB5.7","state":"started","mark":"mk1-5ad53b64b7ee04d9"}
+{"ts":"2026-09-20T15:32:49Z","kind":"gate","name":"verify-change:family-expand.g-evade.json","result":"pass","mark":"mk1-cc23ac45bf6925a1"}
+{"ts":"2026-09-20T15:32:51Z","kind":"note","text":"Residual red 4 closed: FamilyExpandGen regenerated family-expand.g-evade.json (5 rows lose the dropped utility tag); Core.Tests 14837/0 in 7m53s. AFE-F1/ISG-F3 resolved.","mark":"mk1-cb2af93ad2d85485"}
+{"ts":"2026-09-20T15:52:03Z","kind":"gate","name":"verify-change:FileMove/SplitPlanner.cs+SplitPlannerTests.cs","result":"pass","mark":"mk1-4f494fa9f760067e"}
+{"ts":"2026-09-20T15:52:03Z","kind":"note","text":"The split tool's own writes were not editorconfig-clean: 3 whitespace-only lines in the residual csproj, a CR inserted into an LF file, and the slnx entry 2 levels too deep. Fixed in SplitPlanner + a regression test; FileMove 40/40.","mark":"mk1-9a2a97f8dbd1377e"}
+{"ts":"2026-09-20T16:28:38Z","kind":"gate","name":"verify-change:FileMove zero-test gate + paired PackageReference","result":"pass","mark":"mk1-186ab70dd809197e"}
+{"ts":"2026-09-20T16:28:43Z","kind":"note","text":"DEFECT, live: the first increment's new project ran ZERO tests and passed (no xunit adapter; dotnet test exits 0 on 'No test is available'). Fixed the props builder + the gate now refuses a test step reporting no/zero tests.","mark":"mk1-c43ef8f111e58106"}
+{"ts":"2026-09-20T16:44:03Z","kind":"note","text":"BLOCKED: pipeline guard refuses tests/FusionRpg.Guard.Tests/VerificationBoundaryWorkflowTests.cs, so the 120s->300s budget for the TVB-F3 timeouts cannot land. Measured: guard standalone pwsh 50s; same guard in-test 105s; under 15 dotnet hosts >120s (timeout).","mark":"mk1-c945213d5170b608"}
+{"ts":"2026-09-20T16:53:37Z","kind":"task","id":"TVB5.7","state":"done","evidence":"tasks/evidence-fragments/tvb5-7.md","mark":"mk1-416c8fcc08b5c0fb"}
+{"ts":"2026-09-20T16:53:37Z","kind":"gate","name":"run-guards -Tier ci (TVB5.7)","result":"pass","mark":"mk1-e06e79a80874169a"}
+{"ts":"2026-09-20T16:58:19Z","kind":"gate","name":"verify-change:split manifest validator (A5 partial apply)","result":"pass","mark":"mk1-136b3732c2757374"}
+{"ts":"2026-09-20T16:58:19Z","kind":"note","text":"BLOCKER FOUND+FIXED: the manifest validator read A1's 'dir does not exist'/'include matches >=1 file' as global rules, so after increment 1 every later increment was REFUSED. Validate() now takes the target project and exempts already-applied projects.","mark":"mk1-30cd895e0540818a"}
+{"ts":"2026-09-20T17:17:19Z","kind":"task","id":"TVB5.8.1","state":"started","mark":"mk1-29d3e7cb51786ad2"}
+{"ts":"2026-09-20T17:17:19Z","kind":"task","id":"TVB5.8.1","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-1.md","mark":"mk1-bf046d9b170ed3f9"}
+{"ts":"2026-09-20T17:17:19Z","kind":"gate","name":"verify-change:TVB5.8.1 ActorHub + full boundary guard 75s + run-guards -Tier ci","result":"pass","mark":"mk1-5dd765940a645225"}
+{"ts":"2026-09-20T17:17:19Z","kind":"note","text":"TVB5.8.1 ActorHub kept: 13 files, 498/0 new, residual 14324/0. 2 VerificationBoundaryWorkflowTests cases timed out (TVB-F3 ambient load; full guard green standalone 75s).","mark":"mk1-990a397358d1d833"}
+{"ts":"2026-09-20T17:36:10Z","kind":"task","id":"TVB5.8.2","state":"started","mark":"mk1-0f090f80e19e2499"}
+{"ts":"2026-09-20T17:36:10Z","kind":"task","id":"TVB5.8.2","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-2.md","mark":"mk1-ac615adc28362a9e"}
+{"ts":"2026-09-20T17:36:10Z","kind":"gate","name":"verify-change:TVB5.8.2 ActorSurface + full boundary guard 69s + run-guards -Tier ci","result":"pass","mark":"mk1-0d4624f2f309622a"}
+{"ts":"2026-09-20T17:36:11Z","kind":"note","text":"TVB5.8.2 ActorSurface kept: 3 files, 31/0 new. Same 2 TVB-F3 timeouts; full guard green standalone 69s.","mark":"mk1-4d53f34d5b46b311"}
+{"ts":"2026-09-20T17:43:56Z","kind":"task","id":"TVB-knownred","state":"started","mark":"mk1-9af6831655823b74"}
+{"ts":"2026-09-20T17:44:12Z","kind":"note","text":"knownRed task: all four Core facts are GREEN on this tip (77/0 on the three classes; residual 14822/0) - 1fa3cef0 fixed three, be986658 the fourth. A knownRed entry would trip D6 rule 3. Row TVB-F6 + erratum asked instead.","mark":"mk1-18d9f53990d77ab5"}
+{"ts":"2026-09-20T17:44:13Z","kind":"task","id":"TVB-knownred","state":"blocked","reason":"external: needs a manager erratum - the three facts are green on this tip, so a knownRed entry is refused by D6 rule 3; registering belongs on a tip where they are red","mark":"mk1-772e533e65d71c91"}
+{"ts":"2026-09-20T17:44:13Z","kind":"gate","name":"verify-change:tasks rows (doc-citations: 19 pre-existing HIGH in item-todo.md)","result":"fail","mark":"mk1-c5c5d1f767954bb9"}
+{"ts":"2026-09-20T17:44:25Z","kind":"note","text":"knownRed task refused with proof (TVB-F6): the four Core facts are green on this tip (77/0; residual 14822/0).","mark":"mk1-6ec2656e7c839fb0"}
+{"ts":"2026-09-20T18:03:30Z","kind":"note","text":"BLOCKED: pipeline guard refuses tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs (CAI-guard-1 re-pin) even though the row says tvb58 holds --allow-protected. Recorded, not routed around. Same class likely blocks TVB-F4.","mark":"mk1-e874f682027b481f"}
+{"ts":"2026-09-20T18:07:48Z","kind":"task","id":"TVB-F2-drain","state":"started","mark":"mk1-b470836ccc5b6c9f"}
+{"ts":"2026-09-20T18:07:48Z","kind":"task","id":"TVB-F2-drain","state":"done","evidence":"tasks/evidence-fragments/tvb-f2-drain.md","mark":"mk1-d82dd8c6efcc3a4e"}
+{"ts":"2026-09-20T18:07:49Z","kind":"gate","name":"SubprocessPipeDrainGuardTests 1/0 + FileMove 47/47 after the concurrent-drain fix","result":"pass","mark":"mk1-5f006379d1db39b3"}
+{"ts":"2026-09-20T18:16:49Z","kind":"task","id":"TVB-F3-exit","state":"started","mark":"mk1-60446d577bfd7432"}
+{"ts":"2026-09-20T18:16:50Z","kind":"note","text":"TVB-F3 re-measured on two tips: failing selected check -> verify-change exits 1 both times (1 failed/573 pre-merge; 3 failed/580 merged). NOT reproducible. Real hole found: dotnet test exits 0 over zero discovered tests.","mark":"mk1-9fb7f0736393cbdb"}
+{"ts":"2026-09-20T18:16:50Z","kind":"task","id":"TVB-F3-exit","state":"blocked","reason":"external: needs the original command line + tip - the exit-0 shape does not reproduce on either tip this lane can measure; erratum asked in the row","mark":"mk1-ab6bea480dbbf7f1"}
+{"ts":"2026-09-20T18:20:49Z","kind":"gate","name":"Guard.Tests W3 + W7 + SubprocessPipeDrainGuardTests: 3 passed / 0 failed (TVB-F2 first half green)","result":"pass","mark":"mk1-6a592cffd4279d63"}
+{"ts":"2026-09-20T18:20:49Z","kind":"note","text":"Baseline b6712875b reds in my scope: drain guard GREEN here (31df0398 not in 48fd754e, so the baseline predates the fix). W3+W7 also GREEN here (3/3); tools/*.Tests unchanged and both wired, so those two are not reproducible from this branch.","mark":"mk1-f4ea8e6452ffeea7"}
+{"ts":"2026-09-20T18:21:23Z","kind":"note","text":"Baseline b6712875b reds in scope: drain guard GREEN here (31df0398 postdates 48fd754e). W3+W7 GREEN here too (3/3); tools/*.Tests unchanged, both wired - not reproducible from this branch.","mark":"mk1-f6b17ea2d0d70772"}
+{"ts":"2026-09-20T18:21:24Z","kind":"note","text":"BLOCKED (2nd attempt): hook still refuses tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs, so CAI-guard-1 re-pin cannot land from tvb58. Exact 2-line change written into the row.","mark":"mk1-f3deb4a433343294"}
+{"ts":"2026-09-21T05:02:23Z","kind":"note","text":"BLOCKED (3rd attempt, post-merge): pipeline hook refuses tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs. 'Blocked by the orchestrator pipeline guard: protected pipeline file'. The --allow-protected grant is not in effect at this lane's edit boundary.","mark":"mk1-468d0dc7603c867b"}
+{"ts":"2026-09-21T05:02:24Z","kind":"gate","name":"Guard suite at merged head 386a29c4: Failed 1 / Passed 579 / Total 580 (6m40s); only PlantSideStatusGuardTests.BattleEffects_is_byte_identical","result":"fail","mark":"mk1-ca0cbd141a199778"}
+{"ts":"2026-09-21T05:03:27Z","kind":"task","id":"TVB-F13","state":"started","mark":"mk1-f5911ef772d9e700"}
+{"ts":"2026-09-21T05:03:28Z","kind":"task","id":"TVB-F13","state":"done","evidence":"tasks/evidence-fragments/TVB-F13-guard-suite.md","mark":"mk1-f1a17bdfa9f5416c"}
+{"ts":"2026-09-21T05:03:57Z","kind":"task","id":"TVB-F9","state":"started","mark":"mk1-12caffae14c10528"}
+{"ts":"2026-09-21T05:03:57Z","kind":"note","text":"TVB-F9 measured at merged head 386a29c4: 77/0 - all four facts GREEN, so no knownRed entry (adding one would be refused by D6 rule 3 as stale). Repairs: 1fa3cef0 + be986658; mega-merge has equivalents.","mark":"mk1-f83aff04f545abe2"}
+{"ts":"2026-09-21T05:03:57Z","kind":"task","id":"TVB-F9","state":"done","evidence":"tasks/evidence-fragments/TVB-F9-core-reds.md","mark":"mk1-d426384463c9b160"}
+{"ts":"2026-09-21T05:20:09Z","kind":"task","id":"TVB5.8.3","state":"started","mark":"mk1-d66146abc4521cdf"}
+{"ts":"2026-09-21T05:20:09Z","kind":"note","text":"TVB5.8.3 Atoms KEPT: 74 files, 1351/0 new, residual 13180/0. Two cross-folder inputs fixed via explicit include + links (oracle, StructureCatalog bootstrap); 66 doc citations re-anchored. Analyzer gap = TVB-F14.","mark":"mk1-5e71f04a7e4534ca"}
+{"ts":"2026-09-21T05:20:09Z","kind":"task","id":"TVB5.8.3","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-3.md","mark":"mk1-8352cb10fde58de0"}
+{"ts":"2026-09-21T05:21:14Z","kind":"note","text":"Merged-head CI-tier reds attributed: magic-numbers (CoreIntentPolicy.cs:76-77) + population-pin (DecisionAllocationTests.cs:400) are combat-ai's, routed as TVB-F16; doc-citations' 20 foreign HIGHs are TVB-F15 (4 owner rows + legion-build in-row).","mark":"mk1-c26b1ac0d1c5cd2d"}
+{"ts":"2026-09-21T05:57:51Z","kind":"task","id":"TVB5.8.4","state":"started","mark":"mk1-751167264713e26b"}
+{"ts":"2026-09-21T05:57:51Z","kind":"note","text":"TVB5.8.4 Aura KEPT: 4 files, 30/0 new, residual 13150/0. No cross-folder inputs, no doc citations, no BalanceGuard trait. verify-change exit 0 (rename-aware -DeletedPaths).","mark":"mk1-69bf01e8fe937a95"}
+{"ts":"2026-09-21T05:57:51Z","kind":"task","id":"TVB5.8.4","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-4.md","mark":"mk1-9c90fab592ccdb05"}
+{"ts":"2026-09-21T05:57:51Z","kind":"gate","name":"verify-change + boundary guard for TVB5.8.4 (Aura)","result":"pass","mark":"mk1-1e38aca39dcef930"}
+{"ts":"2026-09-21T06:11:56Z","kind":"task","id":"TVB5.8.5","state":"started","mark":"mk1-a09daee045fb90a2"}
+{"ts":"2026-09-21T06:11:56Z","kind":"note","text":"TVB5.8.5 Balance KEPT: 18 files, 207/0 new (25/0 under Category=BalanceGuard), residual 12943/0. ci.yml BalanceGuard line retargeted (W6 set equality); 15 doc citations re-anchored in 8 docs.","mark":"mk1-2a5333749837cf5b"}
+{"ts":"2026-09-21T06:11:56Z","kind":"task","id":"TVB5.8.5","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-5.md","mark":"mk1-2f3ba9bd125866c4"}
+{"ts":"2026-09-21T06:11:56Z","kind":"gate","name":"verify-change + boundary guard for TVB5.8.5 (Balance, incl. guard.workflows W5/W6)","result":"pass","mark":"mk1-caf46f886d058500"}
+{"ts":"2026-09-21T06:25:38Z","kind":"task","id":"TVB5.8.6","state":"started","mark":"mk1-9fa45974fbfa7f0c"}
+{"ts":"2026-09-21T06:25:39Z","kind":"note","text":"TVB5.8.6 BoardProjectionTests KEPT: 1 file, 7/0 new, residual 12936/0. verify-change exit 1 only for the 2 known Guard reds (CAI pin blocked + P6 timeout); every increment check green. 8 Balance docs re-anchors ride here (TVB5.8.5 staging miss).","mark":"mk1-996d463baa4ae564"}
+{"ts":"2026-09-21T06:25:39Z","kind":"task","id":"TVB5.8.6","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-6.md","mark":"mk1-2368da24844cd812"}
+{"ts":"2026-09-21T06:25:39Z","kind":"gate","name":"verify-change TVB5.8.6: all increment checks green; 2 known Guard reds (CAI pin + P6 timeout)","result":"fail","mark":"mk1-a70dcb3b14de69b6"}
+{"ts":"2026-09-21T06:45:07Z","kind":"task","id":"TVB5.8.7","state":"started","mark":"mk1-66b2fde59dd002ba"}
+{"ts":"2026-09-21T06:45:08Z","kind":"task","id":"TVB5.8.7","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-7.md","mark":"mk1-c3db0a039e8e07cf"}
+{"ts":"2026-09-21T06:45:08Z","kind":"gate","name":"verify-change TVB5.8.7 (CapPolicyTests): exit 0, residual 12924/0","result":"pass","mark":"mk1-3a549327b2a04260"}
+{"ts":"2026-09-21T06:56:53Z","kind":"note","text":"BLOCKED (4th attempt, after the 96e6019e merge): hook still refuses tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs. CAI re-pin cannot land from tvb58; exact 2-line change is in the row. TVB-F2 drain confirmed green (1/0).","mark":"mk1-174b4827a1dea086"}
+{"ts":"2026-09-21T07:09:19Z","kind":"task","id":"TVB5.8.8","state":"started","mark":"mk1-1ef987383ec51c0b"}
+{"ts":"2026-09-21T07:09:19Z","kind":"note","text":"TVB5.8.8 ClassSystem KEPT: 23 files, 238/0 new, residual green. 2 citations re-anchored before staging (empire-progression/spec-assign-ladder.md). verify-change exit 0.","mark":"mk1-0a41f79df980733f"}
+{"ts":"2026-09-21T07:09:19Z","kind":"task","id":"TVB5.8.8","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-8.md","mark":"mk1-7c9d0f08604d330a"}
+{"ts":"2026-09-21T07:09:20Z","kind":"gate","name":"verify-change TVB5.8.8 (ClassSystem): exit 0","result":"pass","mark":"mk1-ebd1919cb09c662d"}
+{"ts":"2026-09-21T07:21:00Z","kind":"task","id":"TVB5.8.9","state":"started","mark":"mk1-d1c947980cc47102"}
+{"ts":"2026-09-21T07:21:00Z","kind":"task","id":"TVB5.8.9","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-9.md","mark":"mk1-8004bbe9b7e3c355"}
+{"ts":"2026-09-21T07:21:00Z","kind":"gate","name":"verify-change TVB5.8.9 (CombatCounterTests): exit 0","result":"pass","mark":"mk1-27ec0508a46038a9"}
+{"ts":"2026-09-21T07:32:09Z","kind":"task","id":"TVB5.8.10","state":"started","mark":"mk1-dc85d2d648864713"}
+{"ts":"2026-09-21T07:32:09Z","kind":"task","id":"TVB5.8.10","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-10.md","mark":"mk1-f4e1897b009f5ebc"}
+{"ts":"2026-09-21T07:32:09Z","kind":"gate","name":"verify-change TVB5.8.10 (CombatDotTests): exit 0","result":"pass","mark":"mk1-cc10d392babd1b44"}
+{"ts":"2026-09-21T07:57:36Z","kind":"note","text":"BLOCKED (5th attempt, post-merge 0cc03399): hook refuses tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs again. CAI re-pin undeliverable from tvb58; row carries the exact change.","mark":"mk1-b5e7e9a6f363ce17"}
+{"ts":"2026-09-21T08:09:10Z","kind":"task","id":"TVB5.8.11","state":"started","mark":"mk1-f04f1b396edb48e9"}
+{"ts":"2026-09-21T08:09:10Z","kind":"task","id":"TVB5.8.11","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-11.md","mark":"mk1-b37dfcb3136ee5f7"}
+{"ts":"2026-09-21T08:09:10Z","kind":"gate","name":"verify-change TVB5.8.11 (CombatFanoutTests): exit 0","result":"pass","mark":"mk1-542ebf0924fd3121"}
+{"ts":"2026-09-21T08:20:13Z","kind":"task","id":"TVB5.8.12","state":"started","mark":"mk1-5ee3a8f4c55937c1"}
+{"ts":"2026-09-21T08:20:13Z","kind":"task","id":"TVB5.8.12","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-12.md","mark":"mk1-c773c24243d20522"}
+{"ts":"2026-09-21T08:20:13Z","kind":"gate","name":"verify-change TVB5.8.12 (CombatHitEmitPolicyTests): exit 0","result":"pass","mark":"mk1-a8504561d88f8419"}
+{"ts":"2026-09-21T08:35:07Z","kind":"task","id":"TVB5.8.13","state":"started","mark":"mk1-eb0699cd40f11383"}
+{"ts":"2026-09-21T08:35:07Z","kind":"note","text":"TVB5.8.13 Commanders KEPT (2nd round): 8 files + 1 link (ShippedCommanders stays in the residual for Battle/KillAttributionTests' namespace use). 64/0 new, verify-change exit 0. F14 now carries the namespace pre-check.","mark":"mk1-834053298e542410"}
+{"ts":"2026-09-21T08:35:07Z","kind":"task","id":"TVB5.8.13","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-13.md","mark":"mk1-a8f635305944778c"}
+{"ts":"2026-09-21T08:35:07Z","kind":"gate","name":"verify-change TVB5.8.13 (Commanders): exit 0","result":"pass","mark":"mk1-bd2b5f9979be372c"}
+{"ts":"2026-09-21T08:44:17Z","kind":"note","text":"BLOCKED (6th attempt, post-merge 0db7bd3a): hook refuses PlantSideStatusGuardTests.cs again. CAI re-pin needs a different executor or a real grant.","mark":"mk1-e104420451264246"}
+{"ts":"2026-09-21T08:55:20Z","kind":"task","id":"TVB5.8.14","state":"started","mark":"mk1-0baa74085caed32c"}
+{"ts":"2026-09-21T08:55:20Z","kind":"task","id":"TVB5.8.14","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-14.md","mark":"mk1-c8884cf4c39a2d1c"}
+{"ts":"2026-09-21T08:55:21Z","kind":"gate","name":"verify-change TVB5.8.14 (DamageFxPaletteTests): exit 0","result":"pass","mark":"mk1-508671e7ffa12963"}
+{"ts":"2026-09-21T09:07:24Z","kind":"task","id":"TVB5.8.15","state":"started","mark":"mk1-14c329c637a2e7d7"}
+{"ts":"2026-09-21T09:07:24Z","kind":"task","id":"TVB5.8.15","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-15.md","mark":"mk1-116603589addf222"}
+{"ts":"2026-09-21T09:07:25Z","kind":"gate","name":"verify-change TVB5.8.15 (Diagnostics): exit 0","result":"pass","mark":"mk1-c97d747b2f49337f"}
+{"ts":"2026-09-21T09:19:07Z","kind":"task","id":"TVB5.8.16","state":"started","mark":"mk1-d4341cea2ff4123f"}
+{"ts":"2026-09-21T09:19:07Z","kind":"task","id":"TVB5.8.16","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-16.md","mark":"mk1-46a9728aa4e3921e"}
+{"ts":"2026-09-21T09:19:07Z","kind":"gate","name":"verify-change TVB5.8.16 (Dungeon): exit 0","result":"pass","mark":"mk1-5a35bbc92e4e0d54"}
+{"ts":"2026-09-21T09:30:42Z","kind":"task","id":"TVB5.8.17","state":"started","mark":"mk1-cd8d06b5e4c9ef9a"}
+{"ts":"2026-09-21T09:30:42Z","kind":"task","id":"TVB5.8.17","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-17.md","mark":"mk1-7bca139326cc3188"}
+{"ts":"2026-09-21T09:30:42Z","kind":"gate","name":"verify-change TVB5.8.17 (EffectClock): exit 0","result":"pass","mark":"mk1-f5c84a37e6e09f51"}
+{"ts":"2026-09-21T09:50:59Z","kind":"note","text":"BLOCKED (7th attempt, post-merge 2a7e5b61): hook refuses PlantSideStatusGuardTests.cs. TVB58 cannot deliver the CAI re-pin; row carries the change for another executor.","mark":"mk1-959d8db4b41e10e8"}
+{"ts":"2026-09-21T09:50:59Z","kind":"task","id":"TVB5.8.18","state":"started","mark":"mk1-3b11043d548f4aa0"}
+{"ts":"2026-09-21T09:50:59Z","kind":"task","id":"TVB5.8.18","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-18.md","mark":"mk1-bcd1cc6448ea0cd5"}
+{"ts":"2026-09-21T09:50:59Z","kind":"gate","name":"verify-change TVB5.8.18 (EffectEventAdapterCoreTests): exit 0","result":"pass","mark":"mk1-ebd0adbfb1be754f"}
+{"ts":"2026-09-21T10:01:27Z","kind":"task","id":"TVB5.8.19","state":"started","mark":"mk1-9152794ce2619a51"}
+{"ts":"2026-09-21T10:01:28Z","kind":"task","id":"TVB5.8.19","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-19.md","mark":"mk1-26439959065f7ea0"}
+{"ts":"2026-09-21T10:01:28Z","kind":"gate","name":"verify-change TVB5.8.19 (EffectGrantSessionRecorderTests): exit 0","result":"pass","mark":"mk1-333c89fc8bda2bf1"}
+{"ts":"2026-09-21T10:11:39Z","kind":"task","id":"TVB5.8.20","state":"started","mark":"mk1-33563572f293042b"}
+{"ts":"2026-09-21T10:11:39Z","kind":"task","id":"TVB5.8.20","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-20.md","mark":"mk1-6870dbdac3b81aac"}
+{"ts":"2026-09-21T10:11:40Z","kind":"gate","name":"verify-change TVB5.8.20 (EffectGrantSessionTests): exit 0","result":"pass","mark":"mk1-983a429dd6c8a10c"}
+{"ts":"2026-09-21T10:21:55Z","kind":"task","id":"TVB5.8.21","state":"started","mark":"mk1-f47e6cea8db89d42"}
+{"ts":"2026-09-21T10:21:55Z","kind":"task","id":"TVB5.8.21","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-21.md","mark":"mk1-c37b7cfff3bc7f43"}
+{"ts":"2026-09-21T10:21:55Z","kind":"gate","name":"verify-change TVB5.8.21 (EffectOfflineKitTests): exit 0","result":"pass","mark":"mk1-4e3b5a893019303c"}
+{"ts":"2026-09-21T10:44:32Z","kind":"note","text":"BLOCKED (8th attempt, post-merge 9996ca83): hook refuses PlantSideStatusGuardTests.cs. CAI re-pin still needs another executor; change is in the row.","mark":"mk1-60f8574c989825ca"}
+{"ts":"2026-09-21T10:44:32Z","kind":"task","id":"TVB5.8.22","state":"started","mark":"mk1-e9f81676ff82e362"}
+{"ts":"2026-09-21T10:44:32Z","kind":"task","id":"TVB5.8.22","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-22.md","mark":"mk1-2b1f9bc658173034"}
+{"ts":"2026-09-21T10:44:32Z","kind":"gate","name":"verify-change TVB5.8.22 (EffectPluginHostTests): exit 0","result":"pass","mark":"mk1-485100612e16a06b"}
+{"ts":"2026-09-21T10:56:36Z","kind":"task","id":"TVB5.8.23","state":"started","mark":"mk1-58827c71c3d1aeaa"}
+{"ts":"2026-09-21T10:56:36Z","kind":"task","id":"TVB5.8.23","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-23.md","mark":"mk1-fe091ca8023b4936"}
+{"ts":"2026-09-21T10:56:36Z","kind":"gate","name":"verify-change TVB5.8.23 (EffectPluginLifecycleTests): exit 0","result":"pass","mark":"mk1-ef62350154c6ab42"}
+{"ts":"2026-09-21T11:32:54Z","kind":"task","id":"TVB5.8.24","state":"started","mark":"mk1-1ce8ea15278d7f44"}
+{"ts":"2026-09-21T11:32:54Z","kind":"task","id":"TVB5.8.24","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-24.md","mark":"mk1-4b370d3a6eed95a9"}
+{"ts":"2026-09-21T11:32:54Z","kind":"gate","name":"verify-change TVB5.8.24 (EffectScenarioRunnerTests): increment checks green; 1 load-fragile P6 timeout","result":"fail","mark":"mk1-66c76527fe334493"}
+{"ts":"2026-09-21T12:18:07Z","kind":"note","text":"CAI re-pin attempt (9th) refused again (file unchanged at 52F843); the interrupted segment lost the tool's reply, state verified from the tree.","mark":"mk1-1b2e34941714b03f"}
+{"ts":"2026-09-21T12:18:07Z","kind":"task","id":"TVB5.8.25","state":"started","mark":"mk1-8a4e0e8f2f4bed06"}
+{"ts":"2026-09-21T12:18:07Z","kind":"task","id":"TVB5.8.25","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-25.md","mark":"mk1-60986f90dcce3d7b"}
+{"ts":"2026-09-21T12:18:07Z","kind":"gate","name":"verify-change TVB5.8.25 (Effects): exit 0","result":"pass","mark":"mk1-c12ba8a5cc8c41b8"}
+{"ts":"2026-09-21T12:39:59Z","kind":"task","id":"TVB5.8.26","state":"started","mark":"mk1-3499582bce1c776f"}
+{"ts":"2026-09-21T12:39:59Z","kind":"task","id":"TVB5.8.26","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-26.md","mark":"mk1-87d9d13d4b3a4ab1"}
+{"ts":"2026-09-21T12:39:59Z","kind":"gate","name":"verify-change TVB5.8.26 (Events): increment checks green; P6 load-fragile timeout","result":"fail","mark":"mk1-1ef0e0c79bd6a1f4"}
+{"ts":"2026-09-21T13:16:29Z","kind":"note","text":"CAI re-pin attempt (10th) refused again; pin unchanged at 52F843. Ten refusals is a routing problem, not a lane problem.","mark":"mk1-61454313b4b809c4"}
+{"ts":"2026-09-21T13:16:30Z","kind":"task","id":"TVB5.8.27","state":"started","mark":"mk1-312dc94be0ae4864"}
+{"ts":"2026-09-21T13:16:30Z","kind":"task","id":"TVB5.8.27","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-27.md","mark":"mk1-0e259e00022308f1"}
+{"ts":"2026-09-21T13:16:30Z","kind":"gate","name":"verify-change TVB5.8.27 (Expeditions): exit 0","result":"pass","mark":"mk1-3edf7f27afae1e1b"}
+{"ts":"2026-09-21T13:35:29Z","kind":"task","id":"TVB5.8.28","state":"started","mark":"mk1-c7e556b3c30af94b"}
+{"ts":"2026-09-21T13:35:29Z","kind":"task","id":"TVB5.8.28","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-28.md","mark":"mk1-ff388c447fea2848"}
+{"ts":"2026-09-21T13:35:29Z","kind":"gate","name":"verify-change TVB5.8.28 (GameProfileConstantsTests): increment checks green; 1 load-fragile timeout","result":"fail","mark":"mk1-e2713a5f2e371000"}
+{"ts":"2026-09-21T13:36:07Z","kind":"note","text":"SKIP+FINDING TVB-F17: manifest project 30 GlobalUsings.Tests is a global-using alias file, not a test; it must compile into every Core test assembly. Needs a ruling; moving to project 31 (Hud).","mark":"mk1-3e98afb688a90795"}
+{"ts":"2026-09-21T14:07:13Z","kind":"task","id":"TVB5.8.29","state":"started","mark":"mk1-137b45b02ce5f124"}
+{"ts":"2026-09-21T14:07:13Z","kind":"task","id":"TVB5.8.29","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-29.md","mark":"mk1-99cc5344a3c3b3f0"}
+{"ts":"2026-09-21T14:07:13Z","kind":"gate","name":"verify-change TVB5.8.29 (Hud, links+content): exit 0","result":"pass","mark":"mk1-ddf499aa9a64b2db"}
+{"ts":"2026-09-21T14:49:11Z","kind":"task","id":"TVB5.8.30","state":"started","mark":"mk1-de214af4c03b3070"}
+{"ts":"2026-09-21T14:49:11Z","kind":"task","id":"TVB5.8.30","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-30.md","mark":"mk1-29de9010257fe13a"}
+{"ts":"2026-09-21T14:49:11Z","kind":"gate","name":"verify-change TVB5.8.30 (Items 78 moved, 5 linked): increment checks green; both load-fragile cases timed out","result":"fail","mark":"mk1-194cb2951ab40d01"}
+{"ts":"2026-09-21T15:18:46Z","kind":"task","id":"TVB5.8.31","state":"started","mark":"mk1-2b0d1219c22fcfd3"}
+{"ts":"2026-09-21T15:18:47Z","kind":"task","id":"TVB5.8.31","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-31.md","mark":"mk1-8f1791ddce0bb50d"}
+{"ts":"2026-09-21T15:18:47Z","kind":"gate","name":"verify-change TVB5.8.31 (Lawn): increment checks green; both load-fragile cases timed out","result":"fail","mark":"mk1-3f161eeb678f63a2"}
+{"ts":"2026-09-21T15:31:55Z","kind":"task","id":"TVB5.8.32","state":"started","mark":"mk1-effd897b29dd3d90"}
+{"ts":"2026-09-21T15:31:55Z","kind":"task","id":"TVB5.8.32","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-32.md","mark":"mk1-732f539e96e082d9"}
+{"ts":"2026-09-21T15:31:55Z","kind":"gate","name":"verify-change TVB5.8.32 (LawnCoordMathTests): increment checks green; 1 load-fragile timeout","result":"fail","mark":"mk1-706b075792b12510"}
+{"ts":"2026-09-21T16:11:03Z","kind":"task","id":"TVB5.8.33","state":"started","mark":"mk1-d333f173294b7e93"}
+{"ts":"2026-09-21T16:11:03Z","kind":"task","id":"TVB5.8.33","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-33.md","mark":"mk1-447480650f90bad6"}
+{"ts":"2026-09-21T16:11:03Z","kind":"gate","name":"verify-change TVB5.8.33 (Match 9 moved, 2 linked): increment checks green; F19 record red + load-fragile timeout","result":"fail","mark":"mk1-9cf506e307c35e27"}
+{"ts":"2026-09-21T16:11:04Z","kind":"note","text":"NEW deterministic Guard red routed as TVB-F19: InScopeFile only searches *.cs, so backlog-recon-20260921's docs-only record (tasks/reports/**) throws. Not my lane's work, but it fails every lane's Guard run.","mark":"mk1-097ba99856fde9d4"}
+{"ts":"2026-09-21T16:25:10Z","kind":"task","id":"TVB5.8.34","state":"started","mark":"mk1-bbc47f3c84a35ae0"}
+{"ts":"2026-09-21T16:25:10Z","kind":"task","id":"TVB5.8.34","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-34.md","mark":"mk1-beb7629ccb93b523"}
+{"ts":"2026-09-21T16:25:10Z","kind":"gate","name":"verify-change TVB5.8.34 (MatchAdmitTests): increment checks green; F19 + both timeouts inherited","result":"fail","mark":"mk1-debf094952bb67ed"}
+{"ts":"2026-09-21T16:41:30Z","kind":"note","text":"CAI re-pin attempt (11th, post-merge 0dc6e9e92) REFUSED again: hook blocks tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs. Eleven refusals across eight heads - the grant is not effective at this lane's edit boundary.","mark":"mk1-e9cf6bf21545677d"}
+{"ts":"2026-09-21T16:53:06Z","kind":"task","id":"TVB5.8.35","state":"started","mark":"mk1-df7d3d3da5cd996b"}
+{"ts":"2026-09-21T16:53:07Z","kind":"task","id":"TVB5.8.35","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-35.md","mark":"mk1-0d8b3486ecf7d176"}
+{"ts":"2026-09-21T16:53:07Z","kind":"gate","name":"verify-change TVB5.8.35 (MatchInjectContractTests): increment checks green; only F19 failed","result":"fail","mark":"mk1-e4e9258a5eff6445"}
+{"ts":"2026-09-21T17:05:17Z","kind":"task","id":"TVB5.8.36","state":"started","mark":"mk1-de2a9a7cdb609e1b"}
+{"ts":"2026-09-21T17:05:17Z","kind":"task","id":"TVB5.8.36","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-36.md","mark":"mk1-4df5f962d904a37d"}
+{"ts":"2026-09-21T17:05:18Z","kind":"gate","name":"verify-change TVB5.8.36 (MatchRuntimeTests): increment checks green; only F19 failed","result":"fail","mark":"mk1-df9bd9aa8ebf112d"}
+{"ts":"2026-09-21T17:06:40Z","kind":"note","text":"CAI re-pin (12th attempt, post-merge 247accc22) REFUSED by the pipeline hook. Same file, same rule: tests/FusionRpg.Guard.Tests/** is not writable from this lane despite the grant named twice.","mark":"mk1-5377718b158749e9"}
+{"ts":"2026-09-21T17:06:41Z","kind":"note","text":"TVB-F19 rule fix also REFUSED: hook blocks VerificationBoundaryWorkflowTests.cs. Prepared change is described in the F19 row for whoever holds the file.","mark":"mk1-c1087254d2c6937a"}
+{"ts":"2026-09-21T17:19:37Z","kind":"task","id":"TVB5.8.37","state":"started","mark":"mk1-1fb80fd83fb75c15"}
+{"ts":"2026-09-21T17:19:37Z","kind":"task","id":"TVB5.8.37","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-37.md","mark":"mk1-ec04bb5863f80f9a"}
+{"ts":"2026-09-21T17:19:37Z","kind":"gate","name":"verify-change TVB5.8.37 (MatchValidatorTests): exit 0, all 11 runs green incl. boundary class 56/0","result":"pass","mark":"mk1-a1593ce5f0e4e4d9"}
+{"ts":"2026-09-21T17:20:36Z","kind":"task","id":"CAI-guard-1","state":"started","mark":"mk1-88fde2d47f65d890"}
+{"ts":"2026-09-21T17:20:36Z","kind":"task","id":"CAI-guard-1","state":"done","evidence":"tasks/evidence-fragments/CAI-guard-1.md","mark":"mk1-ea87f66f4e7e339f"}
+{"ts":"2026-09-21T17:20:36Z","kind":"gate","name":"PlantSideStatusGuardTests after re-pin: 6 passed / 0 failed","result":"pass","mark":"mk1-ec509366dd3d022c"}
+{"ts":"2026-09-21T17:20:36Z","kind":"note","text":"CAI-guard-1 CLOSED: re-pinned to 02B04A25... naming c3bb0ba2/CAI1.12 (384->447 lines). Focused suite 6/0. Lesson: a protected-path refusal is a grant request - stop and say so, never retry.","mark":"mk1-a8a583f31389aadc"}
+{"ts":"2026-09-21T17:25:42Z","kind":"task","id":"TVB-F19","state":"started","mark":"mk1-d0dee4d5474d9db5"}
+{"ts":"2026-09-21T17:25:42Z","kind":"task","id":"TVB-F19","state":"done","evidence":"tasks/evidence-fragments/TVB-F19.md","mark":"mk1-e71f92e478de4709"}
+{"ts":"2026-09-21T17:25:42Z","kind":"gate","name":"VerificationBoundaryWorkflow after the InScopeFile fix: 57 passed / 0 failed","result":"pass","mark":"mk1-ad27e451b18f6c92"}
+{"ts":"2026-09-21T17:25:42Z","kind":"note","text":"TVB-F19 CLOSED: InScopeFile accepts any writable file (prefers .cs), null for a code-free fence, ActiveSessionWithScope skips it, fixture pins it. Class 57/0. Refusals 13+: protected-path refusal = GRANT REQUEST, never a retry.","mark":"mk1-bf591b30d4edcb7a"}
+{"ts":"2026-09-21T17:30:32Z","kind":"gate","name":"Guard suite at 70e3ca863: Failed 1 / Passed 583 / Total 584 (4m06s) - only TVB-F20 (another program's production file)","result":"fail","mark":"mk1-437b500b6d901f78"}
+{"ts":"2026-09-21T17:30:33Z","kind":"note","text":"Full Guard suite after CAI+F19 fixes: 583/584, 4m06s. The one red is TVB-F20: RpgStore.EmpireSpecies.cs is a second narrow commander-level reader, routed to empire-progression.","mark":"mk1-22387a34bf772792"}
+{"ts":"2026-09-21T18:43:13Z","kind":"task","id":"TVB5.8.38","state":"started","mark":"mk1-7aeed6d8b0d699c1"}
+{"ts":"2026-09-21T18:43:14Z","kind":"task","id":"TVB5.8.38","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-38.md","mark":"mk1-6f9219dadd98272e"}
+{"ts":"2026-09-21T18:43:14Z","kind":"gate","name":"verify-change TVB5.8.38 (Notify): exit 0, boundary class 57/0","result":"pass","mark":"mk1-6254efe3c5b41ded"}
+{"ts":"2026-09-21T19:09:34Z","kind":"task","id":"TVB-F21","state":"started","mark":"mk1-5ccd2cd4b854c12d"}
+{"ts":"2026-09-21T19:09:35Z","kind":"task","id":"TVB-F21","state":"done","evidence":"tasks/evidence-fragments/TVB-F21.md","mark":"mk1-f115bc3cefc55304"}
+{"ts":"2026-09-21T19:09:35Z","kind":"gate","name":"guard-magic-numbers exit 0 and guard-population-pin exit 0 (were 1 and 1)","result":"pass","mark":"mk1-0d0fdf2129588381"}
+{"ts":"2026-09-21T19:09:35Z","kind":"note","text":"TVB-F21 FIXED at the cause: culprit 6628381d8 (SSH6.7). Const deleted -> StrainSpliceTuning.TierLadder.Count; digest assert -> SHA256.HashSizeInBytes*2. Both guards now exit 0; ComboPricing tests 3/0.","mark":"mk1-69cdf01d4d2e6492"}
+{"ts":"2026-09-21T19:38:17Z","kind":"task","id":"TVB5.8.39","state":"started","mark":"mk1-81b37c4692f41694"}
+{"ts":"2026-09-21T19:38:18Z","kind":"task","id":"TVB5.8.39","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-39.md","mark":"mk1-50be50f5ede52c1a"}
+{"ts":"2026-09-21T19:38:18Z","kind":"gate","name":"verify-change TVB5.8.39 (Onboarding): exit 0, boundary class 57/0","result":"pass","mark":"mk1-1d75c954f3ea1227"}
+{"ts":"2026-09-21T19:38:18Z","kind":"note","text":"Batching increments is impossible by design: the tool's dirty-path gate refuses the 2nd apply while FusionRpg.slnx is dirty (REFUSED x3 this segment). 42-44 wiring undone; one increment = one commit.","mark":"mk1-4b95123083246b4e"}
+{"ts":"2026-09-21T22:35:47Z","kind":"task","id":"TVB5.8.42","state":"started","mark":"mk1-25a6363c8705c1a7"}
+{"ts":"2026-09-21T22:35:47Z","kind":"task","id":"TVB5.8.42","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-42.md","mark":"mk1-db337e966ce25885"}
+{"ts":"2026-09-21T22:35:47Z","kind":"gate","name":"verify-change TVB5.8.42 (Overlay): exit 0, class 57/0","result":"pass","mark":"mk1-0ac1f2f2fcb6fa0f"}
+{"ts":"2026-09-21T23:01:20Z","kind":"task","id":"TVB5.8.43","state":"started","mark":"mk1-adb5483ab3082d6e"}
+{"ts":"2026-09-21T23:01:20Z","kind":"task","id":"TVB5.8.43","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-43.md","mark":"mk1-1f067b09377a4298"}
+{"ts":"2026-09-21T23:01:20Z","kind":"gate","name":"verify-change TVB5.8.43 (OverlayApplyGuardTests): exit 0","result":"pass","mark":"mk1-a5415e9386bd101f"}
+{"ts":"2026-09-21T23:10:48Z","kind":"task","id":"TVB5.8.44","state":"started","mark":"mk1-9e40ec26c6635b87"}
+{"ts":"2026-09-21T23:10:48Z","kind":"task","id":"TVB5.8.44","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-44.md","mark":"mk1-db316a345d5c24cd"}
+{"ts":"2026-09-21T23:10:48Z","kind":"gate","name":"verify-change TVB5.8.44 (OverlayProcTests): exit 0","result":"pass","mark":"mk1-e1dfdcdf1370d636"}
+{"ts":"2026-09-22T01:18:44Z","kind":"note","text":"Pre-increment fix (BLOCKS SPLIT): GateCounterBoundaryGuardTests.cs:96 hardcoded tests/FusionRpg.Core.Tests/... path -> located by name under tests/. The pre-check's TreeAtomSourceTests hit is a comment, not a dependency.","mark":"mk1-408a357150e9995f"}
+{"ts":"2026-09-22T01:31:09Z","kind":"task","id":"TVB5.8.45","state":"started","mark":"mk1-4006a4ecb250c67e"}
+{"ts":"2026-09-22T01:31:09Z","kind":"task","id":"TVB5.8.45","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-45.md","mark":"mk1-75676065eda6233a"}
+{"ts":"2026-09-22T01:31:09Z","kind":"gate","name":"verify-change TVB5.8.45 (PassiveTree 35 files): exit 0, class 57/0","result":"pass","mark":"mk1-b88adb4731f89fd8"}
+{"ts":"2026-09-22T02:58:36Z","kind":"task","id":"TVB5.8.46","state":"started","mark":"mk1-17cd0bb4a04c07d2"}
+{"ts":"2026-09-22T02:58:36Z","kind":"task","id":"TVB5.8.46","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-46.md","mark":"mk1-1e15a44ff745f721"}
+{"ts":"2026-09-22T02:58:36Z","kind":"gate","name":"verify-change TVB5.8.46 (Power): exit 0","result":"pass","mark":"mk1-734963c97c5fde87"}
+{"ts":"2026-09-22T03:09:48Z","kind":"task","id":"TVB5.8.47","state":"started","mark":"mk1-cc0d242adadba89f"}
+{"ts":"2026-09-22T03:09:48Z","kind":"task","id":"TVB5.8.47","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-47.md","mark":"mk1-92f58dfce288dc11"}
+{"ts":"2026-09-22T03:09:48Z","kind":"gate","name":"verify-change TVB5.8.47 (Progression): exit 0","result":"pass","mark":"mk1-492b9cd1ce0c2a62"}
+{"ts":"2026-09-22T12:58:31Z","kind":"task","id":"TVB5.8.48","state":"started","mark":"mk1-6a7860f5533188cf"}
+{"ts":"2026-09-22T12:58:31Z","kind":"task","id":"TVB5.8.48","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-48.md","mark":"mk1-3c92ed008f8a3c78"}
+{"ts":"2026-09-22T13:16:06Z","kind":"task","id":"TVB5.8.49","state":"started","mark":"mk1-0fac285c1636e51a"}
+{"ts":"2026-09-22T13:16:06Z","kind":"task","id":"TVB5.8.49","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-49.md","mark":"mk1-459c54192608658a"}
+{"ts":"2026-09-22T13:16:07Z","kind":"note","text":"Driver staging bug: a single-file pathspec without .cs aborted git add, so increment 48 committed wiring only; corrected in 3b19aff88. Staging is now per-file and exit-checked.","mark":"mk1-c6d51b45ecd67cce"}
+{"ts":"2026-09-22T13:22:59Z","kind":"task","id":"TVB5.8.50","state":"started","mark":"mk1-ec053f165d98627b"}
+{"ts":"2026-09-22T13:22:59Z","kind":"task","id":"TVB5.8.50","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-50.md","mark":"mk1-a769e607dcca6a44"}
+{"ts":"2026-09-22T13:29:27Z","kind":"task","id":"TVB5.8.51","state":"started","mark":"mk1-b8940aa3b2bb79af"}
+{"ts":"2026-09-22T13:29:27Z","kind":"task","id":"TVB5.8.51","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-51.md","mark":"mk1-840820c338bffaff"}
+{"ts":"2026-09-22T13:38:37Z","kind":"task","id":"TVB5.8.52","state":"started","mark":"mk1-3964d527cf69df82"}
+{"ts":"2026-09-22T13:38:37Z","kind":"task","id":"TVB5.8.52","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-52.md","mark":"mk1-23846e1b1b696f61"}
+{"ts":"2026-09-22T17:19:21Z","kind":"task","id":"TVB5.8.53","state":"started","mark":"mk1-ff5e3eca364a29ad"}
+{"ts":"2026-09-22T17:19:21Z","kind":"task","id":"TVB5.8.53","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-53.md","mark":"mk1-b7859ee67d91e488"}
+{"ts":"2026-09-22T17:25:49Z","kind":"task","id":"TVB5.8.54","state":"started","mark":"mk1-da16b23ac7b1580a"}
+{"ts":"2026-09-22T17:25:49Z","kind":"task","id":"TVB5.8.54","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-54.md","mark":"mk1-01b143a010b8581b"}
+{"ts":"2026-09-22T17:34:14Z","kind":"task","id":"TVB5.8.55","state":"started","mark":"mk1-df9b497e064e5835"}
+{"ts":"2026-09-22T17:34:14Z","kind":"task","id":"TVB5.8.55","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-55.md","mark":"mk1-38e075cc0df71eeb"}
+{"ts":"2026-09-22T18:39:46Z","kind":"task","id":"TVB5.8.56","state":"started","mark":"mk1-45c4c242d797e16b"}
+{"ts":"2026-09-22T18:39:46Z","kind":"task","id":"TVB5.8.56","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-56.md","mark":"mk1-79a2936dcfeb7e28"}
+{"ts":"2026-09-22T18:56:54Z","kind":"task","id":"TVB5.8.57","state":"started","mark":"mk1-f3a8639745344385"}
+{"ts":"2026-09-22T18:57:00Z","kind":"task","id":"TVB5.8.57","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-57.md","mark":"mk1-a1a071ba018d976f"}
+{"ts":"2026-09-22T21:05:49Z","kind":"task","id":"TVB5.8.58","state":"started","mark":"mk1-3a7b606c10c08f8d"}
+{"ts":"2026-09-22T21:05:49Z","kind":"task","id":"TVB5.8.58","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-58.md","mark":"mk1-44fcb08f82c6eb6d"}
+{"ts":"2026-09-22T21:42:02Z","kind":"task","id":"TVB5.8.59","state":"started","mark":"mk1-93594c7fb1bbdbc8"}
+{"ts":"2026-09-22T21:42:03Z","kind":"task","id":"TVB5.8.59","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-59.md","mark":"mk1-39a65fabaf71dd93"}
+{"ts":"2026-09-22T21:42:03Z","kind":"gate","name":"TVB5.8.59: verify-change focused exit 0 (StatSystem 30/0) + residual direct 10012/0","result":"pass","mark":"mk1-3329aad1bb972977"}
+{"ts":"2026-09-22T21:42:04Z","kind":"note","text":"Residual reading after 59: 10012 tests (was 14837 before increment 1). The core group run (57 projects) is too heavy for the harness per-increment; focused verify + direct residual run is the shape from here.","mark":"mk1-ed27c62b5f28b886"}
+{"ts":"2026-09-22T22:12:19Z","kind":"task","id":"TVB5.8.60","state":"started","mark":"mk1-32e931ff6ddb972c"}
+{"ts":"2026-09-22T22:12:19Z","kind":"task","id":"TVB5.8.60","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-60.md","mark":"mk1-97f4609a8a800eff"}
+{"ts":"2026-09-22T22:16:25Z","kind":"task","id":"TVB5.8.61","state":"started","mark":"mk1-6c1fc1bd34256199"}
+{"ts":"2026-09-22T22:16:26Z","kind":"task","id":"TVB5.8.61","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-61.md","mark":"mk1-0902109a6691c3e9"}
+{"ts":"2026-09-22T22:16:26Z","kind":"gate","name":"verify-change TVB5.8.61 (Status 14 files): exit 0, Status 170/0","result":"pass","mark":"mk1-19f1e71508252891"}
+{"ts":"2026-09-22T22:16:26Z","kind":"note","text":"Status: first apply reverted on a residual TEST failure, re-run kept (flaky/contention, not a dependency). Focused verify 170/0.","mark":"mk1-148edc7e282c0fca"}
+{"ts":"2026-09-22T22:40:46Z","kind":"task","id":"TVB5.8.62","state":"started","mark":"mk1-93fef036c713064c"}
+{"ts":"2026-09-22T22:40:46Z","kind":"task","id":"TVB5.8.62","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-62.md","mark":"mk1-a319276e0eaa0c4f"}
+{"ts":"2026-09-22T22:40:46Z","kind":"gate","name":"TVB5.8.62: verify-change 18/0 + guard OK (after adding the fixtures content item)","result":"pass","mark":"mk1-6dde7d19ee5400c5"}
+{"ts":"2026-09-22T22:40:46Z","kind":"note","text":"TargetResolverTests needed content=['../fixtures/combat/**/*'] (it reads fixtures/combat/boards/row2-zombies.json from BaseDirectory); a sweep of the remaining projects found no other fixture gap.","mark":"mk1-3051c2202dc1167b"}
+{"ts":"2026-09-22T23:31:22Z","kind":"task","id":"TVB5.8.63","state":"started","mark":"mk1-2bc389cd590b8552"}
+{"ts":"2026-09-22T23:31:22Z","kind":"task","id":"TVB5.8.63","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-63.md","mark":"mk1-d76e6dbcfdbee000"}
+{"ts":"2026-09-22T23:34:03Z","kind":"task","id":"TVB5.8.64","state":"started","mark":"mk1-2fd7e4fa68033b41"}
+{"ts":"2026-09-22T23:34:03Z","kind":"task","id":"TVB5.8.64","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-64.md","mark":"mk1-41c8ae545a1823b2"}
+{"ts":"2026-09-22T23:44:55Z","kind":"task","id":"TVB5.8.65","state":"started","mark":"mk1-81a82bcccecf9e4b"}
+{"ts":"2026-09-22T23:44:55Z","kind":"task","id":"TVB5.8.65","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-65.md","mark":"mk1-d728d03ec1f0780f"}
+{"ts":"2026-09-22T23:49:45Z","kind":"task","id":"TVB5.8.66","state":"started","mark":"mk1-29e8a57579f1eaa2"}
+{"ts":"2026-09-22T23:49:45Z","kind":"task","id":"TVB5.8.66","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-66.md","mark":"mk1-f0272ab165058a33"}
+{"ts":"2026-09-22T23:49:45Z","kind":"gate","name":"verify-change TVB5.8.66 (Vfx 18 files): 172/0; boundary guard red on ip-censor's unmapped data/seed file (TVB-F22)","result":"fail","mark":"mk1-66633949ac076dd9"}
+{"ts":"2026-09-22T23:49:45Z","kind":"note","text":"TVB-F22: guard fails 'unmapped enforced-root file: data/seed/ip-censor/_registry/scope-policy.v1.json' - another lane's file under data/seed without an owner row. Not this increment's (test sources only).","mark":"mk1-f57a499dca1fab4c"}
+{"ts":"2026-09-23T00:52:14Z","kind":"task","id":"TVB5.8.67","state":"started","mark":"mk1-9f9c2e985f4510b9"}
+{"ts":"2026-09-23T00:52:14Z","kind":"task","id":"TVB5.8.67","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-67.md","mark":"mk1-6dcc8c2878f90ffc"}
+{"ts":"2026-09-23T00:52:14Z","kind":"gate","name":"TVB5.8.67: verify-change 6/0 exit 0, boundary guard OK after the C8 exact-path rewrite","result":"pass","mark":"mk1-2fae2fee23969ddf"}
+{"ts":"2026-09-23T00:52:14Z","kind":"note","text":"Vocabulary: C8 caught a stale exact path (core-vocabulary-single-declaration) pointing at the moved file; rewritten in the same commit, then guard OK and verify 6/0.","mark":"mk1-3cb81adfa444cc0f"}
+{"ts":"2026-09-23T00:56:06Z","kind":"task","id":"TVB5.8.68","state":"started","mark":"mk1-6586f4bb0a31bacf"}
+{"ts":"2026-09-23T00:56:06Z","kind":"task","id":"TVB5.8.68","state":"done","evidence":"tasks/evidence-fragments/tvb5-8-68.md","mark":"mk1-a492485d3e578161"}
+{"ts":"2026-09-23T00:56:06Z","kind":"gate","name":"TVB5.8.68: verify-change 3/0 exit 0, boundary guard OK - manifest complete (67 of 67 landable)","result":"pass","mark":"mk1-343b0787fcb0fa35"}
+{"ts":"2026-09-23T00:56:06Z","kind":"note","text":"MANIFEST COMPLETE: 67 of 67 landable projects applied (1-29, 31-68). Project 30 skipped as TVB-F17. Remaining: TVB5.9 close (test-fast -AllDefault once, Csc reading, testing-standard sentence).","mark":"mk1-5cb5e8d1d50c6829"}
+{"ts":"2026-09-23T12:00:00Z","kind":"task","id":"TVB-F25","state":"started","evidence":"lane tvb-f25b: re-bless two stale web fixtures (time-of-day unknown, no shell clock; date 2026-09-23)","mark":"tvb-f25b"}
+{"ts":"2026-09-23T12:00:00Z","kind":"note","text":"TVB-F25 fixture 1/2 RE-BLESSED: web/fusion-rpg-web/e2e/fixtures/commander-list.json:6 'Crazy Dave'->'Garden Keeper' (one line). Producer ContractFixtureTests correct by code trace: ProjectList (CommanderEndpoints.cs:127) -> DataCommanderDirectory.DisplayName (:94-99), commander:dave displayFromPlayer:true (default-commanders.v1.json:9), player name seeded from LeadNamesHub.Display(Summoner) (RpgStore.cs:4217-4219) = names.en.v1.json lead_summoner 'Garden Keeper'; key order = CommanderDtos.cs:7-20; rest pinned by green CommanderListEndpointsTests:93-118; same diff as sim-t3-2 exercised bless (RS-F21:631-637).","mark":"tvb-f25b"}
+{"ts":"2026-09-23T12:00:00Z","kind":"note","text":"TVB-F25 fixture 2/2 BLOCKED (producer CORRECT, bytes unproducible): first-light-turn.json needs six new stateHash values; hashes move because WorldCanonical.Write hashes faction Name (WorldCanonical.cs:30) and first-light faction names are registry-derived (WorldTemplateCatalog.cs:79,84), so identity-rename T12/T13 moved every hash with entries/commands byte-identical (matches sim-t3-2 exercised bless RS-F21:638-642). New hashes need WorldTurnFixtureTests + FUSIONRPG_BLESS_WORLD_FIXTURE=1; this session has no shell (bash/paseo_create_terminal/subagent all refuse binding), file untouched.","mark":"tvb-f25b"}
+{"ts":"2026-09-23T12:00:00Z","kind":"note","text":"TVB-F25 lane limits: no producer command and no npm test runnable here (no shell); covering-suite static facts only (playbackTable.test.ts reads turn/entries, never stateHash; no vitest reads commander-list.json). OPEN COUPLING for web owner: e2e/commander-surface.spec.ts asserts literal 'Crazy Dave' (:158,178,188,199,237,249,251,267,272) against the fixture-fed mock, red under npm run test:e2e after this re-bless (outside AllDefault, outside this fence, untouched). TVB-F25 HALF-DONE.","mark":"tvb-f25b"}
+{"ts": "2026-09-24T01:29:46.183481+00:00", "kind": "task", "id": "TVB-F25", "state": "done", "evidence": "manager: fixture 2 re-blessed via WorldTurnFixtureTests+FUSIONRPG_BLESS_WORLD_FIXTURE=1 (6 stateHash lines only), clean re-run 1/1; fixture 1 Commander filter 41/41; commander-surface.spec.ts 10/10 incl. :158 Garden Keeper; guards 25/0", "mark": "mgr-tvb-f25"}
+{"ts": "2026-09-24T01:29:46.183493+00:00", "kind": "note", "text": "TVB-F25 lane notes superseded in one place: fixture 2 was re-blessed manager-side (WorldCanonical hashes faction Name; identity-rename T12/T13 moved all six hashes, entries byte-identical). e2e spec :158 updated to Garden Keeper (only fixture-fed assertion; other 13 Dave lines use hardcoded mocks).", "mark": "mgr-tvb-f25"}

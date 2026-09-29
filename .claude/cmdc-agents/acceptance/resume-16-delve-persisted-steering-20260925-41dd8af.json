@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-16-delve-persisted-steering-acceptance-20260925",
+  "sha": "41dd8af4fe6056e940ff5776ba7db81b38827c87",
+  "expectedSha": "41dd8af4fe6056e940ff5776ba7db81b38827c87",
+  "shortSha": "41dd8af4",
+  "mergedSha": "17cf1ef56abe7f5cd7946118d84c9105a4757cf6",
+  "verdict": "GREEN",
+  "scope": "D2.16a persisted Delve steering record, Data/Server transaction authority, and focused regression tests; no live, full aggregate, RpgHub.Resume, or CAI3.5 scope",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925",
+  "checks": [
+    {
+      "check": "data-stewing-record",
+      "command": "dotnet test tests/FusionRpg.Data.Tests --filter FullyQualifiedName~DelveSteeringRecordTests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "9 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/data-record.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "data-wild-transaction",
+      "command": "dotnet test tests/FusionRpg.Data.Tests --filter FullyQualifiedName~DelveWildTransactionTests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "18 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/data-wild-transaction.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "server-wild-endpoints",
+      "command": "dotnet test tests/FusionRpg.Server.Tests --filter FullyQualifiedName~DelveWildEndpointsTests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "18 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/server-wild-endpoints.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "server-battle-manager",
+      "command": "dotnet test tests/FusionRpg.Server.Tests --filter FullyQualifiedName~DelveBattleSessionManagerTests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "18 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/server-battle-manager.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "data-server-delve-filters",
+      "command": "dotnet test Data.Tests and Server.Tests with FullyQualifiedName~Delve; Core DelvePricesTests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "Data Delve 199 passed; Server Delve 63 passed; DelvePricesTests 22 passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/focused-delve.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "guards-planonly",
+      "command": "guard-dal; guard-test-substrate; guard-actor-hub; verify-change -PlanOnly for eight concrete code/test paths",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "DAL, test-substrate, ActorHub guards passed; PlanOnly selected Data/Server owners and fullEvidenceOwner CI/nightly/release",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/guards-plan.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git worktree add --detach <temporary-clean-checkout> 41dd8af4fe6056e940ff5776ba7db81b38827c87; focused tests; guards; PlanOnly; git diff --check; git status --porcelain=v1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused tests/guards/PlanOnly passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-16-delve-persisted-steering-acceptance-20260925/clean.log",
+      "logSha256": "D77B836881E938C245E032A97CBF8A3ED4D3E6E7ADAB5A0CA4E8C2A7193B64A2",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Server/DelveBattleSessionManager.cs",
+    "src/FusionRpg.Server/RpgHub.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveSteeringRecordTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveWildTransactionTests.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Server.Tests/DelveBattleSessionManagerTests.cs",
+    "tasks/reports/resume-10-delve-persisted-steering-20260925.md",
+    "tasks/reports/resume-16-delve-persisted-steering-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "41dd8af4fe6056e940ff5776ba7db81b38827c87",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "No live game, browser, or multi-party battle proof was run; reconnect/new-handle read-back is proven by the real Data/Server tests only.",
+    "The full unfiltered path-owned aggregate remains CI/nightly/release-owned; PlanOnly is the bounded local evidence.",
+    "RpgHub.Resume and CAI3.5 automated-policy wiring remain outside this change."
+  ],
+  "mergeScope": "The persisted steering record, its Data/Server validation/transaction seam, and focused tests are accepted and merged; no live or unrelated resume behavior was accepted.",
+  "when": "2026-09-25T12:00:00Z"
+}

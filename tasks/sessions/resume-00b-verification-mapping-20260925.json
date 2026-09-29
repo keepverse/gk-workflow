@@ -1,0 +1,16 @@
+{
+  "session": "resume-00b-verification-mapping-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Add a focused verification-boundary owner for the BCU2.12 launcher/report and batch driver, preventing broad seedsmith-fallback selection and closing the missing mapping without touching generated data.",
+  "mode": "worktree",
+  "branch": "opencode/resume-00b-verification-mapping-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-00b-verification-mapping-20260925",
+  "paths": [
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/VerificationBoundaryMappingRepairTests.cs",
+    "tasks/reports/resume-00b-verification-mapping-20260925.md"
+  ],
+  "started": "2026-09-25T04:34:27Z",
+  "status": "abandoned",
+  "notes": "OpenCode CLI Space Bunny Free max effort, uncapped input/output, no fallback and no subagent. This lane is enabled only after the failed build-preset owner was reconciled as abandoned; its dirty worktree remains preserved and is not an acceptance source. The worker ended partial after a focused Seedsmith boundary/test repair; the manager acceptance lane must add and prove the Phase 0A manager-script owner mapping before acceptance. No CI/release/Seedsmith code or generated-data edits, commit, push, or merge."
+}

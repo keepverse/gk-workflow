@@ -1,0 +1,23 @@
+{
+  "session": "resume-16-delve-persisted-steering-acceptance-20260925",
+  "program": "party-dungeon",
+  "problem": "Manager clean-checkout acceptance of the owner-ruled D2.16a persisted Delve steering record and its Server/Data transaction seam; no RpgHub.Resume/CAI3.5/live scope.",
+  "mode": "worktree",
+  "branch": "review/delve-persisted-steering-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-delve-persisted-steering-20260925",
+  "paths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Server/DelveBattleSessionManager.cs",
+    "src/FusionRpg.Server/RpgHub.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveSteeringRecordTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveWildTransactionTests.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Server.Tests/DelveBattleSessionManagerTests.cs",
+    "tasks/reports/resume-10-delve-persisted-steering-20260925.md",
+    "tasks/reports/resume-16-delve-persisted-steering-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T11:30:00Z",
+  "status": "merged",
+  "notes": "Manager clean-checkout acceptance completed at reviewed SHA 41dd8af4fe6056e940ff5776ba7db81b38827c87 and merged at 17cf1ef56abe7f5cd7946118d84c9105a4757cf6. Focused Data/Server/Core tests, guards, PlanOnly, diff, and clean status passed. Artifact: .claude/cmdc-agents/acceptance/resume-16-delve-persisted-steering-20260925-41dd8af.json. Live/full aggregate/RpgHub.Resume/CAI3.5 remain open."
+}

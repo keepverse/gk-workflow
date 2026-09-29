@@ -1,0 +1,2 @@
+{"kind":"fact","text":"The design gate records ActorHub as the sole Hot compose gate, the Funnel as the only Secondary-to-Bag path, record-then-drain as the runtime model, and deltas rather than absolutes for combat mutations. Verify each against current code."}
+{"kind":"fact","text":"The recent integration history includes a fused BattleStatComposer incident; specifically test for any surviving parallel composer or private fold rather than trusting the decision prose."}

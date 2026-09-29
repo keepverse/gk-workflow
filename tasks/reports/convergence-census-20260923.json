@@ -1,0 +1,1810 @@
+{
+  "contract": "t1-convergence: per-program open task-block counts driven to zero",
+  "totals": {
+    "programs": 118,
+    "programs_with_open_blocks": 61,
+    "open_blocks": 678,
+    "residue": 470,
+    "wip": 20,
+    "nested_open": 18,
+    "closed_by_header_programs": 8
+  },
+  "other_targets": {},
+  "programs": [
+    {
+      "program": "npc-story-events",
+      "file": "tasks/npc-story-events-todo.md",
+      "blocks": 90,
+      "blocks_unfiltered": 90,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 11,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **NR1.5 Host wiring.** *Depends:* NR1.4. *Agent:* implementer.",
+        "- [ ] **NR2.2 Move the engine behind `IStoryletHost`; land the NS1 guard.** *Depends:* NR2.1; `EventCatalogTests.cs`",
+        "- [ ] **NR2.3 Widened storylet shapes and legacy parity.** *Depends:* NR2.2. *Agent:* implementer."
+      ]
+    },
+    {
+      "program": "narrative-seed",
+      "file": "tasks/narrative-seed-todo.md",
+      "blocks": 63,
+      "blocks_unfiltered": 63,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 7,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **NS0 Session record.**",
+        "- [ ] **NS1 Verification boundary: the narrative seedsmith area.** *Depends:* NS0; external",
+        "- [ ] **NS2 Verification boundary: `data/seed/narrative/**` and `data/seed/dungeon/events/**`.**"
+      ]
+    },
+    {
+      "program": "battle-derived-wire",
+      "file": "tasks/battle-derived-wire-todo.md",
+      "blocks": 62,
+      "blocks_unfiltered": 62,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 27,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] A test enumerates `EffectAtomCatalog.CreateAll()` (the catalog battle installs at `BattleEffects.cs:59`) and reports, per trigger, how many compiled defs ",
+        "- [ ] The test **prints** the counts and asserts only structural facts (every def compiles; every damage action names a known channel). It pins no population co",
+        "- [ ] The result is written into the audit's §8 item 2 as a resolved reading with its date."
+      ]
+    },
+    {
+      "program": "test-verification-boundary",
+      "file": "tasks/test-verification-boundary-todo.md",
+      "blocks": 43,
+      "blocks_unfiltered": 43,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 69,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **TVB5.7 — First increment: shared set + manifest project 1, with its wiring** · M · deps: TVB5.4, TVB5.6 · *(spec: core-split-apply A2, A3, A5; core-spli",
+        "- [ ] **TVB5.8.k — Increment k (one per remaining manifest project, manifest order)** · M each · deps: TVB5.8.(k-1) or TVB5.7 · *(spec: core-split-apply A4, A5;",
+        "- [ ] **TVB5.9 — Split close: full default profile once + `Csc` reading + doc sentence** · S · deps: last TVB5.8.k · *(spec: core-split-apply Success criteria; "
+      ]
+    },
+    {
+      "program": "combat-math-dedup",
+      "file": "tasks/combat-math-dedup-todo.md",
+      "blocks": 34,
+      "blocks_unfiltered": 34,
+      "residue": 7,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 8,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] `StatusCategoryRegistry.cs` contains **no** hardcoded status-id string literal.",
+        "- [ ] The registry's seeded content is derived from `StatusCatalogBootstrap`'s own registrations.",
+        "- [ ] `StatusCategoryRegistry.Register` still works; `ExhaustionPolicy` and `StanceRuntime` are"
+      ]
+    },
+    {
+      "program": "item",
+      "file": "tasks/item-todo.md",
+      "blocks": 27,
+      "blocks_unfiltered": 27,
+      "residue": 102,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 407,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **X5** — the content ladder past level 10. Owner: **world map · wave catalog · event generator**.",
+        "- [ ] Republish `themes.v1.json` over the **whole** species corpus",
+        "- [ ] Add a staleness check to the pipeline so a snapshot can never drift silently again"
+      ]
+    },
+    {
+      "program": "species-gear-chain",
+      "file": "tasks/species-gear-chain-todo.md",
+      "blocks": 26,
+      "blocks_unfiltered": 26,
+      "residue": 240,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 242,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] ⛔ An armour piece upgrades to the next rung within its own `(ladder, frame)`, consuming the",
+        "- [ ] Every affix carries across identically **and** is legal on the successor's `affix_pool_tag** —",
+        "- [ ] The implicit change is shown on the card before the input is consumed — refuse-never-warn,"
+      ]
+    },
+    {
+      "program": "combat-ai",
+      "file": "tasks/combat-ai-todo.md",
+      "blocks": 23,
+      "blocks_unfiltered": 23,
+      "residue": 4,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 46,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **CAI2.2 — `replay-identity` B: pin the profile at match start, refuse rather than drift** · M · deps: CAI2.1 — **SERVER SOURCE HALF LANDED** (lane `cai2`",
+        "- [ ] **`CAI-cite-4` — three `file:line` citations the CAI2.5 edit moved, outside this lane's fence** · XS · deps: — · *(found by lane `cai2`, 2026-09-23, while",
+        "- [ ] **CAI2.3 — `action-schedule-twin`: the analytic model follows the core policy** · M · deps: CAI1.8, CAI1.9 — **STAYS OPEN on two rulings** (lane `cai2`, s"
+      ]
+    },
+    {
+      "program": "passive-tree-repair",
+      "file": "tasks/passive-tree-repair-todo.md",
+      "blocks": 22,
+      "blocks_unfiltered": 22,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 73,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] MC-2 (live proof): BLOCKED on mechanism-wiring executor — no path applies tree-carried status atoms during a match yet (derived fan-in is magnitudes-only ",
+        "- [ ] BLOCKED (magnitude node): no bound magnitude atom resolves live — stat.modify awaits P11 (gated), stat.derived awaits module 2 (no session). Proves the da",
+        "- [ ] BLOCKED (mechanism node): no executor applies tree-carried status atoms — mechanism-wiring's program. Proves the day it lands."
+      ]
+    },
+    {
+      "program": "rpg-simulator",
+      "file": "tasks/rpg-simulator-todo.md",
+      "blocks": 20,
+      "blocks_unfiltered": 20,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 17,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **UAR-F1 — the unlock-ladder chooser's own contract still trusts its caller's catalog (the Core half of RS-CF2 / ADG-F5), and no unique-actor todo file ex",
+        "- [ ] **RS-CF3 — the E2E project is not yet deterministic under load: three tests, none of them RS-CF2's, went red in the runs that measured it** · S · *found b",
+        "- [ ] **RS-F1 -- `/api/souls` exposes no award route, so \"award souls through the real `/api/souls` path\" is not reachable through a player-facing route** · XS "
+      ]
+    },
+    {
+      "program": "passive-tree",
+      "file": "tasks/passive-tree-todo.md",
+      "blocks": 17,
+      "blocks_unfiltered": 17,
+      "residue": 11,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 330,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **PTR-EF1 — `spec-tree-review.md` §7's success criterion demands a non-zero `visitedFileCount`",
+        "- [ ] A real per-tree rate, recorded, replacing the assumption",
+        "- [ ] The sample size for the full census recomputed from it, and written into the plan before phase J is"
+      ]
+    },
+    {
+      "program": "lawn",
+      "file": "tasks/lawn-todo.md",
+      "blocks": 15,
+      "blocks_unfiltered": 15,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 3,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **LW1.2 — `summon-pool-integrity`: generator fix + `fail-deploy` wiring** · M · deps: — · *(spec: summon-pool-integrity)*",
+        "- [ ] **LW1.3 — `exhaustion-event`: edge-triggered status + per-actor transitions** · M · deps: — · *(spec: exhaustion-event)*",
+        "- [ ] **LW1.5 — `actor-liveness-refresh`: server-side send, extends `SP6.6`** · S · deps: LW1.4 · *(spec: actor-liveness-refresh)*"
+      ]
+    },
+    {
+      "program": "solid-enforcement",
+      "file": "tasks/solid-enforcement-todo.md",
+      "blocks": 14,
+      "blocks_unfiltered": 14,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 66,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **SE4.30 — Run the migration on a copy of a real save; rehearse the rollback** · S · deps: SE4.20–SE4.29 · *(spec: save-identity, migration + Rollback; pa",
+        "- [ ] **SE4.31 — REST: a save's empires, `empireId` on specimens, `?empire=` where a consumer needs it** · M · deps: SE4.30 · *(spec: save-identity, Contracts)*",
+        "- [ ] **SE4.32 — One aptitudes fetch covers every empire; commander listing per `EmpireRef`** · M · deps: SE4.31 · *(spec: save-identity, Contracts, X11)*"
+      ]
+    },
+    {
+      "program": "build-preset",
+      "file": "tasks/build-preset-todo.md",
+      "blocks": 13,
+      "blocks_unfiltered": 13,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 12,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **BP1.4 — `AptitudePresetActivation.Activate`: lift the activate route (budget, materialize, check, store, broadcast); thread `payWith`** · M · deps: EP1.",
+        "- [ ] **BP1.5 — `AptitudePresetActivation.Preview`: the read half, with no write, through the one quote per scope** · M · deps: BP1.4 · *(spec: gate-services)*",
+        "- [ ] **BP2.3 — `IBuildPresetPieceApplier` and its records; `PatronApplier` and `SkillsApplier`; registered as an `IEnumerable`** · M · deps: BP2.1, BP1.3, BP1."
+      ]
+    },
+    {
+      "program": "battle-wire-remainder",
+      "file": "tasks/battle-wire-remainder-todo.md",
+      "blocks": 12,
+      "blocks_unfiltered": 12,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **BWR1.1 — W3: route the basic-attack's `ApplyHp` through the reflect step** · M · deps: — · *(spec: battle-derived-wire)*",
+        "- [ ] **BWR1.2 — W4 decision: one owner of status → `combat.*`** · M · deps: — · *(spec: battle-derived-wire)*",
+        "- [ ] **BWR1.3 — W8: `BattleHubInputs.Draughts` production producer** · S · deps: — · *(spec: battle-derived-wire)*"
+      ]
+    },
+    {
+      "program": "creature-seed",
+      "file": "tasks/creature-seed-todo.md",
+      "blocks": 12,
+      "blocks_unfiltered": 12,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 6,
+      "closed_rows": 18,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Task 8: Fusion floors + preview parity — **IN-FENCE HALF LANDED 2026-09-23, ROW LEFT OPEN ON TWO",
+        "- [ ] Task 9: Display payloads + quality line — **IN-FENCE CLAUSE LANDED 2026-09-23, ROW LEFT OPEN ON",
+        "- [ ] Task 11: Wave-band rank floor"
+      ]
+    },
+    {
+      "program": "party-dungeon",
+      "file": "tasks/party-dungeon-todo.md",
+      "blocks": 12,
+      "blocks_unfiltered": 12,
+      "residue": 8,
+      "wip": 0,
+      "nested_open": 1,
+      "closed_rows": 120,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **D3.31** The real event corpus's outcome effects resolve to `stat.modify`, which the event",
+        "- [ ] **D4.30** Run the six first-ship domains through the pipeline — **Opening framing corrected 2026-09-20",
+        "- [ ] **D4.32** The live room-clear and extraction routes — **RETAINED BY THIS PROGRAM, AND NEVER SLICED.**"
+      ]
+    },
+    {
+      "program": "base-defense",
+      "file": "tasks/base-defense-todo.md",
+      "blocks": 11,
+      "blocks_unfiltered": 11,
+      "residue": 3,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 160,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **CP3 · Level 6 checkpoint — STILL NOT MET, but down to one named item per module after session 5** (plan §6: *\"Cover, construction, economy and AI green;",
+        "- [ ] **21.3** ⛔ **PAUSED 2026-09-06 — blocked on the cross-program Phaser refactor (see module header)**. Stage under `stages/siege/` copying `world`'s shape; ",
+        "- [ ] **21.4** ⛔ **PAUSED — same reason as 21.3, and depends on it existing.** Pre-battle deployment (decision 37) — player-placed, AI places by policy at the s"
+      ]
+    },
+    {
+      "program": "ip-censor",
+      "file": "tasks/ip-censor-todo.md",
+      "blocks": 11,
+      "blocks_unfiltered": 11,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 19,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **T12 Release gate step, checklist line, exit-check guard, enforcement row.** *Depends:* T10.",
+        "- [ ] **T14 `seedsmith.briefkit.avoid_list`.** *Depends:* T4.",
+        "- [ ] **T15 Uniques brief adopts the avoid line and drops its franchise citation.** *Depends:* T14."
+      ]
+    },
+    {
+      "program": "keepverse-split",
+      "file": "tasks/keepverse-split-todo.md",
+      "blocks": 11,
+      "blocks_unfiltered": 11,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 24,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **KS1.4 `graph`.** csproj/slnx/props/package.json/pyproject graph; direction-contract violations ⇒ residue.",
+        "- [ ] **KS1.5 `transform`.** Registry + first transforms: MSBuild path rewrite (XML-aware), per-repo",
+        "- [ ] **KS3.0** Owner charter for reconcile agents (runtimes, models, budget) recorded before any worker."
+      ]
+    },
+    {
+      "program": "actor-hud",
+      "file": "tasks/actor-hud-todo.md",
+      "blocks": 10,
+      "blocks_unfiltered": 10,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 79,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] LIVE lab board eyeball (quick-start) — owner after deploy — **`live-qa` 2026-09-20 attempted**",
+        "- [ ] Shield row parity vs old ShieldBarPool (Body+offset, size, stack pips) — LIVE owner eyeball —",
+        "- [ ] LIVE: no double shield bar; sustain VFX intact — owner after deploy — **`live-qa` 2026-09-20**:"
+      ]
+    },
+    {
+      "program": "deployment-hierarchy",
+      "file": "tasks/deployment-hierarchy-todo.md",
+      "blocks": 9,
+      "blocks_unfiltered": 9,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **DH1.1 — Populate `CarryInPools` at every setup call site** · M · deps: — · *(spec: deploy-carry)*",
+        "- [ ] **DH1.2 — `DelveCarryIn.Apply` carries pools into the next room's setup** · S · deps: DH1.1 · *(spec: deploy-carry)*",
+        "- [ ] **DH1.3 — Map `DelveMemberState.Statuses` into the next setup's initial status specs** · S · deps: DH1.2 · *(spec: deploy-carry)*"
+      ]
+    },
+    {
+      "program": "empire-development",
+      "file": "tasks/empire-development-todo.md",
+      "blocks": 9,
+      "blocks_unfiltered": 9,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 64,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] `spec-sector-storage.md` — sector storage reachability flip on capture, silent to the player",
+        "- [ ] `spec-cargo-fate.md` — legion-death cargo cache, silent to the player",
+        "- [ ] `spec-wonder-build-flow.md` — Wonder completion + `wonder.cap-reached` refusal, silent to the player"
+      ]
+    },
+    {
+      "program": "species-progression",
+      "file": "tasks/species-progression-todo.md",
+      "blocks": 8,
+      "blocks_unfiltered": 8,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 47,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **SP2.2 — The atom compiler's `kMicro` branch uses `LadderScale`; atom-side movement measured** · S · deps: SP2.1 · *(spec: ladder-scale-parity)*",
+        "- [ ] **SP5.1 — Projection ledger + `ReprojectEmpireSpeciesUnlocked` (digest no-op, withdraw on empty, lossless persist)** · M · deps: SE4.20, SE4.21 (the migra",
+        "- [ ] **SP5.2 — Trigger 1: the one `TryApplyXpUnlocked` hook re-projects on a species level change, for every empire** · S · deps: SP5.1 · *(spec: empire-specie"
+      ]
+    },
+    {
+      "program": "strain-splice-host",
+      "file": "tasks/strain-splice-host-todo.md",
+      "blocks": 8,
+      "blocks_unfiltered": 8,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 72,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **SSH4.9 — Live probe (RPG Server Debug scope): a real word on the real sheet** · S · deps: SSH4.8 · *(spec: combo-bind Commands, Success criteria)*",
+        "- [ ] **SSH7.1 — `TierLadder` parse and load rules; a strain-splice current-revision constant (still v1); provenance from the ladder side** · S · deps: SSH5.2, ",
+        "- [ ] **SSH7.7 — THE LADDER FLIP: publish `strain-splice.v2.json`, re-measure, republish sockets provenance (one commit)** · M · deps: SSH6.8 (R5), SSH7.6 · *(s"
+      ]
+    },
+    {
+      "program": "backlog-clear",
+      "file": "tasks/backlog-clear-todo.md",
+      "blocks": 7,
+      "blocks_unfiltered": 7,
+      "residue": 1,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 44,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] B20 + B21 — T6 interactive turns + T10 decision trace · **L** (ship together) — **PARTIAL**:",
+        "- [ ] B22 — T11 live sessions · **L** — **PARTIAL/absorbed-no-pointer**: Core `BattleSessionRegistry`",
+        "- [ ] Checkpoint C: every interactive battle replays from its trace; the sweep cannot overwrite a"
+      ]
+    },
+    {
+      "program": "loam",
+      "file": "tasks/loam-todo.md",
+      "blocks": 7,
+      "blocks_unfiltered": 7,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 100,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **L44: Wire the five missing fields, and catch up the TS mirror**",
+        "- [ ] **L45: Turn-playback narration for the loam/legion/Unmade vocabulary**",
+        "- [ ] **L46: Sustain and Build command UI**"
+      ]
+    },
+    {
+      "program": "summoner-convergence",
+      "file": "tasks/summoner-convergence-todo.md",
+      "blocks": 6,
+      "blocks_unfiltered": 6,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 5,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **CV.1 — Keep the shared tuning ledger true** · XS · deps: — · *(plan §5)*",
+        "- [ ] `SE4.1`–`SE4.4` commander-identity + `SE4.11`–`SE4.43` save-identity landed (SE Checkpoint 4b = this checkpoint); migration run on a real save copy is a n",
+        "- [ ] `EP` CP1–CP6"
+      ]
+    },
+    {
+      "program": "aptitude-sheet",
+      "file": "tasks/aptitude-sheet-todo.md",
+      "blocks": 5,
+      "blocks_unfiltered": 5,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 32,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Owner retune soft max presets / default abs max in balance pass",
+        "- [ ] Exact lucide keys per aptitude (content polish)",
+        "- [ ] Lawn species glance door (Wave 2 ideal)"
+      ]
+    },
+    {
+      "program": "effect-pipeline",
+      "file": "tasks/effect-pipeline-todo.md",
+      "blocks": 5,
+      "blocks_unfiltered": 5,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **EPL1.2 — The classifier + `MAX`-over-refs derivation** · M · deps: EPL1.1 · *(spec: affix-power-class)*",
+        "- [ ] **EPL1.3 — ⛔ The 98-call classification run** · S-run · deps: EPL1.2, owner charter · *(spec: affix-power-class)*",
+        "- [ ] **EPL2.1 — The `(powerClass × channel) → weight` policy shape** · S · deps: EPL1.1 · *(spec: affix-channel-weights)*"
+      ]
+    },
+    {
+      "program": "notification-ssot",
+      "file": "tasks/notification-ssot-todo.md",
+      "blocks": 5,
+      "blocks_unfiltered": 5,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 77,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **NS5.13 — Gate G2 live probe (RPG Server Debug scope)** · S · deps: NS5.10, NS5.11, NS5.12 — **BLOCKED 2026-09-21**: no real world-creation path exists (",
+        "- [ ] **NS6.8 — Recipe `notices.json`, then the owner piece review** · S · deps: NS6.7 · *(spec: notify-centre §2 steps 3, 7)* — **resolver named 2026-09-21 (ow",
+        "- [ ] **NS6.11 — `NoticesSurface` + the Chronicle \"Notices\" tab** · M · deps: NS6.8 (owner review), NS6.9, NS6.10 · *(spec: notify-centre §1, §3; tests 3, 4, 6;"
+      ]
+    },
+    {
+      "program": "action",
+      "file": "tasks/action-todo.md",
+      "blocks": 4,
+      "blocks_unfiltered": 4,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 144,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **T71: `IBattleView.HasLiveConditionalPayoff` + shared `ActionChoice` lookahead helper** · **M**",
+        "- [ ] **T72: wire the shared helper into both `StubIntentSource` and `SiegeAiIntentSource`** · **S**",
+        "- [ ] Full `Core.Tests`/`Data.Tests`/`Server.Tests`/`Guard.Tests` + all 8 goldens green, once, with every"
+      ]
+    },
+    {
+      "program": "buff-debuff-scope",
+      "file": "tasks/buff-debuff-scope-todo.md",
+      "blocks": 4,
+      "blocks_unfiltered": 4,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 21,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **Aura skill content + magnitude math** — explicit owner sequencing, \"later discuss\"",
+        "- [ ] **Commander concept** (Zomboss/Crazy Dave identity, roster, \"player-first commander\") — explicit",
+        "- [ ] **`world-buff.*` content authoring** — no aura content exists yet to author"
+      ]
+    },
+    {
+      "program": "trade-network",
+      "file": "tasks/trade-network-todo.md",
+      "blocks": 4,
+      "blocks_unfiltered": 4,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **DOC-NS5.7** (routed by notification-ssot, 2026-09-21) Four citations into the moved/deleted",
+        "- [ ] **DOC-NS5.2** (routed by notification-ssot, 2026-09-21)",
+        "- [ ] **TVB-F15 (your share) — `doc-citations` is red on this program's docs at the merged head** ·"
+      ]
+    },
+    {
+      "program": "verification-boundaries",
+      "file": "tasks/verification-boundaries-todo.md",
+      "blocks": 4,
+      "blocks_unfiltered": 4,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 5,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Add curated focused groups when a C# migration fallback proves too broad. Each new boundary",
+        "- [ ] Add a real cross-module seam only when a named contract needs additional proof; fixture-only",
+        "- [ ] Add web/tools/generated/config roots with their own fixed validators. They must not be"
+      ]
+    },
+    {
+      "program": "actor-sheet",
+      "file": "tasks/actor-sheet-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 12,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] T13–T14 elements / kit deep chrome (ShieldLayer depth / Elements StatRows polish) — deferred",
+        "- [ ] Paths `@xyflow` push depth — deferred (PassivesTab wrapper still ships)",
+        "- [ ] T3 Server/Injector host wiring (optional / out of FE scope this pass)"
+      ]
+    },
+    {
+      "program": "aura-skill",
+      "file": "tasks/aura-skill-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 53,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **T23: mid-battle aura delivery — give `BattleActorSetup.ActiveAuras` (W7) and",
+        "- [ ] **T24: the atom-push wire has no withdraw/reconcile message** · M · added 2026-09-20",
+        "- [ ] **T-SSOT (§3.3): seed `AuraRuntime`'s active set from the durable `aura` bindings, so bindings"
+      ]
+    },
+    {
+      "program": "backlog-clean-up",
+      "file": "tasks/backlog-clean-up-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 70,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **BCU2.10 — Corpus run: action-distribution-gaps B0 → B1 (then top-up rounds per its todo)** · L-run · deps: **T4.5 preflight (met; re-run GREEN 2026-09-2",
+        "- [ ] **BCU2.11 — Corpus run: item-seedgen full run (~904 species / 36 sets / ~904 charms)** · L-run · deps: **a generator fix for the near-duplicate / `EmptyPa",
+        "- [ ] **BCU2.12 — Corpus run: passive-tree J9 / J10 / J13** · L-run · deps: **J9-B1(b)'s named repair** (PT-J9-F1: re-ask the colliding node / supersede its led"
+      ]
+    },
+    {
+      "program": "class-system",
+      "file": "tasks/class-system-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 2,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 89,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **The missing-reader channel families — the SAME finding recorded in `battle-derived-wire`**",
+        "- [ ] **`aspect-scope`** — [creatures/spec-aspect-scope.md](../docs/architecture/creatures/spec-aspect-scope.md), **creature program owns it**. `point-economy` ",
+        "- [ ] **CS-F1 — `RealRunCollectorTests` runs the real collector with the repo's tracked"
+      ]
+    },
+    {
+      "program": "content-stack",
+      "file": "tasks/content-stack-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 0,
+      "wip": 5,
+      "nested_open": 0,
+      "closed_rows": 48,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **Fix-bug phase**, after the live check — owner, 2026-09-03: *\"we will completely build then final",
+        "- [ ] **CS-F3 — a player install cannot boot at all: the pack ships no species roster, and no boot or launcher step imports one** · S ·",
+        "- [ ] **CS-F4 — this file's own legacy citations make `verify-change.ps1` un-greennable for any content-stack lane** · XS ·"
+      ]
+    },
+    {
+      "program": "first-session-progression",
+      "file": "tasks/first-session-progression-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 54,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Core, Data, Guard, Server, Web unit/build suites and relevant Playwright suites pass.",
+        "- [ ] DAL, source, vocabulary, accessibility, viewport, and `git diff --check` guards pass.",
+        "- [ ] The final report links the live evidence and explicitly names any environment-only limitation."
+      ]
+    },
+    {
+      "program": "lawn-combat-wire",
+      "file": "tasks/lawn-combat-wire-todo.md",
+      "blocks": 3,
+      "blocks_unfiltered": 3,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 159,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] All seven proofs ran with falsifiers, **outside a debug session** (`EventDrainHost.Active` true",
+        "- [ ] **L-N34** Boot crash on HEAD (found 2026-09-15, not this program's code): every build containing merge `8710d326`",
+        "- [ ] **L-N2** Proofs 4/5 redo. Observer needs per-attacker counters or a committed hit sample. One"
+      ]
+    },
+    {
+      "program": "actor-hub-enforcement",
+      "file": "tasks/actor-hub-enforcement-todo.md",
+      "blocks": 2,
+      "blocks_unfiltered": 2,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 21,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Lawn equip SourceIds as `equip:` without double-counting grants",
+        "- [ ] FE InspectSplit consumes sheet contributions (presentation only)"
+      ]
+    },
+    {
+      "program": "condition-glance",
+      "file": "tasks/condition-glance-todo.md",
+      "blocks": 2,
+      "blocks_unfiltered": 2,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 27,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Owner may merge internal live-state POST into dump ingest later",
+        "- [ ] **CG-F1 — `condition.waveCD.test.tsx`'s radar axis-label assertion is load-flaky** ·"
+      ]
+    },
+    {
+      "program": "data-test-substrate",
+      "file": "tasks/data-test-substrate-todo.md",
+      "blocks": 2,
+      "blocks_unfiltered": 2,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 59,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **BU3 — investigate the 46ms `EnsureHotSchema` gap (unproven, do not guess).** · **SCHEDULED (owner: `data-test-substrate`) — BCU8.5 routing answer: NOT `",
+        "- [ ] **BU4 — re-measure on an idle machine.** · **SCHEDULED (owner: `data-test-substrate`) — BCU8.5 routing answer: NOT `test-verification-boundary`'s. Gated o"
+      ]
+    },
+    {
+      "program": "effect-atom",
+      "file": "tasks/effect-atom-todo.md",
+      "blocks": 2,
+      "blocks_unfiltered": 2,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 27,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **E13's `AtomBenchGuardTests` is a wall-clock budget in the default profile, and it flakes under",
+        "- [ ] **`ContentHashStamp.TableDigests` is named for tables and now has a second, non-table caller** · XS ·"
+      ]
+    },
+    {
+      "program": "game-gui",
+      "file": "tasks/game-gui-todo.md",
+      "blocks": 2,
+      "blocks_unfiltered": 2,
+      "residue": 0,
+      "wip": 2,
+      "nested_open": 0,
+      "closed_rows": 199,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] `npm run test:e2e` — not run this pass; no page consumes the actor fixture yet (T8, next task, is the first one that will), so a Playwright spec against i",
+        "- [ ] Visual: chunk-loading behavior has no visual surface of its own to screenshot beyond the"
+      ]
+    },
+    {
+      "program": "action-distribution-gaps",
+      "file": "tasks/action-distribution-gaps-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 31,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **ADG-F2 — the planner's foundation-freshness check is weaker than the pipeline's.** ADG-F1's own"
+      ]
+    },
+    {
+      "program": "combat-unification",
+      "file": "tasks/combat-unification-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 40,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **F2b (non-blocking, tracked): author real `ElementSecondary` for non-fusion species**"
+      ]
+    },
+    {
+      "program": "commander-surface",
+      "file": "tasks/commander-surface-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 60,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Live deploy smoke — owner-only, still open"
+      ]
+    },
+    {
+      "program": "derived-cook",
+      "file": "tasks/derived-cook-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 18,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Channel `Value` → `long` Core ticket (D6) — **note added 2026-09-20** (P7): confirmed live,"
+      ]
+    },
+    {
+      "program": "empire-progression",
+      "file": "tasks/empire-progression-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 78,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **EP5.3 — The chosen rung feeds `ai-empire-species`'s default; the weakest consideration goes in the turn report** · S · deps: EP5.2, EP4.15 · *(spec: ai-"
+      ]
+    },
+    {
+      "program": "identity-rename",
+      "file": "tasks/identity-rename-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 20,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **T0 Session record and boundaries for the unmapped front pages.**"
+      ]
+    },
+    {
+      "program": "injector-stub",
+      "file": "tasks/injector-stub-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] W3 — Owner live spot-check: `deploy-play.ps1 -NoServer`, vanilla hit → no butter"
+      ]
+    },
+    {
+      "program": "lawn-interactive",
+      "file": "tasks/lawn-interactive-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 19,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Checkpoint E — combat book full arm→Intent (deferred until action corpus; chrome + Esc cancel armed only)"
+      ]
+    },
+    {
+      "program": "live-probe",
+      "file": "tasks/live-probe-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 72,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **Task 23 — a post-deploy aptitude change never reaches an already-Bound live entity.** *(half of this"
+      ]
+    },
+    {
+      "program": "phaser-scene-poc",
+      "file": "tasks/phaser-scene-poc-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 6,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Data-lifecycle bar: ticking fake model across Track A wake + Track B destroy/create (generation/buffer/ready)"
+      ]
+    },
+    {
+      "program": "seedsmith-generated-seed-repair",
+      "file": "tasks/seedsmith-generated-seed-repair-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 2,
+      "closed_rows": 22,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] 312 `ImplicitFlavourDrift` rows — authoring fleet re-flavour."
+      ]
+    },
+    {
+      "program": "seedsmith",
+      "file": "tasks/seedsmith-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 243,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **SS-F1 — the pytest suite carries 9 pre-existing failures, and one of them writes a tracked file.**"
+      ]
+    },
+    {
+      "program": "shield-sheet",
+      "file": "tasks/shield-sheet-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 20,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] Debug-only GET /shields if needed — never tab SSOT"
+      ]
+    },
+    {
+      "program": "world-stage",
+      "file": "tasks/world-stage-todo.md",
+      "blocks": 1,
+      "blocks_unfiltered": 1,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 142,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": [
+        "- [ ] **TVB-F15 (your share) — `doc-citations` is red on this program's docs at the merged head** ·"
+      ]
+    },
+    {
+      "program": "achievement-title",
+      "file": "tasks/achievement-title-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 35,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 38,
+      "closed_by_header": {
+        "line": 3,
+        "text": "**All Task 1–7a boxes below are closed by the header above**, per the \"Checkpoint: Complete\" section"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] Grammars accept/reject matrix green incl. 64-char bound, no tier suffix",
+        "- [ ] Faucet-without-sink, dangling bundle-ref, dual-family, unknown enum all reject naming the row",
+        "- [ ] Set→meta DAG cycles reject naming ids (topological pass owned here)"
+      ]
+    },
+    {
+      "program": "action-corpus",
+      "file": "tasks/action-corpus-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 10,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "action-enrich",
+      "file": "tasks/action-enrich-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 19,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "action-skill-tiers",
+      "file": "tasks/action-skill-tiers-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 38,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "actor-hub-and-combat-power-solid-fixing",
+      "file": "tasks/actor-hub-and-combat-power-solid-fixing-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 188,
+      "closed_by_header": {
+        "line": 124,
+        "text": "***Owner ruling 2026-09-16:** *\"i don't have any review gate here, you review it by using log metric, about vfx, they already build and test, you just wire it correctly, not to build new, so we don't "
+      },
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "actor-sheet-derived",
+      "file": "tasks/actor-sheet-derived-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 6,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "actor-sheet-shell",
+      "file": "tasks/actor-sheet-shell-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 5,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "almanac",
+      "file": "tasks/almanac-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 20,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "atom-family-expansion",
+      "file": "tasks/atom-family-expansion-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 56,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "battle-tempo",
+      "file": "tasks/battle-tempo-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 57,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "battle-timeline",
+      "file": "tasks/battle-timeline-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 60,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "commit-mcp",
+      "file": "tasks/commit-mcp-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 9,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "creative-mode-followups",
+      "file": "tasks/creative-mode-followups-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "creature-corpus-self-heal",
+      "file": "tasks/creature-corpus-self-heal-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 49,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "creature-lawn-deploy",
+      "file": "tasks/creature-lawn-deploy-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 6,
+      "closed_rows": 11,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "creature-progression",
+      "file": "tasks/creature-progression-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 3,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "creature-standalone",
+      "file": "tasks/creature-standalone-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 2,
+      "nested_open": 0,
+      "closed_rows": 113,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "debug-mcp",
+      "file": "tasks/debug-mcp-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 1,
+      "residue": 45,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": {
+        "line": 12,
+        "text": "**All boxes below are closed by the header above** (verified 2026-09-20, `backlog-clean-up`"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] **DM-F1 — three ruff findings in `debug_preflight` (import order x2, percent format)** · XS · *(filed by item-seed-gen, 2026-09-20)*"
+      ]
+    },
+    {
+      "program": "derived-stats",
+      "file": "tasks/derived-stats-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "drop-tables",
+      "file": "tasks/drop-tables-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 67,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "fe-essentials",
+      "file": "tasks/fe-essentials-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 31,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "game-control",
+      "file": "tasks/game-control-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 26,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 6,
+      "closed_by_header": {
+        "line": 14,
+        "text": "**All boxes below are closed by the header above** (verified 2026-09-20, `backlog-clean-up`"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] `.\\scripts\\verify-change.ps1 -Paths <changed files> -Session <build-session-id>` selects the focused checks (required local workflow — never a broad suite",
+        "- [ ] Injector tasks (1–4): `dotnet build src/FusionRpg.Injector.MelonLoader.39 -c Release -p:MlGameDir=$env:FUSIONRPG_ML_GAMEDIR -p:GameProfile=pvzrh-3.9` gree",
+        "- [ ] Const-introducing tasks: `python scripts/audit-magic-numbers.py` shows no new M1/M2 (structural consts carry their T2 comment)"
+      ]
+    },
+    {
+      "program": "gui-lego-condition",
+      "file": "tasks/gui-lego-condition-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 13,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "gui-lego",
+      "file": "tasks/gui-lego-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 26,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "item-content",
+      "file": "tasks/item-content-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 15,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "item-seedgen",
+      "file": "tasks/item-seedgen-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 54,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "live-probe-screenshot",
+      "file": "tasks/live-probe-screenshot-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 18,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 11,
+      "closed_by_header": {
+        "line": 11,
+        "text": "**All boxes below are closed by the header above.** Session `lawn-screenshot-20260914` merged"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] On the real game build, one `debug.screenshot` command produces a PNG that opens and",
+        "- [ ] Interop presence recorded: `ScreenCapture` present/absent (fallback promoted if",
+        "- [ ] No per-frame work added to `InjectorLoop.Tick` (arm is a flag set; coroutine runs only"
+      ]
+    },
+    {
+      "program": "live-setup-skip",
+      "file": "tasks/live-setup-skip-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 7,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "onboarding-rift",
+      "file": "tasks/onboarding-rift-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 109,
+      "residue": 2,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": {
+        "line": 30,
+        "text": "**All boxes below are closed by the header above** (verified 2026-09-20, `backlog-clean-up`"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] The teaser is documented as a Sanctum-owned band-3 dialog, not a route or checkpoint.",
+        "- [ ] The three reward checkpoint IDs and order remain unchanged.",
+        "- [ ] Lore copy labels Rift/Void/quarantine claims as project fiction."
+      ]
+    },
+    {
+      "program": "overlay-switch",
+      "file": "tasks/overlay-switch-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 17,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "phaser-kernel",
+      "file": "tasks/phaser-kernel-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 35,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "player-guide",
+      "file": "tasks/player-guide-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "power",
+      "file": "tasks/power-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 44,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "rift-gate",
+      "file": "tasks/rift-gate-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 92,
+      "residue": 13,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": {
+        "line": 9,
+        "text": "**All boxes below are closed by the header above** (verified 2026-09-20, `backlog-clean-up`"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] `.\\scripts\\verify-change.ps1 -Paths <changed files> -Session <build-session-id>` selects the",
+        "- [ ] Injector tasks (T2–T6): **set the env var first, then check the log** —",
+        "- [ ] Const/tuning-introducing tasks: `python scripts/audit-magic-numbers.py` shows no new M1/M2"
+      ]
+    },
+    {
+      "program": "roster-balance",
+      "file": "tasks/roster-balance-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 11,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "scope-side-wide",
+      "file": "tasks/scope-side-wide-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "seed-to-concrete",
+      "file": "tasks/seed-to-concrete-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 2,
+      "nested_open": 0,
+      "closed_rows": 102,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "seedsmith-cli-ux",
+      "file": "tasks/seedsmith-cli-ux-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 28,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "seedsmith-content-standard",
+      "file": "tasks/seedsmith-content-standard-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 1,
+      "nested_open": 0,
+      "closed_rows": 48,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "shield",
+      "file": "tasks/shield-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 25,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "solid-remediation",
+      "file": "tasks/solid-remediation-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 1,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 96,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "species-build",
+      "file": "tasks/species-build-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 65,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "status-rail",
+      "file": "tasks/status-rail-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 28,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "story-scene",
+      "file": "tasks/story-scene-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 215,
+      "residue": 4,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 62,
+      "closed_by_header": {
+        "line": 8,
+        "text": "**All boxes below are closed by the header above**, per the HANDOFF section at the bottom of this"
+      },
+      "other_target": null,
+      "sample": [
+        "- [ ] `npx vitest run src/i18n/` reports **0 failed** (58 tests).",
+        "- [ ] `formatActorPhase` returns a player word for **every** `ActorPhase` case; no enum word escapes.",
+        "- [ ] The lifecycle piece renders **no** `phase-*` string as text; `data-phase` remains."
+      ]
+    },
+    {
+      "program": "vfx-identity-batch1-drip",
+      "file": "tasks/vfx-identity-batch1-drip-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-identity-batch2-crackle",
+      "file": "tasks/vfx-identity-batch2-crackle-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-identity-batch3-orbit",
+      "file": "tasks/vfx-identity-batch3-orbit-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-identity-batch4-apply",
+      "file": "tasks/vfx-identity-batch4-apply-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-identity-batch45-audit",
+      "file": "tasks/vfx-identity-batch45-audit-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 6,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-identity-batch5-pulsering",
+      "file": "tasks/vfx-identity-batch5-pulsering-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 4,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-identity-batch6-live",
+      "file": "tasks/vfx-identity-batch6-live-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 9,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-v2",
+      "file": "tasks/vfx-v2-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 11,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "vfx-v3",
+      "file": "tasks/vfx-v3-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 15,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "world-map-gaps-followup",
+      "file": "tasks/world-map-gaps-followup-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 0,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "world-map-runtime-gaps",
+      "file": "tasks/world-map-runtime-gaps-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 80,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "world-map-runtime",
+      "file": "tasks/world-map-runtime-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 109,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    },
+    {
+      "program": "world-map",
+      "file": "tasks/world-map-todo.md",
+      "blocks": 0,
+      "blocks_unfiltered": 0,
+      "residue": 0,
+      "wip": 0,
+      "nested_open": 0,
+      "closed_rows": 126,
+      "closed_by_header": null,
+      "other_target": null,
+      "sample": []
+    }
+  ]
+}

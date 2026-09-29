@@ -1,0 +1,25 @@
+{
+  "session": "narrative-seed-idea-20260919",
+  "program": "narrative-seed",
+  "problem": "Idea phase for seedsmith generation of NPC characters, interactive storylets (events with authored player choices) and story arcs. Deliverable is the ideal doc only - no spec, plan or code. Also corrects stale text this survey contradicted.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/narrative-seed-idea-20260919.json",
+    "docs/architecture/narrative-seed-ideal.md",
+    "docs/architecture/npc-story-events-ideal.md",
+    "docs/architecture/party-dungeon/spec-event-deck.md",
+    "docs/architecture/ip-censor-ideal.md"
+  ],
+  "started": "2026-09-19T11:14:00Z",
+  "status": "merged",
+  "notes": [
+    "Follow-on to npc-story-events-idea-20260919 in the same conversation: the owner asked whether seedsmith generates NPCs, events and story, and whether they are interactive, and asked for an idea phase if not.",
+    "Agents: two sonnet survey agents and one opus prior-art agent, under the charter the owner approved earlier in this conversation (Claude Code native only; sonnet survey, opus research; plan quota; stop on quota error). No agent edits files.",
+    "Stale-text corrections in scope, each verified against code this session: spec-event-deck.md says the predicate vocabulary has twelve leaves and that BandIs/HaulAtLeast/RoomKindIs/PartyDownedCount are real gaps - LeafId has 16 members and all four are built (PredicateCompiler.cs, FactReader.cs). npc-story-events-ideal.md section 3.4 proposes building a script check that already exists (workflow/validators/language.py) and misstates the chainRef root cause. Both files were clean in git status before this session touched them.",
+    ".claude/skills/seedsmith-design/SKILL.md is NOT edited here: the active creative-mode-20260919-1d38 session (worktree) claims that exact path to fix drift in the standards. Its two stale lines found by this survey are reported to the owner instead: Law 5 'never float' (void since the 2026-09-15 owner ruling) and Law 1 'TryInstantiate currently has zero production callers' (eight production call sites exist).",
+    "Crossing with worktree lanes B/C/D (broad docs/** and tasks/** globs) is the same shape recorded in npc-story-events-idea-20260919: lanes work in their own worktrees; the edits here are one new file plus small line-scoped corrections.",
+    "ip-censor-ideal.md added 2026-09-19 on the owner's ruling R7 ('enrich the ip-censor document to avoid words we will need to censor'). The file was clean in git status and no session record claims it; the edit adds one section and touches nothing else.",
+    "Closed 2026-09-20 with the planning phase: the ideal landed (5f141a12) and was carried through spec, audit and plan rounds; handoff at tasks/narrative-programs-handoff-20260920.md."
+  ]
+}

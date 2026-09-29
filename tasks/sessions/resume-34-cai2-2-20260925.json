@@ -1,0 +1,22 @@
+{
+  "mode": "worktree",
+  "status": "active",
+  "started": "2026-09-25T15:40:00Z",
+  "session": "resume-34-cai2-2-20260925",
+  "program": "combat-ai",
+  "problem": "Land CAI2.2 replay-identity B: the nullable combat_ai_profile Data column and store read, plus the production pin wire that refuses rather than drifts.",
+  "branch": "opencode/resume-34-cai2-2-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-34-cai2-2-20260925",
+  "paths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.WebMatches.cs",
+    "tests/FusionRpg.Data.Tests/WebMatchLogProfileStampTests.cs",
+    "src/FusionRpg.Server/Program.cs",
+    "src/FusionRpg.Server/CombatAiProfileFiles.cs",
+    "src/FusionRpg.Server/WebMatchService.cs",
+    "src/FusionRpg.Server/DelveBattleSessionManager.cs",
+    "tasks/sessions/resume-34-cai2-2-20260925.json"
+  ],
+  "notes": "Server source half already landed (CombatAiProfileFiles, 8/8). Remaining: nullable combat_ai_profile column on rpg_web_match_log added idempotently by EnsureColumn, pre-existing rows keep NULL, stamped row round-trips through TryGetWebMatchLog/ListUnresolvedWebMatches, no AppendWebMatchLog caller signature broke; then the five-step pin resolution refusing (never falling back to Current) and wiring the production caller. SQL only in Data. Stop if a shared wire DTO or generated tuning publish is required; do not absorb CAI3.5/RpgHub.Resume or add a second policy resolver.",
+  "landed": "2026-09-26, tree left dirty for harvest, nothing committed. Data: nullable rpg_web_match_log.combat_ai_profile via EnsureColumn after profile_id; WebMatchLogEntry.CombatAiProfile trailing optional; AppendWebMatchLog gains a trailing optional combatAiProfile so every existing caller is unchanged; SelectLog + MapLog carry it; 3 tests in tests/FusionRpg.Data.Tests/WebMatchLogProfileStampTests.cs (3/3, in memory). Server: CombatAiProfilePin + CombatAiProfilePinResolution added beside CombatAiProfileFiles (the ONE five-step resolution, five call sites, no second resolver, no new DTO); WebMatchService stamps both of its rows and refuses a replay on profile.unavailable:v{n} / profile.mismatch / profile.unreadable, plus the boot sweep's fifth terminal guard; DelveBattleSessionManager stamps its row and refuses on both resume entries; Program.cs builds the source at boot, registers ICombatAiProfileSource, and refuses to start if the revision the policy hub resolves under is not the newest published one (the H7/CAI-F1 invariant that keeps the stamp truthful). Both new ctor parameters are optional and last, so every existing construction site compiles unchanged. Verification: Data filter 3/3, Server CombatAiProfileFiles filter 8/8, E2E WebMatchInteractiveSweepTests 6/6 and ExpeditionE2ETests 8/8 (real host, boot wire live), guard-dal OK, guard-test-substrate OK, Guard.Tests 692/692, FusionRpg.Server.Tests 881/882 — the single failure is the pre-existing passive-tree P11.1r defect (PassiveTreeEndpointsTests.Post_anOwnedTierOneNodeAfterOpeningTierOne_contributes, stat.modify never reaches ContributingNodeIds) owned by the concurrent lane resume-33-p11-1r-20260925, on a test host that never loads any changed code. Still owed and NOT built here: tests/FusionRpg.Server.Tests/WebMatchProfilePinTests.cs (the spec's Server pin test list — no Server test file is in this session's fence), and the pinned set is not yet injected into a web/delve resolve because the only production consumer of CombatAiProfilePolicy is the siege path, which persists no match log; that injection belongs to auto-policy-switch."
+}

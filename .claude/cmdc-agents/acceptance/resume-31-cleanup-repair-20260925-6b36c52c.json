@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-31-cleanup-repair-20260925",
+  "sha": "6b36c52cdde19066296a056cdde6953bf0129ed7",
+  "expectedSha": "6b36c52cdde19066296a056cdde6953bf0129ed7",
+  "verdict": "GREEN",
+  "scope": "test-verification-boundary / pipeline plane (worktree cleanup tool)",
+  "checks": [
+    {
+      "check": "unittest scripts/test_worktree_cleanup.py",
+      "exit": 0,
+      "summary": "Ran 19 tests, OK (10 pre-existing + 9 new)"
+    },
+    {
+      "check": "unittest scripts/test_inspect_worktrees.py",
+      "exit": 0,
+      "summary": "Ran 3 tests, OK"
+    },
+    {
+      "check": "py_compile core + wrappers",
+      "exit": 0,
+      "summary": "exit 0"
+    },
+    {
+      "check": "manager before/after reproduction",
+      "exit": 0,
+      "summary": "OLD core: should-clean [] on a stale-record + live-lane worktree; NEW core: manual-review [managed-runner-session, runner-lane-not-finished]"
+    }
+  ],
+  "cleanCheckout": true,
+  "mergeCommit": null,
+  "notes": "Accepted by the resumed manager. Lane-reported limitation carried: the new tests drive build_report on synthetic lane records, not live runner output."
+}

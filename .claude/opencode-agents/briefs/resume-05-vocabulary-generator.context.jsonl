@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Deep-audit/falsifier confirmed FamilyExpandGen --check is byte-stable but refusal/pool/version/provenance closure is incomplete; passive vocabulary check fails live 9 attach points/18 kinds versus mirror 7/16. Current family scan found no duplicate IDs."}
+{"kind":"fact","text":"Generated data is never hand-edited. Fix generator/registry/consumer and regenerate. CI workflow paths may be owned by active verification lanes; report rather than overlap."}

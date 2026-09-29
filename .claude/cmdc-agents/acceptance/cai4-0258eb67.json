@@ -1,0 +1,75 @@
+{
+  "attribution": {
+    "knownRedMatched": 0,
+    "unattributed": 1,
+    "newUnregistered": 0
+  },
+  "contendedTree": false,
+  "sha": "0258eb67",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-031200\\boundary.log"
+    },
+    {
+      "check": "actor-hub",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-031200\\actor-hub.log"
+    },
+    {
+      "check": "core-ai",
+      "exit": 0,
+      "seconds": 8,
+      "summary": "Passed!  - Failed:     0, Passed:    85, Skipped:     0, Total:    85, Duration: 4 s - FusionRpg.Core.Balance.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-031200\\core-ai.log"
+    },
+    {
+      "check": "combat-projects",
+      "exit": 0,
+      "seconds": 3,
+      "summary": "Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 140 ms - FusionRpg.Core.CombatFanoutTests.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-031200\\combat-projects.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-031200\\ledger.log"
+    }
+  ],
+  "verdict": "UNATTRIBUTED (1 red check(s); 1 with NO parsed failure -- read the log, this is NOT registered debt)",
+  "when": "2026-09-22T03:12:16",
+  "lane": "cai4",
+  "logDir": "D:\\tmp\\accept-cai4-20260922-031200"
+}

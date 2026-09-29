@@ -1,0 +1,21 @@
+{
+  "session": "npc-story-events-idea-20260919",
+  "program": "npc-story-events",
+  "problem": "Idea phase for NPCs, story and events across the game's places (Delve, world map, world stage, expeditions, homeworld). Deliverable is the ideal doc only - no spec, plan or code.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/npc-story-events-idea-20260919.json",
+    "docs/architecture/npc-story-events-ideal.md",
+    "docs/architecture/effect-atom/definitions.md"
+  ],
+  "started": "2026-09-19T10:34:00Z",
+  "status": "merged",
+  "notes": [
+    "Both paths are new files. The owner asked for the idea phase in this conversation (/idea) and named no mode, so direct on the current branch is the default, same as trade-network-idea-20260919.",
+    "definitions.md added to paths 2026-09-19: its kind_id row said 16 atom kinds while AtomKindRegistry.KindCount is 18 (verified in code); DESIGN-GATE says that file wins over any spec, so the stale count was corrected in the same change (CLAUDE.md workflow step 5). One line, file was clean before the edit.",
+    "Survey ran as six read-only native agents under the owner charter recorded for this run (sonnet x5, opus x1). No agent edits files.",
+    "Crossing recorded 2026-09-19: session-boundary-check flags overlap with summoner-convergence lanes B/C/D (docs/**, docs/architecture/**, tasks/**). Those lanes run in worktrees with broad globs; neither of this session's paths exists on any lane branch, so a new file cannot conflict. Same shape as trade-network-idea-20260919. The four unclaimed worktree-agent-* branches it also reports are pre-existing and not this session's.",
+    "Closed 2026-09-19: the ideal doc landed in 7adcf831. Four owner questions remain open in the doc itself; the follow-on narrative-seed-idea-20260919 session owns later corrections to it."
+  ]
+}

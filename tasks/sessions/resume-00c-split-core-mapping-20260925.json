@@ -1,0 +1,16 @@
+{
+  "session": "resume-00c-split-core-mapping-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Repair the seven split-Core verification-boundary mappings left as a Phase 0 deferred gap: Activity, Delve, Expeditions, PassiveTree, Progression, Scope, and Vfx.",
+  "mode": "worktree",
+  "branch": "opencode/resume-00c-split-core-mapping-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-00c-split-core-mapping-20260925",
+  "paths": [
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/SplitCoreVerificationMappingTests.cs",
+    "tasks/reports/resume-00c-split-core-mapping-20260925.md"
+  ],
+  "started": "2026-09-25T06:59:28Z",
+  "status": "abandoned",
+  "notes": "Stopped after the worker produced the focused mapping/test diff but its selected verify-change Guard process stalled twice and was terminated by the manager. The dirty diff is preserved; no GREEN claim. A manager acceptance lane will run bounded PlanOnly/focused tests and decide the exact SHA."
+}

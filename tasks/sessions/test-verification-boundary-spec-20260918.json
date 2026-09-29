@@ -1,0 +1,16 @@
+{
+  "session": "test-verification-boundary-spec-20260918",
+  "program": "test-verification-boundary",
+  "problem": "Specify the unbuilt remainder of the test-verification-boundary ideal (owner rulings R-TV1 Core.Tests split, R-TV2 registry deepening): a capability map plus one spec per module, each verified against the shipped verification scripts, registry, CI and test projects. Docs only; no code, script or CI edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/test-verification-boundary-map.md",
+    "docs/architecture/test-verification-boundary/**",
+    "docs/architecture/test-verification-boundary-ideal.md",
+    "tasks/sessions/test-verification-boundary-spec-20260918.json"
+  ],
+  "started": "2026-09-18T12:00:00Z",
+  "status": "merged"
+}

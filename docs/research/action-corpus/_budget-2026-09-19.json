@@ -1,0 +1,167 @@
+{
+    "kind": "action-budget-report",
+    "cap": 10,
+    "pricedActionCount": 18,
+    "recommendedReferencePower": 1512,
+    "recommendedBy": [
+        "action.general.0004"
+    ],
+    "unpricedActions": [
+        {
+            "actionId": "action.family.fruit.001",
+            "rung": 7,
+            "atomIds": [
+                "atom.evd-harden.t4",
+                "atom.shld-surge.t4"
+            ]
+        },
+        {
+            "actionId": "action.family.hypno.002",
+            "rung": 7,
+            "atomIds": [
+                "atom.evd-harden.t4"
+            ]
+        },
+        {
+            "actionId": "action.general.0005",
+            "rung": 4,
+            "atomIds": [
+                "atom.evasion.t2"
+            ]
+        }
+    ],
+    "rungs": [
+        {
+            "rung": 1,
+            "n": 1,
+            "min": 0,
+            "p50": 0,
+            "p90": 0,
+            "max": 0,
+            "poolRolls": 1,
+            "qPowerMilli": 1000,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 2,
+            "n": 0,
+            "min": null,
+            "p50": null,
+            "p90": null,
+            "max": null,
+            "poolRolls": 1,
+            "qPowerMilli": 1323,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 3,
+            "n": 0,
+            "min": null,
+            "p50": null,
+            "p90": null,
+            "max": null,
+            "poolRolls": 1,
+            "qPowerMilli": 1750,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 4,
+            "n": 3,
+            "min": 0,
+            "p50": 245,
+            "p90": 1511,
+            "max": 1511,
+            "poolRolls": 1,
+            "qPowerMilli": 2315,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 5,
+            "n": 0,
+            "min": null,
+            "p50": null,
+            "p90": null,
+            "max": null,
+            "poolRolls": 2,
+            "qPowerMilli": 3062,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 6,
+            "n": 0,
+            "min": null,
+            "p50": null,
+            "p90": null,
+            "max": null,
+            "poolRolls": 2,
+            "qPowerMilli": 4051,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 7,
+            "n": 10,
+            "min": 0,
+            "p50": 21,
+            "p90": 65,
+            "max": 998,
+            "poolRolls": 2,
+            "qPowerMilli": 5359,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": [
+                "action.family.pea.002"
+            ]
+        },
+        {
+            "rung": 8,
+            "n": 0,
+            "min": null,
+            "p50": null,
+            "p90": null,
+            "max": null,
+            "poolRolls": 2,
+            "qPowerMilli": 7090,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 9,
+            "n": 0,
+            "min": null,
+            "p50": null,
+            "p90": null,
+            "max": null,
+            "poolRolls": 3,
+            "qPowerMilli": 9379,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        },
+        {
+            "rung": 10,
+            "n": 4,
+            "min": 118,
+            "p50": 118,
+            "p90": 685,
+            "max": 685,
+            "poolRolls": 3,
+            "qPowerMilli": 12407,
+            "powerBudgetMilli": null,
+            "aboveLoadedScalar": [],
+            "aboveP90": []
+        }
+    ]
+}

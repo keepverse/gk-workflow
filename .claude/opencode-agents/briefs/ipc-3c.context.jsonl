@@ -1,0 +1,3 @@
+{"kind": "handover", "text": "Predecessor ipc-3b (seg 3, partial): T16 code landed, 1/63 new tests red. Tree inherits opencode/ipc-3b."}
+{"kind": "defect", "text": "nameKeyRefused test gets clean run; cause: CLI cannot read marks.v1.json in temp dir (manager-measured stderr). Wire/seed the registry path per code convention; do not weaken the test."}
+{"kind": "constraint", "text": "NO-SHELL PROTOCOL. Regen + pytest run orchestrator-side. Fence narrowed to helper + nodegen + tests + T16 evidence."}

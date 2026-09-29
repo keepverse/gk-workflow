@@ -1,0 +1,25 @@
+{
+  "session": "seedsmith-p1-audit-final-20260925",
+  "program": "seedsmith-passive-tree-recovery",
+  "problem": "Close the two manager-rejected BCU2.12 audit gaps (roster-command validation and truthful injected-interpreter/malformed-evidence reporting) without resuming generation or editing generated data.",
+  "mode": "worktree",
+  "branch": "opencode/seedsmith-p1-audit-final-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-seedsmith-p1-audit-final-20260925",
+  "paths": [
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/species/generate_tree.py",
+    "tools/seedsmith/tests/adapters/trees/test_nodegen_language_stage.py",
+    "tools/seedsmith/tests/adapters/trees/test_tree_species_generate_tree.py",
+    "tools/seedsmith/tests/test_j9_batch_run.py",
+    "tools/seedsmith/tests/test_bcu212_launcher.py",
+    "tools/seedsmith/tests/test_bcu212_report.py",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-report.py",
+    "tasks/evidence-fragments/seedsmith-p1-audit-final-20260925/**",
+    "tasks/reports/seedsmith-p1-audit-final-20260925.md"
+  ],
+  "started": "2026-09-25T03:57:54Z",
+  "status": "abandoned",
+  "notes": "Follow-up to the manager-rejected seedsmith-p1-audit-recovery-20260925 result. Setup copies that worktree's dirty code/tests/prior report and read-only evidence bundle into this isolated worktree. Runtime is OpenCode CLI opencode/space-bunny-free#max, no fallback, uncapped budget. The worker completed with disk-backed report and focused evidence, but the manager has not accepted or merged its dirty diff; a separate manager acceptance session owns exact-SHA review. No model call, BCU2.12 resume, generated-data edit, commit, push, or merge."
+}

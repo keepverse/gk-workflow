@@ -1,0 +1,15 @@
+{
+  "session": "resume-21b-effect-pipeline-triage-20260925",
+  "program": "effect-pipeline",
+  "problem": "Worktree-local recovery of the effect-pipeline dependency triage after predecessor external-directory denial.",
+  "mode": "worktree",
+  "branch": "opencode/resume-21b-effect-pipeline-triage-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-21b-effect-pipeline-triage-20260925",
+  "paths": [
+    "tasks/reports/resume-21b-effect-pipeline-triage-20260925.md",
+    "tasks/sessions/resume-21b-effect-pipeline-triage-20260925.json"
+  ],
+  "started": "2026-09-25T10:30:00Z",
+  "status": "abandoned",
+  "notes": "Worktree-local recovery returned a done effect-pipeline triage report. Manager integrated the report and review record; EPL1.1 is ready for a separate fenced implementation lane, while EPL1.3 and EPL2.1 remain owner-gated."
+}

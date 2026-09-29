@@ -1,0 +1,15 @@
+{
+  "session": "plan-sgc-20260918",
+  "program": "species-gear-chain",
+  "problem": "Amend the species-gear-chain plan/todo under the summoner-convergence parent (lane C): tick shipped tasks with commit hashes, rewrite T34 for R9/R22, amend T24/T29-T33 to the strengthened specs, add craft-assurance tasks (free-ward fix first), replace in-place tuning bumps with v{n+1} publishes in the parent section 5 order, add the creature-seed ask-4 coordination task and the stale DelveBattleSessionManager comment task. Plan docs only; no code, data, tuning, specs or maps edited.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/species-gear-chain-plan.md",
+    "tasks/species-gear-chain-todo.md",
+    "tasks/sessions/plan-sgc-20260918.json"
+  ],
+  "started": "2026-09-18T22:00:00Z",
+  "status": "merged"
+}

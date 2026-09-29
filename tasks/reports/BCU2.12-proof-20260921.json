@@ -1,0 +1,73 @@
+{
+  "artefact": "BCU2.12 bounded first live run (J9-B1 re-proof) on the merged head",
+  "date": "2026-09-21",
+  "head": "b02f70bd1",
+  "branch": "corpus/bcu212",
+  "command": "pwsh -NoProfile -File .claude/cmdc-agents/scripts/bcu212-proof.ps1",
+  "model": "google/gemma-4-26b-a4b-qat (local LM Studio, no API credit)",
+  "exits": {
+    "driver_check": 0,
+    "proof": 0,
+    "resume": 0
+  },
+  "clause_b_no_same_tree_nameKey_refusal": {
+    "reading": "PASS",
+    "evidence": "both species, both passes: nodeKeyRefusedReason = null",
+    "correction": "the launcher's first counter matched the FIELD NAME, which the per-species JSON always prints (null when healthy), and reported 'hits=2' -- that number was an artefact of the reader, not a refusal. The launcher now counts non-null values."
+  },
+  "clause_a_metadata_written": {
+    "reading": "STOCHASTIC -- roughly one of two per attempt",
+    "pass_1": [
+      {
+        "speciesId": "AbyssSwordStar",
+        "elapsedSeconds": 13.6,
+        "metadataWritten": true,
+        "codexUnresolvedReason": null,
+        "outcomeCounts": {}
+      },
+      {
+        "speciesId": "AcientSunNut",
+        "elapsedSeconds": 28.8,
+        "metadataWritten": false,
+        "codexUnresolvedReason": "vote_unresolved",
+        "outcomeCounts": {
+          "escalated": 1
+        }
+      }
+    ],
+    "resume_pass": [
+      {
+        "speciesId": "AbyssSwordStar",
+        "elapsedSeconds": 10.4,
+        "metadataWritten": false,
+        "codexUnresolvedReason": "vote_unresolved"
+      },
+      {
+        "speciesId": "AcientSunNut",
+        "elapsedSeconds": 52.2,
+        "metadataWritten": true,
+        "codexUnresolvedReason": null,
+        "outcomeCounts": {
+          "unresolved": 1
+        }
+      }
+    ],
+    "interpretation": "The resume pass inverted pass 1 exactly: the species that resolved then did not, and the one that failed then resolved. So the codex vote resolves about half the time per attempt, and one invocation does NOT converge. Resume behaviour is correct and useful -- it retries the species whose metadata was never written -- but the retry depth needed at 840-species scale is UNMEASURED, and a species whose vote is unlucky every time would end with no codex summary.",
+    "committed_corpus_reading": {
+      "species_files": 3,
+      "codexSummary_len": {
+        "AbyssSwordStar": 136,
+        "AcientSunNut": 117,
+        "AshThreePeater": 134
+      },
+      "codexUnresolvedReason": "absent in all three"
+    }
+  },
+  "not_proved": [
+    "whether the per-attempt resolve rate is stable at 50% or depends on the species (n=2 species, 4 attempts)",
+    "how many resume passes an 840-species run needs, and whether any species can fail every attempt",
+    "whether the vote's instability is the clustering rung, the sample count, or the prompt",
+    "anything about how a missing codex summary surfaces to a player"
+  ],
+  "manager_ruling": "The full J9 run is NOT released on these readings: one invocation does not converge, and the run would spend hours of local model time producing metadata gaps that the report could not distinguish from a species the model simply refused. The driver must converge in one invocation (bounded retry of unresolved species) before the 840-species run starts."
+}

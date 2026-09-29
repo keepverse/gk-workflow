@@ -1,0 +1,16 @@
+{
+  "session": "ipc-avoid-list-20260926",
+  "program": "ip-censor",
+  "problem": "Land the brief half of ip-censor T14/IC-3/IC-4: render_brief accepts avoid_terms and prints the shared briefkit.avoid_list line, so the 14 staged tests are green; falsify the wiring and prove the whole seedsmith suite.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tools/seedsmith/**",
+    "tasks/reports/ipc-avoid-list-20260926.md",
+    "tasks/sessions/ipc-avoid-list-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "Closed as merged: the work is direct-mode on features/mega-merge at 186248a26, so it is already on the integration branch. No production code changed - the wiring this lane was sent to add landed in 93a2e16d9 (ip-censor T16); the commit adds the two missing contract tests for the fail-closed registry read and the report. Resumed lane: the previous lane's WIP commit f4769a660 (avoid_list.py + fixture + 14 tests) is byte-identical to the current integration head, verified by comparing blob hashes per file. T15 (uniques brief adopts the avoid line, drops the 'Diablo-style' citation at adapters/items/uniques/briefs.py:284) is a separate ledger row, still open, and is reported as a finding rather than silently absorbed into this fence; likewise the species generation path (adapters/trees/species/generate_tree.py:224) builds node briefs with no avoid list. Fence deliberately excludes data/**, src/**, web/** and tasks/ip-censor-todo.md."
+}

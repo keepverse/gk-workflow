@@ -1,0 +1,70 @@
+{
+  "lane": "seed-corpus-1",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-seed-corpus-1-20260921-203829\\boundary.log"
+    },
+    {
+      "check": "seedsmith-focused",
+      "exit": 1,
+      "seconds": 365,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-seed-corpus-1-20260921-203829\\seedsmith-focused.log"
+    },
+    {
+      "check": "item-validator",
+      "exit": 0,
+      "seconds": 15,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-seed-corpus-1-20260921-203829\\item-validator.log"
+    },
+    {
+      "check": "boundaries-guard",
+      "exit": 0,
+      "seconds": 237,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-seed-corpus-1-20260921-203829\\boundaries-guard.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-seed-corpus-1-20260921-203829\\ledger.log"
+    }
+  ],
+  "logDir": "D:\\tmp\\accept-seed-corpus-1-20260921-203829",
+  "sha": "8fdecc9f",
+  "verdict": "RED-KNOWN (1 check(s), registered debt only)",
+  "when": "2026-09-21T20:48:53",
+  "contendedTree": false
+}

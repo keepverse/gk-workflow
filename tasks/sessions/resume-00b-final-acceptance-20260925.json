@@ -1,0 +1,25 @@
+{
+  "session": "resume-00b-final-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Final manager acceptance of the Phase 0B release/verification topology after repairing the raw release-marker contract and player-packaging reproducibility gap; preserve the already accepted CI wiring and keep the split-Core registry remap deferred.",
+  "mode": "worktree",
+  "branch": "review/resume-00b-final-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-resume-00b-final-20260925",
+  "paths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/nightly.yml",
+    "scripts/run-guards.ps1",
+    "scripts/guard-generated-seed.ps1",
+    "scripts/verify-change.ps1",
+    "scripts/session-boundary-check.ps1",
+    "scripts/enforcement-registry.v1.json",
+    "scripts/publish-player.ps1",
+    "tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs",
+    "tests/FusionRpg.Guard.Tests/VerificationTopologyTests.cs",
+    "tasks/reports/resume-00b-final-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T06:20:00Z",
+  "status": "merged",
+  "notes": "Final Phase 0B review committed as exact SHA 011cd122b384a71417a082f2882074cabc435ffb, clean-checkout verified, and merged at 9bc8598ca2885485603636f659b5f0301d9f3c8f. Artifact: .claude/cmdc-agents/acceptance/resume-00b-final-20260925-011cd122.json. Split-Core registry remap remains deferred; merged-head gate remains BLOCKED on legal game/interops."
+}

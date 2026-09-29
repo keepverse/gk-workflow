@@ -1,0 +1,11 @@
+# EP3.7 — `WorldEntityMemberRole.Commander`; persistence reads and writes the new name
+
+Spec: `docs/architecture/empire-progression/spec-legion-commander.md` (the legion half of map D5).
+
+| Criterion | Command | Result | Artifact |
+| --- | --- | --- | --- |
+| The enum's membership is pinned with its reason (a reviewed declaration change) | `dotnet test tests\FusionRpg.Core.Tests --filter "FullyQualifiedName~WorldState"` | pass — **4 passed / 0 failed**. `The_member_role_vocabulary_is_the_three_ruled_members` pins `Fighter · Bearer · Commander` (a closed vocabulary the code owns and a human changes by review, and one persistence reads/writes by name), with its reason in the file's own doc: a literal pin is legitimate for a closed set, never for a population. `A_member_defaults_to_Fighter…` keeps the pre-existing read intact | `gk-core/src/FusionRpg.Core/World/WorldState.cs`, `gk-core/tests/FusionRpg.Core.Tests/World/WorldStateMemberRoleTests.cs` (new) |
+| A world holding a `Commander` member round-trips through `RpgStore.World.cs` | `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~World"` | pass — **128 passed / 0 failed**. `A_legion_led_by_a_Commander_member_round_trips_through_the_store` promotes the first member of a real template legion to `Commander`, creates the world, loads it, and asserts both the canonical bytes and the member's role | `gk-core/tests/FusionRpg.Data.Tests/WorldCommanderMemberTests.cs` (new) |
+| Persistence reads and writes the new name with no other change | — | by construction, and now proven: the writer is `m.Role.ToString()` (`RpgStore.World.cs:387`) and the reader is `Enum.Parse<WorldEntityMemberRole>(…)` (`:610`), so a member added to the enum round-trips through the save without touching the store | `gk-core/src/FusionRpg.Data/Sqlite/RpgStore.World.cs` (unchanged) |
+| Not proved | — | nothing yet *attaches* a commander to a legion: the `attach-commander`/`detach-commander` commands are EP3.8 (which also waits on `SP1.2`), and the seat/legion interaction is later still. This task proves the vocabulary and its persistence | — |
+| ⚠️ Fence | — | `gk-core/src/FusionRpg.Core/World/WorldState.cs` is inside this lane's allowed paths; the Data test file is new under `tests/**` (allowed). No fence exception was needed for this task | — |

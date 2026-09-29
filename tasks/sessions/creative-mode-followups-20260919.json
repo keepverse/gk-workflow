@@ -1,0 +1,31 @@
+{
+  "session": "creative-mode-followups-20260919",
+  "program": "creative-mode",
+  "problem": "Close the creative-mode merge follow-ups: citation-audit exemptions for deliberate out-of-repo files, self-building class-system regen tests, stale deploy-play.ps1 line citations in docs/, and worktree cleanup.",
+  "mode": "worktree",
+  "branch": "worktree-creative-mode-followups-20260919",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/creative-mode-followups-20260919",
+  "paths": [
+    "tasks/sessions/creative-mode-followups-20260919.json",
+    "tasks/creative-mode-followups-plan.md",
+    "tasks/creative-mode-followups-todo.md",
+    "scripts/audit-doc-citations.py",
+    "scripts/regen-class-system-baselines.ps1",
+    "tests/FusionRpg.Guard.Tests/ClassSystemBaselineRegenTests.cs",
+    "tests/FusionRpg.Guard.Tests/FusionRpg.Guard.Tests.csproj",
+    "docs/architecture/data-test-substrate/spec-disk-write-probe.md",
+    "docs/architecture/effect-atom-map.md",
+    "docs/architecture/effect-atom/spec-content-boot.md",
+    "docs/architecture/effect-atom/spec-player-content-boot.md",
+    "docs/architecture/rift-gate/spec-menu-anchor.md",
+    "docs/architecture/rift-gate/spec-tombstone.md",
+    "docs/architecture/verification-boundaries-map.md",
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/DocCitationAuditTests.cs"
+  ],
+  "status": "merged",
+  "notes": [
+    "2026-09-19 T1-T4 done: citation-audit out-of-repo exemptions (b8b37feb), self-building regen tests (98b7da9a), stale deploy-play/deleted-file citations (081e2641); mainline merged in and verified (guard OK, 44/44 affected Guard tests); both creative worktrees removed after merge, branches kept for the records."
+  ],
+  "started": "2026-09-19T13:55:00Z"
+}

@@ -1,0 +1,63 @@
+{
+  "logDir": "D:\\tmp\\accept-j9-vote-20260922-005822",
+  "when": "2026-09-22T00:58:32",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-j9-vote-20260922-005822\\boundary.log"
+    },
+    {
+      "check": "driver-tests",
+      "exit": 0,
+      "seconds": 3,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-j9-vote-20260922-005822\\driver-tests.log"
+    },
+    {
+      "check": "species-tree-tests",
+      "exit": 1,
+      "seconds": 4,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-j9-vote-20260922-005822\\species-tree-tests.log"
+    },
+    {
+      "check": "driver-check",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-j9-vote-20260922-005822\\driver-check.log"
+    }
+  ],
+  "lane": "j9-vote",
+  "verdict": "UNATTRIBUTED (2 red check(s); 2 with NO parsed failure -- read the log, this is NOT registered debt)",
+  "contendedTree": false,
+  "sha": "bb4601d8",
+  "attribution": {
+    "unattributed": 2,
+    "newUnregistered": 0,
+    "knownRedMatched": 0
+  }
+}

@@ -1,0 +1,190 @@
+# Software architecture — Rise of Summoner (FusionRpg)
+
+One-page-per-topic map of how the whole system fits together. Read this first, then drill into the per-subsystem SSOT docs linked throughout. Companion doc: [data-architecture.md](data-architecture.md).
+
+> **The system in one sentence:** a WPF **Launcher** starts a legal PVZ Fusion install with a Harmony **Injector** inside it and an independent **Server** (SQLite + REST + SignalR) beside it; a React **Web** control room (served from the server's `wwwroot`) observes everything and issues commands — the RPG overlay *projects* Unity via capture and *mutates* it only through a small set of guarded apply paths.
+
+### "Layer" means four different things in these docs
+
+Added 2026-08-22, because the word is overloaded and each use has a different owner. When a doc says "layer", check which of these it means:
+
+| Sense | Values | Owner doc |
+|---|---|---|
+| **Ownership prefix** — who may write what | `pvz.*` (game foundation) vs `rpg.*` (our content and progression) | [pvz-middle-layer.md](pvz-middle-layer.md) |
+| **Stat compose passes** — how one number is built | Game base `Y0` → Runtime primary → Derived → Applied | [actor-hub-ssot.md](actor-hub-ssot.md) §2 |
+| **Status apply stages** — where a status is decided | L0 capture · L1 bag · L2 runtime · L2b resistance · L3 combat · L4 apply | [status-ssot.md](status-ssot.md) |
+| **Control loops** — which authority owns a decision | Hot · Cold · Intent | [overlay-control-loops.md](overlay-control-loops.md) |
+
+They are unrelated to each other. In particular, the **ownership** sense is the one that decides where a new concept lives, and it is not a position in any of the other three stacks.
+
+## 1. Top-level shape
+
+```mermaid
+flowchart LR
+  Launcher["FusionRpg.Launcher (WPF)"] -->|start/stop| Server["FusionRpg.Server (ASP.NET)"]
+  Launcher -->|start/stop| Game["PlantsVsZombiesRH.exe (Unity IL2CPP)"]
+  Game -->|Harmony hooks| Injector["FusionRpg.Injector (in-process)"]
+  Injector <-->|REST + SignalR| Server
+  Web["fusion-rpg-web (React + Phaser)"] <-->|REST + SignalR| Server
+  Server --> Hot[("rpg-hot.sqlite")]
+  Server --> Media[("rpg-media.sqlite")]
+  Server --> Cold[("archive/*.sqlite")]
+  Core["FusionRpg.Core (shared domain logic)"] -.referenced by.-> Injector
+  Core -.-> Server
+```
+
+- **Injector never talks to the browser.** Both talk to the server at `http://127.0.0.1:5088` (launcher may hop ports; 5173 is reserved for Vite dev).
+- Server and web are **game-agnostic**: every payload is `game` + `kind` + JSON. Only the injector knows `Plant` / `Zombie`.
+- **Standalone-first (2026-08-21):** the injector is one of two match producers. The server's own battle resolver (`match-source-core`, profile `webrpg-1`, source `web`) produces web-mode matches through the same ingest — the RPG is fully playable with the PvZ game closed; PvZ runs are extension gameplay. Charter: [standalone/spec-standalone-charter.md](standalone/spec-standalone-charter.md).
+- No auth in v1. Localhost only.
+
+## 2. Processes, modules, and boundaries
+
+| Module | Project | TFM | May touch | Must not touch |
+|---|---|---|---|---|
+| **Launcher** | `gk-fusion/src/FusionRpg.Launcher` | net8-windows | Game folder, loader install (official GitHub pins only), plugin copy, start/stop server+game, port pick, self-update | Unity, SQLite schema, Cheats UI, the game binary |
+| **Injector (shared)** | `gk-fusion/src/FusionRpg.Injector` | net6 | Harmony, Unity via **EntityApply → EntityStatWriter only**, HTTP/SignalR client | SQLite, player ids, per-feature apply math, combat writes outside the Writer |
+| **Injector hosts** | `.BepInEx` / `.MelonLoader` / `.MelonLoader.39` | net6 | Loader bootstrap → `RpgHost` facade | Game logic (thin shims only) |
+| **CheatCore** | `gk-core/src/FusionRpg.CheatCore` | net6 | Cheat schema, identity/strip rules, `ModDocument` codec, debug scenarios, probe packs | Unity, SQL |
+| **Core** | `gk-core/src/FusionRpg.Core` | net6 | StatSystem, ActorHub, StatusRuntime, ElementHub, overlay combat, EffectBag/Funnel, MatchRuntime, SimEngine | Unity, SQL (`FusionRpg.Data` is never referenced from the hot plane) |
+| **Contracts** | `gk-core/src/FusionRpg.Contracts` | net6 | Wire DTOs, `ModDocument`, `FoundationContractVersion` | Logic |
+| **Data** | `gk-core/src/FusionRpg.Data` | net8 | **All** SQLite (sole DAL, `RpgStore*`), cold archive, compaction, storage purge | Unity, HTTP |
+| **Server** | `gk-core/src/FusionRpg.Server` | net8 | REST, SignalR hub, event ingest, hosted workers, static SPA | Unity, BepInEx, game DLLs, **any SQL** (goes through Data) |
+| **Web** | `gk-web/web/fusion-rpg-web` | Vite/React/TS | Server HTTP + SignalR via `src/lib/bus` only | The game, the injector, direct fetch from feature screens |
+
+## 3. The overlay principle (the one rule everything hangs off)
+
+**Unity is SSOT for physics, vanilla combat, entity lifetime, and current HP.** The RPG overlay:
+
+1. **Projects** Unity through Harmony capture (events → server → SQLite → web), and
+2. **Mutates** Unity only through Foundation paths: `EntityApply`/`EntityStatWriter` (stats), the Unity CC executor in `InjectorEffectActionSink` (status), FA10 Writer **Add** (HP deltas), and `pvz.*` Intent (spawns).
+
+Two apply pipelines (vanilla vs overlay), **one HP SSOT (Unity)**. Everything in §5–§7 exists to keep that true at 120 fps without crashing the game.
+
+> **Two state machines, no shared state — only messages.** (Stated 2026-08-22 because it was assumed everywhere and written nowhere.) PvZ runs its state machine and the RPG runs its own. Neither reads the other's state. What crosses is messages: **events out** (Harmony capture) and **commands in** (`EntityApply`/Writer, the CC executor, FA10 Add, `pvz.*` Intent). The two directions above describe those messages, not a shared model.
+>
+> The practical test, which has been got wrong twice: **an RPG concept never needs a home in the PvZ channel.** Our resources, actions, and skills live entirely in `rpg.*`; the eight `StatChannels` are the game's stats, not ours. The exception that proves it is `hp`, which is Unity's SSOT in PvZ mode and ours outright in web mode.
+>
+> Do not read [pvz-stats.md](pvz-stats.md)'s *"RPG stats upsert into PvzStats"* as a counter-example. That path is the RPG **modifying the game's own stats** — a command, and a legitimate one. It is not the RPG storing its own gameplay state there, which is never correct.
+
+> Scope note (standalone-first): this overlay principle governs **PvZ mode**. Web-mode matches (`webrpg-1`) have no Unity — the server's battle engine owns their state outright and emits results through the same event pipeline.
+
+## 4. Runtime subsystem inventory
+
+| Subsystem | Purpose | Status | Lives in | Doc |
+|---|---|---|---|---|
+| **StatSystem** | Forward-only `Y = Compose(Y0, bag)` over primary channels (hp/maxHp/atk/def/armor) | Shipped | `Core/Stats` | [stat-system.md](stat-system.md) |
+| **EntityApply / EntityStatWriter** | The *only* legal Unity combat-field write path | Shipped | `Injector/Stats` | [stat-system.md](stat-system.md) |
+| **Actor Hub** | Second compose pass → `ActorDerivedSnapshot` (progression / status / combat channels) | Shipped (status path; combat channels C0) | `Core/Stats/Derived` | [actor-hub-ssot.md](actor-hub-ssot.md) |
+| **StatusRuntime + ResistanceEvaluator** | Timed status instances on `entity:{ptr}`: ICD, two-phase resistance, contagion | Shipped (S0–S7) | `Core/Status` | [status-ssot.md](status-ssot.md) |
+| **Element Hub** | Element roster (fire, ice, air, earth, light, dark + omni), ring matchup matrix, dual-type math | Shipped (C1) | `Core/Combat/Element` | [element-hub-ssot.md](element-hub-ssot.md) |
+| **Overlay combat (CombatMath)** | Typed power/defense + matchup + hit + crit → one signed HP delta | Shipped, flag-gated (`OVERLAY-COMBAT`) | `Core/Combat` | [combat-damage-ssot.md](combat-damage-ssot.md) |
+| **Foundation Effects (EffectBag)** | Sealed FA1–FA10 opcode engine; grants, FT1–FT4 triggers, chance/ICD/stacks | Shipped, sealed (v2) | `Core/Effects` + `Injector/Effects` | [effect-system.md](effect-system.md) |
+| **EffectFunnel + Guard** | Sole Secondary→Foundation command buffer (merge, guard, then FA*) | Shipped | `Core/Effects` | [effect-funnel.md](effect-funnel.md) |
+| **MatchRuntime** | Live match FSM + `MatchState` RAM aggregate; `TryAdmitSpawn` gate | Shipped (W1–W5) | `Core/Match` + `Injector/Match` | [match-runtime.md](match-runtime.md) |
+| **UniqueActor** | Durable specimen FSM (instanceId, level, gear) across runs | Shipped (W4/W5, W8) | `Data` + `Server` + FE `#/roster` | [unique-actor-runtime.md](unique-actor-runtime.md) |
+| **RpgProgression** | Per-save type XP/levels + ledger; power curve feeds status resistance | Shipped (P1/P2) | `Core/Progression` + `Data` | [rpg-progression.md](rpg-progression.md) |
+| **Pvz middle layer** | PvzStats (modifiers) / PvzActivity (facts) / PvzIntent (`pvz.*` commands) | Shipped | `Data` + `Server` + Injector | [pvz-middle-layer.md](pvz-middle-layer.md) |
+| **Lawn Projector (DPLP)** | Phaser 4 observe-mirror of the run + Intent-only interaction on `#/lawn` | Shipped (W6–W7) | `web/.../features/lawn` + `src/game` | [fe-game-foundation.md](fe-game-foundation.md) |
+| **Overlay control loops** | Names the Hot / Cold / Intent authority split | Design lock (doc only) | — | [overlay-control-loops.md](overlay-control-loops.md) |
+
+> Status conflicts between [decisions.md](decisions.md) and a per-doc header are resolved in favor of **decisions.md** — a locked decision cannot be overruled by a stale header; the header is then wrong and is fixed in the same change (reversed 2026-09-16: header precedence let "Proposed" headers outrank shipped locks).
+
+## 5. The hot path (one frame, injector game thread)
+
+```mermaid
+flowchart TD
+  Hit["Unity vanilla hit (TakeDamage / AttackPlant Prefix)"] --> Emit["Harmony capture → GameHooks.Emit"]
+  Emit --> MR["MatchRuntime.Apply — phase FSM + BoardProjection + bindings"]
+  Emit --> Bag["EffectBag.OnEvent — grant filter → chance → ICD → FA* plans"]
+  Emit -.async fork.-> Q["RpgClient queue → Server (observe only, never awaited)"]
+  Sec["Secondary plugins / StatusRuntime pulses / OverlayCombatMath"] -->|only verb: Enqueue| Funnel["EffectFunnel — merge + Guard, flush at depth 0"]
+  Bag --> Funnel
+  Funnel --> FA["FA1 ModifyStat / FA2–FA9 / FA10 Add HP"]
+  FA --> Apply["EntityApply.Run* → ActorHub.Resolve"]
+  Apply --> Writer["EntityStatWriter → Unity fields"]
+```
+
+Layer ownership (status view): L0 capture emits · L1 EffectBag grants/rolls · L2 StatusRuntime owns instances + status ICD · L2b ResistanceEvaluator owns apply-time immunity/power-vs-resist · L3 combat builds instant `DamagePacket`s · L4 apply (FA10 Writer Add, Unity CC executor, FX). Three ICD clocks — grant `icd_ms` (L1), status `icd_ms` (L2), `periodMs` (pulse cadence) — are never merged.
+
+How the numeric subsystems relate: **ActorHub** is the shared substrate (only place derived channels are registered/composed) → **StatusRuntime** reads `status.*` at Apply and emits HP pulses through the Funnel → **ElementHub** reads type metadata and returns per-component matchup bonuses → **overlay combat** reads `combat.*` + ElementHub bonuses and produces the final signed delta. Status and overlay combat are independent in v1 (no status-on-hit bridge).
+
+## 6. Load-bearing invariants (locked)
+
+1. **Single Unity writer** — only `EntityStatWriter.cs` assigns Plant/Zombie combat fields (`guard-single-writer.py`).
+2. **Secondary never touches Unity** — no `UnityEngine`, `HarmonyLib`, Writer, `TakeDamage`, and no `Bag.Grant`; Secondary's only verb is `Funnel.Enqueue` (`guard-secondary-no-unity.py`).
+3. **FA10 = HP, add only** — reads *live* Unity HP, writes `live + amount`; never calls `TakeDamage` (would double-dip vanilla DEF + re-enter `combat.hit`).
+4. **Funnel guard** — rejects `mode=set` / absolute HP from overlay snapshots; dead ptr → skip, never throw; depth and `|amount|` caps; nested flush is a no-op (`guard-funnel-delta.py`).
+5. **Forward-only stats** — never `Xi = f(Y)`; persist Y0 + modifier state, never final `Y`. Y0 is immutable; progression flats ride `progression.bonus.*` only.
+6. **Modifier vs mutation never mix** — modifiers keep identity per `grantId` (exact withdraw); mutations sum.
+7. **Catalog discipline** — unknown derived channel / `statusId` / overlay key → reject, log, skip. ~~Omni is additive-only (`omni × X` banned).~~ **Ban removed 2026-09-02 (owner)** — omni's combination rule is a **tunable**, not a prohibition; breadth is priced by magnitude in `numerics`. Default stays `omni + element`. See [element-hub-ssot.md](element-hub-ssot.md) §7.
+8. **Current HP is Unity-owned after spawn** — compose writes max/ATK; current HP is ratio-remapped only when max changes.
+9. **No Data in the hot plane** — `MatchRuntime`/`BoardProjection`/`CapPolicy` never reference `FusionRpg.Data`; injector is SQL-free; all SQL lives in Data (`guard-dal.py`).
+10. **No server round-trip on the hit path** — see §7.
+
+## 7. Dual authority — three control loops
+
+| Loop | Latency budget | Decider | Applier | Examples |
+|---|---|---|---|---|
+| **Hot** | Same process as capture; never awaits Server | Injector: EffectBag + Funnel + ActorHub + StatusRuntime + MatchRuntime | Writer / CC executor / FA10 Add | proc on hit, DoT pulse, ICD, crit, AdmitSpawn |
+| **Cold** | Seconds OK | Server UniqueActor + Data | **Never directly** — pushes grants/loadouts; Hot applies later | equip, level-up mod defs, XP persist |
+| **Intent** | Human scale | Server feature → `pvz.*` command | Injector, after `MatchRuntime.TryAdmitSpawn` | extra spawn, unique deploy |
+
+**Hard ban:** no Server FSM may sit between `combat.hit` and FA* apply. Combat procs never drive UniqueActor transitions; mid-run equip re-pushes grants (future hits only — past hits are never rewritten).
+
+## 8. The three FSMs and the three IDs
+
+- **MatchPhase** (Hot, `Core/Match`, contract v1): `Idle → Starting → InMatch ⇄ Paused → Ending → Idle`. Only `MatchRuntime` mutates `MatchState`; living membership comes from `*.spawn`/`*.die` only; caps via `CapPolicy` (plants 50 / zombies 80 / bullets unlimited); deterministic replay (`MatchValidator.Replay`).
+- **UniqueActor** (Cold, Server + Data): `Roster → Deploying → ActiveBound → (Recovering) → Roster`, terminal `Retired`; deploy idempotent on `correlationId`; watchdog + boot sweeper recover stuck states.
+- **UniqueBindings** (the seam, ephemeral MatchRuntime facet): `PendingSpawn → Bound (instanceId ↔ ptr) → Cleared`. `UniqueOwnerBinder` rewrites `instance:{guid}` scopes to `entity:{ptr}` at Bound — `instance:` never appears in a Hot resolve.
+
+**Three orthogonal IDs — never collapse:** `typeId` (catalog species; almanac XP), `ptr` (one Unity object in one match; `entity:{ptr}` grants), `instanceId` (durable specimen GUID; gear, cross-run).
+
+## 9. Communication
+
+- **Event envelope:** `{ t, game, kind, matchKey?, payload }`. Server stamps `id`/`player_id`/`run_id` on store — the injector never sends player ids. Full kind families in [../protocol/events.md](../protocol/events.md).
+- **REST** ([../protocol/rest.md](../protocol/rest.md)): `/health`, `/api/players`, `/api/stats`, `/api/events`, `/api/types|recipes|runs|metrics`, `/api/cheats/*`, `/api/pvz-stats/*`, `/api/pvz-activity/*`, `/api/pvz-intent/*`, `/api/rpg/progression/*`, `/api/unique/*`, `/api/icons/*` + `/api/almanac/*`, `/api/storage/*`, `/api/debug/*` (always on), `/api/sim/*` + `/api/test/*` (only under `FUSIONRPG_SIM=1`).
+- **SignalR** ([../protocol/signalr.md](../protocol/signalr.md)): hub `/hub/rpg`, groups `injector` / `web`. Injector sends `Hello`/`Events`/`Metrics`/`Heartbeat`; server pushes `Event(Batch)`, `Health`, `StatsUpdated`, `Command`, and `*Updated` invalidations. On `Hello`, the server rehydrates match-scoped effect grants (`effects.grants.apply`).
+- **HTTP inbox fallback:** every web→injector command is also queued in `InjectorCommandInbox` (in-memory, cap 2000); the injector polls `GET /api/cheats/commands/pending` when SignalR delivery is unreliable.
+- **Injector transport** (`RpgClient`): non-blocking `ConcurrentQueue`, flush ≤256 events / 16 ms, one in-flight send, HTTP fallback, 50k cap dropping noisy kinds first. Harmony patches never block on network.
+- **Ingest:** enqueue → Channel → one writer thread → one SQLite transaction per 500–1000 events → projections → `EventBatch` broadcast (noisy kinds persisted but never live-pushed).
+
+## 10. Guard scripts (CI + `deploy-play.py` + `gk-core/tests/FusionRpg.Guard.Tests`)
+
+| Script | Enforces |
+|---|---|
+| `guard-single-writer.py` | No combat field assigns outside `EntityStatWriter.cs` |
+| `guard-secondary-no-unity.py` | Secondary plugins are Unity/Harmony/Writer-free |
+| `guard-funnel-delta.py` | Secondary never calls `TakeDamage`/`SetHp`/`Bag.Grant`; FA10 sink is the only HP-delta writer |
+| `guard-dal.py` | Zero SQL/Sqlite outside `FusionRpg.Data` (empty allowlist) |
+| `guard-game-profile.py` | Build inputs match the declared game profile (`pvzrh-3.8.1` / `pvzrh-3.9`) |
+| `guard-actor-hub.py` | No new composer or ChannelMods producer outside the allowlist — actor combat composes in `ActorHub` |
+| `guard-battle-responsibility.py` | No second owner of a battle mechanism: each registered mechanism's decision pattern appears only in its owning file (`gk-core/scripts/battle-responsibility.v1.json`, [battle-engine-ssot.md](battle-engine-ssot.md)) |
+| `guard-test-substrate.py` | No temp-path stores or swallowed temp deletes in tests; ratchet baseline |
+| `guard-generated-seed.py` | Generator-provenance data changes only together with its generator |
+| `guard-debug-scope.py` | Every debug route classified as Injector or Server scope; banner comment matches |
+| `audit-overflow.py` | No critical integer-range findings |
+| `audit-magic-numbers.py` | No balance literals on the balance surface |
+| `guard-power.py` | No literal curve, no private `f(level)`, closed power inventory |
+| `guard-stat-pairs.py` | Counterbalance symmetry in the derived-stat catalog |
+| `guard-class-system.py` | Class-system invariants (one named known exception on the current tree) |
+| `guard-injector-compile.py` | The MelonLoader host still compiles (reports SKIPPED without a game install) |
+| `guard-verification-boundaries.py` | Path → test registry valid; every `src/**` and `tests/**` source file has an owner |
+
+## 11. Build, release, contracts
+
+- **Dev loop:** `gk-fusion/scripts/deploy-play.py` — guards → build injector into the game folder → publish server to `dist/FusionRpg.Server` → launch game. Default `--loader-host` is `MelonLoader` (2026-08-30, `H:\Games\PVZ-Fusion-3.9_MelonLoader`); pass `--loader-host BepInEx` for the older FULL MOD TOOL install.
+- **Player release:** `scripts/publish-player.ps1` — Vite build into `wwwroot` → self-contained Server + Launcher publishes → injector drop fan-out into `DropIntoGame/{profile}/{loader}` → `dist/FusionRpg` zip. Players double-click `FusionRpg.Launcher.exe`; nobody installs Node or a .NET SDK.
+- **Contract versions (orthogonal):** `FoundationContractVersion = 2` (FA10 exists; surfaced at `GET /api/debug/effects/contract`) · `MatchRuntimeContractVersion = 1` (Snapshot/GateResult shape).
+- **Game profiles:** `pvzrh-3.8.1` (default, BepInEx + MelonLoader) and `pvzrh-3.9` (MelonLoader, auto-detected by `GameAssembly.dll` size). The profile is build-level; `runs.game` records which source a run came from (`decisions.md` *Web game profile* row). See [game-versioning.md](game-versioning.md).
+- **Repository topology (2026-09-19):** this monorepo is scheduled to split into the Keepverse workspace (root `gk-workflow` + `gk-core`, `gk-forge`, `gk-data` (private), `gk-assets`, `gk-fusion`), executed by the deterministic `kvsplit` tool and held until the owner starts the migration. Direction contract and repo roles: `decisions.md` *Repository topology — Keepverse split* row; plan `tasks/keepverse-split-plan.md`.
+
+## 12. Where to go next
+
+| Question | Doc |
+|---|---|
+| Where does each table live and who owns it? | [data-architecture.md](data-architecture.md) |
+| What are the exact routes / hub methods / event kinds? | [../protocol/rest.md](../protocol/rest.md) · [../protocol/signalr.md](../protocol/signalr.md) · [../protocol/events.md](../protocol/events.md) |
+| How do I run it locally? | [../runbook/local-dev.md](../runbook/local-dev.md) |
+| What was decided and locked? | [decisions.md](decisions.md) |
+| Full doc map | [../README.md](../README.md) |

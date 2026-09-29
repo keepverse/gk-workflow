@@ -1,0 +1,33 @@
+{
+  "session": "resume-00-composite-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Composite manager acceptance of the repaired verification-boundary registry, Phase 0A fail-closed scripts, and Seedsmith BCU2.12 finalization code as one coupled executable set; run the complete path-owned verification with every referenced focused test present, then commit an exact SHA and clean-checkout artifact.",
+  "mode": "worktree",
+  "branch": "review/resume-00-composite-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-resume-00-composite-20260925",
+  "paths": [
+    ".claude/cmdc-agents/scripts/post-merge-check.ps1",
+    ".claude/cmdc-agents/scripts/accept-lane.ps1",
+    ".claude/cmdc-agents/scripts/merge-lanes.py",
+    ".claude/cmdc-agents/scripts/test_fail_closed_pipeline.py",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-report.py",
+    ".github/workflows/ci.yml",
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/species/generate_tree.py",
+    "tools/seedsmith/tests/adapters/trees/test_nodegen_language_stage.py",
+    "tools/seedsmith/tests/adapters/trees/test_tree_species_generate_tree.py",
+    "tools/seedsmith/tests/test_j9_batch_run.py",
+    "tools/seedsmith/tests/test_bcu212_launcher.py",
+    "tools/seedsmith/tests/test_bcu212_report.py",
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/VerificationBoundaryMappingRepairTests.cs",
+    "tasks/reports/resume-00a-fail-closed-final-20260925.md",
+    "tasks/reports/seedsmith-p1-audit-final-20260925.md",
+    "tasks/reports/resume-00-composite-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T05:20:00Z",
+  "status": "merged",
+  "notes": "Manager-owned composite acceptance worktree from current features/mega-merge plus reviewed mapping commit dd48ce163. It was committed as exact reviewed SHA fc144f2cc4a67464d763051c428deed2937692ef, clean-checkout verified, and merged at 86911a360d14f25929ac88c6ef325331d3527ad8. The exact-SHA artifact is .claude/cmdc-agents/acceptance/resume-00-composite-20260925-fc144f2c.json. No generated corpus, model call, BCU2.12 resume, or alternate-model evidence."
+}

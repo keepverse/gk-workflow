@@ -1,0 +1,36 @@
+{
+  "session": "notification-ssot-20260920",
+  "program": "notification-ssot",
+  "problem": "Continue the notification-ssot (NS) program on features/mega-merge: land the wave-7 follow-ups whose cross-program triggers have now landed with save-identity (NS7.1 JoinPlayer refuses an archived save; NS7.2 adopt the SaveId type on server and data parameters), and record NS0.1/NS0.2 (G0 asks A1/A2) as unanswered owner asks -- they gate waves 5-6, and NS6.8's owner piece review gates NS6.11/NS6.12. Wave 5 and the centre React surface are not built while those gates are unanswered. Widened 2026-09-21 to take TVB-F15's routed share: the doc-citations guard is gating CI, and this program's own idea doc (docs/architecture/notification-ssot-ideal.md) is where its 14 dead citations live. Widened again 2026-09-21 for NS5.11: ask A1's accepted text names the rail's volume row in world-stage-map.md, so this lane completes it in one line rather than waiting on WS-vol-1. Widened 2026-09-21 for NS6.8's step-6 drafts (the assembled Notices HTML + its resolver-accept checkpoint), which are what the delegated step-7 review looks at. Widened 2026-09-21 for NS6.8's step-6 completion (assembled surface under surfaces/, the new piece's draft + spec, and the design index rows).",
+  "mode": "worktree",
+  "branch": "cmdc/ns-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-ns-1",
+  "paths": [
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Server/**",
+    "src/FusionRpg.Contracts/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Injector/**",
+    "web/fusion-rpg-web/**",
+    "tests/**",
+    "docs/architecture/notification-ssot/**",
+    "docs/architecture/notification-ssot-map.md",
+    "docs/architecture/notification-ssot-ideal.md",
+    "docs/architecture/world-stage-map.md",
+    "data/tuning/**",
+    "tools/tuning/**",
+    "tasks/**",
+    "docs/design/gui-lego/recipes/notices.html",
+    "docs/design/gui-lego/recipes/notices.ACCEPTANCE.md",
+    "docs/design/gui-lego/surfaces/notices.html",
+    "docs/design/gui-lego/pieces/notice-row.html",
+    "docs/architecture/gui-lego/spec-notice-row.md",
+    "docs/design/gui-lego/README.md"
+  ],
+  "started": "2026-09-20T16:38:56Z",
+  "status": "merged",
+  "notes": [
+    "Lane retired 2026-09-21 at segment 99: its own re-audit of all 17 blocked rows found none reopenable, each blocked on an external dependency or an owner answer (its words: \"EXTERNAL DEPENDENCY PER ROW\"). A drained lane whose remaining rows are externally blocked is retired, not fed again; the program keeps its rows and can take a fresh lane when the dependency lands.",
+    "Status set to 'merged' rather than 'retired' because the session-boundary checker admits only active/merged/abandoned, and 'merged' is the truthful one: every commit this lane produced is in (91b57e4bf and later), and what remains is 17 rows blocked OUTSIDE the lane, not work it left undone. The external blockage is recorded above."
+  ]
+}

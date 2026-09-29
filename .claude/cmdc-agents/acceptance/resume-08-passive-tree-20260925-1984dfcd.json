@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-08-passive-tree-binder-acceptance-20260925",
+  "sha": "1984dfcd185a26b7d2127c871b712e4f0f985e5f",
+  "expectedSha": "1984dfcd185a26b7d2127c871b712e4f0f985e5f",
+  "shortSha": "1984dfcd",
+  "mergedSha": "3aa8d7656a70e159892f9ab17dec397a00f9d39f",
+  "verdict": "GREEN",
+  "scope": "PassiveTree TreeAtomSource and TreeResolveReport report/read parity; no generated corpus or primary-route widening",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925",
+  "checks": [
+    {
+      "check": "parity-regression",
+      "command": "dotnet test tests/FusionRpg.Core.PassiveTree.Tests --filter FullyQualifiedName~TreeBinderResolverParityTests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "1 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/parity.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "core-passivetree",
+      "command": "dotnet test tests/FusionRpg.Core.PassiveTree.Tests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "406 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/core-passivetree.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "tree-binder-tests",
+      "command": "dotnet test tests/FusionRpg.TreeBinder.Tests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "45 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/tree-binder.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "roster-generator-tests",
+      "command": "dotnet test tests/FusionRpg.PassiveTreeRosterGen.Tests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "25 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/roster.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "core-parity",
+      "command": "dotnet test tests/FusionRpg.Core.Tests --filter FullyQualifiedName~TreeAtomSourceParityTests --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "5 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/core-parity.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "guards-plan-boundary",
+      "command": "guard-single-writer; guard-secondary-no-unity; guard-funnel-delta; guard-dal; guard-actor-hub; guard-test-substrate; verify-change -PlanOnly; session-boundary-check",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "all selected guards passed; PlanOnly selected the core-passivetree and unique-allocation owners; boundary clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/guards-plan.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git worktree add --detach <temporary-clean-checkout> 1984dfcd185a26b7d2127c871b712e4f0f985e5f; focused tests; guards; git diff --check; git status --porcelain=v1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused tests/guards passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-08-passive-tree-binder-acceptance-20260925/clean.log",
+      "logSha256": "698F45AC32468B4DF86FB430509D21C23E9161E0B1E082B986E910AEA0C8A705",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Core/PassiveTree/Resolve/TreeAtomSource.cs",
+    "src/FusionRpg.Core/PassiveTree/Resolve/TreeResolveReport.cs",
+    "tests/FusionRpg.Core.PassiveTree.Tests/PassiveTree/tests-PassiveTree/Resolve/TreeBinderResolverParityTests.cs",
+    "tasks/reports/resume-08-passive-tree-binder-20260925.md",
+    "tasks/reports/resume-08-passive-tree-binder-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "1984dfcd185a26b7d2127c871b712e4f0f985e5f",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "TreeBinder --check remains red on stale/incomplete content, pool-channel wiring, one missing wither node, and stale command.json.",
+    "The primary stat.modify route, pool resolver, corpus regeneration, and BCU2.12 resume remain open owner/content work.",
+    "The worker's full selected verify-change stopped on the documented out-of-fence Data.Tests SQLite backup failure; it is not counted as a green aggregate."
+  ],
+  "mergeScope": "The report/read parity repair and regression test are accepted and merged; no generated data or primary-route behavior was accepted.",
+  "when": "2026-09-25T10:30:00Z"
+}

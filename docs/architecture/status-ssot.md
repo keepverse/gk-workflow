@@ -1,0 +1,415 @@
+# Status SSOT — actor instances, ICD, lifecycle
+
+**Status:** Design locked (docs). **Shipped in Core + Injector** (S0–S7). Legacy Counter/DoT on `DeliverySpec` may remain until all content migrates to StatusRuntime pulses.  
+**Parent:** [decisions.md](decisions.md) (ADR row **Status SSOT**). Derived inputs: [actor-hub-ssot.md](actor-hub-ssot.md) (**shipped**). Combat instant HP: [combat-damage-ssot.md](combat-damage-ssot.md). Apply path: [effect-funnel.md](effect-funnel.md), [effect-runtime.md](effect-runtime.md).
+
+**ICD** in this repo means **Internal Cooldown** (proc gate), not an interface-control document.
+
+---
+
+## 1. Problem
+
+Overlay **timed state** (DoT scheduler, counter meters) today lives on `EffectBag` under `DeliverySpec.OverTime|Counter`, while **Unity crowd control** (butter/freeze/poison) is a separate FA2 `ApplyStatus` sink. That splits one concept — *what is on this actor, for how long* — across combat delivery and status apply.
+
+**Goal:** one Hot **StatusRuntime** SSOT for instances, lifecycle, resistance at Apply, and contagion hops. **Combat SSOT** stays **Instant-only**: status *pulses* emit `DamagePacket` → TargetResolver → Funnel → FA10.
+
+This does **not** replace Unity physics or vanilla `TakeDamage`. It **does** replace `DeliverySpec` scheduling as the owner of DoT/counter **state** when the code plan lands.
+
+---
+
+## 2. Layer model (locked)
+
+```mermaid
+flowchart TB
+  capture["L0 Capture"]
+  grant["L1 EffectBag grant overlay"]
+  registry["StatusCatalog in-memory registry"]
+  status["L2 StatusRuntime instances lifecycle spread"]
+  resist["L2b ResistanceEvaluator apply-time"]
+  combat["L3 Combat Instant DamagePacket only"]
+  apply["L4 Funnel FA10 StatusExecutor EntityApply"]
+  capture --> grant
+  registry --> status
+  grant -->|"statusId + overlay magnitudes"| status
+  status --> resist
+  resist --> status
+  status -->|"PulseHp"| combat --> apply
+  status -->|"UnityCc"| apply
+```
+
+| Layer | Owns | Must not |
+|---|---|---|
+| **L1 Grant** | Listener `ownerKey`, `chance`, grant `icd_ms`, overlay numbers | Tick clocks, resistance values, Unity calls |
+| **StatusCatalog** | `statusId` → def skeleton (kind, categories, stacking, family, payload kinds) | Per-match magnitudes |
+| **L2 StatusRuntime** | `entity:{ptr}` instances, status ICD, counters, contagion hops | Funnel enqueue, hardcoded balance |
+| **L2b ResistanceEvaluator** | Apply-time immunity + power/resist on **attacker and defender** derived snapshots | Status defs, file I/O |
+| **L3 Combat** | Instant packets, TargetResolver, CombatMath stub | OverTime/Counter delivery |
+| **L4 Apply** | FA10 Writer Add, StatusExecutor, EntityApply, FX | Timers, status bag mutation from Secondary |
+
+**Three ICD clocks (never merge):**
+
+| Clock | Layer | Question |
+|---|---|---|
+| Grant `icd_ms` | L1 `EffectProcPolicy` | May this *listener* try Apply/Refresh again? |
+| Status `icd_ms` | L2 instance / family | May this *status* be re-applied on this ptr? |
+| `periodMs` | L2 | Pulse cadence — **not** ICD |
+
+---
+
+## 3. Extensibility (host-injected catalog — amended 2026-09-07)
+
+Fusion lawn overlay stays **simple**. Scale by **adding catalog rows + grant content**, not by
+embedding YAML loaders inside Core or inventing status ids only in C#.
+
+| Mechanism | Design (amended) | Notes |
+|---|---|---|
+| **StatusDef catalog** | Hosts load `data/tuning/status-catalog.v{n}.json` and inject into Core; `StatusCatalog` is the in-memory registry built from that object (tunables-ssot §7.2 / T8). DisplayName, reading, hudToken, color live on the same row | **Inject landed (status-rail B1, 2026-09-09):** `StatusCatalogFactory.FromSurface` + `StatusCatalogHub` via `ActorSurfaceCatalogHub.ConfigureAll` (Server + Injector). `StatusCatalogBootstrap` remains the **migration golden / parity shim**, not the live combat source when hosts configure |
+| **Magnitudes / spread** | Grant `overlay_json` (Server push, debug API, Secondary enqueue) | Unchanged |
+| **New status id** | Add a catalog row whose `kind` / payload kinds already exist in C# enums + grant content. Load-reject unknown kind names (T5) | UnityCc with no FA2 case is a **def error** (shipped once for `charm_pulse`) — not a silent no-op |
+| **Hot reload** | **Not required** — startup load + restart | Same as every other tuning domain |
+
+Secondary never applies; it enqueues grants. Modders/plugins: **future optional surface** only —
+stable `statusId` + overlay schema documented here.
+
+**Count rule:** the live id count is whatever the injected catalog lists (today 24 including
+`nerve.*`). A module that widens the set is not finished until DESIGN-GATE’s status row and this
+spec’s §9 move with it.
+
+---
+
+## 4. Actor SSOT
+
+- **One bag**, index `entity:{ptr}` — plants and zombies alike.
+- **Side** is L4 adapter metadata (`BoardSnapshot.FindPtr`), not a parallel status index.
+- Grant **listener** (`ownerKey`) ≠ status **host** (`TargetSpec` / event target).
+- Counter scope: `TargetPtr` or `ActorPtr` — not Side.
+
+```text
+EffectEvent (ActorPtr, TargetPtr)
+  → Grant fires
+  → StatusRuntime.Apply(statusId, hostPtr=resolved target, sourceGrantId)
+  → instance on hostPtr until Expire/Withdraw/die
+  → PulseHp ticks → L3 Instant packet → Funnel
+```
+
+---
+
+## 5. Status def vs overlay vs actor runtime
+
+| Layer | Owns | Where (design) |
+|---|---|---|
+| **StatusDef** | `statusId`, `kind`, `categories[]`, `tags[]`, stacking, family, payload *kinds*, **displayName / reading / hudToken / color** | Injected `status-catalog.v{n}.json` → Core `StatusCatalog` registry |
+| **Grant overlay** | `periodMs`, `durationMs`, `amount`, `stat`, `spread`, `chance`, `icd_ms` | `foundation_effect_grant.overlay_json` |
+| **Actor runtime** | Active instances; Apply-time derived power/resist inputs | L2 RAM + **ActorDerivedSnapshot** (composed at Apply — [actor-hub-ssot.md](actor-hub-ssot.md)) |
+
+Grants reference `statusId` + overlay — not a full embedded status blob in engine code. Unknown `statusId` → reject action (log + skip), same as unknown FA overlay keys.
+
+---
+
+## 6. Resistance / immunity (Apply-time)
+
+Design reference (do not vendor): Chaos `status-core` + Element Core probability — see [../research/status-core-chaos-mapping.md](../research/status-core-chaos-mapping.md). Derived inputs: [actor-hub-ssot.md](actor-hub-ssot.md) **ActorDerivedSnapshot** (blocked until Actor Hub code lands).
+
+**Prerequisite:** L2b reads **attacker** and **defender** derived snapshots — not primary `hp`/`atk`. `progression.power` is **`Θ`** from `IPowerIndexProvider.ActorIndex` (**0** when un-hydrated) — see [actor-hub-ssot.md §3B](actor-hub-ssot.md).
+
+> **Corrected 2026-08-25** (spec-status-potency.md §3), each check run against the shipped source, not
+> inferred: **`matchPower`** was **dropped** from `effectiveApplyScale`
+> (`ResistanceEvaluator.cs` — *"T3.2 (audit F3): no longer scaled by matchPower"*); **`ResistFromPowerRatio`**
+> is **`1.0`**, not the old "ratio 0 v1 stub" (`gk-core/data/tuning/status.v1.json`, T3.1); **`progression.power`**
+> is **`Θ`**, not a hardcoded `1.0` (ADR P1 amended, [actor-hub-ssot.md §3B](actor-hub-ssot.md)); the
+> **`effectiveApplyScale = 100`** v1-stub value no longer applies, since it followed from the retired
+> stub. Found while fixing these, a fifth: `netFactor` was documented below as `clamp(delta, Min, Max)`
+> with a `delta = 0` special case — the shipped formula (`ResistanceEvaluator.ComputeNetFactor`, T3.2 /
+> audit F4) is the linear `1 + delta/NetFactorScale`, clamped, with **no** special case
+> (`RedTest_MatchedPairAtTheta12_NetFactorFlips4096To1` asserts the special case is actually absent
+> from source, not just that the numeric outcome happens to match). All four predate the power program
+> (2026-08-24) and the potency split (T4.1, this correction); status was shipped (S0–S7) describing
+> retired math, which is worse than an unbuilt spec describing it — a shipped doc is read as current.
+
+### Two-phase resolve (locked)
+
+| Phase | Question | Formula |
+|---|---|---|
+| **1 — Apply chance** | Will status land? | `p_apply = sigmoid(delta / effectiveApplyScale)` |
+| **2 — Potency** | How strong, how long? | Two **independent** deltas (spec-status-potency.md §2.1) — locked to one number before T4.1 |
+
+```text
+// tierPower = progression.power × progression.realm (see actor-hub-ssot.md §3B)
+totalAttackerPower = tierPower(attacker)
+                   + status.power.omni + status.power.{category} + status.power.{statusId}
+
+totalDefenderResist = tierPower(defender) × ResistFromPowerRatio   // 1.0 (T3.1); 0 for an
+                                                                    // attacker-less application —
+                                                                    // symmetric contest, no real
+                                                                    // attacker side to contest WITH
+                    + status.resist.omni + status.resist.{category} + status.resist.{statusId}
+                    + status.resist.{element}   // Q1 (T4.1) — the STATUS DEF's own tag, never the
+                                                 // attacker's; absent -> contributes nothing (T5)
+
+delta = totalAttackerPower - totalDefenderResist        // Phase 1's delta — unchanged by the split
+netFactor(x) = clamp(1 + x / NetFactorScale, Min, Max)   // linear; no delta==0 special case (T3.2/F4)
+
+durationDelta  = delta + status.duration.omni  + status.duration.{category}  + status.duration.{statusId}
+               - status.durationReduction.omni - status.durationReduction.{category} - status.durationReduction.{statusId}
+intensityDelta = delta + status.intensity.omni + status.intensity.{category} + status.intensity.{statusId}
+               - status.intensityReduction.omni - status.intensityReduction.{category} - status.intensityReduction.{statusId}
+
+effectiveApplyScale = max(StatusPolicy.ApplyScaleFloor, StatusPolicy.ApplyScaleK.{category})   // no matchPower (T3.2/F3)
+
+p_apply = sigmoid(delta / effectiveApplyScale)
+p_final = grant.chance × p_apply    // chance defaults 1.0 — effect-data.md
+```
+
+**Do not** use `p_apply` for potency — apply uses sigmoid; potency uses the linear `netFactor`.
+
+**Attacker-less:** no ActorPtr → `tierPower = 0`, `status.power.* = 0`, and the defender's own
+`tierPower × ResistFromPowerRatio` term drops out of `totalDefenderResist` — a scripted/riderless
+application (e.g. a trait rider landing at match start) has no real attacker side to contest tier
+power with; treating it as one-sided instead of symmetric-exclude sent every scripted DoT/CC to the
+potency floor (found via `BattleStatusTests`, T3.1).
+
+```text
+Apply(hostPtr, statusId, baseMagnitude, baseDuration):
+  Validate def + family mutex
+  → Complete immunity → Resisted
+  → Resolve attacker + defender ActorDerivedSnapshot
+  → delta, netFactor(delta) — Phase 1's own, reported unchanged by the split (spec-status-potency.md §2.1)
+  → durationDelta, intensityDelta; durationNetFactor = netFactor(durationDelta), intensityNetFactor = netFactor(intensityDelta)
+  → partial immunity: (1 - immuneReduction.{tag}) multiplies BOTH durationNetFactor and intensityNetFactor
+  → if intensityNetFactor <= 0 → Resisted (reason: potency_floor) — skip roll. Zero DURATION alone is
+    instantaneous, a legitimate effect, not a resist (§2.2 below)
+  → Phase 1: roll rng < p_final else Resisted (reason: apply_roll)
+  → Phase 2: effectiveMagnitude = base × intensityNetFactor; effectiveDuration = base × durationNetFactor
+  → If useless → Resisted
+  → Else create/refresh instance (snapshot at Apply v1)
+```
+
+- **Power/resist SSOT on actor derived catalog** — e.g. `status.resist.{category}`, `status.power.{category}`, `progression.power`; not on StatusDef payload. `status.duration.*` / `status.intensity.*` and their `Reduction` siblings follow the identical omni+category+perId shape (T4.1).
+- **Category resist cap:** `status.resist.{category}` capped at **`StatusPolicy.CategoryResistCap` (0.95)** before sum; **`status.resist.omni` and `status.resist.{element}` uncapped**. Deprecated alias: `ResistanceCap`.
+- **`effectiveApplyScale`** is `max(Floor, K.{category})` — no power scaling (T3.2, audit F3: a power-scaled divisor made a fixed gap decay toward a coin flip as both sides climbed, measured p_apply 0.5010 at Θ=10 vs 0.5000 at Θ=10,000).
+- **v1:** snapshot derived values at Apply/Refresh; mid-duration re-eval is an open question (§12), sharpened but not decided by the potency split — a duration buff landing mid-DoT still does nothing until the next Apply.
+- **Contagion** re-runs full Apply on each new host (infection can fail).
+
+Telemetry (when implemented): `debug.status.resisted` (`reason: potency_floor` | `apply_roll` | `immunity`), `debug.status.partial`.
+
+---
+
+## 7. Lifecycle (controller-driven)
+
+`StatusRuntime.Tick` (~100ms coalesce, injector Hot loop) drives:
+
+`Apply → Tick/Pulse → Refresh → Expire/Remove`
+
+| Event | Meaning |
+|---|---|
+| **Apply** | Resistance + mutex → create instance; UnityCc → StatusExecutor |
+| **Tick / Pulse** | OverTime → Instant packet. Counter increments on events; burst = nested Instant |
+| **Spread** | Contagion on pulse (optional `spread.onExpire` from overlay) |
+| **Refresh** | Reset duration; stacking policy from def |
+| **Expire / Remove** | Withdraw grant, die (`WithdrawEntity` — [p0-hot-path-hardening.md](p0-hot-path-hardening.md) P0), dispel, `debug.effect.clear` |
+| **Capture upsert** | Vanilla CC we did not grant → instance `source=unity` |
+
+Stacking defaults:
+
+- Overlay DoT (`wither`): **Refresh** same `(statusId, grantId, hostPtr)`.
+- Counter (`bond`): one meter per `(grantId, scopeKey)`.
+- Unity CC: **Replace** same status id.
+
+---
+
+## 8. Payload kinds (catalog shape, magnitudes in overlay)
+
+| Kind | Sink | Notes |
+|---|---|---|
+| `PulseHp` | L3 Instant → Funnel FA10 | DoT, burst, HOT |
+| `UnityCc` | L4 StatusExecutor | butter … kelp |
+| `ModifyStat` | L4 EntityApply / FA1 | rally, expose |
+| `Spread` | L2 re-Apply on neighbors | contagion — uses existing TargetSpec |
+
+Status **pulses** never bypass Funnel for HP.
+
+---
+
+## 9. Locked status catalog (24 named ids)
+
+> **Landed 2026-09-06** (ADR: `decisions.md` row "Status SSOT + Resource model — nerve"; D2.19,
+> `StatusCatalogBootstrap.cs` `9.5 Nerve` block): the party-dungeon `delve-attrition` module added
+> `nerve.unsettled`, `nerve.shaken`, `nerve.afflicted` (Debuff, family `nerve`, `Replace`, `ModifyStat`)
+> — 21 → 24. The stack counter lives in party state (`DelveMemberState.NerveStacks`); the status is its
+> projection via `NerveLadder.StageFor` / `NervePolicy.Sync`. See §9.6. Spec:
+> `party-dungeon/spec-delve-attrition.md` §4.
+
+Magnitudes stay in grant overlay. This table is id + kind + host + notes only.
+
+### 9.1 Families (mutex)
+
+| Family | Members | Rule |
+|---|---|---|
+| `elemental` | `freeze`, `cold`, `poison`, `jala` | **Replace** within family (Fusion Cryo / Enflamed / Poison mutex) |
+| `mixer` | `ember` | **Coexists** with all Unity CC |
+| `slow` | `kelp` | Coexists with Cryo; **Replace** on same `kelp` id |
+| `overlay` | custom overlay ids below | May coexist with Unity CC; overlay DoT never calls `SetPoison` unless def is `UnityCc` poison |
+| `cc` | `butter`, `hypno` | Unity CC; hypno stays zombie bucket ([match-runtime.md](match-runtime.md)) |
+
+### 9.2 Engine wraps (UnityCc)
+
+| Id | Unity method | Family | Host | Notes |
+|---|---|---|---|---|
+| `butter` | `Buttered` | `cc` | actor ptr | Immobilize |
+| `freeze` | `SetFreeze` | `elemental` | actor ptr | Cryo hard freeze |
+| `cold` | `SetCold` | `elemental` | actor ptr | Chill |
+| `poison` | `SetPoison` | `elemental` | actor ptr | Unity poison DoT — not overlay `wither` |
+| `hypno` | `SetMindControl` | `cc` | actor ptr | Flag only; do not move ptr to plants |
+| `ember` | `SetEmbered` | `mixer` | actor ptr | Fusion mixer |
+| `jala` | `SetJalaed` | `elemental` | actor ptr | Fire/jala |
+| `kelp` | `SetKelped` | `slow` | actor ptr | Kelp slow |
+
+**Stub only (methods exist, not in v1 palette):** `Garliced`, `SetPortaled`, garlic point systems.
+
+### 9.3 Overlay-authored (any actor)
+
+| Id | Kind | Host | Role |
+|---|---|---|---|
+| `wither` | OverTime PulseHp | Actor | Overlay DoT |
+| `bond` | Counter | Actor | Hit streak → Instant burst |
+| `rally` | Buff ModifyStat | Actor | Timed ATK More |
+| `leech` | OverTime dual pulse | Actor host | Hurt target, heal ActorPtr |
+| `expose` | Debuff tag | Actor | More overlay HP taken (CombatMath later) |
+| `command` | Meter | Actor | Stacks when you apply statuses |
+| `shatter` | Consume window | Actor | Brief amp after freeze expires |
+| `charm_pulse` | CrowdControl + ModifyStat | actor ptr | Overlay CC lock via `cc` category; no UnityCc path (E17 def correction) |
+
+### 9.4 Contagion overlay ids
+
+| Id | Typical spread (Secondary chooses) | Role |
+|---|---|---|
+| `blight` | `Area` `Row`, `side: both` | Lane rot |
+| `rot` | `Area` `Column` | Vertical drip |
+| `spark` | `Area` `Square` | Neighborhood jump |
+| `pact_mark` | `Random` + overlay count/side | Curse hop |
+| `spore` | `Area` `Rectangle` | Cloud |
+
+Contagion: overlay `spread.chance` + `spread.target` + hop ICD + `maxHops` + `ProcDepthLimit`. Re-run resistance per host. No hardcoded plague constants in Core.
+
+**StatusPolicy defaults (design):** `CategoryResistCap` **0.95** (alias `ResistanceCap` deprecated); inherit match `ProcDepthLimit` (default **6**) for spread re-entry; contagion `maxHops` and spread `icd_ms` come from grant overlay only — Core supplies gates, not balance numbers.
+
+### 9.5 L2b category registry (normative)
+
+ResistanceEvaluator uses **`status.power.{category}`** / **`status.resist.{category}`** where `{category}` is the **primary L2b category** for the status id. StatusDef `categories[]` must include this primary; extra entries are for immunity tags only.
+
+| statusId | Primary L2b category | Notes |
+|---|---|---|
+| `wither`, `poison`, `leech`, `bond`, `rally`, `expose`, `command`, `shatter`, `nerve.unsettled`, `nerve.shaken`, `nerve.afflicted` | `dot` | overlay DoT, counters, buffs, debuff tags; nerve stages (§9.6) despite none being literal damage over time — matching `expose`/`shatter`'s own precedent |
+| `butter`, `freeze`, `cold`, `hypno`, `ember`, `jala`, `kelp`, `charm_pulse` | `cc` | Unity CC + overlay CC pulse |
+| `blight`, `rot`, `spark`, `pact_mark`, `spore` | `contagion` | spread re-Apply |
+
+**Per-id override:** when `status.power.{statusId}` or `status.resist.{statusId}` is set, it **adds** to category + omni totals (additive only).
+
+**Immunity tags:** grant overlay may supply immunity tags at Apply (`StatusApplyInput.ImmunityTags`). **StatusDef `tags[]` stay empty in the injected catalog** (status-rail B4) — immunity is **grant-only**, not def-authored. Channels `status.immune.{tag}` / `status.immuneReduction.{tag}` still exist for grant-driven tags; do not treat empty def tags as unfinished wiring.
+
+Examples: [examples/status/](examples/status/).
+
+### 9.6 Nerve (party-dungeon `delve-attrition` D2.19)
+
+| Id | Kind | Host | Role |
+|---|---|---|---|
+| `nerve.unsettled` | Debuff ModifyStat | Actor (party creature) | Stage 0 of 3 — `nerveStage` registry order |
+| `nerve.shaken` | Debuff ModifyStat | Actor (party creature) | Stage 1 of 3 |
+| `nerve.afflicted` | Debuff ModifyStat | Actor (party creature) | Stage 2 of 3 — also forced whenever spirit is exhausted, regardless of stack count |
+
+Family `nerve`, stacking `Replace` — at most one of the three is ever live per creature, matching the
+single stack counter (`DelveMemberState.NerveStacks`) it projects. Never re-applied by `Refresh`: a
+stage change is a different `statusId` entirely (`Replace` removes the old id, adds the new one), so
+two different stages are never simultaneously live even transiently. Each stage's `stat` payload is a
+fixed container (`gk-data/packs/fusion/data/seed/dungeon/_containers/nerve.v1.json`), loaded once, never rolled — no seed,
+no rarity, no tier, unlike an item/skill/patron container.
+
+---
+
+## 10. Migration from DeliverySpec (when code plan lands)
+
+| Today (shipped) | After StatusRuntime |
+|---|---|
+| `delivery.mode = OverTime` on FA10 grant | Grant overlay + `statusId: wither` (or contagion id) |
+| `delivery.mode = Counter` | `statusId: bond` + overlay `everyHits`, `burst` |
+| `DoTTickScheduler` on EffectBag | Private to StatusRuntime |
+| `CounterProcState` on EffectBag | Private to StatusRuntime |
+| FA2 `ApplyStatus` only | Status Apply with `UnityCc` payload kind |
+| Debug `/api/debug/effect/dots`, `/counters` | Fold into `/api/debug/status` (aliases ok) |
+
+Keep scenario ids (`combat-dot`, `combat-counter-*`); change overlay shape per [examples/status/wither.overlay.json](examples/status/wither.overlay.json).
+
+---
+
+## 11. Ban list
+
+- StatusRuntime must not call `TakeDamage` or snapshot `SetHp`.
+- Secondary must not mutate status bag (Funnel enqueue grant only).
+- No Server RTT on Apply/Tick/Spread.
+- No runtime YAML/file catalog loader in v1.
+- No hardcoded contagion/resistance magnitudes in Core beyond documented policy defaults.
+- Resistance / power on **actor** derived catalog ([actor-hub-ssot.md](actor-hub-ssot.md)), not StatusDef payload.
+- StatusRuntime **blocked** until Actor Hub derived resolve + `progression.power` stub exist.
+- No plant/zombie parallel status index for overlay family.
+- Status HP pulses must not bypass Funnel.
+
+---
+
+## 12. Open questions (document only)
+
+1. Mid-duration resistance refresh when a buff expires — snapshot vs re-eval each tick?
+2. Persist active statuses across match pause / reload — likely **no** (session RAM).
+3. When to promote catalog entries to SQLite — when Cold Secondary authoring needs non-deploy edits.
+
+---
+
+## 13. Architecture audit (locked resolutions)
+
+### Strengths (keep)
+
+1. **Clean split:** Status = state over time; Combat = instant HP planning; Funnel = sole HP mailbox.
+2. **Reuses shipped pieces:** TargetResolver, Funnel, FA10, EffectBag grants, StatSystem — no parallel combat engine.
+3. **Actor-neutral overlay** fits summoner fantasy (buff plants, curse zombies, blight both).
+4. **Resistance on actor derived catalog** enables gear progression without editing each status def — via [actor-hub-ssot.md](actor-hub-ssot.md).
+5. **Code-first catalog** matches project scale; avoids premature Chaos parity.
+
+### Risks and mitigations
+
+| Risk | Mitigation (doc lock) |
+|---|---|
+| StatusRuntime duplicates EffectBag | EffectBag **listens only**; all timed state moves to L2. Single `Tick()` owner. |
+| Migration breaks combat-dot scenarios | §10 migration table: `delivery.mode=OverTime` → `statusId: wither`. Keep scenario ids; change overlay shape. |
+| Contagion lawn wipe | `maxHops`, spread ICD, `ProcDepthLimit`, resist on each hop — StatusPolicy gates (§9.4). |
+| Unity CC + overlay double DoT | Overlay family never calls `SetPoison` unless def payload is `UnityCc` poison (§9.1). |
+| Resistance stale mid-buff | v1: snapshot at Apply (§6); §12 open question for v2. |
+| StatusRuntime before Actor Hub | **Blocked** — derived snapshot + `progression.power` stub required ([actor-hub-ssot.md](actor-hub-ssot.md)). |
+| Server creep into Hot path | Ban unchanged: no Server roll between capture and FA* (§11). |
+| Catalog drift vs grants | Unknown `statusId` → reject grant action (log + skip), same as unknown FA overlay keys (§5). |
+
+### Debates resolved
+
+| Question | Decision |
+|---|---|
+| Config loader / hot reload? | **No** v1. Scale by code registry + grants (§3). |
+| Mod plugins? | **Deferred** — hook name `IStatusDefProvider` only; no implementation. |
+| Where do StatusDefs live? | Core in-memory catalog; not files at runtime (§3). |
+| DeliverySpec OverTime/Counter? | **Removed from combat SSOT** — scheduling belongs to StatusRuntime ([combat-damage-ssot.md](combat-damage-ssot.md)). |
+| Chaos Element Core bridge? | Map to **L2b category** registry (§9.5), not element mastery SQL |
+| Category power default 0? | **Yes** — neutral stub delta; see [actor-hub-ssot.md](actor-hub-ssot.md) |
+| Potency floor before sigmoid? | **Yes** — `intensityNetFactor <= 0` → skip roll (T4.1: intensity only; zero duration alone is instantaneous, not a resist, §6) |
+| Plant status apply for Unity CC? | L4 adapter may **no-op** until plant CC probed; L2 index still `entity:{ptr}`. |
+| Chaos plugin registry? | **Not ported** — see chaos mapping not-shipped list. |
+
+---
+
+## 14. Related docs
+
+- [actor-hub-status-implement-plan.md](actor-hub-status-implement-plan.md) — S0–S7 implement checklist, prove gates
+- [actor-hub-ssot.md](actor-hub-ssot.md) — derived snapshot, `progression.power`, dynamic ApplyScale (**StatusRuntime blocked on S1**)
+- [combat-damage-ssot.md](combat-damage-ssot.md) — Instant `DamagePacket`, TargetSpec
+- [effect-funnel.md](effect-funnel.md) — FA10 add-only
+- [effect-runtime.md](effect-runtime.md) — StatusExecutor = L4 sink
+- [effect-data.md](effect-data.md) — grant overlay keys
+- [overlay-control-loops.md](overlay-control-loops.md) — Hot loop
+- [../research/status-core-chaos-mapping.md](../research/status-core-chaos-mapping.md) — resistance borrow
+- [../research/effect-runtime/03-status-and-spawn-surface.md](../research/effect-runtime/03-status-and-spawn-surface.md) — Unity method surface

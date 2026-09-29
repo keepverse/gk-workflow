@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-scene-progress — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-scene-progress</code></h1>
+  <p class="lede">Where the player is in the scene — beat <strong>n of m</strong>, as pips plus an
+  accessible label. Spec: <code>docs/architecture/story-scene/spec-scene-progress.md</code>.</p>
+
+  <p class="lede">Two rules shape it. The <strong>label is authored by the fold</strong> and rendered
+  verbatim, so there is one place to translate and one place to test. And a <strong>one-beat scene
+  shows no chrome at all</strong> — that is what lets a reveal reuse this piece without a meaningless
+  "1 of 1".</p>
+
+  <div class="lego-grid three">
+    <section class="lego-card">
+      <h2>Beat 2 of 4 — the normal case</h2>
+      <div class="piece-stage">
+        <div class="story-scene-progress" data-piece="scene-progress"
+             style="display:flex; align-items:center; gap:10px; font-size:12px; color:var(--muted)">
+          <span class="story-scene-progress__pips" aria-hidden="true" style="display:inline-flex; gap:4px">
+            <i style="width:7px;height:7px;border-radius:9999px;background:var(--border-control);display:block"></i>
+            <i style="width:18px;height:7px;border-radius:9999px;background:var(--lawn);display:block"></i>
+            <i style="width:7px;height:7px;border-radius:9999px;background:var(--border-control);display:block"></i>
+            <i style="width:7px;height:7px;border-radius:9999px;background:var(--border-control);display:block"></i>
+          </span>
+          <span class="story-scene-progress__label">Beat 2 of 4</span>
+        </div>
+      </div>
+      <p class="note">The current pip is <strong>elongated</strong> as well as coloured, so the position
+      is readable without relying on colour alone. Pips are decorative; the label carries the meaning.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Last beat of 4</h2>
+      <div class="piece-stage">
+        <div class="story-scene-progress" data-piece="scene-progress"
+             style="display:flex; align-items:center; gap:10px; font-size:12px; color:var(--muted)">
+          <span class="story-scene-progress__pips" aria-hidden="true" style="display:inline-flex; gap:4px">
+            <i style="width:7px;height:7px;border-radius:9999px;background:var(--border-control);display:block"></i>
+            <i style="width:7px;height:7px;border-radius:9999px;background:var(--border-control);display:block"></i>
+            <i style="width:7px;height:7px;border-radius:9999px;background:var(--border-control);display:block"></i>
+            <i style="width:18px;height:7px;border-radius:9999px;background:var(--lawn);display:block"></i>
+          </span>
+          <span class="story-scene-progress__label">Beat 4 of 4</span>
+        </div>
+      </div>
+      <p class="note">The label is verbatim from the payload — the piece assembles no string, so a
+      translator sees one message id rather than a template inside a component.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>One beat — <strong>nothing rendered</strong></h2>
+      <div class="piece-stage" style="min-height:56px; display:flex; align-items:center">
+        <span class="note" style="color:var(--muted)">(no progress node at all)</span>
+      </div>
+      <p class="note">A reveal is a one-beat scene, so this piece renders <strong>no</strong> DOM node
+      when <code>total &lt;= 1</code>. There is no "1 of 1" state to design around.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure and rules</h2>
+      <pre>.story-scene-progress
+  .story-scene-progress__pips     one pip per beat; current pip emphasized
+  .story-scene-progress__label    accessible text</pre>
+      <ul class="note">
+        <li><code>total</code> is the script's own length — never a hard-coded constant, and never asserted as a literal in a test.</li>
+        <li><code>total &lt;= 1</code> renders nothing, so a reveal reuses this piece cleanly.</li>
+        <li>Nothing is persisted: beat position is session UI state, and a tab closed before acknowledgement restarts at beat 1.</li>
+        <li>The current pip is distinguishable <strong>without colour alone</strong> (elongation), and the pips are <code>aria-hidden</code>.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "scene-progress",
+  "instanceId": "scene:progress",
+  "phase": "ready",
+  "index": 1,
+  "total": 4,
+  "label": "Beat 2 of 4",
+  "showPips": true
+}</pre>
+      <p class="note"><code>index</code> is 0-based. <code>showPips</code> defaults to true; a later
+      surface may show the label alone.</p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

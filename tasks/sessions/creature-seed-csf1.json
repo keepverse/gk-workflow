@@ -1,0 +1,34 @@
+{
+  "session": "creature-seed-csf1",
+  "program": "creature-seed",
+  "problem": "CS-F1: SpeciesModLedgerTests.After_a_real_boot_a_save_that_never_fused_has_no_layer_1b_rows reports SeedTreeNotFound at the integration head — find the root cause and fix it at the responsible layer.",
+  "mode": "worktree",
+  "branch": "cmdc/cs-f1",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-cs-f1",
+  "paths": [
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Core/**",
+    "tests/FusionRpg.Data.Tests/**",
+    "tasks/creature-seed-todo.md",
+    "tasks/creature-seed-ledger.jsonl",
+    "tasks/sessions/creature-seed-csf1.json",
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-22T08:18:00Z",
+  "status": "abandoned",
+  "scopeNote": "Runner-assigned lane cs-f1 on branch cmdc/cs-f1 in a dedicated worktree created from 246228eb197f. paths mirrors the runner brief's allowed paths exactly, so the fence and the git add list cannot drift apart. The CS-F1 row names the layer-1b ledger, but the measured cause is the test's own content-root walk; the fix is therefore confined to tests/FusionRpg.Data.Tests/SpeciesModLedgerTests.cs and no production file is touched.",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 46a9f846 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/cs-f1",
+    "branchTip": "46a9f846",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 46a9f846 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

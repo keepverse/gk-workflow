@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-01-delve-acceptance-20260925",
+  "sha": "03d8cee8d6943777e9333db106926f9295f8fe41",
+  "shortSha": "03d8cee8",
+  "mergedSha": "9a24e56c88e62f1e846889e8c98c77cbe4044b96",
+  "verdict": "GREEN",
+  "scope": "Server-owned Delve wild/cage join: persisted room kind/cage, party ownership/location, candidate/traits, OfferFloor, sink, refusal side effects, and explicit temporary steering policy",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "focused-core",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "22 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-01-delve-acceptance-20260925/focused-core.log",
+      "command": "dotnet test tests/FusionRpg.Core.Tests --filter FullyQualifiedName~DelvePricesTests"
+    },
+    {
+      "check": "focused-data",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "18 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-01-delve-acceptance-20260925/focused-data.log",
+      "command": "dotnet test tests/FusionRpg.Data.Tests --filter FullyQualifiedName~DelveWildTransactionTests"
+    },
+    {
+      "check": "focused-server",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "18 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-01-delve-acceptance-20260925/focused-server.log",
+      "command": "dotnet test tests/FusionRpg.Server.Tests --filter FullyQualifiedName~DelveWildEndpointsTests"
+    },
+    {
+      "check": "guards-and-boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "DAL, test-substrate, and session-boundary checks passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-01-delve-acceptance-20260925/guards-and-boundary.log",
+      "command": "scripts/guard-dal.ps1; scripts/guard-test-substrate.ps1; scripts/session-boundary-check.ps1 -Session resume-01-delve-acceptance-20260925"
+    },
+    {
+      "check": "path-owned-plan",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "Core/Data/Server owners and DAL/unique-allocation seams selected",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-01-delve-acceptance-20260925/path-owned-plan.log",
+      "command": "scripts/verify-change.ps1 -Paths <six concrete executable paths> -Session resume-01-delve-acceptance-20260925 -PlanOnly -Format json"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused checks passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-01-delve-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> 03d8cee8d6943777e9333db106926f9295f8fe41; focused tests/guards/PlanOnly; git status --porcelain=v1",
+      "logSha256": "A1F64AAFB3974EF2D049EBBEBDC91C54B3557165A1C40D1844D1A5F4184CDDC9",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "knownLimitations": [
+    "The complete executable-path verify-change run exceeded 300 seconds after starting split Core projects and produced no final verdict; it is not counted as a green aggregate.",
+    "The durable/live multi-party steering source and semantics remain an owner decision; selector zero is explicitly temporary and fail-closed.",
+    "Room-local theta and archetype-specific encounter-pool expansion remain separate contracts; /pray retains its pre-existing caller theta seam.",
+    "No live game/server/browser proof was run."
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Core/Delve/Loot/DelvePrices.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Core.Tests/Delve/Loot/DelvePricesTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveWildTransactionTests.cs",
+    "tasks/reports/resume-01-delve-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "03d8cee8d6943777e9333db106926f9295f8fe41",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "mergeScope": "The reviewed SHA is accepted and merged for the scoped server-owned join contract. The steering ruling, schema/economy follow-ups, aggregate timeout, and live proof remain explicitly open.",
+  "when": "2026-09-25T10:50:00Z",
+  "expectedSha": "03d8cee8d6943777e9333db106926f9295f8fe41",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-01-delve-acceptance-20260925"
+}

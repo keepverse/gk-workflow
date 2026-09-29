@@ -1,0 +1,39 @@
+# TVB register re-verified at the merged head — TVB-F1's web half and TVB-F15 close; a third stale fixture found
+
+Head: `f585d8d6e` (the lane merged `features/mega-merge`, 332 commits, HEAD was its ancestor, 0 conflicts).
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| registry guard, at this head | `python gk-core/scripts/guard-verification-boundaries.py` | `VERIFICATION BOUNDARY GUARD OK`, **29.5 s** wall (the register's 14.1 s was an idle-machine reading) | this fragment |
+| TVB-F1 web half: a web path now resolves | `pwsh -NoProfile -Command "& ./scripts/verify-change.ps1 -Paths 'gk-web/web/fusion-rpg-web/src/features/aptitudes/autoAssign.test.ts' -PlanOnly -AllowUnscoped"` | `gk-web/web/fusion-rpg-web/src/features/aptitudes/autoAssign.test.ts -> web-fusion-rpg-web (module)` / `script: web-fusion-rpg-web` — was `VERIFICATION BOUNDARY MISSING` | this fragment |
+| the row that landed it | `grep -n 'fusion-rpg-web' gk-core/scripts/verification-boundaries.v1.json` | **5** hits: `projects["web-fusion-rpg-web"]` `:192` → `runner: script`, `scripts/checks/web-fusion-rpg-web.ps1`; owner boundary `:5775` over `gk-web/web/fusion-rpg-web/**` | this fragment |
+| TVB-F1 tuning half: still no catch-all | `grep -n '"gk-core/data/tuning/\*\*"' gk-core/scripts/verification-boundaries.v1.json` | `NONE` — **122** explicit `gk-core/data/tuning/<domain>.v*.json` rows, no `*-catalog` fallback; a new catalog is still unmapped until its own row lands (the rule TVB-F8 already states) | this fragment |
+| TVB-F15: the doc-citations guard | `pwsh -NoProfile -File scripts/guard-doc-citations.ps1` | `1689 documents, 25804 resolvable citations checked`; `D1 683 (0 HIGH)`, `D2 7 (0 HIGH)`, `D3 56 (0 HIGH)`, **EXIT=0** — the register's 2 D3 HIGH (`RS-F18`) are gone | this fragment |
+| TVB5.9: the E2E leg, re-read | `pwsh -NoProfile -File scripts/test-fast.ps1 -Project gk-core/tests/FusionRpg.E2E.Tests` | `Failed: 3, Passed: 273, Skipped: 0, Total: 276, Duration: 2 m 2 s` (**2 m 18 s** wall) | this fragment |
+| the three failures | the same run | `ContractFixtureTests.Commander_list_fixture_matches_live_dto` (`Garden Keeper` live vs `Crazy Dave` fixture), `ContractFixtureTests.Unique_actor_fixture_still_matches_the_live_dto` (`empireId` live, absent from the fixture) — **new**, `WorldTurnFixtureTests.The_checked_in_turn_fixture_still_matches_a_real_played_opening` (`0f685a16…` live vs `b41ce3ef…` fixture) | this fragment |
+| the new one is the merge's | `git merge-base --is-ancestor 0770c0f81 4f60fc741` | **NO** — SE4.31 landed `gk-core/src/FusionRpg.Contracts/UniqueActorDtos.cs:22` `[JsonPropertyName("empireId")]` (`0770c0f81`, 2026-09-23) and the mega-merge brought it; the web fixture was last written `e588c251a` (2026-08-23) | this fragment |
+| no local signal for it | `pwsh -NoProfile -Command "& ./scripts/verify-change.ps1 -Paths 'gk-core/src/FusionRpg.Contracts/UniqueActorDtos.cs' -PlanOnly -AllowUnscoped"` | `-> contracts-fallback (module)` / `test: core [68 projects]` — the E2E project, where `ContractFixtureTests` lives, is **not** selected | this fragment |
+| TVB-F3/F6/F24 still open | `grep -n "No test is available\|SkipCoverageWalk" scripts/verify-change.ps1` | no zero-test check anywhere; `:27` still passes `-SkipCoverageWalk` with no enforced-root narrowing (TVB-F24); `:115` throws on an ambiguous owner, so an additive same-pattern boundary is not available | this fragment |
+| TVB-F26 still owed | `grep -n "PATH\|interpreter\|WARNING" gk-core/tests/FusionRpg.Guard.Tests/GuardRunnerTests.cs` | no match; the file holds **8** facts — the regression test the row names is still unwritten | this fragment |
+| the program's open blocks | `python .claude/cmdc-agents/scripts/convergence-census.py` | `test-verification-boundary  12  0  1  0` — 12 open blocks at this head (was 43 in the brief's reading, which is repo-wide) | this fragment |
+| the Guard suite at the merged head (via `verify-change` on this commit's own paths) | `pwsh -NoProfile -Command "& ./scripts/verify-change.ps1 -Paths @('tasks/test-verification-boundary-todo.md','tasks/evidence-fragments/tvb60-register-reverify-merged-head.md','tasks/summoner-convergence-todo.md') -Session tvb58"` | doc-citation checks **green** on all three; then `Failed! - Failed: 2, Passed: 671, Skipped: 0, Total: 673, Duration: 6 m 51 s` | this fragment |
+| the two Guard reds, attributed | the same run | `PlayerSpeciesMaterialiseCallerGuardTests.The_nine_pick_refusal_codes_are_a_closed_vocabulary` — the **pre-existing routed** red (creature-seed T8, `picks.source-below-rank-floor`), named in the register; and **`CiPytestWiringTests.Every_pytest_project_has_a_ci_step_running_pytest_in_its_own_root`** — **new**, `pytest project root(s) with no 'python -m pytest' CI step at that working-directory: .` (`PlantSideStatusGuardTests` is green here, so the red set rotated) | this fragment |
+| the new red is the merge's, and it is a wiring gap | `git show 4f60fc741:gk-core/scripts/verification-boundaries.v1.json \| grep -c 'tools-audit-tests'` → `0`; the project is `{runner: pytest, root: ".", tests: "gk-core/tests/tools"}` (`gk-core/scripts/verification-boundaries.v1.json:183`), owner boundary `pipeline-audit-scripts` `:3325` over `gk-core/scripts/audit-program-pipeline.py` + `gk-core/scripts/fix-doc-citations.py` | the merge added the project and its tests but **no CI step at `working-directory: .`** — filed as **TVB-F29** and fixed in this lane (`ci.yml` is a granted path) | this fragment |
+| the suite it wires is green | `python -m pytest gk-core/tests/tools -q -p no:cacheprovider` | `25 passed in 4.60s` (stdlib-only tests) | this fragment |
+| the doc-citation gap, reproduced live (TVB-F6ep) | the first `verify-change` run of this commit, before the re-anchor | `tasks/summoner-convergence-todo.md:78  D3` **exit 1** on a line 17 above anything the append touched — the Core split moved `tests/FusionRpg.Core.Tests/Items/SocketOperationsTests.cs` to `gk-core/tests/FusionRpg.Core.Items.Tests/` | this fragment |
+| that citation, re-anchored | `git ls-files '**/SocketOperationsTests.cs' '**/UniqueCorpusTests.cs' '**/FamilyExpansionTests.cs'` | `gk-core/tests/FusionRpg.Core.Items.Tests/Items/SocketOperationsTests.cs`, `gk-core/tests/FusionRpg.Core.Items.Tests/Items/UniqueCorpusTests.cs`, `gk-core/tests/FusionRpg.Core.Atoms.Tests/Atoms/Generation/FamilyExpansionTests.cs`; the four facts are green (`SocketOperationsTests` **22/22**, the Core group 68 projects / 15,836 tests / 0 failures) | this fragment |
+
+`pwsh`/`dotnet`/`python` are not on this shell's PATH by default; every command above ran with
+`/c/Program Files/PowerShell/7`, `/c/Program Files/dotnet`, `/c/Windows/System32`,
+`/c/Windows/System32/WindowsPowerShell/v1.0` and `Python312` prepended — the TVB-F26 class, unchanged.
+
+## The three named verifications, run on this commit's tree
+
+| Gate | Command | Printed reading |
+|---|---|---|
+| the boundary guard | `python gk-core/scripts/guard-verification-boundaries.py` | `VERIFICATION BOUNDARY GUARD OK` — 27.5 s |
+| the Guard projects the brief names, plus the wiring ones this commit touches | `dotnet test gk-core/tests/FusionRpg.Guard.Tests/FusionRpg.Guard.Tests.csproj -c Release --nologo --verbosity minimal --filter "FullyQualifiedName~VerificationBoundary\|FullyQualifiedName~CoreTestProjectPolicy\|FullyQualifiedName~CiPytestWiringTests\|FullyQualifiedName~WorkflowExitCheckTests\|FullyQualifiedName~CiWiringGuardTests"` | `Passed! - Failed: 0, Passed: 74, Skipped: 0, Total: 74, Duration: 5 m 48 s` |
+| the CI guard tier | `pwsh -NoProfile -File scripts/run-guards.ps1 -Tier ci` | `GUARDS OK - 25 guard(s) run, 0 red` — 1 m 52 s |
+
+The tier run is **0 red** where the register recorded 1 (`doc-citations`, then red for `RS-F18`): the
+merge cleared it, which is the same fact that closes TVB-F15.

@@ -1,0 +1,27 @@
+{
+  "session": "item-seedgen-genfix",
+  "program": "item-seedgen",
+  "problem": "Fix the items seed generator's hybrid-set role defect recorded as ISG-gap-1: `python -m seedsmith check data/seed/items --adapter items` exits 1 with [GAP] Linkage/SetCompletability, because sets set.verdant-graft-001/002/005 claim roles ('head-guard', 'sense') that are not in the hybrid role core -- so a hybrid frame could never complete those sets in play. Fix the GENERATOR (or its brief/quota/registry input) and regenerate; data/seed/items/** is generated and is never hand-edited to turn a check green.",
+  "mode": "worktree",
+  "branch": "cmdc/isg-gen-fix",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-isg-gen-fix",
+  "paths": [
+    "tools/seedsmith/**",
+    "data/seed/items/**",
+    "data/generated/**",
+    "tasks/item-seedgen-todo.md",
+    "tasks/reports/**",
+    "tasks/evidence-fragments/**"
+  ],
+  "started": "2026-09-21T22:30:00Z",
+  "status": "merged",
+  "notes": [
+    "Unblocks merging the corpus/bcu211 branch (68 files / 129,299 insertions of BCU2.11 output) and then the action-distribution-gaps T3.2/T3.3 runs, both of which the manager owns -- this lane does not merge that branch and does not run those runs.",
+    "Lead is tasks/item-seedgen-todo.md row ISG-gap-1, which carries the three GAP readings and the BCU2.11 run evidence.",
+    "AGENTS.md hard rule applies with force here: a generator defect is fixed by changing the generator and regenerating, never by editing an emitted row.",
+    "Fence deliberately EXCLUDES tests/**: that tree is tvb58's single-writer chain (the per-area test-project split). This program's own Python tests live under tools/seedsmith/tests/**, already inside the tools/seedsmith/** claim, so nothing is lost and no collision is created.",
+    "2026-09-22: fence widened by the manager to include tasks/evidence-fragments/**, which this lane's brief requires for its evidence contract but the copied fence lacked. Latent at the time of the widening (0 denials), so it was fixed before it cost a segment rather than after.",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's.",
+    "2026-09-25 manager reconciliation: branch tip c7c2a017e1c6293038e58ea2316a419256ce9b28 is an ancestor of main and the worktree is clean; the generator changes are already integrated. The lane's runner verify remained FAIL (protected ci.yml/release.yml changes and an out-of-fence session-record path), so this status records integration only and is not a false acceptance claim."
+  ]
+}

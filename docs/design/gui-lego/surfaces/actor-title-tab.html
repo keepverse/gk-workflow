@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>actor-title-tab — gui-lego assembled surface</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="../pieces/_piece-kit.css">
+<style>
+  .console {
+    display: flex; flex-direction: column;
+    height: min(820px, 88vh);
+    border: 1px solid var(--border-control);
+    border-radius: var(--r-md);
+    background: linear-gradient(180deg, rgb(51 43 33 / 0.55), rgb(18 15 12 / 0.35)), var(--panel);
+    overflow: hidden;
+  }
+  .console > .inspect-split {
+    flex: 1; min-height: 0; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0;
+  }
+  .console > .inspect-split > .dock,
+  .console > .inspect-split > .inspect {
+    min-height: 0; overflow: auto; padding: 12px; border: 0; border-radius: 0;
+    background: transparent;
+  }
+  .console > .inspect-split > .dock { border-right: 1px solid var(--border); }
+  .console > .foot {
+    flex: none; padding: 8px 14px; border-top: 1px solid var(--border);
+  }
+  .family-block + .family-block { margin-top: 14px; }
+  .row + .row { margin-top: 6px; }
+  .worn { outline: 2px solid var(--accent); }
+  .lock { opacity: .55; font-style: italic; }
+</style>
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page" style="max-width:min(1600px,96vw)">
+  <h1>Surface <code>actor-title-tab</code></h1>
+  <p class="lede">Specimen honors sash: one worn name (highest tier wins), the rest working underneath, marks
+  that can't come off with their lifting price written plainly. Ninth ActorPanel tab — no identity header,
+  ActorPanel owns who/level. Recipe: <code>recipes/actor-title-tab.json</code>. Lego grammar.</p>
+
+  <div class="console" data-surface="actor-title-tab">
+    <div class="inspect-split">
+      <div class="dock">
+        <section class="family-block" aria-label="Oaths">
+          <h2>Oaths</h2>
+          <div class="row"><button type="button" class="chip worn">Oathkeeper — worn</button> <span>hold the line a little longer</span></div>
+          <div class="row"><button type="button" class="chip">Blooded</button> <span>survived the first field</span></div>
+        </section>
+        <section class="family-block" aria-label="Marks">
+          <h2>Marks</h2>
+          <div class="row"><span class="chip">Fell Mark — cannot be worn</span> <span class="lock">Lift: 500 souls + 50 fire essence, or carry it. Insufficient stays, no partial.</span> <button type="button" disabled aria-disabled="true" title="Needs 500 souls and 50 fire essence">Lift mark</button></div>
+        </section>
+      </div>
+      <div class="inspect">
+        <h2>Oathkeeper</h2>
+        <p>Sworn and kept. The wearer holds the line a little longer.</p>
+        <p><strong>Sources</strong></p>
+        <ul><li>equip:title-1 — progression.bonus.maxHp +30</li></ul>
+        <p><button type="button">Preview (no change)</button></p>
+      </div>
+    </div>
+
+    <div class="foot">One worn name, stacking underneath. Catalog copy only — no dotted ids, no engine words.</div>
+  </div>
+</main>
+</body>
+</html>

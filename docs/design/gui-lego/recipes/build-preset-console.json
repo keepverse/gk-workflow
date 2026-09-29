@@ -1,0 +1,49 @@
+{
+  "surfaceId": "build-preset-console",
+  "host": "rail-panel",
+  "version": 1,
+  "notes": "build-preset BP3.1 idea-ui pass (docs/architecture/build-preset-console-ideal.md). New top-level rail entry 'Builds' (key B), depth 1 from any stage -- never nested under ActorSheet/Aptitudes (GG-9/GG-10; the aptitude-preset-console is already at the depth ceiling). Mounts inside the existing PanelShell, never a forked one. Actions (Capture/Preview/Apply/Delete) live in PanelShell's own sticky footer -- host-owned chrome, not a recipe slot, the exact same treatment aptitude-preset-console.json gives allocate-decision-strip's Confirm/Cancel. Activate/apply via host -> apply API only.",
+  "root": {
+    "piece": "build-preset-layout",
+    "instanceId": "build:layout",
+    "bind": "vm.layout",
+    "slots": {
+      "gallery": {
+        "piece": "preset-gallery",
+        "instanceId": "build:gallery",
+        "bind": "vm.gallery"
+      },
+      "inspect": {
+        "piece": "split-inspect",
+        "instanceId": "build:split",
+        "bind": "vm.detail",
+        "slots": {
+          "list": {
+            "piece": "build-preset-detail",
+            "instanceId": "build:detail",
+            "bind": "vm.detail"
+          },
+          "inspect": {
+            "piece": "build-preset-preview",
+            "instanceId": "build:preview",
+            "bind": "vm.preview",
+            "slots": {
+              "choices": {
+                "piece": "build-preset-payment-choice",
+                "instanceId": "build:preview:choice",
+                "bind": "vm.preview.choices",
+                "repeat": true
+              },
+              "priceLines": {
+                "piece": "build-preset-price-line",
+                "instanceId": "build:preview:prices",
+                "bind": "vm.preview.prices"
+              }
+            }
+          }
+        }
+      }
+    },
+    "overlays": ["phase-loading", "phase-empty", "phase-error", "phase-pending"]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "session": "adg-f5",
+  "program": "action-distribution-gaps",
+  "problem": "ADG-F5: the unlock roll offers actions it can never grant (a Basic, imported on every real boot) and throws instead of skipping them -- filter the roll's candidate set by the validator's own grantability predicate so a level-up can never be discarded",
+  "mode": "worktree",
+  "branch": "cmdc/adg-f5",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-adg-f5",
+  "paths": [
+    "src/FusionRpg.Core/Actions/**",
+    "src/FusionRpg.Server/**",
+    "tests/**",
+    "tasks/action-distribution-gaps-todo.md",
+    "tasks/action-distribution-gaps-ledger.jsonl",
+    "tasks/reports/**",
+    "tasks/sessions/adg-f5.json"
+  ],
+  "started": "2026-09-22T11:20:00Z",
+  "status": "abandoned",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 3a3d0d2d has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/adg-f5",
+    "branchTip": "3a3d0d2d",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 3a3d0d2d has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

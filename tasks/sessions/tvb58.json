@@ -1,0 +1,43 @@
+{
+  "session": "tvb58",
+  "program": "test-verification-boundary",
+  "problem": "Own TVB5.7 (redo with a wider fence: shared set + manifest project 1 + ci.yml/release.yml pair + registry wiring, one commit), every TVB5.8.k increment (one manifest project per commit, manifest order), and TVB5.9 (split close: test-fast -AllDefault once, Csc reading, the testing-standard sentence). Carries the residual precondition repair the predecessor left open: data/seed/atoms/generated/family-expand.g-evade.json is stale against FamilyExpandGen after e1d9103e dropped the `utility` tag from data/seed/items/affix-families/g-evade.json; regenerated, never hand-edited.",
+  "mode": "worktree",
+  "branch": "cmdc/tvb58",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-tvb58",
+  "paths": [
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs",
+    "tests/**",
+    "scripts/**",
+    "tools/**",
+    ".github/workflows/**",
+    "data/seed/atoms/generated/**",
+    "docs/**",
+    "tasks/**",
+    "FusionRpg.slnx"
+  ],
+  "started": "2026-09-20T15:00:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Fence is the runner's own allowed-path list for lane tvb58, widened by the orchestrator from tvb57's narrow one: .github/workflows/{ci,release}.yml are this lane's now (explicit --allow-protected grant), src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs and FusionRpg.slnx are written by `FileMove split --apply`, and data/seed/atoms/generated/** is in because the last residual red is a stale generated file this lane regenerates.",
+    "scripts/verification-boundaries.v1.json and scripts/test-fast.ps1 are claimed additively by tvb-wave5-20260920.json and keepverse-split.json (both still ACTIVE); the orchestrator's brief grants the additive edits and requires guard-verification-boundaries.ps1 before each commit. They are listed here because verify-change.ps1 refuses a path outside the session record, and both are edited by this lane.",
+    "tasks/sessions/tvb-wave5-20260920.json is the stopped predecessor record of the same program/wave (branch cmdc/lane-d, the base of cmdc/tvb57). It is never written by this session; its claims are superseded here, not amended.",
+    "tasks/tvb-wave5-ledger.jsonl is this program's ledger and is appended through scripts/anchor-ledger.py only.",
+    "2026-09-22: the manager granted this lane two protected paths through the runner (allowProtected): tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs and .../VerificationBoundaryWorkflowTests.cs, to execute CAI-guard-1 (the BattleEffects.cs re-pin) and TVB-F19 (the InScopeFile rule fix). Fence unchanged -- tests/** was already in paths; the grant is the runner-level protection, not the fence."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 4d68751e has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/tvb58",
+    "branchTip": "4d68751e",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 4d68751e has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

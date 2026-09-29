@@ -1,0 +1,14 @@
+{
+  "session": "resume-07-web-browser-qa-20260925",
+  "program": "web",
+  "problem": "Produce real local-server browser evidence for the accepted web recovery/match-isolation contract without editing product code or fabricating state.",
+  "mode": "worktree",
+  "branch": "opencode/resume-07-web-browser-qa-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-07-web-browser-qa-20260925",
+  "paths": [
+    "tasks/reports/resume-07-web-browser-qa-20260925.md"
+  ],
+  "started": "2026-09-25T09:00:45Z",
+  "status": "abandoned",
+  "notes": "Browser QA worker became unresponsive after the web build and produced no report or browser evidence. Its process was stopped by the manager; no server was claimed and no product files changed. Browser proof remains open and will be rerun in a fresh bounded lane or by manager browser tooling after the current head stabilizes."
+}

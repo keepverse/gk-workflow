@@ -1,0 +1,18 @@
+{
+  "session": "ps1-ban-l1-harness-20260926",
+  "program": "ps1-ban",
+  "problem": "Port the acceptance harness from PowerShell to Python: .claude/cmdc-agents/scripts/accept-lane.ps1 and post-merge-check.ps1 become accept_lane.py and post_merge_check.py, each with a unittest suite covering the refusals and the verdict/artefact shape they already guarantee.",
+  "mode": "worktree",
+  "branch": "ps1ban/l1-harness",
+  "worktree": "C:/Users/NeneScarlet/AppData/Local/Temp/opencode/ps1ban-l1-harness",
+  "paths": [
+    ".claude/cmdc-agents/scripts/accept_lane.py",
+    ".claude/cmdc-agents/scripts/post_merge_check.py",
+    ".claude/cmdc-agents/scripts/test_accept_lane.py",
+    ".claude/cmdc-agents/scripts/test_post_merge_check.py",
+    "tasks/sessions/ps1-ban-l1-harness-20260926.json"
+  ],
+  "started": "2026-09-25T19:27:51Z",
+  "status": "merged",
+  "notes": "Manager-plane tooling slice; no product, generated data, tuning or live scope. The two .ps1 originals are deliberately NOT deleted and no citation to them is renamed: the deletion wave owns both, and a per-lane rename sweep produces conflicting edits. Evidence: pytest on the two new suites, 167 passed + 110 subtests, exit 0. FOUR ITEMS ARE NOT MINE AND ARE HANDED OVER: (1) scripts/verification-boundaries.v1.json owner 'manager-fail-closed' enumerates the four harness paths individually, so the four new .py paths are UNMAPPED and verify-change.ps1 refuses with 'VERIFICATION BOUNDARY MISSING' -- the registry is in another lane's fence, so this is reported and the full suite was NOT run as a fallback; (2) .claude/cmdc-agents/scripts/test_fail_closed_pipeline.py drives accept-lane.ps1 and post-merge-check.ps1 directly and will go red when they are deleted -- it must be re-pointed at the .py entry points, or its 57 contract cases lost; (3) tests/tools/test_program_status.py asserts accept-lane.ps1 declares $AcceptanceVerdicts and must read ACCEPTANCE_VERDICTS in accept_lane.py; (4) the two new suites are not reachable by verify-change.ps1 until (1) lands. Measured behaviour worth an owner ruling, not fixed here: 'Test Run Failed.' is a failure to accept_lane and NOT to post_merge_check, and an interop-only build error yields RED rather than BLOCKED despite the retired test being named as though it were BLOCKED. MERGED 2026-09-26 as c59cbd9a5 (5 pure additions, zero conflict). Re-verified AT THE MERGE COMMIT, not only on the lane branch: 89 + 78 = 167 unittest cases, OK, exit 0 both suites. The record was closed here rather than by the lane because a still-active record crossed the mega-merge session's widened .claude/** fence and the boundary checker reported four DRIFT entries against a lane that had already landed."
+}

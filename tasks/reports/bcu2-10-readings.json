@@ -1,0 +1,38 @@
+{
+ "reading": "BCU2.10 T4.6 round-1 action corpus, model-free (no writes)",
+ "repoHead": "40418bc3c",
+ "round": 1,
+ "acceptedCorpusSize": 181,
+ "corpusHash": "9c8ff5b7c981ede955cd47eaffe7143d935b6a6a678ddff947e11d18b200bbeb",
+ "tuningVersion": 3,
+ "mode": "full",
+ "roster": {
+  "species": 904,
+  "families": 227,
+  "familyAssigned": 1183
+ },
+ "verdict": "pass",
+ "reviewQueueCount": 0,
+ "quotaDriftClean": true,
+ "gapMetrics": [
+  "action.corpus.atomFamilyNamespace",
+  "action.corpus.enablerPayoffCoverage",
+  "action.corpus.speciesCoverage",
+  "action.corpus.thinCell"
+ ],
+ "nextTargetCount": 5387,
+ "docHash": "e4e895b911c66d7cf3aaee76c8859c06711d6cdb7f6d74fe6cff35cc421e580f",
+ "cellCount": 48,
+ "thinCellCount": 48,
+ "thinCellShortfall": 20384,
+ "committedReport": {
+  "path": "data/seed/actions/_reports/coverage-round-1.json",
+  "present": true,
+  "sha256": "2f4317c2ea02a9d33b42f58ec2409353e16a568618105ae431332b5b5ad75ce7",
+  "acceptedCorpusSize": 181,
+  "corpusHash": "9c8ff5b7c981ede955cd47eaffe7143d935b6a6a678ddff947e11d18b200bbeb",
+  "cellCount": 48,
+  "thinCellCount": 48,
+  "thinCellShortfall": 20384
+ }
+}

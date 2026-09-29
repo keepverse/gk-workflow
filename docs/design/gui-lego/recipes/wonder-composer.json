@@ -1,0 +1,86 @@
+{
+  "surfaceId": "wonder-composer",
+  "host": "world-stage-panel",
+  "version": 1,
+  "notes": "Design SSOT recipe. Band-2 panel layered over the world stage (SectorInspector stays mounted beneath); never a route (GG-1/GG-5/GG-11). URL encodes stage + open layers (GG-8); close returns the exact sector, selection and scroll (GG-12). Spend confirm is a band-3 dialog (GG-22); refusal/result notices are band-4 toasts (GG-16). Stage → sector → composer → confirm is the full depth — readings open in-pane (GG-63). Rows lead with price + requirement; picking defaults to side-by-side against current state (GG-47). Structural CSS (grid/flex areas, 720px-floor bounds GG-36/GG-61, internal scroll) per recipe, not per piece. Shared pieces consumed by name (tool-search, chip, split-inspect, scroll-region, phase-*, stock-row, capacity-meter, relic shelf) — owned by empire-inventory-surfaces, never re-specified here. Paint by pack slot reference (wonder-scope-*, wonder-rarity-* — owned by 4D.4, referenced by contract only); copy by display-catalog key (GG-62). Status: DRAFT pending-owner-review — see wonder-composer.ACCEPTANCE.md.",
+  "root": {
+    "piece": "surface-shell",
+    "instanceId": "shell:wonder-composer",
+    "bind": "vm",
+    "slots": {
+      "tools": [
+        {
+          "piece": "tool-search",
+          "instanceId": "tool:wonder-search",
+          "bind": "vm.search"
+        }
+      ],
+      "main": {
+        "piece": "split-inspect",
+        "instanceId": "split:wonder-composer",
+        "bind": "vm",
+        "slots": {
+          "dock": {
+            "piece": "scroll-region",
+            "instanceId": "scroll:wonder-catalog",
+            "bind": "vm.catalogScroll",
+            "slots": {
+              "content": {
+                "piece": "wonder-catalog-row",
+                "instanceId": "catalog:wonders",
+                "bind": "vm.catalogRows",
+                "slots": {
+                  "rows": {
+                    "$bindArray": "rows",
+                    "piece": "wonder-catalog-row",
+                    "instanceIdTemplate": "wonder-row:{structureId}"
+                  }
+                }
+              }
+            }
+          },
+          "inspect": {
+            "piece": "scroll-region",
+            "instanceId": "scroll:relic-shelf",
+            "bind": "vm.shelfScroll",
+            "slots": {
+              "content": {
+                "piece": "relic-shelf-link",
+                "instanceId": "shelf:reachable-relics",
+                "bind": "vm.shelf",
+                "slots": {
+                  "rows": {
+                    "$bindArray": "candidates",
+                    "piece": "stock-row",
+                    "instanceIdTemplate": "relic-pick:{instanceId}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "slotPick": {
+        "piece": "slot-pick",
+        "instanceId": "slotpick:wonder-site",
+        "bind": "vm.slotPick"
+      },
+      "costPlate": {
+        "piece": "wonder-cost-plate",
+        "instanceId": "cost:wonder-price",
+        "bind": "vm.costPlate"
+      },
+      "confirm": {
+        "piece": "confirm-dialog",
+        "instanceId": "confirm:wonder-spend",
+        "bind": "vm.confirm"
+      }
+    }
+  },
+  "lifecycleOverlays": {
+    "loading": { "piece": "phase-loading", "bind": "vm.phasePayload" },
+    "empty": { "piece": "phase-empty", "bind": "vm.phasePayload" },
+    "error": { "piece": "phase-error", "bind": "vm.phasePayload" },
+    "pendingField": { "piece": "phase-pending", "bind": "field.phase" }
+  }
+}

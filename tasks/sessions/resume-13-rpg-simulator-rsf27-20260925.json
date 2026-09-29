@@ -1,0 +1,18 @@
+{
+  "session": "resume-13-rpg-simulator-rsf27-20260925",
+  "program": "rpg-simulator",
+  "problem": "Measure RS-F27 progression-ledger emptiness across real scenario outcomes, then add a justified non-vacuity contract or document the legal-empty boundary without fabricated rows.",
+  "mode": "worktree",
+  "branch": "opencode/resume-13-rpg-simulator-rsf27-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-13-rpg-simulator-rsf27-20260925",
+  "paths": [
+    "src/FusionRpg.Core/Progression/RpgXpAwardMap.cs",
+    "tests/fixtures/rpg-scenarios/first-session-forward.json",
+    "tools/RpgSim/**",
+    "tests/FusionRpg.E2E.Tests/**",
+    "tasks/reports/resume-13-rpg-simulator-rsf27-20260925.md"
+  ],
+  "started": "2026-09-25T09:48:35Z",
+  "status": "abandoned",
+  "notes": "Manager accepted the RS-F27 measurement and legal-empty policy at exact reviewed SHA 912e041d27774ac804ba8f418e9644dfd22b8c97 and merged at ef009d9a154090a6affa31acb5b9f18a33baef54. Deterministic victory/stalemate selection remains an open owner/design seam; no production outcome change was accepted."
+}

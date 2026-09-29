@@ -1,0 +1,98 @@
+{
+  "surfaceId": "wonder-sector-card",
+  "host": "sector-inspector",
+  "version": 1,
+  "notes": "Design SSOT recipe (empire-wonder-surfaces wonder-display §Design 1). Mounts inside the existing SectorInspector slots block — no new route (GG-1/GG-7). Changing IA = editing this recipe, not the TSX. Slot tree: identity + effect-reading + progress + locked-slot → wonder-display fold (pure) → events → wonder-display.* bus (closed). Shared density consumed by name: capacity-meter[progress] for the rising meter, stock-row for relic-candidate rows (4D.1-owned, never forked); the treasure shelf (wonder-relic-shelf, sibling inventory program) is linked, never re-implemented.",
+  "fold": "foldWonderCard (gk-web/web/fusion-rpg-web/src/stages/world/wonderDisplay/wonderDisplayFold.ts — pure data, no paint, no copy)",
+  "bus": "wonder-display.* — card.expand, reading.open, teaser.explain, retry (wonderDisplayBus.ts — closed, pieces never fetch)",
+  "catalog": "gk-data/packs/fusion/data/seed/display/wonder-display.v1.json (GG-62 authored lexicon — names, effect sentences, refusal copy + next actions, locked reasons, unknown-id placeholder, pending cap copy)",
+  "packs": ["wonder-scope.Sector", "wonder-scope.Empire", "wonder-scope.World", "wonder-scope.Multiverse", "wonder-rarity.Common", "wonder-rarity.Unique"],
+  "root": {
+    "piece": "wonder-sector-card",
+    "instanceId": "wonder:card:{structureId}",
+    "bind": "fold",
+    "slots": {
+      "identity": {
+        "piece": "wonder-identity",
+        "instanceId": "wonder:identity:{structureId}",
+        "bind": "fold.identity",
+        "slots": {
+          "name": {
+            "piece": "meta-sentences",
+            "instanceId": "wonder:name:{structureId}",
+            "bind": "fold.name"
+          },
+          "scopeBadge": {
+            "piece": "chip",
+            "instanceId": "wonder:scope:{structureId}",
+            "bind": "fold.scopeBadge"
+          },
+          "rarityBadge": {
+            "piece": "chip",
+            "instanceId": "wonder:rarity:{structureId}",
+            "bind": "fold.rarityBadge"
+          }
+        }
+      },
+      "effectReading": {
+        "piece": "wonder-effect",
+        "instanceId": "wonder:effect:{structureId}",
+        "bind": "fold.effect",
+        "slots": {
+          "sentence": {
+            "piece": "meta-sentences",
+            "instanceId": "wonder:effect-sentence:{structureId}",
+            "bind": "fold.effectSentence"
+          },
+          "capLine": {
+            "piece": "cap-note",
+            "instanceId": "wonder:cap:{structureId}",
+            "bind": "fold.cap"
+          }
+        }
+      },
+      "progress": {
+        "piece": "capacity-meter",
+        "instanceId": "wonder:progress:{structureId}",
+        "bind": "fold.progress",
+        "density": "progress"
+      },
+      "lockedSlot": {
+        "piece": "phase-pending",
+        "instanceId": "wonder:locked:{structureId}",
+        "bind": "fold.lockedReason"
+      },
+      "shelfLink": {
+        "piece": "wonder-shelf-link",
+        "instanceId": "wonder:shelf:{structureId}",
+        "bind": "fold.shelf"
+      }
+    }
+  },
+  "landmarks": [
+    "wonder-sector-card",
+    "wonder-name",
+    "wonder-scope-badge",
+    "wonder-rarity-badge",
+    "wonder-effect",
+    "wonder-progress",
+    "wonder-capacity-meter",
+    "wonder-cap-line",
+    "wonder-cap-pending",
+    "wonder-progress-pending",
+    "wonder-locked-reason",
+    "wonder-placeholder",
+    "wonder-expand",
+    "wonder-relic-shelf-link",
+    "wonder-retry"
+  ],
+  "rules": [
+    "Built Wonder renders name + badges + effect with no progress slot; under-construction renders name + rising sentence + shared meter.",
+    "Unique renders the live cap line from WonderPolicy numbers (N of cap raised); Common renders no cap line (uncapped by construction).",
+    "Pre-catalog cap reads render the designed pending state — never a guessed number, never a hidden row.",
+    "Reserved scopes (World/Multiverse) render as locked teasers with the catalog reason — never hidden, never buildable.",
+    "Wire reason strings never render raw; unknown structureIds render the placeholder + card.expand — never the id.",
+    "Paint arrives from wonder-scope-*/wonder-rarity-* packs only; no hard-coded scope/rarity colour map in piece code.",
+    "Copy arrives from the display catalog only; the fold formats magnitudes (GG-46) and invents none."
+  ]
+}

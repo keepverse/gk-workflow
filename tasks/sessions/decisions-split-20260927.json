@@ -1,0 +1,18 @@
+{
+  "session": "decisions-split-20260927",
+  "program": "docs-consolidation",
+  "problem": "Split docs/architecture/decisions.md into a compact index plus 12 per-category files, so an agent that needs one decision stops reading 169 KB to find it, without moving a single line number.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "scripts/split-decisions.py",
+    "tasks/sessions/decisions-split-20260927.json",
+    "docs/architecture/decisions.md",
+    "docs/architecture/decisions/",
+    "scripts/split-decisions.py"
+  ],
+  "started": "2026-09-27T00:00:00Z",
+  "status": "merged",
+  "notes": "DONE in 8e25b3799. decisions.md went 173,015 -> 14,788 bytes with the line count unchanged at 220, and the rule text moved into 12 files under docs/architecture/decisions/. scripts/split-decisions.py is the generator and refuses an unclassified row or a line-count change rather than defaulting. Verified after the fact: all 385 line anchors re-checked against the pre-split file with 0 mismatches, a round trip reproduces all 149 rule bodies byte-identical, and audit-doc-citations.py reports 0 HIGH across 26,024 citations. NOT DONE and deliberately so: the index carries the Topic verbatim plus a link, with no generated one-line summary, because only 58 of 149 rows open with a bold span and summarising the other 91 would be lossy compression of the incident narrative that makes a rule stick. If a shorter index is wanted later, that is a separate judgement per row, not a mechanical pass. Left untouched: mega-merge-program-manager-20260925-f78e and ps1-ban-manager-20260926 both declare decisions.md but are direct-mode on this branch, so their in-flight edits still land on the lines their citations name."
+}

@@ -1,0 +1,16 @@
+{
+  "session": "resume-20-rpg-sim-defeat-floor-review-20260925",
+  "program": "rpg-simulator",
+  "problem": "Manager exact-SHA clean-checkout acceptance of the completed RS-F27 exact player:defeat ledger floor.",
+  "mode": "worktree",
+  "branch": "review/resume-20-rpg-sim-defeat-floor-20260925",
+  "worktree": ".claude/worktrees/review-resume-20-rpg-sim-defeat-floor-20260925",
+  "paths": [
+    "tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs",
+    "tasks/reports/resume-20-rpg-simulator-defeat-floor-20260925.md",
+    "tasks/sessions/resume-20-rpg-sim-defeat-floor-review-20260925.json"
+  ],
+  "started": "2026-09-25T15:00:00Z",
+  "status": "merged",
+  "notes": "Fresh manager review worktree from 6d77888cc. Harvest only the worker's explicit two paths; do not adopt the older dirty resume-19 draft or modify resume-13."
+}

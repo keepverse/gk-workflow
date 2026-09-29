@@ -1,0 +1,20 @@
+{
+  "session": "resume-05-vocabulary-generator-20260925",
+  "program": "creature-seed",
+  "problem": "Close passive-tree vocabulary drift and FamilyExpandGen refusal/pool/version/provenance gaps through generator-first fixes and regeneration.",
+  "mode": "worktree",
+  "branch": "opencode/resume-05-vocabulary-generator-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-05-vocabulary-generator-20260925",
+  "paths": [
+    "tools/FamilyExpandGen/**",
+    "tools/PassiveTreeRosterGen/**",
+    "data/seed/passive-tree/vocabulary.json",
+    "data/seed/atoms/generated/**",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+    "tests/FusionRpg.Core.Tests/**",
+    "tasks/reports/resume-05-vocabulary-generator-20260925.md"
+  ],
+  "started": "2026-09-25T06:57:43Z",
+  "status": "abandoned",
+  "notes": "Stopped before edits because its broad tests/FusionRpg.Core.Tests/** fence overlapped the active Delve and battle lanes. The research worktree is preserved; no code or acceptance is claimed. A successor narrows Core tests to directly affected atom/passive-tree files and keeps generator-first boundaries."
+}

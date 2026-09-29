@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-18-rpg-simulator-rsf27-acceptance-20260925",
+  "sha": "912e041d27774ac804ba8f418e9644dfd22b8c97",
+  "expectedSha": "912e041d27774ac804ba8f418e9644dfd22b8c97",
+  "shortSha": "912e041d",
+  "mergedSha": "ef009d9a154090a6affa31acb5b9f18a33baef54",
+  "verdict": "GREEN",
+  "scope": "RS-F27 real-run progression-ledger measurement and legal-empty policy; no production outcome/seed seam",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925",
+  "checks": [
+    {
+      "check": "scenario-validation",
+      "command": "dotnet run --project tools/RpgSim/RpgSim.csproj -- --scenario tests/fixtures/rpg-scenarios/first-session-forward.json --validate",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "ok=true; 36 steps, 7 reads, 22 expects, 1 digest",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/validate.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "rs-f27-20-sample",
+      "command": "FUSIONRPG_RSF27_SAMPLES=20 dotnet test tests/FusionRpg.E2E.Tests/FusionRpg.E2E.Tests.csproj --no-restore --filter FullyQualifiedName~RS_F27_measures_progression_ledger_non_vacuity_across_real_runs",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "20/20 real fresh-host samples passed; all defeat; ledger lengths 1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/rsf27.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "xp-map-contract",
+      "command": "dotnet test tests/FusionRpg.Core.RpgXpAwardMapTests.Tests/FusionRpg.Core.RpgXpAwardMapTests.Tests.csproj --no-restore --filter FullyQualifiedName~RpgXpAwardMapTests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "20 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/xpmap.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "focused-e2e-contracts",
+      "command": "dotnet test tests/FusionRpg.E2E.Tests/FusionRpg.E2E.Tests.csproj --no-restore --filter FullyQualifiedName~RpgScenarioSlice0E2ETests|FullyQualifiedName~RpgSimInProcHostTests|FullyQualifiedName~RpgSimFormatContractTests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "26 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/e2e-focused.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "runner-verdict-contracts",
+      "command": "dotnet test tests/FusionRpg.E2E.Tests/FusionRpg.E2E.Tests.csproj --no-restore --filter FullyQualifiedName~RpgSimRunnerTests|FullyQualifiedName~RpgSimVerdictContractTests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "20 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/runner.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "scoped-verification",
+      "command": "verify-change.ps1 -Paths tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs tests/fixtures/rpg-scenarios/first-session-forward.json -Session resume-13-rpg-simulator-rsf27-20260925",
+      "exit": 0,
+      "seconds": 177,
+      "summary": "test-substrate guard passed; E2E boundary 281 passed, 0 failed, 0 skipped; full evidence CI/nightly/release",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/scoped-verify.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git worktree add --detach <temporary-clean-checkout> 912e041d27774ac804ba8f418e9644dfd22b8c97; scenario validation; 20-sample measurement; focused contracts; scoped verify; git diff --check; git status --porcelain=v1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; all selected checks passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-18-rpg-simulator-rsf27-acceptance-20260925/clean.log",
+      "logSha256": "FB7859A475CC8695C59F92551E50BF2AD122F391A5F5D1CD7C4F8626244A4C0E",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs",
+    "tests/fixtures/rpg-scenarios/first-session-forward.json",
+    "tasks/reports/resume-13-rpg-simulator-rsf27-20260925.md",
+    "tasks/reports/resume-18-rpg-simulator-rsf27-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "912e041d27774ac804ba8f418e9644dfd22b8c97",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "The 20 samples covered defeat only; deterministic victory/stalemate selection remains an open owner/design seam because Server currently mints those seeds.",
+    "The full unfiltered aggregate remains CI/nightly/release-owned; the scoped 281-test E2E result is the local evidence."
+  ],
+  "mergeScope": "The RS-F27 measurement harness and legal-empty fixture policy are accepted and merged; no production outcome or generated-data behavior was accepted.",
+  "when": "2026-09-25T13:30:00Z"
+}

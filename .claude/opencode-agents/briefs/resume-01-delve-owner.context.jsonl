@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Deep-audit candidate C1 was confirmed on the current tree: DelveWildEndpoints accepts caller Spec/Price and RpgStore.Delve spends/mints them; OfferFloor is not called. The persisted room row/column subclaim was falsified; do not repeat it."}
+{"kind":"fact","text":"Owner ruling: server owns Delve outcome and price. Owner ruling: full deterministic/browser/live proof is required before program close; no fabricated live evidence."}

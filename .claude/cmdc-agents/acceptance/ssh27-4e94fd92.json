@@ -1,0 +1,64 @@
+{
+  "when": "2026-09-21T02:00:19",
+  "sha": "4e94fd92",
+  "contendedTree": false,
+  "verdict": "RED (1 check(s), 2 unregistered failure(s))",
+  "logDir": "D:\\tmp\\accept-ssh27-20260921-015955",
+  "lane": "ssh27",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh27-20260921-015955\\boundary.log"
+    },
+    {
+      "check": "actor-hub",
+      "exit": 0,
+      "seconds": 3,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh27-20260921-015955\\actor-hub.log"
+    },
+    {
+      "check": "core-sockets",
+      "exit": 1,
+      "seconds": 15,
+      "summary": "Failed!  - Failed:     2, Passed:   229, Skipped:     0, Total:   231, Duration: 2 s - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [
+        "FusionRpg.Core.Tests.Items.SocketOperationsTests.No_shipped_gem_declares_an_omni_affinity",
+        "FusionRpg.Core.Tests.Items.SocketOperationsTests.The_legacy_socket_word_corpus_is_ordered_and_awaits_module_21s_retirement"
+      ],
+      "knownRedTests": [],
+      "newRedTests": [
+        "FusionRpg.Core.Tests.Items.SocketOperationsTests.No_shipped_gem_declares_an_omni_affinity",
+        "FusionRpg.Core.Tests.Items.SocketOperationsTests.The_legacy_socket_word_corpus_is_ordered_and_awaits_module_21s_retirement"
+      ],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh27-20260921-015955\\core-sockets.log"
+    },
+    {
+      "check": "python-combogen",
+      "exit": 0,
+      "seconds": 5,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh27-20260921-015955\\python-combogen.log"
+    }
+  ]
+}

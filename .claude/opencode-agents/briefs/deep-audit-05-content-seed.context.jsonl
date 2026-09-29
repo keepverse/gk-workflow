@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Generated data is never hand-edited: generator/tuning/registry changes must be followed by regeneration. Guardrails validate contracts, closed enums, joins, uniqueness, reconciliation, hashes, determinism, and bounds—not current population sizes."}
+{"kind":"fact","text":"The repository has a large measured backlog and a recent QC pass that labeled seedsmith corpora green with routed pre-existing issues. This lane must independently distinguish product defects from stale tests and validator gaps."}

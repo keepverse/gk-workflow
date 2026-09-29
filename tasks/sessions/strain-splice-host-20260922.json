@@ -1,0 +1,48 @@
+{
+  "session": "strain-splice-host-20260922",
+  "program": "strain-splice-host",
+  "started": "2026-09-22T02:00:00+07:00",
+  "status": "abandoned",
+  "mode": "worktree",
+  "branch": "cmdc/ssh29",
+  "worktree": ".claude/worktrees/cmdc-ssh29",
+  "problem": "Finish the strain-splice-host rows after merging features/mega-merge: land SSH4.4's combination-corpus regeneration and the one-acceptance-set container build, then SSH4.6's projection binding and SSH5.9's circuit contributions. The combination-corpus regeneration was cleared by the owner to run alongside the J9 model run.",
+  "paths": [
+    "tasks/sessions/strain-splice-host-20260921.json",
+    "tasks/sessions/strain-splice-host-20260922.json",
+    "tasks/strain-splice-host-todo.md",
+    "tasks/strain-splice-host-ledger.jsonl",
+    "tasks/evidence-fragments/SSH*.md",
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Server/**",
+    "tools/**",
+    "tests/**",
+    "data/seed/items/**",
+    "data/tuning/**",
+    "data/seed/**/_registry/**",
+    "docs/architecture/strain-splice-host/**",
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/architecture/strain-splice-host-ideal.md"
+  ],
+  "notes": [
+    "Lane id ssh29, session id strain-splice-host-20260922. The record was written by the lane itself because verify-change.ps1 requires an active record for the brief's session id, and the earlier program record (strain-splice-host-20260921, branch cmdc/ssh28) was flipped to status merged when features/mega-merge merged this lane's batch at 1296d3cf8.",
+    "The worktree was fast-forwarded to features/mega-merge tip 3e06b1fd7 so this lane continues on the merged tree; the blocked set (SSH4.6/4.7/4.8/4.9, SSH5.9, SSH6.8, SSH7.1, SSH7.7, SSH8.4, SSH8.5) was parked with its external dependency named in tasks/evidence-fragments/SSH4.4.md.",
+    "H7: a tuning publish or generator change switches its readers in the same commit. The combination corpus under data/seed/items/combinations/** is seedsmith output, never hand-edited: the 63 unbuildable grants were regenerated through the generator.",
+    "The owner cleared the combination-corpus regeneration to run concurrently with the J9 model run; its measured latency is recorded as contended in tasks/evidence-fragments/SSH4.4.md."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 753344e3 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/ssh29",
+    "branchTip": "753344e3",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 753344e3 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

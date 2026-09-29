@@ -1,0 +1,21 @@
+{
+  "session": "resume-17-build-preset-acceptance-20260925",
+  "program": "build-preset",
+  "problem": "Manager exact-SHA acceptance of BP1.11/BP1.12 with focused verification-boundary mapping repair; no RpgStore.cs, Contracts, tuning, or SE4.37 scope.",
+  "mode": "worktree",
+  "branch": "review/build-preset-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-build-preset-20260925",
+  "paths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.BuildPresets.cs",
+    "tests/FusionRpg.Data.Tests/BuildPresets/BuildPresetStoreTests.cs",
+    "src/FusionRpg.Server/BuildPresetEndpoints.cs",
+    "src/FusionRpg.Server/Program.cs",
+    "tests/FusionRpg.Server.Tests/BuildPresetEndpointsTests.cs",
+    "scripts/verification-boundaries.v1.json",
+    "tasks/reports/resume-11-build-preset-bp1112-20260925.md",
+    "tasks/reports/resume-17-build-preset-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T12:15:00Z",
+  "status": "merged",
+  "notes": "Manager clean-checkout acceptance completed at reviewed SHA 005239e4b38dfe389a365b0c62e94fdca159238a and merged at 094ebc3aeb6882ce88b0c36d63a10edf448f4723. Focused mapping repair, tests, guards, registry guard, PlanOnly, diff, and clean status passed. Artifact: .claude/cmdc-agents/acceptance/resume-17-build-preset-20260925-005239e4.json. Boot hook/SE4.37/full aggregate remain open."
+}

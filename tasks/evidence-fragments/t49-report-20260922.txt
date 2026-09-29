@@ -1,0 +1,56 @@
+gamble-vs-assurance (R-G1) — expected attempts to gamble vs. expected boss kills for certainty
++1: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++2: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++3: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++4: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++5: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++6: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++7: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++8: success=1000‰ gambleAttemptsMilli=1000 gambleAttemptsWithDowngradeMilli=1000 assureChargesForCertainty=0 bossKillsForCertaintyMilli=0 craftWearPerMilleOfMaxGambling=50 craftWearPerMilleOfMaxCertainty=50
++9: success=950‰ gambleAttemptsMilli=1052 gambleAttemptsWithDowngradeMilli=1052 assureChargesForCertainty=1 bossKillsForCertaintyMilli=3333 craftWearPerMilleOfMaxGambling=53 craftWearPerMilleOfMaxCertainty=50
++10: success=880‰ gambleAttemptsMilli=1136 gambleAttemptsWithDowngradeMilli=1136 assureChargesForCertainty=3 bossKillsForCertaintyMilli=10000 craftWearPerMilleOfMaxGambling=57 craftWearPerMilleOfMaxCertainty=50
++11: success=810‰ gambleAttemptsMilli=1234 gambleAttemptsWithDowngradeMilli=1234 assureChargesForCertainty=4 bossKillsForCertaintyMilli=13333 craftWearPerMilleOfMaxGambling=62 craftWearPerMilleOfMaxCertainty=50
++12: success=740‰ gambleAttemptsMilli=1351 gambleAttemptsWithDowngradeMilli=1351 assureChargesForCertainty=6 bossKillsForCertaintyMilli=20000 craftWearPerMilleOfMaxGambling=68 craftWearPerMilleOfMaxCertainty=50
++13: success=670‰ gambleAttemptsMilli=1492 gambleAttemptsWithDowngradeMilli=1492 assureChargesForCertainty=7 bossKillsForCertaintyMilli=23333 craftWearPerMilleOfMaxGambling=75 craftWearPerMilleOfMaxCertainty=50
++14: success=600‰ gambleAttemptsMilli=1666 gambleAttemptsWithDowngradeMilli=1666 assureChargesForCertainty=8 bossKillsForCertaintyMilli=26666 craftWearPerMilleOfMaxGambling=84 craftWearPerMilleOfMaxCertainty=50
++15: success=500‰ gambleAttemptsMilli=2000 gambleAttemptsWithDowngradeMilli=2000 assureChargesForCertainty=10 bossKillsForCertaintyMilli=33333 craftWearPerMilleOfMaxGambling=100 craftWearPerMilleOfMaxCertainty=50
++16: success=470‰ gambleAttemptsMilli=2127 gambleAttemptsWithDowngradeMilli=2127 assureChargesForCertainty=11 bossKillsForCertaintyMilli=36666 craftWearPerMilleOfMaxGambling=107 craftWearPerMilleOfMaxCertainty=50
++17: success=440‰ gambleAttemptsMilli=2272 gambleAttemptsWithDowngradeMilli=4979 assureChargesForCertainty=12 bossKillsForCertaintyMilli=40000 craftWearPerMilleOfMaxGambling=249 craftWearPerMilleOfMaxCertainty=50
++18: success=410‰ gambleAttemptsMilli=2439 gambleAttemptsWithDowngradeMilli=9602 assureChargesForCertainty=12 bossKillsForCertaintyMilli=40000 craftWearPerMilleOfMaxGambling=481 craftWearPerMilleOfMaxCertainty=50
++19: success=380‰ gambleAttemptsMilli=2631 gambleAttemptsWithDowngradeMilli=18297 assureChargesForCertainty=13 bossKillsForCertaintyMilli=43333 craftWearPerMilleOfMaxGambling=915 craftWearPerMilleOfMaxCertainty=50
++20: success=350‰ gambleAttemptsMilli=2857 gambleAttemptsWithDowngradeMilli=36837 assureChargesForCertainty=13 bossKillsForCertaintyMilli=43333 craftWearPerMilleOfMaxGambling=1842 craftWearPerMilleOfMaxCertainty=50
++21: success=320‰ gambleAttemptsMilli=3125 gambleAttemptsWithDowngradeMilli=81403 assureChargesForCertainty=14 bossKillsForCertaintyMilli=46666 craftWearPerMilleOfMaxGambling=4071 craftWearPerMilleOfMaxCertainty=50
++22: success=290‰ gambleAttemptsMilli=3448 gambleAttemptsWithDowngradeMilli=202744 assureChargesForCertainty=15 bossKillsForCertaintyMilli=50000 craftWearPerMilleOfMaxGambling=10138 craftWearPerMilleOfMaxCertainty=50
++23: success=260‰ gambleAttemptsMilli=3846 gambleAttemptsWithDowngradeMilli=580884 assureChargesForCertainty=15 bossKillsForCertaintyMilli=50000 craftWearPerMilleOfMaxGambling=29045 craftWearPerMilleOfMaxCertainty=50
++24: success=230‰ gambleAttemptsMilli=4347 gambleAttemptsWithDowngradeMilli=1949043 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=97453 craftWearPerMilleOfMaxCertainty=50
++25: success=200‰ gambleAttemptsMilli=5000 gambleAttemptsWithDowngradeMilli=7801170 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=390059 craftWearPerMilleOfMaxCertainty=50
++26: success=200‰ gambleAttemptsMilli=5000 gambleAttemptsWithDowngradeMilli=31209680 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=1560484 craftWearPerMilleOfMaxCertainty=50
++27: success=200‰ gambleAttemptsMilli=5000 gambleAttemptsWithDowngradeMilli=124843720 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=6242186 craftWearPerMilleOfMaxCertainty=50
++28: success=200‰ gambleAttemptsMilli=5000 gambleAttemptsWithDowngradeMilli=499379880 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=24968994 craftWearPerMilleOfMaxCertainty=50
++29: success=200‰ gambleAttemptsMilli=5000 gambleAttemptsWithDowngradeMilli=1997524520 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=99876226 craftWearPerMilleOfMaxCertainty=50
++30: success=200‰ gambleAttemptsMilli=5000 gambleAttemptsWithDowngradeMilli=7990103080 assureChargesForCertainty=16 bossKillsForCertaintyMilli=53333 craftWearPerMilleOfMaxGambling=399505154 craftWearPerMilleOfMaxCertainty=50
+per-source assurance yield (‰ per draw)
+web-wave:rift-skirmish assurance.assure 0‰
+web-wave:rift-skirmish assurance.protect 0‰
+web-wave:rift-skirmish assurance.repair 0‰
+web-wave:rift-warband assurance.assure 0‰
+web-wave:rift-warband assurance.protect 0‰
+web-wave:rift-warband assurance.repair 0‰
+web-wave:rift-onslaught assurance.assure 0‰
+web-wave:rift-onslaught assurance.protect 0‰
+web-wave:rift-onslaught assurance.repair 0‰
+web-wave:rift-tyrant assurance.assure 300‰
+web-wave:rift-tyrant assurance.protect 300‰
+web-wave:rift-tyrant assurance.repair 300‰
+expedition-tier:scout-30m assurance.assure 0‰
+expedition-tier:scout-30m assurance.protect 0‰
+expedition-tier:scout-30m assurance.repair 0‰
+expedition-tier:forage-4h assurance.assure 0‰
+expedition-tier:forage-4h assurance.protect 0‰
+expedition-tier:forage-4h assurance.repair 0‰
+expedition-tier:hunt-8h assurance.assure 0‰
+expedition-tier:hunt-8h assurance.protect 0‰
+expedition-tier:hunt-8h assurance.repair 0‰
+expedition-tier:warpath-20h assurance.assure 300‰
+expedition-tier:warpath-20h assurance.protect 300‰
+expedition-tier:warpath-20h assurance.repair 300‰

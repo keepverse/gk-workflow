@@ -1,0 +1,41 @@
+{
+  "session": "species-gear-chain-20260920",
+  "program": "species-gear-chain",
+  "problem": "Wave 1 of the species-gear-chain anchor: work the todo's own row order across context windows, one row per commit. Rows landed so far: T31 (the 2026-09-20 E2E regression), two stale corpus pins plus SSH2.6's leftover sockwords test, the stale generated atom tree, the Phase 2 (5/6) and Phase 5 (4/4) checkpoints, and T37 slice 1 (ItemUpgradePolicy). Current row: T38, then the remaining T37 slices.",
+  "mode": "worktree",
+  "branch": "cmdc/sgc-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-sgc-1",
+  "paths": [
+    "src/FusionRpg.Core/Items/**",
+    "src/FusionRpg.Core/Stats/**",
+    "src/FusionRpg.Server/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Contracts/**",
+    "web/fusion-rpg-web/**",
+    "tools/seedsmith/**",
+    "tools/tuning/**",
+    "data/seed/items/**",
+    "data/seed/loot/**",
+    "data/seed/atoms/generated/**",
+    "data/tuning/**",
+    "tests/**",
+    "docs/architecture/species-gear-chain/**",
+    "docs/architecture/item/**",
+    "docs/architecture/power/**",
+    "tasks/species-gear-chain-anchor.md",
+    "tasks/species-gear-chain-plan.md",
+    "tasks/species-gear-chain-todo.md",
+    "tasks/species-gear-chain-ledger.jsonl",
+    "tasks/evidence-fragments/**",
+    "tasks/sessions/species-gear-chain-20260920.json",
+    "tasks/strain-splice-host-todo.md",
+    "tasks/atom-family-expansion-todo.md",
+    "tasks/item-todo.md"
+  ],
+  "started": "2026-09-20T17:00:00Z",
+  "status": "merged",
+  "scopeNote": "Anchor task list, plus the two docs trees the manager extended 2026-09-21 (docs/architecture/item/**, docs/architecture/power/**) so T37's ssot-enhancement.md 5.3 and ssot-power-scale.md 10 acceptance rows can land with the mechanism that makes them true. The tasks/ paths were narrowed from the anchor's blanket tasks/** after the 2026-09-21 manager ruling, so this record stops colliding with other active records' specific tasks/ files; only the four todo files this lane may write a routed finding into are claimed. T27 is reassigned to lane sgc-2 (cmdc/sgc-2) and is not this lane's work. Prior species-gear-chain records (20260915-9afc, spec-20260918) are status=merged.",
+  "notes": [
+    "RETIRED DRAINED 2026-09-22, replaced by sgc-4 (session species-gear-chain-4): four consecutive segments returned empty output in ~12s each and four feeds produced no commits, while its branch was fully merged (0 ahead). Not a judgement on the work it did -- 20+ commits of it are on the integration branch."
+  ]
+}

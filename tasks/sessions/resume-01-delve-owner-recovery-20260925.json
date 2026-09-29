@@ -1,0 +1,20 @@
+{
+  "session": "resume-01-delve-owner-recovery-20260925",
+  "program": "party-dungeon",
+  "problem": "Recover and independently review the failed Delve owner draft, finish only the server-owned join contract, and produce bounded restored-test evidence without external-directory or process-lock investigation.",
+  "mode": "worktree",
+  "branch": "opencode/resume-01-delve-owner-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-01-delve-owner-recovery-20260925",
+  "paths": [
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Core/Delve/Loot/DelvePrices.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Core.Tests/Delve/Loot/DelvePricesTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveWildTransactionTests.cs",
+    "tasks/reports/resume-01-delve-owner-recovery-20260925.md"
+  ],
+  "started": "2026-09-25T07:53:22Z",
+  "status": "abandoned",
+  "notes": "Recovery produced a seven-file dirty draft and a complete partial report. Core 22/22, Data 18/18, Server 18/18, DAL, diff, and session checks pass; the all-path verifier timed out without a verdict. The scoped server-owned join contract is reviewable, but the durable multi-party steering ruling remains an explicit owner question and no live proof was run. The draft is preserved; manager acceptance is required before any merge."
+}

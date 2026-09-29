@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260921-190528\\boundary.log"
+    },
+    {
+      "check": "core-facts",
+      "exit": 0,
+      "seconds": 16,
+      "summary": "Passed!  - Failed:     0, Passed:    41, Skipped:     0, Total:    41, Duration: 1 s - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260921-190528\\core-facts.log"
+    },
+    {
+      "check": "boundaries-guard",
+      "exit": 0,
+      "seconds": 42,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260921-190528\\boundaries-guard.log"
+    },
+    {
+      "check": "ci-guards",
+      "exit": 1,
+      "seconds": 67,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260921-190528\\ci-guards.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260921-190528\\ledger.log"
+    }
+  ],
+  "when": "2026-09-21T19:07:38",
+  "contendedTree": false,
+  "verdict": "RED-KNOWN (1 check(s), registered debt only)",
+  "logDir": "D:\\tmp\\accept-tvb58-20260921-190528",
+  "sha": "af84a465",
+  "lane": "tvb58"
+}

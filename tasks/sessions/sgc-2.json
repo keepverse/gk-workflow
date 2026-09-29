@@ -1,0 +1,30 @@
+{
+  "session": "sgc-2",
+  "program": "species-gear-chain",
+  "problem": "T27's setClass half \u2014 build the set-planning system the owner ruled on 2026-09-21: revise spec-set-species-binding.md to adopt the 2026-09-10 topology classes as versioned set-planning data (general / family / unique-species), add the data file + loader + validator, emit setClass forward from set-charm-gen, and re-plan the shipped corpus deterministically onto the classes.",
+  "mode": "worktree",
+  "branch": "cmdc/sgc-2",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-sgc-2",
+  "paths": [
+    "tasks/sessions/sgc-2.json",
+    "tools/seedsmith/**",
+    "data/seed/items/**",
+    "data/tuning/**",
+    "data/generated/**",
+    "docs/architecture/species-gear-chain/**",
+    "docs/architecture/item/**",
+    "tests/**",
+    "tasks/species-gear-chain-ledger.jsonl",
+    "tasks/species-gear-chain-todo.md",
+    "tasks/evidence-fragments/sgc-2-*.md"
+  ],
+  "notes": [
+    "Lane brief fence, verbatim, narrowed in `tasks/` from the brief's `tasks/**` to this lane's four concrete targets so the record does not claim another active session's task files (`session-boundary-check.ps1` listed that overlap as drift). Nothing under src/** \u2014 a finding that appears to need it is routed to the owning program's todo instead of edited.",
+    "Lane-level path assertions are source-scan only (no C# reads set-topology); the resolver is seedsmith-side, so the shipped corpus is verified with pytest + ItemSeedValidator rather than a dotnet test, exactly as T28's species repair was.",
+    "T50 and T51 findings rows in tasks/species-gear-chain-todo.md were added by this lane because the defects they name live outside this fence; the manager routes T51's owning program."
+  ],
+  "started": "2026-09-21T00:00:00Z",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retirementReason": "Scope complete: the set-planning system's S1-S4 are done and merged (spec rev 2 cc2b01a9, then T52/T53/T54 closed at 89326f2e and 81378527 on a green ItemSeedValidator, plus T56's KindCatalog mirror applied at the manager plane as 96e6019e because tools/ItemSeedValidator/** is outside the lane's fence). The lane ended 'done' with real output (out 18308 tokens), not drained."
+}

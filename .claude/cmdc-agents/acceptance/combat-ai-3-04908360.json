@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-combat-ai-3-20260921-220515\\boundary.log"
+    },
+    {
+      "check": "core-ai",
+      "exit": 0,
+      "seconds": 37,
+      "summary": "Passed!  - Failed:     0, Passed:  4614, Skipped:     0, Total:  4614, Duration: 21 s - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-combat-ai-3-20260921-220515\\core-ai.log"
+    },
+    {
+      "check": "actor-hub",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-combat-ai-3-20260921-220515\\actor-hub.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-combat-ai-3-20260921-220515\\ledger.log"
+    }
+  ],
+  "contendedTree": false,
+  "when": "2026-09-21T22:05:58",
+  "sha": "04908360",
+  "verdict": "GREEN",
+  "lane": "combat-ai-3",
+  "logDir": "D:\\tmp\\accept-combat-ai-3-20260921-220515"
+}

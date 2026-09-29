@@ -1,0 +1,26 @@
+{
+  "session": "docs-citations-1",
+  "program": "test-verification-boundary",
+  "problem": "CV.3 - repair docs/architecture/decisions.md (the blank line splitting the table so rows 122-149 render as literal pipe text) and re-point every decisions.md:<N> citation with N>=118 to the row NAME the prose names.",
+  "mode": "worktree",
+  "branch": "cmdc/docs-citations-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-docs-citations-1",
+  "paths": [
+    "tasks/sessions/docs-citations-1.json",
+    "tasks/test-verification-boundary-todo.md",
+    "tasks/test-verification-boundary-ledger.jsonl",
+    "tasks/summoner-convergence-todo.md",
+    "tasks/summoner-convergence-ledger.jsonl",
+    "tasks/evidence-fragments/CV.3.md",
+    "tasks/evidence-fragments/T27.md",
+    "tasks/ip-censor-plan.md",
+    "docs/**"
+  ],
+  "started": "2026-09-21",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retirementReason": "CV.3 delivered and merged at d9c9ec09 (lane tip 0d19501d, reviewed at SHA in .claude/cmdc-agents/acceptance/docs-citations-1-0d19501d.json): 52 citation lines / 53 occurrences re-pointed to row names, decisions.md rows 5-148 contiguous, census of decisions.md:<N> N>=118 = 0. Deliverable checks green at the merged head (audit --scope decisions.md exit 0, guard-doc-citations -Strict exit 0, session-boundary -Session docs-citations-1 exit 0 after 733ef458).",
+  "notes": [
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

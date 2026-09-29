@@ -1,0 +1,333 @@
+{
+  "gameState": {
+    "hasBoard": true,
+    "hasInitBoard": true,
+    "theBoardType": 0,
+    "theBoardTypeName": "Advanture",
+    "theBoardLevel": 2,
+    "sceneType": 0,
+    "initBoardReady": true,
+    "timeScale": 1,
+    "unscaledTime": 58.05349,
+    "gameTime": 45.485924,
+    "matchPhase": "InMatch",
+    "matchPhaseNote": "MatchHost.Runtime's own tracked FSM -- can desync from the real game after a server restart (real incident 2026-09-14: reported InMatch with living entities while the operator's screen showed a genuine defeat). Cross-checked below against real Unity object counts -- trust those over this phase when they disagree.",
+    "plantCount": 0,
+    "zombieCount": 0,
+    "phaseMismatch": true,
+    "liveState": "InMatch",
+    "ok": true
+  },
+  "naturalZombies": {
+    "1A677C45320": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A677C45000": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A677911960": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A677911640": [
+      2,
+      "initHealth",
+      "creature.progression.v1",
+      "general:conezombie"
+    ],
+    "1A677911320": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A677911000": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C421C80": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C421960": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C421640": [
+      2,
+      "initHealth",
+      "creature.progression.v1",
+      "general:conezombie"
+    ],
+    "1A67C421320": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C421000": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C3B2C80": [
+      2,
+      "initHealth",
+      "creature.progression.v1",
+      "general:conezombie"
+    ],
+    "1A67C3B2960": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C3B2640": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ],
+    "1A67C3B2320": [
+      2,
+      "initHealth",
+      "creature.progression.v1",
+      "general:conezombie"
+    ],
+    "1A67C3B2000": [
+      0,
+      "initHealth",
+      "creature.progression.v1",
+      "general:normalzombie"
+    ]
+  },
+  "debugZombies": [],
+  "boundPtrs": [],
+  "naturalRiderRows": [
+    {
+      "Seq": 21,
+      "Frame": 8576,
+      "SwingId": "1A677C45320:8576",
+      "AttackerPtr": "1A677C45320",
+      "VictimPtr": "1A6778A0000",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1871,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    },
+    {
+      "Seq": 22,
+      "Frame": 8615,
+      "SwingId": "1A677C45320:8615",
+      "AttackerPtr": "1A677C45320",
+      "VictimPtr": "1A6778A0000",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1204,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "hit"
+    },
+    {
+      "Seq": 23,
+      "Frame": 8645,
+      "SwingId": "1A677C45320:8645",
+      "AttackerPtr": "1A677C45320",
+      "VictimPtr": "1A6778A0000",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1871,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    },
+    {
+      "Seq": 24,
+      "Frame": 9444,
+      "SwingId": "1A677C45000:9444",
+      "AttackerPtr": "1A677C45000",
+      "VictimPtr": "1A6776F9480",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": 0,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "miss"
+    },
+    {
+      "Seq": 25,
+      "Frame": 9479,
+      "SwingId": "1A677C45000:9479",
+      "AttackerPtr": "1A677C45000",
+      "VictimPtr": "1A6776F9480",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": 0,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "miss"
+    },
+    {
+      "Seq": 26,
+      "Frame": 9506,
+      "SwingId": "1A677C45000:9506",
+      "AttackerPtr": "1A677C45000",
+      "VictimPtr": "1A6776F9480",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1871,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    },
+    {
+      "Seq": 27,
+      "Frame": 9537,
+      "SwingId": "1A677C45000:9537",
+      "AttackerPtr": "1A677C45000",
+      "VictimPtr": "1A6776F9480",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1871,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    },
+    {
+      "Seq": 28,
+      "Frame": 9542,
+      "SwingId": "1A677911640:9542",
+      "AttackerPtr": "1A677911640",
+      "VictimPtr": "1A6778A0240",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 1278,
+      "RpgDelta": 0,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "miss"
+    },
+    {
+      "Seq": 29,
+      "Frame": 9579,
+      "SwingId": "1A677911640:9579",
+      "AttackerPtr": "1A677911640",
+      "VictimPtr": "1A6778A0240",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 1278,
+      "RpgDelta": 0,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "miss"
+    },
+    {
+      "Seq": 30,
+      "Frame": 9607,
+      "SwingId": "1A677911640:9607",
+      "AttackerPtr": "1A677911640",
+      "VictimPtr": "1A6778A0240",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 1278,
+      "RpgDelta": -2736,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    },
+    {
+      "Seq": 31,
+      "Frame": 11174,
+      "SwingId": "1A677911000:11174",
+      "AttackerPtr": "1A677911000",
+      "VictimPtr": "1A6776F9D80",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": 0,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "miss"
+    },
+    {
+      "Seq": 32,
+      "Frame": 11209,
+      "SwingId": "1A677911000:11209",
+      "AttackerPtr": "1A677911000",
+      "VictimPtr": "1A6776F9D80",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1204,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "hit"
+    },
+    {
+      "Seq": 33,
+      "Frame": 11235,
+      "SwingId": "1A677911000:11235",
+      "AttackerPtr": "1A677911000",
+      "VictimPtr": "1A6776F9D80",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1871,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    },
+    {
+      "Seq": 34,
+      "Frame": 11269,
+      "SwingId": "1A677911000:11269",
+      "AttackerPtr": "1A677911000",
+      "VictimPtr": "1A6776F9D80",
+      "AttackerSide": "zombie",
+      "VanillaAmount": 985,
+      "RpgDelta": -1871,
+      "RpgDeltaObserved": true,
+      "AttackerElement": "Earth",
+      "VictimElement": "Earth",
+      "MatchupRelation": "Same",
+      "RpgOutcome": "crit"
+    }
+  ]
+}

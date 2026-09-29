@@ -1,0 +1,18 @@
+{
+  "session": "resume-28-effect-pipeline-epl1-1-20260925",
+  "program": "effect-pipeline",
+  "problem": "Implement EPL1.1 closed power-class registry and C# mirror with deterministic contract tests.",
+  "mode": "worktree",
+  "branch": "opencode/resume-28-effect-pipeline-epl1-1-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-28-effect-pipeline-epl1-1-20260925",
+  "paths": [
+    "data/seed/items/_registry/power-classes.v1.json",
+    "src/FusionRpg.Core/Effects/Atoms/AffixPowerClass.cs",
+    "tests/FusionRpg.Core.Atoms.Tests/Atoms/AffixPowerClassTests.cs",
+    "tools/seedsmith/tests/test_power_class_registry.py",
+    "tasks/reports/resume-28-effect-pipeline-epl1-1-20260925.md"
+  ],
+  "started": "2026-09-25T16:00:00Z",
+  "status": "abandoned",
+  "notes": "Infrastructure-only lane-setup failure. The worker changed no files, produced no report or verification, and stopped because the manager-owned session record was absent from the older integration base when it ran session-boundary-check. No EPL1.1 product verdict exists. A corrected replacement will include its session record in a prepared base."
+}

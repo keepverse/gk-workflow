@@ -1,0 +1,20 @@
+{
+  "session": "resume-01-delve-acceptance-20260925",
+  "program": "party-dungeon",
+  "problem": "Manager clean-checkout acceptance of the recovered server-owned Delve wild/cage join contract; preserve the unresolved multi-party steering ruling as an explicit owner decision and keep the verifier timeout truthful.",
+  "mode": "worktree",
+  "branch": "review/delve-owner-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-delve-owner-20260925",
+  "paths": [
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Core/Delve/Loot/DelvePrices.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Core.Tests/Delve/Loot/DelvePricesTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveWildTransactionTests.cs",
+    "tasks/reports/resume-01-delve-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T10:20:00Z",
+  "status": "merged",
+  "notes": "Scoped Delve server-owned join accepted at exact SHA 03d8cee8d6943777e9333db106926f9295f8fe41, clean-checkout focused verification passed, and merged at 9a24e56c88e62f1e846889e8c98c77cbe4044b96. Artifact: .claude/cmdc-agents/acceptance/resume-01-delve-20260925-03d8cee8.json. The aggregate verifier timeout, live proof, and durable multi-party steering ruling remain explicit open items."
+}

@@ -1,0 +1,33 @@
+{
+  "session": "narrative-programs-spec2-20260919",
+  "program": "narrative-seed + npc-story-events + ip-censor",
+  "problem": "Spec phase round 2: module specs for the approved narrative-seed and npc-story-events capability maps (web modules storylet-card and quest-log-layer excluded until /idea-ui), and the ip-censor plan + task list. Docs only.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/narrative-programs-spec2-20260919.json",
+    "docs/architecture/narrative-seed/**",
+    "docs/architecture/npc-story-events/**",
+    "tasks/ip-censor-plan.md",
+    "tasks/ip-censor-todo.md",
+    "docs/architecture/narrative-seed-map.md",
+    "docs/architecture/npc-story-events-map.md",
+    "docs/architecture/ip-censor-map.md",
+    "tasks/identity-rename-plan.md",
+    "docs/architecture/narrative-seed-ideal.md",
+    "docs/architecture/npc-story-events-ideal.md",
+    "tasks/party-dungeon-todo.md",
+    "docs/architecture/ip-censor/**",
+    "tasks/identity-rename-todo.md"
+  ],
+  "started": "2026-09-19T14:40:00Z",
+  "status": "merged",
+  "notes": [
+    "Owner 2026-09-19: 'approve, go' then 'approve, also make plan for ip censor too' - approves the three maps, NS7 and G1 at its default, and asks for the ip-censor plan.",
+    "Charter (same conversation): Claude Code native only, opus writers, at most 4 in parallel, plan quota, stop on quota/limit error. Five writer lanes: four start now, the fifth (npc-story-events W3-W5) starts when one finishes. Agents never commit; the manager reviews and commits.",
+    "Owner rulings 2026-09-19 (round 3): consequence shape is one {kind, ref, param} object owned by the seed contract; quest-vocab module approved for the narrative-seed map; world-scoped story state persists while a world hibernates and retires only when it is fallen or abandoned (world-continuity states); npc-story-events absorbs party-dungeon's Delve live-path wiring as its own prerequisite modules, with a transfer note in tasks/party-dungeon-todo.md (no active session claims that file).",
+    "Standards audit round (2026-09-19): owner asked whether agents had strengthened the specs, enforced standards and fixed gaps; they had not beyond citation audits and reconciliation. Four opus auditors (same charter) review slices against DESIGN-GATE, AGENTS/CLAUDE hard rules and the seedsmith/AI-native standards, fix in place, append an audit section per spec, and return proposed enforcement-registry rows and verification-boundary asks without editing those shared files.",
+    "Owner 2026-09-20: R14 narrative rewards out of the host budget; R15 the story is also the game's tutorial (teaches vocabulary, first-seen priority, skippable, first-session spec keeps its checkpoints); R16 regenerate the 4 legacy story events clean; the ~35 proposed enforcement-registry rows and ~10 verification-boundary mappings go into the owning programs' plans, each landed with the code that makes it true.",
+    "Closed 2026-09-20: spec phase complete for narrative-seed (23 specs), npc-story-events (27 specs), ip-censor (map, 9 specs, plan) and identity-rename (plan); standards audits and cross-lane alignment committed. Next phase: /plan for narrative-seed and npc-story-events."
+  ]
+}

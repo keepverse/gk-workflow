@@ -1,0 +1,10 @@
+# SE0.6 — deploy-play cutover
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| the hand list is replaced by `run-guards.ps1 -Tier local` | read `scripts/deploy-play.ps1:168-175` | the 16 hand-written calls are replaced by one runner call with `-IncludeBacklog -Skip game-profile` plus its exit check | scripts/deploy-play.ps1 |
+| `game-profile` stays positioned via `-Only game-profile -LocalArgs` | read `scripts/deploy-play.ps1:200-202` | the inline call right before the injector build resolves through the runner with `-LocalArgs @{ 'game-profile' = @{ GameDir = $GameDir; ExpectedProfile = $GameProfile } }` | scripts/deploy-play.ps1 |
+| the G3 tolerance block is removed (the backlog row carries that fact) | `.\scripts\run-guards.ps1 -Tier local -IncludeBacklog -Skip game-profile` | exit 0; `class-system` exit 1 printed under `BACKLOG (not gating …)` and did not fail the run | gk-core/scripts/enforcement-registry.v1.json |
+| the runner deploy-play invokes prints the table | same command | exit 0; `GUARDS OK - 18 guard(s) run, 0 red` + the `id tier status exit s` summary table | scripts/run-guards.ps1 |
+| Guard.Tests that grep `deploy-play` for guard names are re-pointed at the registry + runner | `dotnet test tests\FusionRpg.Guard.Tests\FusionRpg.Guard.Tests.csproj -c Release --verbosity minimal --filter "Category!=DiskSemantics&Category!=Heavy"` | `Passed!  - Failed: 0, Passed: 428, Skipped: 0, Total: 428, 3 m 11 s`; eight tests now call `GuardWiring.AssertDeployPlayRunsItLocally` | gk-core/tests/FusionRpg.Guard.Tests/TestSupport/GuardWiring.cs |
+| `deploy-play.ps1 -NoServer -NoGame` on this machine | `.\scripts\deploy-play.ps1 -NoServer -NoGame` | not_run — it rebuilds the web UI and publishes the server, writing build output into tracked `src/FusionRpg.Server/wwwroot` and `dist/`, which would dirty the tree and exceed the 600 s command cap. The runner call it makes is proven directly above; the end-to-end deploy is the orchestrator's to run | — |

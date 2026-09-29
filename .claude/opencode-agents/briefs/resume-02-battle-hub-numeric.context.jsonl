@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Deep-audit candidate C2 was confirmed: BattleDerivedModifierLedger directly writes live state outside ActorHub, and the higher-level damage result/event uses a pre-clamp amount. A new falsifier also found long HP narrowed to int at BattleEffects.cs:315-317. Initial BattleHubCompose is not itself the defect."}
+{"kind":"fact","text":"Binding invariant: ActorHub is the sole Hot compose gate; do not add BattleStatComposer or a private fold. Integer magnitude narrowing is a range defect, not a precision question."}

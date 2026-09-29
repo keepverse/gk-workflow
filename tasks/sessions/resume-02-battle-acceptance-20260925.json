@@ -1,0 +1,22 @@
+{
+  "session": "resume-02-battle-acceptance-20260925",
+  "program": "battle-unification",
+  "problem": "Manager clean-checkout acceptance of the battle ActorHub/observer-damage/HP-range draft; verify no second composer or reachable narrowing, rerun restored focused tests and overflow audit, and record the unrelated aggregate SQLite limitation truthfully.",
+  "mode": "worktree",
+  "branch": "review/battle-hub-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-battle-hub-20260925",
+  "paths": [
+    "src/FusionRpg.Core/Battle/BattleDerivedModifierLedger.cs",
+    "src/FusionRpg.Core/Battle/BattleRunState.cs",
+    "src/FusionRpg.Core/Battle/BattleEffects.cs",
+    "src/FusionRpg.Core/Combat/DamageApplyPipeline.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleDerivedModifierLedgerTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleHubComposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleEffectMathTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleEffectHostTests.cs",
+    "tasks/reports/resume-02-battle-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T08:50:00Z",
+  "status": "merged",
+  "notes": "Battle ActorHub/numeric draft accepted at exact SHA 7b4e8ef582a0744e20f501562a4b28167e402c89, clean-checkout focused verification passed, and merged at dd573e05b75bdacadcb1676a2b5c7ea61497bd1f. Artifact: .claude/cmdc-agents/acceptance/resume-02-battle-20260925-7b4e8ef5.json. The broad Data/Core aggregate timeout and unreproduced SQLite Error 14 remain explicit limitations; no live proof is claimed."
+}

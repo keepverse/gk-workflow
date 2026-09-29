@@ -1,0 +1,30 @@
+{
+  "session": "bundle-budget-removal-20260916-e9a3",
+  "program": "repo-docs",
+  "problem": "Owner ruling 2026-09-16: a game bundle is huge by nature, so the entry-chunk KB budget is withdrawn. Remove the size gate from check-bundle.mjs and every doc that states it; the stage-lazy rule (Phaser off the boot path) stays.",
+  "mode": "direct",
+  "branch": "features/derived-stat-extension",
+  "worktree": null,
+  "paths": [
+    "web/fusion-rpg-web/scripts/check-bundle.mjs",
+    "docs/PRINCIPLES.md",
+    "docs/web/spec.md",
+    "docs/design/tech-stack.md",
+    "docs/architecture/decisions.md",
+    "docs/architecture/phaser-kernel-ideal.md",
+    "docs/architecture/base-defense/spec-battle-stage.md",
+    "docs/architecture/base-defense/spec-board-render.md",
+    "docs/architecture/base-defense/spec-siege-stage.md",
+    "docs/architecture/rift-gate/spec-entry-landing.md",
+    "tasks/sessions/bundle-budget-removal-20260916-e9a3.json"
+  ],
+  "started": "2026-09-16T09:10:00Z",
+  "sharedWith": [
+    "passive-tree-repair-20260915-b71f"
+  ],
+  "sharedNote": "docs/architecture/passive-tree/spec-tree-surface.md:765 still calls check:bundle an entry-chunk budget. That path is claimed by passive-tree-repair, so this session left it alone — that session updates the comment when it next touches the file.",
+  "status": "merged",
+  "notes": [
+    "Closed 2026-09-16 on owner instruction. Its work is committed at 68d05694 (size gate removed from check-bundle.mjs; docs reconciled): check-bundle.mjs now carries only the Phaser-off-the-entry-chunk check and no size logic, vite.config.ts has no chunkSizeWarningLimit, and tech-stack.md:291 records the withdrawal. Verified live this session: node scripts/check-bundle.mjs prints \"Phaser is absent from the entry chunk — OK\". Record left active after the work landed, which was producing a false boundary-crossing warning against open-items-clear-20260916-8d2e on docs/PRINCIPLES.md and docs/architecture/decisions.md."
+  ]
+}

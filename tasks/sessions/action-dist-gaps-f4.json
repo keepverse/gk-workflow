@@ -1,0 +1,31 @@
+{
+  "session": "action-dist-gaps-f4",
+  "program": "action-distribution-gaps",
+  "problem": "ADG-F4: UnlockTuningActivationTests.A_real_level_up_grants_a_real_action_row fails in the E2E suite (1 failed / 230 passed) and passes alone -- remove the order/parallelism dependency so the test is deterministic",
+  "mode": "worktree",
+  "branch": "cmdc/adg-f4",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-adg-f4",
+  "paths": [
+    "tests/FusionRpg.E2E.Tests/**",
+    "tasks/action-distribution-gaps-todo.md",
+    "tasks/action-distribution-gaps-ledger.jsonl",
+    "tasks/sessions/action-dist-gaps-f4.json",
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-22T09:43:47Z",
+  "status": "abandoned",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 4ff345cf has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/adg-f4",
+    "branchTip": "4ff345cf",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 4ff345cf has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

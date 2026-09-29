@@ -1,0 +1,41 @@
+{
+  "session": "species-gear-chain-6",
+  "program": "species-gear-chain",
+  "problem": "Work the species-gear-chain rows the reconciliation's block rule measures as OPEN at this tip, hard edges first: the two owner-ruled rows SGC5-F1 (track a minimal actions fixture so the six seedsmith tests that read the gitignored `data/seed/actions/_candidates/` scratch can pass on a fresh checkout) and SGC5-F2 (regenerate the actions corpus from the current atom-family registry, whose retired `atom.fx-overlay-damage` the loader refuses by name), then the remaining workable rows in the todo's own order (T37's authored per-base-type edges among them).",
+  "mode": "worktree",
+  "branch": "cmdc/sgc-6",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-sgc-6",
+  "paths": [
+    "data/seed/**",
+    "data/generated/**",
+    "tools/seedsmith/**",
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "tests/**",
+    "scripts/**",
+    "docs/architecture/species-gear-chain*/**",
+    "tasks/species-gear-chain-*",
+    "tasks/sessions/species-gear-chain-6.json"
+  ],
+  "started": "2026-09-23T00:00:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Boundary recorded by the lane because NO record existed for this session in either tree, and the brief's own named verification (`verify-change.ps1 -Session species-gear-chain-6`) refuses to run without one ('session record not found'). `tasks/sessions/species-gear-chain-6.json` is therefore listed in this record's own paths -- the brief's fence list omits `tasks/sessions/**` while requiring the record, the same fence-short-of-the-named-work defect lane sgc-5 recorded for `species-gear-chain-5`.",
+    "worktree path is ABSOLUTE per docs/contributing/session-boundary.md:27 (the sgc-4 and sgc-5 records carry the same correction and the incident that forced it).",
+    "`scripts/verification-boundaries.v1.json`, `scripts/enforcement-registry.v1.json` and `scripts/run-guards.ps1` are explicitly protected and granted to this lane by the brief; they are covered here by `scripts/**`."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 529b8e2f has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/sgc-6",
+    "branchTip": "529b8e2f",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 529b8e2f has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

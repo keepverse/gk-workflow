@@ -1,0 +1,33 @@
+{
+  "session": "rscf2",
+  "program": "unique-actor",
+  "problem": "RS-CF2: POST /api/unique/actors/{instanceId}/xp intermittently answers 500 (the unlock roll offers rows a grant refuses, so the seeded pick throws BasicCollision inside the XP award's own transaction) -- capture the throw, name the cause, fix it at the responsible layer, and prove the E2E project deterministic.",
+  "mode": "worktree",
+  "branch": "cmdc/rscf2",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-rscf2",
+  "paths": [
+    "src/FusionRpg.Server/UniqueActorEndpoints.cs",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Core/**",
+    "tests/FusionRpg.E2E.Tests/**",
+    "tasks/rpg-simulator-todo.md",
+    "tasks/reports/**",
+    "tasks/sessions/rscf2.json"
+  ],
+  "started": "2026-09-22T18:42:48Z",
+  "status": "abandoned",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip b83e7bd4 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/rscf2",
+    "branchTip": "b83e7bd4",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip b83e7bd4 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "session": "solid-enforcement-spec-20260918",
+  "program": "solid-enforcement",
+  "problem": "Specify and plan phase 3 of the SOLID program: every SOLID invariant gets a named guard wired into one registry-driven runner, backlogs are cleared before each guard gates, and the structural instances the owner ruled on (retire atk, commander identity) are specified. Docs and plans only in this session; no production code.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/solid-enforcement-map.md",
+    "docs/architecture/solid-enforcement/**",
+    "tasks/solid-enforcement-plan.md",
+    "tasks/solid-enforcement-todo.md",
+    "docs/architecture/stub-register.md",
+    "docs/architecture/empire-progression-ideal.md",
+    "docs/architecture/solid-remediation-map.md",
+    "tasks/sessions/solid-enforcement-spec-20260918.json",
+    "tasks/sessions/doc-citation-reconcile-20260918.json"
+  ],
+  "started": "2026-09-18T09:40:00Z",
+  "status": "merged"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Live Probe MCP"
+  short_description: "Operate the game-control and screenshot MCP safely"
+  default_prompt: "Use the live-probe MCP tools to inspect and control a locally running PVZ game with scope-aware evidence."

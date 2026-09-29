@@ -1,0 +1,75 @@
+{
+  "when": "2026-09-22T06:20:50",
+  "sha": "15a0a7d1",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "lane": "cai4",
+  "verdict": "GREEN",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 7,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-061907\\boundary.log"
+    },
+    {
+      "check": "actor-hub",
+      "exit": 0,
+      "seconds": 12,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-061907\\actor-hub.log"
+    },
+    {
+      "check": "core-ai",
+      "exit": 0,
+      "seconds": 64,
+      "summary": "Passed!  - Failed:     0, Passed:    95, Skipped:     0, Total:    95, Duration: 13 s - FusionRpg.Core.Balance.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-061907\\core-ai.log"
+    },
+    {
+      "check": "combat-projects",
+      "exit": 0,
+      "seconds": 17,
+      "summary": "Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 1 s - FusionRpg.Core.CombatFanoutTests.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-061907\\combat-projects.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-061907\\ledger.log"
+    }
+  ],
+  "logDir": "D:\\tmp\\accept-cai4-20260922-061907",
+  "contendedTree": false
+}

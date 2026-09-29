@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonder-refusal-toast — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>wonder-refusal-toast</code></h1>
+  <p class="lede">Refusal fold — all four wire reasons, each with copy + next action, nothing consumed. Consumed by the <code>wonder-composer</code> recipe (band-4 toasts, GG-16) and the spend confirm's own refusal path (same mapping). Raw tokens never render (GG-23); a second spelling of any token is a defect. A per-command refusal never throws away the rest of the turn's batch. Copy owned by the display catalog (GG-62) — sentences below are placeholders.</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> Status: <strong>pending-owner-review</strong> (see <code>recipes/wonder-composer.ACCEPTANCE.md</code>). Mount is built behind that recorded checkpoint per Task 4D.3 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage" style="display:grid;gap:8px;max-width:560px;">
+        <div data-testid="wonder-refusal-toasts" role="status" aria-live="polite" style="display:grid;gap:8px;">
+          <div data-testid="wonder-refusal-toast" data-reason="wonder.cap-reached" style="border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);font-size:13px;">
+            <strong>DRAFT: This land already holds all it can — 1 of cap raised.</strong>
+            <span data-testid="wonder-refusal-next" style="display:block;font-size:12px;color:var(--muted);">DRAFT next: raise the other work instead, or hold this ground as it stands.</span>
+          </div>
+          <div data-testid="wonder-refusal-toast" data-reason="relic.count-mismatch" style="border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);font-size:13px;">
+            <strong>DRAFT: The foundation asks for exactly 3 pieces of treasure — 1 is laid.</strong>
+            <span data-testid="wonder-refusal-next" style="display:block;font-size:12px;color:var(--muted);">DRAFT next: return to the shelf with the shortfall marked.</span>
+          </div>
+          <div data-testid="wonder-refusal-toast" data-reason="relic.not-reachable" style="border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);font-size:13px;">
+            <strong>DRAFT: That treasure isn't here — it sits with another band, not where the work would rise.</strong>
+            <span data-testid="wonder-refusal-next" style="display:block;font-size:12px;color:var(--muted);">DRAFT next: bring it within reach first (band packs or this ground's vault).</span>
+          </div>
+          <div data-testid="wonder-refusal-toast" data-reason="build.cannot-afford-materials" style="border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);font-size:13px;">
+            <strong>DRAFT: The stores are short — the ground cannot fund this work yet.</strong>
+            <span data-testid="wonder-refusal-next" style="display:block;font-size:12px;color:var(--muted);">DRAFT next: gather stores, or choose a lesser work.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "wonder-refusal-toast",
+  "refusals": [
+    {
+      "reason": "wonder.cap-reached",
+      "copyKey": "wonder.refused.cap-reached",
+      "nextAction": "wonder.next.other-row"
+    },
+    {
+      "reason": "relic.count-mismatch",
+      "copyKey": "wonder.refused.count-mismatch",
+      "nextAction": "wonder.next.relay"
+    },
+    {
+      "reason": "relic.not-reachable",
+      "copyKey": "wonder.refused.not-reachable",
+      "nextAction": "wonder.next.fetch"
+    },
+    {
+      "reason": "build.cannot-afford-materials",
+      "copyKey": "wonder.refused.cannot-afford",
+      "nextAction": "wonder.next.gather"
+    }
+  ]
+}</pre>
+      <h2 style="margin-top:12px;">Contract notes</h2>
+      <pre>Four rows, closed vocabulary (backend-owned tokens,
+validation-ssot: pin literals only for this closed set,
+reason stated). Nothing owned is taken on any refusal.
+relic.duplicate maps to the count-mismatch family (same
+foundation-asks-N rule, admission-time shape) — never a
+fifth copy row, never silent.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

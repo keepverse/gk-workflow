@@ -1,0 +1,92 @@
+diff --git a/tests/FusionRpg.ItemSeedValidator.Tests/ReferenceStageTests.cs b/tests/FusionRpg.ItemSeedValidator.Tests/ReferenceStageTests.cs
+index 1a779a0c0..08db48d39 100644
+--- a/tests/FusionRpg.ItemSeedValidator.Tests/ReferenceStageTests.cs
++++ b/tests/FusionRpg.ItemSeedValidator.Tests/ReferenceStageTests.cs
+@@ -66,9 +66,44 @@ public class ReferenceStageTests
+         Assert.Contains("SameStageReference", SeedFixture.ErrorCodes(Validate((json, "base-types", "base-types/a.json"))));
+     }
+ 
++    /// <summary>
++    /// species-gear-chain T37/T38: the upgrade tree's `successorOf` is the ONE documented same-stage
++    /// reference. A base type's successor is a peer base type by the owner's 2026-09-21 ruling, the
++    /// edges are authored as a reviewed table after the corpus exists, and their resolution plus
++    /// same-frame closure has its own gate in the generator
++    /// (`basetypegen/successor_edges.py::violations_in_corpus`, run before any emit). Resolution is
++    /// NOT relaxed: a typo must still be reported.
++    /// </summary>
+     [Fact]
+-    public void An_entry_referencing_itself_is_cyclic()
++    public void A_successor_edge_between_two_stage_1b_base_types_is_legal()
+     {
++        var json = SeedFixture.BaseTypeFile(
++            SeedFixture.BaseTypeEntry(id: "item.plant-crown-a-001", name: "Heartbloom Crown",
++                nameKey: "base.heartbloom-crown",
++                extra: "\"successorOf\": \"item.plant-crown-a-002\""),
++            SeedFixture.BaseTypeEntry(id: "item.plant-crown-a-002", name: "Emberleaf Sheath",
++                nameKey: "base.emberleaf-sheath"));
++
++        var codes = SeedFixture.ErrorCodes(Validate((json, "base-types", "base-types/a.json")));
++
++        Assert.DoesNotContain("SameStageReference", codes);
++        Assert.DoesNotContain("ReferenceUnresolved", codes);
++    }
++
++    [Fact]
++    public void A_successor_edge_to_a_typo_is_still_unresolved()
++    {
++        var json = SeedFixture.BaseTypeFile(
++            SeedFixture.BaseTypeEntry(id: "item.plant-crown-a-001", name: "Heartbloom Crown",
++                nameKey: "base.heartbloom-crown",
++                extra: "\"successorOf\": \"item.plant-crown-a-999\""));
++
++        Assert.Contains("ReferenceUnresolved",
++            SeedFixture.ErrorCodes(Validate((json, "base-types", "base-types/a.json"))));
++    }
++
++    [Fact]
++    public void An_entry_referencing_itself_is_cyclic()    {
+         var json = SeedFixture.BaseTypeFile(SeedFixture.BaseTypeEntry(
+             extra: "\"implicit\": { \"family\": \"item.plant-crown-a-001\" }"));
+ 
+diff --git a/tools/ItemSeedValidator/Checks/ReferenceCheck.cs b/tools/ItemSeedValidator/Checks/ReferenceCheck.cs
+index 8047b4f6d..c844abaa8 100644
+--- a/tools/ItemSeedValidator/Checks/ReferenceCheck.cs
++++ b/tools/ItemSeedValidator/Checks/ReferenceCheck.cs
+@@ -78,7 +78,15 @@ public static class ReferenceCheck
+                 if (IsMintedRuntimeId(entry, key)) continue;
+                 if (!idLike.IsMatch(text)) continue;
+                 edges.Add((entry, text));
+-                ResolveReference(ctx, entry, path, text);
++                // species-gear-chain T37/T38: `successorOf` is the upgrade tree's authored edge between
++                // two base types, and a base type's successor is BY DESIGN a peer in the same authoring
++                // stage (1b) — the field is authored as a reviewed table
++                // (`data/seed/items/_registry/successor-edges.v1.json`) after the corpus exists, and its
++                // resolution + same-frame closure is enforced by the generator's own gate
++                // (`basetypegen/successor_edges.py::violations_in_corpus`, run before any emit). The
++                // reference is still resolved here, so a typo is `ReferenceUnresolved` as usual; only
++                // the stage rule is relaxed, and only for this field.
++                ResolveReference(ctx, entry, path, text, allowSameStage: key == "successorOf");
+             }
+         }
+ 
+@@ -342,7 +350,8 @@ public static class ReferenceCheck
+             .OfType<string>()
+             .ToHashSet(StringComparer.Ordinal);
+ 
+-    static void ResolveReference(ValidationContext ctx, SeedEntry entry, string path, string target)
++    static void ResolveReference(ValidationContext ctx, SeedEntry entry, string path, string target,
++                                bool allowSameStage = false)
+     {
+         if (ctx.Registries.ShippedFamilies.Contains(target)) return;
+         if (ctx.MintedRuntime.Contains(target)) return;
+@@ -365,7 +374,10 @@ public static class ReferenceCheck
+ 
+         // 1a defines, 1b references. A reference is legal only to a strictly earlier stage —
+         // anything else is forward (its target is not frozen yet) or same-stage cross-partition.
++        // `allowSameStage` is the upgrade tree's ONE documented exception (see the call site): the
++        // successor edge is a peer edge by ruling, and its closure has its own gate.
+         if (string.CompareOrdinal(referenced.Stage, entry.Stage) < 0) return;
++        if (allowSameStage && string.Equals(referenced.Stage, entry.Stage, StringComparison.Ordinal)) return;
+ 
+         var code = string.Equals(referenced.Stage, entry.Stage, StringComparison.Ordinal)
+             ? "SameStageReference"

@@ -1,0 +1,19 @@
+{
+  "session": "resume-11-build-preset-bp1112-20260925",
+  "program": "build-preset",
+  "problem": "Implement BP1.11 store identity/CRUD/validate-on-read and BP1.12 HTTP routes in dependency order, using the shipped tuning and no new DTO/tuning seam.",
+  "mode": "worktree",
+  "branch": "opencode/resume-11-build-preset-bp1112-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-11-build-preset-bp1112-20260925",
+  "paths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.BuildPresets.cs",
+    "tests/FusionRpg.Data.Tests/BuildPresets/BuildPresetStoreTests.cs",
+    "src/FusionRpg.Server/BuildPresetEndpoints.cs",
+    "src/FusionRpg.Server/Program.cs",
+    "tests/FusionRpg.Server.Tests/BuildPresetEndpointsTests.cs",
+    "tasks/reports/resume-11-build-preset-bp1112-20260925.md"
+  ],
+  "started": "2026-09-25T09:48:35Z",
+  "status": "abandoned",
+  "notes": "Manager accepted BP1.11/BP1.12 at exact reviewed SHA 005239e4b38dfe389a365b0c62e94fdca159238a and merged at 094ebc3aeb6882ce88b0c36d63a10edf448f4723. Focused verification mappings were repaired in the same reviewed set. RpgStore.cs boot hook and SE4.37 remain open follow-ups."
+}

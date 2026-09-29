@@ -1,0 +1,529 @@
+{
+  "model": "gk-core/data/tuning/aptitudes.v10.json",
+  "theta": 100,
+  "chains": [
+    {
+      "startedFrom": "force",
+      "steps": [
+        {
+          "index": 0,
+          "winAgainstPrev": 0,
+          "distToPrev": 0,
+          "points": {
+            "Might": 39.627599007881706,
+            "Vigor": 15,
+            "Onslaught": 15.333468485232851,
+            "Retribution": 30.03893354638362
+          }
+        },
+        {
+          "index": 1,
+          "winAgainstPrev": 0.8280501813281329,
+          "distToPrev": 40.00605983914387,
+          "points": {
+            "Might": 15,
+            "Vigor": 55.01211863878957,
+            "Onslaught": 15,
+            "Retribution": 15
+          }
+        },
+        {
+          "index": 2,
+          "winAgainstPrev": 0.500533214508261,
+          "distToPrev": 0.010899315361246664,
+          "points": {
+            "Might": 15,
+            "Vigor": 55.03391726951207,
+            "Onslaught": 15,
+            "Retribution": 15
+          }
+        }
+      ],
+      "cycleStart": 1,
+      "cycleLength": 1,
+      "isCycle": false,
+      "isFixedPoint": true
+    },
+    {
+      "startedFrom": "finesse",
+      "steps": [
+        {
+          "index": 0,
+          "winAgainstPrev": 0,
+          "distToPrev": 0,
+          "points": {
+            "Agility": 42.916909513479034,
+            "Composure": 39.08309407010993,
+            "Pierce": 15,
+            "Focus": 3
+          }
+        },
+        {
+          "index": 1,
+          "winAgainstPrev": 0.8291543760596299,
+          "distToPrev": 52.00144383822784,
+          "points": {
+            "Agility": 15,
+            "Composure": 15,
+            "Pierce": 67.00288409286672,
+            "Focus": 3
+          }
+        },
+        {
+          "index": 2,
+          "winAgainstPrev": 0.5000015414972923,
+          "distToPrev": 0.0004141886797981442,
+          "points": {
+            "Agility": 15,
+            "Composure": 15,
+            "Pierce": 67.00371247022632,
+            "Focus": 3
+          }
+        }
+      ],
+      "cycleStart": 1,
+      "cycleLength": 1,
+      "isCycle": false,
+      "isFixedPoint": true
+    },
+    {
+      "startedFrom": "bastion",
+      "steps": [
+        {
+          "index": 0,
+          "winAgainstPrev": 0,
+          "distToPrev": 0,
+          "points": {
+            "Bulwark": 17.969565204115067,
+            "Fortitude": 16.955542304906217,
+            "Precision": 24.774440540019718,
+            "Ferocity": 40.30045195095898
+          }
+        },
+        {
+          "index": 1,
+          "winAgainstPrev": 0.6028301630399322,
+          "distToPrev": 37.036122761703346,
+          "points": {
+            "Bulwark": 55.01137593163685,
+            "Fortitude": 15,
+            "Precision": 15,
+            "Ferocity": 15
+          }
+        },
+        {
+          "index": 2,
+          "winAgainstPrev": 0.5001415260167734,
+          "distToPrev": 0.02966205368244701,
+          "points": {
+            "Bulwark": 55.07070003900174,
+            "Fortitude": 15,
+            "Precision": 15,
+            "Ferocity": 15
+          }
+        }
+      ],
+      "cycleStart": 1,
+      "cycleLength": 1,
+      "isCycle": false,
+      "isFixedPoint": true
+    }
+  ],
+  "dominanceMatrix": {
+    "names": [
+      "Might",
+      "Fortitude",
+      "Vigor",
+      "Onslaught",
+      "Agility",
+      "Composure",
+      "Pierce",
+      "Focus",
+      "Bulwark",
+      "Retribution",
+      "Precision",
+      "Ferocity"
+    ],
+    "wins": [
+      [
+        0.5,
+        0.9999930807809123,
+        0.999994658890498,
+        0.9987204100194577,
+        0.9999950920905493,
+        0.9999946176107604,
+        0.9683760185548018,
+        0.9999953244258445,
+        0.9999899600935631,
+        0.9999845141188386,
+        0.9999999999999922,
+        0.9668318019862471
+      ],
+      [
+        6.919219087686557E-06,
+        0.5,
+        1,
+        0.0005554415924839406,
+        1,
+        1,
+        0.000331703251494897,
+        1,
+        1,
+        0,
+        1,
+        0.00036089694893082225
+      ],
+      [
+        5.341109501955099E-06,
+        0,
+        0.5,
+        0.00027312087869763024,
+        0.9288455166915548,
+        0.00012583673036370424,
+        0.0002097182799012942,
+        0.9964858089659476,
+        8.804486628655184E-08,
+        0,
+        0.6507746832053475,
+        0.00021941042456857796
+      ],
+      [
+        0.0012795899805423394,
+        0.999444558407516,
+        0.9997268791213023,
+        0.5,
+        0.9997719468867101,
+        0.9997262359915329,
+        0.1436237976473853,
+        0.9997921290338586,
+        0.9987993536799648,
+        0.9638998062999047,
+        0.9999999956867731,
+        0.2084716013693349
+      ],
+      [
+        4.9079094507353815E-06,
+        0,
+        0.0711544833084452,
+        0.0002280531132898833,
+        0.5,
+        5.2474887490272515E-06,
+        0.00018696993349032187,
+        0.8785084688403767,
+        5.787585316552324E-08,
+        0,
+        0.09659634274532147,
+        0.00019607059611459476
+      ],
+      [
+        5.3823892395832296E-06,
+        0,
+        0.9998741632696363,
+        0.00027376400846707005,
+        0.9999947525112509,
+        0.5,
+        0.00021679181169886874,
+        0.999999641052572,
+        8.445459971362368E-07,
+        0,
+        0.999984408565288,
+        0.00022911243565199024
+      ],
+      [
+        0.03162398144519818,
+        0.9996682967485051,
+        0.9997902817200988,
+        0.8563762023526147,
+        0.9998130300665097,
+        0.9997832081883011,
+        0.5,
+        0.9998249738411935,
+        0.9994825341605655,
+        0.9997102565553608,
+        0.9999999990230924,
+        0.5703563139773172
+      ],
+      [
+        4.6755741555104535E-06,
+        0,
+        0.0035141910340523164,
+        0.000207870966141388,
+        0.1214915311596233,
+        3.589474279475091E-07,
+        0.00017502615880643502,
+        0.5,
+        4.3960434070733356E-08,
+        0,
+        0.018494677239544288,
+        0.00018059525882219152
+      ],
+      [
+        1.0039906436942747E-05,
+        0,
+        0.9999999119551337,
+        0.001200646320035248,
+        0.9999999421241468,
+        0.9999991554540029,
+        0.0005174658394345166,
+        0.9999999560395659,
+        0.5,
+        0,
+        1,
+        0.0005985465245561539
+      ],
+      [
+        1.548588116145888E-05,
+        1,
+        1,
+        0.03610019370009532,
+        1,
+        1,
+        0.0002897434446391678,
+        1,
+        1,
+        0.5,
+        1,
+        0.010489588658028792
+      ],
+      [
+        7.771561172376096E-15,
+        0,
+        0.3492253167946525,
+        4.313226886765165E-09,
+        0.9034036572546785,
+        1.5591434711914598E-05,
+        9.769075548504702E-10,
+        0.9815053227604558,
+        0,
+        0,
+        0.5,
+        1.457756526601628E-09
+      ],
+      [
+        0.033168198013752925,
+        0.9996391030510692,
+        0.9997805895754315,
+        0.7915283986306652,
+        0.9998039294038854,
+        0.9997708875643481,
+        0.42964368602268277,
+        0.9998194047411778,
+        0.9994014534754438,
+        0.9895104113419713,
+        0.9999999985422434,
+        0.5
+      ]
+    ],
+    "unending": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ]
+  },
+  "dominantCorners": [
+    "Might"
+  ],
+  "coverage": {
+    "elementAxis": "neutral",
+    "actionsActive": false,
+    "reservedFamilies": [
+      "move.range",
+      "resource.efficiency.hp",
+      "resource.efficiency.hunger",
+      "resource.efficiency.poise",
+      "resource.efficiency.qi",
+      "resource.efficiency.spirit",
+      "resource.efficiency.stamina",
+      "resource.max.hunger",
+      "resource.max.poise",
+      "resource.max.qi",
+      "resource.max.spirit",
+      "resource.max.stamina",
+      "resource.regen.hunger",
+      "resource.regen.poise",
+      "resource.regen.qi",
+      "resource.regen.spirit",
+      "resource.regen.stamina",
+      "skill.cooldown.attack",
+      "skill.cooldown.defense",
+      "skill.cooldown.movement",
+      "skill.cooldown.status",
+      "skill.cooldown.support",
+      "skill.effectiveness.attack",
+      "skill.effectiveness.defense",
+      "skill.effectiveness.movement",
+      "skill.effectiveness.status",
+      "skill.effectiveness.support"
+    ],
+    "tuningSync": "dominanceMatrix/dominantCorners updated 2026-08-27 (Checkpoint 8) -- measured via gk-forge/tools/DominanceBaseline (FusionRpg.Core.DominanceGuard/TerminationGuard, the SAME production resolver TerminationGuard.Assert uses), which reads the LIVE gk-core/data/tuning/aptitudes.v10.json config automatically, no internal copy. Independently corroborated by DominanceGuardTests.cs's own Measure_theRealTwelveCornerShape_matchesTheCheckedInBaselinesEmptyDominantCorners and docs/research/class-residual-2026-08-27.md's P8.5 section (same headline finding: no absolute dominant corner, Retribution near-dominant at 10 of 11, loses only to Pierce). chains above is ALSO fresh, closing the one remaining gap: trinity now runs with --models pointed at this same live gk-core/data/tuning/aptitudes.v10.json file (never gk-core/tools/CombatSim's own internal v1 POC copy), and that tool's own resolver (AptitudeTuning.ToModel) was ported the same day to apply the AptitudeMitigation dial the way Core's AptitudeResolver.EffectiveKMilli does (ResolverMatchesSimulatorTests.cs, P3.4) -- so this is a best-response CHASE (BestResponse.Chase, a search DominanceGuard has no equivalent for and so cannot reproduce the way dominanceMatrix/ dominantCorners are overlaid above) against the real shipped config, not a stale internal copy. coverage.elementAxis stays \"neutral\" deliberately, not as a residual gap: dominanceMatrix/dominantCorners/chains all spike individual APTITUDES, and aptitudes feed combat.power.omni only by design (class-system-ideal.md 4.1 rule 2 -- \"an aptitude reaches a MECHANISM, never a FLAVOUR\"; elements are a flavour axis, so any aptitude-to-element mapping would be arbitrary, which is exactly the rule this file's OWN elements-live measurement lives in _baseline-residual.json instead, at the ARCHETYPE/posture level, where FORCE/FINESSE/BASTION do carry a real element)."
+  },
+  "_meta": {
+    "measuredAt": "2026-09-20T06:59:33.8083439Z",
+    "conditions": "dominanceMatrix/dominantCorners: gk-core/data/tuning/aptitudes.v10.json (live, via FusionRpg.Core.DominanceGuard -- P8.2/P8.3's stamina bind + mitigation dial). chains: ALSO gk-core/data/tuning/aptitudes.v10.json now (live, via gk-core/tools/CombatSim trinity --models, that tool's own resolver ported 2026-08-27 to apply the mitigation dial too). All twelve spiked corners, Theta=100, seed 20260826 — elementAxis neutral BY DESIGN (aptitudes are element-blind, class-system-ideal.md 4.1 rule 2 -- not a gap; see coverage.tuningSync), action economy off."
+  }
+}

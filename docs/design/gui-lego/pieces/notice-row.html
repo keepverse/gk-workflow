@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>notice-row — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>notice-row</code></h1>
+  <p class="lede">ERM Row — one notification. Three states on payload.state (unread / read / dismissed); severity and state are both carried by text as well as colour (never colour alone). Title and body arrive already translated from <code>renderNotification</code> — this piece authors no sentence. Spec: <code>docs/architecture/gui-lego/spec-notice-row.md</code>. Proposed by the notification-ssot program's <code>notices</code> recipe (NS6.8); the rung is the existing Row rung (<code>channel-row</code> is the precedent), not a new density.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live)</h2>
+      <div class="piece-stage">
+        <div role="listitem" data-testid="notice-row" data-dedup-key="world:w1:t4:e0" data-severity="important" data-state="unread" data-target="sector" style="display:grid;gap:4px;border-left:3px solid var(--accent);padding:6px 8px;font-size:13px;background:var(--panel);border-radius:4px;">
+          <div style="display:flex;gap:6px;align-items:center;">
+            <span data-testid="notice-row-unread-dot" aria-hidden="true">●</span>
+            <span data-testid="notice-row-title" style="font-weight:600;">Unread · important · with a target</span>
+            <span data-testid="notice-row-severity" class="chip">important</span>
+            <span data-testid="notice-row-state" class="chip">unread</span>
+          </div>
+          <p data-testid="notice-row-body" style="margin:0;color:var(--muted);">Body text from the translator.</p>
+          <div style="display:flex;gap:6px;">
+            <button type="button" data-testid="notice-row-open" style="font-size:12px;">Read</button>
+            <button type="button" data-testid="notice-row-dismiss" style="font-size:12px;">Dismiss</button>
+            <button type="button" data-testid="notice-row-target" style="font-size:12px;">Select sector</button>
+          </div>
+        </div>
+        <div role="listitem" data-testid="notice-row" data-dedup-key="cache:c1:decay:7" data-severity="routine" data-state="read" style="display:grid;gap:4px;border-left:3px solid var(--border);padding:6px 8px;font-size:13px;background:var(--panel);border-radius:4px;margin-top:8px;">
+          <div style="display:flex;gap:6px;align-items:center;">
+            <span data-testid="notice-row-title">Read · routine · no target</span>
+            <span data-testid="notice-row-severity" class="chip">routine</span>
+            <span data-testid="notice-row-state" class="chip">read</span>
+          </div>
+          <p data-testid="notice-row-body" style="margin:0;color:var(--muted);">Body text from the translator.</p>
+          <div style="display:flex;gap:6px;">
+            <button type="button" data-testid="notice-row-dismiss" style="font-size:12px;">Dismiss</button>
+          </div>
+        </div>
+        <div role="listitem" data-testid="notice-row" data-dedup-key="world:w1:t3:e2" data-severity="routine" data-state="dismissed" style="display:flex;gap:6px;align-items:center;justify-content:space-between;padding:6px 8px;font-size:13px;color:var(--muted);background:var(--panel);border-radius:4px;margin-top:8px;">
+          <span data-testid="notice-row-dismissed-label">Dismissed</span>
+          <button type="button" data-testid="notice-row-reopen" style="font-size:12px;">Reopen</button>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "notice-row",
+  "instanceId": "notice:world:w1:t4:e0",
+  "dedupKey": "world:w1:t4:e0",
+  "category": "loam.shortfall",
+  "severity": "important",
+  "state": "unread",
+  "title": "Shortfall",
+  "body": "…translator sentence…",
+  "target": { "refKind": "sector", "id": "ember-hollow" },
+  "actions": ["read", "dismiss", "target"]
+}</pre>
+      <p class="lede">`actions` is derived from `state` (unread ⇒ read/dismiss; read ⇒ dismiss; dismissed ⇒ reopen) plus whether a target-action resolver is registered for `target.refKind`. `title`/`body` are `renderNotification`'s output; the row never sees an engine token.</p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

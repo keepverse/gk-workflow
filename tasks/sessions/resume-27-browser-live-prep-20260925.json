@@ -1,0 +1,15 @@
+{
+  "session": "resume-27-browser-live-prep-20260925",
+  "program": "web",
+  "problem": "Read-only preparation checklist for real connected-injector browser and live proof.",
+  "mode": "worktree",
+  "branch": "opencode/resume-27-browser-live-prep-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-27-browser-live-prep-20260925",
+  "paths": [
+    "tasks/reports/resume-27-browser-live-prep-20260925.md",
+    "tasks/sessions/resume-27-browser-live-prep-20260925.json"
+  ],
+  "started": "2026-09-25T10:20:13Z",
+  "status": "abandoned",
+  "notes": "Read-only fanout lane from integration HEAD 6d77888cc. Runner terminated before a report after external_directory permission denial while reading the separate resume-15 worktree; no product verdict. Replaced by resume-27b-browser-live-prep-20260925."
+}

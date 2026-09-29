@@ -1,0 +1,39 @@
+{
+  "lane": "sim-slice0",
+  "verdict": "UNATTRIBUTED (1 red check(s); 1 with NO parsed failure -- read the log, this is NOT registered debt)",
+  "when": "2026-09-23T00:40:29",
+  "logDir": "D:\\tmp\\accept-sim-slice0-20260923-003933",
+  "contendedTree": false,
+  "checks": [
+    {
+      "check": "e2e",
+      "exit": 0,
+      "seconds": 39,
+      "summary": "Passed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 14 s - FusionRpg.E2E.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sim-slice0-20260923-003933\\e2e.log"
+    },
+    {
+      "check": "guard",
+      "exit": 1,
+      "seconds": 15,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sim-slice0-20260923-003933\\guard.log"
+    }
+  ],
+  "attribution": {
+    "unattributed": 1,
+    "newUnregistered": 0,
+    "knownRedMatched": 0
+  },
+  "sha": "40e7f2f2"
+}

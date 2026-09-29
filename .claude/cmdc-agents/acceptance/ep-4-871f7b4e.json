@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-040647\\boundary.log"
+    },
+    {
+      "check": "plan-gen",
+      "exit": 0,
+      "seconds": 18,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-040647\\plan-gen.log"
+    },
+    {
+      "check": "core-scorer",
+      "exit": 0,
+      "seconds": 5,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-040647\\core-scorer.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-040647\\ledger.log"
+    }
+  ],
+  "sha": "871f7b4e",
+  "when": "2026-09-22T04:07:17",
+  "logDir": "D:\\tmp\\accept-ep-4-20260922-040647",
+  "contendedTree": false,
+  "attribution": {
+    "newUnregistered": 0,
+    "knownRedMatched": 0,
+    "unattributed": 0
+  },
+  "verdict": "GREEN",
+  "lane": "ep-4"
+}

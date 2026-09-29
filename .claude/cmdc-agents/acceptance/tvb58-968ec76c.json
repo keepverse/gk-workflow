@@ -1,0 +1,75 @@
+{
+  "verdict": "UNATTRIBUTED (1 red check(s); 1 with NO parsed failure -- read the log, this is NOT registered debt)",
+  "sha": "968ec76c",
+  "logDir": "D:\\tmp\\accept-tvb58-20260922-051607",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 1,
+    "knownRedMatched": 0
+  },
+  "contendedTree": false,
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260922-051607\\boundary.log"
+    },
+    {
+      "check": "core-facts",
+      "exit": 0,
+      "seconds": 16,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260922-051607\\core-facts.log"
+    },
+    {
+      "check": "boundaries-guard",
+      "exit": 0,
+      "seconds": 13,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260922-051607\\boundaries-guard.log"
+    },
+    {
+      "check": "ci-guards",
+      "exit": 1,
+      "seconds": 61,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260922-051607\\ci-guards.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb58-20260922-051607\\ledger.log"
+    }
+  ],
+  "when": "2026-09-22T05:17:40",
+  "lane": "tvb58"
+}

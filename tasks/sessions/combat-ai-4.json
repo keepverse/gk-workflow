@@ -1,0 +1,33 @@
+{
+  "session": "combat-ai-4",
+  "program": "combat-ai",
+  "problem": "Work the combat-ai program's open rows that live in the Core/Match + tuning surface: the largest program without a lane (recon-1 measured it at 24 open task blocks / 26 done, tasks/reports/backlog-reconciliation-20260921.md). Several rows record a PARTIAL slice in their own text (IDENTITY/SEAM/CORE/VIEW/COMPOSITE HALF LANDED), so each taken row first needs its remaining half established against the code, then closed against its own acceptance lines.",
+  "mode": "worktree",
+  "branch": "cmdc/cai4",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-cai4",
+  "paths": [
+    "src/FusionRpg.Core/Match/**",
+    "data/tuning/combat-ai*.json",
+    "data/tuning/lawn-perf-budget.v1.json",
+    "docs/architecture/combat-ai/**",
+    "docs/research/combat-ai/**",
+    "tests/FusionRpg.Core.Balance.Tests/**",
+    "tests/FusionRpg.Core.Combat*Tests.Tests/**",
+    "tasks/combat-ai-todo.md",
+    "tasks/combat-ai-ledger.jsonl",
+    "tasks/reports/**",
+    "tasks/evidence-fragments/**"
+  ],
+  "started": "2026-09-22T01:00:00Z",
+  "status": "merged",
+  "notes": [
+    "Fence is the DISJOINT half on purpose. The program's rows also name src/FusionRpg.Data/** and src/FusionRpg.Server/** (7 and 4 references), but lane ep-3 (session empire-progression-3) holds those right now, so rows CAI3.2/CAI3.3/CAI3.5 are blocked-on-fence for this lane and must be reported as such rather than worked around.",
+    "tests/** at large, FusionRpg.slnx, .github/workflows/** and scripts/** belong to the TVB single-writer chain (tvb58/tvb59). This lane claims only the two per-area test projects its rows touch.",
+    "src/FusionRpg.Core/Battle/BattleEffects.cs is the subject of CAI-guard-1 -- a re-pin assigned to tvb58 -- so it is explicitly out of this lane's fence.",
+    "Owner context: the model-spend gate is released (2026-09-21, every corpus run, local LM Studio google/gemma-4-26b-a4b-qat), but nothing in this lane needs it: this is code work, not a corpus run.",
+    "Spawned with the free slot left by recon-1's retirement; the fleet is back at the charter's 8.",
+    "2026-09-22: fence widened by the manager to include tasks/evidence-fragments/**, which this lane's brief requires for its evidence contract but the copied fence lacked. Latent at the time of the widening (0 denials), so it was fixed before it cost a segment rather than after.",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's.",
+    "RETIRED 2026-09-25 by the resumed manager: Branch cmdc/cai4 is fully merged (0 commits above HEAD)."
+  ]
+}

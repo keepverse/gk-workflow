@@ -1,0 +1,22 @@
+{
+  "session": "scope-side-wide",
+  "program": "creature-standalone",
+  "problem": "PT7 defect: the patron aura is match-scoped and buffs the zombie side. Extend the owner-key grammar with a side-wide key (plant:*/zombie:*) and move the aura onto it, instead of re-platforming onto BattlefieldOwnSideReactor.",
+  "mode": "worktree",
+  "branch": "cmdc/scope-side-wide",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-scope-side-wide",
+  "paths": [
+    "src/FusionRpg.Core/Stats/StatApplyScope.cs",
+    "src/FusionRpg.Core/Effects/**",
+    "src/FusionRpg.Core/**/Patron*",
+    "tests/FusionRpg.Core.Tests/**",
+    "tasks/**"
+  ],
+  "started": "2026-09-20T13:00:00Z",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retiredReason": "the lane is terminal and its branch is an ancestor of features/mega-merge",
+  "notes": [
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

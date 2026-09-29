@@ -1,0 +1,15 @@
+{
+  "session": "resume-21-effect-pipeline-triage-20260925",
+  "program": "effect-pipeline",
+  "problem": "Read-only dependency triage for the next bounded effect-pipeline row.",
+  "mode": "worktree",
+  "branch": "opencode/resume-21-effect-pipeline-triage-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-21-effect-pipeline-triage-20260925",
+  "paths": [
+    "tasks/reports/resume-21-effect-pipeline-triage-20260925.md",
+    "tasks/sessions/resume-21-effect-pipeline-triage-20260925.json"
+  ],
+  "started": "2026-09-25T10:20:13Z",
+  "status": "abandoned",
+  "notes": "Read-only fanout lane from integration HEAD 6d77888cc. Runner terminated before a report after external_directory permission denials while reading outside its worktree; no product verdict. Replaced by resume-21b-effect-pipeline-triage-20260925."
+}

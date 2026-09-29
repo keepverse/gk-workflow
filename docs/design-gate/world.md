@@ -1,0 +1,11 @@
+# Design gate — world
+
+**Match and actor lifecycle, the world map, and the standalone web RPG.**
+
+Index: [../DESIGN-GATE.md](../DESIGN-GATE.md) §1. Each row keeps its original `DESIGN-GATE.md:<line>` number in a trailing comment, so a citation to the index still points at the topic it named before the split.
+
+| If you're about to touch… | You MUST have read | What sessions get wrong |
+|---|---|---|
+| **Match / actor lifecycle** | [architecture/match-runtime.md](architecture/match-runtime.md) · [architecture/unique-actor-runtime.md](architecture/unique-actor-runtime.md) · [architecture/unique-entity-effects.md](architecture/unique-entity-effects.md) | IL2CPP reuses pointers. `entity:{ptr}` grants must be withdrawn on death before reuse | <!-- DESIGN-GATE.md:54 -->
+| **World map** | [architecture/world-map-program.md](architecture/world-map-program.md) · [architecture/world-map-runtime-ideal.md](architecture/world-map-runtime-ideal.md) · [architecture/world-map-runtime/spec-world-map-runtime.md](architecture/world-map-runtime/spec-world-map-runtime.md) · [architecture/world-map-runtime/spec-world-map-gaps.md](architecture/world-map-runtime/spec-world-map-gaps.md) · [architecture/world-map-runtime-map.md](architecture/world-map-runtime-map.md) · [tasks/world-map-runtime-gaps-plan.md](../tasks/world-map-runtime-gaps-plan.md) · [tasks/world-map-runtime-plan.md](../tasks/world-map-runtime-plan.md) | Phaser + React HUD (copy DPLP); do not re-propose xyflow or an SVG `viewBox` camera. Turn engine stays `world-map-program`. Parent HOW is `spec-world-map-runtime`; closing shipped defects is `spec-world-map-gaps` + `world-map-runtime-gaps-plan` (Plan awaiting review). Checkpoints are Playwright + agent CV — no owner eyeball. | <!-- DESIGN-GATE.md:59 -->
+| **Standalone / web RPG** | [architecture/standalone-rpg-map.md](architecture/standalone-rpg-map.md) · `decisions.md` Standalone-first row (capability/CI) · Product vision row | **Gameless-first is a capability rule**, not the genre. Do not generalise the injector's constraints onto the web, or its model onto the injector. Do **not** re-pitch the product from this row — read the **Product vision** row above (`guide/the-game.md` + `guide/the-loops.md`). Quoting *"web RPG is the core; PvZ is extension"* as *"Fusion is optional DLC"* is a misread | <!-- DESIGN-GATE.md:63 -->

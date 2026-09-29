@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-dialogue-window — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-dialogue-window</code></h1>
+  <p class="lede">The say window: the speaker's line, an optional teaching sentence, and the narration
+  variant. It owns <strong>readability</strong>, not colour — the name tag inside it owns the speaker's
+  identity paint. Spec: <code>docs/architecture/story-scene/spec-dialogue-window.md</code>.</p>
+
+  <p class="lede">Ren'Py separates these the same way: its say screen is a window containing the
+  <code>who</code> text and the line, and the speaker region has its own id because the namebox is a
+  <strong>separate, optional</strong> thing. So a narration beat is the <em>same</em> window with the
+  name-tag slot empty — never a second component and never a fake speaker.</p>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Spoken beat, with a teaching line</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-dialogue-window" data-piece="dialogue-window" data-narration="false"
+             style="--piece-accent:#6fb7d4; background:#131a20; border:1px solid var(--border-control); border-radius:6px; padding:12px">
+          <div class="story-dialogue-window__nameTag">
+            <span class="story-name-tag__label"
+                  style="display:inline-block; padding:2px 10px; border-radius:4px; background:color-mix(in srgb, var(--piece-accent) 12%, transparent); color:var(--piece-accent); font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase">Penny</span>
+          </div>
+          <p class="story-dialogue-window__line" aria-live="polite" style="margin:8px 0 0; font-size:15px">Temporal signal unstable.</p>
+          <p class="story-dialogue-window__teaching" style="margin:6px 0 0; font-size:12px; color:var(--muted)">The fracture is new, and something inside it is changing.</p>
+        </div>
+      </div>
+      <p class="note">Only the <strong>line</strong> is the live region. Wrapping the whole window would
+      re-announce the name tag and the teaching sentence on every beat.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Narration — same window, no name tag</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-dialogue-window" data-piece="dialogue-window" data-narration="true"
+             style="--piece-accent:#8fb8c9; background:#131a20; border:1px solid var(--border-control); border-radius:6px; padding:12px">
+          <p class="story-dialogue-window__line" aria-live="polite" style="margin:0; font-size:15px">UNSTABLE SECTOR. QUARANTINE PENDING.</p>
+          <p class="story-dialogue-window__teaching" style="margin:6px 0 0; font-size:12px; color:var(--muted)">Containment can save a world — or cut it away.</p>
+        </div>
+      </div>
+      <p class="note">The narration card is <strong>structurally identical</strong> minus the tag. There is
+      no "Narrator" label and no separate narration component.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Spoken beat, no teaching line</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-dialogue-window" data-piece="dialogue-window" data-narration="false"
+             style="--piece-accent:#d9a15c; background:#131a20; border:1px solid var(--border-control); border-radius:6px; padding:12px">
+          <div class="story-dialogue-window__nameTag">
+            <span class="story-name-tag__label"
+                  style="display:inline-block; padding:2px 10px; border-radius:4px; background:color-mix(in srgb, var(--piece-accent) 12%, transparent); color:var(--piece-accent); font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase">Dave</span>
+          </div>
+          <p class="story-dialogue-window__line" aria-live="polite" style="margin:8px 0 0; font-size:15px">Uh-oh. That lawn is doing the wrong kind of wobbly.</p>
+        </div>
+      </div>
+      <p class="note">The teaching line is omitted entirely when absent — it is never an empty paragraph.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>The text-wall case, shown as a <em>defect</em></h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-dialogue-window" data-piece="dialogue-window" data-narration="true"
+             style="--piece-accent:#8fb8c9; background:#131a20; border:1px solid var(--bad); border-radius:6px; padding:12px; min-height:96px; display:flex; align-items:center">
+          <p class="note" style="margin:0; color:var(--muted)">
+            A long line <strong>wraps</strong> and the window grows to a bounded height. It never
+            paginates, scrolls or truncates — and the payload cannot even express a paragraph array,
+            because a text wall is a script defect the beat cap catches, not a window feature.
+          </p>
+        </div>
+      </div>
+      <p class="note">Reviewers name the failure this prevents: <em>"repeated deeply uninteresting
+      cryptic exposition dumps for over twenty minutes"</em>.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure and rules</h2>
+      <pre>.story-dialogue-window
+  .story-dialogue-window__nameTag    -> name-tag slot (absent on narration)
+  .story-dialogue-window__line       the line; aria-live="polite" lives HERE only
+  .story-dialogue-window__teaching   visually subordinate; absent when unset</pre>
+      <ul class="note">
+        <li>One beat = one line + at most one teaching sentence. No pagination, no history, no scroll.</li>
+        <li>A line is never truncated — truncation is a defect, not a design choice.</li>
+        <li>Text is selectable and zoom-safe.</li>
+        <li>The slot is filled by the fold; the window renders whatever it is given.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Sample payloads</h2>
+      <pre>// spoken beat
+{
+  "piece": "dialogue-window",
+  "instanceId": "scene:window",
+  "phase": "ready",
+  "line": "Temporal signal unstable.",
+  "teaching": "The fracture is new…",
+  "narration": false,
+  "slots": { "nameTag": { "piece": "name-tag", … } }
+}
+
+// narration beat
+{
+  "piece": "dialogue-window",
+  "instanceId": "scene:window",
+  "phase": "ready",
+  "line": "UNSTABLE SECTOR. QUARANTINE PENDING.",
+  "narration": true,
+  "slots": {}
+}</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

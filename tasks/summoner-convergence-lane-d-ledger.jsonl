@@ -1,0 +1,119 @@
+{"ts":"2026-09-19T04:06:56Z","kind":"anchor","plan":"tasks/test-verification-boundary-plan.md","todo":"tasks/test-verification-boundary-todo.md","session":"summoner-convergence-lane-d-20260919","specs":["docs/architecture/test-verification-boundary/spec-registry-contract.md","docs/architecture/test-verification-boundary/spec-python-test-lane.md","docs/architecture/test-verification-boundary/spec-seam-coverage.md","docs/architecture/test-verification-boundary/spec-core-split-analyzer.md","docs/architecture/test-verification-boundary/spec-core-split-apply.md","docs/architecture/test-verification-boundary/spec-core-split-wiring.md","docs/architecture/test-verification-boundary/spec-core-registry-rekey.md","docs/architecture/test-verification-boundary/spec-data-tests-sharding.md"],"standards":"PRINCIPLES + DESIGN-GATE s1 rows (testing/guards/data/numbers) + decisions locks, read 2026-09-19","queue":["TVB0.1","TVB0.2","TVB0.3","TVB0.4","SE0.1","SE0.2","SE0.3","SE0.4","SE0.5","SE0.6","SE0.7","SE0.8","SE1.1","SE1.2","SE1.3","SE1.4","SE1.5","SE1.6","SE1.7","SE2.1","SE2.2","SE2.3","SE2.4","SE2.5","SE2.6","SE2.7","SE3.1","SE3.2","SE3.3","SE3.4","SE3.5","SE3.6","SE3.7","SE3.8","SE3.9","SE3.10","SE3.11","SE3.12","SE3.13","TVB1.1","TVB1.2","TVB1.3","TVB1.4","TVB1.5","TVB1.6","TVB1.7","TVB1.8","TVB1.9","TVB1.10","TVB2.1","TVB2.2","TVB2.3","TVB2.4","TVB2.5","TVB2.6","TVB2.7","TVB3.1","TVB3.2","TVB3.3","TVB3.4","TVB3.5","TVB3.6","TVB3.7","TVB3.8","TVB3.9","TVB3.10","TVB4.1","TVB4.2","TVB4.3","TVB4.4","TVB4.5","TVB4.6","TVB4.7","TVB5.1","TVB5.2","TVB5.3","TVB5.4","TVB5.5","TVB5.6","TVB5.7","TVB5.8","TVB5.9","TVB6.1","TVB6.2","TVB6.3","TVB6.4","TVBCP0","TVBCP1","TVBCPM","TVBCP2","TVBCP3","TVBCP4","TVBCP5","TVBCP6","SECP0","SECP1","SECP2","SECP3"],"mark":"mk1-c45db3a98f4a5a2e"}
+{"ts":"2026-09-19T04:08:02Z","kind":"gate","name":"session-boundary-check","result":"fail","mark":"mk1-e75213654c493ebf"}
+{"ts":"2026-09-19T04:08:09Z","kind":"note","text":"BLOCKED (boundary): check crosses summoner-convergence-impl-20260918 (mode=direct, broad src/tests/scripts claims); overlap is skipped only when BOTH records are worktree. Orchestrator must narrow/close it. Proceeding with honest lane paths.","mark":"mk1-b488a0b8994c5675"}
+{"ts":"2026-09-19T04:08:25Z","kind":"task","id":"TVB0.1","state":"started","mark":"mk1-bd3bed4fbde97f36"}
+{"ts":"2026-09-19T04:54:44Z","kind":"note","text":"verify-change over TVB0.1's 4 paths exceeds the 600s command cap (3 guard-project runs). Ran the focused invocations + the module-fallback suite separately; all green. Orchestrator re-runs the combined form.","mark":"mk1-e2f2d7f280bccbc2"}
+{"ts":"2026-09-19T04:54:44Z","kind":"task","id":"TVB0.1","state":"done","evidence":"tasks/evidence-fragments/TVB0.1.md","mark":"mk1-b5541cfe4c5abb6d"}
+{"ts":"2026-09-19T04:54:49Z","kind":"note","text":"TVB0.1 also fixed 2 pre-existing guard reds in lane-D files: SR-19's where named 2 files (schema is file:line); the tool-tree boundary test passed the first active session id. A 3rd red, ClassSystemBaselineRegenTests, was a missing Debug build.","mark":"mk1-e7a6ae4ef9813e27"}
+{"ts":"2026-09-19T04:55:45Z","kind":"task","id":"TVB0.2","state":"started","mark":"mk1-acd49384bbb11e94"}
+{"ts":"2026-09-19T04:57:10Z","kind":"task","id":"TVB0.2","state":"done","evidence":"tasks/evidence-fragments/TVB0.2.md","mark":"mk1-768dc1945aebdbb0"}
+{"ts":"2026-09-19T04:57:22Z","kind":"task","id":"TVB0.3","state":"started","mark":"mk1-5e1967295b7fe67d"}
+{"ts":"2026-09-19T04:58:34Z","kind":"task","id":"TVB0.3","state":"done","evidence":"tasks/evidence-fragments/TVB0.3.md","mark":"mk1-c577299ce577658d"}
+{"ts":"2026-09-19T04:58:57Z","kind":"task","id":"TVB0.4","state":"started","mark":"mk1-45c155d39ef6922d"}
+{"ts":"2026-09-19T05:05:37Z","kind":"task","id":"TVB0.4","state":"done","evidence":"tasks/evidence-fragments/TVB0.4.md","mark":"mk1-b15568b52a5eaff4"}
+{"ts":"2026-09-19T05:05:37Z","kind":"task","id":"TVBCP0","state":"started","mark":"mk1-f2c98521b77cdc29"}
+{"ts":"2026-09-19T05:05:37Z","kind":"task","id":"TVBCP0","state":"done","evidence":"tasks/evidence-fragments/TVBCP0.md","mark":"mk1-483ba9605d4c5ec1"}
+{"ts":"2026-09-19T05:06:02Z","kind":"task","id":"SE0.1","state":"started","mark":"mk1-276bf2c907c07c0d"}
+{"ts":"2026-09-19T05:10:49Z","kind":"note","text":"SE0.1 classification: session-boundary-check.ps1 runs through verify-change but not ci.yml, so spec-enforcement-registry seeds it ci/backlog -> wire-green-guards. SE1.1's five-guard list does not name it; Checkpoint 1 may need to wire it too.","mark":"mk1-3c8c401dbe1a113d"}
+{"ts":"2026-09-19T05:10:49Z","kind":"task","id":"SE0.1","state":"done","evidence":"tasks/evidence-fragments/SE0.1.md","mark":"mk1-2dcaebcccc623fc1"}
+{"ts":"2026-09-19T05:11:27Z","kind":"task","id":"SE0.2","state":"started","mark":"mk1-a53cf95b5cadef60"}
+{"ts":"2026-09-19T05:12:51Z","kind":"task","id":"SE0.2","state":"done","evidence":"tasks/evidence-fragments/SE0.2.md","mark":"mk1-52e1030679d555a0"}
+{"ts":"2026-09-19T05:13:12Z","kind":"task","id":"SE0.3","state":"started","mark":"mk1-6061824a297e80b8"}
+{"ts":"2026-09-19T05:18:49Z","kind":"task","id":"SE0.3","state":"done","evidence":"tasks/evidence-fragments/SE0.3.md","mark":"mk1-4e80ca69b8d16202"}
+{"ts":"2026-09-19T05:19:14Z","kind":"task","id":"SE0.4","state":"started","mark":"mk1-b03fcc58ea6c0666"}
+{"ts":"2026-09-19T05:23:19Z","kind":"task","id":"SE0.4","state":"done","evidence":"tasks/evidence-fragments/SE0.4.md","mark":"mk1-1431a7f05458930b"}
+{"ts":"2026-09-19T05:23:47Z","kind":"task","id":"SE0.5","state":"started","mark":"mk1-ec587adb5a6bd55f"}
+{"ts":"2026-09-19T05:29:51Z","kind":"task","id":"SE0.5","state":"done","evidence":"tasks/evidence-fragments/SE0.5.md","mark":"mk1-17317a207a1db225"}
+{"ts":"2026-09-19T05:36:56Z","kind":"note","text":"SE0.6 finding: deploy-play.ps1 -NoServer -NoGame was not run - it rebuilds the UI and publishes into tracked paths and exceeds the 600s cap. The runner call it makes is proven directly; the orchestrator re-runs the deploy form.","mark":"mk1-8a7b227a65f69692"}
+{"ts":"2026-09-19T05:37:03Z","kind":"task","id":"SE0.6","state":"started","mark":"mk1-2078ed8f623d3534"}
+{"ts":"2026-09-19T05:37:03Z","kind":"task","id":"SE0.6","state":"done","evidence":"tasks/evidence-fragments/SE0.6.md","mark":"mk1-258400ec710fdd49"}
+{"ts":"2026-09-19T05:37:59Z","kind":"task","id":"SE0.7","state":"started","mark":"mk1-36ead3bb38cb3955"}
+{"ts":"2026-09-19T06:29:10Z","kind":"task","id":"SE0.7","state":"done","evidence":"tasks/evidence-fragments/SE0.7.md","mark":"mk1-ec16c9fe8c367ec4"}
+{"ts":"2026-09-19T06:29:23Z","kind":"task","id":"SE0.8","state":"started","mark":"mk1-7d0501f24ea0d3d9"}
+{"ts":"2026-09-19T06:31:43Z","kind":"note","text":"SE0.8 id shift: the existing SR-19 row (head-field tables, dark) already held 19, so the new solid rows are SR-20 atk, SR-21 CommanderId, SR-22 tuning pollution, SR-23 commit-policy, SR-24 god files. SE1.7 must strike SR-20 (its acceptance says SR-19).","mark":"mk1-1f84a8f6ae84def7"}
+{"ts":"2026-09-19T06:31:43Z","kind":"task","id":"SE0.8","state":"done","evidence":"tasks/evidence-fragments/SE0.8.md","mark":"mk1-f000a8868d503777"}
+{"ts":"2026-09-19T06:32:29Z","kind":"task","id":"SE1.1","state":"started","mark":"mk1-fb30ad9e594f5068"}
+{"ts":"2026-09-19T06:43:30Z","kind":"note","text":"SE0.6 fix (5.1 host): under Windows PowerShell 5.1 EAP=Stop made a guard's stderr write a terminating NativeCommandError, aborting the batch. Child calls now use a scoped EAP=Continue + per-guard stderr log; verdict is the exit code only.","mark":"mk1-e2f1e164f9eb3503"}
+{"ts":"2026-09-19T06:43:49Z","kind":"queue","ids":["TVB0.1","TVB0.2","TVB0.3","TVB0.4","SE0.1","SE0.2","SE0.3","SE0.4","SE0.5","SE0.6","SE0.7","SE0.8","SE1.1","TVB-EOL1","SE1.2","SE1.3","SE1.4","SE1.5","SE1.6","SE1.7","SE2.1","SE2.2","SE2.3","SE2.4","SE2.5","SE2.6","SE2.7","SE3.1","SE3.2","SE3.3","SE3.4","SE3.5","SE3.6","SE3.7","SE3.8","SE3.9","SE3.10","SE3.11","SE3.12","SE3.13","TVB1.1","TVB1.2","TVB1.3","TVB1.4","TVB1.5","TVB1.6","TVB1.7","TVB1.8","TVB1.9","TVB1.10","TVB2.1","TVB2.2","TVB2.3","TVB2.4","TVB2.5","TVB2.6","TVB2.7","TVB3.1","TVB3.2","TVB3.3","TVB3.4","TVB3.5","TVB3.6","TVB3.7","TVB3.8","TVB3.9","TVB3.10","TVB4.1","TVB4.2","TVB4.3","TVB4.4","TVB4.5","TVB4.6","TVB4.7","TVB5.1","TVB5.2","TVB5.3","TVB5.4","TVB5.5","TVB5.6","TVB5.7","TVB5.8","TVB5.9","TVB6.1","TVB6.2","TVB6.3","TVB6.4","TVBCP0","TVBCP1","TVBCPM","TVBCP2","TVBCP3","TVBCP4","TVBCP5","TVBCP6","SECP0","SECP1","SECP2","SECP3"],"mark":"mk1-7f31cf04d3379db2"}
+{"ts":"2026-09-19T06:43:49Z","kind":"task","id":"TVB-EOL1","state":"started","mark":"mk1-3219681d170033da"}
+{"ts":"2026-09-19T06:54:10Z","kind":"task","id":"TVB-EOL1","state":"done","evidence":"tasks/evidence-fragments/TVB-EOL1.md","mark":"mk1-1ca6d5ee7956ab87"}
+{"ts":"2026-09-19T06:54:29Z","kind":"note","text":"TVB-EOL1: indented JsonSerializer output uses Environment.NewLine, so Windows-written generated trees are byte-stale against their LF checkout. CanonicalEol.ToLf normalises write and read-back. CI never ran the --check steps (triggers: main/master only).","mark":"mk1-19cff2a9344a2dc8"}
+{"ts":"2026-09-19T07:35:27Z","kind":"note","text":"SE1.1: five scratch-branch falsifiers run as isolated scratch roots/fixtures instead of scratch branches (branch switching is forbidden to this lane). Five guards, five violations, 5/5 exit 1; commands in the commit body.","mark":"mk1-c297850e7f344ccb"}
+{"ts":"2026-09-19T07:35:38Z","kind":"note","text":"SE1.1 finding (erratum asked): session-boundary cannot gate in CI (reads local branch/worktree refs a depth-1 checkout lacks) and R4 admits only the game-install reason, so its ci/backlog row does not resolve. Blocks Checkpoint 1.","mark":"mk1-e84dfbbc4612f257"}
+{"ts":"2026-09-19T07:35:38Z","kind":"task","id":"SE1.1","state":"done","evidence":"tasks/evidence-fragments/SE1.1.md","mark":"mk1-359bffe295289769"}
+{"ts":"2026-09-19T07:36:14Z","kind":"note","text":"session-boundary-check exit 1: 78 records, 2 active, 131 crossings, ALL between this lane and the stale lane-A record summoner-convergence-impl-20260918 (mode direct, branch features/mega-merge; lane A complete). Marking a peer record merged is outside this lane's fence.","mark":"mk1-576e910a6e907804"}
+{"ts":"2026-09-19T07:54:09Z","kind":"note","text":"Merged features/mega-merge (6b9f6d21 git-gate retirement): registry keeps commit-policy row deleted + pr-commit-attribution unguardable; conflict in ConcreteSpeciesSerializer kept BOTH speciesKind mark and TVB-EOL1 ToLf. SE1.1 complete on the merged tree.","mark":"mk1-189c474e8e2c4015"}
+{"ts":"2026-09-19T07:54:09Z","kind":"note","text":"Merge fallout: stub-register SR-23 (commit-policy guard row) points at deleted scripts/commit-tool/policy.json, so StubRegisterTests.Every_row_points_at_a_file_that_exists is red on the merged tree. The retirement commit left SE1.2 retired but did not strike SR-23.","mark":"mk1-f2a05a06b4e81894"}
+{"ts":"2026-09-19T07:54:43Z","kind":"task","id":"SE1.1b","state":"started","mark":"mk1-05a68923cbc770fc"}
+{"ts":"2026-09-19T07:54:49Z","kind":"task","id":"SE1.1b","state":"done","evidence":"tasks/evidence-fragments/SE1.1b.md","mark":"mk1-0b991010d46dffcf"}
+{"ts":"2026-09-19T07:55:20Z","kind":"task","id":"SE1.2","state":"started","mark":"mk1-8c49ecf5f37a6566"}
+{"ts":"2026-09-19T07:55:20Z","kind":"task","id":"SE1.2","state":"done","evidence":"tasks/evidence-fragments/SE1.2.md","mark":"mk1-17e6828f9e17c40e"}
+{"ts":"2026-09-19T08:24:59Z","kind":"note","text":"BLOCKER (external, lane C): the mega-merge brought a NEW M1 into src/FusionRpg.Core/Items/Materials/CraftRiskPolicy.cs:39 (999 in checked((durabilityMax * craftWearPerAttemptMilli + 999)/1000)). magic-numbers was exit 0 at SE1.1 pre-merge, red after. Items is lane C's fence.","mark":"mk1-82d82c4565d391fa"}
+{"ts":"2026-09-19T08:24:59Z","kind":"note","text":"SE1.1's gating flip is kept, not reverted: the guard is right and the tree is wrong. run-guards -Tier ci is red ONLY on magic-numbers, so Checkpoint 0/1 CI-green and SE1.3's run-guards evidence wait on lane C.","mark":"mk1-3e0238527b833bd1"}
+{"ts":"2026-09-19T08:31:58Z","kind":"task","id":"SE1.3","state":"started","mark":"mk1-a160e0c2ac4a10d2"}
+{"ts":"2026-09-19T08:32:29Z","kind":"task","id":"SE1.3","state":"done","evidence":"tasks/evidence-fragments/SE1.3.md","mark":"mk1-c17eff7ea3e6d0c9"}
+{"ts":"2026-09-19T09:01:12Z","kind":"task","id":"SE1.4","state":"started","mark":"mk1-e36a96e4331d073f"}
+{"ts":"2026-09-19T09:26:37Z","kind":"task","id":"SE1.4","state":"done","evidence":"tasks/evidence-fragments/SE1.4.md","mark":"mk1-0aa53526adf39f50"}
+{"ts":"2026-09-19T09:26:57Z","kind":"task","id":"SE1.5","state":"started","mark":"mk1-24971da9b7e3ba85"}
+{"ts":"2026-09-19T09:36:43Z","kind":"task","id":"SE1.5","state":"done","evidence":"tasks/evidence-fragments/SE1.5.md","mark":"mk1-421400ad9ec470de"}
+{"ts":"2026-09-19T09:37:30Z","kind":"task","id":"SE1.6","state":"started","mark":"mk1-d4efa6e335573941"}
+{"ts":"2026-09-19T09:49:01Z","kind":"note","text":"SCOPE CHANGE (manager): lane narrowed to SE waves 1-3 only (SE1.6-SE3.13, SECP0-3). TVB/NS moved to other agents; no uncommitted TVB work to hand off (TVB0.x already committed).","mark":"mk1-4899c2469f02e772"}
+{"ts":"2026-09-19T09:49:14Z","kind":"queue","ids":["SE1.6","SE1.7","SE2.1","SE2.2","SE2.3","SE2.4","SE2.5","SE2.6","SE2.7","SE3.1","SE3.2","SE3.3","SE3.4","SE3.5","SE3.6","SE3.7","SE3.8","SE3.9","SE3.10","SE3.11","SE3.12","SE3.13","SECP0","SECP1","SECP2","SECP3"],"mark":"mk1-fe6b56096b7a9eb9"}
+{"ts":"2026-09-19T10:29:37Z","kind":"task","id":"SE1.6","state":"done","evidence":"tasks/evidence-fragments/SE1.6.md","mark":"mk1-47288b5af6ea93d4"}
+{"ts":"2026-09-19T10:43:45Z","kind":"note","text":"SECP1 (Checkpoint 1): 2 of 3 bullets need orchestrator full-suite (test-fast.ps1 -AllDefault); BalanceGuard+sim goldens verified green here. Not ticked; continuing wave 2.","mark":"mk1-f5d1aa10a7aadc3e"}
+{"ts":"2026-09-19T10:44:05Z","kind":"task","id":"SE1.7","state":"started","mark":"mk1-f61a28e1d78be67c"}
+{"ts":"2026-09-19T10:44:05Z","kind":"task","id":"SE1.7","state":"done","evidence":"tasks/evidence-fragments/SE1.7.md","mark":"mk1-49e4b48cc3d6883a"}
+{"ts":"2026-09-19T10:44:05Z","kind":"note","text":"SECP1 (Checkpoint 1): 2 of 3 bullets need orchestrator full-suite (test-fast.ps1 -AllDefault); BalanceGuard+sim goldens verified green here. Not ticked; continuing wave 2.","mark":"mk1-3b4d4f232ecfdefb"}
+{"ts":"2026-09-19T10:48:56Z","kind":"note","text":"Merged features/mega-merge (5e99b636) at SE1.7/SE2.x boundary per handover instruction: lane C's CraftRiskPolicy magic-numbers fix landed, no conflicts. run-guards.ps1 -Tier ci now GUARDS OK, 14/14, 0 red.","mark":"mk1-459d726fac7d62b0"}
+{"ts":"2026-09-19T10:50:57Z","kind":"note","text":"session-boundary exit 1 post-merge: stale lane-A crossing gone (now merged). New drift is trade-network-idea vs lane-b/c/d over broad docs/tasks globs + 4 unclaimed worktree branches -- not caused by this session. Blocked on manager; continuing SE2.x.","mark":"mk1-f5ba71ba85b4f882"}
+{"ts":"2026-09-19T11:18:55Z","kind":"task","id":"SE2.1","state":"started","mark":"mk1-8bf95216048a62a3"}
+{"ts":"2026-09-19T11:18:56Z","kind":"task","id":"SE2.1","state":"done","evidence":"tasks/evidence-fragments/SE2.1.md","mark":"mk1-15667ad440953638"}
+{"ts":"2026-09-19T11:27:20Z","kind":"task","id":"SE2.2","state":"started","mark":"mk1-e44b27689dc3a9ed"}
+{"ts":"2026-09-19T11:27:21Z","kind":"task","id":"SE2.2","state":"done","evidence":"tasks/evidence-fragments/SE2.2.md","mark":"mk1-0e2f4d6a16cbe1c1"}
+{"ts":"2026-09-19T11:40:55Z","kind":"note","text":"SE2.1 correction: TuningImmutabilityGuardTests Cleanup swallowed Directory.Delete, new test-substrate debt. Fixed: unguarded delete + read-only clear (git leaves .git/objects read-only on Windows). 15/15 CI guards green.","mark":"mk1-8f8dfe1fb5e4d637"}
+{"ts":"2026-09-19T13:29:16Z","kind":"task","id":"SE2.3","state":"started","mark":"mk1-21d4ded11fa2482b"}
+{"ts":"2026-09-19T13:29:16Z","kind":"task","id":"SE2.3","state":"done","evidence":"tasks/evidence-fragments/SE2.3.md","mark":"mk1-eac6fb4f34265e3b"}
+{"ts":"2026-09-19T13:37:37Z","kind":"task","id":"SE2.4","state":"started","mark":"mk1-9f090b2c172a674a"}
+{"ts":"2026-09-19T13:37:38Z","kind":"task","id":"SE2.4","state":"done","evidence":"tasks/evidence-fragments/SE2.4.md","mark":"mk1-cc367634fdd014ee"}
+{"ts":"2026-09-19T13:50:08Z","kind":"task","id":"SE2.5","state":"started","mark":"mk1-e3497774e6be42eb"}
+{"ts":"2026-09-19T13:50:08Z","kind":"task","id":"SE2.5","state":"done","evidence":"tasks/evidence-fragments/SE2.5.md","mark":"mk1-a1d24714f9a0d863"}
+{"ts":"2026-09-19T14:15:04Z","kind":"task","id":"SE2.6","state":"started","mark":"mk1-4c8d6c9a8e3df7af"}
+{"ts":"2026-09-19T14:15:04Z","kind":"task","id":"SE2.6","state":"done","evidence":"tasks/evidence-fragments/SE2.6.md","mark":"mk1-e819106bf766c7a7"}
+{"ts":"2026-09-19T14:24:11Z","kind":"task","id":"SE2.7","state":"started","mark":"mk1-2483f7a6a22bd7e0"}
+{"ts":"2026-09-19T14:24:12Z","kind":"task","id":"SE2.7","state":"done","evidence":"tasks/evidence-fragments/SE2.7.md","mark":"mk1-b5f4f764cc8beba8"}
+{"ts":"2026-09-19T14:25:21Z","kind":"note","text":"SECP2 (Checkpoint 2): bullet 1 verified (3 guards gating + single-writer extended). Bullet 2's full-suite half is an orchestrator gate; loopwarntest absence + temp-dir isolation verified narrowly. Continuing wave 3.","mark":"mk1-5b6ca1ab7b5f1e43"}
+{"ts":"2026-09-19T14:43:15Z","kind":"task","id":"SE3.1","state":"started","mark":"mk1-b667904727b15fa7"}
+{"ts":"2026-09-19T14:43:15Z","kind":"task","id":"SE3.1","state":"done","evidence":"tasks/evidence-fragments/SE3.1.md","mark":"mk1-9b50d033540a439a"}
+{"ts":"2026-09-19T15:23:15Z","kind":"task","id":"SE3.2","state":"started","mark":"mk1-8be4bbd67119b8d9"}
+{"ts":"2026-09-19T15:23:15Z","kind":"task","id":"SE3.2","state":"done","evidence":"tasks/evidence-fragments/SE3.2.md","mark":"mk1-4e30f2d74ee97253"}
+{"ts":"2026-09-19T15:37:39Z","kind":"note","text":"Merged mega-merge (234d54bc): resolved verif-boundaries.v1.json conflict (kept both sides, 120 boundaries); fixed PowerLadderMagnitudeTests channel broken by SE1.6 retire-atk (pre-dates lane D, confirmed via git log). Guard.Tests 486/486, Core.Tests 14272/14272, guards 17/17.","mark":"mk1-c99e94f007182b18"}
+{"ts":"2026-09-19T17:04:08Z","kind":"task","id":"SE3.3","state":"started","mark":"mk1-452279e95716ad19"}
+{"ts":"2026-09-19T17:04:08Z","kind":"task","id":"SE3.3","state":"done","evidence":"tasks/evidence-fragments/SE3.3.md","mark":"mk1-bdb45a6d0e25172f"}
+{"ts":"2026-09-19T17:34:22Z","kind":"task","id":"SE3.4","state":"started","mark":"mk1-721b7861c048c540"}
+{"ts":"2026-09-19T17:34:23Z","kind":"task","id":"SE3.4","state":"done","evidence":"tasks/evidence-fragments/SE3.4.md","mark":"mk1-93f98b8dbf1ce4b1"}
+{"ts":"2026-09-19T17:34:23Z","kind":"note","text":"SE3.4: found pre-existing PassiveTreeRosterGen.Tests failure (mirror drift from mega-merge element-conversion/siege-construction, never regenerated). Confirmed unrelated via git diff. Out of solid-enforcement scope, left unfixed, reported.","mark":"mk1-33b270d59675e9a0"}
+{"ts":"2026-09-19T18:43:22Z","kind":"task","id":"SE3.5","state":"started","mark":"mk1-1c2d5f78ccd39657"}
+{"ts":"2026-09-19T18:43:22Z","kind":"task","id":"SE3.5","state":"done","evidence":"tasks/evidence-fragments/SE3.5.md","mark":"mk1-53efc22e1ce045cd"}
+{"ts":"2026-09-19T18:51:02Z","kind":"task","id":"SE3.6","state":"started","mark":"mk1-98e158d8928d9103"}
+{"ts":"2026-09-19T18:51:02Z","kind":"task","id":"SE3.6","state":"done","evidence":"tasks/evidence-fragments/SE3.6.md","mark":"mk1-abd2c1c8de437a59"}
+{"ts":"2026-09-19T20:29:38Z","kind":"note","text":"Coordinator confirmed SE3.8-12 in scope, owner charter. Method: deterministic auto-fixer for mechanically-resolvable citations (moved file/renamed symbol/re-anchor by unique text), 5 batch commits, hand-fix residue only, never guess. SE3.7 first.","mark":"mk1-932ee4521b2bcff5"}
+{"ts":"2026-09-19T20:41:29Z","kind":"note","text":"Merged mega-merge (bebea91e): resolved publish.py + test_materials_gen.py conflicts, fixed 2 new population-pin sites the merge exposed once SE3.6 gated it. tools/tuning 59/59, run-guards 18/18, Core.Tests 14456/14456.","mark":"mk1-62fecee38a85519e"}
+{"ts":"2026-09-19T21:03:34Z","kind":"task","id":"SE3.7","state":"started","mark":"mk1-42cc3b9c6d0355fb"}
+{"ts":"2026-09-19T21:03:34Z","kind":"task","id":"SE3.7","state":"done","evidence":"tasks/evidence-fragments/SE3.7.md","mark":"mk1-c7cb5c92cb69e923"}
+{"ts":"2026-09-19T21:13:53Z","kind":"note","text":"Built scripts/fix-doc-citations.py per owner method; applied first pass, 77 D3 sites fixed (8e6c5d89). D1/D2/D4 residue has no safe mechanical repair on this tree -- true hand-fix backlog for SE3.8-12: D1 1171, D2 61, D3 266, D4 20.","mark":"mk1-97264037b6386ee8"}
+{"ts":"2026-09-19T21:25:03Z","kind":"note","text":"D4 regex was a bare substring, firing on negated/conditional text (no build AUTHORIZED, once APPROVED) and completed/completeness. Fixed: word-bound complete + hedge exclusion. D4 20->12, all 12 hand-verified genuine. D1/D2/D3 unchanged. 23/23 green.","mark":"mk1-a8938b046d5e3a64"}
+{"ts":"2026-09-19T21:28:21Z","kind":"note","text":"D4 2nd pass: hedge regex missed conditional when/if (Plan (when approved)). Added. strain-splice-host dropped (was false positive). D4 12->11, all 11 re-verified genuine. 23/23 green.","mark":"mk1-79fc94f2edafd9b5"}
+{"ts":"2026-09-19T22:20:05Z","kind":"task","id":"SE3.8","state":"started","mark":"mk1-f3251cb40766caed"}
+{"ts":"2026-09-19T22:20:06Z","kind":"task","id":"SE3.8","state":"done","evidence":"tasks/evidence-fragments/SE3.8.md","mark":"mk1-0e1bf1eb94fd5426"}
+{"ts":"2026-09-19T22:38:54Z","kind":"task","id":"SE3.9","state":"started","mark":"mk1-0adaaeb2cebe71e5"}
+{"ts":"2026-09-19T22:38:54Z","kind":"task","id":"SE3.9","state":"done","evidence":"tasks/evidence-fragments/SE3.9.md","mark":"mk1-a4db184dc19ffe6d"}
+{"ts":"2026-09-19T22:54:32Z","kind":"task","id":"SE3.10","state":"started","mark":"mk1-5c8410a2c7282b18"}
+{"ts":"2026-09-19T22:54:33Z","kind":"task","id":"SE3.10","state":"done","evidence":"tasks/evidence-fragments/SE3.10.md","mark":"mk1-f11911602f55029f"}
+{"ts":"2026-09-20T02:24:52Z","kind":"task","id":"SE3.11","state":"started","mark":"mk1-6bf95da05631a2bb"}
+{"ts":"2026-09-20T02:24:52Z","kind":"task","id":"SE3.11","state":"done","evidence":"tasks/evidence-fragments/SE3.11.md","mark":"mk1-5081dd8b5c259837"}
+{"ts":"2026-09-20T02:55:06Z","kind":"note","text":"Merged features/mega-merge (b167ba36): clean, no conflicts in publish.py/test_materials_gen.py this time. Found 1 new population-pin P1 (MaterialVocabularyTests.cs, mega-merge's own craft-assurance test) -- fixed same pattern as before. Core.Tests 14518/14518, run-guards 18/18.","mark":"mk1-2406f9d2b464f26c"}
+{"ts":"2026-09-20T04:26:22Z","kind":"task","id":"SE3.12","state":"started","mark":"mk1-d8de0eb8113828c0"}
+{"ts":"2026-09-20T04:26:22Z","kind":"task","id":"SE3.12","state":"done","evidence":"tasks/evidence-fragments/SE3.12.md","mark":"mk1-d8d78bb7074d8567"}
+{"ts":"2026-09-20T04:30:33Z","kind":"task","id":"SE3.13","state":"started","mark":"mk1-5d426ff20adf49e3"}
+{"ts":"2026-09-20T04:30:33Z","kind":"task","id":"SE3.13","state":"done","evidence":"tasks/evidence-fragments/SE3.13.md","mark":"mk1-123c6577ef8918a4"}
+{"ts":"2026-09-20T05:07:59Z","kind":"note","text":"Merged mega-merge (c2a789ea): took reconciled MaterialVocabularyTests.cs. SSH1.1 refactor stranded 5 doc-citations (CombinationEvaluator.cs shrank, moved to ComboMatcher.cs) -- fixed, repo --strict 0, run-guards 19/19.","mark":"mk1-a38e7c415a3a775f"}

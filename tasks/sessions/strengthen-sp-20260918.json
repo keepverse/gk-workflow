@@ -1,0 +1,22 @@
+{
+  "session": "strengthen-sp-20260918",
+  "program": "species-progression",
+  "problem": "Adversarial strengthen pass over the species-progression capability map and module specs: re-verify code citations, ruling conformance (R1-R3, R16-R19), save-identity keying, the one explained re-bless and its order against action-enrich, cache trigger sets, and solid-remediation overlap. Docs only.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/species-progression-map.md",
+    "docs/architecture/species-progression/spec-empire-species-container.md",
+    "docs/architecture/species-progression/spec-ladder-scale-parity.md",
+    "docs/architecture/species-progression/spec-layer-source-selector.md",
+    "docs/architecture/species-progression/spec-species-layer-delivery.md",
+    "docs/architecture/species-progression/spec-species-layer-projector.md",
+    "docs/architecture/species-progression/spec-species-mod-ledger.md",
+    "docs/architecture/species-progression/spec-zomboss-commander-clock.md",
+    "docs/architecture/species-progression-ideal.md",
+    "tasks/sessions/strengthen-sp-20260918.json"
+  ],
+  "started": "2026-09-18T18:00:00Z",
+  "status": "merged"
+}

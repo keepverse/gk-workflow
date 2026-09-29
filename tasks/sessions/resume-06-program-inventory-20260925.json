@@ -1,0 +1,18 @@
+{
+  "session": "resume-06-program-inventory-20260925",
+  "program": "program-manager",
+  "problem": "Read-only inventory of genuinely open task blocks and dependency-aware next-lane queue after accepted P1 containment merges; identify unrouted findings and stale current-head evidence.",
+  "mode": "worktree",
+  "branch": "opencode/resume-06-program-inventory-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-06-program-inventory-20260925",
+  "paths": [
+    "tasks/**",
+    "docs/architecture/**",
+    "scripts/**",
+    ".claude/cmdc-agents/acceptance/**",
+    "tasks/reports/resume-06-program-inventory-20260925.md"
+  ],
+  "started": "2026-09-25T08:53:59Z",
+  "status": "merged",
+  "notes": "Read-only inventory report accepted and merged. Snapshot SHA 13052e713fd361edc166e9d795432576f8e9f2ca predates later manager evidence merges only; it remains valid as the measured census/queue, not as final gate evidence. Four bounded implementation candidates and ledger follow-ups are recorded; BCU2.12, browser, live, release, and final gate remain open."
+}

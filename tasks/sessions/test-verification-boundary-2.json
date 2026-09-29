@@ -1,0 +1,42 @@
+{
+  "session": "test-verification-boundary-2",
+  "program": "test-verification-boundary",
+  "problem": "Own the analyzer + verification-registry + docs half of the program on lane tvb59: TVB4.7 (map data/seed/** by S1 evidence, switch the root on, testing-standard §6 paragraph), TVB6.1 (TestSplitAnalyzer --production-map), TVB6.2 (K1 per-area Core production owners from the production map), TVB6.3 (K2 re-key the existing focused core.* boundaries), TVB6.4 (K3 orphan core.* traits + the ideal line), TVB6.5 (reading: Core/Stats + Core/Effects production paths still plan core-fallback). The test-project split chain (TVB5.7/5.8.k/5.9) stays with lane tvb58.",
+  "mode": "worktree",
+  "branch": "cmdc/tvb59",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-tvb59",
+  "paths": [
+    "tasks/sessions/test-verification-boundary-2.json",
+    "tasks/test-verification-boundary-todo.md",
+    "tasks/test-verification-boundary-ledger.jsonl",
+    "tasks/evidence-fragments/TVB*.md",
+    "tools/**",
+    "scripts/**",
+    "docs/**",
+    "tasks/**",
+    "data/seed/**"
+  ],
+  "started": "2026-09-21T00:00:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Second lane in this program, added under the owner's 2026-09-21 ceiling change (6 -> 8). Fence deliberately EXCLUDES tests/**, FusionRpg.slnx and .github/workflows/**: those belong to tvb58's TVB5.7/TVB5.8.k/TVB5.9 test-project split chain, which must stay single-writer.",
+    "Fence is the runner's own allowed-path list for lane tvb59 (`tools/**`, `scripts/**`, `docs/**`, `tasks/**`, `data/seed/**`). It excludes `tests/**`, `FusionRpg.slnx` and `.github/workflows/**` - see TVB-F17. The `tests/FusionRpg.TestSplitAnalyzer.Tests/**` entry an earlier revision of this record carried was dropped for the same reason: it is outside the runner's allowed paths, and the planner refuses a path the record claims but the fence does not allow.",
+    "scripts/verification-boundaries.v1.json is append-mostly and shared with other programs; this lane's edits are additive and any merge conflict is resolved by union, never by dropping another program's row.",
+    "scripts/guard-verification-boundaries.ps1 is a protected pipeline file and was blocked by the pipeline guard; the Resolve-Owner pattern index therefore lives in scripts/lib/VerificationBoundaries.ps1 (not protected) and is memoized on the boundary array instance so the guard's own walk benefits without editing the guard.",
+    "The doc-citations guard red standing at the head is routed to trade-network, npc-story-events and world-stage (rows filed 2026-09-21) and is not this lane's work; this lane additionally filed SSH-F1 in tasks/strain-splice-host-todo.md for that program's own four D2 findings."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 89c9040e has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/tvb59",
+    "branchTip": "89c9040e",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 89c9040e has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

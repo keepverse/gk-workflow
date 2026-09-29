@@ -1,0 +1,22 @@
+{
+  "session": "strengthen-sgc-20260918",
+  "program": "species-gear-chain",
+  "problem": "Adversarial strengthen pass over species-gear-chain map and specs (R9/R10 conformance, citations, craft-assurance ward fix, drop-table validator codes, admission, materials version sequencing) plus stale R9 wording in three source ideals.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/species-gear-chain-map.md",
+    "docs/architecture/species-gear-chain/*.md",
+    "docs/architecture/species-craft-ideal.md",
+    "docs/architecture/species-selection-ideal.md",
+    "docs/architecture/gear-climb-ideal.md",
+    "docs/architecture/creature-seed-map.md",
+    "tasks/sessions/strengthen-sgc-20260918.json"
+  ],
+  "started": "2026-09-18T00:00:00Z",
+  "status": "merged",
+  "notes": [
+    "creature-seed-map.md: one row only (ask 4, the C# speciesKind mirror) — the cross-program filing the species-gear-chain map requires; no other creature-seed text touched."
+  ]
+}

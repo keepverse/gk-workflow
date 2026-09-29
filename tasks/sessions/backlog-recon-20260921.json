@@ -1,0 +1,20 @@
+{
+  "session": "backlog-recon-20260921",
+  "program": "cross-program (measurement)",
+  "problem": "Measure the real remaining backlog per program by TASK HEADINGS, not unchecked lines: the burn-down counts `- [ ]` lines, a line is usually an acceptance box inside a task, and tasks/species-gear-chain-todo.md's header states outright that its shipped tasks' boxes are their original contract and were not re-ticked -- so a shipped task contributes ~6-10 permanently-open lines. Report how far that clause spreads across program headers (the manager verified it on ONE program only), spot-check tick state against the tree, measure the manager's own load (programs with lanes, merges pending, acceptance turnaround from .claude/cmdc-agents/acceptance/*.json timestamps), and propose a replacement metric that does not pin a population count.",
+  "mode": "worktree",
+  "branch": "cmdc/recon-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-recon-1",
+  "paths": [
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-21T22:30:00Z",
+  "status": "merged",
+  "notes": [
+    "Fence is deliberately one path: this lane reads everything and writes one report. It owns no program, opens no todo rows, and applies no metric change -- it proposes both and the manager routes them.",
+    "Why the owner asked for it: a lane-count and program-split decision was about to be made on a number the manager had just shown to be unreliable, and the same mistake one level up would have added management capacity for work that largely does not exist.",
+    "Deliverable: tasks/reports/backlog-reconciliation-20260921.md; see .claude/cmdc-agents/briefs/recon-1.md for the five required sections and the evidence contract.",
+    "Merged 2026-09-22 at 15d3a64d9 (its single commit a23566875 added tasks/reports/backlog-reconciliation-20260921.md, +627 lines; fence respected, nothing else touched). Lane retired: a measurement lane has no follow-on work once its report lands and its nine findings are routed (RECON-F1..F9).",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

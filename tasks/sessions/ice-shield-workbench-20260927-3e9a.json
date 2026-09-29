@@ -1,0 +1,17 @@
+{
+  "session": "ice-shield-workbench-20260927-3e9a",
+  "program": "blender-ice-shield",
+  "problem": "Create a clean, reusable Blender workbench scene for the ice shield with distinct event assets and render-ready lookdev.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/sessions/ice-shield-workbench-20260927-3e9a.json",
+    "blender/vfx/shield_ice_lifecycle/ice_shield_reusable_workbench.blend",
+    "blender/vfx/shield_ice_lifecycle/README.reusable-workbench.md",
+    "blender/vfx/shield_ice_lifecycle/lookdev/reusable-workbench/**"
+  ],
+  "started": "2026-09-27T00:00:00Z",
+  "status": "merged",
+  "notes": "Owner confirmed this session may work in blender/ while the other active branch work does not touch it. The global session-boundary check was already reporting repository drift before this session began; record and edits stay limited to the paths listed here."
+}

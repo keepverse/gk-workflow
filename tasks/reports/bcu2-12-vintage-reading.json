@@ -1,0 +1,58 @@
+{
+ "reading": "BCU2.12/J13 \u2014 shared-tree prompt-version vintage, model-free (no writes)",
+ "repoHead": "7785aa934",
+ "sharedTrees": 42,
+ "planTrees": 42,
+ "planTreesWithoutNodeFile": [],
+ "nodeFilesWithoutPlan": [
+  "AbyssSwordStar",
+  "AcientSunNut",
+  "AllPeater",
+  "Apple",
+  "ArmedGargantuar",
+  "ArmoredImpZombie",
+  "AshThreePeater",
+  "BalloonZombie",
+  "BambooDragon"
+ ],
+ "promptVersionInCode": "tree-language/3",
+ "fileLevelPromptVersion": {
+  "mixed": 20,
+  "tree-language/1": 22
+ },
+ "nodeLevelPromptVersion": {
+  "tree-language/3": 613,
+  "(absent)": 1066
+ },
+ "filesWithMixedNodeVintage": 20,
+ "mixedSamples": [
+  {
+   "tree": "agility",
+   "nodes": {
+    "tree-language/3": 39,
+    "(absent)": 1
+   }
+  },
+  {
+   "tree": "air",
+   "nodes": {
+    "tree-language/3": 37,
+    "(absent)": 3
+   }
+  },
+  {
+   "tree": "blight",
+   "nodes": {
+    "(absent)": 7,
+    "tree-language/3": 33
+   }
+  },
+  {
+   "tree": "bond",
+   "nodes": {
+    "tree-language/3": 34,
+    "(absent)": 6
+   }
+  }
+ ]
+}

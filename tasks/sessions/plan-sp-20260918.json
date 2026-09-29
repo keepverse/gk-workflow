@@ -1,0 +1,15 @@
+{
+  "session": "plan-sp-20260918",
+  "program": "species-progression",
+  "problem": "Write the species-progression implementation plan and task list (prefix SP) from the capability map and its seven module specs, under the summoner-convergence parent plan (lane B, hard edges H1/H2). Plan docs only; no code, data, tuning, specs or maps edited.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/species-progression-plan.md",
+    "tasks/species-progression-todo.md",
+    "tasks/sessions/plan-sp-20260918.json"
+  ],
+  "started": "2026-09-18T22:00:00Z",
+  "status": "merged"
+}

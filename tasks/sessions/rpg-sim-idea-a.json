@@ -1,0 +1,20 @@
+{
+  "session": "rpg-sim-idea-a",
+  "program": "rpg-simulator",
+  "problem": "Idea stage only: survey the RPG-feature simulator surface that already exists, inventory the RPG families a simulator must drive end to end, and deliver one idea document with divergent options, a recommended shape and a first slice. No product code, no tests, no scripts.",
+  "mode": "worktree",
+  "branch": "cmdc/sim-idea-a",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-sim-idea-a",
+  "paths": [
+    "docs/architecture/rpg-simulator-idea.md",
+    "tasks/rpg-simulator-todo.md",
+    "tasks/sessions/rpg-sim-idea-a.json"
+  ],
+  "started": "2026-09-22T13:34:26Z",
+  "status": "merged",
+  "notes": [
+    "Worktree path is ABSOLUTE on purpose: docs/contributing/session-boundary.md §1 requires it and verify-change.ps1 reports a relative one as DRIFT (measured on lane isg-gen-fix).",
+    "`paths` is deliberately file-exact rather than `docs/architecture/**`: the lane is a single idea document plus one carried-finding row, and a directory-wide glob would claim every other program's architecture docs in this worktree.",
+    "No product code, no test edits and no script edits — the brief's fence. Nothing outside these three files was written."
+  ]
+}

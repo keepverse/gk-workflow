@@ -1,0 +1,15 @@
+{
+  "session": "action-presentation-vfx-idea-20260926",
+  "program": "action-presentation-vfx",
+  "problem": "Capture the reusable action-presentation timeline direction discovered after the Earth VFX pilot, without implementing a second VFX path.",
+  "mode": "worktree",
+  "branch": "codex/actor-hud-bottom-anchor-20260916",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.kilo/worktrees/actor-hud-bottom-anchor-20260916",
+  "paths": [
+    "docs/architecture/action-presentation-vfx-ideal.md",
+    "tasks/elemental-action-vfx-plan.md",
+    "tasks/sessions/action-presentation-vfx-idea-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged"
+}

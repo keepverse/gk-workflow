@@ -1,0 +1,38 @@
+{
+  "session": "empire-development-20260915-b7e2",
+  "program": "empire-development",
+  "problem": "Build full Phase 0-3",
+  "mode": "worktree",
+  "branch": "worktree-empire-development-20260915-b7e2",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.kilo/worktrees/empire-development-20260915-b7e2",
+  "paths": [
+    "docs/architecture/empire-development-map.md",
+    "docs/architecture/scoped-inventory-hierarchy-map.md",
+    "docs/architecture/loam-relics-and-wonders-map.md",
+    "docs/architecture/scoped-inventory-hierarchy/**",
+    "docs/architecture/loam-relics-and-wonders/**",
+    "docs/architecture/deployment-hierarchy/spec-corpse-cache.md",
+    "docs/architecture/deployment-hierarchy/spec-cache-decay-void.md",
+    "docs/architecture/deployment-hierarchy/spec-cache-field-access.md",
+    "tasks/empire-development-plan.md",
+    "tasks/empire-development-todo.md",
+    "tasks/sessions/empire-development-20260915-b7e2.json",
+    "src/FusionRpg.Data/Sqlite/**",
+    "src/FusionRpg.Core/World/**",
+    "src/FusionRpg.Core/Items/**",
+    "tools/seedsmith/seedsmith/adapters/items/**",
+    "tools/ItemSeedValidator/**",
+    "data/seed/items/drop-tables/**",
+    "data/tuning/loam-relics-wonders.v1.json",
+    "data/tuning/loam.v*.json",
+    "tests/FusionRpg.Data.Tests/**",
+    "tests/FusionRpg.Core.Tests/**"
+  ],
+  "started": "2026-09-15T14:45:00Z",
+  "status": "merged",
+  "scopeNote": "2026-09-15 owner answers verbatim: problem=Build full Phase 0-3, mode=worktree, branch=worktree branch, paths=Full program incl code. Worktree isolates from solid-run-20260912-eb53 broad src/**/docs/architecture/** claim (scopeAmended8 notes that session edits main worktree despite worktree record) and from 5 direct sessions on features/derived-stat-extension. Record written uncommitted; to be committed with first change via repo-git.commit with explicit paths.",
+  "completionNote": "2026-09-13 build complete in worktree (38a153fe + work). All 18 plan tasks built, tested, guards green. Root repairs: WonderCatalogTests relicCost fixture, test_items_adapter naming 6-7, droptablegen newline fix, ContainerKind 11-12 pins, loam v4-v5 reader flip (16 files), runtime-corpus relic-row ask filed (§Design 4b). Boundary stretch disclosed: src/FusionRpg.Server/Program.cs +3 lines (tuning-load wiring, required) is outside paths — owner to include explicitly at commit. Remaining suite failures all foreign/pre-existing: DungeonLootTableSeedFileTests CRLF (delve generator), 2x CreatureSpeciesImportCliTests drift. CacheDecay tuning constants: accepted deviation pending sibling domain file. Commits pending — no repo-git MCP in this environment; owner commits/merges worktree branch.",
+  "notes": [
+    "Marked merged 2026-09-17 by solid-remediation T0.1. Evidence: `git merge-base --is-ancestor <branch> features/mega-merge` returned 0 for this record's branch, so its work is fully contained in the remediation branch. Owner ruling 2026-09-17: \"there are no active session, i don't control any agent, only you work here so we can build whatever we want, everything already merged.\" The record was left `active` as stale metadata; a permanently dirty session-boundary-check is one everyone learns to ignore."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "session": "resume-14-tvb-f36-classifier-20260925",
+  "program": "test-verification-boundary",
+  "problem": "Repair the H-checkbox-heading task-block classifier so checked checkbox headings are closed, with a regression test and reproducible census evidence.",
+  "mode": "worktree",
+  "branch": "review/tvb-f36-classifier-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-tvb-f36-classifier-20260925",
+  "paths": [
+    "scripts/audit-program-pipeline.py",
+    "tests/tools/test_audit_program_pipeline.py",
+    "scripts/todo-shapes.v1.json",
+    "tasks/reports/resume-14-tvb-f36-classifier-20260925.md"
+  ],
+  "started": "2026-09-25T10:50:00Z",
+  "status": "merged",
+  "notes": "TVB-F36 classifier repair accepted at exact SHA a3660c664d99c36cc33944df192ad6a2db8534ee, clean checkout passed, and merged at 7ca9ee8b4ade30309117525e17f3c609d4ea33ff. Artifact: .claude/cmdc-agents/acceptance/resume-14-tvb-f36-20260925-a3660c66.json. Separate stale/contradictory ledger rows remain open."
+}

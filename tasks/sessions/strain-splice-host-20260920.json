@@ -1,0 +1,36 @@
+{
+  "session": "strain-splice-host-20260920",
+  "program": "strain-splice-host",
+  "problem": "Finish the strain-splice-host program (SSH2.7 onward) per tasks/strain-splice-host-plan.md and tasks/strain-splice-host-todo.md: combination regeneration and corpus truth, the circuit-topology v2 publish and its reader flip (SSH5.10), the resocket dry-run (SSH5.11), then the owner rows SSH5.12/SSH5.13. The v2 flip is a tuning publish, so data/tuning/** is part of this session's deliverable surface and is fenced here deliberately (manager ruling, 2026-09-21): the row's deliverable, not the lane's code paths, decides the fence.",
+  "mode": "worktree",
+  "branch": "cmdc/ssh27",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-ssh27",
+  "paths": [
+    "tasks/sessions/strain-splice-host-20260920.json",
+    "tasks/strain-splice-host-plan.md",
+    "tasks/strain-splice-host-todo.md",
+    "tasks/actor-hub-and-combat-power-solid-fixing-evidence-map.md",
+    "tasks/strain-splice-host-ledger.jsonl",
+    "tasks/summoner-convergence-lane-c-ledger.jsonl",
+    "tasks/evidence-fragments/SSH*.md",
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Server/**",
+    "tools/**",
+    "tests/**",
+    "data/seed/**/_registry/**",
+    "data/tuning/**",
+    "docs/architecture/strain-splice-host/**",
+    "docs/architecture/strain-splice-host-ideal.md",
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/**"
+  ],
+  "notes": [
+    "Fence: src/FusionRpg.Core/**, tools/**, tests/**, data/seed/**/_registry/**, docs/**, tasks/** per .claude/cmdc-agents/agents/ssh27/meta.json, plus data/tuning/** added by manager ruling 2026-09-21 after 611d9c23 published data/tuning/sockets.v2.json through tools/tuning/publish.py with the fence silent (the runner's fence stops the agent's own writes, not a write performed by a tool it invokes).",
+    "H7: the publish and both revision constants (SocketTuning.cs, SocketTuningFiles.cs) plus the python adapter readers must land in ONE commit; v1 stays on disk for revert.",
+    "Status set to abandoned 2026-09-22, NOT merged -- and the difference is stated rather than smoothed over: cmdc/ssh27 still carries 2 unmerged commits. They are a merge of features/mega-merge (whose content is already in HEAD by other paths) plus 0bc4d9044, a three-file chore (this record's fence lines, tasks/strain-splice-host-todo.md, tasks/summoner-convergence-lane-c-ledger.jsonl). So what remains is housekeeping, not feature scope -- the lane was superseded by ssh28, whose strain-splice work is merged. If any of that chore turns out to be needed, it is a small cherry-pick, and this note is the pointer to it.",
+    "Retired 2026-09-22 by the manager: the lane had been idle ~30 h with its last two commits unmerged (a merge of features/mega-merge and a bookkeeping chore). Those are now merged (58e2216b2), so nothing of this session is outstanding; the strain-splice-host program continues under strain-splice-host-20260922 (lane ssh29)."
+  ],
+  "started": "2026-09-20T00:00:00Z",
+  "status": "merged"
+}

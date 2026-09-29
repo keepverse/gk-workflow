@@ -1,0 +1,27 @@
+{
+  "session": "design-gate-split-20260927",
+  "program": "docs-consolidation",
+  "problem": "Split the DESIGN-GATE.md section 1 reading index into a compact index plus 10 per-category files on the same 12-category taxonomy as decisions.md, and add the read/save-by-category rule to AGENTS.md.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/DESIGN-GATE.md",
+    "AGENTS.md",
+    "scripts/split-design-gate.py",
+    "tasks/sessions/design-gate-split-20260927.json",
+    "docs/design-gate/combat.md",
+    "docs/design-gate/content-gen.md",
+    "docs/design-gate/game-host.md",
+    "docs/design-gate/persistence.md",
+    "docs/design-gate/power-caps.md",
+    "docs/design-gate/presentation.md",
+    "docs/design-gate/progression.md",
+    "docs/design-gate/repo-tooling.md",
+    "docs/design-gate/stats.md",
+    "docs/design-gate/world.md"
+  ],
+  "started": "2026-09-27T00:00:00Z",
+  "status": "merged",
+  "notes": "DONE in 5996ad7f1. DESIGN-GATE.md went 53,240 -> 24,355 bytes with the line count unchanged at 250, and the 36 section 1 rows moved into 10 files under docs/design-gate/. AGENTS.md gained the read/save-by-category rule with a routing table naming both lock files and both generators. Verified after the fact: all 62 line anchors re-checked with 0 mismatches, lines 66+ byte-identical, all 7 section headings intact at their original lines, audit-doc-citations.py 0 HIGH across 26,024 citations, 0 broken index links. One defect the generator's own verification caught: section 1 topics are already bolded, so the first run produced **** and 59 anchors mismatched; fixed by only adding emphasis when absent. NOT DONE: the 16 load-bearing invariants in section 2, the 7 evidence rules, the 4-part failure log and the section 5 checklist are deliberately NOT split - they are cited by section name and are the part of the gate that must be read whole before any proposal."
+}

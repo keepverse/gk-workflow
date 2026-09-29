@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>stock-row — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>stock-row</code></h1>
+  <p class="lede">ERM Row — one carried / stored / cache stack. Owned here per <code>spec-legion-sheet.md §Design 4</code>; wonder + <code>storage-cache-ui</code> consume by name. Shape-reference is <code>channel-row</code> (identity + columns + selectable + state class); Relics <code>RelicRow</code> is shape precedent, not code reuse. Icon via catalog <code>hudToken</code>/icon through the locked set (<code>lucide-react</code>) — never id-slice. Name from the catalog join the fold performs — never a prettified id; missing-name rows render <code>#&lt;seq&gt;</code> + <code>phase-badge</code> unknown. Count is <code>Qty</code> (<code>long</code>); weight is <code>RowWeight</code> snapshot (<code>long</code>), never re-derived. State is first-class: <code>carried | stored | fits | left-behind:&lt;gate&gt; | refused:&lt;key&gt;</code>. Copy fold-supplied, verbatim.</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> Names below are placeholders (idea-ui-phase §1). Status: <strong>owner-accepted 2026-09-16</strong> (see <code>recipes/legion-sheet-cargo.ACCEPTANCE.md</code>).</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live)</h2>
+      <div class="piece-stage" style="display:grid;gap:8px;max-width:520px;">
+        <div data-testid="cargo-stock-row" data-seq="0" data-state="carried" class="row is-selected" style="display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);">
+          <span data-testid="stock-row-icon" aria-hidden="true" style="width:28px;height:28px;border-radius:6px;background:var(--soil-raised);display:inline-flex;align-items:center;justify-content:center;color:var(--text);">◈</span>
+          <span style="min-width:0;flex:1;"><span data-testid="stock-row-name" style="display:block;font-size:13px;color:var(--text);">DRAFT: Field rations</span><span data-testid="stock-row-meta" style="display:block;font-size:11px;color:var(--muted);">stack · ×4</span></span>
+          <span data-testid="stock-row-weight" style="font-size:12px;color:var(--muted);">20 wt</span>
+          <span data-testid="stock-row-state" data-state="carried" style="font-size:11px;color:var(--muted);">carried</span>
+        </div>
+        <div data-testid="cargo-stock-row" data-seq="7" data-state="left-behind:weight" class="row" style="display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);">
+          <span aria-hidden="true" style="width:28px;height:28px;border-radius:6px;background:var(--soil-raised);display:inline-flex;align-items:center;justify-content:center;color:var(--text);">⬢</span>
+          <span style="min-width:0;flex:1;"><span style="display:block;font-size:13px;color:var(--text);">DRAFT: Salvaged plate</span><span style="display:block;font-size:11px;color:var(--muted);">stack · ×2</span></span>
+          <span style="font-size:12px;color:var(--muted);">64 wt</span>
+          <span data-testid="stock-row-state" data-state="left-behind:weight" style="font-size:11px;color:var(--text);">left behind — too heavy</span>
+        </div>
+        <div data-testid="cargo-stock-row" data-seq="9" data-state="refused:cargo.full.slots" class="row" style="display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:var(--panel-inset);">
+          <span aria-hidden="true" style="width:28px;height:28px;border-radius:6px;background:var(--soil-raised);display:inline-flex;align-items:center;justify-content:center;color:var(--text);">?</span>
+          <span style="min-width:0;flex:1;"><span style="display:block;font-size:13px;color:var(--text);">#9</span><span style="display:block;font-size:11px;color:var(--muted);">unknown · phase-badge</span></span>
+          <span style="font-size:12px;color:var(--muted);">10 wt</span>
+          <span data-testid="stock-row-state" data-state="refused" style="font-size:11px;color:var(--text);">DRAFT: The packs are full.</span>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "stock-row",
+  "instanceId": "stock:e-dave-legion-1:0",
+  "seq": 0,
+  "kind": "stack",
+  "iconRef": { "catalogIcon": "package" },
+  "name": "DRAFT: Field rations",
+  "countText": "×4",
+  "weightText": "20 wt",
+  "state": "carried",
+  "copyKey": null,
+  "copy": null,
+  "themeRef": { "kind": "rarity", "id": "sprout" },
+  "phase": "ready"
+}</pre>
+      <h2 style="margin-top:12px;">Contract notes</h2>
+      <pre>One row = one slot. Empty packs render phase-empty
+with next action, never a blank tab.
+Missing name: "#&lt;seq&gt;" + phase-badge unknown,
+never blank, never prettified id.
+Claim states first-class: skipped cache rows stay
+visible as left-behind with gate; refused action rows
+carry copy key. Tool-search filters folded rows by
+name only — never hides a refused row.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

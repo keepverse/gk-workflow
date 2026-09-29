@@ -1,0 +1,33 @@
+{
+  "session": "creature-seed-rederive-20260918",
+  "program": "creature-seed",
+  "problem": "Implement the four owner rulings recorded in docs/architecture/creature-seed-ideal.md (R-CS1..R-CS4, 2026-09-17): export the game's own type_base_stats sweep as a committed dump artifact, re-derive every species anchor's `basis` from it, and add the closed SPECIES_KIND mark so the 12 phantom rows are tracked as `excluded` rather than deleted.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "src/FusionRpg.Core/Creatures/Generation/DumpEnvelope.cs",
+    "tools/CreatureCorpusDump/**",
+    "tests/FusionRpg.Core.Tests/Creatures/CorpusDumpTests.cs",
+    "tools/seedsmith/seedsmith/adapters/creatures/**",
+    "tools/seedsmith/seedsmith/report/cli.py",
+    "tools/seedsmith/tests/test_species_kind_and_measured_basis.py",
+    "tools/seedsmith/tests/test_run_runner.py",
+    "tools/seedsmith/tests/test_anchor_emit.py",
+    "data/seed/creatures/_dump/type-base-stats.json",
+    "data/seed/creatures/species/**",
+    "docs/architecture/creature-seed-ideal.md",
+    "tasks/sessions/creature-seed-rederive-20260918.json"
+  ],
+  "notes": [
+    "⚠ OVERLAP TO REVIEW: solid-remediation-20260917 is `active` and declares SOLE WRITER over `src/**`, `tests/**`, `tools/**`, `data/seed/**`, with a note that its build-break permission 'lapses if another session starts on this branch'. No FILE this session touches is one solid-remediation touches (that program is ActorHub/battle-engine ownership; this one is the creature-seed corpus), and scripts/session-boundary-check.ps1 reports clean — but the glob claim covers these paths, so the owner should decide whether solid-remediation's exclusivity note still holds.",
+    "This record was written mid-session rather than before the first edit: the session was started by a parent agent with an explicit task and no /session-start ran. Flagged rather than backdated.",
+    "Deliberate scope boundary: `threatBand` is NOT re-scored. Measured 2026-09-18 — re-scoring from the measured stats against the shipped creature-threat.v1.json moves 498 of 904 rows and empties rungs the tuning file's own `_note` exists to keep occupied, because v1's boundaries are deciles of the OLD almanac-parsed distribution. Re-fitting them is a creature-threat.v2.json publish (a balance change with a Theta/magnitude cascade), not a data re-derivation.",
+    "data/generated/creatures/** is deliberately NOT in paths: CreatureSpeciesGen --check is clean after the re-derivation, because `basis` and `speciesKind` are not fields of ConcreteSpecies. Zero generated-tree diff is the expected outcome, not a missed regeneration.",
+    "data/generated/passive-tree/** is another session's dirty work and is untouched."
+  ],
+  "started": "2026-09-18T00:00:00Z",
+  "status": "merged",
+  "scopeNote": "",
+  "closedNote": "Superseded 2026-09-18: owner ruled only summoner-convergence builds on this branch (direct, no worktrees). Released to summoner-convergence-impl-20260918."
+}

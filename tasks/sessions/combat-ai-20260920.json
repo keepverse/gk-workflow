@@ -1,0 +1,43 @@
+{
+  "session": "combat-ai-20260920",
+  "program": "combat-ai",
+  "started": "2026-09-21T02:05:00+07:00",
+  "status": "merged",
+  "mode": "worktree",
+  "branch": "cmdc/combat-ai-2",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-combat-ai-2",
+  "problem": "Finish the combat-AI program's wave-1 tail (CAI1.12 lawn half + the opcode-tuning erratum, CAI1.14 decision-perf allocations, CAI1.15's two index-document edits) and then take wave 2, in the todo's own order.",
+  "paths": [
+    "tasks/sessions/combat-ai-20260920.json",
+    "tasks/combat-ai-todo.md",
+    "tasks/combat-ai-plan.md",
+    "tasks/combat-ai-ledger.jsonl",
+    "tasks/evidence-fragments/CAI1.12.md",
+    "tasks/evidence-fragments/CAI1.12-injector.md",
+    "tasks/evidence-fragments/CAI1.14.md",
+    "tasks/evidence-fragments/CAI1.15.md",
+    "src/FusionRpg.Core/Actions/**",
+    "src/FusionRpg.Core/Battle/**",
+    "src/FusionRpg.Core/Balance/**",
+    "src/FusionRpg.Core/Delve/**",
+    "tests/FusionRpg.Core.Tests/Actions/**",
+    "tests/FusionRpg.Core.Tests/Battle/**",
+    "tests/FusionRpg.Core.Tests/Balance/**",
+    "tests/FusionRpg.Core.Tests/World/Turn/**",
+    "tests/FusionRpg.Core.Tests/Delve/Battle/**",
+    "docs/architecture/combat-ai/**",
+    "docs/architecture/combat-ai-ideal.md",
+    "docs/DESIGN-GATE.md",
+    "tools/CombatSim/**"
+  ],
+  "notes": [
+    "Session id and branch come from .claude/cmdc-agents/briefs/combat-ai-2.md.",
+    "Fence excludes tests/FusionRpg.Guard.Tests/**: CAI-guard-1 is routed to tvb58; the pin is not this lane's to move.",
+    "Never add a knownRed entry: those registrations belong to test-verification-boundary.",
+    "tasks/** is not claimed as a whole directory, so this record cannot collide with another lane's fragment.",
+    "Added by the lane itself: tools/CombatSim/** is also this lane's (CAI2.3's sim-side mirror in ActionEconomy.cs), because the brief's allowlist named it and it was written.",
+    "The lane's brief-fence excluded src/FusionRpg.Core/{Stats,Diagnostics}/** and {Data,Server,Injector}/**, which is why CAI1.14's site 5 (channel-id interning), PerfProbe.cs, and CAI2.1/CAI2.2's Data+Server halves are filed rather than built.",
+    "Status set to merged 2026-09-22: lane combat-ai-2 was superseded after draining, its work is in (accepted and merged earlier this session), and cmdc/combat-ai-2 has 0 unmerged commits. The record stayed 'active' for days, which is what makes a fence collide with every later lane -- the check skips a collision only when both records are worktree-mode AND it skips nothing when a stale record's branch is gone.",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

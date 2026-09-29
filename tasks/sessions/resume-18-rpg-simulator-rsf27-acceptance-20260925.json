@@ -1,0 +1,17 @@
+{
+  "session": "resume-18-rpg-simulator-rsf27-acceptance-20260925",
+  "program": "rpg-simulator",
+  "problem": "Manager exact-SHA acceptance of the RS-F27 real-run progression-ledger measurement and legal-empty policy; no fabricated outcomes or production seed seam.",
+  "mode": "worktree",
+  "branch": "review/rpg-simulator-rsf27-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-rpg-simulator-rsf27-20260925",
+  "paths": [
+    "tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs",
+    "tests/fixtures/rpg-scenarios/first-session-forward.json",
+    "tasks/reports/resume-13-rpg-simulator-rsf27-20260925.md",
+    "tasks/reports/resume-18-rpg-simulator-rsf27-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T13:00:00Z",
+  "status": "merged",
+  "notes": "Manager clean-checkout acceptance completed at reviewed SHA 912e041d27774ac804ba8f418e9644dfd22b8c97 and merged at ef009d9a154090a6affa31acb5b9f18a33baef54. Focused/clean validation and scoped E2E 281/281 passed. Artifact: .claude/cmdc-agents/acceptance/resume-18-rpg-simulator-rsf27-20260925-912e041d.json. Deterministic outcome seam remains open."
+}

@@ -1,0 +1,20 @@
+{
+  "session": "resume-01-delve-owner-20260925",
+  "program": "party-dungeon",
+  "problem": "Close the confirmed Delve wild/cage caller-controlled outcome, candidate, party eligibility, and price P1 within the server/data fence.",
+  "mode": "worktree",
+  "branch": "opencode/resume-01-delve-owner-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-01-delve-owner-20260925",
+  "paths": [
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Core/Delve/Loot/DelvePrices.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Core.Tests/Delve/Loot/DelvePricesTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/DelveWildTransactionTests.cs",
+    "tasks/reports/resume-01-delve-owner-20260925.md"
+  ],
+  "started": "2026-09-25T06:57:43Z",
+  "status": "abandoned",
+  "notes": "Worker failed after leaving a six-file dirty Delve draft with no report. The failure was an unrelated external-directory permission rejection during process/build-lock investigation, not an acceptance result. The draft is preserved; a narrow recovery lane will review/finish it, run only the declared focused tests, and produce the required report. No code is accepted or merged from this session."
+}

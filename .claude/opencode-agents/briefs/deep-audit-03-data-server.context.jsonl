@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Hard boundaries in the current repository state: SQL only inside FusionRpg.Data; store tests run in memory unless disk is the subject; failed temp deletion is a failure; RPG Server Debug evidence must use a real application/domain/persistence path and read the record back normally."}
+{"kind":"fact","text":"The integration branch has had recent Data/Server and expedition changes. Treat QC labels as unverified until the current source and focused tests agree."}

@@ -1,0 +1,42 @@
+{
+  "session": "diskw-fix",
+  "program": "data-test-substrate",
+  "problem": "Stop the default profile and the E2E host writing to the SSD: enforce the memory-DB rule. Boot the real server on the memory plan when FUSIONRPG_DATA is a shared-memory URI, make RpgApiFactory the memory host (keeper field, no data directory, no create, no delete) with a file-bound host only for the genuinely disk-subject E2E suites, tag the five untagged file-backed Data.Tests classes DiskSemantics, and close the guard hole with a contract rule that refuses an untagged file-backed store.",
+  "mode": "worktree",
+  "branch": "cmdc/diskw-fix",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-diskw-fix",
+  "paths": [
+    "tasks/sessions/diskw-fix.json",
+    "src/FusionRpg.Server/Program.cs",
+    "tests/FusionRpg.Data.Tests/**",
+    "tests/FusionRpg.E2E.Tests/**",
+    "tests/FusionRpg.Guard.Tests/**",
+    "scripts/guard-test-substrate.ps1",
+    "scripts/test-substrate-baseline.txt",
+    "docs/contributing/testing-standard.md",
+    "tasks/data-test-substrate-todo.md",
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-23T02:00:00+07:00",
+  "status": "abandoned",
+  "notes": [
+    "worktree is ABSOLUTE (the sibling lane arch-d-20260922.json recorded a relative one; this brief requires absolute).",
+    "No test was removed, weakened, skipped or baselined to get here: the E2E id set is unchanged (234 ids, sha256 b52d40b3...), the guard's baseline only shrank (29 -> 28 lines, the RpgApiFactory.cs temp-store exemption retired by making the file stop matching), and no baseline exemption was added.",
+    "The pipeline hook refuses edits to tests/FusionRpg.Guard.Tests/TestSubstrateGuardTests.cs (the gate's own self-test), so the brief's in-repo case proving the new rule bites could not be added; the rule is proven by a planted-probe run against a gitignored tree under tests/FusionRpg.Guard.Tests/TestResults/diskw-probe (recorded as a blocker note).",
+    "docs/architecture/** is deliberately untouched: the sibling lane diskw-arch owns the design half."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 2ae4745c has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/diskw-fix",
+    "branchTip": "2ae4745c",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 2ae4745c has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

@@ -1,0 +1,15 @@
+# SE4.4 — Tests, the Open/Closed proof, the guard, the seed name, the doc move
+
+Spec: docs/architecture/solid-enforcement/spec-commander-identity.md
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| Tests migrated; `CommanderIdTests`' count pin deleted with its reason; `KillAttributionTests` assert membership in the directory's rows | `dotnet test tests\FusionRpg.Core.Tests --filter "FullyQualifiedName~Commander\|FullyQualifiedName~KillAttribution\|FullyQualifiedName~SpeciesAllocation" -v q --nologo` | pass — 124/124. `CommanderIdTests` is retargeted at the directory and no longer pins a count (`CommanderIds.All` is gone, so "two" is a reading); `KillAttributionTests.AssertIsAnEmpireOfTheDirectory` asserts every credited empire resolves through the shipped registry | `tests/FusionRpg.Core.Tests/Commanders/CommanderIdTests.cs` |
+| The **third-commander** test: an in-memory directory row runs a lawn allocation plus kill attribution with zero production edits | same Core filter | pass — `ThirdCommanderOpenClosedTests.A_third_commander_row_runs_a_lawn_session_and_kill_attribution_with_no_production_edit` | `tests/FusionRpg.Core.Tests/Commanders/ThirdCommanderOpenClosedTests.cs` |
+| `SeedPlayerIfEmpty` names an empty-save player "Crazy Dave" (declared once, comment names the owner's onboarding idea; `'Player 1'` gone); a test reads the player's name back through `/api/commanders/{id}` | `dotnet test tests\FusionRpg.Server.Tests --filter "FullyQualifiedName~Commander" -v q --nologo` | pass — 28/28; `CommanderListEndpointsTests.List_fresh_save_...` asserts the save's player is `"Crazy Dave"` and the commander row's `DisplayName` equals it | `gk-core/src/FusionRpg.Data/Sqlite/RpgStore.cs` (`OnboardingPlayerName`) |
+| `guard-open-identity.ps1` (I1/I2) with falsifiers, registry row `gating` | — | **BLOCKED** — `scripts/guard-open-identity.ps1` and `gk-core/tests/FusionRpg.Guard.Tests/**` are protected pipeline files; the write was refused. Owed: I1 = no `enum *Id/*Ids` under `Core/Commanders` or `Core/World`; I2 = no `switch` on `EmpireId`/`CommanderRef` in `src/`; one falsifier per rule; registry row `gating` (the spec's "The regression guard" section is the source) | — |
+| `empire-progression-ideal.md` section marked moved; SR-20 struck | (read) `docs/architecture/empire-progression-ideal.md:746` | pass — the "➡️ The SOLID fix moved to `solid-enforcement`" banner is already present (2026-09-18); SR-20 struck with the SHA in the debt ledger | `docs/architecture/solid-enforcement/spec-debt-ledger.md:46` |
+| Full suite green once, no golden moved | — | **orchestrator-owned gate** (AGENTS.md full-suite conditions); not run by this agent | — |
+| Verify (focused) | `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~PlayerCommander\|…\|FullyQualifiedName~Player" -v q --nologo` | pass — 101/101 after the seed rename | — |
+
+Open (not mine to fix here): `docs/ideas/onboarding-progression.md`, `docs/architecture/standalone/spec-first-session-progression.md` and `docs/architecture/solid-enforcement-map.md:314` still describe the seed as `Player 1` (idea docs and one "before" description).

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-20-rpg-sim-defeat-floor-review-20260925",
+  "sha": "4f78ed6c9ebe744c2b69232d325a67348161326f",
+  "expectedSha": "4f78ed6c9ebe744c2b69232d325a67348161326f",
+  "shortSha": "4f78ed6c",
+  "verdict": "GREEN",
+  "scope": "RS-F27 exact player:defeat progression-ledger floor; test-only follow-up with legal-empty victory/stalemate branch preserved",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925",
+  "checks": [
+    {
+      "check": "restore",
+      "command": "dotnet restore tests/FusionRpg.E2E.Tests/FusionRpg.E2E.Tests.csproj --nologo",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "E2E and dependent projects restored",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/restore.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "rs-f27-20-sample-review",
+      "command": "$env:FUSIONRPG_RSF27_SAMPLES = '20'; dotnet test tests/FusionRpg.E2E.Tests/FusionRpg.E2E.Tests.csproj --nologo --no-restore --filter \"FullyQualifiedName~RS_F27_measures_progression_ledger_non_vacuity_across_real_runs\" --logger \"console;verbosity=detailed\"",
+      "exit": 0,
+      "seconds": 288,
+      "summary": "Passed 1, Failed 0, Total 1; 20/20 real samples; all defeat; every sample read exact player:defeat",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/review-rsf27.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "rs-f27-20-sample-clean",
+      "command": "$env:FUSIONRPG_RSF27_SAMPLES = '20'; dotnet test tests/FusionRpg.E2E.Tests/FusionRpg.E2E.Tests.csproj --nologo --no-restore --filter \"FullyQualifiedName~RS_F27_measures_progression_ledger_non_vacuity_across_real_runs\" --logger \"console;verbosity=detailed\"",
+      "exit": 0,
+      "seconds": 293,
+      "summary": "Detached checkout at reviewed SHA; Passed 1, Failed 0, Total 1; 20/20 exact player:defeat rows",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/clean-rsf27.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "scoped-verification",
+      "command": ".\\scripts\\verify-change.ps1 -Paths @('tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs','tasks/reports/resume-20-rpg-simulator-defeat-floor-20260925.md') -Session resume-20-rpg-sim-defeat-floor-review-20260925",
+      "exit": 0,
+      "seconds": 573,
+      "summary": "Test substrate guard passed; E2E 281 passed, 0 failed, 0 skipped; Guard 689 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/scoped-verify.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "sim-fabrication-guard",
+      "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/guard-sim-fabrication.ps1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "SIM FABRICATION GUARD OK; scenarios=1, steps=36, reads=7, sanctioned test.* steps=1",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/sim-fabrication.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "report-citations",
+      "command": "python scripts/audit-doc-citations.py --scope tasks/reports/resume-20-rpg-simulator-defeat-floor-20260925.md --strict",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "6 resolvable citations; 0 HIGH findings",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/citations.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git status --porcelain=v1 --untracked-files=all; git diff --check 6d77888cca860805e5a11e617e201847e01c16b7..4f78ed6c9ebe744c2b69232d325a67348161326f",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "Detached checkout clean at 4f78ed6c9ebe744c2b69232d325a67348161326f; exactly three changed paths",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-20-rpg-sim-defeat-floor-review-20260925/clean-checkout.log",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "tests/FusionRpg.E2E.Tests/RpgSimInProcHostTests.cs",
+    "tasks/reports/resume-20-rpg-simulator-defeat-floor-20260925.md",
+    "tasks/sessions/resume-20-rpg-sim-defeat-floor-review-20260925.json"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "4f78ed6c9ebe744c2b69232d325a67348161326f",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "The 20 samples covered defeat only; victory and stalemate legal-empty branches remain unexercised.",
+    "Deterministic outcome selection remains outside this test-only follow-up.",
+    "This artifact is lane acceptance only; current-head post-merge, release, browser, and live gates remain separate."
+  ],
+  "mergeScope": "The exact reviewed SHA is accepted for the RS-F27 test-only floor and its evidence report. Merge is deferred until the dirty integration cleanup boundary is closed; no current-head gate or live claim is created here.",
+  "when": "2026-09-25T11:15:00Z"
+}

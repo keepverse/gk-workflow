@@ -1,0 +1,18 @@
+{
+  "session": "resume-00a-fail-closed-recovery-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Recover the failed fail-closed merge/acceptance worker, independently review its four-file dirty draft, repair only confirmed process/evidence defects, and leave exact evidence for manager acceptance before any product lane is merged.",
+  "mode": "worktree",
+  "branch": "opencode/resume-00a-fail-closed-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-00a-fail-closed-recovery-20260925",
+  "paths": [
+    ".claude/cmdc-agents/scripts/post-merge-check.ps1",
+    ".claude/cmdc-agents/scripts/accept-lane.ps1",
+    ".claude/cmdc-agents/scripts/merge-lanes.py",
+    ".claude/cmdc-agents/scripts/test_fail_closed_pipeline.py",
+    "tasks/reports/resume-00a-fail-closed-recovery-20260925.md"
+  ],
+  "started": "2026-09-24T20:15:14Z",
+  "status": "abandoned",
+"notes": "Recovery lane for the abandoned resume-00-fail-closed-merge worker. Setup copies the abandoned worktree's four dirty files into this isolated worktree as an unreviewed starting draft. OpenCode CLI Space Bunny Free max effort, uncapped input/output, no fallback. No commit, push, merge, or product-file edits. The lane was stopped after it invoked an unspecified-model subagent despite the owner charter. Its dirty worktree and report are preserved, but no acceptance is claimed. Manager source review also found an unanchored verdict-prefix regex in accept-lane.ps1 and no integration-ancestry contract in merge-lanes.py; a manager-owned correction/acceptance lane must close those gaps before this plane can be green."
+}

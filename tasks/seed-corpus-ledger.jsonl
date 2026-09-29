@@ -1,0 +1,87 @@
+{"ts":"2026-09-20T16:39:04Z","kind":"anchor","plan":"tasks/backlog-clean-up-plan.md","todo":"tasks/item-seedgen-todo.md","session":"seed-corpus-20260920","queue":["ISG-H5","T39","T47","T48","T49","T50","T51","T52","T53","T54","T4.5"],"mark":"mk1-4840334629b10d7b"}
+{"ts":"2026-09-20T16:39:05Z","kind":"note","text":"seed-corpus owns the four runbook todos (item-seedgen, passive-tree, action-distribution-gaps, seedsmith-generated-seed-repair); --plan points at backlog-clean-up-plan.md because BCU2.10-2.13 are where these L-runs are chartered.","mark":"mk1-eb992425e39a54c5"}
+{"ts":"2026-09-20T16:48:23Z","kind":"note","text":"item-seed-gen e3817102 accepted; rows ISG1-ISG7 were never authored in a todo, so its work is traced by fragments only. Seed-corpus owns authoring those rows. Merge deferred: seedsmith test/deps/cli conflict.","mark":"mk1-3565ff822bd02eb1"}
+{"ts":"2026-09-21T08:57:17Z","kind":"task","id":"H5-wire","state":"started","mark":"mk1-8e2d2cdf14b762c9"}
+{"ts":"2026-09-21T08:57:17Z","kind":"gate","name":"seedsmith check --family PassiveTree (HiddenFileCount real run)","result":"pass","mark":"mk1-72c8b1738f1c1a5f"}
+{"ts":"2026-09-21T08:57:17Z","kind":"task","id":"H5-wire","state":"done","evidence":"tasks/evidence-fragments/H5-wire.md","mark":"mk1-efae22dfb46a886a"}
+{"ts":"2026-09-21T08:57:18Z","kind":"note","text":"H5-wire: call site already present at base (cli.py:323/:345); verified real run walked 0 _-files across 1 root. Non-zero visitedFileCount unsatisfiable -> PTR-EF1 in tasks/passive-tree-todo.md. Baseline seedsmith pytest 20F/4260P/3S.","mark":"mk1-aade6f8e3841f3b4"}
+{"ts":"2026-09-21T09:09:24Z","kind":"note","text":"H5-wire note: swept 13 pre-existing doc-citation HIGHs in passive-tree-todo.md (7 D1 dead files + 6 D3 basenames) as ride-along; verify-change now 0 HIGH. Guard.Tests 1 pre-existing red PlantSideStatusGuardTests owned by combat-ai.","mark":"mk1-a36ee285eebc5159"}
+{"ts":"2026-09-21T09:11:31Z","kind":"task","id":"ISG-lens","state":"started","mark":"mk1-5fa26d32cab59553"}
+{"ts":"2026-09-21T09:11:31Z","kind":"gate","name":"ruff I/UP/B/SIM on the two named seedsmith test files","result":"pass","mark":"mk1-072e91d8c6bb3eec"}
+{"ts":"2026-09-21T09:11:31Z","kind":"task","id":"ISG-lens","state":"done","evidence":"tasks/evidence-fragments/ISG-lens.md","mark":"mk1-04065fc23bf5c877"}
+{"ts":"2026-09-21T09:11:31Z","kind":"note","text":"ISG-lens: only the I001 import order remained at base; read_text-on-None + useless lambda were fixed by SSH5.10 (611d9c23), items_adapter by ISG6/ISG7. pi-lens not installed; re-measured with ruff + grep.","mark":"mk1-dd8fe6f1ec959c1e"}
+{"ts":"2026-09-21T09:21:56Z","kind":"task","id":"ISG7-follow-up","state":"started","mark":"mk1-5e09de9a8974fbbf"}
+{"ts":"2026-09-21T09:21:56Z","kind":"gate","name":"pytest test_schedule + test_strain_splice_gen stronger-model/rename group","result":"pass","mark":"mk1-6d0623d1921e413d"}
+{"ts":"2026-09-21T09:21:56Z","kind":"task","id":"ISG7-follow-up","state":"done","evidence":"tasks/evidence-fragments/ISG7-follow-up.md","mark":"mk1-0434768d02033249"}
+{"ts":"2026-09-21T09:21:57Z","kind":"note","text":"ISG7-follow-up: socket-word dropped from invents_identity; dual-listing pin rewritten. maxCombosPerActor untouched. Second inert residue (allocated_partitions.json:116) routed as ISG7-F2.","mark":"mk1-c2846c9c68608f09"}
+{"ts":"2026-09-21T09:39:02Z","kind":"task","id":"ISG-F1","state":"started","mark":"mk1-610338a26b25a490"}
+{"ts":"2026-09-21T09:39:02Z","kind":"gate","name":"Core.Tests socket+unique+family-expansion corpus pins (77 total)","result":"pass","mark":"mk1-5465c0cb4b66623d"}
+{"ts":"2026-09-21T09:39:02Z","kind":"gate","name":"tools/ItemSeedValidator (1129 partitions, 0 errors)","result":"pass","mark":"mk1-b4de7926bd7ddc83"}
+{"ts":"2026-09-21T09:39:02Z","kind":"task","id":"ISG-F1","state":"done","evidence":"tasks/evidence-fragments/ISG-F1.md","mark":"mk1-5cdc2aae6b26b0c9"}
+{"ts":"2026-09-21T09:39:03Z","kind":"note","text":"ISG-F1: all four named reds green at base 00baecb5 (77/77 across Core.Tests 41 + Core.Atoms.Tests 36). ItemSeedValidator 0 errors. Closed ISG-F1(omni pin), ISG-F2, ISG-F1(four reds); no code fix needed.","mark":"mk1-84d38fb868259b25"}
+{"ts":"2026-09-21T09:51:35Z","kind":"task","id":"T4.5","state":"started","mark":"mk1-f4e5f6fca891cdc0"}
+{"ts":"2026-09-21T09:51:35Z","kind":"gate","name":"T4.5 B0 preflight (endpoint/vocab/tuning/gate/freshness/smoke/disk)","result":"pass","mark":"mk1-521fc842e6d21e39"}
+{"ts":"2026-09-21T09:51:35Z","kind":"task","id":"T4.5","state":"done","evidence":"tasks/evidence-fragments/T4.5.md","mark":"mk1-94d59d24f5c8955b"}
+{"ts":"2026-09-21T09:51:35Z","kind":"note","text":"T4.5 green: smoke accepted 1 (3 calls, 14.3s), freshness dry-run 6655 briefs, gate pass, 165G free, focused 230 passed. Checkpoint M focused-suites box ticked.","mark":"mk1-50b1ae3e7f7ca054"}
+{"ts":"2026-09-21T09:51:42Z","kind":"note","text":"BLOCKED: T4.6/T4.7-10/T4.11 (+T4.12 owner-ask) are corpus-scale model runs (~23-28h). Per convergence-resume-20260920 they are manager-run detached jobs with a JSON artefact, not lane foreground jobs. T4.5 green hands B1 off; lane continues with passive-tree rows.","mark":"mk1-99960114f2d684e9"}
+{"ts":"2026-09-21T10:04:45Z","kind":"task","id":"SGR-register","state":"started","mark":"mk1-36dc976460c45f97"}
+{"ts":"2026-09-21T10:04:45Z","kind":"gate","name":"seedsmith unregistered reds registered with named causes (15)","result":"pass","mark":"mk1-7fbc7a60c0499d83"}
+{"ts":"2026-09-21T10:04:45Z","kind":"task","id":"SGR-register","state":"done","evidence":"tasks/evidence-fragments/SGR-register.md","mark":"mk1-a1289871ce32afe7"}
+{"ts":"2026-09-21T10:04:45Z","kind":"note","text":"SGR-register: 14 of the row's 15 named reds still fail (themes_v2 fixed by sgc-2/T51); found a 15th omitted (strain_splice_gen Chassis 4!=8). Shared cause: act.attack spends atom.fx-overlay-damage, outside the 98-family loader registry.","mark":"mk1-ad7081ccb04e50d9"}
+{"ts":"2026-09-21T10:12:33Z","kind":"task","id":"passive-tree-triage","state":"started","mark":"mk1-8dc3780fdd929375"}
+{"ts":"2026-09-21T10:12:33Z","kind":"gate","name":"TreeBinder --check (generic corpus byte-identical)","result":"pass","mark":"mk1-e784a7771710e675"}
+{"ts":"2026-09-21T10:12:34Z","kind":"task","id":"passive-tree-triage","state":"done","evidence":"tasks/evidence-fragments/passive-tree-triage.md","mark":"mk1-2dfb1738aec5c318"}
+{"ts":"2026-09-21T10:12:34Z","kind":"note","text":"passive-tree triage: all 33 open rows classified, none lane-executable (owner / corpus-run / unsatisfiable). TreeBinder --check exit 0. check --family PassiveTree readings unchanged.","mark":"mk1-62cff6cbb05ebff2"}
+{"ts":"2026-09-21T10:26:43Z","kind":"task","id":"ISG-H5","state":"started","mark":"mk1-c1ee6d8d8af2e749"}
+{"ts":"2026-09-21T10:26:43Z","kind":"task","id":"ISG-H5","state":"done","evidence":"tasks/evidence-fragments/ISG-H5.md","mark":"mk1-012876c450126db3"}
+{"ts":"2026-09-21T10:26:43Z","kind":"gate","name":"ISG-H5 Verify line (canary + over-priced TreeEqualValue)","result":"pass","mark":"mk1-1acc055900988364"}
+{"ts":"2026-09-21T10:26:43Z","kind":"note","text":"ISG-H5 is the queue alias of H5-wire (already committed). Verify line re-run fresh: 2 passed; real run walked 0 across 1 root. No separate commit; rides with ISG7-F2.","mark":"mk1-7a280e1ec0eafcce"}
+{"ts":"2026-09-21T10:26:43Z","kind":"task","id":"ISG7-F2","state":"started","mark":"mk1-8dd8b8ea29c96cf1"}
+{"ts":"2026-09-21T10:26:44Z","kind":"gate","name":"allocated_partitions snapshot regenerated from --list-partitions-json (1069, no socket-words)","result":"pass","mark":"mk1-6d5e2fa9a5f87381"}
+{"ts":"2026-09-21T10:26:44Z","kind":"task","id":"ISG7-F2","state":"done","evidence":"tasks/evidence-fragments/ISG7-F2.md","mark":"mk1-eff9c42242081544"}
+{"ts":"2026-09-21T10:26:44Z","kind":"note","text":"ISG7-F2 resolved: ItemSeedValidator --list-partitions-json + tools/seedsmith/refresh_allocated_partitions.py (--check/--write); snapshot 126->1069, socket-words gone, LF-safe, Items tests 72 passed, validator 97.","mark":"mk1-7869db8c4b12e9e7"}
+{"ts":"2026-09-21T10:26:44Z","kind":"note","text":"Queue hygiene: the anchor queue listed ISG-H5,T39,T47-T54,T4.5. T39/T47-T54 name no task in any of the four runbooks (repo-wide grep: zero hits) - stale anchor-setup placeholder ids. Replacing the queue with the real remaining items.","mark":"mk1-12d8fdc12ad23e05"}
+{"ts":"2026-09-21T10:27:05Z","kind":"queue","ids":["T3.2","T3.3","T4.6","T4.7","T4.11","T4.12","PTR-EF1"],"mark":"mk1-a7f413d0103c033e"}
+{"ts":"2026-09-21T10:27:05Z","kind":"note","text":"Remaining queue is all non-lane: T3.2/T3.3 owner-gated; T4.6/T4.7/T4.11 manager-run corpus job; T4.12 owner-ask; PTR-EF1 passive-tree spec ruling. SGR WIRE1/WIRE2 owned by seedsmith-cli-ux / item-seed-regen. ISG7-F2 done.","mark":"mk1-5871607147c92671"}
+{"ts":"2026-09-21T10:43:05Z","kind":"gate","name":"seedsmith audit real-tree test cwd-independent (23 passed from tools/seedsmith)","result":"pass","mark":"mk1-710801f57a566f7a"}
+{"ts":"2026-09-21T10:43:05Z","kind":"note","text":"Finding fixed+routed: audit-doc-citations tracked_files/deleted_paths are cwd-sensitive (git ls-files from a subdir returns subdir-relative paths -> doc_count 0). Test fixed to chdir REPO_ROOT; script-level fix filed SE3.7-followup in tasks/solid-enforcement-todo.md.","mark":"mk1-a16ae23226d8a6f8"}
+{"ts":"2026-09-21T10:45:23Z","kind":"note","text":"Correction: the test-side chdir fix for the audit cwd bug was REVERTED - that test maps to doc-citations-guard, whose whole-repo --strict guard is red on a pre-existing 20-HIGH docs/** backlog. Script-level fix filed SE3.7-followup only.","mark":"mk1-742cc1944f70bb4b"}
+{"ts":"2026-09-21T10:59:33Z","kind":"note","text":"Correction to SGR table: test_usage_stats acceptedCount==0 is NOT the act.attack cause - build_report reads gitignored _candidates/** (derive.py:178), absent in a clean checkout. Same untracked-scratch class as the 5 general_propose reds.","mark":"mk1-69ea9712ea987c34"}
+{"ts":"2026-09-21T11:00:54Z","kind":"task","id":"T3.2","state":"started","mark":"mk1-fa728b087d86d630"}
+{"ts":"2026-09-21T11:13:10Z","kind":"task","id":"T3.2","state":"blocked","reason":"owner-gated by the lane brief (do not run T3.2/T3.3; no model call). The mechanism is built; convergence is dozens of model hours the owner reserves.","mark":"mk1-4be7e350fd6eeb89"}
+{"ts":"2026-09-21T11:13:10Z","kind":"task","id":"T4.5-plan-repair","state":"started","mark":"mk1-1011c976e5b051a5"}
+{"ts":"2026-09-21T11:13:11Z","kind":"gate","name":"pipeline dry-run after foundation regen + replan (fails only on absent scratch)","result":"pass","mark":"mk1-e0342f45cb64c4b1"}
+{"ts":"2026-09-21T11:13:11Z","kind":"task","id":"T4.5-plan-repair","state":"done","evidence":"tasks/evidence-fragments/T4.5-plan-repair.md","mark":"mk1-e4bb5d2968701ff5"}
+{"ts":"2026-09-21T11:13:11Z","kind":"note","text":"T4.5 plan repair: committed plan was stale (39425dc0); role-lean predated the anchor re-derivation and the planner checks ID sets only. Regenerated foundation (5eeac49e/67877c4f) + replanned (188e8625) + re-applied requiredFamilies.","mark":"mk1-c2ddff65a27cfcaa"}
+{"ts":"2026-09-21T11:13:19Z","kind":"task","id":"T3.3","state":"started","mark":"mk1-0dec907579219fc5"}
+{"ts":"2026-09-21T11:13:19Z","kind":"task","id":"T3.3","state":"blocked","reason":"owner-gated by the lane brief (do not run T3.2/T3.3; no model call). mode:full is reachable now, but the run is the owner's multi-day call.","mark":"mk1-19bc00c42feab116"}
+{"ts":"2026-09-21T11:13:19Z","kind":"task","id":"T4.6","state":"started","mark":"mk1-d1e24f061f49e795"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.6","state":"blocked","reason":"corpus-scale model run (~23-28h) is a manager-run detached job (convergence-resume-20260920); plan is now fresh but the run itself is not a lane foreground job.","mark":"mk1-220aee8c44eeaeec"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.7","state":"started","mark":"mk1-23bcff98efe90a21"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.7","state":"blocked","reason":"top-up rounds 2-5 depend on T4.6's run outputs; manager-run corpus job.","mark":"mk1-4ac4287a6923173b"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.11","state":"started","mark":"mk1-ceb4570bb446cf49"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.11","state":"blocked","reason":"final verdict reads B1/B2 reports that do not exist until the manager-run corpus job completes.","mark":"mk1-374ffed0d7301fc2"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.12","state":"started","mark":"mk1-bc84759cbd6c3d73"}
+{"ts":"2026-09-21T11:13:20Z","kind":"task","id":"T4.12","state":"blocked","reason":"owner-ask-only after checkpoint O (its own wording); no ask made.","mark":"mk1-f8ddc2e972553d47"}
+{"ts":"2026-09-21T11:13:21Z","kind":"task","id":"PTR-EF1","state":"started","mark":"mk1-a260d574730b4a81"}
+{"ts":"2026-09-21T11:13:21Z","kind":"task","id":"PTR-EF1","state":"blocked","reason":"needs the passive-tree program's ruling on spec-tree-review.md S7 wording; docs/ is outside this lane's fence.","mark":"mk1-2adcf48890c3e191"}
+{"ts":"2026-09-21T11:43:21Z","kind":"note","text":"TVB-F16 filed: data/seed/actions/** has NO boundary mapping, so verify-change throws on any action-corpus change. Boundary-equivalent 23-file set: 12 failed/1011 passed, all registered pre-existing.","mark":"mk1-cd43c2df4cbaee59"}
+{"ts":"2026-09-21T11:55:38Z","kind":"task","id":"T4.5-preflight","state":"started","mark":"mk1-be5fb80a33dfd3e8"}
+{"ts":"2026-09-21T11:55:38Z","kind":"gate","name":"action_run_preflight.py green (7 checks incl. fresh-hash plan freshness)","result":"pass","mark":"mk1-c521870ff8678841"}
+{"ts":"2026-09-21T11:55:39Z","kind":"task","id":"T4.5-preflight","state":"done","evidence":"tasks/evidence-fragments/T4.5-preflight.md","mark":"mk1-57b1c8145827bde4"}
+{"ts":"2026-09-21T11:55:40Z","kind":"note","text":"T4.5-preflight: new model-free action_run_preflight.py runs 7 checks incl. the two T4.5 lacked (committed plan vs fresh derivation; pipeline dry-run terminal reason). Green in 6.4s; pure parts 7 tests.","mark":"mk1-8074125b7d00c646"}
+{"ts":"2026-09-21T12:48:25Z","kind":"task","id":"bcu212-j9-support","state":"started","mark":"mk1-20600367de3f106f"}
+{"ts":"2026-09-21T12:48:26Z","kind":"gate","name":"J9 bounded 2-species run + resume (nodes byte-identical)","result":"pass","mark":"mk1-361d999922b9c9c8"}
+{"ts":"2026-09-21T12:48:26Z","kind":"task","id":"bcu212-j9-support","state":"done","evidence":"tasks/evidence-fragments/bcu212-j9-support.md","mark":"mk1-926b4574b58e93cf"}
+{"ts":"2026-09-21T12:48:26Z","kind":"note","text":"BCU2.12 support: J9 invocation = tools/seedsmith/_j9_batch_run.py <count>; bounded 2 species 601s/68 calls; resume pass 35s/14 non-node calls, nodes byte-identical. AbyssSwordStar 40 nodes, no codex; AcientSunNut nameKey-refused. Full run NOT started.","mark":"mk1-3692277c1b3a0c63"}
+{"ts":"2026-09-21T12:48:26Z","kind":"note","text":"BCU2.12 scripts written: .claude/cmdc-agents/scripts/bcu212-full-run.ps1 + bcu212-report.py; artefact tasks/reports/BCU2.12-full-run.json. NOTE: .claude/** is outside this lane's allowed paths - written on explicit manager instruction.","mark":"mk1-f38b73cc80f3afdf"}
+{"ts":"2026-09-21T12:59:23Z","kind":"note","text":"Blocker re-verification 2026-09-21: no blocked item is released. T4.6 preflight GREEN (plan 188e8625 == fresh, pipeline accepts it, dry-run stops only on absent scratch) - it waits ONLY on the manager's detached round-1 run.","mark":"mk1-44d118b5343d8165"}
+{"ts":"2026-09-21T12:59:23Z","kind":"note","text":"T4.7/T4.11 wait on that run's B1/B2 reports; T3.2/T3.3 are owner-gated by the lane brief; T4.12 needs an owner ask after checkpoint O; PTR-EF1 needs a docs/architecture/passive-tree/spec-tree-review.md S7 ruling (docs/** outside this fence).","mark":"mk1-dec7cf8bf504cd79"}
+{"ts":"2026-09-21T13:06:50Z","kind":"task","id":"ADG-F3","state":"started","mark":"mk1-c2fb0766352d0ec1"}
+{"ts":"2026-09-21T13:06:50Z","kind":"gate","name":"ADG-F3 foundation inputs (9 tests, preflight GREEN)","result":"pass","mark":"mk1-7bd5a9080d914738"}
+{"ts":"2026-09-21T13:06:50Z","kind":"task","id":"ADG-F3","state":"done","evidence":"tasks/evidence-fragments/ADG-F3.md","mark":"mk1-984c936cd0fe0075"}
+{"ts":"2026-09-21T13:06:50Z","kind":"note","text":"ADG-F3 fixed: _foundation_inputs computes the pair into one root; dry-run uses a temp root so type-weights hashes the fresh role-lean. 3 new tests; preflight GREEN; tracked foundation untouched.","mark":"mk1-02255034eec79bd9"}
+{"ts":"2026-09-21T14:25:45Z","kind":"task","id":"J9-B1","state":"started","mark":"mk1-6ad745cd5c627f79"}
+{"ts":"2026-09-21T14:25:45Z","kind":"gate","name":"J9-B1 two-species proof re-run (0 refusals, both codex resolved)","result":"pass","mark":"mk1-805d18632e38274b"}
+{"ts":"2026-09-21T14:25:46Z","kind":"task","id":"J9-B1","state":"done","evidence":"tasks/evidence-fragments/J9-B1.md","mark":"mk1-2848cb0b0be325ee"}
+{"ts":"2026-09-21T14:25:46Z","kind":"note","text":"J9-B1 fixed: similarity-clustered codex vote at the 600-per-mille rung (exact match resolved 0 of 2); duplicate nameKey/name rows now superseded via RunPlan.duplicate_ids. Re-run: no refusals, both species metadata written. Driver is a tested tool with --check.","mark":"mk1-2b36e696e9a5acb9"}

@@ -1,0 +1,34 @@
+{
+  "branch": "cmdc/ns-2",
+  "mode": "worktree",
+  "paths": [
+    "data/seed/narrative/**",
+    "data/seed/dungeon/events/**",
+    "tools/seedsmith/**",
+    "docs/architecture/narrative-seed*/**",
+    "docs/architecture/decisions.md",
+    "tasks/narrative-seed-*",
+    "tests/**",
+    "tasks/sessions/narrative-seed-2.json"
+  ],
+  "problem": "Narrative-seed remaining rows (registries, readers, gloss batches, regeneration driver, token grammar) with -Session verification; owner gates CP1/NSG1/NSG4 stay named, not worked around",
+  "program": "narrative-seed",
+  "session": "narrative-seed-2",
+  "started": "2026-09-23T11:20:00Z",
+  "status": "abandoned",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-ns-2",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip ff4f2cef has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/ns-2",
+    "branchTip": "ff4f2cef",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip ff4f2cef has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "contendedTree": false,
+  "lane": "sgc-2",
+  "verdict": "RED-KNOWN (2 check(s), registered debt only)",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-093144\\boundary.log"
+    },
+    {
+      "check": "seedsmith-setgen",
+      "exit": 0,
+      "seconds": 41,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-093144\\seedsmith-setgen.log"
+    },
+    {
+      "check": "item-seed-validator",
+      "exit": 1,
+      "seconds": 7,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-093144\\item-seed-validator.log"
+    },
+    {
+      "check": "boundaries-guard",
+      "exit": 1,
+      "seconds": 41,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-093144\\boundaries-guard.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-2-20260921-093144\\ledger.log"
+    }
+  ],
+  "logDir": "D:\\tmp\\accept-sgc-2-20260921-093144",
+  "when": "2026-09-21T09:33:16",
+  "sha": "0f607962"
+}

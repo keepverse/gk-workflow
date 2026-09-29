@@ -1,0 +1,18 @@
+{
+  "session": "rpg-simulator-map",
+  "program": "rpg-simulator",
+  "problem": "Turn the cleared rpg-simulator idea into the program's index: the capability map (docs/architecture/rpg-simulator-map.md, stable kebab-case module ids, one spec file per id) and the sequenced plan (tasks/rpg-simulator-plan.md) over those ids, honouring the twenty owner-cleared decisions in tasks/rpg-simulator-decisions.md and the decisions.md clock row. Docs only: no product code, no test edits, no scripts.",
+  "mode": "worktree",
+  "branch": "cmdc/sim-map",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-sim-map",
+  "paths": [
+    "docs/architecture/rpg-simulator-map.md",
+    "tasks/rpg-simulator-plan.md",
+    "tasks/rpg-simulator-todo.md",
+    "tasks/evidence-fragments/RS5.md",
+    "tasks/sessions/rpg-simulator-map.json"
+  ],
+  "started": "2026-09-22T14:14:37Z",
+  "status": "merged",
+  "scopeNote": "Brief fence is docs/architecture/** + tasks/** (docs only). The record narrows it to the four artifacts this lane writes. tasks/rpg-simulator-todo.md is shared with the still-active idea lane rpg-sim-idea-a (same branch family, different worktree); both records are mode worktree, so the boundary checker does not flag the overlap, and this lane only re-keys the rows the cleared decisions already rewrote. The map is the index: no plan or task row may name a module id absent from docs/architecture/rpg-simulator-map.md. The clock module is named here but is gated by the decisions.md row and by a spec that names the seam's product shape; no clock code is written by this lane."
+}

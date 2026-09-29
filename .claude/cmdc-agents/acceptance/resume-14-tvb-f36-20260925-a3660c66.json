@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-14-tvb-f36-classifier-20260925",
+  "sha": "a3660c664d99c36cc33944df192ad6a2db8534ee",
+  "expectedSha": "a3660c664d99c36cc33944df192ad6a2db8534ee",
+  "shortSha": "a3660c66",
+  "mergedSha": "7ca9ee8b4ade30309117525e17f3c609d4ea33ff",
+  "verdict": "GREEN",
+  "scope": "TVB-F36 H-checkbox-heading task-block classifier correction and regression fixture",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-14-tvb-f36-classifier-20260925",
+  "checks": [
+    {
+      "check": "audit-tests",
+      "command": "python -m pytest tests/tools/test_audit_program_pipeline.py -q -p no:cacheprovider",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "26 passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-14-tvb-f36-classifier-20260925/pytest.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "task-block-census",
+      "command": "python scripts/audit-program-pipeline.py --only todo-task-blocks",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "open=671 done=2885 boxes=1884 shaded=843 unmeasured=2; reading only, not a work total",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-14-tvb-f36-classifier-20260925/census.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git worktree add --detach <temporary-clean-checkout> a3660c664d99c36cc33944df192ad6a2db8534ee; pytest; census; git diff --check; git status --porcelain=v1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; tests/census/diff passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-14-tvb-f36-classifier-20260925/clean.log",
+      "logSha256": "811554412FED1DE1882BA2DE7FA12423CC530176FB3AE80146F3AEAC32ACB0D7",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "scripts/audit-program-pipeline.py",
+    "tests/tools/test_audit_program_pipeline.py",
+    "tasks/reports/resume-14-tvb-f36-classifier-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "a3660c664d99c36cc33944df192ad6a2db8534ee",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "The census remains a reading and still contains separate stale/contradictory rows; no adjusted genuine-work total is claimed.",
+    "The onboarding-rift contradiction is separately filed as BCU2-R1."
+  ],
+  "mergeScope": "The classifier correction and regression fixture are accepted and merged; no product or generated-data behavior changed.",
+  "when": "2026-09-25T11:15:00Z"
+}

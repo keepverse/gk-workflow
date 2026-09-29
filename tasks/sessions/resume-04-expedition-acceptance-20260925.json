@@ -1,0 +1,19 @@
+{
+  "session": "resume-04-expedition-acceptance-20260925",
+  "program": "expedition",
+  "problem": "Manager clean-checkout acceptance of durable expedition collect replay, database-enforced active membership, archived-save admission, and deterministic concurrency/fault coverage; keep the out-of-fence long-path Data failure separate.",
+  "mode": "worktree",
+  "branch": "review/expedition-durability-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-expedition-durability-20260925",
+  "paths": [
+    "src/FusionRpg.Server/ExpeditionEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Expeditions.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.cs",
+    "tests/FusionRpg.Data.Tests/ExpeditionStoreTests.cs",
+    "tests/FusionRpg.E2E.Tests/ExpeditionE2ETests.cs",
+    "tasks/reports/resume-04-expedition-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T09:30:00Z",
+  "status": "merged",
+  "notes": "Expedition durability draft accepted at exact SHA ec4773b9c2b4a90d9dae9c69834d78ae8493c87e, clean-checkout focused verification passed, and merged at 244e8fb9fac0f6c00f9ca34dcf99582b59ed8359. Artifact: .claude/cmdc-agents/acceptance/resume-04-expedition-20260925-ec4773b9.json. The out-of-fence Windows long-path Data test and migration/live questions remain explicit limitations."
+}

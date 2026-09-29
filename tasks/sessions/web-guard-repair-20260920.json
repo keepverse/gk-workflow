@@ -1,0 +1,22 @@
+{
+  "session": "web-guard-repair-20260920",
+  "program": "web-guard-repair",
+  "problem": "Fix five web guard tests newly visible on features/mega-merge after npm ci was restored: contractGuard.test.ts, delveViews.test.ts, pendingCopyGuard.test.ts, hexGuard.test.ts, disabledReasonGuard.test.ts. Find which change introduced each violation, fix the violating code (never weaken the guard), and prove with vitest + build + check:bundle.",
+  "mode": "worktree",
+  "branch": "worktree-agent-aaa53b18fc88575e3",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\agent-aaa53b18fc88575e3",
+  "paths": [
+    "tasks/sessions/web-guard-repair-20260920.json",
+    "web/fusion-rpg-web/src/contract/**",
+    "web/fusion-rpg-web/src/theme/**",
+    "web/fusion-rpg-web/src/ui/**",
+    "web/fusion-rpg-web/src/stages/**",
+    "web/fusion-rpg-web/src/layers/**",
+    "web/fusion-rpg-web/src/features/gui-lego/**",
+    "web/fusion-rpg-web/src/features/lawn/LawnPage.tsx",
+    "web/fusion-rpg-web/src/dev/PhaserSceneSwitchPocPage.tsx"
+  ],
+  "started": "2026-09-20T00:00:00Z",
+  "status": "merged",
+  "notes": "Crossing noted per session-boundary.md section 5: summoner-convergence-lane-c-20260919 (worktree cmdc-lane-c, its own separate worktree) claims the whole web/fusion-rpg-web/** glob broadly. Both sessions are worktree-mode so there is no file-level interference (session-boundary-check.ps1 does not flag two worktree-mode sessions with overlapping paths); real overlap, if any, is resolved at merge by diffing the touched regions. Paths widened after the fact to feature/lawn/foldXxx files a guard fix actually needed touch (each guard's own violating files, not known until the guards were run). All five guards fixed and verified 2026-09-20; commits 01b0cbfc, 7da25a1a, 493f73a6, ab6f05f1."
+}

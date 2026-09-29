@@ -1,0 +1,21 @@
+{
+  "session": "species-gear-chain-spec-20260918",
+  "program": "species-gear-chain",
+  "problem": "Reconcile the species-gear-chain map and module specs with the owner rulings of 2026-09-17/18 (R-SS1..R-SS3, R-SC1..R-SC2, R-G1): amend the specs that do not reflect them and add a module spec for any ruling no module covers. Docs only; no code, data or task-file edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/species-gear-chain-map.md",
+    "docs/architecture/species-gear-chain/spec-species-materials.md",
+    "docs/architecture/species-gear-chain/spec-species-cost-shaping.md",
+    "docs/architecture/species-gear-chain/spec-craft-risk-ladder.md",
+    "docs/architecture/species-gear-chain/spec-craft-assurance.md",
+    "docs/architecture/species-gear-chain/spec-creature-drop-tables.md",
+    "docs/architecture/species-gear-chain/spec-wave-species-roll.md",
+    "docs/architecture/species-gear-chain/spec-wild-species-spawn.md",
+    "tasks/sessions/species-gear-chain-spec-20260918.json"
+  ],
+  "started": "2026-09-18T06:56:00Z",
+  "status": "merged"
+}

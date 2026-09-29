@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-32-bp1112-20260925",
+  "sha": "1419a2351b406e977fbef4a5c241446e187cda86",
+  "expectedSha": "1419a2351b406e977fbef4a5c241446e187cda86",
+  "verdict": "GREEN",
+  "scope": "build-preset BP1.11/BP1.12 (already-shipped verification + one unasserted sub-clause)",
+  "checks": [
+    {
+      "check": "dotnet test tests/FusionRpg.Data.Tests --filter BuildPreset",
+      "exit": 0,
+      "summary": "10/10 passed (pre-existing at 005239e4b)"
+    },
+    {
+      "check": "dotnet test tests/FusionRpg.Server.Tests --filter BuildPresetEndpoints",
+      "exit": 0,
+      "summary": "15/15 passed (13 + 2 new)"
+    },
+    {
+      "check": "scripts/guard-dal.ps1",
+      "exit": 0,
+      "summary": "DAL GUARD OK"
+    },
+    {
+      "check": "scripts/guard-test-substrate.ps1",
+      "exit": 0,
+      "summary": "TEST SUBSTRATE GUARD OK"
+    }
+  ],
+  "cleanCheckout": true,
+  "mergeCommit": null,
+  "notes": "The LANE FAILED at turn 41. It confirmed BP1.11/BP1.12 already ship at 005239e4b and that the one Server red is a pre-existing ancestor failure. Its only product contribution (two list-route assertions) is salvaged and manager-verified."
+}

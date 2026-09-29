@@ -1,0 +1,16 @@
+{
+  "session": "action-skill-tiers-spec-20260918",
+  "program": "action-skill-tiers",
+  "problem": "Graduate the action-skill-tiers ideal (6 owner rulings 2026-09-18) into its capability map and per-module specs, reconciled against the already-specced A-U1 rung-semantics, A-G1 tier-access-gate and the action-distribution-gaps S5-to-S1 top-up. Docs only; no code, no data, no commit.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/action-skill-tiers-map.md",
+    "docs/architecture/action-skill-tiers/**",
+    "docs/architecture/action-skill-tiers-ideal.md",
+    "tasks/sessions/action-skill-tiers-spec-20260918.json"
+  ],
+  "started": "2026-09-18T12:00:00Z",
+  "status": "merged"
+}

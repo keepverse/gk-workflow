@@ -1,0 +1,40 @@
+{
+  "session": "combat-ai-3",
+  "program": "combat-ai",
+  "started": "2026-09-21T15:20:00+07:00",
+  "status": "merged",
+  "mode": "worktree",
+  "branch": "cmdc/combat-ai-3",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-combat-ai-3",
+  "problem": "Take over the combat-AI program's remaining rows from the drained lane combat-ai-2: work the 40 open lines in tasks/combat-ai-todo.md in their own order, worst-first, routing every out-of-fence finding to its owning program's todo.",
+  "paths": [
+    "tasks/sessions/combat-ai-3.json",
+    "tasks/combat-ai-todo.md",
+    "tasks/combat-ai-plan.md",
+    "tasks/combat-ai-ledger.jsonl",
+    "tasks/evidence-fragments/CAI*.md",
+    "src/FusionRpg.Core/Actions/**",
+    "src/FusionRpg.Core/Battle/**",
+    "src/FusionRpg.Core/Balance/**",
+    "src/FusionRpg.Core/Delve/**",
+    "tests/FusionRpg.Core.Tests/**",
+    "tests/FusionRpg.Core.*.Tests/**",
+    "tools/CombatSim/**",
+    "tools/ProvePredictor/**",
+    "data/tuning/**",
+    "docs/architecture/combat-ai/**",
+    "docs/architecture/combat-ai-ideal.md",
+    "docs/DESIGN-GATE.md"
+  ],
+  "notes": [
+    "Lane id combat-ai-3 (session combat-ai-3): combat-ai-2 is drained (input 587 / output 3 tokens per continue, exitCodes [0,0,0]) but keeps branch cmdc/combat-ai-2 and session combat-ai-20260920; combat-ai-3 must not edit that worktree or branch.",
+    "tests/FusionRpg.Core.*.Tests/** is in the fence because lane tvb58 split tests/FusionRpg.Core.Tests into per-area projects (merged 006dcd7b); a test goes in the project whose subject it covers, and CiWiringGuardTests enforces that the project is wired in FusionRpg.slnx + ci.yml.",
+    "CAI-guard-1's re-pin is tvb58's by executor ruling (Guard files are a protected path); this lane must not touch tests/FusionRpg.Guard.Tests/**.",
+    "Session id, branch and fence come from .claude/cmdc-agents/briefs/combat-ai-3.md.",
+    "Fence excludes tests/FusionRpg.Guard.Tests/**: CAI-guard-1's re-pin rides lane tvb58 and is not this lane's to move. Never widen a guard allowlist and never add a knownRed entry.",
+    "The lane exists because `combat-ai-2` (record tasks/sessions/combat-ai-20260920.json, branch cmdc/combat-ai-2) is drained: each continue spends ~590 tokens and exits. That record still reads `active` and still claims src/FusionRpg.Core/Actions/**; this lane does NOT touch its worktree or its record.",
+    "tasks/** is not claimed as a whole directory, so this record cannot collide with another lane's fragment.",
+    "The Core test project was split by lane tvb58: a test goes in the per-area project its subject landed in, and that project must be wired in FusionRpg.slnx and .github/workflows/ci.yml.",
+    "Lane retired 2026-09-21 after its 12 commits merged at c9250d229 (acceptance artefact combat-ai-3-04908360.json: boundary 0, core-ai 0, actor-hub 0, ledger 0). Queue empty; the combat-ai program keeps its remaining rows and can take a fresh lane later."
+  ]
+}

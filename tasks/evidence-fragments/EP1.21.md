@@ -1,0 +1,15 @@
+# EP1.21 — Playwright `aptitude-auto-assign.spec.ts` (CP2)
+
+Spec: `docs/architecture/empire-progression/spec-auto-assign-control.md` (C1–C7). Implements the
+spec's own testing strategy §2–§3 over the control EP1.20 shipped.
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| Open a specimen's aptitudes, choose a rule, and see the draft change. Reload, and the saved allocation is unchanged (C3) | `npm run test:e2e -- aptitude-auto-assign` | pass — 4 passed / 0 failed (1.4s). Case 1: the strip lists the server's six rules in order, `aptitude-value-Might` changes from the saved `10`, and `/suggest` was called once with `rule: "even"`. Case 2: reload restores the saved `10` | `gk-web/web/fusion-rpg-web/e2e/aptitude-auto-assign.spec.ts` (new) |
+| `species-favour` on a real species succeeds end to end (W3 closed) | same run | pass — `auto-assign-rule-species-favour` click → one `/suggest` POST with `rule: "species-favour"` → `aptitude-value-Vigor` changes → no toast, no allocation write | same file |
+| A forced refusal shows its reason and the `even` offer (C4) | same run | pass — the mocked `/suggest` 400 `{reason: "autoAssign.favour.empty"}` (the server's own reason field) surfaces as the host's `toast-title` = "No species favour" with `toast-message` naming Even; `Might` is unchanged and `auto-assign-rule-even` is visible and enabled | same file |
+| The strip is the server's list, never an FE one (C1) | same run | pass — the mocked `GET /api/aptitude-presets/rules?scope=unique` answer is what renders, ids and order; labels are the catalog's display names | same file |
+| No regression in the shared `hero` slot the strip was added to | `npm run test:e2e -- aptitude` | pass — 14 passed / 0 failed across `aptitude-auto-assign`, `aptitude-preset` and `aptitude-sheet` (incl. all three viewport visual cases and the no-horizontal-overflow assertion) | `gk-web/web/fusion-rpg-web/e2e/` |
+| Nothing persists before Confirm (CP2 clause 2) | same runs | pass — `POST /api/aptitudes/unique/**` observed **0** times in all four cases (after a successful fill, after a reload, after the favour fill, and after the refusal) | same file |
+| Scoped verification over the changed task/doc paths | `.\scripts\verify-change.ps1 -Paths tasks/empire-progression-todo.md,tasks/evidence-fragments/EP1.21.md,tasks/evidence-fragments/CP2.md -Session ep-autoassign` | guards green (session-boundary clean for `ep-autoassign`); doc-citations 0 HIGH on all three files (142 / 1 / 2 citations). The `guard.doc-boundary` boundary also selects `FusionRpg.Guard.Tests`: **Failed: 3, Passed: 570, Total: 573** — `SubprocessPipeDrainGuardTests` flagging `gk-core/tests/FusionRpg.FileMove.Tests/SplitExecutorTests.cs` and two `verification-boundary script timed out` cases, none touching this change → filed as TVB-F2 | — |
+| The new spec is not verified by `verify-change.ps1` | (n/a) | `gk-web/web/fusion-rpg-web/**` has no owner boundary at all (TVB-F1), so the FE half is proven by `npm run test:e2e` as above | — |

@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-081111\\boundary.log"
+    },
+    {
+      "check": "tuning-publish",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-081111\\tuning-publish.log"
+    },
+    {
+      "check": "items-upgrade",
+      "exit": 0,
+      "seconds": 7,
+      "summary": "Passed!  - Failed:     0, Passed:    33, Skipped:     0, Total:    33, Duration: 168 ms - FusionRpg.Core.Items.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-081111\\items-upgrade.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-sgc-4-20260922-081111\\ledger.log"
+    }
+  ],
+  "verdict": "GREEN",
+  "lane": "sgc-4",
+  "contendedTree": false,
+  "logDir": "D:\\tmp\\accept-sgc-4-20260922-081111",
+  "sha": "d225dfc4",
+  "attribution": {
+    "unattributed": 0,
+    "newUnregistered": 0,
+    "knownRedMatched": 0
+  },
+  "when": "2026-09-22T08:11:22"
+}

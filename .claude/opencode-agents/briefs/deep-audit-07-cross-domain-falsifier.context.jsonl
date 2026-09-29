@@ -1,0 +1,2 @@
+{"kind":"fact","text":"The six initial lanes are read-only and reported against source SHA ae5e217e9f21ab7f01f7dcf83626a1e45f3a0d2b. The manager handoff is tasks/reports/mega-merge-deep-audit-20260924.md; it labels findings as candidates until falsified."}
+{"kind":"fact","text":"Owner charter: opencode/space-bunny-free, no token cap for this audit, maximum six concurrent lanes, stop after report or quota/context error, no fallback."}

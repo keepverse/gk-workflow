@@ -1,0 +1,10 @@
+# TVB-EOL1 — the `--check` generators are line-ending stable
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| `CreatureSpeciesGen --check` is clean in a fresh LF worktree | `dotnet run --project gk-forge/tools/CreatureSpeciesGen -- --check` | exit 0; `--check: clean, 904 species match` (before: `904 species stale`, byte 1 = CR vs LF, 839 B generated vs 804 B committed) | gk-core/src/FusionRpg.Core/Creatures/Generation/ConcreteSpeciesSerializer.cs |
+| `CreatureBuildPlanGen --check` is clean too | `dotnet run --project gk-forge/tools/CreatureBuildPlanGen -- --check` | exit 0 (before: `_species-build-plan.json is stale against the real corpus`) | gk-core/src/FusionRpg.Core/Creatures/Generation/SpeciesBuildPlan.cs |
+| a CRLF working tree is not read as stale | wrote `gk-data/packs/fusion/data/generated/creatures/Blover.json` as CRLF (804 → 840 bytes), re-ran `--check`, restored the original bytes | exit 0 `--check: clean, 904 species match` while CRLF; `git status --porcelain -- data/` empty after the restore | gk-forge/tools/CreatureSpeciesGen/Program.cs |
+| the loot test that was red in EVERY worktree is green | `dotnet test tests\FusionRpg.Core.Tests\FusionRpg.Core.Tests.csproj -c Release --verbosity minimal --filter "FullyQualifiedName~DungeonLootTableSeedFile"` | `Passed!  - Failed: 0, Passed: 4, Skipped: 0, Total: 4, Duration: 27 ms` (was `Expected "{\r\n…" / Actual "{\n…"`) | gk-core/tests/FusionRpg.Core.Tests/Delve/Loot/DungeonLootTableSeedFileTests.cs |
+| the other two generators were already stable | `dotnet run --project gk-forge/tools/FamilyExpandGen -- --check` · `dotnet run --project gk-forge/tools/TreeBinder -- --check` | both exit 0 (`--check: clean, 11 generated file(s) match`; TreeBinder reports a content refusal only) | — |
+| CI could not have caught it | read `.github/workflows/ci.yml:4-7` | `push`/`pull_request` are `branches: [main, master]` only, so the four `--check` steps — each its own exit-checked `dotnet run` — have never run on `features/mega-merge`. Not a swallowed exit code: a step that never executed | .github/workflows/ci.yml |

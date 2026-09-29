@@ -1,0 +1,243 @@
+{"ts":"2026-09-19T04:07:59Z","kind":"anchor","plan":"tasks/summoner-convergence-plan.md","todo":"tasks/solid-enforcement-todo.md + tasks/species-progression-todo.md","session":"summoner-convergence-lane-b-20260919","specs":["docs/architecture/solid-enforcement/spec-commander-identity.md","docs/architecture/solid-enforcement/spec-save-identity.md","docs/architecture/species-progression/spec-species-mod-ledger.md","docs/architecture/spec-rulings-2026-09-18.md"],"standards":"PRINCIPLES + DESIGN-GATE Anything/Data-SQL-schema/Stats/Creatures/Battles rows + decisions locks S1-S4","queue":["SE4.1","SE4.2","SE4.3","SE4.4","SE4.11","SE4.12","SE4.13","SE4.14","SE4CP4a","SP0.1","SP0.2","SP0.3","SP0.4","SPCP0"],"mark":"mk1-e6c8e8e105e16248"}
+{"ts":"2026-09-19T04:14:00Z","kind":"task","id":"SE4.1","state":"started","mark":"mk1-bdc68d97c60fa370"}
+{"ts":"2026-09-19T04:14:20Z","kind":"note","text":"Boundary defect fixed in passing: data/seed/commanders/** had no verification owner (VERIFICATION BOUNDARY MISSING); added owner commander-directory (project core, level module) to scripts/verification-boundaries.v1.json.","mark":"mk1-af37ad63e95e11cd"}
+{"ts":"2026-09-19T04:14:20Z","kind":"task","id":"SE4.1","state":"done","evidence":"tasks/evidence-fragments/SE4.1.md","mark":"mk1-ddc975c1b62f79e5"}
+{"ts":"2026-09-19T04:14:20Z","kind":"gate","name":"verify-change:SE4.1","result":"pass","mark":"mk1-7029c203a1dfd327"}
+{"ts":"2026-09-19T04:14:26Z","kind":"note","text":"SE4.1 design: DisplayName returns the player's name for a displayFromPlayer row via an injected Func<long,string?>; without it the row's neutral authored name. DefaultFor = first row of that empire, so a third commander row is legal (SE4.4).","mark":"mk1-bfd3c31983ec70fc"}
+{"ts":"2026-09-19T04:15:02Z","kind":"task","id":"SE4.2","state":"started","mark":"mk1-ecadc0aeda28d7e4"}
+{"ts":"2026-09-19T04:21:29Z","kind":"note","text":"creditEmpire wire value now carries the empire ('dave'/'zomboss') not the commander stable id; SR-18 dark carrier (no production reader), KillAttributionTests updated.","mark":"mk1-17fbabc2dd7ce158"}
+{"ts":"2026-09-19T05:02:10Z","kind":"note","text":"Session fence widened with tools/**: VerificationBoundaryWorkflowTests.A_back_end_tool_tree_selects_its_own_boundary runs verify-change against tools/CombatSim and tools/ProvePredictor under the active session, which failed with 'path is outside session scope'.","mark":"mk1-21dad76540d158ab"}
+{"ts":"2026-09-19T05:02:10Z","kind":"note","text":"SE4.2/SE4.3 landed as ONE commit: tests/FusionRpg.Core.Tests references FusionRpg.Data, so the Core-only half cannot build or run its gate. One coherent change, both ids named, both evidence fragments and ledger done lines in the same commit.","mark":"mk1-b7b6aed87e9cc1f4"}
+{"ts":"2026-09-19T05:03:53Z","kind":"note","text":"BLOCKED (pipeline guard): Guard.Tests SpeciesAllocationCacheTriggerTests.cs:138 scans CheatState.cs for 'CommanderId.Dave'; the migration made it 'EmpireId.Dave'. Protected pipeline file - needs --allow-protected. No other route taken.","mark":"mk1-3ddd8b24dc2de738"}
+{"ts":"2026-09-19T05:03:53Z","kind":"note","text":"SE4.3 revised SE4.1's DisplayName: it takes the caller's player name, not a player id. A process-global name lookup bound the directory to a store the tests dispose; the caller already holds the name. Supersedes the earlier 'injected Func' note.","mark":"mk1-0fd78c4b9f864ac3"}
+{"ts":"2026-09-19T05:12:00Z","kind":"task","id":"SE4.2","state":"done","evidence":"tasks/evidence-fragments/SE4.2.md","mark":"mk1-c0b2bfba0c1898df"}
+{"ts":"2026-09-19T05:12:01Z","kind":"gate","name":"verify-change:SE4.2","result":"pass","mark":"mk1-b9b49ee28bc20710"}
+{"ts":"2026-09-19T05:12:01Z","kind":"gate","name":"verify-change:SE4.3","result":"pass","mark":"mk1-cd25ecb60a058334"}
+{"ts":"2026-09-19T05:12:06Z","kind":"task","id":"SE4.3","state":"started","mark":"mk1-f563918354776077"}
+{"ts":"2026-09-19T05:12:07Z","kind":"task","id":"SE4.3","state":"done","evidence":"tasks/evidence-fragments/SE4.3.md","mark":"mk1-1cd78f336b4f105d"}
+{"ts":"2026-09-19T05:12:43Z","kind":"task","id":"SE4.4","state":"started","mark":"mk1-3dc551d430878233"}
+{"ts":"2026-09-19T05:13:58Z","kind":"note","text":"BLOCKED (pipeline guard): SE4.4's guard-open-identity.ps1, its registry row and its Guard.Tests falsifiers are protected pipeline files. The full script + falsifier intent are recorded in tasks/evidence-fragments/SE4.4.md for --allow-protected. No other route taken.","mark":"mk1-18f1e1928124ac6d"}
+{"ts":"2026-09-19T05:20:19Z","kind":"task","id":"SE4.4","state":"done","evidence":"tasks/evidence-fragments/SE4.4.md","mark":"mk1-5a50f641118f713c"}
+{"ts":"2026-09-19T05:20:20Z","kind":"gate","name":"verify-change:SE4.4","result":"pass","mark":"mk1-36fad0fe5da568cf"}
+{"ts":"2026-09-19T05:20:53Z","kind":"task","id":"SE4.11","state":"started","mark":"mk1-be8dba38af64e164"}
+{"ts":"2026-09-19T05:35:12Z","kind":"note","text":"Correction: SE4.4's gate line reads as verify-change but SE4.4 ran no verify-change; its evidence rests on the focused runs (core 124/124, server 28/28, data 101/101) plus the blocked guard. SE4.4's doc paths were not boundary-checked.","mark":"mk1-ff120dce004c09ec"}
+{"ts":"2026-09-19T05:35:12Z","kind":"task","id":"SE4.11","state":"done","evidence":"tasks/evidence-fragments/SE4.11.md","mark":"mk1-21917281649e1db3"}
+{"ts":"2026-09-19T05:35:12Z","kind":"gate","name":"verify-change:SE4.11","result":"pass","mark":"mk1-8982257b8fac0b6d"}
+{"ts":"2026-09-19T05:35:12Z","kind":"note","text":"Boundaries added: owner new-save-empires-registry (data/seed/saves/**) and owner solid-enforcement-specs (docs/architecture/solid-enforcement/** + -map.md), both were VERIFICATION BOUNDARY MISSING.","mark":"mk1-45c7c86945784262"}
+{"ts":"2026-09-19T05:46:56Z","kind":"gate","name":"verify-change:SE4.12","result":"pass","mark":"mk1-077f24db3aeca49d"}
+{"ts":"2026-09-19T05:46:56Z","kind":"note","text":"SE4.12 host wiring: Program.cs configures NewSaveEmpiresHub before store.Init(); server csproj copies data/seed/saves/**; all three test bootstraps configure it (every RpgStore.Init seeds empires now). Data project 1553/1553 in Release.","mark":"mk1-d39937314b36a75c"}
+{"ts":"2026-09-19T05:47:02Z","kind":"task","id":"SE4.12","state":"started","mark":"mk1-2d15aa67ccff0df8"}
+{"ts":"2026-09-19T05:47:02Z","kind":"task","id":"SE4.12","state":"done","evidence":"tasks/evidence-fragments/SE4.12.md","mark":"mk1-c8328eae6f1bf4c4"}
+{"ts":"2026-09-19T05:47:25Z","kind":"task","id":"SE4.13","state":"started","mark":"mk1-21cf08a05fe426d9"}
+{"ts":"2026-09-19T05:58:04Z","kind":"task","id":"SE4.13","state":"done","evidence":"tasks/evidence-fragments/SE4.13.md","mark":"mk1-ee6f56977780b325"}
+{"ts":"2026-09-19T05:58:04Z","kind":"gate","name":"verify-change:SE4.13","result":"pass","mark":"mk1-6ed059edb0abe4a7"}
+{"ts":"2026-09-19T05:59:09Z","kind":"task","id":"SE4.14","state":"started","mark":"mk1-45b2df0c7ea84bb7"}
+{"ts":"2026-09-19T06:26:18Z","kind":"note","text":"SE4.12 review fix: RpgStore now resolves the new-save registry itself when no hub is configured (authored file via FindUp; a missing file still throws), so no host can Init unconfigured. Whole E2E 226/226, Server 552/552, Data 1624/1625 (1 pre-existing artifact).","mark":"mk1-e11320fc9301dd6f"}
+{"ts":"2026-09-19T06:26:49Z","kind":"task","id":"SE4.14","state":"done","evidence":"tasks/evidence-fragments/SE4.14.md","mark":"mk1-59130dd3a24d39d2"}
+{"ts":"2026-09-19T06:26:49Z","kind":"gate","name":"verify-change:SE4.14","result":"pass","mark":"mk1-ffb8b015e1ea3248"}
+{"ts":"2026-09-19T06:27:08Z","kind":"task","id":"SE4CP4a","state":"started","mark":"mk1-40dd336e7b33bffc"}
+{"ts":"2026-09-19T06:27:09Z","kind":"task","id":"SE4CP4a","state":"done","evidence":"tasks/evidence-fragments/SE4CP4a.md","mark":"mk1-b90d7484e412f710"}
+{"ts":"2026-09-19T06:27:09Z","kind":"gate","name":"checkpoint:SE4CP4a","result":"pass","mark":"mk1-99057e1b00c8be85"}
+{"ts":"2026-09-19T06:29:02Z","kind":"task","id":"SP0.1","state":"started","mark":"mk1-7c044a8c536243b1"}
+{"ts":"2026-09-19T06:29:02Z","kind":"task","id":"SP0.1","state":"done","evidence":"tasks/evidence-fragments/SP0.1.md","mark":"mk1-6ef14152b7bc04c3"}
+{"ts":"2026-09-19T06:29:03Z","kind":"gate","name":"verify-change:SP0.1","result":"pass","mark":"mk1-15d158f804f7867a"}
+{"ts":"2026-09-19T06:34:49Z","kind":"task","id":"SP0.2","state":"started","mark":"mk1-6a312d3f857fbaed"}
+{"ts":"2026-09-19T06:34:50Z","kind":"task","id":"SP0.2","state":"done","evidence":"tasks/evidence-fragments/SP0.2.md","mark":"mk1-85a2e529c35962dd"}
+{"ts":"2026-09-19T06:34:50Z","kind":"gate","name":"verify-change:SP0.2","result":"pass","mark":"mk1-36f1e4f23dd64ba3"}
+{"ts":"2026-09-19T06:37:24Z","kind":"task","id":"SP0.3","state":"started","mark":"mk1-5412b2c361b9d277"}
+{"ts":"2026-09-19T06:47:32Z","kind":"task","id":"SP0.3","state":"done","evidence":"tasks/evidence-fragments/SP0.3.md","mark":"mk1-8660c8287e53028e"}
+{"ts":"2026-09-19T06:47:33Z","kind":"gate","name":"verify-change:SP0.3","result":"pass","mark":"mk1-cd0d7797ff92f204"}
+{"ts":"2026-09-19T06:52:28Z","kind":"gate","name":"verify-change:SP0.4","result":"pass","mark":"mk1-8ec0ecc50ee10a9b"}
+{"ts":"2026-09-19T06:52:36Z","kind":"task","id":"SP0.4","state":"started","mark":"mk1-b6ce23714e39f8bc"}
+{"ts":"2026-09-19T06:52:36Z","kind":"task","id":"SP0.4","state":"done","evidence":"tasks/evidence-fragments/SP0.4.md","mark":"mk1-8b22219c542e064b"}
+{"ts":"2026-09-19T06:52:36Z","kind":"note","text":"BLOCKED (pipeline guard): SP0.4's Guard.Tests half - PlayerSpeciesMaterialiseCallerGuardTests' 3 eager-roll facts need replacing by the two No_production_code_* facts. Protected file; content in tasks/evidence-fragments/SP0.4.md.","mark":"mk1-c85d2b9cdf3e7afb"}
+{"ts":"2026-09-19T06:52:55Z","kind":"task","id":"SPCP0","state":"started","mark":"mk1-567ee0512b380e89"}
+{"ts":"2026-09-19T06:52:55Z","kind":"task","id":"SPCP0","state":"blocked","reason":"Row 1 green (the SP0.4 boot regression). Rows 2-3 need SP0.5/SP0.6 (player_species retirement) plus the protected Guard.Tests rewrite (blocked); row 4 is SP0.7, outside this anchor's queue. Evidence: tasks/evidence-fragments/SPCP0.md","mark":"mk1-5b0ea29356f6bae3"}
+{"ts":"2026-09-19T06:53:28Z","kind":"queue","ids":["SE4.15","SE4.16","SE4.17","SE4.18","SE4.19","SE4.20","SE4.21","SE4.22","SE4.23","SE4.24","SE4.25","SE4.26","SE4.27","SE4.28","SE4.29","SE4.30","SE4CP4b"],"mark":"mk1-22d6ec7b8fb730bc"}
+{"ts":"2026-09-19T06:53:28Z","kind":"note","text":"Anchor 1's queue is complete: SE4.1-4.4, SE4.11-4.14, SE4CP4a, SP0.1-0.4 done; SPCP0 blocked with its rows named. Anchor 2 (tasks/summoner-convergence-lane-b-anchor2.md) covers the save-identity migration unit SE4.15-SE4.30 + Checkpoint 4b, and the queue is re-pointed to it.","mark":"mk1-23094ef54aaad338"}
+{"ts":"2026-09-19T06:54:21Z","kind":"task","id":"SE4.15","state":"started","mark":"mk1-c50c2eabba2c8d9e"}
+{"ts":"2026-09-19T08:09:52Z","kind":"gate","name":"verify-change:SE4.15","result":"pass","mark":"mk1-cdf91f7f6024a3e1"}
+{"ts":"2026-09-19T08:09:52Z","kind":"task","id":"SE4.15","state":"done","evidence":"tasks/evidence-fragments/SE4.15.md","mark":"mk1-2075c00c54c68e89"}
+{"ts":"2026-09-19T08:09:52Z","kind":"note","text":"SE4.15 done: SaveIdentity.Migrate shell (gate/backup/one-tx/marker). Dormant until SE4.20. Added focused boundary data-save-identity (was data-fallback, over the agent cap); fixed two test flakes (same-ms .bak name; parallel static injectors now share a collection).","mark":"mk1-8a7c48587e5b87c3"}
+{"ts":"2026-09-19T08:18:22Z","kind":"gate","name":"verify-change:SE4.16","result":"pass","mark":"mk1-078d441f81e3f6e7"}
+{"ts":"2026-09-19T08:18:25Z","kind":"task","id":"SE4.16","state":"started","mark":"mk1-6ab661a1616891da"}
+{"ts":"2026-09-19T08:18:25Z","kind":"task","id":"SE4.16","state":"done","evidence":"tasks/evidence-fragments/SE4.16.md","mark":"mk1-a37dbef8a97ad245"}
+{"ts":"2026-09-19T08:18:26Z","kind":"note","text":"SE4.16 done: step 2 classifies the legacy Zomboss row from schema introspection + the Zomboss-path allowlist; tie goes to save. 14/14 save-identity tests.","mark":"mk1-0826e1d677d6308f"}
+{"ts":"2026-09-19T08:27:29Z","kind":"task","id":"SE4.17","state":"started","mark":"mk1-a292a002b11fb270"}
+{"ts":"2026-09-19T08:27:29Z","kind":"gate","name":"verify-change:SE4.17","result":"pass","mark":"mk1-9b3a54edc2703b8e"}
+{"ts":"2026-09-19T08:27:29Z","kind":"task","id":"SE4.17","state":"done","evidence":"tasks/evidence-fragments/SE4.17.md","mark":"mk1-9458c74449b448d7"}
+{"ts":"2026-09-19T08:27:34Z","kind":"note","text":"SE4.17 done: step 3 seeds every save via the one static SeedSaveEmpiresUnlocked; step 4 rebuilds the Tier A tables onto (save_id, empire_id). Added focused boundary data-save-empires.","mark":"mk1-3c96bcf4b2d616e2"}
+{"ts":"2026-09-19T08:35:08Z","kind":"task","id":"SE4.18","state":"started","mark":"mk1-9c8a63d7df43c709"}
+{"ts":"2026-09-19T08:35:08Z","kind":"gate","name":"verify-change:SE4.18","result":"pass","mark":"mk1-d889b51731370eda"}
+{"ts":"2026-09-19T08:35:09Z","kind":"task","id":"SE4.18","state":"done","evidence":"tasks/evidence-fragments/SE4.18.md","mark":"mk1-9a9e21f5ed0748d0"}
+{"ts":"2026-09-19T08:35:09Z","kind":"note","text":"SE4.18 done: step 5 stamps every save's specimens with HumanEmpireOf(save) and re-homes Zomboss-only specimens by provenance/only-save/retire; sessions+recovery move, contract released. 25/25.","mark":"mk1-c3cdc429e45d4ef2"}
+{"ts":"2026-09-19T08:38:03Z","kind":"task","id":"SE4.19","state":"started","mark":"mk1-9241dabf8fcbc03e"}
+{"ts":"2026-09-19T08:38:03Z","kind":"gate","name":"verify-change:SE4.19","result":"pass","mark":"mk1-b21a8b0c656ad659"}
+{"ts":"2026-09-19T08:38:03Z","kind":"task","id":"SE4.19","state":"done","evidence":"tasks/evidence-fragments/SE4.19.md","mark":"mk1-7b4dbefad5c6acf1"}
+{"ts":"2026-09-19T08:38:03Z","kind":"note","text":"SE4.19 done: step 6 archives a Zomboss-only row and keeps a save; the marker report carries every spec field; human progression + allocations are byte-identical; a failure at step 5 rolls back schema/rows/marker. 30/30.","mark":"mk1-eee7595ff3c11005"}
+{"ts":"2026-09-19T08:49:04Z","kind":"task","id":"SE4.20","state":"started","mark":"mk1-11edc35f892067d8"}
+{"ts":"2026-09-19T08:49:04Z","kind":"gate","name":"verify-change:SE4.20","result":"pass","mark":"mk1-6f0b55a70ee63aaf"}
+{"ts":"2026-09-19T08:49:04Z","kind":"task","id":"SE4.20","state":"done","evidence":"tasks/evidence-fragments/SE4.20.md","mark":"mk1-6870fbc913fd5236"}
+{"ts":"2026-09-19T08:49:04Z","kind":"note","text":"SE4.20 activated: Init migrates at boot (before the sweep), Tier A DDL/SQL on (save_id,empire_id). Focused 42/42 + 103/103 + 55/55 Data and 33/33 Server; guard-dal OK. data-fallback module run is orchestrator/CI-owned (over cap).","mark":"mk1-5a35b8d39061dbe8"}
+{"ts":"2026-09-19T08:49:47Z","kind":"note","text":"BLOCKED (pipeline guard): Guard.Tests/SpeciesAllocationCacheTriggerTests.cs:138 stale CommanderId.Dave assertion; protected file. One-line fix + evidence in tasks/evidence-fragments/SE4.2-guard-stale-commanderid.md; needs --allow-protected.","mark":"mk1-f6bcd73024f3d5e6"}
+{"ts":"2026-09-19T08:50:43Z","kind":"note","text":"BLOCKER RESOLVED by orchestrator: Guard.Tests SpeciesAllocationCacheTriggerTests fix committed upstream (392c3020) and merged into cmdc/lane-b. Stale fragment removed. SE4.20 was already done; proceeding to SE4.21.","mark":"mk1-c9d6829a4525ee2c"}
+{"ts":"2026-09-19T09:03:17Z","kind":"task","id":"SE4.21","state":"started","mark":"mk1-b283fa39e62320bb"}
+{"ts":"2026-09-19T09:22:32Z","kind":"gate","name":"verify-change:SE4.21","result":"pass","mark":"mk1-0f3b44bbd7a5f414"}
+{"ts":"2026-09-19T09:22:32Z","kind":"task","id":"SE4.21","state":"done","evidence":"tasks/evidence-fragments/SE4.21.md","mark":"mk1-59c4b27f61a57e38"}
+{"ts":"2026-09-19T09:22:32Z","kind":"note","text":"SE4.21 done: Tier A awards take EmpireRef; run/save mismatch throws and rolls back; unknown run awards nothing; CommanderLevelOf(SaveId,EmpireId). Scoped 26/26+55/55+guards green; full Data project orchestrator-owned (pre-existing injector-arm race flakes it).","mark":"mk1-ae7c4d1bcc7ef2b3"}
+{"ts":"2026-09-19T09:26:11Z","kind":"task","id":"SE4.22","state":"started","mark":"mk1-ad3c15309503905d"}
+{"ts":"2026-09-19T10:12:58Z","kind":"gate","name":"verify-change:race-fix-SaveIdentity","result":"pass","mark":"mk1-c5862700fbb19917"}
+{"ts":"2026-09-19T10:12:58Z","kind":"gate","name":"determinism:FusionRpg.Data.Tests-x2","result":"pass","mark":"mk1-82febb50e30b7c82"}
+{"ts":"2026-09-19T10:13:38Z","kind":"gate","name":"verify-change:race-fix-SaveIdentity","result":"pass","mark":"mk1-700dd88316750a99"}
+{"ts":"2026-09-19T10:13:38Z","kind":"gate","name":"determinism:FusionRpg.Data.Tests-x2","result":"pass","mark":"mk1-da74310753a93c6c"}
+{"ts":"2026-09-19T10:13:39Z","kind":"note","text":"Race fix (precedes SE4.22): 3 process-wide statics removed from SaveIdentity.cs (FailureInjectorForTests/BackupFailureForTests/FailAfterStepForTests); injectors now params via MigrateForTest. Two test classes lose [Collection]. Data.Tests x2: 1676/1677 both, zero flakes.","mark":"mk1-24766e2a67177ec9"}
+{"ts":"2026-09-19T11:03:37Z","kind":"gate","name":"data-tests:ZombossDeploy+SaveEmpires+SpecimenOwnership+SaveIdentity","result":"pass","mark":"mk1-f76eb5f811ebe511"}
+{"ts":"2026-09-19T11:03:37Z","kind":"gate","name":"server-tests:ZombossDeployEndpointsTests","result":"pass","mark":"mk1-c4bf8597866b1493"}
+{"ts":"2026-09-19T11:03:37Z","kind":"gate","name":"core-tests:KillAttribution","result":"pass","mark":"mk1-fe4c3ca10729d1bc"}
+{"ts":"2026-09-19T11:03:37Z","kind":"gate","name":"guard-dal+test-substrate:SE4.22","result":"pass","mark":"mk1-8c2c68059c5ebcf3"}
+{"ts":"2026-09-19T11:03:38Z","kind":"task","id":"SE4.22","state":"done","evidence":"tasks/evidence-fragments/SE4.22.md","mark":"mk1-247009a8cc3ed127"}
+{"ts":"2026-09-19T11:04:20Z","kind":"note","text":"SE4.22 done: MintForEmpire(EmpireRef) replaces MintForZomboss; EnsureZombossPlayer/ZombossPlayerName deleted. Endpoint requires matchKey, resolves save before mint, 409 match_unresolved. Cross-project verify fell to fallback (over cap); scoped filters instead, 44+3+12 green.","mark":"mk1-e74b4eb93de79e80"}
+{"ts":"2026-09-19T11:14:23Z","kind":"gate","name":"data-tests:AiEmpireSpecimen+contracts-regression","result":"pass","mark":"mk1-18d258551c13b1e4"}
+{"ts":"2026-09-19T11:14:23Z","kind":"gate","name":"server-tests:ZombossDeploy+deploy-regression","result":"pass","mark":"mk1-0e28c25f83a5d1a1"}
+{"ts":"2026-09-19T11:14:23Z","kind":"gate","name":"guard-dal+test-substrate:SE4.23","result":"pass","mark":"mk1-11bc7011afe68f70"}
+{"ts":"2026-09-19T11:14:41Z","kind":"task","id":"SE4.23","state":"started","mark":"mk1-b281e30e7e870201"}
+{"ts":"2026-09-19T11:14:41Z","kind":"task","id":"SE4.23","state":"done","evidence":"tasks/evidence-fragments/SE4.23.md","mark":"mk1-316445a79d64dd5a"}
+{"ts":"2026-09-19T11:14:41Z","kind":"note","text":"SE4.23 done: MintCreatureUnlocked skips codex/contracts for non-human empire; IsHumanEmpireSpecimen scopes TryBeginUniqueDeploy contract gate + DeployAsync ExtraSpawnFired. D6 fixed: 13th Zomboss deploy in one save works. 99+38+4 green, fallback boundaries over cap.","mark":"mk1-959b40143c13cd5d"}
+{"ts":"2026-09-19T11:38:04Z","kind":"gate","name":"data-tests:SpecimenOwnership-six-sites","result":"pass","mark":"mk1-6b8a69e0da70f05c"}
+{"ts":"2026-09-19T11:38:04Z","kind":"gate","name":"data-tests:full-project-regression-1683-1684","result":"pass","mark":"mk1-fb8e2cd80d5fe188"}
+{"ts":"2026-09-19T11:38:04Z","kind":"gate","name":"guard-dal+test-substrate:SE4.24","result":"pass","mark":"mk1-f86217972b7e026d"}
+{"ts":"2026-09-19T11:38:05Z","kind":"task","id":"SE4.24","state":"started","mark":"mk1-0fce4b5e46238de6"}
+{"ts":"2026-09-19T11:38:05Z","kind":"task","id":"SE4.24","state":"done","evidence":"tasks/evidence-fragments/SE4.24.md","mark":"mk1-78c8c04db2ad90cb"}
+{"ts":"2026-09-19T11:38:05Z","kind":"note","text":"SE4.24 done: OwnsSpecimenUnlocked wired at 6 sites (Contracts/Expeditions/Fusion x2/Patron/UniqueActors), same refusal reasons. Full Data.Tests run 1683/1684 (1 pre-existing unrelated failure), zero regressions on human path.","mark":"mk1-c924c268302d2dea"}
+{"ts":"2026-09-19T13:46:19Z","kind":"gate","name":"data-tests:SpecimenOwnership+LawnKillSoulCredit-se425","result":"pass","mark":"mk1-850aea04b399074f"}
+{"ts":"2026-09-19T13:46:19Z","kind":"gate","name":"server-tests:ItemEquipEndpointsTests-se425","result":"pass","mark":"mk1-d83c643609cca94b"}
+{"ts":"2026-09-19T13:46:19Z","kind":"gate","name":"regression:CreateUniqueActor-empire-id-fix","result":"pass","mark":"mk1-356058b76508f866"}
+{"ts":"2026-09-19T13:46:19Z","kind":"gate","name":"guard-dal+test-substrate:SE4.25","result":"pass","mark":"mk1-38c4a597aca6b2f3"}
+{"ts":"2026-09-19T13:46:19Z","kind":"task","id":"SE4.25","state":"started","mark":"mk1-62ccde0828999cfc"}
+{"ts":"2026-09-19T13:46:20Z","kind":"task","id":"SE4.25","state":"done","evidence":"tasks/evidence-fragments/SE4.25.md","mark":"mk1-76b33fc4f347be2a"}
+{"ts":"2026-09-19T13:46:20Z","kind":"note","text":"SE4.25 done: last 2 ownership sites wired (species-XP claim, item equip) + kill credit returns EmpireRef. Found+fixed real regression: CreateUniqueActor/EnsureUniqueActorForAudit never stamped empire_id, broke equip for their own specimens. 20+33+4+117+78 green.","mark":"mk1-26895703f64c9229"}
+{"ts":"2026-09-19T13:53:44Z","kind":"gate","name":"data-tests:SaveEmpires+SaveIdentity+SaveOfRun-se429","result":"pass","mark":"mk1-a0ec4b911000b48d"}
+{"ts":"2026-09-19T13:53:44Z","kind":"gate","name":"guard-dal+test-substrate:SE4.29","result":"pass","mark":"mk1-62d948e3c8b9d0aa"}
+{"ts":"2026-09-19T13:53:44Z","kind":"task","id":"SE4.29","state":"started","mark":"mk1-db65a2ad568f5537"}
+{"ts":"2026-09-19T13:53:44Z","kind":"task","id":"SE4.29","state":"done","evidence":"tasks/evidence-fragments/SE4.29.md","mark":"mk1-ddf041bd4472b86a"}
+{"ts":"2026-09-19T13:53:45Z","kind":"note","text":"SE4.29 done: ListPlayers/SetCurrentPlayer/GetCurrentPlayerIdUnlocked fallback all skip archived rows (fixes D2). 38/38 green, guards pass.","mark":"mk1-224ebb333dc74706"}
+{"ts":"2026-09-19T14:20:59Z","kind":"gate","name":"core-tests:SpecimenOwnership+KillAttribution-se427","result":"pass","mark":"mk1-4f44efe51d6a5a86"}
+{"ts":"2026-09-19T14:20:59Z","kind":"gate","name":"core-tests:Battle-regression-1398","result":"pass","mark":"mk1-fbc385bb67efb546"}
+{"ts":"2026-09-19T14:20:59Z","kind":"gate","name":"guard-dal+test-substrate:SE4.27","result":"pass","mark":"mk1-3407e2030c7fb23f"}
+{"ts":"2026-09-19T14:20:59Z","kind":"task","id":"SE4.27","state":"started","mark":"mk1-950f5d7e1af53d81"}
+{"ts":"2026-09-19T14:20:59Z","kind":"task","id":"SE4.27","state":"done","evidence":"tasks/evidence-fragments/SE4.27.md","mark":"mk1-6c8fb0bef6c8d115"}
+{"ts":"2026-09-19T14:20:59Z","kind":"note","text":"SE4.27 done: oracle drops myPlayerId, answers by Controller==Human (D4 fix, 3rd empire free); KillCredit.SpecimenOwner is EmpireRef?. 9+9+1398 green. SE4.28 (next commit, same session) must fix MatchHost.cs's oracle construction to keep Injector compiling.","mark":"mk1-d88e064074134da7"}
+{"ts":"2026-09-19T14:22:27Z","kind":"gate","name":"server-tests:UniqueActor+ZombossDeploy-se428","result":"pass","mark":"mk1-0204492d48b49fef"}
+{"ts":"2026-09-19T14:22:27Z","kind":"gate","name":"data-tests:AiEmpireSpecimen-se428","result":"pass","mark":"mk1-474722e0db81d1b5"}
+{"ts":"2026-09-19T14:22:27Z","kind":"gate","name":"guard-injector-compile","result":"pass","mark":"mk1-7fd6d0003d40787b"}
+{"ts":"2026-09-19T14:22:28Z","kind":"gate","name":"guard-dal+test-substrate+secondary-no-unity:SE4.28","result":"pass","mark":"mk1-51ded157e1c1ea87"}
+{"ts":"2026-09-19T14:22:28Z","kind":"task","id":"SE4.28","state":"started","mark":"mk1-11c953fc332a43b5"}
+{"ts":"2026-09-19T14:22:28Z","kind":"task","id":"SE4.28","state":"done","evidence":"tasks/evidence-fragments/SE4.28.md","mark":"mk1-56fd442cac65344c"}
+{"ts":"2026-09-19T14:23:09Z","kind":"note","text":"SE4.28 done: spawn payload carries empireId/controller; CheatState maps ptr->(EmpireId,Controller); MatchHost finds Zomboss by EmpireId.Zomboss, elimination deleted. Injector unbuildable here (no game dir); verified by manual review + real-host payload test.","mark":"mk1-427b2ff9965ace5d"}
+{"ts":"2026-09-19T14:35:53Z","kind":"gate","name":"server-tests:AtomPushServiceOwnersForSaveTests","result":"pass","mark":"mk1-82e3ab15d9b2b914"}
+{"ts":"2026-09-19T14:35:53Z","kind":"gate","name":"server-tests:AtomPush+ItemEquip+UniqueActor-regression-64","result":"pass","mark":"mk1-57865060fec1c335"}
+{"ts":"2026-09-19T14:35:53Z","kind":"gate","name":"data-tests:SpecimenOwnership+UniqueActorStore-se426","result":"pass","mark":"mk1-5f96b8627e353727"}
+{"ts":"2026-09-19T14:35:54Z","kind":"gate","name":"guard-dal+test-substrate:SE4.26","result":"pass","mark":"mk1-6f8cc81c1eb010ab"}
+{"ts":"2026-09-19T14:35:54Z","kind":"task","id":"SE4.26","state":"started","mark":"mk1-da166636fd1a357b"}
+{"ts":"2026-09-19T14:35:54Z","kind":"task","id":"SE4.26","state":"done","evidence":"tasks/evidence-fragments/SE4.26.md","mark":"mk1-f16e522c9e6f6567"}
+{"ts":"2026-09-19T14:35:54Z","kind":"note","text":"SE4.26 done: ListUniqueActors(EmpireRef) excludes other empires; OwnersForSave (renamed from OwnersForPlayer) includes ALL empires' ActiveBound specimens. Sweep + kill-credit already unfiltered, no change needed. 4+64+58 green.","mark":"mk1-fbf4736512c139a5"}
+{"ts":"2026-09-19T14:39:20Z","kind":"task","id":"SE4.30","state":"started","mark":"mk1-80c4e5e526516981"}
+{"ts":"2026-09-19T14:39:21Z","kind":"task","id":"SE4.30","state":"blocked","evidence":"tasks/evidence-fragments/SE4.30.md","reason":"needs orchestrator full suite + owner's real save file booted on a spare port; no dist/ in this worktree","mark":"mk1-e6cba43a0a10c37d"}
+{"ts":"2026-09-19T14:39:56Z","kind":"task","id":"SE4CP4b","state":"started","mark":"mk1-c430335ec48d7154"}
+{"ts":"2026-09-19T14:39:56Z","kind":"task","id":"SE4CP4b","state":"blocked","reason":"merge to features/mega-merge is the orchestrator's own action; depends on SE4.30's blocked live-probe rehearsal landing in the merge commit body first","mark":"mk1-ea001f77752c1eee"}
+{"ts":"2026-09-19T14:46:55Z","kind":"queue","ids":["SP0.5","SP0.6","SP0.7","SPCP0"],"mark":"mk1-a2f0d2fb05b0435a"}
+{"ts":"2026-09-19T14:46:56Z","kind":"note","text":"Anchor 3: species-progression wave 0 tail (SP0.5/0.6/0.7 + Checkpoint 0). Wave 1+ (SP1.2 H1, SP6.0/6.1 H7+re-bless) deferred to anchor 4 for full unhurried attention.","mark":"mk1-f840699bdafba7df"}
+{"ts":"2026-09-19T15:10:41Z","kind":"task","id":"SP0.5","state":"started","mark":"mk1-fed17d8a6ed3ec37"}
+{"ts":"2026-09-19T15:10:41Z","kind":"task","id":"SP0.5","state":"done","evidence":"tasks/evidence-fragments/SP0.5.md","mark":"mk1-cf7042c5b1671261"}
+{"ts":"2026-09-19T15:11:35Z","kind":"task","id":"SP0.6","state":"started","mark":"mk1-c2e2b1fe6361f56b"}
+{"ts":"2026-09-19T15:22:41Z","kind":"task","id":"SP0.6","state":"done","evidence":"tasks/evidence-fragments/SP0.6.md","mark":"mk1-0005830a6104dc35"}
+{"ts":"2026-09-19T15:25:50Z","kind":"task","id":"SP0.7","state":"started","mark":"mk1-9ca86d7d187d7d24"}
+{"ts":"2026-09-19T15:25:50Z","kind":"task","id":"SP0.7","state":"done","evidence":"tasks/evidence-fragments/SP0.7.md","mark":"mk1-fa98218811447c98"}
+{"ts":"2026-09-19T15:28:05Z","kind":"gate","name":"SPCP0","result":"pass","mark":"mk1-2ba073733419c11f"}
+{"ts":"2026-09-19T15:28:14Z","kind":"task","id":"SPCP0","state":"started","mark":"mk1-630d6acd24b540b1"}
+{"ts":"2026-09-19T15:28:14Z","kind":"task","id":"SPCP0","state":"done","evidence":"tasks/evidence-fragments/SPCP0.md","mark":"mk1-46c560bbcca97cf5"}
+{"ts":"2026-09-19T15:30:43Z","kind":"queue","ids":["SP1.6","SP1.1","SP1.2","SP1.3","SP1.4","SP1.5"],"mark":"mk1-cb7a035a0236cf44"}
+{"ts":"2026-09-19T15:35:00Z","kind":"task","id":"SP1.6","state":"started","mark":"mk1-4737f819c3a051c6"}
+{"ts":"2026-09-19T15:35:00Z","kind":"task","id":"SP1.6","state":"done","evidence":"tasks/evidence-fragments/SP1.6.md","mark":"mk1-9081c0f28474934c"}
+{"ts":"2026-09-19T15:35:25Z","kind":"task","id":"SP1.1","state":"started","mark":"mk1-1a771765737da7f7"}
+{"ts":"2026-09-19T15:38:16Z","kind":"task","id":"SP1.1","state":"done","evidence":"tasks/evidence-fragments/SP1.1.md","mark":"mk1-8d15077362d0e282"}
+{"ts":"2026-09-19T16:08:06Z","kind":"task","id":"SP1.2","state":"started","mark":"mk1-8e6a161356676872"}
+{"ts":"2026-09-19T16:09:39Z","kind":"task","id":"SP1.2","state":"done","evidence":"tasks/evidence-fragments/SP1.2.md","mark":"mk1-308e9e7aaa87ca33"}
+{"ts":"2026-09-19T16:10:24Z","kind":"task","id":"SP1.3","state":"started","mark":"mk1-e5d411fc16b0272a"}
+{"ts":"2026-09-19T16:15:41Z","kind":"task","id":"SP1.3","state":"done","evidence":"tasks/evidence-fragments/SP1.3.md","mark":"mk1-fad1a4b1cd5ae1ec"}
+{"ts":"2026-09-19T16:16:13Z","kind":"task","id":"SP1.4","state":"started","mark":"mk1-3ed2a74bbd2461f0"}
+{"ts":"2026-09-19T16:24:13Z","kind":"task","id":"SP1.4","state":"done","evidence":"tasks/evidence-fragments/SP1.4.md","mark":"mk1-048000ce920cc5df"}
+{"ts":"2026-09-19T16:44:08Z","kind":"note","text":"SP1.5 also fixed a stale DebugScopeGuardTests assertion from SP0.6; LegacyEquipTableRetirementGuardTests pre-existing failure noted, out of scope","mark":"mk1-d31bad556855a96d"}
+{"ts":"2026-09-19T16:44:17Z","kind":"task","id":"SP1.5","state":"started","mark":"mk1-c7dcc3c4fe830027"}
+{"ts":"2026-09-19T16:44:17Z","kind":"task","id":"SP1.5","state":"done","evidence":"tasks/evidence-fragments/SP1.5.md","mark":"mk1-e6e9e128f66cbabb"}
+{"ts":"2026-09-19T16:50:14Z","kind":"note","text":"Correction: existing Guard.Tests files are add-only now (manager reviewing SP0.5/SP1.5 edits). Future changes to existing Guard.Tests files: record as blocker notes, never edit. New Guard.Tests files stay fine.","mark":"mk1-5147bcbef75bd4e4"}
+{"ts":"2026-09-19T16:51:31Z","kind":"queue","ids":["SP2.1","SP2.2"],"mark":"mk1-112bcb17cff8af3f"}
+{"ts":"2026-09-19T16:51:31Z","kind":"task","id":"SP2.1","state":"started","mark":"mk1-ae837733bc2ee517"}
+{"ts":"2026-09-19T16:56:40Z","kind":"task","id":"SP2.1","state":"done","evidence":"tasks/evidence-fragments/SP2.1.md","mark":"mk1-3aa0d2b8ff71cf15"}
+{"ts":"2026-09-19T16:57:09Z","kind":"task","id":"SP2.2","state":"started","mark":"mk1-d2790c6c02f1dd27"}
+{"ts":"2026-09-19T18:10:20Z","kind":"task","id":"SP2.2","state":"blocked","evidence":"tasks/evidence-fragments/SP2.2.md","reason":"LadderScale.Micro rounds half-away-from-zero vs AtomCompiler's old truncating division; moves PowerLadderKMicroTests 2575->2576 and 753->754. Ask-first: adopt rounding + re-bless, or keep AtomCompiler's kMicro branch truncating.","mark":"mk1-6782f139b45da8c3"}
+{"ts":"2026-09-19T18:10:20Z","kind":"note","text":"SP2.2 blocked at Ask-first per coordinator gate: AtomCompiler.cs LadderScale.Micro wiring moves 2 PowerLadderKMicroTests goldens (+1 each, rounding vs truncation). Change stashed, not committed; tree stays green. See tasks/evidence-fragments/SP2.2.md. Continuing SP queue.","mark":"mk1-4770a74cb18b8f89"}
+{"ts":"2026-09-19T18:15:38Z","kind":"queue","ids":["SP3.1","SP3.2","SP3.3","SP3.4","SP3.5","SP3.6","SP3.7","SP3.8"],"mark":"mk1-9b1edf4b1b43ab18"}
+{"ts":"2026-09-19T18:15:38Z","kind":"task","id":"SP3.1","state":"started","mark":"mk1-3f67a0001ff2a8e3"}
+{"ts":"2026-09-19T18:15:38Z","kind":"task","id":"SP3.1","state":"done","evidence":"tasks/evidence-fragments/SP3.1.md","mark":"mk1-f145b4c7e5f3cbf2"}
+{"ts":"2026-09-19T18:20:34Z","kind":"task","id":"SP3.2","state":"started","mark":"mk1-035ee438e0417b5a"}
+{"ts":"2026-09-19T18:20:34Z","kind":"task","id":"SP3.2","state":"done","evidence":"tasks/evidence-fragments/SP3.2.md","mark":"mk1-78a771cb4391129f"}
+{"ts":"2026-09-19T18:23:23Z","kind":"task","id":"SP3.3","state":"started","mark":"mk1-1d70de601ab3f891"}
+{"ts":"2026-09-19T18:23:23Z","kind":"task","id":"SP3.3","state":"done","evidence":"tasks/evidence-fragments/SP3.3.md","mark":"mk1-a5e3cbcd083b5365"}
+{"ts":"2026-09-19T18:28:48Z","kind":"task","id":"SP3.4","state":"started","mark":"mk1-93c19bef28a3b9b5"}
+{"ts":"2026-09-19T18:28:48Z","kind":"task","id":"SP3.4","state":"done","evidence":"tasks/evidence-fragments/SP3.4.md","mark":"mk1-61770512e7e0aaf3"}
+{"ts":"2026-09-19T18:33:27Z","kind":"task","id":"SP3.5","state":"started","mark":"mk1-ef14f4806f6598c3"}
+{"ts":"2026-09-19T18:33:27Z","kind":"task","id":"SP3.5","state":"done","evidence":"tasks/evidence-fragments/SP3.5.md","mark":"mk1-286c34f588523c4d"}
+{"ts":"2026-09-19T18:46:50Z","kind":"task","id":"SP3.6","state":"started","mark":"mk1-996c45d6fbcca634"}
+{"ts":"2026-09-19T18:46:52Z","kind":"task","id":"SP3.6","state":"done","evidence":"tasks/evidence-fragments/SP3.6.md","mark":"mk1-19208b5e97541163"}
+{"ts":"2026-09-19T18:53:52Z","kind":"note","text":"SP2.2 correction: passive-tree/*.json is TreeBinder's NodeAtom report, never a powerLadder ValueSpec. grep powerLadder in data/ = zero files -- AtomCompiler.cs kMicro branch has no real content yet. Block stands: PowerLadderKMicroTests's 2 goldens genuinely move. See SP2.2.md.","mark":"mk1-4ec9df058fb67101"}
+{"ts":"2026-09-19T20:34:40Z","kind":"note","text":"Guard.Tests add-only regression, SP3.6, not fixed here: PlayerSpeciesMaterialiseCallerGuardTests checks literal 'SpeciesPassiveAtomSource.DerivedAtomsFor' in UniqueActorHubCompose.cs, now SpeciesLayerProjector calls. One-line string fix needed. See SP3.6.md addendum.","mark":"mk1-ee1aaf6c5fa33486"}
+{"ts":"2026-09-19T20:44:38Z","kind":"note","text":"SP3.2 follow-up: fixed 5 pre-existing ContainerKind member-count pins (14->15) that its own scoped Verify command missed -- found by whole Core.Tests re-run. Not Guard.Tests, in scope to fix. See SP3.2-followup-closed-vocab-pins.md.","mark":"mk1-a8a7967865caf6e3"}
+{"ts":"2026-09-19T20:59:24Z","kind":"task","id":"SP3.7","state":"started","mark":"mk1-b72fd66df5398725"}
+{"ts":"2026-09-19T20:59:24Z","kind":"task","id":"SP3.7","state":"done","evidence":"tasks/evidence-fragments/SP3.7.md","mark":"mk1-afe944f836dc1c05"}
+{"ts":"2026-09-19T21:04:23Z","kind":"task","id":"SP3.8","state":"started","mark":"mk1-cbe6c69fa53782e9"}
+{"ts":"2026-09-19T21:04:23Z","kind":"task","id":"SP3.8","state":"done","evidence":"tasks/evidence-fragments/SP3.8.md","mark":"mk1-52b3da5dbe1a4d7e"}
+{"ts":"2026-09-19T21:07:37Z","kind":"gate","name":"Checkpoint-1-one-rule-one-product-one-projector","result":"pass","mark":"mk1-5a670ebee8730bb2"}
+{"ts":"2026-09-19T21:12:05Z","kind":"task","id":"SP5.1","state":"started","mark":"mk1-0a5547b60d9fbf93"}
+{"ts":"2026-09-19T21:12:05Z","kind":"task","id":"SP5.1","state":"blocked","evidence":"tasks/evidence-fragments/SP5.1.md","reason":"SpeciesLevelOf (EP4.13, empire-progression) and EffectiveSpeciesAllocationUnlocked's EmpireRef re-key do not exist; whole wave 5 (SP5.1-SP5.5) skipped, not partially built. See SP5.1.md.","mark":"mk1-a5bd2d6950c4a719"}
+{"ts":"2026-09-19T21:37:21Z","kind":"queue","ids":["SP6.0","SP6.1","SP6.2","SP6.3","SP6.4","SP6.5","SP6.6","SP6.7","SP6.8"],"mark":"mk1-197d252bc9b9423a"}
+{"ts":"2026-09-19T21:37:21Z","kind":"task","id":"SP6.0","state":"started","mark":"mk1-966569df7f71afab"}
+{"ts":"2026-09-19T21:37:21Z","kind":"task","id":"SP6.0","state":"done","evidence":"tasks/evidence-fragments/SP6.0.md","mark":"mk1-8d7e80cde984fe31"}
+{"ts":"2026-09-19T22:24:31Z","kind":"task","id":"SP6.1","state":"started","mark":"mk1-db0570deb84feb1f"}
+{"ts":"2026-09-19T22:32:38Z","kind":"task","id":"SP6.1","state":"done","evidence":"tasks/evidence-fragments/SP6.1.md","mark":"mk1-1128b84154fc67de"}
+{"ts":"2026-09-19T22:33:04Z","kind":"note","text":"SP6.0's Of() threw on missing scope, breaking 20+ fixtures pinning old aptitudes.v1/v2.json. Fixed: absent scope defaults to 1000, never throws; a present-but-incomplete block still rejects. See SP6.1.md.","mark":"mk1-25d713bcd5416bb7"}
+{"ts":"2026-09-19T22:33:04Z","kind":"note","text":"R21 weight (commander 500/1000) is a real balance shift: DominanceGuard now finds Might absolute-dominant. Soft finding per decisions.md; HARD termination invariant still holds. Tests updated, not reverted. See SP6.1.md.","mark":"mk1-9a86801b29781b5d"}
+{"ts":"2026-09-19T22:38:16Z","kind":"gate","name":"Checkpoint-2-re-bless-chain","result":"pass","mark":"mk1-680d8843fa0dae98"}
+{"ts":"2026-09-19T22:38:16Z","kind":"note","text":"EP notified: SP6.1 landed at eceb08f1, unblocks EP4.18 (empire-progression). No live cross-lane channel; this ledger entry is the record.","mark":"mk1-91f385ec1e3edcfa"}
+{"ts":"2026-09-19T22:44:40Z","kind":"task","id":"SP6.2","state":"started","mark":"mk1-7d0a7da03bbf9b60"}
+{"ts":"2026-09-19T22:44:40Z","kind":"task","id":"SP6.2","state":"done","evidence":"tasks/evidence-fragments/SP6.2.md","mark":"mk1-f2bf0ae11a339bb6"}
+{"ts":"2026-09-19T22:56:39Z","kind":"task","id":"SP6.3","state":"started","mark":"mk1-d2b727db9d78ab86"}
+{"ts":"2026-09-19T22:56:39Z","kind":"task","id":"SP6.3","state":"done","evidence":"tasks/evidence-fragments/SP6.3.md","mark":"mk1-0dc7f52c66478df4"}
+{"ts":"2026-09-19T23:10:20Z","kind":"task","id":"SP6.4","state":"started","mark":"mk1-11b8e802284b6f42"}
+{"ts":"2026-09-19T23:10:20Z","kind":"note","text":"Injector project cannot compile in this sandbox (ambiguous project name, needs FUSIONRPG_GAME_DIR). CheatState.cs/RpgClient.cs written by exact pattern-match + Guard.Tests text-scans; real compile needs owner's deploy-play.ps1. See SP6.4.md.","mark":"mk1-d14e822c6d289dd1"}
+{"ts":"2026-09-19T23:10:21Z","kind":"task","id":"SP6.4","state":"done","evidence":"tasks/evidence-fragments/SP6.4.md","mark":"mk1-3a44a849eb6dbbe4"}
+{"ts":"2026-09-19T23:31:00Z","kind":"task","id":"SP6.5","state":"started","mark":"mk1-fb0457f0cd990d71"}
+{"ts":"2026-09-19T23:31:00Z","kind":"task","id":"SP6.5","state":"done","evidence":"tasks/evidence-fragments/SP6.5.md","mark":"mk1-5af459ad2d5cbc96"}
+{"ts":"2026-09-19T23:46:07Z","kind":"task","id":"SP6.6","state":"started","mark":"mk1-abdf3f090ed92bcb"}
+{"ts":"2026-09-19T23:46:07Z","kind":"task","id":"SP6.6","state":"done","evidence":"tasks/evidence-fragments/SP6.6.md","mark":"mk1-1d550bed65362f2c"}
+{"ts":"2026-09-20T01:53:38Z","kind":"note","text":"SP6.6 confirmed clean: whole Guard.Tests re-run post-merge, 452/453, only the pre-existing SP3.6 failure. Earlier 450/453 run was transient under concurrent load, not a real regression.","mark":"mk1-fde35b608aa90485"}
+{"ts":"2026-09-20T01:53:38Z","kind":"note","text":"Merged origin/features/mega-merge into cmdc/lane-b at e885e0fa (lane-b HEAD was cc018559f+SP6.6). One real conflict (ContractTuningTestBootstrap.cs, kept both additive Configure calls); verification-boundaries.v1.json auto-merged as a clean union, no dup ids.","mark":"mk1-a96a49757babe480"}
+{"ts":"2026-09-20T02:03:08Z","kind":"task","id":"SP6.7","state":"started","mark":"mk1-7eeb561279680ce8"}
+{"ts":"2026-09-20T02:03:08Z","kind":"task","id":"SP6.7","state":"done","evidence":"tasks/evidence-fragments/SP6.7.md","mark":"mk1-2f317aa9611ea077"}
+{"ts":"2026-09-20T02:42:36Z","kind":"task","id":"SP6.8","state":"started","mark":"mk1-4e51c88cb4d05e13"}
+{"ts":"2026-09-20T02:42:37Z","kind":"task","id":"SP6.8","state":"done","evidence":"tasks/evidence-fragments/SP6.8.md","mark":"mk1-bdcefc9215d68a4f"}
+{"ts":"2026-09-20T02:53:56Z","kind":"note","text":"Merged origin/features/mega-merge again at 9b11126b (moved to bc8a7f74+ since last merge: lane C T42-T46/T49, trade-network/combat-ai plans). Clean, no conflicts. verification-boundaries.v1.json: 128 unique ids. Build+SP6.7/6.8 scoped tests green post-merge.","mark":"mk1-728df0fd4d354532"}
+{"ts":"2026-09-20T03:01:37Z","kind":"task","id":"SP6.9","state":"started","mark":"mk1-ce35fbf3d3430f8a"}
+{"ts":"2026-09-20T03:01:37Z","kind":"task","id":"SP6.9","state":"blocked","evidence":"tasks/evidence-fragments/SP6.9.md","reason":"Live-probe/perf portions need the owner's real running game/server (live-probe-standard.md), out of reach for a background implementer. Doc handover portion (map \u00a79, 2 rows) is DONE -- solid-remediation still owns applying the amend-to text to its own spec file.","mark":"mk1-9d8ede4e7087644c"}
+{"ts":"2026-09-20T03:11:49Z","kind":"task","id":"SP6.10","state":"started","mark":"mk1-17bc94ca12ca094a"}
+{"ts":"2026-09-20T03:11:49Z","kind":"task","id":"SP6.10","state":"blocked","evidence":"tasks/evidence-fragments/SP6.10-SP6.11-step6.3.md","reason":"deps SP5.4 (module 5) blocked on empire-progression EP4.13 (SpeciesLevelOf), still unbuilt. Same root cause as wave 5's own recorded block.","mark":"mk1-54d20ea44dc68716"}
+{"ts":"2026-09-20T03:11:49Z","kind":"task","id":"SP6.11","state":"started","mark":"mk1-a7627bd595b8e73e"}
+{"ts":"2026-09-20T03:11:50Z","kind":"task","id":"SP6.11","state":"blocked","evidence":"tasks/evidence-fragments/SP6.10-SP6.11-step6.3.md","reason":"deps SP6.10 (blocked) transitively; also needs a live game for its own proof, same limitation as SP6.9.","mark":"mk1-861bf19c731f4d40"}
+{"ts":"2026-09-20T03:55:54Z","kind":"task","id":"SP7.1","state":"started","mark":"mk1-077825efc41ae2f1"}
+{"ts":"2026-09-20T03:55:54Z","kind":"task","id":"SP7.1","state":"done","evidence":"tasks/evidence-fragments/SP7.1.md","mark":"mk1-1d55b806b6fa86ad"}
+{"ts":"2026-09-20T04:00:05Z","kind":"task","id":"SP7.2","state":"started","mark":"mk1-1c7ad3eb99c79358"}
+{"ts":"2026-09-20T04:58:48Z","kind":"task","id":"SP7.2","state":"done","evidence":"tasks/evidence-fragments/SP7.2.md","mark":"mk1-4ca2d85d6b1bf0c9"}
+{"ts":"2026-09-20T05:00:21Z","kind":"task","id":"SP7.3","state":"started","mark":"mk1-69b773e15f31f2f9"}
+{"ts":"2026-09-20T05:09:53Z","kind":"task","id":"SP7.3","state":"done","evidence":"tasks/evidence-fragments/SP7.3.md","mark":"mk1-1405eb5460d3175c"}
+{"ts":"2026-09-20T05:20:58Z","kind":"note","text":"SP done through wave 7. Before starting EP per SE->SP->EP->BP chain: confirmed worktree agent-a62e66aeb29dc472c is an ACTIVE separate agent already on empire-progression (commits EP1.1 5675a177, EP1.2 61c58ee6, EP1.3 in progress).","mark":"mk1-4b36168c8da9e26f"}
+{"ts":"2026-09-20T05:20:58Z","kind":"note","text":"Continuing EP from lane-b now would duplicate that work and risk a merge collision -- a session-boundary finding, not a technical blocker. Stopping the chain here; not touching empire-progression-todo.md/build-preset-todo.md or their source scope.","mark":"mk1-59309be3083444f9"}

@@ -1,0 +1,110 @@
+{
+  "model": "gk-core/data/tuning/aptitudes.v10.json",
+  "modelDescription": "aptitudes.v10 — 524 edges, contest span 100, gamma contest 1 / magnitude 1, recovery x0.37, mitigation x0.3",
+  "thetas": [
+    100
+  ],
+  "archetypes": [
+    "FORCE",
+    "FINESSE",
+    "BASTION"
+  ],
+  "verified": true,
+  "trials": 3000,
+  "arrows": [
+    {
+      "theta": 100,
+      "attacker": "FORCE",
+      "defender": "FINESSE",
+      "predictedWinShareA": 0.9841917095868175,
+      "simulatedWinShareA": 0.7348029392117568,
+      "residual": 0.2493887703750607,
+      "roundsA": 32.01171334747298,
+      "roundsB": 16.366544863020714,
+      "netAttritionA": 3956.2628555982897,
+      "netAttritionB": 5718.983498556493,
+      "simMedianRounds": 20,
+      "neverEnds": false
+    },
+    {
+      "theta": 100,
+      "attacker": "FORCE",
+      "defender": "BASTION",
+      "predictedWinShareA": 0.9093164176847799,
+      "simulatedWinShareA": 0.8941373534338358,
+      "residual": 0.015179064250944063,
+      "roundsA": 22.701831170319,
+      "roundsB": 15.385385133601272,
+      "netAttritionA": 5738.846017900101,
+      "netAttritionB": 7175.921893683212,
+      "simMedianRounds": 16,
+      "neverEnds": false
+    },
+    {
+      "theta": 100,
+      "attacker": "FINESSE",
+      "defender": "FORCE",
+      "predictedWinShareA": 0.015808290413182546,
+      "simulatedWinShareA": 0.2658650634602538,
+      "residual": -0.25005677304707125,
+      "roundsA": 16.366544863020714,
+      "roundsB": 32.01171334747298,
+      "netAttritionA": 5718.983498556493,
+      "netAttritionB": 3956.2628555982897,
+      "simMedianRounds": 20,
+      "neverEnds": false
+    },
+    {
+      "theta": 100,
+      "attacker": "FINESSE",
+      "defender": "BASTION",
+      "predictedWinShareA": 0.13613805202165785,
+      "simulatedWinShareA": 0.0036666666666666666,
+      "residual": 0.13247138535499117,
+      "roundsA": 18.74635004203957,
+      "roundsB": 26.123748492833425,
+      "netAttritionA": 4992.971954012253,
+      "netAttritionB": 4159.147791097052,
+      "simMedianRounds": 16,
+      "neverEnds": false
+    },
+    {
+      "theta": 100,
+      "attacker": "BASTION",
+      "defender": "FORCE",
+      "predictedWinShareA": 0.09068358231522011,
+      "simulatedWinShareA": 0.10586264656616415,
+      "residual": -0.015179064250944035,
+      "roundsA": 15.385385133601272,
+      "roundsB": 22.701831170319,
+      "netAttritionA": 7175.921893683212,
+      "netAttritionB": 5738.846017900101,
+      "simMedianRounds": 16,
+      "neverEnds": false
+    },
+    {
+      "theta": 100,
+      "attacker": "BASTION",
+      "defender": "FINESSE",
+      "predictedWinShareA": 0.8638619479783421,
+      "simulatedWinShareA": 0.9963333333333333,
+      "residual": -0.13247138535499114,
+      "roundsA": 26.123748492833425,
+      "roundsB": 18.74635004203957,
+      "netAttritionA": 4159.147791097052,
+      "netAttritionB": 4992.971954012253,
+      "simMedianRounds": 16,
+      "neverEnds": false
+    }
+  ],
+  "residual": {
+    "mean": 0.1324577404390004,
+    "max": 0.25005677304707125,
+    "count": 6
+  },
+  "unendingCount": 0,
+  "_meta": {
+    "measuredAt": "2026-09-20T06:59:31.5335464Z",
+    "conditions": "gk-core/data/tuning/aptitudes.v10.json (live shipped config -- P8.2 stamina bind + P8.3 mitigation dial, and this tool's own resolver was ported 2026-08-27 to apply that dial the same way Core's AptitudeResolver.EffectiveKMilli does). FORCE=fire/FINESSE=air/BASTION=earth (scratch copies of gk-core/tools/CombatSim/builds/*.json with only element changed, never overwriting the tracked fire/fire/fire files). Theta=100, seed 8888, 3000 trials/arrow. Elements genuinely live: closed-form and simulated win shares both move with the matchup (P8.1's own headline finding, e.g. FORCE v FINESSE closed-form ~98% vs simulated ~68%), not the ~100%/~0% same-element result the tracked builds alone would have produced."
+  }
+}

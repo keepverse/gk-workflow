@@ -1,0 +1,58 @@
+{
+  "lane": "ssh28",
+  "sha": "99599590",
+  "when": "2026-09-21T16:37:29",
+  "logDir": "D:\\tmp\\accept-ssh28-20260921-163648",
+  "contendedTree": false,
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh28-20260921-163648\\boundary.log"
+    },
+    {
+      "check": "core-combination",
+      "exit": 0,
+      "seconds": 17,
+      "summary": "Passed!  - Failed:     0, Passed:   239, Skipped:     0, Total:   239, Duration: 3 s - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh28-20260921-163648\\core-combination.log"
+    },
+    {
+      "check": "python-corpus",
+      "exit": 0,
+      "seconds": 17,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh28-20260921-163648\\python-corpus.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh28-20260921-163648\\ledger.log"
+    }
+  ],
+  "verdict": "GREEN"
+}

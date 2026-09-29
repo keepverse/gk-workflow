@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passive Tree Repair — Program Status (2026-09-15)</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; margin: 0; background: #f6f7f9; color: #1c2333; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 28px 22px 60px; }
+  header { background: #17233b; color: #fff; border-radius: 12px; padding: 26px 28px; }
+  header h1 { margin: 0 0 6px; font-size: 24px; }
+  header p { margin: 4px 0; color: #b9c4da; font-size: 13px; }
+  section { background: #fff; border: 1px solid #e2e7ef; border-radius: 12px; padding: 20px 22px; margin-top: 18px; }
+  h2 { margin: 0 0 12px; font-size: 17px; border-bottom: 2px solid #17233b; padding-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #edf0f5; vertical-align: top; }
+  th { background: #f1f4f9; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .done { background: #def3e4; color: #166534; }
+  .active { background: #dbeafe; color: #1d4ed8; }
+  .gated { background: #fef3c7; color: #92400e; }
+  .rejected { background: #fee2e2; color: #991b1b; }
+  .todo { background: #e5e7eb; color: #374151; }
+  .principle { background: #eef4ff; border-left: 4px solid #1d4ed8; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 14px; }
+  .principle code, td code, li code { background: #eef1f6; padding: 1px 6px; border-radius: 5px; font-size: 12.5px; }
+  ol.next li, ul.log li { margin-bottom: 8px; font-size: 14px; }
+  .nums { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .num { background: #f1f4f9; border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .num b { display: block; font-size: 26px; }
+  .num span { font-size: 12px; color: #5b6b87; }
+  footer { margin-top: 18px; font-size: 12px; color: #7b8aa5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Passive Tree Repair — Program Status</h1>
+  <p>Branch <b>worktree-passive-tree-repair-20260915-7a1c</b> · session <b>passive-tree-repair-20260915-b71f</b> · readings dated <b>2026-09-15</b></p>
+  <p>Map: docs/architecture/passive-tree-repair-map.md · Plan/todo: tasks/passive-tree-repair-plan.md, tasks/passive-tree-repair-todo.md</p>
+</header>
+
+<section>
+  <h2>1 · What it is</h2>
+  <p>The passive tree binds ~a third of its nodes and <b>none of them do anything in play</b>: the binder emits <code>stat.modify</code> atoms while the resolver reads only <code>stat.derived</code>, mechanism tiers (8–10) bind at ~2%, and 95 of 125 atom families refuse to expand. The program repairs the pipeline — expander → binder → resolver → live proof — then rebalances against it. The tree is an <b>atom-effect container, not the runtime</b>: this program touches container code and tuning data, never atom runtime semantics.</p>
+  <div class="principle"><b>Ladder principle (binding):</b> every number is <i>f</i>(Θ) — linear for contests (parity invariant), <i>P</i>(Θ) for magnitudes. Modifiers transform <i>f</i>(Θ); <b>Replace substitutes a constant and is excluded by principle</b>, not carried. Pins anchor the function; they never replace it.</div>
+</section>
+
+<section>
+  <h2>2 · Modules (spec round map)</h2>
+  <table>
+    <tr><th>Module</th><th>What it is</th><th>Status</th></tr>
+    <tr><td><code>pin-table-v3</code></td><td><code>power-scale.v3.json</code> pins (GameUnits + regen/s + rate channels) + FlatReferenceBase extension + §10 rows</td><td><span class="pill active">active · next</span></td></tr>
+    <tr><td><code>status-anchor</code></td><td><code>status.apply</code> t1 chance/duration + shares + binder-side <code>when.chance</code> stamping + m1 floor (rescale filed externally)</td><td><span class="pill active">active</span></td></tr>
+    <tr><td><code>interval-ledger</code></td><td>Milliseconds ruling for <code>attackInterval</code>/<code>produceInterval</code> + ledger row + policy entries</td><td><span class="pill active">active</span></td></tr>
+    <tr><td><code>structural-rows</code></td><td>Amount-less Replace/Flag emission</td><td><span class="pill rejected">rejected — ladder</span></td></tr>
+    <tr><td><code>mechanism-carriage</code></td><td>Ladder-valued Replace carriage</td><td><span class="pill rejected">rejected — ladder</span></td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>3 · Live numbers (read, not quoted)</h2>
+  <div class="nums">
+    <div class="num"><b>125 / 150</b><span>families read / rows emitted (FamilyExpandGen --check: clean)</span></div>
+    <div class="num"><b>95</b><span>families refused, bucketed below</span></div>
+    <div class="num"><b>69</b><span>no-curve → anchors (V3-1 / SA-1)</span></div>
+    <div class="num"><b>19</b><span>Replace/Flag → principled exclusion</span></div>
+    <div class="num"><b>4 + 3</b><span>pool-shaped (P12) + template (authored)</span></div>
+    <div class="num"><b>24.2% / 0%</b><span>tree bind rate / readable (last measured; P4.3 pending)</span></div>
+  </div>
+  <p style="font-size:13px;color:#5b6b87">Misleading verb refusals (<code>no opWeightPermille for 'cherry'…</code>) are 0 after P2.2 — re-bucketed as truthful curve refusals. Tier-magnitude refusals are 0. Committed generated files byte-identical.</p>
+</section>
+
+<section>
+  <h2>4 · Finished vs not</h2>
+  <table>
+    <tr><th>Phase / item</th><th>State</th></tr>
+    <tr><td>P0 baseline, P1 corpus consistency, P4.1 pool-crash, P4.2 More, P4.3a census</td><td><span class="pill done">done</span></td></tr>
+    <tr><td>P2.2 verb/modifier separation (1fae4654 + follow-up)</td><td><span class="pill done">done · 26/26 tests</span></td></tr>
+    <tr><td>Idea + 3 live specs + plan/todo extension (ddc8ee5a, 1a14483d, a72e31ea, a638c0ff)</td><td><span class="pill done">done</span></td></tr>
+    <tr><td>V3-1 pins · SA-1 anchor+binder stamping · SA-2 rescale follow-up · IL-1 ledger · EX-1/EX-2 exclusion</td><td><span class="pill todo">to build</span></td></tr>
+    <tr><td>MC-1/MC-2 mechanism-class carriage + live proof · P4.3 derived route · P5 vocabulary · P7–P10</td><td><span class="pill todo">to build</span></td></tr>
+    <tr><td>P11 ActorHub primary producer</td><td><span class="pill gated">gated · solid-run merge</span></td></tr>
+    <tr><td>P12 Resolver delegation (removes bespoke tree runtime)</td><td><span class="pill todo">to build</span></td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>5 · Decisions log</h2>
+  <ul class="log">
+    <li><b>Kind fork → both kinds.</b> Derived route via existing fan-in; primary route as a new ActorHub subsystem (owner: "actor hub, not battle engine"). Phase 11, gated.</li>
+    <li><b>Anchors → publish now</b>, authored by this program (no power-program session exists) as versioned data — pins, not curves.</li>
+    <li><b>Replace/Flag → unified, then flipped to exclude.</b> Ladder principle + composer evidence (FlatSum reads only Flat; D6 refuses never-read ops). Specs retained as trail.</li>
+    <li><b>Container rule.</b> Tree = container, atom system = runtime. Rescale filed externally; E43/validator/composer untouched from here on.</li>
+    <li><b>Rate pins, Milliseconds intervals, rescale+m1 floor</b> — owner answers baked into specs.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>6 · What we will do (in order)</h2>
+  <ol class="next">
+    <li><b>V3-1</b> — author pins, extend channel map, §10 rows.</li>
+    <li><b>SA-1</b> — anchor file, binder chance stamping; <b>SA-2</b> — file rescale follow-up, floor-safe proof.</li>
+    <li><b>IL-1</b> — ledger ruling + policy entries. <b>EX-1/EX-2</b> — exclusion + honest refusal reason.</li>
+    <li><b>Checkpoint review</b>, then <b>MC-1/MC-2</b> mechanism-class carriage + live lawn+battle proof.</li>
+    <li><b>P4.3 → P5 → P7 → P8</b> (derived route, vocabulary, proof, regen + re-audit) → <b>P9</b> balance, <b>P10</b> L0.</li>
+    <li><b>P11</b> when solid-run merges (skip-and-track default). <b>P12</b> real Resolver join.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>7 · Known follow-ups (not this program)</h2>
+  <ul class="log">
+    <li><code>effectiveApplyScale</code> rescale — status/power runtime owner.</li>
+    <li>Rate-pin semantics (sigma-unit vs per-channel pins) — open audit question.</li>
+    <li>164 empty-node tracing by fraction; <code>DungeonLootTableSeedFileTests</code> CRLF failure (pre-existing, fails on clean tree, out of scope).</li>
+  </ul>
+</section>
+
+<footer>Generated 2026-09-15 from live <code>FamilyExpandGen --check</code> output and committed plan/todo/specs. Numbers are readings at the stated date, never constants.</footer>
+
+</div>
+</body>
+</html>

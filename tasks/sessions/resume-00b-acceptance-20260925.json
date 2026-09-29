@@ -1,0 +1,25 @@
+{
+  "session": "resume-00b-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Manager clean-checkout acceptance of the Phase 0B verification-topology and release-superset diff, with independent structural tests and no reliance on the worker's partial result label.",
+  "mode": "worktree",
+  "branch": "review/resume-00b-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-resume-00b-20260925",
+  "paths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/nightly.yml",
+    "scripts/run-guards.ps1",
+    "scripts/guard-generated-seed.ps1",
+    "scripts/verify-change.ps1",
+    "scripts/session-boundary-check.ps1",
+    "scripts/enforcement-registry.v1.json",
+    "scripts/publish-player.ps1",
+    "tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs",
+    "tests/FusionRpg.Guard.Tests/VerificationTopologyTests.cs",
+    "tasks/reports/resume-00b-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T04:45:00Z",
+  "status": "abandoned",
+  "notes": "This earlier manager review was superseded by resume-00b-final-acceptance-20260925 after the raw release-marker and publish-player findings were repaired. Its dirty worktree is preserved; no commit or acceptance from this session is claimed. The final exact SHA and artifact are recorded in the successor session."
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>capacity-meter — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>capacity-meter</code></h1>
+  <p class="lede">ERM Gauge — dual-gate honesty: slots + weight (cargo <code>[slots+weight]</code>), room (vault <code>[room]</code>), fits (cache <code>[fits?]</code>). Owned here per <code>spec-legion-sheet.md §Design 3</code>; wonder + <code>storage-cache-ui</code> consume by name, never fork. Fractions + gate-flag arrive from the fold — the piece divides and paints, never sums rows, never reads tuning, never derives capacity. Geometry is structural CSS in this contract; the meter never sizes itself off content. Paint arrives as resolved hex from packs (<code>side</code> now, <code>rarity</code> first-consumed here) — never a hard-coded color, never <code>fill="var(--token)"</code> alone. Copy is fold-supplied, rendered verbatim.</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> Stub sentences below never ship as product (idea-ui-phase §1). Status: <strong>owner-accepted 2026-09-16</strong> (see <code>recipes/legion-sheet-cargo.ACCEPTANCE.md</code>).</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — [slots+weight] density</h2>
+      <div class="piece-stage">
+        <div data-testid="cargo-capacity-meter" data-density="slots+weight" data-gate-flag="weight" style="display:grid;gap:10px;max-width:420px;">
+          <div data-testid="cargo-capacity-slots-track" data-gate="slots" data-fraction="0.3" style="border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);"><span>Slots</span><span data-testid="cargo-capacity-slots-label">3/10 slots</span></div>
+            <div role="meter" aria-valuenow="3" aria-valuemin="0" aria-valuemax="10" aria-label="Slots used" style="margin-top:6px;height:8px;border-radius:4px;background:var(--soil-raised);overflow:hidden;">
+              <div style="width:30%;height:100%;background:#c9a227;"></div>
+            </div>
+          </div>
+          <div data-testid="cargo-capacity-weight-track" data-gate="weight" data-tight="true" style="border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);"><span>Weight</span><span data-testid="cargo-capacity-weight-label">108/120 wt</span></div>
+            <div role="meter" aria-valuenow="108" aria-valuemin="0" aria-valuemax="120" aria-label="Weight used" style="margin-top:6px;height:8px;border-radius:4px;background:var(--soil-raised);overflow:hidden;">
+              <div style="width:90%;height:100%;background:#b3541e;"></div>
+            </div>
+            <p data-testid="cargo-capacity-gate-copy" style="margin:8px 0 0;font-size:12px;color:var(--text);">DRAFT: Too heavy for the band to carry.</p>
+          </div>
+        </div>
+      </div>
+      <div class="piece-stage" style="margin-top:12px;">
+        <h3 style="margin:0 0 8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">[room] density (vault preview)</h3>
+        <div data-testid="vault-capacity-meter" data-density="room" data-gate-flag="slots" style="max-width:420px;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);"><span>Room</span><span>5/6 slots</span></div>
+          <div role="meter" aria-valuenow="5" aria-valuemin="0" aria-valuemax="6" aria-label="Vault room used" style="margin-top:6px;height:8px;border-radius:4px;background:var(--soil-raised);overflow:hidden;">
+            <div style="width:83%;height:100%;background:#7a9e43;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "capacity-meter",
+  "instanceId": "meter:cargo:e-dave-legion-1",
+  "density": "slots+weight",
+  "tracks": [
+    { "gate": "slots", "used": 3, "capacity": 10, "label": "3/10 slots", "paintHex": "#c9a227" },
+    { "gate": "weight", "used": 108, "capacity": 120, "label": "108/120 wt", "paintHex": "#b3541e" }
+  ],
+  "gateFlag": "weight",
+  "gateCopy": "DRAFT: Too heavy for the band to carry.",
+  "themeRef": { "kind": "side", "id": "dave" },
+  "phase": "ready"
+}</pre>
+      <h2 style="margin-top:12px;">Contract notes</h2>
+      <pre>ERM rung: gauge. Fixed box from recipe; bar-vs-donut is
+structural CSS here, not content-driven.
+Fraction = used / capacity from the fold; null when
+capacity not positive (never divide-by-zero).
+Gate-flag = tighter fraction (slots | weight | none).
+Paint hex resolved from packs; piece never hard-codes
+gold-for-legendary or red-for-full.
+Copy key: cargo.full.weight | cargo.full.slots (draft
+sentences above); piece renders verbatim, never
+prettifies a reason id.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

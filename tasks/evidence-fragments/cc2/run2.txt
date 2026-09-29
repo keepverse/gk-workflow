@@ -1,0 +1,17 @@
+[data] D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\dist\FusionRpg.Server-migration-test\data (hot=rpg-hot.sqlite media=rpg-media.sqlite)
+[craft] imported 69 recipes, refused 0
+[items] imported 1178 base types
+[loot] imported 58 drop tables, 8 loot sources
+[sets] imported 910 item sets, 3708 members, 1846 tiers
+[charms] imported 944 attunable charms, 10 resonance breakpoints
+[content] catalog already at revision 2 — no import needed
+[content] passive-tree catalog already at revision 1 — no import needed
+[items] rarity power budget: 1 evaluated, 0 failure(s), 0 warning(s) — 10 rung(s) priced, pinAE 6210 on 'almanac'
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://127.0.0.1:5099
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\dist\FusionRpg.Server

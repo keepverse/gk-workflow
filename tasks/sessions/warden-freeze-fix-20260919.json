@@ -1,0 +1,37 @@
+{
+  "session": "warden-freeze-fix-20260919",
+  "program": "world-continuity",
+  "problem": "Retire the withdrawn per-sector warden stability freeze (owner-approved minimal fix, 2026-09-19): warded sectors fade and recover like any other in LoamPhases.Pressure and LoamForecast, new bind-warden orders are refused at admission with warden.retired (the bind endpoint asks admission before it charges anything), existing bindings stay as data with no stability effect, and the web release dialog stops offering the bind. TurnEngine.RulesetVersion 12 -> 13. Not the future world-warden module; WardenResolver and the contract release path stay.",
+  "mode": "worktree",
+  "branch": "worktree-agent-a14923834e5e14a81",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\agent-a14923834e5e14a81",
+  "paths": [
+    "tasks/sessions/warden-freeze-fix-20260919.json",
+    "src/FusionRpg.Core/World/Loam/LoamPhases.cs",
+    "src/FusionRpg.Core/World/Loam/LoamForecast.cs",
+    "src/FusionRpg.Core/World/Turn/TurnEngine.cs",
+    "src/FusionRpg.Core/World/Turn/WorldCommand.cs",
+    "src/FusionRpg.Core/World/Turn/WorldCommandAdmission.cs",
+    "src/FusionRpg.Core/World/Movement/WardenResolver.cs",
+    "src/FusionRpg.Core/World/WorldState.cs",
+    "src/FusionRpg.Contracts/WorldDtos.cs",
+    "src/FusionRpg.Server/WorldWardenEndpoint.cs",
+    "tests/FusionRpg.Core.Tests/World/Loam/LoamTextureTests.cs",
+    "tests/FusionRpg.Core.Tests/World/Loam/LoamForecastTests.cs",
+    "tests/FusionRpg.Core.Tests/World/BindWardenThreadingTests.cs",
+    "tests/FusionRpg.Core.Tests/World/WorldCommandAdmissionTests.cs",
+    "tests/FusionRpg.Data.Tests/WorldCommandRoundTripPropertyTests.cs",
+    "tests/FusionRpg.Data.Tests/WorldWaveOneAcceptanceTests.cs",
+    "tests/FusionRpg.Server.Tests/WorldBindWardenEndpointTests.cs",
+    "web/fusion-rpg-web/src/stages/world/confirms/ReleaseGroundDialog.tsx",
+    "web/fusion-rpg-web/src/stages/world/confirms/ReleaseGroundDialog.test.tsx",
+    "web/fusion-rpg-web/src/stages/world/confirms/noSelfOpen.test.tsx"
+  ],
+  "notes": [
+    "Order of operations (hard edges): (0) baseline the world goldens on the untouched tree - WorldWaveOneAcceptanceTests.GoldenFinalHash is the only pinned world state hash; (1) H1: one commit carries the behaviour change (LoamPhases/LoamForecast freeze removed, admission refuses bind-warden with warden.retired, the bind endpoint preflights admission before BindAsWarden charges the soul fee, RulesetVersion 12 -> 13) together with every test fixed to the new contract and any golden that moves re-blessed in that same commit, never after; (2) the web release dialog drops its bind-a-warden act in its own commit. No H2 (no table re-keyed, WardenBindingId column untouched, existing bindings stay as data) and no H7 (no tuning publish).",
+    "Base: the worktree was cut from main (9523b9e8); fast-forwarded to features/mega-merge (b82a4098), which the brief's line numbers describe. The branch had no commits of its own.",
+    "Merged into features/mega-merge as c2ad999b on 2026-09-19."
+  ],
+  "started": "2026-09-19T15:31:44Z",
+  "status": "merged"
+}

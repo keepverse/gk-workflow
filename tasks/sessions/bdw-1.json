@@ -1,0 +1,37 @@
+{
+  "branch": "cmdc/bdw-1",
+  "mode": "worktree",
+  "paths": [
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Server/**",
+    "tests/**",
+    "docs/architecture/battle*/**",
+    "docs/architecture/combat*/**",
+    "tasks/battle-derived-wire-*",
+    "data/tuning/*.json",
+    "scripts/**",
+    "docs/research/battle-derived-wire-audit-2026-09-16.md",
+    "tasks/battle-wire-remainder-todo.md",
+    "tasks/sessions/bdw-1.json"
+  ],
+  "problem": "Wire battle onto the derived combat path (ActorHub/BattleHubCompose, OverlayCombatMath, reflect, regen, auras) and close the program's audit ledger; manager-ruled grants 2026-09-23 cover the audit file and battle-wire-remainder pointer ticks",
+  "program": "battle-derived-wire",
+  "session": "bdw-1",
+  "started": "2026-09-23T11:20:00Z",
+  "status": "abandoned",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-bdw-1",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 5f928db2 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/bdw-1",
+    "branchTip": "5f928db2",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 5f928db2 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

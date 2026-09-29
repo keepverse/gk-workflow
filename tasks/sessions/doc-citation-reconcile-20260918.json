@@ -1,0 +1,28 @@
+{
+  "session": "doc-citation-reconcile-20260918",
+  "program": "doc-citation-reconcile",
+  "problem": "Two adversarial audits found ~40 defects in the idea docs, almost all mechanical: a file:line that no longer resolves, a count that moved, or a status line contradicting its own capability map. Fix the instances, then fix the class with an audit script. Also close the one hard-rule breach the audit found: lawn-attrition.v1.json granted itself an exemption from the tuning-versioning rule and was edited in place.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/DESIGN-GATE.md",
+    "docs/architecture/*-ideal.md",
+    "docs/architecture/*-map.md",
+    "docs/architecture/creature-system-map.md",
+    "docs/architecture/stub-register.md",
+    "scripts/audit-doc-citations.py",
+    "data/tuning/lawn-attrition.v1.json",
+    "data/tuning/lawn-attrition.v2.json",
+    "src/FusionRpg.Core/Battle/Attrition/**",
+    "src/FusionRpg.Server/Program.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.UniqueActors.cs",
+    "tests/FusionRpg.Core.Tests/Battle/LawnPermadeathLadderTests.cs",
+    "tasks/solid-remediation-todo.md",
+    "tasks/sessions/doc-citation-reconcile-20260918.json"
+  ],
+  "started": "2026-09-18T03:14:00Z",
+  "status": "merged",
+  "crossingNote": "solid-remediation-20260917 is recorded active with paths src/**, tests/**, tools/**, scripts/**, data/tuning/**, data/seed/** - a claim broad enough to cover most of this repo. Its own todo reads 96 done / 1 open and the working tree was clean at every point of this session, so there was no uncommitted work of that session's to disturb. The overlapping edits here are narrow and were each verified at their own boundary. Flagged for the owner rather than assumed resolved: that record and creature-seed-rederive-20260918 are the two active records causing the guard.verification-boundaries failures.",
+  "closed": "2026-09-18T09:40:00Z"
+}

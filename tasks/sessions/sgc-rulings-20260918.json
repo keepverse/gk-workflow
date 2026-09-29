@@ -1,0 +1,18 @@
+{
+  "session": "sgc-rulings-20260918",
+  "program": "species-gear-chain",
+  "problem": "Reconcile species-gear-chain specs with owner rulings R9 (craft materials: species 2, family 8, general layer removed) and R10 (craft-assurance protect does not cover repair destroy chance) from spec-rulings-2026-09-18.md. Docs only; no code, data, tuning or task-file edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/species-gear-chain-map.md",
+    "docs/architecture/species-gear-chain/spec-species-materials.md",
+    "docs/architecture/species-gear-chain/spec-creature-drop-tables.md",
+    "docs/architecture/species-gear-chain/spec-craft-assurance.md",
+    "docs/architecture/species-craft-ideal.md",
+    "tasks/sessions/sgc-rulings-20260918.json"
+  ],
+  "started": "2026-09-18T15:00:00Z",
+  "status": "merged"
+}

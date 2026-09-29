@@ -1,0 +1,27 @@
+{
+  "session": "strengthen-notify-20260918",
+  "program": "notification-ssot",
+  "problem": "Strengthen pass: adversarial audit and in-place fix of the notification-ssot map, ideal and module specs",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "started": "2026-09-18",
+  "status": "merged",
+  "paths": [
+    "docs/architecture/notification-ssot-map.md",
+    "docs/architecture/notification-ssot-ideal.md",
+    "docs/architecture/notification-ssot/spec-cache-notify-source.md",
+    "docs/architecture/notification-ssot/spec-notify-centre.md",
+    "docs/architecture/notification-ssot/spec-notify-client.md",
+    "docs/architecture/notification-ssot/spec-notify-format.md",
+    "docs/architecture/notification-ssot/spec-notify-service.md",
+    "docs/architecture/notification-ssot/spec-notify-store.md",
+    "docs/architecture/notification-ssot/spec-notify-vocabulary.md",
+    "docs/architecture/notification-ssot/spec-player-routing.md",
+    "docs/architecture/notification-ssot/spec-world-notify-source.md",
+    "docs/architecture/empire-development-map.md",
+    "docs/architecture/loam-relics-and-wonders/spec-wonder-build-flow.md",
+    "docs/architecture/scoped-inventory-hierarchy/spec-sector-storage.md",
+    "tasks/sessions/strengthen-notify-20260918.json"
+  ]
+}

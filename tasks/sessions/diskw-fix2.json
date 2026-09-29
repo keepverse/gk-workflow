@@ -1,0 +1,48 @@
+{
+  "session": "diskw-fix2",
+  "program": "data-test-substrate",
+  "problem": "Close Target 0b's two gaps: add the guard's own in-repo regression case for the untagged-file-store rule (the case `diskw-fix` was refused by the pipeline hook), and make the Cargo/Wonder fixtures that copied the whole data/seed/structures corpus into %TEMP% on every run hold their corpus rows in memory instead. Then finish the program's ledger queue on the manager's steering (2026-09-23): BU8 (the `StructureCorpus` rows entry point the fixtures' seam needed) and BU7 (land the copy-corpus-to-temp guard rule, which first needs the two tests/FusionRpg.Server.Tests files it flags moved onto that entry point).",
+  "mode": "worktree",
+  "branch": "cmdc/diskw-fix2",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-diskw-fix2",
+  "paths": [
+    "tasks/sessions/diskw-fix2.json",
+    "tests/FusionRpg.Guard.Tests/TestSubstrateGuardTests.cs",
+    "tests/FusionRpg.Data.Tests/**",
+    "src/FusionRpg.Core/World/StructureSeed/StructureCorpus.cs",
+    "tests/FusionRpg.Core.Tests/World/**",
+    "tests/FusionRpg.Server.Tests/WorldWonderWireTests.cs",
+    "tests/FusionRpg.Server.Tests/WorldWonderRelicWireTests.cs",
+    "scripts/guard-test-substrate.ps1",
+    "scripts/test-substrate-baseline.txt",
+    "tasks/data-test-substrate-todo.md",
+    "tasks/data-test-substrate-ledger.jsonl",
+    "tasks/reports/**",
+    "docs/contributing/testing-standard.md"
+  ],
+  "started": "2026-09-23T03:50:00+07:00",
+  "status": "abandoned",
+  "notes": [
+    "worktree is ABSOLUTE, as this session's brief requires.",
+    "No test was removed, weakened, skipped or baselined to get here: the default-profile Data.Tests run is 1747 passed / 0 failed with the cargo-*-test-* / wonder-*-test-* / budget-debit-test-* / claim-pricing-test-* directory set identical before, during and after (created 0, removed 0), the six affected suites are 75/75, and the guard's baseline is unchanged at 28 lines with no line added or re-added.",
+    "BU6's list named four fixtures; there are six in this project (CargoCommands/BudgetDebitTests.cs, CargoCommands/ClaimPricingTests.cs were unnamed) plus two more with the identical shape in tests/FusionRpg.Server.Tests, which are outside this lane's allowed paths.",
+    "The copy-corpus-to-temp guard rule (`temp-corpus`) was proven in a throwaway gate copy and NOT landed in the first segment (it flagged exactly the two tests/FusionRpg.Server.Tests files, outside this lane's fence). On the manager's 2026-09-23 steer the session was widened to those two files plus src/FusionRpg.Core/World/StructureSeed/StructureCorpus.cs, so BU8 landed the rows entry point and BU7 landed the rule with those two files moved onto it.",
+    "tests/FusionRpg.Guard.Tests/TestSubstrateGuardTests.cs was granted to this lane explicitly, and the hook did not refuse it.",
+    "Widened 2026-09-23 by the manager's steer: src/FusionRpg.Core/World/StructureSeed/StructureCorpus.cs (BU8) and the two tests/FusionRpg.Server.Tests wonder-wire files (BU7's remaining blockers). Those two paths are OUTSIDE the brief's original allowed-path list; the steer is their authorization and the commit bodies say so.",
+    "BU9 (same steer, the queue item after BU7): the seven Core.Tests wonder/import suites that WRITE a synthetic corpus to %TEMP% are fixed here too, on a second Core entrance (`StructureCorpus.FromJson`), which is why the record was widened to tests/FusionRpg.Core.Tests/World/**. No other active session claims it (checked in tasks/sessions/*.json; tvb58 claims only src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs)."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 6f70c975 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/diskw-fix2",
+    "branchTip": "6f70c975",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 6f70c975 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

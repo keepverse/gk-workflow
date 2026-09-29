@@ -1,0 +1,22 @@
+diff --git a/tools/ItemSeedValidator/Registries/KindCatalog.cs b/tools/ItemSeedValidator/Registries/KindCatalog.cs
+index 8e2c0968..ea793b7c 100644
+--- a/tools/ItemSeedValidator/Registries/KindCatalog.cs
++++ b/tools/ItemSeedValidator/Registries/KindCatalog.cs
+@@ -76,7 +76,7 @@ public static class KindCatalog
+             // `enhanceTrack` is entry-shapes.md §6's `item_enhance_track`, scoped onto this kind
+             // rather than onto the milestone: the family says what the +X grants, the base type
+             // says who grants it and at which rung.
+-            extra: new[] { "frame", "role", "class", "band", "implicit", "socketMax", "enhanceTrack" }),
++            extra: new[] { "frame", "role", "class", "band", "implicit", "socketMax", "enhanceTrack", "successorOf" }),
+         // "roles" is not in this required list even though it is effectively mandatory: the
+         // requirement is "roles" OR the pre-rename "roleGroups", and the generic single-key
+         // RequiredFields check has no OR — ReferenceCheck.CheckRoles enforces the real rule
+@@ -109,7 +109,7 @@ public static class KindCatalog
+         // a build.*/theme.* themed set carries none, the correct explicit-absent state.
+         Defined("set", "sets", "sets", "1c",
+             required: new[] { "themeKey", "members", "thresholds" },
+-            extra: new[] { "themeKey", "theme", "members", "thresholds", "speciesId" }),
++            extra: new[] { "themeKey", "theme", "members", "thresholds", "speciesId", "setClass" }),
+ 
+         // Shapes docs/architecture/item/entry-shapes.md gives, closing the gap the ten
+         // UnknownKeyShapeUndefined warnings used to report. Field lists are transcribed from that

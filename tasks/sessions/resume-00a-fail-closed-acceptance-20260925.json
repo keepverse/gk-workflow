@@ -1,0 +1,19 @@
+{
+  "session": "resume-00a-fail-closed-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Manager clean-checkout acceptance of the completed Phase 0A fail-closed correction, including exact verdict schemas, integration ancestry, and focused regression evidence; blocked until verification mappings are repaired.",
+  "mode": "worktree",
+  "branch": "review/resume-00a-fail-closed-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-resume-00a-fail-closed-20260925",
+  "paths": [
+    ".claude/cmdc-agents/scripts/post-merge-check.ps1",
+    ".claude/cmdc-agents/scripts/accept-lane.ps1",
+    ".claude/cmdc-agents/scripts/merge-lanes.py",
+    ".claude/cmdc-agents/scripts/test_fail_closed_pipeline.py",
+    "tasks/reports/resume-00a-fail-closed-final-20260925.md",
+    "tasks/reports/resume-00a-fail-closed-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T04:40:00Z",
+  "status": "abandoned",
+  "notes": "This isolated review was superseded by the composite acceptance session after the registry integrity guard correctly required the dependent Seedsmith tests. Its copied draft is preserved; no commit or acceptance was made here. The exact Phase 0A code is covered by the merged composite artifact at fc144f2cc4a67464d763051c428deed2937692ef."
+}

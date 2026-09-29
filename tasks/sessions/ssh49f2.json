@@ -1,0 +1,34 @@
+{
+  "session": "ssh49f2",
+  "program": "strain-splice-host",
+  "problem": "SSH4.9-F2 re-measured: decide whether the minted gem container id or the read path's corpus key is canonical, fix the responsible layer if they disagree, and land the E2E regression that a socketed gem's word fires through the real routes.",
+  "mode": "worktree",
+  "branch": "cmdc/ssh49f2",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-ssh49f2",
+  "paths": [
+    "src/FusionRpg.Server/DebugEndpoints.cs",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Core/**",
+    "tests/FusionRpg.E2E.Tests/**",
+    "tasks/strain-splice-host-todo.md",
+    "docs/architecture/item/**",
+    "tasks/reports/**",
+    "tasks/sessions/ssh49f2.json"
+  ],
+  "started": "2026-09-22T18:20:00Z",
+  "status": "abandoned",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 0f68b298 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/ssh49f2",
+    "branchTip": "0f68b298",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 0f68b298 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

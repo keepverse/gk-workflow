@@ -1,0 +1,18 @@
+{
+  "session": "resume-28b-effect-pipeline-epl1-1-20260925",
+  "program": "effect-pipeline",
+  "problem": "Replacement implementation of EPL1.1 closed power-class registry and C# mirror with a worktree-local session boundary.",
+  "mode": "worktree",
+  "branch": "opencode/resume-28b-effect-pipeline-epl1-1-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-28b-effect-pipeline-epl1-1-20260925",
+  "paths": [
+    "data/seed/items/_registry/power-classes.v1.json",
+    "src/FusionRpg.Core/Effects/Atoms/AffixPowerClass.cs",
+    "tests/FusionRpg.Core.Atoms.Tests/Atoms/AffixPowerClassTests.cs",
+    "tools/seedsmith/tests/test_power_class_registry.py",
+    "tasks/reports/resume-28b-effect-pipeline-epl1-1-20260925.md"
+  ],
+  "started": "2026-09-25T16:30:00Z",
+  "status": "abandoned",
+  "notes": "Infrastructure/AV-lock failure after focused Python 11/11 and C# 8/8 passed. Four EPL1.1 implementation files remain dirty for manager harvest; the unrelated EffectGrantSessionTests output was denied by Bitdefender during the broad verifier. No product verdict or merge is claimed."
+}

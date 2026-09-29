@@ -1,0 +1,21 @@
+{
+  "session": "live-slot-python-20260926",
+  "program": "ps1-ban",
+  "problem": "Port scripts/live-slot.ps1 to scripts/live_slot.py with the same CLI contract, fixing two measured defects by construction: (1) a clone inherits the OWNER's ServerUrl from Mods/fusionrpg.cfg, so a game launched in a slot outside a successful deploy dials :5088 (SSH4.9 class); (2) -Force re-clone cannot delete a tree containing trailing-space directory names, leaving the slot permanently broken. Leave the .ps1 in place for the manager to retire.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "scripts/live_slot.py",
+    "tests/tools/test_live_slot.py",
+    "scripts/verification-boundaries.v1.json",
+    ".agents/skills/live-probe-mcp/SKILL.md",
+    ".claude/cmdc-agents/briefs/cc8-live.md",
+    ".claude/cmdc-agents/briefs/ssh29.md",
+    "tasks/reports/live-slot-python-20260926.md",
+    "tasks/sessions/live-slot-python-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "DELIVERED IN TWO COMMITS, NOT MERGED BY THE MANAGER YET: f4ba08460 (the port, its 77 tests, the live-slot-tool verification-boundary row) and f672503e7 (the three documentation callers, this report, this record). 'merged' here means THIS SESSION's work is complete and committed; the merge itself is the manager's, per the brief. DELEGATED PATHS / CROSSING, recorded per docs/contributing/session-boundary.md section 5 step 2 rather than assumed away. The active direct-mode record mega-merge-program-manager-20260925-f78e claims a broad fence that overlaps four of this lane's paths: '.agents/skills/**' (.agents/skills/live-probe-mcp/SKILL.md), '.claude/**' (.claude/cmdc-agents/briefs/cc8-live.md and ssh29.md) and 'scripts/lane-server.ps1'/'scripts/live-slot.ps1' (NOT taken -- the manager retires live-slot.ps1 itself). This lane's brief from that manager delegates the three documentation files and the Python port explicitly, which is the same delegation pattern verify-change-python-20260926 recorded against the same manager fence; session-boundary-check -Session live-slot-python-20260926 reported exactly these three crossings and nothing else. Two paths are taken from NO active record: scripts/live_slot.py and tests/tools/test_live_slot.py. scripts/verification-boundaries.v1.json is taken because the brief requires registering the new tool ('an unmapped path is a verification-boundary defect') and no active record names that file (its last owner, verify-change-python-20260926, is merged). NOT touched and NOT to be touched by this lane: scripts/live-slot.ps1, scripts/prove-slot-connection.py (a LIVE CODE CALLER of live-slot.ps1 at :456 and :488 -- the brief's 'documentation callers only' reading is wrong), scripts/lane-server.ps1 (reads the registry's port field), AGENTS.md, CLAUDE.md, docs/contributing/live-probe-standard.md, .agents/skills/project-leader/SKILL.md, and the two dirty .commandcode/taste/** files belonging to ps1-ban-manager-20260926. THREE ROUTED FINDINGS the manager owns: (1) re-point prove-slot-connection.py before deleting the .ps1; (2) two PRE-EXISTING guard failures inside guard.verification-boundaries that reproduce with this lane's registry row removed, one of them naming scripts/guard-magic-numbers.ps1 which commit 90a367afc deleted; (3) whether the process-enumeration shim stays on PowerShell. See the report sections 5, 7 and 9."
+}

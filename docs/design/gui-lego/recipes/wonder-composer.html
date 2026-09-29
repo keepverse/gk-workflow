@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonder-composer — gui-lego recipe</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="../pieces/_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>wonder-composer</code></h1>
+  <p class="lede">Recipe — band-2 panel over the world stage where the player picks a Wonder row, lays the exact relic instances its foundation asks for, picks the open plot, sees the stone-and-ironwork price beside the relic price, and confirms. Slot tree: <code>tool-search + split-inspect(catalog / relic-shelf) + slot-pick + wonder-cost-plate + confirm(band-3) + lifecycle overlays</code> per <code>spec-wonder-composer.md §Design 1</code>. Shared pieces consumed by name; packs referenced by contract (4D.4 owns them — never created here); copy by display-catalog key (GG-62).</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> All sentences below are placeholders. Status: <strong>pending-owner-review</strong> (see <code>wonder-composer.ACCEPTANCE.md</code>). Mount is built behind that recorded checkpoint per Task 4D.3 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage">
+        <div data-testid="wonder-composer" data-band="2" style="border:1px solid var(--border-control);border-radius:8px;overflow:hidden;background:var(--panel);max-width:720px;min-width:280px;">
+          <div style="padding:12px;display:grid;gap:10px;">
+            <input data-testid="wonder-search" type="search" placeholder="DRAFT: Search works and treasure" aria-label="Search works and treasure" style="width:100%;padding:6px 8px;border-radius:4px;border:1px solid var(--border);background:var(--panel-inset);color:var(--text);font-size:13px;">
+            <div data-testid="wonder-split" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div data-testid="wonder-catalog-scroll" data-testid-scroll="scroll-region" style="display:grid;gap:6px;max-height:240px;overflow:auto;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+                <div data-testid="wonder-catalog" role="list" aria-label="Buildable wonders" style="display:grid;gap:6px;">
+                  <div role="listitem" data-testid="wonder-row" data-structure-id="standing-stones" data-selected="false" data-buildable="true" style="font-size:13px;">DRAFT: Standing Stones · asks for 1 · 4 nights</div>
+                  <div role="listitem" data-testid="wonder-row" data-structure-id="sunspire-throne" data-selected="true" data-buildable="true" style="font-size:13px;">DRAFT: Sunspire Throne · asks for 3 · 6 nights · 0 of cap raised</div>
+                  <div role="listitem" data-testid="wonder-row" data-structure-id="locked:World" data-selected="false" data-buildable="false" style="font-size:13px;color:var(--muted);">DRAFT teaser: a work beyond this age — not yet</div>
+                </div>
+              </div>
+              <div data-testid="wonder-shelf-scroll" data-testid-scroll="scroll-region" style="display:grid;gap:6px;max-height:240px;overflow:auto;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+                <div data-testid="wonder-relic-shelf" style="display:grid;gap:6px;">
+                  <p data-testid="wonder-shelf-count-line" style="margin:0;font-size:12px;">DRAFT: 1 of 3 laid</p>
+                  <div data-testid="wonder-shelf-reachable" style="display:grid;gap:4px;">
+                    <div data-testid="wonder-shelf-row" data-instance-id="relic-a" data-where="legion-cargo" data-picked="true" style="font-size:13px;">DRAFT: relic-a · picked</div>
+                    <div data-testid="wonder-shelf-row" data-instance-id="relic-b" data-where="sector-store" data-picked="false" style="font-size:13px;">DRAFT: relic-b</div>
+                  </div>
+                  <details data-testid="wonder-shelf-disclosure"><summary style="font-size:12px;">DRAFT: full shelf</summary></details>
+                </div>
+              </div>
+            </div>
+            <div data-testid="wonder-slot-pick" style="display:grid;gap:6px;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+              <div data-testid="wonder-slot-option" data-slot-index="0" data-compatible="true" data-selected="true" style="font-size:13px;">DRAFT: Open ground — Rootbed plot 0</div>
+              <div data-testid="wonder-slot-option" data-slot-index="1" data-compatible="false" data-selected="false" style="font-size:13px;color:var(--muted);">DRAFT: Plot 1 — needs a Shrine, this is a Rootbed (unpickable with reason)</div>
+            </div>
+            <div data-testid="wonder-cost-plate" data-affordable="false" style="border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);display:grid;gap:4px;">
+              <div data-testid="wonder-cost-relic-line" style="font-size:13px;">DRAFT: 1 of 3 pieces laid</div>
+              <div data-testid="wonder-cost-materials-line" data-state="pending" style="font-size:12px;color:var(--muted);">DRAFT: stores reading…</div>
+              <div data-testid="wonder-cost-nights-line" style="font-size:13px;">DRAFT: Rises over 6 nights</div>
+              <div data-testid="wonder-cost-blessing-line" style="font-size:13px;">DRAFT: every holding earns faster</div>
+              <div data-testid="wonder-cost-upkeep-line" data-state="pending" style="font-size:12px;color:var(--muted);">DRAFT: upkeep note pending</div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button type="button" data-testid="wonder-confirm-open" data-enabled="false" title="DRAFT: lay 2 more pieces first">Confirm — names what leaves</button>
+            </div>
+            <div data-testid="wonder-confirm-dialog" data-band="3" hidden>
+              <p data-testid="wonder-confirm-copy">DRAFT: Spend 3 pieces of treasure + raise over 6 nights? Nothing is taken until End Turn commits.</p>
+              <button type="button" data-testid="wonder-confirm-accept">Lay the foundation</button>
+              <button type="button" data-testid="wonder-confirm-cancel">Keep planning</button>
+            </div>
+            <div data-testid="wonder-refusal-toasts" role="status" aria-live="polite" style="display:grid;gap:6px;">
+              <div data-testid="wonder-refusal-toast" data-reason="relic.count-mismatch" style="font-size:12px;">DRAFT: The foundation asks for exactly 3 — 1 is laid. Nothing was taken.</div>
+            </div>
+            <div data-testid="wonder-phase-loading" data-phase="loading" hidden>DRAFT: Reading the ground…</div>
+            <div data-testid="wonder-phase-empty" data-phase="empty" hidden>DRAFT empty: No treasure within reach.</div>
+            <div data-testid="wonder-phase-error" data-phase="error" hidden>DRAFT error: The ground could not be read. <button type="button" data-testid="wonder-retry">Retry</button></div>
+            <div data-testid="wonder-phase-pending" data-phase="pending" hidden>DRAFT: Order filed — resolves at End Turn.</div>
+            <p data-testid="wonder-file-note" style="margin:0;font-size:12px;color:var(--muted);">DRAFT filing note: Filed — resolution arrives with the turn report, not this button.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload (fold in, recipe out)</h2>
+      <pre>{
+  "recipe": "wonder-composer",
+  "band": 2,
+  "catalogRows": 2,
+  "lockedTeasers": 1,
+  "shelf": { "needed": 3, "picked": 1, "reachable": 2, "remote": 1 },
+  "slotPick": { "compatible": 1, "incompatible": 1, "selected": 0 },
+  "costPlate": { "affordable": false, "blocker": "relic.shortfall" },
+  "phase": "ready"
+}</pre>
+      <h2 style="margin-top:12px;">Draft states (6 — §Design 8)</h2>
+      <pre>1. Catalog: pieces/wonder-catalog-row.html
+2. Reachable shelf: pieces/wonder-relic-shelf.html
+3. Cost-plate: pieces/wonder-cost-plate.html
+4. Confirm dialog: this file (band-3)
+5. Refusal toasts: pieces/wonder-refusal-toast.html
+6. Lifecycle: this file (loading/empty/error/pending)</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

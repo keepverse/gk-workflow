@@ -1,0 +1,8 @@
+# Checkpoint 0 — live defect closed (parent CC1)
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| release.yml exit-checked; WorkflowExitCheckTests green on every workflow and red on a planted violation | `dotnet test tests\FusionRpg.Guard.Tests\FusionRpg.Guard.Tests.csproj -c Release --verbosity minimal --filter "FullyQualifiedName~WorkflowExitCheckTests\|FullyQualifiedName~CiWiringGuardTests"` | `Passed!  - Failed: 0, Passed: 9, Skipped: 0, Total: 9` (4 WorkflowExitCheck incl. the planted-text falsifier + 5 CiWiringGuard) | tasks/evidence-fragments/TVB0.1.md |
+| `gk-core/tools/tuning` suite green locally and its CI step green on first run | `python -m pytest . -q -p no:cacheprovider` (cwd `gk-core/tools/tuning`) | `27 passed, 3 subtests passed in 0.26s`; the first CI run of the new step is the orchestrator's to observe | tasks/evidence-fragments/TVB0.3.md |
+| `ci.yml` runs `gk-fusion/tools/LawnCombatObserver.Tests` and `gk-fusion/tools/ProveLiveProbe.Tests`; W7 exemption table empty | `dotnet test … --filter "FullyQualifiedName~CiWiringGuardTests"` + read `.github/workflows/ci.yml:185-188` | green; both pairs present with exit checks; `ExemptFromToolsCiWiring` is `Array.Empty` | tasks/evidence-fragments/TVB0.4.md |
+| `verify-change` resolves `.github/workflows/*.yml` (no `BOUNDARY MISSING`) | `.\scripts\verify-change.ps1 -Paths .github/workflows/ci.yml,gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs -Session summoner-convergence-lane-d-20260919 -PlanOnly -Format json` | exit 0; `.github/workflows/ci.yml -> ci-workflows (focused)` | tasks/evidence-fragments/TVB0.4.md |

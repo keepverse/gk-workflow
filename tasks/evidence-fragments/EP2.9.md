@@ -1,0 +1,24 @@
+# EP2.9 — Stage A `accept.py`: a pure, deterministic quota
+
+Spec: `docs/architecture/empire-progression/spec-lead-relabel-pass.md` (stage A, R-Q6). New files only;
+nothing existing changed. Dependency satisfied: `creature-seed-rederive`'s record reads **merged**
+(`tasks/sessions/creature-seed-rederive-20260918.json`), so the adapter tree is not another lane's.
+
+| Criterion | Command | Result | Artifact |
+| --- | --- | --- | --- |
+| A property test with a fixed seed: no target ever ends above `cap_count`, and no species leaves an under-cap source (test 2) | `PYTHONPATH=gk-forge/tools/seedsmith python -m pytest gk-forge/tools/seedsmith/tests/test_build_favour_relead.py -q` | pass — **7 passed** (0.17s). `test_no_target_ever_ends_above_the_cap_and_no_species_leaves_an_under_cap_source` replays 300 random corpora (seed 20_260_921) through `accept` and reconstructs the final counts: every aptitude stays at `≤ max(start, cap)`, every aptitude that started at or under the cap never loses a species, and the total is conserved | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/build_favour/accept.py` (new) |
+| Decisions are byte-identical under any input order (test 3) | same run | pass — `test_decisions_are_byte_identical_under_any_input_order`: 60 candidates over 5 aptitudes, 20 shuffles, one identical decision list each time; also asserts the caller's count mapping is never mutated | same file |
+| A 1-1-1 vote keeps the current primary as `unresolved` (test 4) | same run | pass — `test_an_unresolved_vote_keeps_the_current_primary` (and `kept-by-vote` is a distinct outcome from the identical-vote case, never folded into it) | same file |
+| An excluded row is never a candidate and never counted (test 1b) | same run | pass — `test_an_excluded_row_is_never_a_candidate_and_never_counted`: a `speciesKind: excluded` row sitting in the over-cap lead with a vote is dropped by `candidates_from` before any vote is read, so it is absent from the decisions and cannot be the reason a real species is refused; a `mimic` row **is** a candidate (R-CS2's borrowed id is still a creature) | same file |
+| The outcome vocabulary is closed, and there is no floor | same run | pass — the five outcomes are exercised one-per-case in `test_every_refusal_records_its_own_reason` and pinned as `OUTCOMES` (with the reason: a code-owned set every consumer switches on); `over_cap_sources({"Ruin": 0}, cap)` is `()` — a zero-led aptitude is not a source and is never a refusal (R-Q6 rejects a floor) | same file |
+| Path-owned verification | `.\scripts\verify-change.ps1 -Paths gk-forge/tools/seedsmith/seedsmith/adapters/creatures/build_favour/accept.py,gk-forge/tools/seedsmith/seedsmith/adapters/creatures/build_favour/__init__.py,gk-forge/tools/seedsmith/tests/test_build_favour_relead.py -Session empire-progression-20260920` | the seedsmith boundary runs the whole pytest suite: `9 failed, 924 passed, 1 skipped, 1176 subtests passed`. **All nine are pre-existing** — 8 of them reproduce with this lane's three files moved out of the tree (`8 failed, 78 passed` for the same nodes) and none of the five failing modules imports `build_favour`; the ninth (`test_themes_v2.py::test_publish_is_idempotent`) passes alone and fails only in suite order on a CRLF diff, and that run leaves `gk-data/packs/fusion/data/seed/creatures/_registry/themes.v2.json` modified (restored with `git checkout --`, never committed). Filed as **SS-F1** in `tasks/seedsmith-todo.md` with the full node list, since the nodes span four subsystems and need routing | `tasks/seedsmith-todo.md` |
+| Adjacent suites stay green (this lane touched no existing seedsmith module) | `PYTHONPATH=gk-forge/tools/seedsmith python -m pytest gk-forge/tools/seedsmith/tests/test_anchor_contract.py gk-forge/tools/seedsmith/tests/test_classify_pipelines.py gk-forge/tools/seedsmith/tests/test_species_kind_and_measured_basis.py -q` | pass — **47 passed** (0.97s) | — |
+| Not proved | — | Nothing calls `accept`/`candidates_from` yet: the pass-2 orchestration (`run.py`) and the CLI verb are EP2.11/EP2.12, and the model stage (`relead.py`) is EP2.10. No model call, no real corpus run | — |
+
+> **Correction (EP2.12).** The line above says the boundary runs the whole pytest suite — that is
+> wrong. For these paths the boundary selects a FOCUSED subset; a broader selection (any changed
+> `gk-forge/tools/seedsmith/seedsmith/**` path mapping to `seedsmith-fallback`, e.g. `report/cli.py`) runs
+> the whole file set instead and reports **22 failed / 4142 passed in 9m27s** on this tree, in
+> subsystems this lane never touched — including `test_actions_description_completeness`, which
+> attempts a real model call and times out here (the pre-existing state AGENTS.md already
+> documents). The counts quoted above are the focused selection's.

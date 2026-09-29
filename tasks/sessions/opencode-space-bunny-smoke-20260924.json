@@ -1,0 +1,25 @@
+{
+  "session": "opencode-space-bunny-smoke-20260924",
+  "program": "multi-agent-runners",
+  "problem": "Authorize and smoke-test the repo OpenCode CLI runner with opencode/space-bunny-free",
+  "mode": "worktree",
+  "branch": "charter/opencode-space-bunny-20260924",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-charter-space-bunny",
+  "paths": [
+    ".claude/opencode-agents/allowed-models.json",
+    ".claude/opencode-agents/briefs/space-bunny-smoke.md",
+    ".claude/opencode-agents/briefs/space-bunny-smoke.context.jsonl",
+    ".claude/opencode-agents/agents/space-bunny-smoke/**",
+    ".claude/opencode-agents/scripts/opencode_lane.py",
+    ".claude/opencode-agents/scripts/opencode_probe.py",
+    ".claude/opencode-agents/scripts/test_opencode_lane.py",
+    ".claude/opencode-agents/opencode-backend-spec.md",
+    ".claude/opencode-agents/README.md",
+    "tasks/sessions/opencode-space-bunny-smoke-20260924.json"
+  ],
+  "started": "2026-09-24T16:30:24Z",
+  "status": "merged",
+  "closed": "2026-09-24T16:47:27Z",
+  "closeNote": "Smoke lane completed with opencode/space-bunny-free. The v2 positional-directory and clean-terminal-result compatibility fix landed in 8636f01c2; the verification-parser fix landed in b9a44f530. The agent produced a valid report, the corrected verify.json is green, audit has no findings, and no product files changed.",
+  "notes": "Owner approved the repo OpenCode runner, exact model opencode/space-bunny-free, 100k tokens per lane, and a one-read-only-smoke-test stop rule in the current conversation. Worktree mode avoids active tasks/** session fences. The first probe exposed OpenCode v2.0.16 CLI drift: the directory is positional, not --dir; a clean exit after final text is terminal even when the preceding step reason is tool-calls. No product files are in scope."
+}

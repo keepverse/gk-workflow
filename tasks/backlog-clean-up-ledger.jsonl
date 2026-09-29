@@ -1,0 +1,197 @@
+{"ts":"2026-09-20T02:37:19Z","kind":"anchor","plan":"tasks/backlog-clean-up-plan.md","todo":"tasks/backlog-clean-up-todo.md","session":"backlog-clean-up-build-20260920","queue":["BCU0.1","BCU0.2","BCU0.3","BCU0.4","BCU0.5","BCU1.1","BCU1.2","BCU1.3","BCU1.4","BCU1.5","BCU1.6","BCU1.7","BCU1.8","BCU1.9","BCU2.1","BCU2.2","BCU2.3","BCU2.4","BCU2.5","BCU2.6","BCU2.7","BCU2.8","BCU2.10","BCU2.11","BCU2.12","BCU2.13","BCU3.1","BCU3.2","BCU3.3","BCU3.4","BCU3.5","BCU3.6","BCU3.7","BCU4.1","BCU4.2","BCU4.3","BCU4.4","BCU4.5","BCU4.6","BCU5.1","BCU5.2","BCU5.3","BCU5.4","BCU5.5","BCU5.6","BCU6.1","BCU6.2","BCU6.3","BCU6.4","BCU7.1","BCU7.2","BCU7.3","BCU7.4","BCU7.5","BCU7.6","BCU7.7","BCU8.1","BCU8.2","BCU8.3","BCU8.4","BCU8.5","BCU8.6","BCU8.7","BCU8.8","BCU8.9","BCU8.10"],"mark":"mk1-16b37ab23036c423"}
+{"ts":"2026-09-20T02:38:42Z","kind":"note","text":"Fence check vs 6 active worktree lanes (git diff features/mega-merge...<branch>): only cmdc/lane-d (solid-enforcement) has real overlap: aura-skill/spec-aura-content.md, research/combat-math-dedup-audit-2026-09-16.md, effect-pipeline-map.md. Deferred.","mark":"mk1-74d355a8f929913b"}
+{"ts":"2026-09-20T02:39:00Z","kind":"task","id":"BCU0.1","state":"started","mark":"mk1-f82bf13c32263c6a"}
+{"ts":"2026-09-20T03:23:40Z","kind":"task","id":"BCU0.1","state":"done","evidence":"tasks/evidence-fragments/BCU0.1.md","mark":"mk1-cf598ba67070f9b5"}
+{"ts":"2026-09-20T03:27:38Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-643143ba92851917"}
+{"ts":"2026-09-20T03:27:38Z","kind":"task","id":"BCU0.2","state":"started","mark":"mk1-a00676b36b48b745"}
+{"ts":"2026-09-20T04:27:23Z","kind":"note","text":"verify-change.ps1 refuses audit-program-pipeline.py: no boundary registered (pre-existing gap). Registry is fenced by 5 active lanes right now. Deferred; used direct pytest as evidence instead.","mark":"mk1-c40662ffac825179"}
+{"ts":"2026-09-20T04:28:28Z","kind":"task","id":"BCU0.2","state":"done","evidence":"tasks/evidence-fragments/BCU0.2.md","mark":"mk1-d5f1c2cee2d18076"}
+{"ts":"2026-09-20T04:42:17Z","kind":"task","id":"BCU0.3","state":"started","mark":"mk1-1b1766c6c8d1d78b"}
+{"ts":"2026-09-20T04:42:18Z","kind":"note","text":"BCU0.3/0.4/0.5 combined into one commit: spec's own B2 acceptance requires the B4 stalled-todo kind to exist, so they cannot be independently verified across separate commits.","mark":"mk1-02712a97c4ec548b"}
+{"ts":"2026-09-20T04:42:19Z","kind":"task","id":"BCU0.3","state":"done","evidence":"tasks/evidence-fragments/BCU0.3.md","mark":"mk1-b51b185142fe7389"}
+{"ts":"2026-09-20T04:42:32Z","kind":"task","id":"BCU0.4","state":"started","mark":"mk1-71d28aebaac64ddd"}
+{"ts":"2026-09-20T04:42:32Z","kind":"task","id":"BCU0.4","state":"done","evidence":"tasks/evidence-fragments/BCU0.4.md","mark":"mk1-aae30037e6ba97a7"}
+{"ts":"2026-09-20T04:42:33Z","kind":"task","id":"BCU0.5","state":"started","mark":"mk1-8c4566cc5f36f255"}
+{"ts":"2026-09-20T04:42:33Z","kind":"task","id":"BCU0.5","state":"done","evidence":"tasks/evidence-fragments/BCU0.5.md","mark":"mk1-946434a98d5fdf1a"}
+{"ts":"2026-09-20T05:10:30Z","kind":"task","id":"BCU1.1","state":"started","mark":"mk1-49800975856d3762"}
+{"ts":"2026-09-20T05:10:30Z","kind":"task","id":"BCU1.1","state":"done","evidence":"tasks/evidence-fragments/BCU1.1.md","mark":"mk1-3a2a470e61aa1901"}
+{"ts":"2026-09-20T05:11:44Z","kind":"task","id":"BCU1.2","state":"started","mark":"mk1-72982876c693c1e4"}
+{"ts":"2026-09-20T05:16:36Z","kind":"task","id":"BCU1.2","state":"done","evidence":"tasks/evidence-fragments/BCU1.2.md","mark":"mk1-369374544a292baa"}
+{"ts":"2026-09-20T05:16:57Z","kind":"task","id":"BCU1.3","state":"started","mark":"mk1-cd9ce63fd6403089"}
+{"ts":"2026-09-20T05:51:10Z","kind":"note","text":"doc-citations+population-pin now GATE CI (coordinator 2026-09-20). Pre-existing HIGH on files I touched are unrelated to my edits (git diff confirmed); out of P3 scope to fix all now.","mark":"mk1-bbe95dd1bb2b39d9"}
+{"ts":"2026-09-20T05:57:18Z","kind":"task","id":"BCU1.3","state":"done","evidence":"tasks/evidence-fragments/BCU1.3.md","mark":"mk1-0e76b721d5bbb03b"}
+{"ts":"2026-09-20T06:00:40Z","kind":"note","text":"Post-merge: fenced spec-aura-content.md:303 now resolvable (git diff HEAD...cmdc/lane-d no longer names it). Fixed as a P3 addendum; this is also aura-close-out AU1/BCU3.2's job -- pre-done for wave 3.","mark":"mk1-fff0a932517bbb27"}
+{"ts":"2026-09-20T06:19:26Z","kind":"task","id":"BCU1.4","state":"started","mark":"mk1-12b72fbeafafd9d3"}
+{"ts":"2026-09-20T06:27:35Z","kind":"task","id":"BCU1.4","state":"done","evidence":"tasks/evidence-fragments/BCU1.4.md","mark":"mk1-70b69d5a46f39d02"}
+{"ts":"2026-09-20T06:28:04Z","kind":"task","id":"BCU1.5","state":"started","mark":"mk1-fb913e93f39952a1"}
+{"ts":"2026-09-20T06:40:05Z","kind":"task","id":"BCU1.5","state":"done","evidence":"tasks/evidence-fragments/BCU1.5.md","mark":"mk1-381c812d656a12e8"}
+{"ts":"2026-09-20T06:40:31Z","kind":"task","id":"BCU1.6","state":"started","mark":"mk1-bf60829ef811949f"}
+{"ts":"2026-09-20T06:47:04Z","kind":"task","id":"BCU1.6","state":"done","evidence":"tasks/evidence-fragments/BCU1.6.md","mark":"mk1-dcb4856b63a14782"}
+{"ts":"2026-09-20T06:47:30Z","kind":"task","id":"BCU1.7","state":"started","mark":"mk1-a6ec42de171b25f1"}
+{"ts":"2026-09-20T06:56:48Z","kind":"task","id":"BCU1.7","state":"done","evidence":"tasks/evidence-fragments/BCU1.7.md","mark":"mk1-722b67ab7c394a8e"}
+{"ts":"2026-09-20T06:57:14Z","kind":"task","id":"BCU1.8","state":"started","mark":"mk1-0d678ace7da56f35"}
+{"ts":"2026-09-20T07:01:48Z","kind":"task","id":"BCU1.8","state":"done","evidence":"tasks/evidence-fragments/BCU1.8.md","mark":"mk1-1a5713c097a389c7"}
+{"ts":"2026-09-20T07:02:08Z","kind":"task","id":"BCU1.9","state":"started","mark":"mk1-7d54dcebfd2c7500"}
+{"ts":"2026-09-20T07:05:10Z","kind":"task","id":"BCU1.9","state":"done","evidence":"tasks/evidence-fragments/BCU1.9.md","mark":"mk1-da7ca3950033d015"}
+{"ts":"2026-09-20T07:05:32Z","kind":"task","id":"BCU2.1","state":"started","mark":"mk1-780ebbc75b1e7279"}
+{"ts":"2026-09-20T07:07:58Z","kind":"task","id":"BCU2.1","state":"done","evidence":"tasks/evidence-fragments/BCU2.1.md","mark":"mk1-6e5a19186b968040"}
+{"ts":"2026-09-20T07:08:34Z","kind":"task","id":"BCU2.2","state":"started","mark":"mk1-a1331c592d134094"}
+{"ts":"2026-09-20T07:09:50Z","kind":"task","id":"BCU2.2","state":"done","evidence":"tasks/evidence-fragments/BCU2.2.md","mark":"mk1-06c821bb91c9fe90"}
+{"ts":"2026-09-20T07:10:01Z","kind":"task","id":"BCU2.3","state":"started","mark":"mk1-eab7588825dbe981"}
+{"ts":"2026-09-20T07:11:37Z","kind":"task","id":"BCU2.3","state":"done","evidence":"tasks/evidence-fragments/BCU2.3.md","mark":"mk1-7f0cf5ce4af8586e"}
+{"ts":"2026-09-20T07:12:09Z","kind":"task","id":"BCU2.4","state":"started","mark":"mk1-7ed72a7b1e88819b"}
+{"ts":"2026-09-20T07:17:34Z","kind":"task","id":"BCU2.4","state":"done","evidence":"tasks/evidence-fragments/BCU2.4.md","mark":"mk1-3f45479ff2456d68"}
+{"ts":"2026-09-20T07:17:57Z","kind":"task","id":"BCU2.5","state":"started","mark":"mk1-18c7b4501c5dbef3"}
+{"ts":"2026-09-20T07:25:49Z","kind":"task","id":"BCU2.5","state":"done","evidence":"tasks/evidence-fragments/BCU2.5.md","mark":"mk1-3673dd0e9b54abe9"}
+{"ts":"2026-09-20T07:26:10Z","kind":"task","id":"BCU2.6","state":"started","mark":"mk1-97ac7323eee0a0a9"}
+{"ts":"2026-09-20T07:31:48Z","kind":"task","id":"BCU2.6","state":"done","evidence":"tasks/evidence-fragments/BCU2.6.md","mark":"mk1-fdfd2f9dd5c7829c"}
+{"ts":"2026-09-20T07:32:10Z","kind":"task","id":"BCU2.7","state":"started","mark":"mk1-2db9558a9948ee67"}
+{"ts":"2026-09-20T07:42:11Z","kind":"task","id":"BCU2.7","state":"done","evidence":"tasks/evidence-fragments/BCU2.7.md","mark":"mk1-7453933dee23a008"}
+{"ts":"2026-09-20T07:42:40Z","kind":"task","id":"BCU2.8","state":"started","mark":"mk1-f2e7f1a9978e41f0"}
+{"ts":"2026-09-20T07:45:49Z","kind":"note","text":"Fixed duplicate stale CB1 template (lines 221-224) in backlog-clean-up-todo.md. Ticked CB2: packet delivered, 3/4 plans map-updated (BWR has none by design), map-plan-missing clean for lawn-playable/lawn-tuning-profile/deployment-hierarchy/effect-pipeline.","mark":"mk1-47c8678f3c7d07d5"}
+{"ts":"2026-09-20T08:02:28Z","kind":"task","id":"BCU2.8","state":"done","evidence":"tasks/evidence-fragments/BCU2.8.md","mark":"mk1-c7c5ff1a418302a9"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.1","state":"started","mark":"mk1-c6f6b240a6f06a6e"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.1","state":"done","evidence":"tasks/evidence-fragments/BCU3.1-3.7.md","mark":"mk1-63e4a2b4f686fabe"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.2","state":"started","mark":"mk1-01ecf59538602b00"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.2","state":"done","evidence":"tasks/evidence-fragments/BCU3.1-3.7.md","mark":"mk1-8566e930b2655ea3"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.3","state":"started","mark":"mk1-22b12ce5aff61ee1"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.3","state":"done","evidence":"tasks/evidence-fragments/BCU3.1-3.7.md","mark":"mk1-0d98e9e800e0647f"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.4","state":"started","mark":"mk1-9a97b8305fa6f7e5"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.4","state":"done","evidence":"tasks/evidence-fragments/BCU3.1-3.7.md","mark":"mk1-4bccd322d0e9003e"}
+{"ts":"2026-09-20T08:08:06Z","kind":"task","id":"BCU3.6","state":"started","mark":"mk1-9478d1494eea49e5"}
+{"ts":"2026-09-20T08:08:07Z","kind":"task","id":"BCU3.6","state":"done","evidence":"tasks/evidence-fragments/BCU3.1-3.7.md","mark":"mk1-a8ab111c299a6a50"}
+{"ts":"2026-09-20T08:08:07Z","kind":"task","id":"BCU3.7","state":"started","mark":"mk1-c9c6031e7b05f548"}
+{"ts":"2026-09-20T08:08:07Z","kind":"task","id":"BCU3.7","state":"done","evidence":"tasks/evidence-fragments/BCU3.1-3.7.md","mark":"mk1-07401480598b98eb"}
+{"ts":"2026-09-20T08:37:50Z","kind":"task","id":"BCU4.1","state":"started","mark":"mk1-02b9bf7a82058d0f"}
+{"ts":"2026-09-20T08:37:51Z","kind":"task","id":"BCU4.1","state":"done","evidence":"tasks/evidence-fragments/BCU4.1-4.6.md","mark":"mk1-e7ab231578fcd347"}
+{"ts":"2026-09-20T08:37:52Z","kind":"task","id":"BCU4.3","state":"started","mark":"mk1-3b7c4514be83c6a9"}
+{"ts":"2026-09-20T08:37:53Z","kind":"task","id":"BCU4.3","state":"done","evidence":"tasks/evidence-fragments/BCU4.1-4.6.md","mark":"mk1-f4a3524279b10f0b"}
+{"ts":"2026-09-20T08:37:54Z","kind":"task","id":"BCU4.4","state":"started","mark":"mk1-23ab2f4beaf1fed0"}
+{"ts":"2026-09-20T08:37:55Z","kind":"task","id":"BCU4.4","state":"done","evidence":"tasks/evidence-fragments/BCU4.1-4.6.md","mark":"mk1-74b72758c1f9cdb3"}
+{"ts":"2026-09-20T08:51:21Z","kind":"task","id":"BCU5.1","state":"started","mark":"mk1-6004736c089afdd6"}
+{"ts":"2026-09-20T08:51:22Z","kind":"task","id":"BCU5.1","state":"done","evidence":"tasks/evidence-fragments/BCU5.1-5.2.md","mark":"mk1-36f80e1af201757e"}
+{"ts":"2026-09-20T08:51:22Z","kind":"task","id":"BCU5.2","state":"started","mark":"mk1-68f5b701474db89c"}
+{"ts":"2026-09-20T08:51:22Z","kind":"task","id":"BCU5.2","state":"done","evidence":"tasks/evidence-fragments/BCU5.1-5.2.md","mark":"mk1-a1bb4a8a3fa4f80d"}
+{"ts":"2026-09-20T09:02:42Z","kind":"task","id":"BCU3.5","state":"started","mark":"mk1-97f95ea529d437db"}
+{"ts":"2026-09-20T09:02:42Z","kind":"task","id":"BCU3.5","state":"done","evidence":"tasks/evidence-fragments/BP4.md","mark":"mk1-a0efd4f495e9efbd"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.3","state":"started","mark":"mk1-948c9b6fcdda8f46"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.3","state":"done","evidence":"tasks/evidence-fragments/BCU5.3-5.6.md","mark":"mk1-af8c6d8bc0ad2ba9"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.4","state":"started","mark":"mk1-101276655553264e"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.4","state":"done","evidence":"tasks/evidence-fragments/BCU5.3-5.6.md","mark":"mk1-0e265f7af2c3b869"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.5","state":"started","mark":"mk1-21e183434fe24cd1"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.5","state":"done","evidence":"tasks/evidence-fragments/BCU5.3-5.6.md","mark":"mk1-6becab9717283b12"}
+{"ts":"2026-09-20T09:10:03Z","kind":"task","id":"BCU5.6","state":"started","mark":"mk1-884748a98e4ff660"}
+{"ts":"2026-09-20T09:10:04Z","kind":"task","id":"BCU5.6","state":"done","evidence":"tasks/evidence-fragments/BCU5.3-5.6.md","mark":"mk1-5c8872b1daa688ec"}
+{"ts":"2026-09-20T09:15:48Z","kind":"task","id":"BCU6.1","state":"started","mark":"mk1-15a6f678e4c82e6c"}
+{"ts":"2026-09-20T09:15:48Z","kind":"task","id":"BCU6.1","state":"done","evidence":"tasks/evidence-fragments/BCU6.1.md","mark":"mk1-842b9d2da30ea3c1"}
+{"ts":"2026-09-20T09:24:23Z","kind":"task","id":"BCU6.3","state":"started","mark":"mk1-1450144a2fffde24"}
+{"ts":"2026-09-20T09:24:24Z","kind":"task","id":"BCU6.3","state":"done","evidence":"tasks/evidence-fragments/BCU6.3.md","mark":"mk1-5d9384833ecb6e05"}
+{"ts":"2026-09-20T09:34:51Z","kind":"task","id":"BCU6.2","state":"started","mark":"mk1-fc727a6fa8b711a7"}
+{"ts":"2026-09-20T09:34:51Z","kind":"task","id":"BCU6.2","state":"done","evidence":"tasks/evidence-fragments/BCU6.2.md","mark":"mk1-169ab842d350ce07"}
+{"ts":"2026-09-20T09:37:17Z","kind":"task","id":"BCU6.4","state":"started","mark":"mk1-775c2a7428592eb0"}
+{"ts":"2026-09-20T09:37:17Z","kind":"task","id":"BCU6.4","state":"done","evidence":"tasks/evidence-fragments/BCU6.4.md","mark":"mk1-0d287da81945cb82"}
+{"ts":"2026-09-20T09:50:07Z","kind":"task","id":"BCU7.1","state":"started","mark":"mk1-932789fcd923ef55"}
+{"ts":"2026-09-20T09:50:07Z","kind":"task","id":"BCU7.1","state":"done","evidence":"tasks/evidence-fragments/BCU7.1.md","mark":"mk1-e61c42758401becd"}
+{"ts":"2026-09-20T09:53:34Z","kind":"task","id":"BCU7.2","state":"started","mark":"mk1-d4d48d3281cba0c1"}
+{"ts":"2026-09-20T09:53:34Z","kind":"task","id":"BCU7.2","state":"done","evidence":"tasks/evidence-fragments/BCU7.2.md","mark":"mk1-42a4991c1c22ced8"}
+{"ts":"2026-09-20T09:56:34Z","kind":"task","id":"BCU7.3","state":"started","mark":"mk1-073786db56c2b43c"}
+{"ts":"2026-09-20T09:56:34Z","kind":"task","id":"BCU7.3","state":"done","evidence":"tasks/evidence-fragments/BCU7.3.md","mark":"mk1-75584f091fe76a47"}
+{"ts":"2026-09-20T10:09:21Z","kind":"task","id":"BCU7.4","state":"started","mark":"mk1-9d7851b06b390fe6"}
+{"ts":"2026-09-20T10:09:21Z","kind":"task","id":"BCU7.4","state":"done","evidence":"tasks/evidence-fragments/BCU7.4.md","mark":"mk1-97ebb97daff8d7b1"}
+{"ts":"2026-09-20T10:11:21Z","kind":"task","id":"BCU7.5","state":"started","mark":"mk1-d02126d09c15d2d1"}
+{"ts":"2026-09-20T10:11:22Z","kind":"task","id":"BCU7.5","state":"done","evidence":"tasks/evidence-fragments/BCU7.5.md","mark":"mk1-d6c82a7101d857bc"}
+{"ts":"2026-09-20T10:15:55Z","kind":"task","id":"BCU7.6","state":"started","mark":"mk1-1e78e4d8faa168a8"}
+{"ts":"2026-09-20T10:15:56Z","kind":"task","id":"BCU7.6","state":"done","evidence":"tasks/evidence-fragments/BCU7.6.md","mark":"mk1-97d6ce4e6d74f868"}
+{"ts":"2026-09-20T10:17:29Z","kind":"task","id":"BCU7.7","state":"started","mark":"mk1-6a9d0dc591220116"}
+{"ts":"2026-09-20T10:17:29Z","kind":"task","id":"BCU7.7","state":"done","evidence":"tasks/evidence-fragments/BCU7.7.md","mark":"mk1-3067fd4f7d0b7888"}
+{"ts":"2026-09-20T10:38:47Z","kind":"task","id":"BCU8.1","state":"started","mark":"mk1-b1e45f35cf0f7341"}
+{"ts":"2026-09-20T10:38:47Z","kind":"task","id":"BCU8.1","state":"done","evidence":"tasks/evidence-fragments/BCU8.1.md","mark":"mk1-cc62383eb70991d4"}
+{"ts":"2026-09-20T13:21:32Z","kind":"task","id":"BCU8.2","state":"started","mark":"mk1-fc77c04ab25f3940"}
+{"ts":"2026-09-20T13:21:42Z","kind":"note","text":"BCU8.2: routed all 4 calls at the 3 bare-clamp sites (EntityStatWriter LimHealth gate; GameHooks plant/zombie TakeDamage) through ClampToInt32Reporting (private->internal); added InjectorWritePathHonestyGuardTests: route guard + D22 parity + non-vacuity pins.","mark":"mk1-74c2d73e843289e3"}
+{"ts":"2026-09-20T13:21:42Z","kind":"gate","name":"guard-single-writer","result":"pass","mark":"mk1-eddf44ecea3e355a"}
+{"ts":"2026-09-20T13:21:42Z","kind":"gate","name":"guard-funnel-delta","result":"pass","mark":"mk1-b88f1132bb64fab5"}
+{"ts":"2026-09-20T13:21:42Z","kind":"gate","name":"guard-secondary-no-unity","result":"pass","mark":"mk1-51ed4cff68167db0"}
+{"ts":"2026-09-20T13:21:42Z","kind":"task","id":"BCU8.2","state":"done","evidence":"tasks/evidence-fragments/BCU8.2.md","mark":"mk1-6a4b4d3cc864e09e"}
+{"ts":"2026-09-20T13:21:42Z","kind":"note","text":"FINDING: verify-change guard module has 3 PRE-EXISTING failures, none in this diff -- SubprocessPipeDrainGuardTests names lane D's FusionRpg.FileMove.Tests/SplitExecutorTests.cs:262-263; two VerificationBoundaryWorkflowTests hit the 120s timeout vs a 3m05s script.","mark":"mk1-04cfee4f84d0f668"}
+{"ts":"2026-09-20T13:41:30Z","kind":"task","id":"BCU8.3","state":"started","mark":"mk1-07fc8cd8c26af98c"}
+{"ts":"2026-09-20T13:41:43Z","kind":"note","text":"BCU8.3: deleted KERNEL_GRIDS + both accumulator grids. FINDING fixed same commit: D15's clock advance lived only in TickDots, gated off on-board by B26, so AdvancedEffectClock was frozen on every board since 2026-09-17; moved to KernelDriveHost.Tick.","mark":"mk1-b82a0dd4f26260a3"}
+{"ts":"2026-09-20T13:41:43Z","kind":"gate","name":"guard-doc-citations","result":"pass","mark":"mk1-8d611c34b023d8c4"}
+{"ts":"2026-09-20T13:41:44Z","kind":"gate","name":"injector-kernel-grids-guard","result":"pass","mark":"mk1-7356049dcb424beb"}
+{"ts":"2026-09-20T13:41:44Z","kind":"task","id":"BCU8.3","state":"done","evidence":"tasks/evidence-fragments/BCU8.3.md","mark":"mk1-d85697e5b85724a6"}
+{"ts":"2026-09-20T13:42:36Z","kind":"note","text":"BLOCKED BCU8.4: fix is in src/FusionRpg.Data/Sqlite/RpgStore.cs:4260-4264 (EnsureColumn try/ALTER/catch{}), outside this lane's allowed paths (Injector/Core/tests/docs/tasks). A tests-only half would land a red test. Needs a Data-owned lane or a path grant.","mark":"mk1-3047dcf115c8225c"}
+{"ts":"2026-09-20T13:51:41Z","kind":"task","id":"BCU8.5","state":"started","mark":"mk1-ac9374daa3249dcc"}
+{"ts":"2026-09-20T13:51:46Z","kind":"note","text":"BCU8.5 routing: test-verification-boundary DOES cover sharding and already delivered BU2 (TVB1.1-1.5). BU3/BU4 stay data-test-substrate's (store timing, idle-machine reading). Also fixed a pre-existing D3 HIGH (Program.cs:327 -> src/FusionRpg.Server/Program.cs:423).","mark":"mk1-79167865d408ded3"}
+{"ts":"2026-09-20T13:51:46Z","kind":"gate","name":"guard-doc-citations","result":"pass","mark":"mk1-42646d4bde3997ac"}
+{"ts":"2026-09-20T13:51:46Z","kind":"task","id":"BCU8.5","state":"done","evidence":"tasks/evidence-fragments/BCU8.5.md","mark":"mk1-7aeab5c501171ac2"}
+{"ts":"2026-09-20T13:53:34Z","kind":"task","id":"BCU8.6","state":"started","mark":"mk1-4b83565a7e6f58ca"}
+{"ts":"2026-09-20T13:53:34Z","kind":"note","text":"BCU8.6: no code needed -- live-qa's Task 21 already shipped ArmouryRowDto.OriginKind (ItemSurfaceEndpoints.cs:63,164) with its regression on HEAD. Verified by reading the tree and re-running the named Server test (1/1 pass); backlog row closed with the pointer.","mark":"mk1-c32f4b9c5f6c34d7"}
+{"ts":"2026-09-20T13:53:34Z","kind":"task","id":"BCU8.6","state":"done","evidence":"tasks/evidence-fragments/BCU8.6.md","mark":"mk1-c8891112cc7ca2da"}
+{"ts":"2026-09-20T14:04:28Z","kind":"task","id":"BCU8.7","state":"started","mark":"mk1-ec0695b308f2325c"}
+{"ts":"2026-09-20T14:04:40Z","kind":"note","text":"BCU8.7: spec'd the naming-grammar pass as item-seedgen module 13. Code already shipped (d401f446/750b0dfd); the open half is WIRING -- no seedsmith items verb reaches naming_grammar_repair, batches ran via an uncommitted driver. Rows: seedsmith-cli-ux + item-seed-regen.","mark":"mk1-74c08f02f32ab6b9"}
+{"ts":"2026-09-20T14:04:40Z","kind":"gate","name":"guard-doc-citations","result":"pass","mark":"mk1-00c1ed4f0a2653c8"}
+{"ts":"2026-09-20T14:04:40Z","kind":"task","id":"BCU8.7","state":"done","evidence":"tasks/evidence-fragments/BCU8.7.md","mark":"mk1-222eaafa468adaef"}
+{"ts":"2026-09-20T14:06:45Z","kind":"note","text":"BCU8.8 ATTEMPTED, not closed. P11.1 premise stale: TreeAtomSource.cs:8-13 deliberately registers NO new subsystem; real gap is TreeAtomSource.cs:68 skipping stat.modify tree atoms. P11.0 needs decisions.md (fenced). H5 is tools/seedsmith/** (denied). Erratum requested.","mark":"mk1-4afaf98959d8bcb7"}
+{"ts":"2026-09-20T14:06:50Z","kind":"task","id":"BCU8.8","state":"started","mark":"mk1-8c5e4630f3fa76d3"}
+{"ts":"2026-09-20T14:06:50Z","kind":"task","id":"BCU8.8","state":"blocked","reason":"2 of 3 items in denied/fenced paths (tools/seedsmith/**, decisions.md); the third's acceptance premise is superseded by TreeAtomSource's shipped design and needs a manager erratum","mark":"mk1-b445a7535a5eba60"}
+{"ts":"2026-09-20T14:11:18Z","kind":"task","id":"BCU8.9","state":"started","mark":"mk1-98beab0f233b6d5e"}
+{"ts":"2026-09-20T14:11:18Z","kind":"note","text":"BCU8.9: one linked finding written into BOTH programs' todos (battle-derived-wire W16/R1-R4 section + class-system External row), same channel list and both readings cited. BCU8.10: note routed to combat-unification-todo for the next publish.py battle; no tuning file touched.","mark":"mk1-6648b36266de4acf"}
+{"ts":"2026-09-20T14:11:18Z","kind":"task","id":"BCU8.9","state":"done","evidence":"tasks/evidence-fragments/BCU8.9.md","mark":"mk1-3552ef8858d43148"}
+{"ts":"2026-09-20T14:11:19Z","kind":"task","id":"BCU8.10","state":"started","mark":"mk1-7042b9e1fa21cc59"}
+{"ts":"2026-09-20T14:11:19Z","kind":"task","id":"BCU8.10","state":"done","evidence":"tasks/evidence-fragments/BCU8.10.md","mark":"mk1-5eeb9fbfb22526f9"}
+{"ts":"2026-09-20T14:11:19Z","kind":"gate","name":"guard-doc-citations","result":"pass","mark":"mk1-40033da3bc450d41"}
+{"ts":"2026-09-20T15:19:50Z","kind":"note","text":"BCU8.8 CLOSED AS ERRATUM (ruling granted): the stale premise is the deliverable. P11.1r filed in passive-tree-repair-todo (widen TreeAtomSource to fan in stat.modify atoms, :68); P11.0 routed to decisions.md; H5 row filed in item-seedgen-todo.","mark":"mk1-001ff7038970cf22"}
+{"ts":"2026-09-20T15:19:56Z","kind":"task","id":"BCU8.8","state":"started","mark":"mk1-0b5afccd869c4705"}
+{"ts":"2026-09-20T15:19:56Z","kind":"task","id":"BCU8.8","state":"done","evidence":"tasks/evidence-fragments/BCU8.8.md","mark":"mk1-81b9c15157b63a95"}
+{"ts":"2026-09-20T15:26:36Z","kind":"task","id":"BCU4.5","state":"started","mark":"mk1-a8d9bfd9482ede27"}
+{"ts":"2026-09-20T15:26:46Z","kind":"note","text":"BCU4.5: the cmdc/lane-c fence was STALE (lane-c is an ancestor of HEAD after the mega-merge; all worktrees clean). Filed roster-balance's findings as RB-H1 in creature-seed-todo, metric-blindness half first. Also re-anchored 2 pre-existing D3 citations (bare Program.cs).","mark":"mk1-77e1c150a58be2c9"}
+{"ts":"2026-09-20T15:26:57Z","kind":"task","id":"BCU4.5","state":"done","evidence":"tasks/evidence-fragments/BCU4.5.md","mark":"mk1-bfd166f2e3cd8d50"}
+{"ts":"2026-09-20T15:28:31Z","kind":"task","id":"BCU4.6","state":"started","mark":"mk1-d02926efaa8f281f"}
+{"ts":"2026-09-20T15:28:31Z","kind":"note","text":"BCU4.6 done: F4 (CreatureMintSpec has no Level) and F5 (SummonRoller.Roll has no poolFilter) re-confirmed live; the F1 fence was STALE so the threat-audit was filed as TB-H1 in creature-seed-todo (module 4 threat-band + module 7 classify-pipelines, live 721/906 reading).","mark":"mk1-742789dc4c9adbb7"}
+{"ts":"2026-09-20T15:28:31Z","kind":"task","id":"BCU4.6","state":"done","evidence":"tasks/evidence-fragments/BCU4.6.md","mark":"mk1-b5a02e8ed3e7a914"}
+{"ts":"2026-09-20T15:33:59Z","kind":"task","id":"BCU4.2","state":"started","mark":"mk1-fc086bee1c891404"}
+{"ts":"2026-09-20T15:33:59Z","kind":"note","text":"BCU4.2 done: blocker was STALE (4th stale premise this run). D2.2 is done-in-code (RpgStore.Expeditions.cs:332-336,:330,:347-355; Progression.cs:284), boxes corrected, D2.3 unblocked. D2.3 clause 2 already guarded (6/6 green); clauses 1+3 left to creature-progression.","mark":"mk1-cab087c57cf496d0"}
+{"ts":"2026-09-20T15:34:00Z","kind":"task","id":"BCU4.2","state":"done","evidence":"tasks/evidence-fragments/BCU4.2.md","mark":"mk1-9886c67d255e9c87"}
+{"ts":"2026-09-20T16:38:56Z","kind":"queue","ids":["BCU2.10","BCU2.11","BCU2.12","BCU2.13","BCU8.4"],"mark":"mk1-fdac3964a3ca5d8a"}
+{"ts":"2026-09-22T23:49:11Z","kind":"task","id":"BCU8.4","state":"started","mark":"mk1-b86b0b12fbb1514f"}
+{"ts":"2026-09-22T23:49:11Z","kind":"note","text":"BCU8.4: brief's -Session bcu8-4 cannot run (verify-change.ps1:98 'session record not found'; tasks/sessions/** outside this lane's fence). Same plan run with -AllowUnscoped: DAL+substrate guards OK, 4 shards/1728 tests. Manager owes the record or an erratum.","mark":"mk1-d3a54f1d399ac593"}
+{"ts":"2026-09-22T23:49:11Z","kind":"task","id":"BCU8.4","state":"done","evidence":"tasks/reports/bcu8-4-evidence.md","mark":"mk1-d46640b1b48dfe71"}
+{"ts":"2026-09-22T23:51:47Z","kind":"task","id":"BCU2.10","state":"started","mark":"mk1-db0f54b5b23183c1"}
+{"ts":"2026-09-23T00:00:23Z","kind":"gate","name":"bcu2-10-baseline-readings","result":"pass","mark":"mk1-9bee92db2524dff3"}
+{"ts":"2026-09-23T00:00:35Z","kind":"note","text":"BCU2.10 is a manager-run detached job, IN FLIGHT (board :1560; 2004b5a42). Its data/seed/actions/** outputs are outside this lane's fence. Lane half: model-free baseline (accepted 181, thinCell shortfall 20384, quotaDrift clean) in tasks/reports/bcu2-10-readings.json.","mark":"mk1-475fcdac6174c074"}
+{"ts":"2026-09-23T00:00:35Z","kind":"note","text":"FINDING: 710390b56 claims readings in tasks/reports/BCU2.10-round-1.json; the file has none and the commit changed only one _generated v1->v4 string + the artefact. No _rounds/round-1/**, no coverage-round-1 refresh, no _usage-*.json in any branch.","mark":"mk1-a4e232d5e5fbcdb7"}
+{"ts":"2026-09-23T00:00:35Z","kind":"note","text":"BCU2.11: its board gate SetCompletability measures 'no findings' exit 0 at HEAD; the real gate is ISG-gap-2's near-duplicate/EmptyPartition defect (revert ea2aeb756). BCU2.12/2.13 running per board :1562/:1565 + 2004b5a42.","mark":"mk1-2ce5bcb1d1b7b841"}
+{"ts":"2026-09-23T00:00:35Z","kind":"task","id":"BCU2.10","state":"blocked","reason":"manager-run detached corpus job in flight (board :1560, 2004b5a42); outputs data/seed/actions/** outside lane fence; lane-side baseline + artefact finding delivered (tasks/reports/bcu2-10-closeout.md)","mark":"mk1-a9269a2e3aa757c8"}
+{"ts":"2026-09-23T00:02:38Z","kind":"note","text":"BCU2.11/ISG-gap-2 residue enumerated model-free: 911 Coverage/EmptyPartition findings, 904 are sets/species/<id> one per roster species -> tasks/reports/bcu2-11-residue-map.md + ISG-gap-2-residue.json. Open question handed to item-seedgen: is a species-scoped set intended?","mark":"mk1-e813d93113087531"}
+{"ts":"2026-09-23T00:04:12Z","kind":"note","text":"BCU2.12/J10 census at 3e7a51d16, model-free: 3030 note, 543 gap (389 NameCollision, 83 QuotaDrift, 67 SpeciesUniqueness, 4 singles), 1 not_measured, over 42 trees/1679 nodes -> tasks/reports/bcu2-12-census.md + .txt. Mid-run reading; re-run for the delta.","mark":"mk1-0170dd9b14559580"}
+{"ts":"2026-09-23T00:06:21Z","kind":"note","text":"BCU2.13 read at 9541f1f2c: 487 species carry elementSecondary none; stated selector (none, no recipe output) = 122 (variants 96/111), not board 108 nor register 127. doublecherry attackTempo still deterministic-fallback.","mark":"mk1-182711a9fefe3c57"}
+{"ts":"2026-09-23T00:06:21Z","kind":"gate","name":"bcu2-10-action-preflight-at-9541f1f2c","result":"pass","mark":"mk1-bfbc454c7c731793"}
+{"ts":"2026-09-23T00:07:22Z","kind":"task","id":"BCU2.11","state":"started","mark":"mk1-4769c1ecf509a6fc"}
+{"ts":"2026-09-23T00:09:35Z","kind":"note","text":"BCU2.11/ISG-gap-2 root cause, model-free: NamespaceAllocation.cs:261 allocates sets/species/<raw id> while setgen/authored.py:99-100 emits sets/<hyphenated slug>. 844 of 904 slots exist under the other key, 60 absent; residue 67 if the key is fixed, no slug collisions.","mark":"mk1-8b4d10db560453c1"}
+{"ts":"2026-09-23T00:09:36Z","kind":"task","id":"BCU2.11","state":"blocked","reason":"the residue's fix is a partition-key contract between tools/ItemSeedValidator/Registries/NamespaceAllocation.cs:261 and setgen/authored.py:99-100 (both outside this lane fence); no fill is correct (it produced 747 near-duplicates). Lane delivered the per-partition reason map and the root cause","mark":"mk1-099a226efe11b428"}
+{"ts":"2026-09-23T00:09:50Z","kind":"note","text":"The mismatch explains the reverted run's 747 NearDuplicate findings: filling sets/species/<id> rewrites the same sets under a second key. Not a fill. 911 per-partition reasons in tasks/reports/ISG-gap-2-per-partition.json.","mark":"mk1-118a9a3f5fcef6d4"}
+{"ts":"2026-09-23T00:13:13Z","kind":"note","text":"BCU2.12 root cause: the tree-language ledger records 303 names reused across subjects; 'Kinetic Recirculation' accepted 12x over 7 trees, 5 inside BigGatling (indices 2161-2177). Gate exists (nodegen/run.py:162-249, seeded :1031-1047) and did not fire.","mark":"mk1-1ba141e3ada28243"}
+{"ts":"2026-09-23T00:13:57Z","kind":"note","text":"BCU2.12 note 2/2: narrowed to a re-gate comparing nameKey not name (run.py:1114-1118) or the codex/finalize write (0 refs to name_collision/taken_names in adapters/trees/species/** + _j9_batch_run.py). No test pins the tree path gate.","mark":"mk1-3798d03ce7790f6a"}
+{"ts":"2026-09-23T00:13:57Z","kind":"note","text":"BCU2.13 distribution: of the 122, zombie 63/plant 59, 111 pure, rarity sprout 54/chaff 24/grafted 22/cultivated 7, no fusion lineage. Content judgement, not arithmetic; cuts recorded in the reading JSON.","mark":"mk1-83c6aefb2f60babb"}
+{"ts":"2026-09-23T00:15:30Z","kind":"task","id":"BCU2.12","state":"started","mark":"mk1-126490c18cb7af4e"}
+{"ts":"2026-09-23T00:17:24Z","kind":"note","text":"BCU2.12/J13 read: --gate exits 0 but ExclusionRate 1071/1679 (637 permille vs 30 target), NameCollision 388/1679 (231 vs 0), NearDuplicate 116/1679 (69 vs 5); MechanismRamp 1 shortfall, UnresolvedCount 92/1680 (54 permille vs 50).","mark":"mk1-9ee342110b0a5dd9"}
+{"ts":"2026-09-23T00:17:24Z","kind":"note","text":"J13 vintage erratum (PT-J9-F2 confirmed and moved): 42 shared docs are tree-language/1 22, mixed 20, tree-language/2 ZERO while nodegen/brief.py:57 writes tree-language/3. Target version must be restated before acceptance. Reproduce: tasks/reports/bcu2-12-vintage-reading.py","mark":"mk1-4886477bc2dcff1e"}
+{"ts":"2026-09-23T00:17:51Z","kind":"note","text":"BCU2.13 delta-ready: the reading JSON now carries the full member lists (selector 122, variantB 96, variantC 111, none-set 487), so the post-run delta is a set difference, not a count - the row has no fixed acceptance bar.","mark":"mk1-a3637ea464fa1e85"}
+{"ts":"2026-09-23T00:21:53Z","kind":"note","text":"BCU2.12/J9 read at 7209d9f57: 4/904 species complete, 16 started, 9 filed, 8 codex metadata. Clause 2 green for the generic plan only (trees plan --check --manifest byte-identical; species tests 4 passed); clauses 1 and 3 red.","mark":"mk1-264b63ee5a2d574e"}
+{"ts":"2026-09-23T00:21:53Z","kind":"note","text":"J9 stall is mechanical: all 7 species with ledger rows and no node file carry a self-duplicate nameKey (2/1/2/1/1/2/2) and no other species does; build_seed_document refuses that (nodegen/emit.py:246) and never rewrites. They are PT-J9-F1's population and the NameCollision root.","mark":"mk1-04610c665557f2ca"}
+{"ts":"2026-09-23T00:22:53Z","kind":"note","text":"BCU2.13 correction: doublecherry attackTempo is already CLOSED (species-build-todo, 2026-09-07 owner-directed pick; tag kept deliberately). Census: 1 of 904 species carries deterministic-fallback (DoubleCherry; high 741, split 159, absent 3). Residue is the tag, an owner call.","mark":"mk1-e509039c151cfd90"}
+{"ts":"2026-09-23T00:25:01Z","kind":"note","text":"BCU2.12 trees census at 24ed0df3e: 42 trees/1680 expected, bound 560 (33.3%), refused 1120, readable 0.0% of bound; priced atoms stat.modify 344 / stat.derived 0; no tree at 40/40 (best might 26, worst spark 1).","mark":"mk1-0f1d54547cfbdd0d"}
+{"ts":"2026-09-23T00:26:39Z","kind":"note","text":"BCU2.13 CORRECTION: rows[0] was wrong for 355 of 904 keys (anchors are family files; the index names the file, not the row). Corrected: none 450, A 138, B 108 (== the board), C 126; attackTempo high 727/split 173/fallback 1. Scripts now resolve by speciesId.","mark":"mk1-ea15d6f3d30c3cad"}
+{"ts":"2026-09-23T00:28:37Z","kind":"note","text":"Census note owed: the stat.derived:0 DEFECT line is already filed+BLOCKED (passive-tree-repair-todo:42,381,416-417,499). New here: the numeric baseline, class-E node wither skill.wither-def-t9-n1, 1066 not-current-vintage records; readable 0.0% is a row dependency.","mark":"mk1-a3f3f94bfdd95418"}
+{"ts":"2026-09-23T00:28:37Z","kind":"note","text":"BCU2.13 envelope: elements read from the adapter (6), primary tallies sum 904 with none missing, secondary none 450, outsideVocabulary empty - F2b is a presence gap in a closed vocabulary the corpus respects.","mark":"mk1-c3ca37196a3c372f"}
+{"ts":"2026-09-23T00:32:33Z","kind":"note","text":"BCU2.12/J9 Verify run at d37024804: tree-binder --check exit 0 with 0 STALE lines (committed bound reports byte-identical) - the determinism clause is green. Same run: 42/42 verdict=Fail, 1120 refusals (612 missing affix / 507 pool reference / 1 R6), 0 deliberate holes.","mark":"mk1-1d070a830a1550b4"}
+{"ts":"2026-09-23T00:34:23Z","kind":"note","text":"New finding: BinderRunReport.cs:60 fails a tree on ANY non-deliberate refusal, while spec-channel-pool.md:8,33-34 makes a pool channel roll-time work - so 507 of 1120 refusals can never be authored away; verdict=Pass is unreachable. Ruling needed.","mark":"mk1-ae6468dbde234c69"}
+{"ts":"2026-09-23T00:34:23Z","kind":"note","text":"J9 Verify clause 2 GREEN: the reverse index's U3 leak strength (passive_tree.py:1441, impl :1508-1524) counts U3=0; the 67 SpeciesUniqueness findings are the acceptance bar (U1 12, U2 55). Both Verify clauses green, acceptance red - corrected in the readings doc and the register.","mark":"mk1-d1d2639813682f9a"}
+{"ts":"2026-09-23T00:38:09Z","kind":"note","text":"BCU2.12/J10 Verify line exercised, four paths: no sheet -> exit 2 SheetNotRendered; sheet with no sheetRead -> exit 3; stale sheetRead -> exit 3; current -> exit 0. Committed sheet/review dirs do not exist, so 0 lots sheeted and J10's every-tree-judged bar is red by construction.","mark":"mk1-09b92a0a1f06e7e5"}
+{"ts":"2026-09-23T00:43:54Z","kind":"note","text":"BCU2.12 NameCollision: probes exclude both earlier candidates - the gate refuses a duplicate name, and the codex path never mints names. _derive_unique_name_key (run.py:703-724, called :909) suffixes only the KEY, absorbing a raced duplicate name.","mark":"mk1-0b0e78d04bf16a49"}
+{"ts":"2026-09-23T00:46:44Z","kind":"note","text":"BCU2.10-2.13 deps propagated: all four said 'owner charter', stale since the 2026-09-21 spend release. Now 2.10 = preflight met + manager-run job; 2.11 = near-duplicate/EmptyPartition generator fix; 2.12 = PT-J9-F1 repair + J13 /3 target; 2.13 = owner call on the selector.","mark":"mk1-31abeb5a02cb0ddb"}
+{"ts":"2026-09-23T00:46:44Z","kind":"note","text":"Audit finding: PT-J9-F1 is ticked for the REPORTING fix (NodeKeyRefused -> node_key_refused_reason) while its own body names the node-level re-ask as this program's fix; the 7 self-duplicate-nameKey species are exactly the 7 with no node file.","mark":"mk1-de2cf730f2dff6fa"}
+{"ts":"2026-09-23T00:49:19Z","kind":"note","text":"BCU2.12/J13 clauses 3+5 read: promptVersion and quotaCell sit on the same 700 of 2019 nodes (613 shared + 87 species), 1319 pre-persistence per emit.py:96-99; kMicro is 0/2019 records and 0/2240 bound rows, rescoped away by the repair program.","mark":"mk1-86b52c8fab205723"}
+{"ts":"2026-09-23T00:49:19Z","kind":"note","text":"J9 clause 2 verified: data/seed/passive-tree/plan/ holds 42 files, all shared-tree ids - there is no species plan artifact to --check, so the species half is pinned by test_tree_species_generate_tree.py (4 passed) only.","mark":"mk1-3a1f6d3986d406d1"}
+{"ts":"2026-09-23T00:54:29Z","kind":"note","text":"BCU2.10 top-up baseline read: fresh round-2 dry-run = 181 accepted, tuning 3, shortfall 20384, verdict pass; committed coverage-round-2.json = 24 accepted, tuning 2, shortfall 639, verdict not-clean. Different corpora - the on-disk round-2 report cannot be the top-up baseline.","mark":"mk1-67100c89550a4dfa"}
+{"ts":"2026-09-23T00:56:50Z","kind":"gate","name":"lane-artefacts-reproducible","result":"pass","mark":"mk1-459e045d8f4c469b"}
+{"ts":"2026-09-23T00:57:09Z","kind":"note","text":"Lane integrity check at 2c4f5bd4a: all 9 committed JSON readings and both transcripts regenerate identically (only repoHead differs); the binder transcript differs only by dotnet build warnings, filtered to 1162 identical lines.","mark":"mk1-1b39bf129ab522b1"}

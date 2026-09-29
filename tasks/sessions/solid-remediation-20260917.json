@@ -1,0 +1,34 @@
+{
+  "session": "solid-remediation-20260917",
+  "program": "solid-remediation",
+  "problem": "Execute the solid-remediation program to proven completion: 18 modules, 57 tasks, 6 phases, closing all 27 register entries. A wiring and ownership pass over shipped code (11 wire, 7 share, 5 extend, 1 move, 1 build, 1 delete) so that one battle engine resolves every mode and one ActorHub composes actor numbers once. Scope, order and acceptance are tasks/solid-remediation-plan.md and tasks/solid-remediation-todo.md.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "src/**",
+    "tests/**",
+    "tools/**",
+    "scripts/**",
+    "data/tuning/**",
+    "data/seed/**",
+    "docs/architecture/solid-remediation-map.md",
+    "docs/architecture/solid-remediation-ideal.md",
+    "docs/architecture/solid-remediation/**",
+    "docs/architecture/battle-engine-ssot.md",
+    "docs/architecture/decisions.md",
+    "tasks/solid-remediation-plan.md",
+    "tasks/solid-remediation-todo.md",
+    "tasks/sessions/solid-remediation-20260917.json"
+  ],
+  "notes": [
+    "SOLE WRITER. Owner ruling 2026-09-17: \"you do this one by one, only consider to deploy agents if they understand context, reason is this refactor task need comprehend this architecture.\" The build-break permission (src may be red INSIDE a module, green at its boundary) is conditional on that exclusivity and lapses if another session starts on this branch.",
+    "Broad `paths` is deliberate and is why exclusivity matters: this program refactors across every assembly. It is safe only because all 13 previously-active records were verified merged into features/mega-merge and flipped to `merged` in this same task. If any session becomes active again, this record must be narrowed before the next module starts.",
+    "Module-start ritual (tasks/solid-remediation-todo.md): before each module, record the start SHA, re-verify that module's file:line citations against code, and confirm session-boundary-check.ps1 is still clean.",
+    "This program re-tunes nothing. A new mechanism ships working values per the repo's own \"default now, re-tune later\" precedent; re-tuning an existing number is out of scope."
+  ],
+  "started": "2026-09-17T03:30:00Z",
+  "status": "merged",
+  "scopeNote": "",
+  "closedNote": "Superseded 2026-09-18: owner ruled only summoner-convergence builds on this branch (direct, no worktrees). Sole-writer claim released to summoner-convergence-impl-20260918."
+}

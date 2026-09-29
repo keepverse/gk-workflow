@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-scene-stage — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-scene-stage</code></h1>
+  <p class="lede">The compose root: full-bleed art bed, band-utility stacking, the cue state the whole
+  scene reads, and the two-actor responsive layout. It owns <strong>composition and
+  geometry</strong> — never actor identity, copy, or paint. Spec:
+  <code>docs/architecture/story-scene/spec-scene-stage.md</code>.</p>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Desktop — actors side by side</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px">
+        <div class="story-scene-stage" data-piece="scene-stage" data-cue="rift.portal.open"
+             style="display:flex; gap:12px; align-items:flex-end; border:1px solid #4a3a2a">
+          <div class="story-scene-stage__art" aria-hidden="true" style="flex:0 0 120px; height:90px; background:radial-gradient(circle at 50% 45%, rgba(145,58,220,.36), rgba(20,12,38,.94) 68%)">[bed]</div>
+          <div class="story-scene-stage__actors" style="display:flex; gap:12px; flex:1">
+            <div class="story-actor-portrait" data-speaking="true" style="opacity:1">[Penny]</div>
+            <div class="story-actor-portrait" data-speaking="false" style="opacity:.55">[Dave]</div>
+          </div>
+        </div>
+      </div>
+      <p class="note">≥720px the cast sits side by side; the speaker reads structurally. Stacking is
+      band utilities and document order — no <code>z-index</code> anywhere in this piece.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Narrow — stacked, speaker-forward, nobody hidden</h2>
+      <div class="piece-stage" style="background:#1a1030; padding:16px; max-width:360px">
+        <div class="story-scene-stage" data-piece="scene-stage"
+             style="display:flex; flex-direction:column; gap:8px; border:1px solid #4a3a2a">
+          <div class="story-scene-stage__actors" style="display:flex; flex-direction:column; gap:8px">
+            <div class="story-actor-portrait" data-speaking="true" style="opacity:1">[Penny · speaking]</div>
+            <div class="story-actor-portrait" data-speaking="false" style="opacity:.55">[Dave · still visible]</div>
+          </div>
+        </div>
+      </div>
+      <p class="note">Below 720px the cast <strong>stacks</strong> with the speaker nearest the window.
+      Hiding the inactive actor was considered and declined — hiding a character is a continuity
+      change, not a layout change.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure and rules</h2>
+      <pre>.story-scene-stage               root; scene pack css + data-cue + data-motion
+  .story-scene-stage__backdrop   flat bed colour (behind everything)
+  .story-scene-stage__heading    shell title + subtitle (player text, pinned, flex none)
+  .story-scene-stage__art        composed illustration; aria-hidden when a line is present
+  .story-scene-stage__actors     -&gt; actor-portrait[] (ordered array)
+  .story-scene-stage__window     -&gt; dialogue-window
+  .story-scene-stage__progress   -&gt; scene-progress (fold omits when total &lt;= 1)
+  .story-scene-stage__advance    -&gt; advance-control</pre>
+      <ul class="note">
+        <li>Direct children stay direct — no wrapper between root and slot child (child combinators).</li>
+        <li><code>data-cue</code> is the FE's own rendering contract, never an engine handle; the cue id
+        is never rendered as text.</li>
+        <li>Full-bleed never scrolls: the art bed scales down <strong>before</strong> the window or the
+        advance control. An unreachable advance control would trap the player.</li>
+        <li><code>prefers-reduced-motion</code> makes beat transitions and sprite swaps instant.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "scene-stage",
+  "instanceId": "scene:stage",
+  "phase": "ready",
+  "sceneId": "rift-prologue",
+  "cueId": "rift.portal.open",
+  "title": "The Rift is opening",
+  "subtitle": "A short warning before your first lawn",
+  "themeRef": { "kind": "scene", "id": "rift-portal" },
+  "slots": {
+    "actors": [
+      { "piece": "actor-portrait", "instanceId": "scene:actor:dave" },
+      { "piece": "actor-portrait", "instanceId": "scene:actor:penny" }
+    ],
+    "window": { "piece": "dialogue-window", "instanceId": "scene:window" },
+    "progress": { "piece": "scene-progress", "instanceId": "scene:progress" },
+    "advance": { "piece": "advance-control", "instanceId": "scene:advance" }
+  }
+}</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

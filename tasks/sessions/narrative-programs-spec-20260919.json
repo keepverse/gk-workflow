@@ -1,0 +1,24 @@
+{
+  "session": "narrative-programs-spec-20260919",
+  "program": "narrative-seed + npc-story-events + ip-censor + identity-rename",
+  "problem": "Spec phase round 1 for four programs whose ideals were settled 2026-09-19: capability maps for narrative-seed and npc-story-events, reconcile the existing ip-censor map and module specs with owner rulings IC-1..IC-6, and write the identity-rename plan. Docs only; module specs for the two new maps wait for owner approval of the maps.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/narrative-programs-spec-20260919.json",
+    "docs/architecture/narrative-seed-map.md",
+    "docs/architecture/npc-story-events-map.md",
+    "docs/architecture/ip-censor-map.md",
+    "docs/architecture/ip-censor/**",
+    "tasks/identity-rename-plan.md",
+    "tasks/identity-rename-todo.md"
+  ],
+  "started": "2026-09-19T14:20:00Z",
+  "status": "merged",
+  "notes": [
+    "Owner approved 2026-09-19 in this conversation: 'approve, deploy multiples agents to do them'. Charter: Claude Code native only, 4 parallel writer agents on opus, plan quota, a quota or limit error stops that agent and is reported. Agents write only their own paths and never commit; the manager reviews and commits.",
+    "ip-censor-map.md and ip-censor/spec-*.md already exist (written 2026-09-19, awaiting owner approval, no session record claims them); they are reconciled in place, not rewritten.",
+    "Crossing with worktree lanes B/C/D (broad docs/** and tasks/** globs) is the same shape as the idea sessions: lanes work in their own worktrees; these are new files or files no lane branch touches.",
+    "Closed 2026-09-19: round 1 landed in 57e908da, a7179a6c (owner commit mid-run), 22425fd7 and the identity-rename commit. Module specs for narrative-seed and npc-story-events wait for owner approval of their maps."
+  ]
+}

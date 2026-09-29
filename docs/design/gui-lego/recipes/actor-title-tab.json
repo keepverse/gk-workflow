@@ -1,0 +1,86 @@
+{
+  "surfaceId": "actor-title-tab",
+  "host": "actor-panel-tab",
+  "version": 1,
+  "notes": "Design SSOT recipe. Ninth ActorPanel tab (tab-grammar migration + load-reject until landed — Ask-first actor-sheet). One worn name (highest-tier wins) + stacking underneath; marks that can't come off render with their lifting price (GG-54, disabled-with-reason, no escrow fiction). No identity header — ActorPanel owns who/level.",
+  "root": {
+    "piece": "surface-shell",
+    "instanceId": "shell:actor-titles",
+    "bind": "vm",
+    "slots": {
+      "main": {
+        "piece": "split-inspect",
+        "instanceId": "split:actor-titles",
+        "bind": "vm",
+        "slots": {
+          "dock": {
+            "piece": "scroll-region",
+            "instanceId": "scroll:dock",
+            "bind": "vm.dockScroll",
+            "slots": {
+              "content": {
+                "piece": "family-list",
+                "instanceId": "families:titles",
+                "bind": "vm.familyList",
+                "slots": {
+                  "blocks": {
+                    "$bindArray": "vm.families",
+                    "piece": "family-block",
+                    "instanceIdTemplate": "family:{familyId}",
+                    "slots": {
+                      "rows": {
+                        "$bindArray": "rows",
+                        "piece": "chip",
+                        "instanceIdTemplate": "title:{titleId}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "inspect": {
+            "piece": "scroll-region",
+            "instanceId": "scroll:inspect",
+            "bind": "vm.inspectScroll",
+            "slots": {
+              "content": {
+                "piece": "inspect-pane",
+                "instanceId": "inspect:titles",
+                "bind": "vm.inspect",
+                "slots": {
+                  "hero": {
+                    "piece": "value-hero",
+                    "instanceId": "inspect:hero",
+                    "bind": "vm.inspect.hero"
+                  },
+                  "meta": {
+                    "piece": "meta-sentences",
+                    "instanceId": "inspect:meta",
+                    "bind": "vm.inspect.meta"
+                  },
+                  "sources": {
+                    "piece": "source-list",
+                    "instanceId": "inspect:sources",
+                    "bind": "vm.inspect.sources"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "foot": {
+        "piece": "surface-foot",
+        "instanceId": "foot:titles",
+        "bind": "vm.foot"
+      }
+    }
+  },
+  "lifecycleOverlays": {
+    "loading": { "piece": "phase-loading", "bind": "vm.phasePayload" },
+    "empty": { "piece": "phase-empty", "bind": "vm.phasePayload" },
+    "error": { "piece": "phase-error", "bind": "vm.phasePayload" },
+    "pendingField": { "piece": "phase-pending", "bind": "field.phase" }
+  }
+}

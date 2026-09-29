@@ -1,0 +1,30 @@
+{
+  "session": "cai-sink",
+  "program": "combat-ai",
+  "problem": "Finish CAI1.12 `resolvable-here` (spec-resolvable-here.md): move IDeclaresExecution to its spec'd home (src/FusionRpg.Core/Effects/EffectModels.cs), make the injector's live effect-action sink declare the opcodes it executes, and add the lawn half of the source-scan anti-drift contract.",
+  "mode": "worktree",
+  "branch": "cmdc/cai-sink",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-cai-sink",
+  "paths": [
+    "tasks/sessions/cai-sink.json",
+    "tasks/combat-ai-todo.md",
+    "tasks/combat-ai-ledger.jsonl",
+    "tasks/evidence-fragments/CAI1.12.md",
+    "tasks/action-todo.md",
+    "tasks/lawn-combat-wire-todo.md",
+    "tasks/debug-mcp-todo.md",
+    "src/FusionRpg.Core/Effects/EffectModels.cs",
+    "src/FusionRpg.Core/Actions/ResolvableHere.cs",
+    "src/FusionRpg.Injector/Effects/InjectorEffectActionSink.cs",
+    "tests/FusionRpg.Core.Tests/Actions/ResolvableHereTests.cs",
+    "docs/architecture/combat-ai/spec-resolvable-here.md"
+  ],
+  "notes": [
+    "Handed off by the combat-ai lane, which was fenced out of src/FusionRpg.Core/Effects/** and src/FusionRpg.Injector/**; this session owns those.",
+    "Hard edge: declares what executes, never changes what executes. A moved battle golden is a stop-and-report blocker."
+  ],
+  "started": "2026-09-20T00:00:00Z",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retirementReason": "Reviewed at e37a9f58 and merged as 04da1747 (--no-ff) on the Guard baseline b6712875b (7 failed / 573 passed at 48fd754e: the lane's four reds are a subset, so it introduced none). One conflict, tasks/combat-ai-todo.md, resolved as the lane's newer DONE CAI1.12 row; merged head re-checked (Core battle/dominance/BalanceGuard 36/36, guard-actor-hub OK)."
+}

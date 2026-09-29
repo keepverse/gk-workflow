@@ -1,0 +1,19 @@
+{"ts":"2026-09-20T06:56:01Z","kind":"anchor","plan":"tasks/summoner-convergence-plan.md","todo":"tasks/summoner-convergence-todo.md","session":"tasks/sessions/convergence-checkpoints-20260920.json","queue":["CC1","CC2","CC3","CC4","CC5","CC6","CC7"],"mark":"mk1-4f8c8a3188fb280e"}
+{"ts":"2026-09-20T06:56:20Z","kind":"task","id":"CC1","state":"started","mark":"mk1-93c5269881bf2820"}
+{"ts":"2026-09-20T06:58:26Z","kind":"task","id":"CC1","state":"done","evidence":"tasks/evidence-fragments/CC1.md","mark":"mk1-d33e3ec40b91fb8b"}
+{"ts":"2026-09-20T06:58:26Z","kind":"gate","name":"CC1-all-four-regressions","result":"pass","mark":"mk1-6f88ac1c4dd61dc0"}
+{"ts":"2026-09-20T06:58:53Z","kind":"task","id":"CC2","state":"started","mark":"mk1-b088b161dc18b4cf"}
+{"ts":"2026-09-20T07:01:23Z","kind":"task","id":"CC2","state":"blocked","evidence":"tasks/evidence-fragments/CC2.md","reason":"SE4.30 owner-scope real-save migration unmet; SE4.4's scripts/guard-open-identity.ps1 missing from tree despite ticked done","mark":"mk1-d4cd676bdeed3834"}
+{"ts":"2026-09-20T07:01:23Z","kind":"gate","name":"CC2-migration-mechanism-tests","result":"pass","mark":"mk1-39d4c550392ec47e"}
+{"ts":"2026-09-20T07:01:56Z","kind":"task","id":"CC3","state":"started","mark":"mk1-925561c1d7a89eaf"}
+{"ts":"2026-09-20T07:03:36Z","kind":"task","id":"CC3","state":"done","evidence":"tasks/evidence-fragments/CC3.md","mark":"mk1-3aaed3f257bad392"}
+{"ts":"2026-09-20T07:04:04Z","kind":"task","id":"CC4","state":"started","mark":"mk1-b751aa569e504109"}
+{"ts":"2026-09-20T07:05:17Z","kind":"task","id":"CC4","state":"done","evidence":"tasks/evidence-fragments/CC4.md","mark":"mk1-88fe43e82dca768b"}
+{"ts":"2026-09-20T07:05:44Z","kind":"task","id":"CC5","state":"started","mark":"mk1-0ce72839ab58ec11"}
+{"ts":"2026-09-20T07:06:15Z","kind":"task","id":"CC5","state":"blocked","evidence":"tasks/evidence-fragments/CC5.md","reason":"EP CP1-CP6 all unticked; only EP1.1/EP1.2 landed on a separate unmerged branch, EP1.3-EP1.18 remain","mark":"mk1-5749b7f60f344e6a"}
+{"ts":"2026-09-20T07:06:40Z","kind":"task","id":"CC6","state":"started","mark":"mk1-bca2d4c1145c0d90"}
+{"ts":"2026-09-20T07:07:24Z","kind":"task","id":"CC6","state":"blocked","evidence":"tasks/evidence-fragments/CC6.md","reason":"species-gear-chain Checkpoint-Complete unticked; SSH Checkpoint 6 unticked, combo-budget tool not built","mark":"mk1-d4ef642123593220"}
+{"ts":"2026-09-20T07:07:49Z","kind":"task","id":"CC7","state":"started","mark":"mk1-0f053a9fdae2221e"}
+{"ts":"2026-09-20T07:10:22Z","kind":"task","id":"CC7","state":"blocked","evidence":"tasks/evidence-fragments/CC7.md","reason":"TVB Checkpoint 3 (python lane) and Checkpoint 5 (Core split) unticked; TVB Checkpoint 6 (parent CC7) unticked","mark":"mk1-f65819efcc8ca697"}
+{"ts":"2026-09-20T07:11:10Z","kind":"complete","mark":"mk1-f0b02009dd8a3dc6"}
+{"ts":"2026-09-20T07:28:27Z","kind":"note","text":"CC2 re-checked: SE4.4 gap (guard-open-identity.ps1) closed this session. SE4.30 remains, routed to QA lane with exact probe in CC2.md.","mark":"mk1-74488903fec0a053"}

@@ -1,0 +1,10 @@
+# Checkpoint 4a — first slice (lane B foundation)
+
+Closes with SE4.14 (`solid-enforcement-todo.md` Checkpoint 4a). No new work of its own.
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| SE4.11–SE4.14 green and on the branch | `python gk-core/scripts/anchor-ledger.py tasks/summoner-convergence-lane-b-ledger.jsonl resume` | pass — done: SE4.11, SE4.12, SE4.13, SE4.14 (each with its own commit and evidence fragment) | ledger |
+| A fresh boot and `POST /api/players` both produce a save with its registry empires | `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~SaveEmpires" -v q --nologo` | pass — `A_fresh_boot_has_save_1_with_the_registry_empires_and_no_zomboss_player_row` (the `Init`/`SeedPlayerIfEmpty` path) and `Every_save_has_exactly_one_human_empire` (the `CreatePlayer` path `POST /api/players` calls; the DTO handler is Program.cs:954, which delegates to `CreatePlayer`) | `gk-core/tests/FusionRpg.Data.Tests/Saves/SaveEmpiresStoreTests.cs` |
+| The seams exist with tests, so SP/EP/NS can build against them | `dotnet test tests\FusionRpg.Core.Tests --filter "FullyQualifiedName~Saves\|FullyQualifiedName~NewSaveEmpires" -v q --nologo` · `dotnet test tests\FusionRpg.Data.Tests --filter "FullyQualifiedName~SaveEmpires\|FullyQualifiedName~SpecimenOwnership\|FullyQualifiedName~SaveOfRun" -v q --nologo` | pass — `SaveId`, `EmpireRef`, `EmpireController`, `NewSaveEmpires` (Core 22/22); `HumanEmpireOf`, `EmpiresOf`, `IsLiveSave`, `SaveOfRunUnlocked`, `SaveOfMatchUnlocked`, `OwnsSpecimenUnlocked` (Data 8/8 + 6/6 + 5/5) | evidence fragments SE4.11–SE4.14 |
+| No existing number moved | `.\scripts\verify-change.ps1 -Paths <every touched path> -Session summoner-convergence-lane-b-20260919` plus the whole-project runs | pass — Core 14235/14236, Data 1624/1625, Server 552/552, E2E 226/226. Each project's single red is a **named pre-existing worktree artifact** (Core: `DungeonLootTableSeedFileTests` CRLF; Data: `CreatureSpeciesImportCliTests` stale generated creature tree), both recorded by lane A; the filtered Data run is 1555/1555 | gate records |

@@ -1,0 +1,20 @@
+{
+  "session": "resume-28b-effect-pipeline-epl1-1-review-20260925",
+  "program": "effect-pipeline",
+  "problem": "Manager exact-SHA clean-checkout review and bounded repair of the EPL1.1 closed power-class registry and C# mirror.",
+  "mode": "worktree",
+  "branch": "review/resume-28b-effect-pipeline-epl1-1-20260925",
+  "worktree": ".claude/worktrees/review-resume-28b-effect-pipeline-epl1-1-20260925",
+  "paths": [
+    "data/seed/items/_registry/power-classes.v1.json",
+    "src/FusionRpg.Core/Effects/Atoms/AffixPowerClass.cs",
+    "tests/FusionRpg.Core.Atoms.Tests/Atoms/AffixPowerClassTests.cs",
+    "tools/seedsmith/tests/test_power_class_registry.py",
+    "tasks/reports/resume-28b-effect-pipeline-epl1-1-review-20260925.md",
+    ".claude/cmdc-agents/acceptance/resume-28b-effect-pipeline-epl1-1-review-20260925-8334a1d6.json",
+    "tasks/sessions/resume-28b-effect-pipeline-epl1-1-review-20260925.json"
+  ],
+  "started": "2026-09-25T19:30:00Z",
+  "status": "merged",
+  "notes": "RETIRED 2026-09-25 by the resumed manager: Review complete; reviewed SHA 8334a1d61 and both review docs are in HEAD (merged 78c6b3a99). Original notes: Manager review of the four dirty EPL1.1 files from the AV-failed worker. Repairs the invalid-enum ordinal contract and hardens the parser/schema boundary; no classifier, model, tuning, generated output, runtime wiring, or live scope."
+}

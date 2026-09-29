@@ -1,0 +1,13 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "snapshot": false,
+  "mcp": {
+    "debug-mcp": {
+      "type": "local",
+      "command": [
+        "python",
+        "tools/debug-mcp/server.py"
+      ]
+    }
+  }
+}

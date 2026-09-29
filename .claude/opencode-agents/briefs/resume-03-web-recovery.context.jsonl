@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Deep-audit candidate C3 confirmed the main recovery gaps: no authoritative snapshot/replay on cold join or SignalR reconnect, binding empty/reverse-order loss, and possible cross-match event contamination. The first audit was static because node_modules was absent; do not promote it to browser proof without a real run."}
+{"kind":"fact","text":"Owner ruling: snapshot on recovery. Owner requires full browser proof before program close, and the edge-trigger rule includes state-entry/reconnect edges."}

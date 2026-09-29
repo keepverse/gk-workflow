@@ -1,0 +1,63 @@
+{
+  "sha": "6dc4e460",
+  "verdict": "GREEN",
+  "contendedTree": false,
+  "when": "2026-09-22T01:11:31",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb59-20260922-011109\\boundary.log"
+    },
+    {
+      "check": "boundaries-guard",
+      "exit": 0,
+      "seconds": 14,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb59-20260922-011109\\boundaries-guard.log"
+    },
+    {
+      "check": "test-substrate",
+      "exit": 0,
+      "seconds": 6,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb59-20260922-011109\\test-substrate.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-tvb59-20260922-011109\\ledger.log"
+    }
+  ],
+  "logDir": "D:\\tmp\\accept-tvb59-20260922-011109",
+  "lane": "tvb59",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  }
+}

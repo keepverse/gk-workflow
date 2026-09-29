@@ -1,2 +1,3 @@
-# kvsplit hashes its rule files: checkouts must be byte-identical on every machine.
+# Golden fixtures/tuning/seed are LF in the blob; byte-exact test comparisons must not
+# depend on host git config, so check out text as LF everywhere.
 * text=auto eol=lf

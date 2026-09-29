@@ -1,0 +1,23 @@
+{
+  "session": "worktree-retire-20260926",
+  "program": "multi-agent-runners",
+  "problem": "Define and implement the missing cleanup phase: a fail-closed tool that removes worktrees which are already merged AND finished, refuses anything an active session or a live lane owns, and a project-manager skill phase so the step stops being forgotten after every merge.",
+  "mode": "worktree",
+  "branch": "feat/worktree-retire-20260926",
+  "worktree": ".claude/worktrees/worktree-retire-20260926",
+  "paths": [
+    "scripts/retire_worktrees.py",
+    "tests/tools/test_retire_worktrees.py",
+    "scripts/verification-boundaries.v1.json",
+    ".agents/skills/project-manager/SKILL.md",
+    ".claude/skills/project-manager/SKILL.md",
+    "AGENTS.md",
+    "docs/contributing/worktree-cleanup.md",
+    "docs/architecture/decisions.md",
+    "tasks/reports/worktree-retire-20260926.md",
+    "tasks/sessions/worktree-retire-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "Owner-authorized 2026-09-26: 'remove worktree that already merge and finish they work ... or the project manager pipeline is never define clean up process, add that phase to project manager skill'. This complements scripts/worktree_cleanup_core.py (which MARKS worktrees) rather than replacing it. Two lanes were live in their own worktrees while this was built (actor-hud-merge-20260926, verify-change-python-20260926) and both were verified KEPT by the tool. Nothing is removed without --apply plus a report. The tool also found that the whole worktree-cleanup toolchain had NO verification-boundary owner, so a change to it selected no test; scripts/verification-boundaries.v1.json now has a worktree-cleanup-tooling owner."
+}

@@ -1,0 +1,10 @@
+# ST3.4 — the signature propose prompt labels by scope
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| `_RUNG_BAND_LABELS` keys by SCOPE with a direct index, so an unknown scope raises | `$env:PYTHONPATH="gk-forge/tools/seedsmith"; python -m pytest gk-forge/tools/seedsmith/tests/test_signature_propose.py -q` | **111 passed, 1 skipped, 16 subtests passed.** The table is `{scope: label}` and `_rung_band_label(scope)` indexes directly, raising instead of returning the old fallback. | signature_propose/prompts.py |
+| The rendered prompt is byte-identical at the shipped windows | same command | **Passes.** `species` carries the same string the `(1, 10)` key held ("a late tier, with most structural axes available"), so A-P3's real briefs render identical text. | signature_propose/prompts.py |
+| Spec test 6b: a retuned window renders the label, never the fallback | same command (new `ScopeLabelTests`) | **Passes.** A species brief at a RETUNED band `[1, 8]` renders exactly the same label as the shipped `[1, 10]` brief, and never "a tier outside the three known scope windows". | tests/test_signature_propose.py |
+| An unknown scope raises | same command | **Passes**, with a difference worth recording: A-P3's `build_context` rejects a non-species scope BEFORE the label is read, so the raise comes from this stage's own scope guard rather than the table's index. Both are "raise, never fall back"; all three propose stages carry the same three-scope table and the sibling stages' tests exercise the index's own raise directly. | tests/test_signature_propose.py |
+| No model is called | — | **None was.** No transport is imported or invoked. | — |
+| The sibling stages still hold | `python -m pytest test_general_propose.py test_family_propose.py test_signature_propose.py -q` | **269 passed, 1 skipped, 1176 subtests passed**, with only the 5 pre-existing `RealWorkedExampleTests` reds already diagnosed in `ST3.3.md` (a gitignored `data/seed/actions/_candidates/`). | — |

@@ -1,0 +1,15 @@
+{
+  "session": "rpg-sim-idea-b",
+  "program": "rpg-simulator",
+  "problem": "The SHAPE of an RPG-feature simulator: design space (in-process host / headless server / scenario layer / injector shim / record-replay), inward and outward prior art, a recommended architecture with its boundary against the debug-fabrication rule, and numbered Open Questions for the owner. Idea-only; the sibling lane sim-idea-a owns the coverage inventory (what exists, what must be covered) and this record's paths are deliberately narrowed to the single artifact so they cannot overlap a lane that claimed tasks/**.",
+  "mode": "worktree",
+  "branch": "cmdc/sim-idea-b",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-sim-idea-b",
+  "paths": [
+    "docs/architecture/rpg-simulator-shape-idea.md",
+    "tasks/sessions/rpg-sim-idea-b.json"
+  ],
+  "started": "2026-09-22T13:26:23Z",
+  "status": "merged",
+  "scopeNote": "Owner directive 2026-09-22: most of this program's work is RPG features rather than PvZ, and it lacks a simulator. Brief fence was docs/architecture/** + tasks/** read-only everywhere else; the record's paths are narrowed to the exact set added, because two active records (test-verification-boundary-2, tvb58) claim tasks/** broadly and a narrow record cannot cross them. No product code, no tests, no scripts were touched. The doc was written in this worktree and is not the product vision or a spec: no code may be written against it before a spec does."
+}

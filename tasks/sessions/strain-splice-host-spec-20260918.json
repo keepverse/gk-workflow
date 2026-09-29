@@ -1,0 +1,16 @@
+{
+  "session": "strain-splice-host-spec-20260918",
+  "program": "strain-splice-host",
+  "problem": "Graduate the strain-splice-host ideal (6 owner rulings 2026-09-18) into a capability map and per-module specs, reconciled against the item program's sockets lane and strain-splice-gen module. Docs only; no code, data, or tuning edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/architecture/strain-splice-host/**",
+    "docs/architecture/strain-splice-host-ideal.md",
+    "tasks/sessions/strain-splice-host-spec-20260918.json"
+  ],
+  "started": "2026-09-18T12:00:00Z",
+  "status": "merged"
+}

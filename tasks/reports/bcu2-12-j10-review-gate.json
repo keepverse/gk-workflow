@@ -1,0 +1,39 @@
+{
+ "reading": "BCU2.12/J10 \u2014 the sheetRead census gate, four paths (model-free)",
+ "repoHead": "3f3a70104",
+ "cases": [
+  {
+   "case": "no sheet rendered",
+   "exit": 2,
+   "reason": "seedsmith: no sheet rendered for lot 'probe-lot' \u2014 expected C:\\Users\\NENESC~1\\AppData\\Local\\Temp\\bcu2-12-j10-probe-iwpipdj5\\sheet\\probe-lot\\sheet.json; run `nod"
+  },
+  {
+   "case": "sheet, no sheetRead row",
+   "exit": 3,
+   "reason": "EXIT_REFUSED: lot 'probe-lot' has no sheetRead row \u2014 read the corpus sheet at C:\\Users\\NENESC~1\\AppData\\Local\\Temp\\bcu2-12-j10-probe-iwpipdj5\\sheet\\probe-lot\\sh"
+  },
+  {
+   "case": "sheet, stale sheetRead row",
+   "exit": 3,
+   "reason": "EXIT_REFUSED: lot 'probe-lot''s sheetRead row names revision 'rev-OLD', but the sheet on disk is now 'rev-A' \u2014 the sheet changed since it was last read; dismiss"
+  },
+  {
+   "case": "sheet, current sheetRead row",
+   "exit": 0,
+   "reason": "}",
+   "cleared": true
+  },
+  {
+   "case": "committed dirs, lot 'any-lot'",
+   "exit": 2,
+   "reason": "seedsmith: no sheet rendered for lot 'any-lot' \u2014 expected D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-bcu8-4\\docs\\research\\passive-t"
+  }
+ ],
+ "committedReviewState": {
+  "sheetDirExists": false,
+  "reviewDirExists": false,
+  "sheetLots": [],
+  "reviewLots": []
+ },
+ "tempRemoved": true
+}

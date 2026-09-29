@@ -1,0 +1,98 @@
+{
+  "job": "BCU2.12 passive-tree J9 species run + J10 census",
+  "head": "b02f70bd1",
+  "branch": "corpus/bcu212",
+  "rosterSpecies": 904,
+  "ledgerDoneRows": 2200,
+  "census": {
+    "complete": {
+      "count": 1,
+      "sample": [
+        "AbyssSwordStar"
+      ]
+    },
+    "nodesWithoutCodexSupplement": {
+      "count": 3,
+      "sample": [
+        "AllPeater",
+        "ArmoredImpZombie",
+        "BambooDragon"
+      ]
+    },
+    "startedIncomplete": {
+      "count": 12,
+      "sample": {
+        "AcientSunNut": {
+          "ledgerRows": 40,
+          "ledgerAccepted": 40,
+          "nodesOnDisk": 39
+        },
+        "Apple": {
+          "ledgerRows": 31,
+          "ledgerAccepted": 31,
+          "nodesOnDisk": 0
+        },
+        "ArmedGargantuar": {
+          "ledgerRows": 38,
+          "ledgerAccepted": 38,
+          "nodesOnDisk": 0
+        },
+        "AshThreePeater": {
+          "ledgerRows": 28,
+          "ledgerAccepted": 28,
+          "nodesOnDisk": 28
+        },
+        "BalloonZombie": {
+          "ledgerRows": 32,
+          "ledgerAccepted": 32,
+          "nodesOnDisk": 0
+        },
+        "Bamboo": {
+          "ledgerRows": 30,
+          "ledgerAccepted": 30,
+          "nodesOnDisk": 0
+        },
+        "BambooFurnace": {
+          "ledgerRows": 31,
+          "ledgerAccepted": 31,
+          "nodesOnDisk": 0
+        },
+        "BambooSpruce": {
+          "ledgerRows": 37,
+          "ledgerAccepted": 37,
+          "nodesOnDisk": 0
+        },
+        "BedRockSnowZombie": {
+          "ledgerRows": 25,
+          "ledgerAccepted": 25,
+          "nodesOnDisk": 0
+        },
+        "BedRockTallNut": {
+          "ledgerRows": 35,
+          "ledgerAccepted": 35,
+          "nodesOnDisk": 0
+        }
+      }
+    },
+    "untouched": 888,
+    "genericTrees": {
+      "count": 42,
+      "total": 1679
+    }
+  },
+  "batchResultsLastPassOnly": "absent -- the harness had not run when the report was written",
+  "checkFamilyPassiveTreeTail": [
+    "[NOTE] PassiveTree/QuotaDrift — wither:trigger=OnSunCollect: wither trigger='OnSunCollect': corpus shows 3 vs re-derived quota 3 (drift +0)",
+    "[NOTE] PassiveTree/QuotaDrift — wither:trigger=OnTimer: wither trigger='OnTimer': corpus shows 3 vs re-derived quota 3 (drift +0)",
+    "[NOTE] PassiveTree/QuotaDrift — wither:trigger=OnWave: wither trigger='OnWave': corpus shows 3 vs re-derived quota 3 (drift +0)",
+    "[NOTE] PassiveTree/SpeciesUniqueness — (corpus): reverse index built over 42 tree(s), 1679 node(s)",
+    "[NOTE] PassiveTree/TreeEqualValue — tree:agility, air, blight, bond, bulwark, butter, charm_pulse, cold, command, composure, dark, earth, ember, expose, ferocity, fire, focus, fortitude, freeze, hypno, ice, jala, kelp, leech, light, might, nerve.afflicted, nerve.shaken, nerve.unsettled, onslaught, pact_mark, pierce, poison, precision, rally, retribution, rot, shatter, spark, spore, vigor, wither: C1, R-A1, P-1 and P-2 all hold across 42 tree(s)",
+    "[NOT_MEASURED] PassiveTree/ExclusionResolvable — (suite): blocked on the atom-tag registry (spec-tree-language.md §5.1) — until it lands, an exclusion predicate keys on posture and nothing else, and this gate cannot resolve one against a per-affix atom-tag pool",
+    "",
+    "3030 note, 543 gap, 1 not_measured"
+  ],
+  "gitStatusPorcelainCount": 5,
+  "diffStatTail": [
+    " 2 files changed, 2 insertions(+), 2 deletions(-)"
+  ]
+}

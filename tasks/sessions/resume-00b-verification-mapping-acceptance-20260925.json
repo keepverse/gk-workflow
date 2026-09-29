@@ -1,0 +1,17 @@
+{
+  "session": "resume-00b-verification-mapping-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Manager clean-checkout acceptance and completion of verification-boundary mappings for the BCU2.12 Seedsmith paths and the Phase 0A fail-closed manager scripts.",
+  "mode": "worktree",
+  "branch": "review/verification-mapping-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-verification-mapping-20260925",
+  "paths": [
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/VerificationBoundaryMappingRepairTests.cs",
+    "tasks/reports/resume-00b-verification-mapping-20260925.md",
+    "tasks/reports/resume-00b-verification-mapping-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T04:50:00Z",
+  "status": "merged",
+  "notes": "Manager-owned clean review worktree seeded from the partial mapping worker. The focused Seedsmith and manager owners were committed at dd48ce163, then included in the exact composite acceptance SHA fc144f2cc4a67464d763051c428deed2937692ef and merged. Composite clean-checkout verification proved the real owner plan with all dependent tests present. No generated data or product code beyond the scoped registry/test set."
+}

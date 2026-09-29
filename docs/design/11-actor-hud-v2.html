@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Actor HUD v2 — bottom identity line</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f5eedb; --muted:#b4a88f; --soil:#171b14; --panel:#292519; --line:#665b42; --gap:8px; }
+    * { box-sizing:border-box; } body { margin:0; background:radial-gradient(circle at 55% 6%,#3c5426 0,#171b14 55%); color:var(--ink); font:15px/1.45 system-ui,sans-serif; }
+    main { max-width:1180px; margin:auto; padding:34px 22px 72px; } h1 { margin:0; font:800 30px/1.1 Georgia,serif; } h2 { margin:38px 0 10px; font-size:20px; } h3 { margin:0 0 10px; font-size:14px; color:var(--muted); text-transform:uppercase; letter-spacing:.09em; }
+    p,li { color:#d4cbb7; } .lede { max-width:830px; font-size:17px; } .callout { border-left:3px solid #d9ad47; padding:10px 14px; background:#292519b8; border-radius:0 9px 9px 0; max-width:920px; }
+    .board { display:grid; grid-template-columns:repeat(3,minmax(220px,1fr)); gap:18px; padding:24px; background:linear-gradient(120deg,#5f852f,#427120 45%,#2d541e); border:1px solid #78934b; border-radius:16px; box-shadow:inset 0 0 60px #17230da8; }
+    .case { min-height:330px; position:relative; overflow:hidden; border-radius:12px; border:1px solid #b8d3744b; background:linear-gradient(145deg,#557d2d88,#244a1b90); }
+    .case-title { position:absolute; top:10px; left:12px; z-index:2; font-size:12px; color:#e8f1bf; } .actor { position:absolute; left:50%; top:100px; transform:translateX(-50%); font-size:98px; filter:drop-shadow(0 7px 1px #152012b5); }
+    .hud { position:absolute; left:50%; top:212px; transform:translateX(-50%); width:max-content; max-width:calc(100% - 12px); display:flex; flex-direction:column; align-items:center; gap:5px; text-align:center; }
+    .identity { min-height:30px; display:flex; align-items:center; justify-content:center; gap:4px; padding:3px 6px; border:1px solid #807354; border-radius:7px; background:#15150fe8; box-shadow:0 1px 0 #000; white-space:nowrap; }
+    .tier { width:17px; height:17px; display:grid; place-items:center; border:1px solid #d8b849; border-radius:4px; background:#7e5922; color:#fff5c7; font-weight:900; font-size:11px; } .tier.elite { border-color:#b891df; background:#55406f; } .role { width:8px; height:8px; border-radius:50%; background:#66b8ed; box-shadow:0 0 0 1px #0c2536; }
+    .level { padding:1px 5px; border-radius:4px; background:#332d22; color:#fff5cf; font:800 14px/1 ui-monospace,monospace; } .divider { color:#766d59; margin:0 1px; }
+    .elements { display:flex; align-items:center; gap:3px; } .element { width:24px; height:24px; object-fit:contain; filter:drop-shadow(0 1px 1px #000); } .element.secondary { width:20px; height:20px; opacity:.94; }
+    .resource { width:116px; height:10px; overflow:hidden; display:flex; border:1px solid #15140f; border-radius:3px; background:#1d211c; box-shadow:0 1px 1px #000; } .seg { height:100%; } .fire { background:#e66e39; } .ice { background:#76cce6; } .earth { background:#b89654; } .dark { background:#75519e; }
+    .status { display:flex; gap:4px; } .token { width:18px; height:18px; display:grid; place-items:center; border:1px solid #9d9173; border-radius:4px; background:#30291f; font:800 8px/1 ui-monospace,monospace; } .token.cc { border-color:#e0615b; color:#ffd6ce; } .overflow { color:#f8e6b7; font-size:10px; padding:1px 4px; border-radius:9px; background:#4b4030; }
+    .measure { position:absolute; right:8px; bottom:8px; color:#e4f2a7; font:10px ui-monospace,monospace; opacity:.86; } .empty .identity { border-color:#625d4e; } .empty .hud { top:212px; }
+    .contract { width:100%; border-collapse:collapse; background:#211f17; border:1px solid var(--line); border-radius:10px; overflow:hidden; } .contract th,.contract td { padding:10px 12px; border-bottom:1px solid #504936; text-align:left; vertical-align:top; } .contract th { color:#f5e9c8; background:#302b1e; } code { color:#f2cb68; } .flow { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:17px; border:1px solid var(--line); border-radius:10px; background:#211f17; } .node { padding:7px 10px; border:1px solid #786a4c; border-radius:7px; background:#302b1e; } .arrow { color:#e0b44b; font-weight:bold; }
+    @media (max-width:760px) { .board { grid-template-columns:1fr; } main { padding:24px 14px 50px; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Actor HUD v2 — bottom identity line</h1>
+  <p class="lede">Presentation reference for the compact Band B HUD. It answers level and elemental affinity in one glance: icons are part of the identity line, never a detached row. The HUD remains anchored at the projected sprite-union bottom-centre and grows downward.</p>
+  <p class="callout"><strong>Presentation SSOT.</strong> Unity lawn and Web/Phaser lawn consume the same <code>ActorHudSnapshot</code>; this plate owns their shared visual anatomy and ordering, not another data fold. The existing <a href="10-actor-hud.html">v1 plate</a> is historical reference only where it conflicts with this plate.</p>
+
+  <h2>Full HUD at lawn scale</h2>
+  <section class="board" aria-label="Actor HUD v2 examples">
+    <article class="case">
+      <span class="case-title">Single-element plant</span><div class="actor">🌱</div>
+      <div class="hud"><div class="identity"><span class="level">LV 12</span><span class="divider">·</span><span class="elements"><img class="element" src="../../src/FusionRpg.Injector/Assets/actor-hud-elements/wind.png" alt="Wind" /></span></div><div class="status"><span class="token">RG</span></div></div>
+      <span class="measure">24px primary icon</span>
+    </article>
+    <article class="case">
+      <span class="case-title">Dual-element, shielded elite</span><div class="actor">🧟</div>
+      <div class="hud"><div class="identity"><span class="tier elite">★</span><span class="level">LV 28</span><span class="divider">·</span><span class="elements"><img class="element" src="../../src/FusionRpg.Injector/Assets/actor-hud-elements/flame.png" alt="Fire" /><img class="element secondary" src="../../src/FusionRpg.Injector/Assets/actor-hud-elements/crystal.png" alt="Ice" /></span></div><div class="resource"><span class="seg fire" style="width:58%"></span><span class="seg ice" style="width:27%"></span></div><div class="status"><span class="token cc">FR</span><span class="token">EX</span><span class="overflow">+2</span></div></div>
+      <span class="measure">primary 24px · secondary 20px</span>
+    </article>
+    <article class="case empty">
+      <span class="case-title">Neutral vanilla actor</span><div class="actor">🧟</div>
+      <div class="hud"><div class="identity"><span class="level">LV 3</span></div></div>
+      <span class="measure">No reserved element space</span>
+    </article>
+  </section>
+
+  <h2>Shared anatomy contract</h2>
+  <table class="contract">
+    <thead><tr><th>Visual band</th><th>Order and geometry</th><th>Semantic source</th><th>Renderer rule</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Identity line</strong></td><td><code>[tier?] [role?] [LV band] · [primary] [secondary?]</code>; centered as one pack. Primary is 24px, secondary 20px.</td><td><code>identity</code> + <code>elements</code> from the snapshot; icon art and colour resolve through <code>element-catalog.hudGlyph</code>.</td><td>Draw as one row. Omit absent slots and recenter; do not reserve an element-only row.</td></tr>
+      <tr><td><strong>Resource row</strong></td><td>Directly below identity when present: shield segments, then any enabled compact meter.</td><td><code>resources</code></td><td>Omit with no active resource. The player HUD setting hides this row only.</td></tr>
+      <tr><td><strong>Status row</strong></td><td>Directly below resource, or identity when resource is absent. Fixed readable token size; overflow becomes <code>+N</code>.</td><td><code>statuses</code> + <code>overflow</code></td><td>Resolve token and paint from runtime catalog; VFX remains motion-only.</td></tr>
+      <tr><td><strong>Anchor</strong></td><td>Projected qualifying sprite-union bottom-centre, then screen gap; rows grow downward.</td><td>Actor visual resolver</td><td>Unity screen Canvas and Phaser canvas use the same relative row order. Inspector expands the same snapshot; it is not a third HUD.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>One data path, two lawn renderers</h2>
+  <div class="flow"><span class="node">Injector builder → <code>ActorHudSnapshot</code></span><span class="arrow">→</span><span class="node">Unity: screen-bottom HUD</span><span class="arrow">and</span><span class="node">Observe fold → <code>Occupant.hud</code></span><span class="arrow">→</span><span class="node">Web/Phaser: same anatomy</span></div>
+  <p>The desktop and spectator surfaces may scale the row to their canvas, but may not change its slot order, visibility rules, glyph mapping, or source data.</p>
+</main>
+</body>
+</html>

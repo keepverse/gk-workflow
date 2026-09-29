@@ -1,0 +1,43 @@
+{
+  "session": "ip-censor-1",
+  "program": "ip-censor",
+  "problem": "The ip-censor program existed only as an approved plan: build the independent Python detection tool (package + wiring half 1, source, registry, census, scan, suggest, curate, report) over a tracked registry under data/seed/ip-censor/_registry, wire its CI pytest step and the advisory/release gates, and close the program's two release-blocking IC-4 fixes (the Overwatch tree node through the seedsmith avoid-list, the Jackson* family through an authored import-time rename map with its species ids re-keyed).",
+  "mode": "worktree",
+  "branch": "cmdc/ip-censor-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-ip-censor-1",
+  "paths": [
+    "tools/ip-censor/**",
+    "data/seed/ip-censor/**",
+    "tasks/ip-censor/**",
+    "tasks/ip-censor-plan.md",
+    "tasks/ip-censor-todo.md",
+    "tasks/ip-censor-ledger.jsonl",
+    "tasks/sessions/ip-censor-1.json",
+    "tasks/reports/**",
+    "docs/architecture/ip-censor/**",
+    ".github/workflows/ci.yml",
+    "tests/**"
+  ],
+  "started": "2026-09-22T18:41:45Z",
+  "status": "abandoned",
+  "notes": [
+    "Row T0 of tasks/ip-censor-todo.md, taken under the owner's 2026-09-22 ruling that this program gets implementation lanes; that ruling is the todo's named dependency ('owner approval of this plan'), so the row records it as evidence instead of stalling.",
+    "The brief's session id is 'ip-censor-1' (the runner-assigned lane id), not the '<program>-<yyyymmdd>' form the todo's conventions list assumed; the record is therefore tasks/sessions/ip-censor-1.json and every task's verify command uses -Session ip-censor-1.",
+    "Crossings recorded from plan §8: .github/workflows/ci.yml (T1, T11) is also claimed by summoner-convergence-lane-c/-d and this lane's own branch does not touch lane D's regions; tests/FusionRpg.Guard.Tests/** (T12) by lanes B/C/D; tools/seedsmith/** (T14-T16) by lanes B/C/D and passive-tree-j9-vote (its adapters/trees/** sub-path) and item-seedgen-genfix; data/seed/passive-tree/** (T16) by passive-tree-j9-vote; data/seed/creatures/** and data/generated/** (T19/T19b) by empire-progression-4 and item-seedgen-genfix; src/FusionRpg.Data/Sqlite/** and tests/FusionRpg.Data.Tests/** (T19b/T20) by creature-seed-csf1, party-dungeon-f13 and empire-progression-4. All of those are worktree lanes, so the boundary checker skips worktree-to-worktree overlap by design and plan §8's clean-or-skip region rule applies before each such edit.",
+    "The runner's allowed-path list for this lane is narrower than this record: it grants tools/ip-censor/**, .github/workflows/ci.yml, tests/**, docs/architecture/ip-censor/**, tasks/ip-censor-todo.md, tasks/ip-censor-ledger.jsonl and tasks/reports/** only. Rows whose deliverables live elsewhere (T4's data/seed/ip-censor/_registry/*.json, T13's scripts/verification-boundaries.v1.json, T14-T16's tools/seedsmith/**, T19/T19b's data/ and src/FusionRpg.Data/**, T12's release.yml and scripts/enforcement-registry.v1.json, T17/T21/T22's tasks/ip-censor/**) are outside that list; each is reported as a fence blocker at its own row rather than written around."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip b83bf438 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/ip-censor-1",
+    "branchTip": "b83bf438",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip b83bf438 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

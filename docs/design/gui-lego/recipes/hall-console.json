@@ -1,0 +1,110 @@
+{
+  "surfaceId": "hall-console",
+  "host": "panel-rail",
+  "version": 1,
+  "notes": "Design SSOT recipe. Empire Achievement Hall: trophy wall + 3-slot war table as a layer over the empire/sanctum stage (GG-1, read-only from any stage that grants reach, apply gated out of combat). Host 'panel-rail' is new — mount wiring is T7b + gui-lego gate. Title rows reuse chip + element-badge; comparison reuses inspect-pane + source-list (no-compare = wiki-tab-out). Preview never mutates bindings; apply is atomic with skipped-slot report (GG-15).",
+  "root": {
+    "piece": "surface-shell",
+    "instanceId": "shell:hall",
+    "bind": "vm",
+    "slots": {
+      "railPrimary": {
+        "piece": "rail-primary",
+        "instanceId": "rail:primary",
+        "bind": "vm.primaryRail",
+        "slots": {
+          "chips": {
+            "$bindArray": "vm.primaryRail.chips",
+            "piece": "chip",
+            "instanceIdTemplate": "chip:primary:{id}"
+          },
+          "tools": [
+            {
+              "piece": "tool-search",
+              "instanceId": "tool:search",
+              "bind": "vm.search"
+            }
+          ]
+        }
+      },
+      "main": {
+        "piece": "split-inspect",
+        "instanceId": "split:hall",
+        "bind": "vm",
+        "slots": {
+          "dock": {
+            "piece": "scroll-region",
+            "instanceId": "scroll:dock",
+            "bind": "vm.dockScroll",
+            "slots": {
+              "content": {
+                "piece": "family-list",
+                "instanceId": "families:hall",
+                "bind": "vm.familyList",
+                "slots": {
+                  "blocks": {
+                    "$bindArray": "vm.families",
+                    "piece": "family-block",
+                    "instanceIdTemplate": "family:{familyId}",
+                    "slots": {
+                      "rows": {
+                        "$bindArray": "rows",
+                        "piece": "chip",
+                        "instanceIdTemplate": "title:{titleId}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "inspect": {
+            "piece": "scroll-region",
+            "instanceId": "scroll:inspect",
+            "bind": "vm.inspectScroll",
+            "slots": {
+              "content": {
+                "piece": "inspect-pane",
+                "instanceId": "inspect:hall",
+                "bind": "vm.inspect",
+                "slots": {
+                  "hero": {
+                    "piece": "value-hero",
+                    "instanceId": "inspect:hero",
+                    "bind": "vm.inspect.hero"
+                  },
+                  "meta": {
+                    "piece": "meta-sentences",
+                    "instanceId": "inspect:meta",
+                    "bind": "vm.inspect.meta"
+                  },
+                  "cap": {
+                    "piece": "cap-note",
+                    "instanceId": "inspect:cap",
+                    "bind": "vm.inspect.cap"
+                  },
+                  "sources": {
+                    "piece": "source-list",
+                    "instanceId": "inspect:sources",
+                    "bind": "vm.inspect.sources"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "foot": {
+        "piece": "surface-foot",
+        "instanceId": "foot:hall",
+        "bind": "vm.foot"
+      }
+    }
+  },
+  "lifecycleOverlays": {
+    "loading": { "piece": "phase-loading", "bind": "vm.phasePayload" },
+    "empty": { "piece": "phase-empty", "bind": "vm.phasePayload" },
+    "error": { "piece": "phase-error", "bind": "vm.phasePayload" },
+    "pendingField": { "piece": "phase-pending", "bind": "field.phase" }
+  }
+}

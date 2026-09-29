@@ -1,0 +1,28 @@
+{
+  "session": "ssw-server",
+  "program": "creature-standalone",
+  "problem": "PT7b: patron:aura has a SECOND producer. PatronEndpoints.TryBuildPatronSessionGrant stamped OwnerKey `match`, so the session grant the server upserts at every board.start and re-ships on Hello/reconnect overwrote the side-wide plant scope SSW2 gave the injector's own plugin — the aura reached the zombies live (PT7 criterion 2). Move that producer onto EffectOwnerKey.PlantSide + ownerKind plant, publish the plant:*/zombie:* literals once in Contracts, and pin the producer with a Server test through the real grant projection. Rides along: aura-skill T25 (re-anchor the §10a citation the move invalidated) and T26 (the stale citations in aura-skill-todo.md, which starved verify-change's guards and tests).",
+  "mode": "worktree",
+  "branch": "cmdc/ssw-server",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-ssw-server",
+  "paths": [
+    "src/FusionRpg.Contracts/EffectDtos.cs",
+    "src/FusionRpg.Core/Effects/EffectProcAndOwner.cs",
+    "src/FusionRpg.Server/PatronEndpoints.cs",
+    "tests/FusionRpg.Server.Tests/AtomPushServicePatronCallbackTests.cs",
+    "docs/architecture/aura-skill/spec-aura-binding-producer.md",
+    "tasks/aura-skill-todo.md",
+    "tasks/creature-standalone-todo.md",
+    "tasks/evidence-fragments/aura-skill-t25.md",
+    "tasks/evidence-fragments/creature-standalone-pt7b.md",
+    "tasks/ssw-server-ledger.jsonl",
+    "tasks/sessions/ssw-server.json"
+  ],
+  "started": "2026-09-20T15:47:32Z",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retiredReason": "the lane is terminal and its branch is an ancestor of features/mega-merge",
+  "notes": [
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

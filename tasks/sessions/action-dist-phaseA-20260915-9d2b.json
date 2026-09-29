@@ -1,0 +1,26 @@
+{
+  "session": "action-dist-phaseA-20260915-9d2b",
+  "program": "action-distribution-gaps",
+  "problem": "Phase A (A1-A4): top-up CLI flag, clear stale scratch, top-up runbook, producer marker fix",
+  "mode": "worktree",
+  "branch": "worktree-action-dist-phaseA-20260915-9d2b",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.kilo/worktrees/action-dist-phaseA-20260915-9d2b",
+  "paths": [
+    "tools/seedsmith/seedsmith/adapters/actions/**",
+    "tools/seedsmith/seedsmith/report/**",
+    "tools/seedsmith/tests/**",
+    "data/seed/actions/_rounds/**",
+    "data/seed/actions/_reports/**",
+    "docs/architecture/action-corpus/**",
+    "docs/runbook/local-dev.md",
+    "tasks/action-distribution-gaps-plan.md",
+    "tasks/action-distribution-gaps-todo.md",
+    "tasks/sessions/action-dist-phaseA-20260915-9d2b.json"
+  ],
+  "crossingNote": "solid-run-20260912-eb53 (active) broadly claims docs/architecture/**, tasks/*-plan.md, tasks/*-todo.md and tools/seedsmith/.../actions/vocab.py, but runs in its own worktree+branch; Phase A regions (actions CLI, coverage-report producer guard, runbook) do not overlap its lawn-combat-wire regions. Main-checkout dirty files (RpgStore.cs, Server/Program.cs, LiveProbeClient.cs, PvzActivityFactsPagingTests.cs) are outside these paths and were left untouched by branching off committed HEAD d269cc4e.",
+  "started": "2026-09-15T09:36:00Z",
+  "status": "merged",
+  "notes": [
+    "Marked merged 2026-09-17 by solid-remediation T0.1. Evidence: `git merge-base --is-ancestor <branch> features/mega-merge` returned 0 for this record's branch, so its work is fully contained in the remediation branch. Owner ruling 2026-09-17: \"there are no active session, i don't control any agent, only you work here so we can build whatever we want, everything already merged.\" The record was left `active` as stale metadata; a permanently dirty session-boundary-check is one everyone learns to ignore."
+  ]
+}

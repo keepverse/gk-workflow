@@ -1,0 +1,15 @@
+{
+  "session": "resume-26-gate-release-prep-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Read-only preparation of the current-head merged gate and player-packaging evidence contract.",
+  "mode": "worktree",
+  "branch": "opencode/resume-26-gate-release-prep-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-26-gate-release-prep-20260925",
+  "paths": [
+    "tasks/reports/resume-26-gate-release-prep-20260925.md",
+    "tasks/sessions/resume-26-gate-release-prep-20260925.json"
+  ],
+  "started": "2026-09-25T10:20:13Z",
+  "status": "abandoned",
+  "notes": "Read-only fanout lane from integration HEAD 6d77888cc. Returned a partial readiness report with self-checks green; manager integrated the report and review record. No full gate, product merge, release claim, or GREEN verdict was produced."
+}

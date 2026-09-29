@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>notices — gui-lego assembled surface</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="../pieces/_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>notices</code> — assembled surface</h1>
+  <p class="lede">Assembled surface (recipe composed) — the band-2 "Notices" tab in the Chronicle layer (R14). One category browsed at a
+  time, newest row first, every registered category listed (zero rows and <code>off</code> included).
+  Slot tree: <code>surface-shell(tool-search + source-list(categories) + scroll-region(rows) + channel-control)
+  + lifecycle overlays</code> per <code>spec-notify-centre.md §1</code>. Pieces are consumed by name from
+  <code>notify-centre-ideal.md</code>'s map; row text comes from <code>renderNotification</code> at runtime
+  (never authored here), and the only new piece is <code>notice-row</code>, named at the already-existing
+  ERM Row rung.</p>
+  <p class="lede"><strong>DRAFT — structure and states only.</strong> Every sentence below is a placeholder
+  or a display-catalog key (GG-62); the assembled look is what step 7 reviews. Status:
+  <strong>pending-resolver-acceptance</strong> — the owner named the gui-lego program as the reviewer
+  (2026-09-21, <code>tasks/notification-ssot-todo.md</code> NS6.8). See <code>notices.ACCEPTANCE.md</code>.</p>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage">
+        <div data-testid="notices" data-band="2" style="border:1px solid var(--border-control);border-radius:8px;overflow:hidden;background:var(--panel);max-width:760px;min-width:280px;">
+          <div style="padding:12px;display:grid;gap:10px;">
+            <input data-testid="notices-category-search" data-piece="tool-search" type="search" placeholder="DRAFT: Search categories" aria-label="Search categories" style="width:100%;padding:6px 8px;border-radius:4px;border:1px solid var(--border);background:var(--panel-inset);color:var(--text);font-size:13px;">
+            <div data-testid="notices-split" style="display:grid;grid-template-columns:1fr 1.4fr;gap:10px;">
+              <div data-testid="notices-category-list" data-piece="source-list" role="list" aria-label="Categories" style="display:grid;gap:4px;align-content:start;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+                <div role="listitem" data-testid="notices-category-chip" data-category="loam.shortfall" data-selected="true" data-channel="toast" data-unread="2" style="display:flex;gap:6px;align-items:center;font-size:13px;"><span data-testid="notices-category-name">Shortfall</span><span data-testid="notices-category-unread" class="chip">2</span></div>
+                <div role="listitem" data-testid="notices-category-chip" data-category="battle.result" data-selected="false" data-channel="rail" data-unread="0" style="display:flex;gap:6px;align-items:center;font-size:13px;"><span data-testid="notices-category-name">Battle result</span></div>
+                <div role="listitem" data-testid="notices-category-chip" data-category="command.dropped" data-selected="false" data-channel="off" data-unread="0" style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);"><span data-testid="notices-category-name">Order dropped</span><span data-testid="notices-category-off" class="chip">off</span></div>
+                <div role="listitem" data-testid="notices-category-chip" data-category="territory.lost" data-selected="false" data-channel="toast" data-unread="0" style="display:flex;gap:6px;align-items:center;font-size:13px;"><span data-testid="notices-category-name">Territory lost</span></div>
+              </div>
+              <div style="display:grid;gap:8px;align-content:start;">
+                <div data-testid="notices-channel-control" data-piece="channel-control" style="display:flex;gap:6px;align-items:center;font-size:12px;">
+                  <span data-testid="notices-channel-label">Show Shortfall as</span>
+                  <button type="button" aria-pressed="true" style="font-size:12px;">Toast</button>
+                  <button type="button" aria-pressed="false" style="font-size:12px;">Rail</button>
+                  <button type="button" aria-pressed="false" style="font-size:12px;">Off</button>
+                </div>
+                <div data-testid="notices-rows-scroll" data-piece="scroll-region" style="display:grid;gap:6px;max-height:280px;overflow:auto;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+                  <div role="listitem" data-testid="notice-row" data-dedup-key="world:w1:t4:e0" data-severity="important" data-state="unread" data-target="sector" style="display:grid;gap:4px;border-left:3px solid var(--accent);padding:6px 8px;font-size:13px;">
+                    <div style="display:flex;gap:6px;align-items:center;">
+                      <span data-testid="notice-row-unread-dot" aria-hidden="true">●</span>
+                      <span data-testid="notice-row-title" style="font-weight:600;">DRAFT (renderNotification): Shortfall</span>
+                      <span data-testid="notice-row-severity" class="chip">important</span>
+                      <span data-testid="notice-row-state" class="chip">unread</span>
+                    </div>
+                    <p data-testid="notice-row-body" style="margin:0;color:var(--muted);">DRAFT body — the translator's sentence for this entry (never authored here).</p>
+                    <div style="display:flex;gap:6px;">
+                      <button type="button" data-testid="notice-row-open" style="font-size:12px;">Read</button>
+                      <button type="button" data-testid="notice-row-dismiss" style="font-size:12px;">Dismiss</button>
+                      <button type="button" data-testid="notice-row-target" style="font-size:12px;">Select sector</button>
+                    </div>
+                  </div>
+                  <div role="listitem" data-testid="notice-row" data-dedup-key="cache:c1:decay:7" data-severity="routine" data-state="read" data-target="cache" style="display:grid;gap:4px;border-left:3px solid var(--border);padding:6px 8px;font-size:13px;">
+                    <div style="display:flex;gap:6px;align-items:center;">
+                      <span data-testid="notice-row-title">DRAFT (renderNotification): Cache decayed</span>
+                      <span data-testid="notice-row-severity" class="chip">routine</span>
+                      <span data-testid="notice-row-state" class="chip">read</span>
+                    </div>
+                    <p data-testid="notice-row-body" style="margin:0;color:var(--muted);">DRAFT body.</p>
+                    <div style="display:flex;gap:6px;">
+                      <button type="button" data-testid="notice-row-dismiss" style="font-size:12px;">Dismiss</button>
+                    </div>
+                  </div>
+                  <div role="listitem" data-testid="notice-row" data-dedup-key="world:w1:t3:e2" data-severity="routine" data-state="dismissed" style="display:flex;gap:6px;align-items:center;justify-content:space-between;padding:6px 8px;font-size:13px;color:var(--muted);">
+                    <span data-testid="notice-row-dismissed-label">Dismissed</span>
+                    <button type="button" data-testid="notice-row-reopen" style="font-size:12px;">Reopen</button>
+                  </div>
+                  <button type="button" data-testid="notices-load-older" style="font-size:12px;">DRAFT: Load older</button>
+                </div>
+                <p data-testid="notices-cap-note" style="margin:0;font-size:12px;color:var(--muted);">DRAFT: newest <code>retainPerCategory</code> rows per category (notification.v1.json).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lego-card">
+      <h2>Designed states (GG-17) — landmarks</h2>
+      <div class="piece-stage" style="display:grid;gap:10px;">
+        <div data-testid="notices-phase-loading" data-piece="phase-loading" role="status" style="padding:10px;border:1px solid var(--border);border-radius:6px;background:var(--panel-inset);font-size:13px;">DRAFT: Reading your notices…</div>
+        <div data-testid="notices-phase-empty" data-piece="phase-empty" style="padding:10px;border:1px solid var(--border);border-radius:6px;background:var(--panel-inset);font-size:13px;">DRAFT: Nothing here yet — a resolved turn writes the first one.</div>
+        <div data-testid="notices-phase-error" data-piece="phase-error" style="padding:10px;border:1px solid var(--border);border-radius:6px;background:var(--panel-inset);font-size:13px;display:grid;gap:6px;">
+          <span>DRAFT: The notices could not be read.</span>
+          <button type="button" data-testid="notices-retry" style="justify-self:start;font-size:12px;">Retry</button>
+        </div>
+        <div data-testid="notices-category-off" style="padding:10px;border:1px solid var(--border);border-radius:6px;background:var(--panel-inset);font-size:13px;">DRAFT: <em>Order dropped</em> is set to <strong>off</strong> — its rows are kept, nothing is delivered. The switch above changes that.</div>
+      </div>
+    </section>
+  </div>
+
+  <section class="lego-card">
+    <h2>Notes for the review</h2>
+    <ul>
+      <li>Rings: every interactive control keeps a visible focus ring; the dismissed row's <code>Reopen</code> is a real button, not a glyph.</li>
+      <li>Colour is never the only carrier: unread has a dot <em>and</em> weight, severity/state are chips with text.</li>
+      <li>No panel-level scrollbar: the row list scrolls inside its own bounded region (GG-61), the page does not move.</li>
+      <li>The category list renders every registered category, including one with zero rows and one routed <code>off</code> (§Objective).</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>

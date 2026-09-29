@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-17-build-preset-acceptance-20260925",
+  "sha": "005239e4b38dfe389a365b0c62e94fdca159238a",
+  "expectedSha": "005239e4b38dfe389a365b0c62e94fdca159238a",
+  "shortSha": "005239e4",
+  "mergedSha": "094ebc3aeb6882ce88b0c36d63a10edf448f4723",
+  "verdict": "GREEN",
+  "scope": "Build-preset BP1.11/BP1.12 store/routes and focused verification-boundary mapping; no boot hook, Contracts, tuning, generated data, or full aggregate",
+  "attribution": {
+    "knownRedMatched": 0,
+    "newUnregistered": 0,
+    "unattributed": 0
+  },
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-17-build-preset-acceptance-20260925",
+  "checks": [
+    {
+      "check": "data-build-preset-tests",
+      "command": "dotnet test tests/FusionRpg.Data.Tests --filter FullyQualifiedName~BuildPreset --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "10 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-17-build-preset-acceptance-20260925/data.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "server-build-preset-tests",
+      "command": "dotnet test tests/FusionRpg.Server.Tests --filter FullyQualifiedName~BuildPresetEndpoints --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "14 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-17-build-preset-acceptance-20260925/server.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "unique-allocation-reader",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter VerificationId=guard.unique-allocation-reader --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "2 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-17-build-preset-acceptance-20260925/unique.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "verification-boundary-tests",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter FullyQualifiedName~VerificationBoundary --no-restore",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "verification-boundary test set passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-17-build-preset-acceptance-20260925/boundary-tests.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "guards-planonly",
+      "command": "guard-dal; guard-test-substrate; guard-verification-boundaries; verify-change -PlanOnly for five executable feature paths",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "DAL, test-substrate, registry guard passed; focused data.build-preset/server.build-preset owners selected; shared Program.cs stayed server-fallback; fullEvidenceOwner CI/nightly/release",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-17-build-preset-acceptance-20260925/guards-plan.log",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "clean-checkout",
+      "command": "git worktree add --detach <temporary-clean-checkout> 005239e4b38dfe389a365b0c62e94fdca159238a; focused tests; mapping guard; PlanOnly; git diff --check; git status --porcelain=v1",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused tests/mapping guard/PlanOnly passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-17-build-preset-acceptance-20260925/clean.log",
+      "logSha256": "361FE153AB7D1FC9AA6E12506CDA395C01950DC30E46C4F1F5DDA37751427615",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.BuildPresets.cs",
+    "tests/FusionRpg.Data.Tests/BuildPresets/BuildPresetStoreTests.cs",
+    "src/FusionRpg.Server/BuildPresetEndpoints.cs",
+    "src/FusionRpg.Server/Program.cs",
+    "tests/FusionRpg.Server.Tests/BuildPresetEndpointsTests.cs",
+    "scripts/verification-boundaries.v1.json",
+    "tasks/reports/resume-11-build-preset-bp1112-20260925.md",
+    "tasks/reports/resume-17-build-preset-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "005239e4b38dfe389a365b0c62e94fdca159238a",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "knownLimitations": [
+    "RpgStore.cs boot-time schema registration remains outside this fence; first-use ensure is idempotent and reopen-tested.",
+    "SE4.37 shared human-empire helper remains a later consolidation task.",
+    "The full unfiltered aggregate remains CI/nightly/release-owned; no full-suite claim is made."
+  ],
+  "mergeScope": "BP1.11/BP1.12, the focused test trait, and the focused verification registry repair are accepted and merged; no boot hook or unrelated policy consolidation was accepted.",
+  "when": "2026-09-25T12:45:00Z"
+}

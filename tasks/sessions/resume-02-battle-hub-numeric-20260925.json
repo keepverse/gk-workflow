@@ -1,0 +1,22 @@
+{
+  "session": "resume-02-battle-hub-numeric-20260925",
+  "program": "battle-unification",
+  "problem": "Close the confirmed battle live ActorHub, observer damage, and reachable HP numeric-integrity P1s without a second composer.",
+  "mode": "worktree",
+  "branch": "opencode/resume-02-battle-hub-numeric-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-02-battle-hub-numeric-20260925",
+  "paths": [
+    "src/FusionRpg.Core/Battle/BattleDerivedModifierLedger.cs",
+    "src/FusionRpg.Core/Battle/BattleRunState.cs",
+    "src/FusionRpg.Core/Battle/BattleEffects.cs",
+    "src/FusionRpg.Core/Combat/DamageApplyPipeline.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleDerivedModifierLedgerTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleHubComposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleEffectMathTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleEffectHostTests.cs",
+    "tasks/reports/resume-02-battle-hub-numeric-20260925.md"
+  ],
+  "started": "2026-09-25T06:57:43Z",
+  "status": "abandoned",
+  "notes": "Worker produced an eight-file dirty draft and a result-only report, but no disk-backed report and its aggregate verification later hit an unrelated SQLite Error 14/timeout. The draft is preserved; manager acceptance must inspect ActorHub SSOT and numeric boundaries, rerun restored focused tests/overflow/path-owned verification, and write the required report before any merge."
+}

@@ -1,0 +1,23 @@
+{
+  "session": "strengthen-ssh-20260918",
+  "program": "strain-splice-host",
+  "problem": "Adversarial strengthen pass over the strain-splice-host map, module specs and ideal (citations, rulings R11-R13, cross-program consistency, sequencing).",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/architecture/strain-splice-host-ideal.md",
+    "docs/architecture/strain-splice-host/spec-circuit-topology.md",
+    "docs/architecture/strain-splice-host/spec-combination-regen.md",
+    "docs/architecture/strain-splice-host/spec-combo-bind.md",
+    "docs/architecture/strain-splice-host/spec-combo-budget.md",
+    "docs/architecture/strain-splice-host/spec-host-gate.md",
+    "docs/architecture/strain-splice-host/spec-recipe-import.md",
+    "docs/architecture/strain-splice-host/spec-socket-pricing.md",
+    "docs/architecture/strain-splice-host/spec-tier-ladder.md",
+    "tasks/sessions/strengthen-ssh-20260918.json"
+  ],
+  "started": "2026-09-18T20:00:00Z",
+  "status": "merged"
+}

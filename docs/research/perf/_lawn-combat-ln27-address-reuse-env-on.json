@@ -1,0 +1,705 @@
+{
+  "rounds": 5,
+  "matchResults": [
+    "defeat"
+  ],
+  "zombieSpawnEvents": 2047,
+  "zombieDieEvents": 496,
+  "distinctZombiePtrs": 891,
+  "ptrsSpawnedMoreThanOnce": 890,
+  "ptrsWithTwoDiesAndNoSpawnBetween": 0,
+  "doubleDiePtrs": [],
+  "staleDeadMarkHitsTotal": 1,
+  "maxDeadMarks": 555,
+  "deadMarkDropsWithinMatch": [
+    [
+      "2026-09-15T21:07:39.0512364Z",
+      555,
+      512
+    ],
+    [
+      "2026-09-15T21:08:56.6784998Z",
+      512,
+      483
+    ]
+  ],
+  "reusedExample": {
+    "24CFABF4C80": [
+      [
+        686905,
+        "zombie.spawn",
+        "initHealth"
+      ],
+      [
+        686912,
+        "zombie.spawn",
+        "debug.spawn"
+      ],
+      [
+        692605,
+        "zombie.die",
+        null
+      ]
+    ],
+    "24CFABF4960": [
+      [
+        686919,
+        "zombie.spawn",
+        "initHealth"
+      ],
+      [
+        686926,
+        "zombie.spawn",
+        "debug.spawn"
+      ],
+      [
+        692997,
+        "zombie.die",
+        null
+      ]
+    ],
+    "24CFABF4640": [
+      [
+        686933,
+        "zombie.spawn",
+        "initHealth"
+      ],
+      [
+        686940,
+        "zombie.spawn",
+        "debug.spawn"
+      ],
+      [
+        693671,
+        "zombie.die",
+        null
+      ]
+    ]
+  },
+  "windows": [
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:04:57.8008538Z",
+      "zombies": 0,
+      "deadMarks": 0,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:02.8054698Z",
+      "zombies": 0,
+      "deadMarks": 0,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:07.8069409Z",
+      "zombies": 0,
+      "deadMarks": 0,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:12.9434840Z",
+      "zombies": 300,
+      "deadMarks": 0,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:18.0653972Z",
+      "zombies": 275,
+      "deadMarks": 37,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:23.0154437Z",
+      "zombies": 251,
+      "deadMarks": 64,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:28.0093271Z",
+      "zombies": 220,
+      "deadMarks": 96,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:33.0360030Z",
+      "zombies": 202,
+      "deadMarks": 118,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:38.0681733Z",
+      "zombies": 178,
+      "deadMarks": 143,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:43.0800020Z",
+      "zombies": 159,
+      "deadMarks": 165,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:48.0900739Z",
+      "zombies": 148,
+      "deadMarks": 179,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:53.0872635Z",
+      "zombies": 134,
+      "deadMarks": 197,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:05:58.1032556Z",
+      "zombies": 131,
+      "deadMarks": 203,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:06:03.1137426Z",
+      "zombies": 98,
+      "deadMarks": 240,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:06:08.1052887Z",
+      "zombies": 18,
+      "deadMarks": 321,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:06:13.1148566Z",
+      "zombies": 18,
+      "deadMarks": 321,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round0",
+      "t": "2026-09-15T21:06:18.1209362Z",
+      "zombies": 17,
+      "deadMarks": 323,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "clear0",
+      "t": "2026-09-15T21:06:23.1208065Z",
+      "zombies": 11,
+      "deadMarks": 329,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:28.7166205Z",
+      "zombies": 280,
+      "deadMarks": 348,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:33.7535719Z",
+      "zombies": 219,
+      "deadMarks": 418,
+      "staleHits": 1,
+      "staleLastPtr": "24CFA75F000"
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:38.7356492Z",
+      "zombies": 193,
+      "deadMarks": 447,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:43.8245008Z",
+      "zombies": 171,
+      "deadMarks": 469,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:48.8014775Z",
+      "zombies": 157,
+      "deadMarks": 486,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:53.8855895Z",
+      "zombies": 139,
+      "deadMarks": 505,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:06:58.8636148Z",
+      "zombies": 127,
+      "deadMarks": 520,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:03.9299312Z",
+      "zombies": 119,
+      "deadMarks": 530,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:08.9477921Z",
+      "zombies": 112,
+      "deadMarks": 540,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:13.9797730Z",
+      "zombies": 106,
+      "deadMarks": 550,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:19.0038560Z",
+      "zombies": 104,
+      "deadMarks": 555,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:24.0354280Z",
+      "zombies": 0,
+      "deadMarks": 555,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:29.0379540Z",
+      "zombies": 0,
+      "deadMarks": 555,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round1",
+      "t": "2026-09-15T21:07:34.0474639Z",
+      "zombies": 0,
+      "deadMarks": 555,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "clear1",
+      "t": "2026-09-15T21:07:39.0512364Z",
+      "zombies": 0,
+      "deadMarks": 555,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:07:47.8134330Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:07:50.9785485Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:07:55.9759445Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:01.0553701Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:06.0791008Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:11.1828287Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:16.2307424Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:21.3120965Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:26.3727348Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:31.4127471Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:36.5004805Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:41.5608666Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:46.5881115Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round2",
+      "t": "2026-09-15T21:08:51.6646144Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "clear2",
+      "t": "2026-09-15T21:08:56.6784998Z",
+      "zombies": 301,
+      "deadMarks": 512,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:01.7372400Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:06.7410411Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:11.7888028Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:16.8762876Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:21.9362233Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:26.9528749Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:31.9543049Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:37.0950079Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:42.1053796Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:47.1696725Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:52.1756536Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:09:57.1830434Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:10:02.2028995Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round3",
+      "t": "2026-09-15T21:10:07.1978430Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "clear3",
+      "t": "2026-09-15T21:10:12.2425685Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:17.2916775Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:22.3210372Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:27.3904207Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:32.4067161Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:37.4761387Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:42.5376523Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:47.6108694Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:52.5998342Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:10:57.6334728Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:11:02.6677068Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:11:07.7311522Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:11:12.7693347Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:11:17.8058613Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "round4",
+      "t": "2026-09-15T21:11:22.8195189Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    },
+    {
+      "label": "clear4",
+      "t": "2026-09-15T21:11:27.8280813Z",
+      "zombies": 320,
+      "deadMarks": 483,
+      "staleHits": 0,
+      "staleLastPtr": ""
+    }
+  ]
+}

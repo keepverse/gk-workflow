@@ -1,0 +1,23 @@
+{
+  "session": "resume-05-vocabulary-recovery-acceptance-20260925",
+  "program": "creature-seed",
+  "problem": "Manager clean-checkout acceptance of the FamilyExpand manifest schema recovery, regenerated vocabulary output, and focused Core consumer tests; keep TreeBinder drift and split-Core path-lock failures explicit handoffs.",
+  "mode": "worktree",
+  "branch": "review/vocabulary-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-vocabulary-recovery-20260925",
+  "paths": [
+    "tools/FamilyExpandGen/**",
+    "tools/PassiveTreeRosterGen/**",
+    "data/seed/passive-tree/vocabulary.json",
+    "data/seed/atoms/generated/_family-expand.manifest.json",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+    "tests/FusionRpg.Core.Tests/Battle/TreeAtomSourceParityTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/Adoption/PassiveTreeMechanismRoundRecomposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/EquipAtomSourceIdTests.cs",
+    "tests/FusionRpg.Core.Tests/Match/UniqueEquipmentAtomMappingTests.cs",
+    "tasks/reports/resume-05-vocabulary-recovery-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T09:50:00Z",
+  "status": "merged",
+  "notes": "FamilyExpand manifest recovery accepted at exact SHA 85d2c096f829edf2560ee1f67a80aef97c40cb13, clean-checkout focused verification passed, and merged at 83febfacdc7dd205dcadd9030f7b996c74223d58. Artifact: .claude/cmdc-agents/acceptance/resume-05-vocabulary-recovery-20260925-85d2c096.json. TreeBinder, broad split-Core copy-lock, CI, and stale fixture/Core handoffs remain explicit."
+}

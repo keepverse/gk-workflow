@@ -1,0 +1,21 @@
+{
+  "session": "citation-dotpath-guard-20260926",
+  "program": "test-verification-boundary",
+  "problem": "The doc-citation guard cannot see a citation that names a dot-directory, so a dead script path in AGENTS.md's own tooling table survived indefinitely. Make the guard read dot-paths, exempt the one dot-path that is untracked by owner policy, and prove both with tests.",
+  "mode": "worktree",
+  "branch": "fix/citation-dotpath-guard-20260926",
+  "worktree": ".claude/worktrees/citation-dotpath-guard-20260926",
+  "paths": [
+    "scripts/audit-doc-citations.py",
+    "tests/FusionRpg.Guard.Tests/DocCitationAuditTests.cs",
+    "AGENTS.md",
+    "docs/contributing/session-boundary.md",
+    "docs/contributing/worktree-cleanup.md",
+    "docs/architecture/data-test-substrate/fan-out-protocol.md",
+    "tasks/reports/citation-dotpath-guard-20260926.md",
+    "tasks/sessions/citation-dotpath-guard-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "Verification-plane row, forked from features/mega-merge@e90cb0f7b in its own worktree because the main checkout holds another stream's uncommitted Python port. Root cause is one character class: CITATION requires the backticked token to start with [A-Za-z0-9_], so every .claude/ .kilo/ .commandcode/ citation is invisible. Fence widened after measuring the fix's real cost: it surfaces exactly 5 HIGH findings in 3 documents from 2 files that exist nowhere, and landing a guard that turns --strict red without reconciling them would hand the next agent a red gate."
+}

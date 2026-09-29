@@ -1,0 +1,16 @@
+{
+  "session": "species-progression-spec-20260918",
+  "program": "species-progression",
+  "problem": "Graduate species-progression-ideal.md (owner rulings R-S1..R-S4, 2026-09-17, plus corrections 2026-09-18) into a capability map and one spec per module, reconciled against solid-remediation's spec-species-carrier and spec-species-empire-scope (read-only). Docs only: no production code, no data, no tuning, no commit.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/species-progression-map.md",
+    "docs/architecture/species-progression/**",
+    "docs/architecture/species-progression-ideal.md",
+    "tasks/sessions/species-progression-spec-20260918.json"
+  ],
+  "started": "2026-09-18T12:00:00Z",
+  "status": "merged"
+}

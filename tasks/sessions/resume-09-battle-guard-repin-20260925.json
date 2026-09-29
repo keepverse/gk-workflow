@@ -1,0 +1,16 @@
+{
+  "session": "resume-09-battle-guard-repin-20260925",
+  "program": "battle-unification",
+  "problem": "Manager-owned H1 repair: deliberately re-pin the BattleEffects byte baseline after the accepted P1 battle change, update CAI-guard-1, and prove the focused guard from a clean checkout.",
+  "mode": "worktree",
+  "branch": "review/battle-guard-repin-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-battle-guard-repin-20260925",
+  "paths": [
+    "tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs",
+    "tasks/combat-ai-todo.md",
+    "tasks/reports/resume-09-battle-guard-repin-20260925.md"
+  ],
+  "started": "2026-09-25T09:30:00Z",
+  "status": "merged",
+  "notes": "H1 BattleEffects guard re-pin accepted at exact SHA 78f4db6fd4d80dfd25feaad4b070bb2b955418bc, clean-checkout focused test passed, and merged at 3036350b65316412bb6d54b49062996c8142293c. Artifact: .claude/cmdc-agents/acceptance/resume-09-battle-guard-20260925-78f4db6f.json. The stale merged-head run and legal-game/interops build block remain separate; current-head gate must be rerun."
+}

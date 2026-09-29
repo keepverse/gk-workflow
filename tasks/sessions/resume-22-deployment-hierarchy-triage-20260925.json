@@ -1,0 +1,15 @@
+{
+  "session": "resume-22-deployment-hierarchy-triage-20260925",
+  "program": "deployment-hierarchy",
+  "problem": "Read-only dependency triage for the next bounded deployment-hierarchy row.",
+  "mode": "worktree",
+  "branch": "opencode/resume-22-deployment-hierarchy-triage-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-22-deployment-hierarchy-triage-20260925",
+  "paths": [
+    "tasks/reports/resume-22-deployment-hierarchy-triage-20260925.md",
+    "tasks/sessions/resume-22-deployment-hierarchy-triage-20260925.json"
+  ],
+  "started": "2026-09-25T10:20:13Z",
+  "status": "abandoned",
+  "notes": "Read-only fanout lane from integration HEAD 6d77888cc returned a done dependency report. Manager integrated the report and review record; no DH-P0, DH1.1, CAI3.5, tuning, or product work was authorized."
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-33-p11-1r-20260925",
+  "sha": "d6b3b3dd9e1d1c3096e4d42ef061f40a0f04ef6b",
+  "expectedSha": "d6b3b3dd9e1d1c3096e4d42ef061f40a0f04ef6b",
+  "verdict": "GREEN",
+  "scope": "passive-tree P11.1r (blocked-with-evidence; documentation + 5 contract tests landed)",
+  "checks": [
+    {
+      "check": "dotnet test tests/FusionRpg.Core.PassiveTree.Tests --filter TreeAtomSource",
+      "exit": 0,
+      "summary": "27/27 passed (22 baseline + 5 new contract tests)"
+    },
+    {
+      "check": "dotnet test tests/FusionRpg.Core.PassiveTree.Tests",
+      "exit": 0,
+      "summary": "411/411 passed (lane-reported)"
+    },
+    {
+      "check": "scripts/guard-actor-hub.ps1",
+      "exit": 0,
+      "summary": "ACTOR-HUB GUARD OK"
+    }
+  ],
+  "cleanCheckout": true,
+  "mergeCommit": null,
+  "notes": "The LANE BLOCKED, correctly. P11.1r cannot be satisfied in its fence: a stat.modify tree atom needs a primary carrier (StatSystem session bag or an IStatModifierPlugin on the lawn) plus a reviewed decisions.md row. Three measured bars are recorded at the decision site. Its documentation plus 5 contract tests are accepted here. The same root cause explains the pre-existing PT-F39 Server red."
+}

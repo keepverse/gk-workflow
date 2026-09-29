@@ -1,0 +1,19 @@
+{
+  "session": "resume-15-web-browser-qa-20260925",
+  "program": "web",
+  "problem": "Fresh bounded local-server/browser evidence for the accepted web recovery contract after the previous QA worker stalled without a report.",
+  "mode": "worktree",
+  "branch": "opencode/resume-15-web-browser-qa-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-15-web-browser-qa-20260925",
+  "paths": [
+    "tasks/reports/resume-15-web-browser-qa-20260925.md",
+    "web/fusion-rpg-web/node_modules/**",
+    "web/fusion-rpg-web/dist/**",
+    "src/FusionRpg.Server/wwwroot/**",
+    "src/FusionRpg.Server/bin/**",
+    "src/FusionRpg.Server/obj/**"
+  ],
+  "started": "2026-09-25T09:58:36Z",
+  "status": "merged",
+  "notes": "Read-only QA producer. Hard time bounds, no unrelated process kills, no fabricated match/state, no product edits, no commit/push/merge. OpenCode CLI Space Bunny Free max, no fallback/subagent."
+}

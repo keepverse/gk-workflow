@@ -1,0 +1,26 @@
+{"ts":"2026-09-19T10:07:07Z","kind":"anchor","plan":"tasks/summoner-convergence-plan.md","todo":"tasks/action-todo.md","session":"summoner-convergence-lane-a2-20260919","specs":["docs/architecture/action/spec-specimen-loadout-endpoints.md","docs/architecture/action/spec-action-corpus-import-completion.md","docs/architecture/action/spec-unlock-discard-endpoint.md","docs/architecture/action/spec-actions-tab-fe-wiring.md","docs/architecture/action/spec-action-choice-rung-tiebreak.md","docs/architecture/action/spec-action-choice-condition-awareness.md","docs/architecture/spec-rulings-2026-09-18.md"],"standards":"PRINCIPLES + DESIGN-GATE Actions/Battle/UI rows + decisions locks; H1 golden re-bless order, H7 publish+readers","mark":"mk1-fe4c9038037a4e78"}
+{"ts":"2026-09-19T10:07:07Z","kind":"queue","ids":["T65","T66","T64","T68","T69","T70","T71","T72","T73"],"mark":"mk1-9a8bb381b04b2d73"}
+{"ts":"2026-09-19T10:07:31Z","kind":"task","id":"T65","state":"started","mark":"mk1-75b8866bb4064da2"}
+{"ts":"2026-09-19T10:11:22Z","kind":"note","text":"T65: schema-compat CLEAN. round-909/2000 share identical keys/closed-vocab with round-1/2. Zero cross-file id collisions today (180 unique). Step 2a: one-line file-list extension; guard still added defensively per spec.","mark":"mk1-6d5d5716acb58761"}
+{"ts":"2026-09-19T10:27:28Z","kind":"task","id":"T65","state":"done","evidence":"tasks/evidence-fragments/T65.md","mark":"mk1-06236cb50f977490"}
+{"ts":"2026-09-19T10:27:28Z","kind":"task","id":"T66","state":"started","mark":"mk1-44cb4b615c814690"}
+{"ts":"2026-09-19T10:27:29Z","kind":"task","id":"T66","state":"done","evidence":"tasks/evidence-fragments/T66.md","mark":"mk1-b6cdc59e1474d3bc"}
+{"ts":"2026-09-19T10:27:29Z","kind":"gate","name":"verify-change:T66","result":"pass","mark":"mk1-64de93eba21d4546"}
+{"ts":"2026-09-19T10:28:38Z","kind":"task","id":"T64","state":"started","mark":"mk1-4bf09802b4ad51c7"}
+{"ts":"2026-09-19T10:37:21Z","kind":"note","text":"Widened session paths: added tests/FusionRpg.E2E.Tests/SpecimenLoadoutEndpointsHostTests.cs + UnlockDiscardEndpointsHostTests.cs (real-host route-registration proofs T64/T68 need per RpgApiFactory precedent T63/T74 set).","mark":"mk1-3f991477e4def1cf"}
+{"ts":"2026-09-19T10:38:59Z","kind":"note","text":"Fixed verification-boundary defect: scripts/verification-boundaries.v1.json's e2e-action-unlock owner mapping had no entry for the new SpecimenLoadoutEndpointsHostTests.cs; added it (+ UnlockDiscardEndpointsHostTests.cs pre-emptively for T68).","mark":"mk1-5518c39b0f260d2c"}
+{"ts":"2026-09-19T11:04:04Z","kind":"task","id":"T68","state":"started","mark":"mk1-402b96a5b250e049"}
+{"ts":"2026-09-19T11:15:08Z","kind":"task","id":"T64","state":"done","evidence":"tasks/evidence-fragments/T64.md","mark":"mk1-9da3164d7fefc72b"}
+{"ts":"2026-09-19T11:15:08Z","kind":"task","id":"T68","state":"done","evidence":"tasks/evidence-fragments/T68.md","mark":"mk1-42dd7d4191346556"}
+{"ts":"2026-09-19T11:15:08Z","kind":"gate","name":"verify-change:T64+T68","result":"pass","mark":"mk1-d7e0f57764b197b8"}
+{"ts":"2026-09-19T11:16:37Z","kind":"task","id":"T71","state":"started","mark":"mk1-cc8cfd14707bc8ac"}
+{"ts":"2026-09-19T11:16:47Z","kind":"note","text":"T71 BLOCKER: container per-atom when.predicate never reaches Core battle. BattleRunState.BindContainers grants bare EffectIds only. ICompiledPredicate lives only in RunnerEntry (injector runner), unreachable from Core. See evidence-fragments/T71.md.","mark":"mk1-d67e63c44ab20ec1"}
+{"ts":"2026-09-19T11:16:47Z","kind":"note","text":"T71/T72: reusing CompiledAction.Condition is vacuous (already true for any candidate reaching the scan). Real fix is E26 (emit RunnerEntry defs to Core), cross-cutting, beyond this M task. Not shipping a fake HasLiveConditionalPayoff. T71/T72 stay open, escalated.","mark":"mk1-dd0e2b6efd040aa3"}
+{"ts":"2026-09-19T11:17:43Z","kind":"task","id":"T71","state":"blocked","reason":"Real fix is E26 (RunnerEntry emitted to Core), cross-cutting, beyond this lane; see evidence-fragments/T71.md","mark":"mk1-5cd5fb7623939a33"}
+{"ts":"2026-09-19T11:42:23Z","kind":"task","id":"T69","state":"started","mark":"mk1-5f9dc5fb15a495f5"}
+{"ts":"2026-09-19T11:42:23Z","kind":"task","id":"T69","state":"done","evidence":"tasks/evidence-fragments/T69.md","mark":"mk1-0900bad4f60e21dc"}
+{"ts":"2026-09-19T11:43:14Z","kind":"task","id":"T70","state":"started","mark":"mk1-d6c96fba86618abc"}
+{"ts":"2026-09-19T11:43:15Z","kind":"task","id":"T70","state":"done","evidence":"tasks/evidence-fragments/T70.md","mark":"mk1-a40de202bbe0309d"}
+{"ts":"2026-09-19T13:24:49Z","kind":"task","id":"T73","state":"started","mark":"mk1-adeb2a26b559be80"}
+{"ts":"2026-09-19T13:33:00Z","kind":"task","id":"T73","state":"blocked","reason":"Dependency T62-T72 all closed not met (T71/T72 blocked on E26); achievable propagation done, see evidence-fragments/T73.md","mark":"mk1-1fc473d5a29b5aa2"}
+{"ts":"2026-09-19T13:50:07Z","kind":"note","text":"Determinism proof: dotnet test tests/FusionRpg.Server.Tests run twice in a row, foreground, 583/583 both times -- UnlockDiscardEndpointTests's UnlockTuningPolicy.Configure static touch is safe (assembly already [CollectionBehavior(DisableTestParallelization=true)]).","mark":"mk1-cf4be285565f3c4b"}

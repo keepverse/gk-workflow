@@ -1,0 +1,42 @@
+Rise of Summoner — how to use (no install)
+
+You do NOT need Node, npm, Visual Studio, a .NET SDK, or the .NET Desktop Runtime.
+
+0. BEFORE unzipping: right-click the downloaded .zip -> Properties -> tick Unblock -> OK.
+   Windows tags anything downloaded from the internet, and antivirus treats tagged files far
+   more harshly. Doing this on the ZIP clears it for everything inside; doing it afterwards
+   means unblocking each file one at a time. This is the single best way to avoid the
+   false-positive quarantine below.
+
+1. Double-click FusionRpg.Launcher.exe
+
+2. First run: Trust & security — this is an UNSIGNED hobby AGPL build.
+   Some antivirus products may quarantine FusionRpg.Server.exe (false positive).
+   Click Allow if you accept that.
+   The launcher NEVER needs administrator rights to run or to play.
+   Optional, and only if you want it: Prepare Windows Security adds a Microsoft Defender
+   exclusion. That one button asks for UAC, and it elevates PowerShell, not FusionRpg —
+   the launcher stays open. It does nothing on Bitdefender, Kaspersky and the rest.
+   Bitdefender and other AV: restore/exclude the FusionRpg folder yourself.
+
+3. Browse to your legal game folder (the folder with PlantsVsZombiesRH.exe).
+   The launcher does not assume a fixed path on your PC.
+
+4. If BepInEx is missing, click Install BepInEx (official GitHub).
+   Do not dual-load MelonLoader + BepInEx. Play needs BepInEx in this release.
+
+5. Click Play.
+   The launcher installs the plugin, starts the server, and starts the game.
+   A browser opens the RPG UI (default http://127.0.0.1:5088 — may hop if that port is busy).
+
+6. Optional: Download & install FusionRpg update when prompted (keeps Server\data; does not patch the game).
+
+Leave the launcher open (or minimize to tray) while you play.
+Closing the launcher asks what to do: it defaults to leaving the server and game running, so
+closing it by accident mid-match will not end your run. Pick "stop everything" (or Stop all)
+when you really are done.
+
+Do NOT turn off antivirus entirely. Exclude only this FusionRpg folder if you choose to run it.
+Details: docs/runbook/players.md (Trust & antivirus).
+
+License: AGPL-3.0-or-later — see LICENSE and NOTICE.

@@ -1,0 +1,138 @@
+passive-tree distribution census
+==============================================================================
+trees=42  expected=1680  bound=560  refused=1120  unaccounted=0  overall=33.3%
+boundWithPricedAtoms=250  boundWithoutPricedAtoms=310  pricedAtoms=344  unspentBudgetShareMilli=62230
+boundWithReadableAtoms=0  unreadableBoundNodes=560  readableAtoms=0  readable=0.0% of bound
+
+bound atoms by kind (the binder's priced set)
+  stat.modify: 344   <- NOT read by the resolver (dropped silently)
+  DEFECT: no 'stat.derived' atom bound — every bound node contributes zero even though the bind rate looks healthy (task R4/P4.3)
+
+bind rate by node class
+  mechanism    141/840     16.7%
+  magnitude    419/840     49.8%
+  (mechanism is the deep-tier payoff; a collapse here empties tiers 8-10)
+
+bind rate by category
+  elemental     45/240     18.7%  (6 trees)
+  primary      171/480     35.6%  (12 trees)
+  status       344/960     35.8%  (24 trees)
+
+mechanism by tier (expected -> bound)
+  tier  1     0 -> 0       0.0%
+  tier  2     0 -> 0       0.0%
+  tier  3    28 -> 4      14.2%
+  tier  4    84 -> 15     17.8%
+  tier  5    84 -> 16     19.0%
+  tier  6    84 -> 14     16.6%
+  tier  7    84 -> 13     15.4%
+  tier  8   140 -> 25     17.8%
+  tier  9   168 -> 29     17.2%
+  tier 10   168 -> 25     14.8%
+
+refusal buckets
+  affixNotGenerated        612
+  other                    508
+    ·  144  affix 'atom.shld-cycle' atom 'atom.shld-cycle.t1' channel is a pool reference ('pool.element-shield-regen', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   90  affix 'atom.shield-capacity' atom 'atom.shield-capacity.t1' channel is a pool reference ('pool.element-shield-capacity', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   69  affix 'atom.elpw-attune' does not exist in the shipped seed content
+    ·   60  affix 'atom.precision' atom 'atom.precision.t1' channel is a pool reference ('pool.element-accuracy', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   59  affix 'atom.elpw-overflow' does not exist in the shipped seed content
+    ·   56  affix 'atom.shld-surge' atom 'atom.shld-surge.t1' channel is a pool reference ('pool.element-shield-capacity', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   49  affix 'atom.elpw-pierce' does not exist in the shipped seed content
+    ·   42  affix 'atom.sust-grit' does not exist in the shipped seed content
+    ·   36  affix 'atom.death-glean' does not exist in the shipped seed content
+    ·   34  affix 'atom.evd-harden' atom 'atom.evd-harden.t1' channel is a pool reference ('pool.element-crit-resist', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   29  affix 'atom.sust-callus' does not exist in the shipped seed content
+    ·   28  affix 'atom.elpw-focus' does not exist in the shipped seed content
+    ·   27  affix 'atom.ward-harden' atom 'atom.ward-harden.t1' channel is a pool reference ('pool.element-defense', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   26  affix 'atom.swiftness' does not exist in the shipped seed content
+    ·   24  affix 'atom.shield-regen' atom 'atom.shield-regen.t1' channel is a pool reference ('pool.element-shield-regen', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   21  affix 'atom.ward-brace' does not exist in the shipped seed content
+    ·   21  affix 'atom.sust-husk' does not exist in the shipped seed content
+    ·   20  affix 'atom.evd-brace' does not exist in the shipped seed content
+    ·   19  affix 'atom.lifesteal' does not exist in the shipped seed content
+    ·   18  affix 'atom.death-salvo' does not exist in the shipped seed content
+    ·   14  affix 'atom.ward-flux' does not exist in the shipped seed content
+    ·   14  affix 'atom.cruelty' atom 'atom.cruelty.t1' channel is a pool reference ('pool.element-crit-damage', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   13  affix 'atom.elpw-surge' does not exist in the shipped seed content
+    ·   12  affix 'atom.elpw-override' does not exist in the shipped seed content
+    ·   12  affix 'atom.ward-link' does not exist in the shipped seed content
+    ·   12  affix 'atom.shld-breach' atom 'atom.shld-breach.t1' channel is a pool reference ('pool.element-shield-pen', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·   11  affix 'atom.flash-freeze' does not exist in the shipped seed content
+    ·   11  affix 'atom.searing-strike' does not exist in the shipped seed content
+    ·   10  affix 'atom.shld-toughness' does not exist in the shipped seed content
+    ·   10  affix 'atom.shield-toughness' atom 'atom.shield-toughness.t1' channel is a pool reference ('pool.element-shield-toughness', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    9  affix 'atom.evd-seal' atom 'atom.evd-seal.t1' channel is a pool reference ('pool.element-crit-resist-damage', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    8  affix 'atom.keen-edge' atom 'atom.keen-edge.t1' channel is a pool reference ('pool.element-crit-rate', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    7  affix 'atom.evd-evd' does not exist in the shipped seed content
+    ·    7  affix 'atom.retribution' does not exist in the shipped seed content
+    ·    6  affix 'atom.evd-flinch' atom 'atom.evd-flinch.t1' channel is a pool reference ('pool.element-dodge', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    6  affix 'atom.elpw-surfeit' does not exist in the shipped seed content
+    ·    5  affix 'atom.rot-punisher' does not exist in the shipped seed content
+    ·    5  affix 'atom.terraforming' does not exist in the shipped seed content
+    ·    5  affix 'atom.warded' does not exist in the shipped seed content
+    ·    5  affix 'atom.affliction' does not exist in the shipped seed content
+    ·    5  affix 'atom.death-harvest' does not exist in the shipped seed content
+    ·    4  affix 'atom.prec-sync' does not exist in the shipped seed content
+    ·    4  affix 'atom.evasion' atom 'atom.evasion.t1' channel is a pool reference ('pool.element-dodge', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    4  affix 'atom.evd-shift' atom 'atom.evd-shift.t1' channel is a pool reference ('pool.element-crit-resist-damage', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    4  affix 'atom.evd-husk' does not exist in the shipped seed content
+    ·    4  affix 'atom.prec-focus' atom 'atom.prec-focus.t1' channel is a pool reference ('pool.element-accuracy', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    4  affix 'atom.dooming' does not exist in the shipped seed content
+    ·    4  affix 'atom.prec-fixation' does not exist in the shipped seed content
+    ·    4  affix 'atom.hit-retort' does not exist in the shipped seed content
+    ·    4  affix 'atom.econ-bounty' does not exist in the shipped seed content
+    ·    3  affix 'atom.econ-toll' does not exist in the shipped seed content
+    ·    2  affix 'atom.hit-followthrough' does not exist in the shipped seed content
+    ·    2  affix 'atom.prec-reckoning' does not exist in the shipped seed content
+    ·    2  affix 'atom.deathblast' does not exist in the shipped seed content
+    ·    2  affix 'atom.shld-toughness-mod' does not exist in the shipped seed content
+    ·    2  affix 'atom.prec-verdict' does not exist in the shipped seed content
+    ·    2  affix 'atom.gravedigging' does not exist in the shipped seed content
+    ·    1  affix 'atom.evd-scar' does not exist in the shipped seed content
+    ·    1  affix 'atom.shld-absolute' does not exist in the shipped seed content
+    ·    1  affix 'atom.firelining' does not exist in the shipped seed content
+    ·    1  affix 'atom.elemental-defense' atom 'atom.elemental-defense.t1' channel is a pool reference ('pool.element-defense', count 1) — a pool resolves at roll time (spec-channel-pool.md §3.2/§3.4), so this bake-time binder cannot price it as one concrete channel
+    ·    1  affix 'atom.sust-freshgraft' does not exist in the shipped seed content
+    ·    1  affix 'atom.regeneration' does not exist in the shipped seed content
+    ·    1  affix 'atom.prec-truesight' does not exist in the shipped seed content
+    ·    1  affix 'atom.econ-muster' does not exist in the shipped seed content
+    ·    1  affix 'atom.gravemaking' does not exist in the shipped seed content
+    ·    1  a node's affixIds must be 1..3, got 0 (R6)
+
+worst trees
+  spark                1/40     2.5%  mech 1/20  inert 1
+  air                  2/40     5.0%  mech 0/24  inert 1
+  light                4/40    10.0%  mech 1/16  inert 2
+  shatter              4/40    10.0%  mech 0/24  inert 2
+  precision            5/40    12.5%  mech 0/16  inert 3
+  agility              6/40    15.0%  mech 4/16  inert 5
+  pierce               6/40    15.0%  mech 1/20  inert 5
+  dark                 7/40    17.5%  mech 1/24  inert 3
+  freeze               7/40    17.5%  mech 1/24  inert 6
+  composure            8/40    20.0%  mech 3/24  inert 6
+  ember                8/40    20.0%  mech 0/20  inert 3
+  ice                  8/40    20.0%  mech 1/16  inert 6
+
+best trees
+  might               26/40    65.0%  mech 8/20  inert 7
+  ferocity            24/40    60.0%  mech 10/24  inert 9
+  spore               24/40    60.0%  mech 4/16  inert 15
+  fortitude           22/40    55.0%  mech 3/16  inert 7
+  vigor               22/40    55.0%  mech 9/24  inert 13
+  hypno               21/40    52.5%  mech 10/20  inert 17
+  nerve.shaken        21/40    52.5%  mech 9/24  inert 12
+  rot                 21/40    52.5%  mech 2/16  inert 17
+  rally               20/40    50.0%  mech 6/20  inert 7
+  blight              19/40    47.5%  mech 6/20  inert 18
+  bond                19/40    47.5%  mech 3/16  inert 7
+  jala                19/40    47.5%  mech 2/16  inert 9
+
+plan nodes the language stage has not generated yet (class E; not a defect)
+  wither: 1 node(s) — skill.wither-def-t9-n1
+
+provenance vintage (the brief vintage a fresh generation would stamp today)
+  mixed            20 tree(s)
+  stale            22 tree(s)
+  1066 record(s) across 42 tree(s) are not the current vintage — a fresh `trees generate` re-rolls them, and the document stamp cannot see it (per-node provenance is authoritative)

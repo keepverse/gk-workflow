@@ -1,0 +1,40 @@
+{
+  "session": "backlog-clean-up-20260920",
+  "program": "backlog-clean-up",
+  "problem": "Audit every specced/planned-then-forgotten item outside summoner-convergence (read-only agent lanes, owner charter 2026-09-20: native Sonnet only, no token cap), then write the backlog-clean-up idea, capability map, module specs and plan/todo that re-home each still-wanted item. Documents only; no source code changes.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/backlog-clean-up-20260920.json",
+    "scripts/audit-program-pipeline.py",
+    "docs/architecture/program-pipeline-audit-2026-09-20.md",
+    "docs/architecture/backlog-clean-up-ideal.md",
+    "docs/architecture/backlog-clean-up-map.md",
+    "docs/architecture/backlog-clean-up/",
+    "docs/research/backlog-clean-up/",
+    "tasks/backlog-clean-up-plan.md",
+    "tasks/backlog-clean-up-todo.md",
+    "docs/architecture/lawn-combat-ai-ideal.md",
+    "docs/architecture/combat-ai-ideal.md",
+    "docs/architecture/combat-ai-map.md",
+    "docs/architecture/combat-ai/",
+    "docs/research/combat-ai/",
+    "tasks/combat-ai-plan.md",
+    "tasks/combat-ai-todo.md",
+    "docs/architecture/creature-lawn-deploy/spec-unique-deploy-cap.md",
+    "docs/architecture/lawn-tuning-profile/spec-lawn-combat-baseline.md",
+    "docs/architecture/lawn-tuning-profile/spec-zombie-power-source.md",
+    "tasks/combat-ai-handoff.md"
+  ],
+  "notes": [
+    "Audit lanes are read-only and write only to the session scratchpad; the manager consolidates findings into docs/research/backlog-clean-up/.",
+    "Does not edit any other program's todo/plan/map; paperwork fixes found by the audit become tasks in tasks/backlog-clean-up-todo.md.",
+    "Closed 2026-09-20. Delivered: the drift audit tool + report, the backlog-clean-up ideal/map/specs/plan/todo, the combat-ai ideal/map/20 specs, and the combat-ai plan pair (BCU2.9a). Documents only - no source file was changed by this session.",
+    "The combat-ai build does NOT run under this record. It is documents-only; a building session opens tasks/sessions/combat-ai-<date>.json with its own paths fence. Handoff: tasks/combat-ai-handoff.md."
+  ],
+  "started": "2026-09-20T00:15:00Z",
+  "status": "merged",
+  "closed": "2026-09-20T09:10:00Z",
+  "retired": "2026-09-21",
+  "retiredReason": "status 'closed' is not one of active/merged/abandoned; the session is finished, so it is recorded as merged"
+}

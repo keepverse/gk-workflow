@@ -1,0 +1,116 @@
+# Implementation plan: `live-probe`
+
+**Program:** `live-probe` · **Map:** [../docs/architecture/live-probe-map.md](../docs/architecture/live-probe-map.md)
+**Specs:** `docs/architecture/live-probe/spec-{debug-scope-guard,live-probe-tool,actor-hub-live-proof}.md`
+**Task list:** [live-probe-todo.md](live-probe-todo.md)
+
+---
+
+## Overview
+
+Three modules, two of them independent builds and one an operation that consumes the second:
+`debug-scope-guard` (a PowerShell guard), `live-probe-tool` (a C# console tool doing real HTTP against
+a live Server, in two modes), and `actor-hub-live-proof` (running that tool live to finally close the
+T12/T14 evidence gap that started this whole program). No shared files between the two build modules —
+they touch entirely disjoint paths (`gk-core/scripts/guard-debug-scope.py` + `gk-core/tests/FusionRpg.Guard.Tests/*`
+vs. `gk-fusion/tools/ProveLiveProbe/*` + `scripts/prove-live-probe.ps1`), so they parallelize with zero merge
+risk.
+
+## Architecture decisions
+
+- **Classification rule for the guard is "any Injector relay anywhere in the handler body wins"** —
+  not the original binary rule, corrected in the spec's own audit. Implementing anything else
+  reintroduces the false-positive problem the audit found against the real file.
+- **The tool is two modes, not one flow.** Mode A (persisted-state only) needs no live game; Mode B
+  (full proof) needs a real summon and a live board. These are built as one CLI surface with a
+  `-Mode` switch, not two separate tools — the two modes share every step through 5, and duplicating
+  the acquire/allocate/equip/deploy logic across two binaries would be the exact "second orchestrator"
+  risk the spec's own audit flagged for a different reason (a duplicate compose of the same real
+  calls).
+- **`actor-hub-live-proof` is an operation, not a build.** It produces no new source files — its
+  "implementation" is running the finished tool against a real game+server and writing down the
+  result. It cannot be parallelized with the other two modules (it depends on the tool existing) and
+  it cannot be delegated to an ordinary background coding subagent (see Orchestration model below).
+
+## Orchestration model (multi-agent, per owner's request)
+
+**One lead agent, two parallel worker agents, then a lead-run (or owner-run) live operation.**
+
+```
+Lead agent
+  │
+  ├─ dispatches Worker A ─ debug-scope-guard  (Tasks 1-3)  ─┐
+  │                                                          ├─ Checkpoint 1 (lead reviews both)
+  ├─ dispatches Worker B ─ live-probe-tool    (Tasks 4-8)  ─┘
+  │
+  └─ (after Checkpoint 1) runs actor-hub-live-proof itself, or hands off to the owner
+       (Tasks 9-12) — see "Why this phase is not delegated" below
+```
+
+- **Worker A and Worker B run concurrently** (independent subagents/background agents) — no file
+  overlap, no ordering constraint between them. The lead does not need to babysit either mid-flight;
+  it collects both results at Checkpoint 1.
+- **The lead reviews each worker's actual diff and test output before Checkpoint 1 passes** — not just
+  the worker's own summary. This session's own established practice (verifying a subagent's claims by
+  re-running the test command directly) applies here too: a worker reporting "guard green" or "tool
+  builds" is a claim, not a checkpoint pass, until the lead confirms it.
+- **Why Tasks 9-12 (`actor-hub-live-proof`) are not delegated to an ordinary subagent:** this phase
+  needs a real game + real server running, and `CLAUDE.md`'s own "Server lifetime" hard rule states an
+  agent-launched server dies when a synchronous tool call's process tree is reaped — it must be started
+  via `Start-Process` from a context that survives, which in practice means the owner's own terminal,
+  or a background agent the lead deliberately keeps alive across the whole operation (never a plain
+  foreground `Bash` call). The lead either runs this phase itself under those constraints, or hands it
+  to the owner explicitly — it is the one phase in this plan that is genuinely operational rather than
+  a coding task a fresh subagent can pick up cold.
+- **Parallelization classification** (per this skill's own categories): Worker A/B tasks are
+  independent feature slices — safe to parallelize. Tasks 9-12 are a dependency chain on a live,
+  stateful system — must be sequential, and largely un-parallelizable by nature (one game, one server,
+  one specimen at a time).
+
+## Risks and mitigations
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Worker A's guard rule still misclassifies some route neither audit pass found | Guard fails CI on a legitimate route, blocking `deploy-play.ps1` | Task 2's fixture tests cover the exact shapes the audit found (mixed body, `MapPost` helper, non-`"debug.*"` relay names) before the guard is wired into `deploy-play.ps1` (Task 3) |
+| Worker B's tool works against Mode A but Mode B's async poll never actually reaches a real game in testing | Tool ships un-provable against its own headline claim | Task 8 requires a recorded manual Mode B run (even a minimal one) before Checkpoint 2, not just Mode A automation |
+| `actor-hub-live-proof` finds T14 still broken (expected, per the known incident) | Could be mistaken for this plan failing | Named explicitly in the spec's own success criteria — an honest FAIL, correctly reported and left for `bound-loadout-hub` to fix, is this phase succeeding at its actual job, not failing it |
+| Owner's terminal/session availability for Tasks 9-12 | Phase 2 could stall indefinitely | Not a hard gate — Tasks 1-8 (both build modules) ship and are useful regardless of when Phase 2 runs; Phase 2 waits on the owner's own schedule, never blocks the rest of this plan from being marked done up to Checkpoint 1 |
+| Repeated `-Mode B` runs mint real, permanent `UniqueActor` roster rows on whatever player account runs them | A dev/test account accumulates junk specimens forever | Task 6 makes cleanup (`POST .../retire`) the default after a run, with an explicit opt-out for deliberate inspection |
+| A `debug.board-stats` poll timeout gets misread as "live-engine half failed to match" | Masks "no signal at all" (game/board/ptr wrong) as if it were "signal received, values wrong" — two different defects needing different fixes | Task 6 requires the two failure kinds be reported distinctly |
+| This session's own paths declaration didn't cover `live-probe`'s files until this coverage audit caught it | Another concurrent session's boundary check could have missed that these paths were in use | Fixed same-day: `tasks/sessions/solid-run-20260912-eb53.json`'s `paths` amended with a dated, explained addition, not a silent expansion |
+
+## Open questions
+
+None — resolved during `/spec`. No pre-work gate in this plan blocks on an external decision; Phase
+2's dependency on Phase 1 is a real code dependency (the tool must exist to run it), not a
+manufactured approval gate.
+
+## Next run — audit 2026-09-15
+
+Task 11 was closed on a run that did not match its own spec (random `typeId=3000`, no equip, live read
+timed out) and was funded by souls from debug-spawned kills after the run deleted this todo's own
+"never a debug credit" rule. Task 11 is reopened; Tasks 13–18 carry the gaps.
+
+**Order:** Task 13 (owner ruling) → Task 14 (real item) → Task 16 (materialisation defect) → Task 15
+(T14 as specified) → Task 17/18 in parallel with any of them.
+
+**Binding rule added:** funding, items and creatures consumed by a Mode B probe must come from paths real
+gameplay creates. Kill-earn from debug-spawned entities is Game Injector Debug state and never funds an
+RPG Server Debug proof. Changing that rule is an owner decision, never a mid-run substitution.
+
+**Task 18 landed offline (`0f82fe81`):** `zombie.die`/`plant.die` carry `spawnOrigin` and Mode B step 0
+fails the run when kill souls came from debug- or cheat-spawned entities. Kills captured before that
+commit read as `Unrecorded`, so player 1's existing balance stays unproven, never clean — consistent with
+Task 13's "tainted" default. Task 19 is the live check after the injector redeploy.
+
+## Next run — continuation 2, 2026-09-15
+
+**Closed:** Task 20 (facts paging; step 0 reports `FactNotFound:0`). **Task 17** has reconciliation evidence and two
+fixed mechanisms (lawn-combat-wire `L-N16`, `L-N29`) but no reproduction, so it stays open; a recurrence now shows as
+`ingestDroppedEvents` on `/health` or `staleDeadMarkHits` in the drain stats. Live runs now close with a result, so
+defeat/victory soul rows land on the run (lawn-combat-wire `L-N31`).
+
+**Before Tasks 14–16:** HEAD does not boot (lawn-combat-wire `L-N34`); until the rift-gate session fixes it, live work
+uses a worktree build of `38369ff3` plus later lawn-combat/live-probe commits. The 300z A/B credited debug-spawned kills
+to player 1 (`spawnOrigin: debug`), which step 0 reports as DEBUG-FUNDED; the balance was already ruled tainted (Task 13).
+

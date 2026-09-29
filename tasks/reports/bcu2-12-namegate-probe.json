@@ -1,0 +1,20 @@
+{
+ "reading": "BCU2.12 \u2014 the node gate's name-collision behaviour, model-free (no model, no writes)",
+ "repoHead": "5a64f47ca",
+ "gateWithTakenName": {
+  "problems": [
+   "field 'name' ('Kinetic Recirculation') is already used by another commander effect \u2014 this one needs a distinct name; siblings share motifs, so vary the wording deliberately"
+  ],
+  "refused": true,
+  "namesTheCollision": true
+ },
+ "controlWithUnrelatedTakenName": {
+  "problems": [],
+  "passed": true
+ },
+ "deriveUniqueNameKey": {
+  "Kinetic Recirculation": "tree.node.kinetic-recirculation-2",
+  "Fresh Phrase": "tree.node.fresh-phrase"
+ },
+ "nameKeySuffixed": true
+}

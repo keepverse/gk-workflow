@@ -1,0 +1,75 @@
+{
+  "verdict": "GREEN",
+  "lane": "cai4",
+  "logDir": "D:\\tmp\\accept-cai4-20260922-093602",
+  "contendedTree": false,
+  "when": "2026-09-22T09:36:21",
+  "sha": "3332b75e",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-093602\\boundary.log"
+    },
+    {
+      "check": "actor-hub",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "ACTOR-HUB GUARD OK",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-093602\\actor-hub.log"
+    },
+    {
+      "check": "core-ai",
+      "exit": 0,
+      "seconds": 12,
+      "summary": "Passed!  - Failed:     0, Passed:   107, Skipped:     0, Total:   107, Duration: 4 s - FusionRpg.Core.Balance.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-093602\\core-ai.log"
+    },
+    {
+      "check": "combat-projects",
+      "exit": 0,
+      "seconds": 3,
+      "summary": "Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 136 ms - FusionRpg.Core.CombatFanoutTests.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-093602\\combat-projects.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-cai4-20260922-093602\\ledger.log"
+    }
+  ],
+  "attribution": {
+    "knownRedMatched": 0,
+    "unattributed": 0,
+    "newUnregistered": 0
+  }
+}

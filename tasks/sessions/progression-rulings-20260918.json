@@ -1,0 +1,24 @@
+{
+  "session": "progression-rulings-20260918",
+  "program": "species-progression+empire-progression",
+  "problem": "Apply owner rulings R1, R2, R3, R4 and R6 (docs/architecture/spec-rulings-2026-09-18.md) to the species-progression and empire-progression maps and module specs: lift the answered gates, spec the resolved behaviour, move answered questions into a rulings-applied section, and update build order and gates. Docs only; no code, data, or tuning edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/species-progression-map.md",
+    "docs/architecture/species-progression/spec-empire-species-container.md",
+    "docs/architecture/species-progression/spec-species-layer-delivery.md",
+    "docs/architecture/species-progression/spec-species-layer-projector.md",
+    "docs/architecture/species-progression/spec-zomboss-commander-clock.md",
+    "docs/architecture/empire-progression-map.md",
+    "docs/architecture/empire-progression/spec-ai-empire-species.md",
+    "docs/architecture/empire-progression/spec-commander-roster.md",
+    "docs/architecture/empire-progression/spec-legion-commander.md",
+    "docs/architecture/empire-progression/spec-per-species-lean.md",
+    "docs/architecture/empire-progression/spec-default-build.md",
+    "tasks/sessions/progression-rulings-20260918.json"
+  ],
+  "started": "2026-09-18T15:00:00Z",
+  "status": "merged"
+}

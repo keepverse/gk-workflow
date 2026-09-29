@@ -1,0 +1,19 @@
+{
+  "session": "worktree-cleanup-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Add a conservative two-stage marker and cleanup tool for completed linked Git worktrees without deleting dirty work, branches, or session history.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/sessions/worktree-cleanup-20260925.json",
+    "scripts/worktree_cleanup_core.py",
+    "scripts/mark-worktree-cleanup.py",
+    "scripts/cleanup-worktrees.py",
+    "scripts/test_worktree_cleanup.py",
+    "docs/contributing/worktree-cleanup.md"
+  ],
+  "started": "2026-09-25T05:10:00Z",
+  "status": "abandoned",
+  "notes": "RETIRED 2026-09-25 by the resumed manager: the lane wrote its 6 files and stopped; they were never committed and its active record blocked the integration gate (post-merge-check refuses a dirty checkout) for hours. Work preserved byte-identical on this branch (adopt/worktree-cleanup-20260925). A confirmed fail-open defect remains: worktree_cleanup_core._runner_evidence reads only .kilo/agent-manager.json, so it cannot see opencode/cmdc lane owners; six independent adversarial audits returned REQUEST CHANGES. The repair is tracked as an open row in tasks/test-verification-boundary-todo.md and the tool must not be run against live worktrees until that row is done. Original notes: The existing scripts/inspect-worktrees.py and scripts/test_inspect_worktrees.py are already claimed by mega-merge-program-resume-20260925 and are intentionally not edited. The new core loads their parsers by path and preserves their CLI. | MANAGER CORRECTION 2026-09-26: both live-looking claims in the notes above are now stale, verified against this tree. (1) The fail-open defect is FIXED: scripts/worktree_cleanup_core.py:29-30 define the `.claude/opencode-agents/agents` and `.claude/cmdc-agents/agents` roots, and `_runner_evidence` (line 280) documents reading the legacy `.kilo/agent-manager.json` AND both lane registries; scripts/test_worktree_cleanup.py:70 has a `write_lane` helper that plants each runner's record. (2) The tracking row is CLOSED: tasks/test-verification-boundary-todo.md:1678 reads `- [x] **TVB-F37` with the same remedy. So the tool is no longer the thing the note warns about, and \"must not be run against live worktrees until that row is done\" no longer applies on this account. The branch `adopt/worktree-cleanup-20260925` itself is deliberately NOT merged: 3b36c52cd already evolved the same three files it would change, so merging would revert 298 accepted insertions while `git cherry` still reports its commit as unique. Only this record was taken from it."
+}

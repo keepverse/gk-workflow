@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "debug-mcp": {
+      "command": "python",
+      "args": [
+        "tools/debug-mcp/server.py"
+      ]
+    }
+  }
+}

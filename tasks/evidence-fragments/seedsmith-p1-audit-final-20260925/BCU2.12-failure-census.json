@@ -1,0 +1,182 @@
+{
+  "fragment": "BCU2.12 name-collision failure census",
+  "whyThisExists": "Distilled from two untracked interrupted-run artefacts held by three abandoned worktrees. Landing the 22.5 MB pair was rejected - the 10 MB log carries machine-local absolute paths this repo forbids committing, and both are regenerable residue of a run that completed 1 of 904 species. NOT calling it regenerable either: the already-landed 3.5 KB population census (BCU2.12-full-run.json) contains zero occurrences of \"error\", \"fail\" or \"reject\", so the failure census below was recorded nowhere at integration and would have died with the worktrees.",
+  "source": {
+    "ledger": "tree-language.ledger.json",
+    "ledgerBytes": 12467133,
+    "runLog": "BCU2.12-run.log",
+    "runLogBytes": 10033057,
+    "runStderrBytes": 0,
+    "head": "a331fae20  branch=corpus/bcu212",
+    "branch": "",
+    "ledgerSchemaVersion": 1,
+    "landedAtIntegration": false,
+    "note": "The sources are deliberately NOT landed. This fragment is the record; the files are not reproducible from it. Re-derive by re-running the BCU2.12 generation, or from a surviving copy of the ledger."
+  },
+  "reDerivation": {
+    "parseRule": "Count a row as a name-collision failure when its done[<nodeId>].detail matches field 'name' ('<name>') is already used by another commander effect. Group by the quoted <name>. Everything else with a detail is grouped by that detail with quoted strings, digit runs and node ids masked.",
+    "command": "python -c \"import json,collections,re;d=json.load(open('tree-language.ledger.json'))['done'];c=collections.Counter(re.search(r\"field 'name' \\\\('([^']*)'\\\\)\", r.get('detail') or '').group(1) for r in d.values() if r and r.get('detail'));print(len(d), sum(c.values()), c.most_common(10))\"",
+    "classifyingRule": "A number in this fragment is a dated reading of one interrupted run, never a contract. Do not pin it in a guardrail and do not quote it as a steady-state rate."
+  },
+  "population": {
+    "ledgerDoneRows": 15597,
+    "committedRecords": 10164,
+    "failedAttempts": 5433,
+    "failureRate": 34.83,
+    "failedOutcomes": {
+      "escalated": 3661,
+      "unresolved": 1739,
+      "blocked": 33
+    },
+    "failedAttemptsHistogram": {
+      "1": 5081,
+      "2": 352
+    },
+    "supersededRows": 673,
+    "denominatorNote": "The obvious reading - failures over all rows - is wrong by a third, because a row carrying a non-null `record` is a COMMITTED node and belongs in neither numerator. 10,164 rows committed, 5,433 did not, out of 15,597."
+  },
+  "finding": {
+    "headline": "Corpus-wide node-name uniqueness has no deterministic fallback. Of 15,597 attempted node subjects this run committed 10,164 and failed 5,433 (34.8%), and 3,633 of those 5,433 failures - 66.9% of all failures - are the SAME defect: a name-collision gate the model-only repair loop cannot satisfy.",
+    "collisionGateFailures": 3633,
+    "collisionShareOfFailures": 66.87,
+    "collisionFailureOutcomes": {
+      "escalated": 3633
+    },
+    "distinctRejectedNames": 957,
+    "topRejectedNames": [
+      {
+        "name": "Primal Ferocity",
+        "timesRejected": 74
+      },
+      {
+        "name": "Savage Instinct",
+        "timesRejected": 65
+      },
+      {
+        "name": "Glacial Bastion",
+        "timesRejected": 64
+      },
+      {
+        "name": "Chitinous Layering",
+        "timesRejected": 60
+      },
+      {
+        "name": "Accelerated Cadence",
+        "timesRejected": 52
+      },
+      {
+        "name": "Bountiful Harvest",
+        "timesRejected": 51
+      },
+      {
+        "name": "Exoskeletal Hardening",
+        "timesRejected": 44
+      },
+      {
+        "name": "Chitinous Reinforcement",
+        "timesRejected": 41
+      },
+      {
+        "name": "Glacial Momentum",
+        "timesRejected": 38
+      },
+      {
+        "name": "Glacial Aegis",
+        "timesRejected": 35
+      },
+      {
+        "name": "Fungal Proliferation",
+        "timesRejected": 33
+      },
+      {
+        "name": "Permafrost Bastion",
+        "timesRejected": 30
+      }
+    ],
+    "otherFailureShapes": [
+      {
+        "rows": 16,
+        "shape": "blocked"
+      },
+      {
+        "rows": 9,
+        "shape": "base call exhausted the repair budget: {'<x>': \"FAILED:form is '<x>' but propertyKeys is non-empty (('<x>',)) — '<x>' me"
+      },
+      {
+        "rows": 7,
+        "shape": "base call exhausted the repair budget: {'<x>': '<x>'name\\'<x>'s Hunger\") is already used by another commander effect — t"
+      },
+      {
+        "rows": 3,
+        "shape": "base call exhausted the repair budget: {'<x>': '<x>'name\\'<x>'s Foundation\") is already used by another commander effect"
+      },
+      {
+        "rows": 2,
+        "shape": "base call exhausted the repair budget: {'<x>': '<x>'name\\'<x>'s Momentum\") is already used by another commander effect —"
+      },
+      {
+        "rows": 2,
+        "shape": "base call exhausted the repair budget: {'<x>': '<x>', '<x>': '<x>', '<x>': '<x>', '<x>': '<x>', '<x>': '<x>', '<x>': '<x"
+      },
+      {
+        "rows": 1,
+        "shape": "skill.bamboodragon-def-t2-n0/affixIds: <n>-<n>-<n> vote, no majority"
+      },
+      {
+        "rows": 1,
+        "shape": "skill.bedrocksnowzombie-off-t7-n1/affixIds: <n>-<n>-<n> vote, no majority"
+      }
+    ]
+  },
+  "codeSites": {
+    "gate": {
+      "file": "tools/seedsmith/seedsmith/workflow/validators/field_echo.py",
+      "symbol": "name_collision",
+      "behaviour": "rejects when draft['name'] is in context['takenNames']",
+      "defect": "the message hardcodes \"another commander effect\", but this call site checks PASSIVE-TREE NODE names - every one of the failures above logged a message naming the wrong subject kind, which is why the ledger reads as 984 distinct shapes until the quoted name is masked out"
+    },
+    "caller": {
+      "file": "tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py",
+      "line": 249,
+      "seeding": "taken_names is seeded corpus-wide from the ledger own committed node record.name values (run.py:1084) and grows as records are accepted"
+    },
+    "repairBudget": {
+      "file": "tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py",
+      "symbol": "exhausted the repair budget",
+      "behaviour": "the only recovery is another model call; there is no deterministic rename fallback on this path"
+    },
+    "existingDeterministicCounterpart": {
+      "file": "tools/seedsmith/seedsmith/adapters/items/setgen/name_repair.py",
+      "symbols": [
+        "NameRepair",
+        "NameKeyRepair",
+        "collision_groups"
+      ],
+      "note": "the items pipeline solves the identical corpus-wide name-collision problem deterministically, keeping the lexically first id of each collision group and renaming every other row. The node path has no equivalent, which is the asymmetry this finding is about."
+    }
+  },
+  "logFailuresClassifiedAsTransient": {
+    "linesWithErrorLanguage": 52,
+    "signatures": [
+      {
+        "signature": "HTTP 500 Internal Server Error)",
+        "occurrences": 23
+      },
+      {
+        "signature": "HTTP 400 Bad Request)",
+        "occurrences": 22
+      },
+      {
+        "signature": "DegenerateGenerationError google/gemma-4-26b-a4b-qat",
+        "occurrences": 7
+      }
+    ],
+    "verdict": "all retried transport/model-transient conditions, not corpus findings - the reason the 10 MB log is not owed work"
+  },
+  "stillLiveAtIntegration": {
+    "checkedAt": "features/mega-merge",
+    "nameCollisionGatePresent": true,
+    "repairBudgetPresent": true,
+    "verdict": "both code sites are still present, so the finding is OPEN work, not a closed incident"
+  }
+}

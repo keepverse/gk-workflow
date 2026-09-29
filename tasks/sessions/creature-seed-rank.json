@@ -1,0 +1,37 @@
+{
+  "session": "creature-seed-rank",
+  "program": "creature-seed",
+  "problem": "species-rank Tasks 1-3: land the rank tuning table + loader (T1), the closed CreatureRank enum + ladder helpers + guard (T2), and the seedsmith derive/runner wiring (T3) — each with its own evidence, zero behavior change until a gate reads rank.",
+  "mode": "worktree",
+  "branch": "cmdc/cs-rank",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/cmdc-cs-rank",
+  "paths": [
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "tools/seedsmith/**",
+    "tests/**",
+    "data/seed/creatures/**",
+    "data/tuning/**",
+    "tasks/creature-seed-todo.md",
+    "tasks/creature-seed-ledger.jsonl",
+    "tasks/sessions/creature-seed-rank.json",
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-23T00:00:00Z",
+  "status": "abandoned",
+  "scopeNote": "Runner-assigned lane cs-rank on branch cmdc/cs-rank in a dedicated worktree created from 18972a5dc8f5. paths mirrors the runner brief's allowed paths, plus this session's own record (required by verify-change.ps1 and by the boundary checker). The worktree path is ABSOLUTE, resolved against the main checkout.",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 1577091a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/cs-rank",
+    "branchTip": "1577091a",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 1577091a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

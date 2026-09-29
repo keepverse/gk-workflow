@@ -1,0 +1,21 @@
+{
+  "session": "narrative-plan-20260920",
+  "program": "narrative-seed + npc-story-events",
+  "problem": "Plan phase: tasks/narrative-seed-plan.md + -todo.md and tasks/npc-story-events-plan.md + -todo.md from the approved maps and specs, including the proposed enforcement-registry rows and verification-boundary mappings as tasks; then an independent audit of both plans. Docs only.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tasks/sessions/narrative-plan-20260920.json",
+    "tasks/narrative-seed-plan.md",
+    "tasks/narrative-seed-todo.md",
+    "tasks/npc-story-events-plan.md",
+    "tasks/npc-story-events-todo.md"
+  ],
+  "started": "2026-09-19T21:10:00Z",
+  "status": "merged",
+  "notes": [
+    "Owner 2026-09-20: 'Go: plan both in parallel', plus R23 (Vault placements).",
+    "Charter (same conversation): Claude Code native, opus, plan quota, stop on quota/limit error; 2 writer agents in parallel, then one auditor.",
+    "Closed 2026-09-20: both plans written, aligned on one catalogued guard per program, and audited (18 of 19 findings fixed, 0 HIGH citations). narrative-seed 71 tasks / 4 gates; npc-story-events 94 tasks / 3 gates. Next: build, starting with the model-free waves."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "aliases": [
+        "michael-jackson",
+        "michael jackson",
+        "michael"
+      ],
+      "category": "real-person",
+      "confirmedBy": null,
+      "confirmedOn": null,
+      "decision": null,
+      "evidence": "census",
+      "mark": "michael-jackson",
+      "recheck": false,
+      "remediation": "upstream-imported",
+      "scope": null,
+      "source": "jackson trace 2026-09-23 (tasks/ip-censor/jackson-trace.md): _dump/almanac/zombie.json:134,218",
+      "stage": "reconfirm"
+    }
+  ],
+  "dataset": "reconfirm",
+  "datasetVersion": null,
+  "schemaVersion": 1
+}

@@ -1,0 +1,231 @@
+{
+  "gameState": {
+    "hasBoard": true,
+    "hasInitBoard": true,
+    "theBoardType": 0,
+    "theBoardTypeName": "Advanture",
+    "theBoardLevel": 2,
+    "sceneType": 0,
+    "initBoardReady": true,
+    "timeScale": 1,
+    "unscaledTime": 57.612682,
+    "gameTime": 47.393124,
+    "matchPhase": "InMatch",
+    "matchPhaseNote": "MatchHost.Runtime's own tracked FSM -- can desync from the real game after a server restart (real incident 2026-09-14: reported InMatch with living entities while the operator's screen showed a genuine defeat). Cross-checked below against real Unity object counts -- trust those over this phase when they disagree.",
+    "plantCount": 0,
+    "zombieCount": 0,
+    "phaseMismatch": true,
+    "liveState": "InMatch",
+    "ok": true
+  },
+  "dragonPtr": "24CF8CA7480",
+  "bindings": [
+    {
+      "instanceId": "d8c7e64071b94bff8f7074a80772101a",
+      "ptr": "24CF8CA7480",
+      "side": "plant",
+      "typeId": 1300,
+      "phase": "Bound",
+      "correlationId": "1e840dcf233a4c75aa8c7749a6418cf0"
+    }
+  ],
+  "observer": {
+    "TotalHits": 45,
+    "TotalSwings": 45,
+    "ActionTriggers": 45,
+    "StaminaSpent": 1125,
+    "RpgDeltaMergedHits": 45,
+    "RpgDeltaUnmergedRecords": 0,
+    "InjectorSessionActiveEverTrue": false,
+    "ServerSessionActiveEverTrue": false
+  },
+  "bound": {
+    "grantBound": true,
+    "joinedRiderRows": 17,
+    "outcomes": {
+      "crit": 10,
+      "miss": 4,
+      "hit": 2,
+      "blocked": 1
+    },
+    "attackerElements": {
+      "Air": 17
+    },
+    "sample": [
+      {
+        "Seq": 8,
+        "Frame": 7453,
+        "SwingId": "24CFA6EE150",
+        "AttackerPtr": "24CF8CA7480",
+        "VictimPtr": "24CF8E6B960",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      },
+      {
+        "Seq": 9,
+        "Frame": 7457,
+        "SwingId": "24CF8B07690",
+        "AttackerPtr": "24CF8CA7480",
+        "VictimPtr": "24CF8E6B960",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      },
+      {
+        "Seq": 10,
+        "Frame": 9134,
+        "SwingId": "24CFA6EE000",
+        "AttackerPtr": "24CF8CA7480",
+        "VictimPtr": "24CF8E6B640",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      },
+      {
+        "Seq": 11,
+        "Frame": 9139,
+        "SwingId": "24CFA6EE2A0",
+        "AttackerPtr": "24CF8CA7480",
+        "VictimPtr": "24CF8E6B640",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": 0,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "miss"
+      },
+      {
+        "Seq": 12,
+        "Frame": 9145,
+        "SwingId": "24CF8B07690",
+        "AttackerPtr": "24CF8CA7480",
+        "VictimPtr": "24CF8E6B640",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      }
+    ]
+  },
+  "plainDragon": {
+    "ptr": "24CF8CC9900",
+    "grantBound": true,
+    "joinedRiderRows": 28,
+    "outcomes": {
+      "miss": 8,
+      "crit": 13,
+      "hit": 7
+    },
+    "attackerElements": {
+      "Air": 28
+    },
+    "sample": [
+      {
+        "Seq": 1,
+        "Frame": 6979,
+        "SwingId": "24CF8CC9900:6979",
+        "AttackerPtr": "24CF8CC9900",
+        "VictimPtr": "24CF92D0960",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": 0,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "",
+        "MatchupRelation": "",
+        "RpgOutcome": "miss"
+      },
+      {
+        "Seq": 2,
+        "Frame": 7050,
+        "SwingId": "24CF8EA42A0",
+        "AttackerPtr": "24CF8CC9900",
+        "VictimPtr": "24CF92D0320",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      },
+      {
+        "Seq": 3,
+        "Frame": 7052,
+        "SwingId": "24CF8D6C7E0",
+        "AttackerPtr": "24CF8CC9900",
+        "VictimPtr": "24CF92D0320",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      },
+      {
+        "Seq": 4,
+        "Frame": 7399,
+        "SwingId": "24CF8D6C000",
+        "AttackerPtr": "24CF8CC9900",
+        "VictimPtr": "24CF92D0640",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -2642,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "hit"
+      },
+      {
+        "Seq": 5,
+        "Frame": 7431,
+        "SwingId": "24CFA6EEBD0",
+        "AttackerPtr": "24CF8CC9900",
+        "VictimPtr": "24CF8E6B320",
+        "AttackerSide": "plant",
+        "VanillaAmount": 2733,
+        "RpgDelta": -4068,
+        "RpgDeltaObserved": true,
+        "AttackerElement": "Air",
+        "VictimElement": "Earth",
+        "MatchupRelation": "Weak",
+        "RpgOutcome": "crit"
+      }
+    ]
+  },
+  "natural": {
+    "zombies": 24,
+    "withGrant": 24,
+    "joinedRiderRows": 0,
+    "outcomes": {},
+    "attackerElements": {},
+    "sample": []
+  },
+  "basicAttackGrantsOnBoard": 31
+}

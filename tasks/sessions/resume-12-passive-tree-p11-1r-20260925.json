@@ -1,0 +1,17 @@
+{
+  "session": "resume-12-passive-tree-p11-1r-20260925",
+  "program": "passive-tree",
+  "problem": "Implement P11.1r primary stat.modify fan-in through the existing derived AtomDerivedSubsystem shape, with no new composer or generated-data changes.",
+  "mode": "worktree",
+  "branch": "opencode/resume-12-passive-tree-p11-1r-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-12-passive-tree-p11-1r-20260925",
+  "paths": [
+    "src/FusionRpg.Core/PassiveTree/Resolve/TreeAtomSource.cs",
+    "tests/FusionRpg.Core.PassiveTree.Tests/PassiveTree/tests-PassiveTree/Resolve/TreeAtomSourceTests.cs",
+    "tests/FusionRpg.Core.PassiveTree.Tests/PassiveTree/tests-PassiveTree/Resolve/TreeBinderResolverParityTests.cs",
+    "tasks/reports/resume-12-passive-tree-p11-1r-20260925.md"
+  ],
+  "started": "2026-09-25T09:48:35Z",
+  "status": "abandoned",
+  "notes": "Blocked without source edits: the requested primary stat.modify fan-in has no lossless route inside the allowed derived-only fence. The report proves the missing primary carrier/operation contract, preserves the accepted parity repair, and records the owner/design follow-up. No merge or code acceptance claimed."
+}

@@ -1,0 +1,58 @@
+{
+  "logDir": "D:\\tmp\\accept-ep2-1-20260921-070508",
+  "contendedTree": false,
+  "verdict": "RED-KNOWN (1 check(s), registered debt only)",
+  "lane": "ep2-1",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep2-1-20260921-070508\\boundary.log"
+    },
+    {
+      "check": "core-aptitudes",
+      "exit": 0,
+      "seconds": 33,
+      "summary": "Passed!  - Failed:     0, Passed:   414, Skipped:     0, Total:   414, Duration: 9 s - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep2-1-20260921-070508\\core-aptitudes.log"
+    },
+    {
+      "check": "plan-gen",
+      "exit": 0,
+      "seconds": 5,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep2-1-20260921-070508\\plan-gen.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep2-1-20260921-070508\\ledger.log"
+    }
+  ],
+  "when": "2026-09-21T07:05:55",
+  "sha": "48576b91"
+}

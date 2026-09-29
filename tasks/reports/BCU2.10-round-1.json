@@ -1,0 +1,19 @@
+{
+  "job": "BCU2.10 T4.6 - B1 round-1 run",
+  "readings": {
+    "acceptedSize": 181,
+    "acceptedSizeFrom": "data/seed/actions/_reports/coverage-round-1.json _meta.acceptedCorpusSize",
+    "quotaDrift": "clean",
+    "quotaDriftFrom": "action.corpus.quotaDrift in _meta.verdict.evaluatedMetrics, absent from gapMetrics, verdict=pass",
+    "thinCellDetail": "48 thin cells with count<quota of 5435 entries; sum(quota-count)=20384",
+    "thinCellShortfall": 20384,
+    "verdict": "pass"
+  },
+  "report": "data/seed/actions/_reports/coverage-round-1.json",
+  "topLevelKeys": [
+    "_meta",
+    "entries",
+    "kind",
+    "schemaVersion"
+  ]
+}

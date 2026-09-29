@@ -1,0 +1,228 @@
+{
+ "reading": "BCU2.12/J9 \u2014 species-corpus progress, model-free (no writes)",
+ "repoHead": "7209d9f57",
+ "rosterSpecies": 904,
+ "j9AcceptanceTarget": 840,
+ "nodesPerTreeExpected": 40,
+ "speciesInLedger": 16,
+ "speciesWithNodeFile": 9,
+ "speciesWithMetadataFile": 8,
+ "speciesComplete": 4,
+ "speciesInLedgerWithoutNodeFile": [
+  "Bamboo",
+  "BambooFurnace",
+  "BambooSpruce",
+  "BedRockSnowZombie",
+  "BedRockTallNut",
+  "BigChomper",
+  "BigGatling"
+ ],
+ "unfileableByOwnDuplicateNameKey": [
+  "Bamboo",
+  "BambooFurnace",
+  "BambooSpruce",
+  "BedRockSnowZombie",
+  "BedRockTallNut",
+  "BigChomper",
+  "BigGatling"
+ ],
+ "completedFractionOfRoster": "4/904",
+ "rows": [
+  {
+   "species": "AbyssSwordStar",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 40,
+   "complete": true,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 1,
+    "uniqueNodeIds": 0
+   }
+  },
+  {
+   "species": "AcientSunNut",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 39,
+   "complete": false,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 1,
+    "uniqueNodeIds": 0
+   }
+  },
+  {
+   "species": "AllPeater",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 40,
+   "complete": true,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 1,
+    "uniqueNodeIds": 2
+   }
+  },
+  {
+   "species": "Apple",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 40,
+   "complete": true,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 2,
+    "uniqueNodeIds": 0
+   }
+  },
+  {
+   "species": "ArmedGargantuar",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 38,
+   "complete": false,
+   "duplicateNameKeys": 1,
+   "duplicateNameKeySamples": [
+    "tree.node.primal-surge-9"
+   ],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 1,
+    "uniqueNodeIds": 1
+   }
+  },
+  {
+   "species": "ArmoredImpZombie",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 40,
+   "complete": true,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 4,
+    "uniqueNodeIds": 3
+   }
+  },
+  {
+   "species": "AshThreePeater",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 39,
+   "complete": false,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 2,
+    "uniqueNodeIds": 8
+   }
+  },
+  {
+   "species": "BalloonZombie",
+   "ledgerAcceptedRows": 40,
+   "nodesOnDisk": 39,
+   "complete": false,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": {
+    "hasSummary": true,
+    "attempts": 1,
+    "uniqueNodeIds": 6
+   }
+  },
+  {
+   "species": "Bamboo",
+   "ledgerAcceptedRows": 30,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 2,
+   "duplicateNameKeySamples": [
+    "tree.node.resilient-pith",
+    "tree.node.thorned-momentum-2"
+   ],
+   "metadata": null
+  },
+  {
+   "species": "BambooDragon",
+   "ledgerAcceptedRows": 25,
+   "nodesOnDisk": 25,
+   "complete": false,
+   "duplicateNameKeys": 0,
+   "duplicateNameKeySamples": [],
+   "metadata": null
+  },
+  {
+   "species": "BambooFurnace",
+   "ledgerAcceptedRows": 31,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 1,
+   "duplicateNameKeySamples": [
+    "tree.node.searing-embers"
+   ],
+   "metadata": null
+  },
+  {
+   "species": "BambooSpruce",
+   "ledgerAcceptedRows": 37,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 2,
+   "duplicateNameKeySamples": [
+    "tree.node.overgrowth-surge-8",
+    "tree.node.sap-fed-capacitor"
+   ],
+   "metadata": null
+  },
+  {
+   "species": "BedRockSnowZombie",
+   "ledgerAcceptedRows": 25,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 1,
+   "duplicateNameKeySamples": [
+    "tree.node.permafrost-bastion"
+   ],
+   "metadata": null
+  },
+  {
+   "species": "BedRockTallNut",
+   "ledgerAcceptedRows": 35,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 1,
+   "duplicateNameKeySamples": [
+    "tree.node.layered-bark-10"
+   ],
+   "metadata": null
+  },
+  {
+   "species": "BigChomper",
+   "ledgerAcceptedRows": 32,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 2,
+   "duplicateNameKeySamples": [
+    "tree.node.kinetic-osmosis-6",
+    "tree.node.kinetic-osmosis-7"
+   ],
+   "metadata": null
+  },
+  {
+   "species": "BigGatling",
+   "ledgerAcceptedRows": 35,
+   "nodesOnDisk": null,
+   "complete": false,
+   "duplicateNameKeys": 2,
+   "duplicateNameKeySamples": [
+    "tree.node.ironclad-rhythm",
+    "tree.node.kinetic-recirculation-13"
+   ],
+   "metadata": null
+  }
+ ]
+}

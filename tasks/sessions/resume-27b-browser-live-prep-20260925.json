@@ -1,0 +1,15 @@
+{
+  "session": "resume-27b-browser-live-prep-20260925",
+  "program": "web",
+  "problem": "Worktree-local recovery of the browser/live proof checklist after predecessor external-directory denial.",
+  "mode": "worktree",
+  "branch": "opencode/resume-27b-browser-live-prep-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-27b-browser-live-prep-20260925",
+  "paths": [
+    "tasks/reports/resume-27b-browser-live-prep-20260925.md",
+    "tasks/sessions/resume-27b-browser-live-prep-20260925.json"
+  ],
+  "started": "2026-09-25T10:30:00Z",
+  "status": "abandoned",
+  "notes": "Worktree-local recovery returned a partial browser/live preparation report. Manager integrated the checklist and review record; no game, server, browser, slot, product, or live evidence claim was authorized."
+}

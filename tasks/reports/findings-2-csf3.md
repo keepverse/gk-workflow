@@ -1,0 +1,21 @@
+# CS-F3 — the species tree ships and the boot self-heals the roster
+
+Lane `findings-2`, 2026-09-23, under the owner ruling recorded in `tasks/content-stack-todo.md` CS-F3
+(commit `f49cd83b4`): ship `gk-data/packs/fusion/data/generated/creatures/**`, self-heal the boot once, no launcher change.
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| The pack carries the tree | `dotnet publish gk-core/src/FusionRpg.Server/FusionRpg.Server.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -o <pack>/Server` | exit 0; `gk-data/packs/fusion/data/generated/creatures` = **907** `.json` (**904** species rows + 3 `_`-prefixed siblings), `gk-data/packs/fusion/data/seed/**` = **1411**, `gk-core/data/tuning/*` = **188** | `gk-core/src/FusionRpg.Server/FusionRpg.Server.csproj` |
+| A **fresh** install boots, and says what it did | `./FusionRpg.Server.exe` from `<pack>/Server` with a brand-new `FUSIONRPG_DATA`; `curl :5711/health` | `[species] imported the roster — 904 written, 0 unchanged, from gk-data/packs/fusion/data/generated/creatures beside the exe`; `[content] imported the seed tree — catalog now at revision 1`; `{"ok":true,…,"contentSource":"imported","catalogRevision":1,"contentImportError":null}` | `gk-core/src/FusionRpg.Data/Seed/SpeciesImportRunner.cs`, `gk-core/src/FusionRpg.Server/Program.cs` |
+| The row's own Verify line | `pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-player-pack.ps1 -PackDir <pack>` | **`SMOKE PASSED`**, `probeExitCode 0`, `server_boot: "Health ok; contentSource='imported'; simEnabled off; /api/test/snapshot is SPA fallback (not SIM)."` | `artifacts/player-pack-smoke.json` — run-generated; it does not exist until a smoke run creates it, and is never tracked |
+| The runner's own contract | `dotnet test gk-core/tests/FusionRpg.Data.Tests -c Release --filter "FullyQualifiedName~SpeciesImportRunnerTests" --verbosity minimal` | `Passed! - Failed: 0, Passed: 5` — heals from the committed tree and the snapshot equals the id list; a second call is a no-op with no transaction; a missing tree answers `SpeciesTreeNotFound` without throwing; an `_`-prefixed sibling is not a species row; one broken file writes nothing | `gk-core/tests/FusionRpg.Data.Tests/Seed/SpeciesImportRunnerTests.cs` |
+| The pack layout cannot silently lose it again | `dotnet test gk-fusion/tests/FusionRpg.Launcher.Tests -c Release --verbosity minimal` | `Passed! - Failed: 0, Passed: 166` — including the planted case that names `Server\data\generated\creatures` | `gk-fusion/src/FusionRpg.Launcher/Services/PlayerPackProbe.cs` |
+| Boot wiring and siblings | `dotnet test gk-core/tests/FusionRpg.Server.Tests -c Release --verbosity minimal` | `833 passed / 2 failed`, both `RealRunCollectorTests` failing to spawn `powershell` in this shell; the pair passes 2/2 once the Windows PowerShell directory is on PATH | — |
+| The scoped plan (cross-module change) | `pwsh -NoProfile -ExecutionPolicy Bypass -Command "& ./scripts/verify-change.ps1 -Paths @(<8 changed paths>) -AllowUnscoped"` | doc-citations pass (0 HIGH each); `DAL GUARD OK`; `TEST SUBSTRATE GUARD OK`; `TEST-SHARDED OK: 4 shards, 1741 tests, no overlap`; then **exit 1** in the `guard` module | — |
+| Why that exit is not this change | `dotnet test gk-core/tests/FusionRpg.Guard.Tests -c Release` | `666 passed / 3 failed`: the two pre-existing reds filed in `tasks/reports/findings-2-head-guard-reds.md`, plus `VerificationBoundaryWorkflowTests.Integrity_guard_passes_on_the_current_registry` → `verification-boundary script timed out` (2 m 1 s) while the same guard's full coverage walk passes standalone (`VERIFICATION BOUNDARY GUARD OK`, exit 0) | — |
+
+**Not proved / owed.** (1) A full `pwsh -File scripts/publish-player.ps1` run: its injector half needs a game
+install or `artifacts/ci-drop-into-game`, and this worktree has neither, so the server half above is that
+script's own publish step, run with its exact flags. (2) `docs/testing/player-pack-smoke.md`'s "What it
+checks" list still does not name the three content trees the layout contract requires; that file is outside
+this lane's allowed paths — routed in the CS-F3 row, not patched.

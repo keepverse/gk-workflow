@@ -1,0 +1,23 @@
+{
+  "session": "resume-05-vocabulary-recovery-20260925",
+  "program": "creature-seed",
+  "problem": "Repair the FamilyExpand manifest schema/closure regression found by manager review, regenerate through the owning tool, and restore the failing Core consumers without hand-editing generated data.",
+  "mode": "worktree",
+  "branch": "opencode/resume-05-vocabulary-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-05-vocabulary-recovery-20260925",
+  "paths": [
+    "tools/FamilyExpandGen/**",
+    "tools/PassiveTreeRosterGen/**",
+    "data/seed/passive-tree/vocabulary.json",
+    "data/seed/atoms/generated/_family-expand.manifest.json",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+    "tests/FusionRpg.Core.Tests/Battle/TreeAtomSourceParityTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/Adoption/PassiveTreeMechanismRoundRecomposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/EquipAtomSourceIdTests.cs",
+    "tests/FusionRpg.Core.Tests/Match/UniqueEquipmentAtomMappingTests.cs",
+    "tasks/reports/resume-05-vocabulary-recovery-20260925.md"
+  ],
+  "started": "2026-09-25T08:05:04Z",
+  "status": "abandoned",
+  "notes": "Recovery worker completed a generator-first draft but did not commit or merge it. The manager accepted the reviewed successor at exact SHA 85d2c096f829edf2560ee1f67a80aef97c40cb13; this predecessor record is closed to release its overlapping fence. TreeBinder drift, CI wiring, and stale fixture/Core handoffs remain open in the successor ledger."
+}

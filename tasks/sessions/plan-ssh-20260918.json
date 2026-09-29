@@ -1,0 +1,15 @@
+{
+  "session": "plan-ssh-20260918",
+  "program": "strain-splice-host",
+  "problem": "Write the strain-splice-host plan/todo pair (prefix SSH) from its map and eight specs under the summoner-convergence parent",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/strain-splice-host-plan.md",
+    "tasks/strain-splice-host-todo.md",
+    "tasks/sessions/plan-ssh-20260918.json"
+  ],
+  "started": "2026-09-18T00:00:00Z",
+  "status": "merged"
+}

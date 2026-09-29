@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-02-battle-acceptance-20260925",
+  "sha": "7b4e8ef582a0744e20f501562a4b28167e402c89",
+  "shortSha": "7b4e8ef5",
+  "mergedSha": "dd573e05b75bdacadcb1676a2b5c7ea61497bd1f",
+  "verdict": "GREEN",
+  "scope": "Battle ActorHub live-derived routing, retained-damage observation, and reachable HP/per-mille numeric integrity",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "focused-battle-tests-clean",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "33 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-02-battle-acceptance-20260925/focused-battle-tests-clean.log",
+      "command": "dotnet test tests/FusionRpg.Core.Tests --filter FullyQualifiedName~BattleDerivedModifierLedgerTests|FullyQualifiedName~BattleHubComposeTests|FullyQualifiedName~BattleEffectMathTests|FullyQualifiedName~BattleEffectHostTests"
+    },
+    {
+      "check": "overflow-audit",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "A2=0, A3=0, A4=0, A5=0, A6=0",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-02-battle-acceptance-20260925/overflow-audit.log",
+      "command": "python scripts/audit-overflow.py"
+    },
+    {
+      "check": "battle-guards",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "ACTOR-HUB, SINGLE-WRITER, and FUNNEL DELTA guards passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-02-battle-acceptance-20260925/battle-guards.log",
+      "command": "scripts/guard-actor-hub.ps1; scripts/guard-single-writer.ps1; scripts/guard-funnel-delta.ps1"
+    },
+    {
+      "check": "path-owned-plan",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "Battle/effect/combat owners and focused guards selected",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-02-battle-acceptance-20260925/path-owned-plan.log",
+      "command": "scripts/verify-change.ps1 -Paths <eight concrete battle paths> -Session resume-02-battle-acceptance-20260925 -PlanOnly -Format json"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; status clean before and after focused checks",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-02-battle-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> 7b4e8ef582a0744e20f501562a4b28167e402c89; focused checks; git status --porcelain=v1",
+      "logSha256": "57279C9A0D851DFAFC617D70014B085AEA975BE0FDA91DF816ED888CAF6FFDB2",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "knownLimitations": [
+    "The complete path-owned aggregate passed 9749/9749 Core tests and the battle guards, then exceeded the 20-minute command limit while entering the broad Data owner selection; it is not counted as a terminal green aggregate.",
+    "The worker-reported unrelated SQLite Error 14 was not independently reproduced before that timeout.",
+    "No live battle/game proof was run."
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Core/Battle/BattleDerivedModifierLedger.cs",
+    "src/FusionRpg.Core/Battle/BattleRunState.cs",
+    "src/FusionRpg.Core/Battle/BattleEffects.cs",
+    "src/FusionRpg.Core/Combat/DamageApplyPipeline.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleDerivedModifierLedgerTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleHubComposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleEffectMathTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/BattleEffectHostTests.cs",
+    "tasks/reports/resume-02-battle-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "7b4e8ef582a0744e20f501562a4b28167e402c89",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "mergeScope": "The reviewed SHA is accepted and merged; the artifact does not turn the timed-out broad Data/Core aggregate or live proof into a pass.",
+  "when": "2026-09-25T09:00:00Z",
+  "expectedSha": "7b4e8ef582a0744e20f501562a4b28167e402c89",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-02-battle-acceptance-20260925"
+}

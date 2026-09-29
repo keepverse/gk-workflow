@@ -1,0 +1,9 @@
+# SE2.7 — `vocabulary-mirror` backlog, then gate
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| `STATUSES` 21 vs 24 resolved on the record | read `vocab.py`'s own comment + grepped every action/status doc for a `nerve.*` exclusion note | none found anywhere -- resolved **equal**, not subset: the 3 `nerve.*` ids added, dated comment naming the resolution | gk-forge/tools/seedsmith/seedsmith/adapters/actions/vocab.py |
+| Transcription tests assert owner-equality, not literals | `pytest gk-forge/tools/seedsmith/tests/test_actions_adapter.py` | **26/26 pass**; `test_nine_tags`/`test_twenty_one_statuses`/etc. replaced by 9 `..._match_the_owner_...` tests, each resolving the manifest's owner set fresh (added 2 new: eligibility-scope, pairing-role, previously untested by literal at all) | gk-forge/tools/seedsmith/tests/test_actions_adapter.py |
+| The guard gates | `python gk-core/scripts/guard-vocabulary-mirror.py`; `run-guards.ps1 -Tier ci` | `VOCABULARY MIRROR GUARD OK -- 9 pair(s) checked, no drift`; **17/17 CI guards green**; registry `backlog` -> `gating` | gk-core/scripts/enforcement-registry.v1.json |
+| SE2.6's own backlog-assertion test updated | `pytest gk-forge/tools/seedsmith/tests/test_guard_vocabulary_mirror.py` | **19/19 pass** (`RealTreeTests` rewritten from "asserts exactly 3 nerve findings" to "asserts fully clean", matching the resolved state) | gk-forge/tools/seedsmith/tests/test_guard_vocabulary_mirror.py |
+| No cross-file ripple from the STATUSES widen | `pytest` on every other file importing `actions.vocab` (8 files) | **523 passed, 2 skipped**; 5 pre-existing failures in `test_general_propose.py::RealWorkedExampleTests` confirmed unrelated (`data/seed/actions/_candidates/general/round-1.json` does not exist in this checkout -- a missing corpus file, not a vocabulary drift) | — |

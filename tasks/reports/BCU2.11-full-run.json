@@ -1,0 +1,36 @@
+{
+  "job": "BCU2.11 item-seedgen full run",
+  "head": "ac0fd77c",
+  "branch": "corpus/bcu211",
+  "itemJsonFiles": 1048,
+  "itemJsonFilesByKind": {
+    "sets": 885,
+    "base-types": 62,
+    "uniques": 18,
+    "affix-families": 16,
+    "_registry": 15,
+    "_runs": 8,
+    "_tuning": 6,
+    "consumables": 6,
+    "charms": 5,
+    "_exemplars": 4,
+    "combinations": 4,
+    "drop-tables": 4,
+    "display-templates": 3,
+    "gems": 3,
+    "materials": 2,
+    "_seed": 1,
+    "curves": 1,
+    "enhancement-milestones": 1,
+    "rare-names": 1,
+    "recipes": 1,
+    "relics": 1,
+    "socket-words": 1
+  },
+  "ledgerFiles": [],
+  "ledgerOutcomes": {},
+  "gitStatusPorcelainCount": 70,
+  "diffStatTail": [
+    " 68 files changed, 129299 insertions(+), 330 deletions(-)"
+  ]
+}

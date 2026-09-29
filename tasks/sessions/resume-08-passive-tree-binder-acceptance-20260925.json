@@ -1,0 +1,18 @@
+{
+  "session": "resume-08-passive-tree-binder-acceptance-20260925",
+  "program": "passive-tree",
+  "problem": "Manager clean-checkout acceptance of the PassiveTree TreeAtomSource/TreeResolveReport parity repair; preserve the red corpus and owner-bound primary route as open limitations.",
+  "mode": "worktree",
+  "branch": "review/passive-tree-binder-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-passive-tree-binder-20260925",
+  "paths": [
+    "src/FusionRpg.Core/PassiveTree/Resolve/TreeAtomSource.cs",
+    "src/FusionRpg.Core/PassiveTree/Resolve/TreeResolveReport.cs",
+    "tests/FusionRpg.Core.PassiveTree.Tests/PassiveTree/tests-PassiveTree/Resolve/TreeBinderResolverParityTests.cs",
+    "tasks/reports/resume-08-passive-tree-binder-20260925.md",
+    "tasks/reports/resume-08-passive-tree-binder-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T09:50:00Z",
+  "status": "merged",
+  "notes": "Manager clean-checkout acceptance completed at exact SHA 1984dfcd185a26b7d2127c871b712e4f0f985e5f and merged at 3aa8d7656a70e159892f9ab17dec397a00f9d39f. Focused checks and clean checkout passed; artifact: .claude/cmdc-agents/acceptance/resume-08-passive-tree-20260925-1984dfcd.json. TreeBinder corpus and owner/content boundaries remain open."
+}

@@ -1,0 +1,24 @@
+{
+  "session": "resume-00c-split-core-mapping-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Manager acceptance of the split-Core owner mapping diff after the worker's selected Guard verifier stalled; run bounded focused/planner evidence, commit an exact SHA, and keep the timeout truthful.",
+  "mode": "worktree",
+  "branch": "review/split-core-mapping-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-split-core-mapping-20260925",
+  "paths": [
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/SplitCoreVerificationMappingTests.cs",
+    "src/FusionRpg.Core/Activity/PvzActivityKinds.cs",
+    "src/FusionRpg.Core/Delve/Report/DelveReport.cs",
+    "src/FusionRpg.Core/Expeditions/ExpeditionResolver.cs",
+    "src/FusionRpg.Core/PassiveTree/State/TreeNodeSet.cs",
+    "src/FusionRpg.Core/Progression/RpgProgression.cs",
+    "src/FusionRpg.Core/Scope/WhoSelector.cs",
+    "src/FusionRpg.Core/Vfx/VfxCatalog.cs",
+    "src/FusionRpg.Core/Events/GameEventRing.cs",
+    "tasks/reports/resume-00c-split-core-mapping-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T07:20:00Z",
+  "status": "merged",
+  "notes": "Split-Core mapping accepted at exact SHA ff934d08baeaa9d8832e6fcbab00c1a4b50c0db1, clean-checkout verified, and merged at 06ea826d629d5862ad3926232f8682761e12d3c1. Artifact: .claude/cmdc-agents/acceptance/resume-00c-split-core-mapping-20260925-ff934d08.json. The full Guard selection's load-sensitive timeout is retained as a limitation; focused P6/direct guard evidence is recorded."
+}

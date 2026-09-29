@@ -1,0 +1,16 @@
+{
+  "session": "ip-censor-t15-species-avoid-20260926",
+  "program": "ip-censor",
+  "problem": "Close T15's two halves (the uniques brief cites a competitor franchise by name at adapters/items/uniques/briefs.py:284, and never adopted the shared avoid line) and thread the existing briefkit.avoid_list helper into the species node path, which carries no avoid list at all, so IC-3/IC-4 IP protection reaches species node briefs.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tools/seedsmith/**",
+    "tasks/reports/ip-censor-t15-species-avoid-20260926.md",
+    "tasks/sessions/ip-censor-t15-species-avoid-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "Closed as merged: direct-mode on features/mega-merge at c6e416db4, so the work is already on the integration branch and there is no separate merge step for the manager to run - the manager reviews the SHA. T15 turned out to be entirely open, not half: the franchise citation at briefs.py:284 AND the avoid-line adoption were both missing (zero hits for avoid_list under adapters/items/ at the start commit). The species node path also carried no avoid list and is not named in any closed row, which is finding F5. Both findings falsified red-then-green by reverting the three production files, running the new tests against the original code (5 failed, then 2 failed), and restoring byte-exact by SHA-256. Whole seedsmith suite: 6 failed / 4719 passed; 4 proven pre-existing on a detached worktree at the start commit 10ba26399, and 2 proven environmental in this checkout (a gitignored .venv-verify/ inside the tool tree, and this repo's local core.autocrlf=true putting 1018 committed LF blobs on disk as CRLF) - neither caused by this change, neither actioned. Fence honoured and re-checked: tools/seedsmith/**, this report and this record only. Deliberately excluded: scripts/** (ps1-ban's plane, including verification-boundaries.v1.json - finding F4), data/** (generator-first; no corpus regeneration authorised, no data/seed row edited), src/**, web/**, and tasks/ip-censor-todo.md (F3 and F5 are ledger edits the manager applies). Seven findings for the manager (F1 registry coverage gap, F2 the permanently-empty narrative avoid reader at character_vocab.py:285, F3 the uniques prompt-version clause, F4 the scoped selector missing the new test file, F5 the unowned species row, F6 the tree-flavoured shared line wording, F7 the ~31 unadopted prompt modules, F8 the autocrlf drift) are all in tasks/reports/ip-censor-t15-species-avoid-20260926.md."
+}

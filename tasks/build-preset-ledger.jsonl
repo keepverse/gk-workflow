@@ -1,0 +1,126 @@
+{"ts":"2026-09-20T05:38:08Z","kind":"anchor","plan":"tasks/build-preset-plan.md","todo":"tasks/build-preset-todo.md","session":"build-preset-20260920","specs":["docs/architecture/build-preset/spec-gate-services.md","docs/architecture/build-preset/spec-item-loadout-apply.md","docs/architecture/build-preset/spec-preset-store.md","docs/architecture/build-preset/spec-piece-appliers.md","docs/architecture/build-preset/spec-apply-orchestrator.md","docs/architecture/build-preset/spec-capture-current.md","docs/architecture/build-preset/spec-preset-surface.md"],"standards":"PRINCIPLES + DESIGN-GATE build-preset row + decisions locks, read 2026-09-20; parent tasks/summoner-convergence-plan.md lane B chain SP-EP-BP","queue":["BP1.1","BP1.2","BP1.3","BP1.4","BP1.5","BP1.6","BP1.7","BP1.8","BP1.9","BP1.10","BP1.11","BP1.12","BP2.1","BP2.2","BP2.3","BP2.4","BP2.5","BP2.6","BP2.7","BP2.8","BP2.9","BP2.10","BP2.11","BP2.12","BP2.13","BP2.14","BP2.15","BP3.1","BP3.2","BP3.3","BP3.4","BP3.5"],"mark":"mk1-f572395a544b4953"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.4","state":"started","mark":"mk1-af0d1481b09698bd"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.4","state":"blocked","reason":"waits on EP1.10 (specimen-respec-price), EP4.10 (respec-free-counter)","mark":"mk1-d7a0692798080f78"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.5","state":"started","mark":"mk1-77b9b9bd7482b5ed"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.5","state":"blocked","reason":"waits on BP1.4, transitively EP1.10/EP4.10","mark":"mk1-ca6f72eb4313a4fa"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.9","state":"started","mark":"mk1-37ef3945cfc18854"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.9","state":"blocked","reason":"waits on EP3.3, SE4.4","mark":"mk1-b17e06533cea8ba2"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.10","state":"started","mark":"mk1-efb5a73dec62252d"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.10","state":"blocked","reason":"waits on BP1.9, transitively EP3.3/SE4.4","mark":"mk1-72b2575a994e9f0d"}
+{"ts":"2026-09-20T05:41:18Z","kind":"task","id":"BP1.11","state":"started","mark":"mk1-deb06c2fc935ac85"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP1.11","state":"blocked","reason":"waits on BP1.10 (transitively EP3.3/SE4.4) plus SE4.12, SE4.14 directly","mark":"mk1-13eb2cecd255cabe"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP1.12","state":"started","mark":"mk1-3f051a2d4c5edd8d"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP1.12","state":"blocked","reason":"waits on BP1.11, transitively EP3.3/SE4.4/SE4.12/SE4.14","mark":"mk1-608e3068faf1a1d3"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.3","state":"started","mark":"mk1-ddbb62c832f4d90c"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.3","state":"blocked","reason":"waits on BP1.12, transitively EP3.3/SE4.4/SE4.12/SE4.14 (BP2.1, BP1.3 sides are ready)","mark":"mk1-4b040df6191a105b"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.4","state":"started","mark":"mk1-b8655930edc8e2ff"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.4","state":"blocked","reason":"waits on BP2.3, transitively same EP/SE4 chain (BP2.2 side is ready)","mark":"mk1-10257388b625a509"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.5","state":"started","mark":"mk1-6b1f5a3de3a5009b"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.5","state":"blocked","reason":"waits on BP1.5 and BP2.3, both transitively EP-blocked","mark":"mk1-159fa18072f58439"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.6","state":"started","mark":"mk1-6ed23956c6b178a3"}
+{"ts":"2026-09-20T05:41:19Z","kind":"task","id":"BP2.6","state":"blocked","reason":"waits on BP2.3, transitively EP-blocked (BP1.7 side is ready)","mark":"mk1-eb8ce617ae189f82"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.7","state":"started","mark":"mk1-4e76a4fa6832ae4d"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.7","state":"blocked","reason":"waits on BP2.4, BP2.5, BP2.6, all transitively EP-blocked","mark":"mk1-e1281a2d8ba6ec6a"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.8","state":"started","mark":"mk1-9942e1a8e44f74ae"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.8","state":"blocked","reason":"waits on BP1.9 directly: EP3.3, SE4.4","mark":"mk1-f9ff6aa6e7a11fc8"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.9","state":"started","mark":"mk1-bad4006ecc5361c6"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.9","state":"blocked","reason":"waits on BP2.7 and BP2.8, both transitively EP-blocked","mark":"mk1-8228d13ae6dd2316"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.10","state":"started","mark":"mk1-024a49a63f4e4690"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.10","state":"blocked","reason":"waits on BP2.9, transitively EP-blocked","mark":"mk1-20f47c9e9c656eef"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.11","state":"started","mark":"mk1-c17668ca083f0f3b"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.11","state":"blocked","reason":"waits on BP2.10, transitively EP-blocked","mark":"mk1-2e432e85d4954b5e"}
+{"ts":"2026-09-20T05:41:20Z","kind":"task","id":"BP2.13","state":"started","mark":"mk1-213c096c1c8fe751"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP2.13","state":"blocked","reason":"waits on BP1.11, transitively EP/SE4-blocked (BP1.6 side is ready)","mark":"mk1-c091f6c6e839ed37"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP2.14","state":"started","mark":"mk1-3240f135f243889b"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP2.14","state":"blocked","reason":"waits on BP2.13 and BP1.12, both transitively EP/SE4-blocked (BP2.12 side is ready)","mark":"mk1-816fc48dcc09829a"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP2.15","state":"started","mark":"mk1-aef98163c35201f2"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP2.15","state":"blocked","reason":"waits on BP2.14 and BP2.10, both transitively EP-blocked","mark":"mk1-6b4e16f153c0e956"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP3.2","state":"started","mark":"mk1-66564f183a09f637"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP3.2","state":"blocked","reason":"waits on BP2.10 and BP2.14, both transitively EP-blocked","mark":"mk1-8b297538fdaf7595"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP3.3","state":"started","mark":"mk1-537b8fe8337596b1"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP3.3","state":"blocked","reason":"waits on BP3.2, transitively EP-blocked (BP3.1 side is ready)","mark":"mk1-b17deac6f0e38ae3"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP3.5","state":"started","mark":"mk1-5718c2d6f1f91745"}
+{"ts":"2026-09-20T05:41:21Z","kind":"task","id":"BP3.5","state":"blocked","reason":"waits on BP3.3, transitively EP-blocked (BP3.4 side is ready)","mark":"mk1-8942e0635feeaaa3"}
+{"ts":"2026-09-20T05:45:04Z","kind":"note","text":"Dep analysis: 11 BP tasks ready now (no EP/SE4 dep): 1.1,1.2,1.3,1.6,1.7,1.8,2.1,2.2,2.12,3.1,3.4. Rest blocked via chain roots EP1.10,EP4.10,EP3.3,SE4.4,SE4.12,SE4.14. Recorded per-task above.","mark":"mk1-9328ad404a45bbcd"}
+{"ts":"2026-09-20T05:45:04Z","kind":"gate","name":"session-boundary-check","result":"pass","mark":"mk1-c35a0875e5d3779d"}
+{"ts":"2026-09-20T05:46:03Z","kind":"note","text":"boundary-check residual: verification-boundaries.v1.json shared with keepverse-split.json, append-only registry (SE3.7 precedent). Known/low-risk, other active sessions already share it unresolved; not a blocker.","mark":"mk1-cc76208d61c8c343"}
+{"ts":"2026-09-20T05:50:07Z","kind":"task","id":"BP1.1","state":"started","mark":"mk1-f4f832108960a5e7"}
+{"ts":"2026-09-20T06:12:49Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-2cf137caa27c14ce"}
+{"ts":"2026-09-20T06:12:49Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-bc0a879ee8e0dd8d"}
+{"ts":"2026-09-20T06:12:49Z","kind":"task","id":"BP1.1","state":"done","evidence":"tasks/evidence-fragments/BP1.1.md","mark":"mk1-514fc6c17b6d52bb"}
+{"ts":"2026-09-20T06:13:35Z","kind":"task","id":"BP1.2","state":"started","mark":"mk1-33a71a481e77686c"}
+{"ts":"2026-09-20T06:25:30Z","kind":"note","text":"ASP.NET minimal API reflects for ANY method named BindAsync (instance too) on a lambda parameter's type and throws if non-static. ContractService.BindAsync (spec's own name) collided; fixed with explicit [FromServices] on every ContractService param, not a rename.","mark":"mk1-819177ab092a35e3"}
+{"ts":"2026-09-20T06:25:30Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-e38f72fd69ce0644"}
+{"ts":"2026-09-20T06:25:30Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-8b89f0264b1ad2c4"}
+{"ts":"2026-09-20T06:25:30Z","kind":"task","id":"BP1.2","state":"done","evidence":"tasks/evidence-fragments/BP1.2.md","mark":"mk1-f2376180dcb3875d"}
+{"ts":"2026-09-20T06:25:53Z","kind":"task","id":"BP1.3","state":"started","mark":"mk1-c083bad6c769ffb7"}
+{"ts":"2026-09-20T06:33:04Z","kind":"note","text":"ActionLoadoutService constructed inline in the route (new ActionLoadoutService(store)), not a DI param -- LoadoutEndpointsTests.cs's isolated host registers only RpgStore and stays unedited. Still registered singleton in Program.cs for BP2.3's SkillsApplier.","mark":"mk1-4a4b2a3faafe1b7c"}
+{"ts":"2026-09-20T06:33:04Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-e2caabdfdeeb4759"}
+{"ts":"2026-09-20T06:33:05Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-5983ca66f81a3854"}
+{"ts":"2026-09-20T06:33:05Z","kind":"task","id":"BP1.3","state":"done","evidence":"tasks/evidence-fragments/BP1.3.md","mark":"mk1-26329442a217fa2b"}
+{"ts":"2026-09-20T06:33:42Z","kind":"task","id":"BP1.6","state":"started","mark":"mk1-f1db14861f5b36a3"}
+{"ts":"2026-09-20T06:43:19Z","kind":"note","text":"Session fence gap: build-preset-20260920.json missed tests/FusionRpg.Core.Tests/Items/LoadoutReportTests.cs (BP1.6 needed it). verify-change.ps1 refused with a scope error; fixed by adding the path, re-ran boundary-check clean.","mark":"mk1-3ae61f74c11165a8"}
+{"ts":"2026-09-20T06:43:20Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-7550768ff19f06c7"}
+{"ts":"2026-09-20T06:43:20Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-7032bb4bfaea6967"}
+{"ts":"2026-09-20T06:43:20Z","kind":"task","id":"BP1.6","state":"done","evidence":"tasks/evidence-fragments/BP1.6.md","mark":"mk1-06b7a63343616aeb"}
+{"ts":"2026-09-20T06:43:48Z","kind":"task","id":"BP1.7","state":"started","mark":"mk1-215a12176cd56167"}
+{"ts":"2026-09-20T06:58:28Z","kind":"note","text":"Session fence gap #2: missed src/FusionRpg.Server/ItemEquipEndpoints.cs (widened SyncLawnRuntimeAsync private->internal for BP1.7 reuse). Added, boundary-check clean.","mark":"mk1-a0284d237bc6d4f7"}
+{"ts":"2026-09-20T06:58:28Z","kind":"note","text":"Relic catalog ids are slot-locked (relic.ashen_reliquary=weapon, relic.tidewrack_band=armor, relic.cracked_seal=trinket, per RelicRowMigrationTests.cs). A slot-mismatched relic id refuses PutEquipment with slot_mismatch.","mark":"mk1-421f52651372d25e"}
+{"ts":"2026-09-20T06:58:28Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-9dad5597d6fd70bf"}
+{"ts":"2026-09-20T06:58:28Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-15715aa91d324168"}
+{"ts":"2026-09-20T06:58:28Z","kind":"task","id":"BP1.7","state":"done","evidence":"tasks/evidence-fragments/BP1.7.md","mark":"mk1-4e33228c80e0dc71"}
+{"ts":"2026-09-20T06:59:00Z","kind":"task","id":"BP1.8","state":"started","mark":"mk1-04a15ccf6edc2886"}
+{"ts":"2026-09-20T07:06:36Z","kind":"note","text":"CP1's first bullet (patron/contract/loadout/aptitude-preset unedited) left unticked: patron/contract/action-loadout done, aptitude-preset group is BP1.4/BP1.5, blocked on EP1.10/EP4.10. Second CP1 bullet (item loadout over HTTP) ticked.","mark":"mk1-ca4109b2cd2f3f82"}
+{"ts":"2026-09-20T07:06:36Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-5a6a85a9ead02b4a"}
+{"ts":"2026-09-20T07:06:36Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-c8105e29212933ec"}
+{"ts":"2026-09-20T07:06:36Z","kind":"task","id":"BP1.8","state":"done","evidence":"tasks/evidence-fragments/BP1.8.md","mark":"mk1-cee33f0f4a1b17aa"}
+{"ts":"2026-09-20T07:07:01Z","kind":"task","id":"BP2.1","state":"started","mark":"mk1-f3c52218bec1d776"}
+{"ts":"2026-09-20T07:12:52Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-96481bd174e38004"}
+{"ts":"2026-09-20T07:12:52Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-a1398568c6fb1cf6"}
+{"ts":"2026-09-20T07:12:52Z","kind":"task","id":"BP2.1","state":"done","evidence":"tasks/evidence-fragments/BP2.1.md","mark":"mk1-72c88c0cad6258a2"}
+{"ts":"2026-09-20T07:13:16Z","kind":"task","id":"BP2.2","state":"started","mark":"mk1-c74c310c13bcd6da"}
+{"ts":"2026-09-20T07:25:59Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-e51c766e3ef8ed1c"}
+{"ts":"2026-09-20T07:25:59Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-55c6cd8542e2d571"}
+{"ts":"2026-09-20T07:26:00Z","kind":"task","id":"BP2.2","state":"done","evidence":"tasks/evidence-fragments/BP2.2.md","mark":"mk1-d1c042c287a504ca"}
+{"ts":"2026-09-20T07:26:58Z","kind":"task","id":"BP2.12","state":"started","mark":"mk1-ff49141c182c2046"}
+{"ts":"2026-09-20T07:33:36Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-6106106abedac276"}
+{"ts":"2026-09-20T07:33:36Z","kind":"task","id":"BP2.12","state":"done","evidence":"tasks/evidence-fragments/BP2.12.md","mark":"mk1-fdf513105dce06f7"}
+{"ts":"2026-09-20T07:34:54Z","kind":"note","text":"BP3.1 next-ready is an idea-ui design pass (idea-ui-phase.md), not code -- needs its own DESIGN-GATE reading pass first. Pausing here to report; 9/32 done, rest EP/SE4-blocked or design-track.","mark":"mk1-711e64a35e15e0f7"}
+{"ts":"2026-09-20T07:44:36Z","kind":"task","id":"BP3.1","state":"started","mark":"mk1-8faeb665d129fd12"}
+{"ts":"2026-09-20T07:44:43Z","kind":"note","text":"BP3.1 DESIGN-GATE reading done in-session: idea-ui-phase, game-gui-principles (full), gui-lego authoring/ideal/map, design README, menu-refactor-queue, decisions GUI Lego row, actor-sheet-ideal, spec-preset-surface, tech-stack, railState.ts, aptitude-preset-console.","mark":"mk1-95f598c2435c5cb9"}
+{"ts":"2026-09-20T08:07:13Z","kind":"note","text":"BP3.1: host=new rail entry 'Builds' key B, depth 1 (GG-9/GG-10, aptitude console already at depth 3). Reuses preset-gallery (widened, canonicalized). 5 new piece specs + recipe committed. Backlinked spec-preset-surface.md, closing an audit-program-pipeline gap.","mark":"mk1-d8a97bdd9f93613f"}
+{"ts":"2026-09-20T08:07:14Z","kind":"gate","name":"doc-citations","result":"pass","mark":"mk1-d97beb43ab97d3c9"}
+{"ts":"2026-09-20T08:07:14Z","kind":"gate","name":"audit-program-pipeline","result":"pass","mark":"mk1-909511c27134dbcc"}
+{"ts":"2026-09-20T08:07:14Z","kind":"gate","name":"population-pin","result":"pass","mark":"mk1-95f50299f35b069b"}
+{"ts":"2026-09-20T08:07:14Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-aac3b134265d744d"}
+{"ts":"2026-09-20T08:07:14Z","kind":"task","id":"BP3.1","state":"done","evidence":"tasks/evidence-fragments/BP3.1.md","mark":"mk1-1dbd803e42ceda08"}
+{"ts":"2026-09-20T08:07:50Z","kind":"task","id":"BP3.4","state":"started","mark":"mk1-b281f8d1754cc122"}
+{"ts":"2026-09-20T08:22:17Z","kind":"note","text":"BP3.4: found 6 more real occurrences of the Build-presets/Aptitude-presets naming collision beyond the todo's own two files (toasts, fallback label, recipe notes x2, live spec, consolidated piece spec) -- fixed all. Confirmed rest of repo's 'Build presets' hits are legitimate.","mark":"mk1-4676ff670d1f1fc1"}
+{"ts":"2026-09-20T08:22:17Z","kind":"note","text":"Real gap found: verification-boundaries.v1.json has ZERO web/fusion-rpg-web entries (14 projects, all .NET). verify-change.ps1 correctly refused rather than broad-fallback. Verified via BP3.4's own named commands directly; gap belongs to test-verification-boundary, not this task.","mark":"mk1-054a73aa96d78dea"}
+{"ts":"2026-09-20T08:22:17Z","kind":"gate","name":"doc-citations","result":"pass","mark":"mk1-e2ab2e15aa08571f"}
+{"ts":"2026-09-20T08:22:17Z","kind":"gate","name":"npm-test-aptitude","result":"pass","mark":"mk1-a403eaece8b91bf4"}
+{"ts":"2026-09-20T08:22:17Z","kind":"gate","name":"npm-build","result":"pass","mark":"mk1-dd7212df535222ac"}
+{"ts":"2026-09-20T08:22:17Z","kind":"gate","name":"npm-extract","result":"pass","mark":"mk1-1220a653769048ba"}
+{"ts":"2026-09-20T08:22:17Z","kind":"task","id":"BP3.4","state":"done","evidence":"tasks/evidence-fragments/BP3.4.md","mark":"mk1-6212294a0e585a04"}
+{"ts":"2026-09-20T08:25:12Z","kind":"note","text":"Re-checked 21 blockers after mega-merge (25e7ab15). SE4.4/SE4.12/SE4.14 landed. EP1.9/EP1.10 exist only on the EP agent's unmerged branch; EP3.3/EP4.10 do not exist yet. Every chain still needs a pending EP piece. All 21 stay blocked, unchanged.","mark":"mk1-66e97d29d6877967"}
+{"ts":"2026-09-23T05:18:38Z","kind":"task","id":"BP1.4","state":"started","mark":"mk1-50e36514c05aa185"}
+{"ts":"2026-09-23T05:18:39Z","kind":"gate","name":"guard:dal","result":"pass","mark":"mk1-91c2182dc46d7f33"}
+{"ts":"2026-09-23T05:18:49Z","kind":"note","text":"AptitudePresetEndpointsTests' isolated host registers only RpgStore+IPowerIndexProvider, so a DI-resolved AptitudePresetActivation lambda param became a second inferred body (24 reds). Constructed inline in the lambda (BP1.3 precedent); Program.cs keeps the singleton for BP2.3.","mark":"mk1-bd41b15cff9aba70"}
+{"ts":"2026-09-23T05:18:49Z","kind":"task","id":"BP1.4","state":"done","evidence":"tasks/evidence-fragments/BP1.4.md","mark":"mk1-3e095fa177f40f45"}
+{"ts":"2026-09-23T05:18:49Z","kind":"task","id":"BP1.5","state":"started","mark":"mk1-01465bfe3e56d4a1"}
+{"ts":"2026-09-23T05:18:49Z","kind":"note","text":"Defect the BP1.5 test caught: Preview passed the request scopeKey to QuoteReallocation, empty for commander, while the write prices against player:{id}. Fixed by ReallocationKey(playerId, scope, scopeKey), used by Preview.","mark":"mk1-c9e9ee88cbec1436"}
+{"ts":"2026-09-23T05:18:49Z","kind":"task","id":"BP1.5","state":"done","evidence":"tasks/evidence-fragments/BP1.5.md","mark":"mk1-60a0d236ed6bd9f7"}
+{"ts":"2026-09-23T05:18:49Z","kind":"gate","name":"guard:actor-hub","result":"pass","mark":"mk1-e8a73eb8b053fbdb"}
+{"ts":"2026-09-23T05:18:50Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-b45b4aa5c224fe50"}
+{"ts":"2026-09-23T05:32:29Z","kind":"task","id":"BP1.9","state":"started","mark":"mk1-bef63513b48012f7"}
+{"ts":"2026-09-23T05:32:39Z","kind":"note","text":"FINDING (outside fence): ActionsPurityGuardTests red at the head on src/FusionRpg.Core/Actions/Cost/ExhaustionEdgeDetector.cs:85 (.Values in WindowCount), from 467cfa058 lawn LW1.3. Pre-existing at base; owner is action (guard) or lawn (code); no row opened (fence).","mark":"mk1-4db7acd4895b5f48"}
+{"ts":"2026-09-23T05:32:39Z","kind":"note","text":"BP1.9: src/FusionRpg.Core/BuildPresets/** had only core-fallback (module), whose Core.Tests member is red pre-existing. Added focused core.build-preset owner boundaries (src + tests) and the VerificationId trait.","mark":"mk1-3cf6388fb3730b1c"}
+{"ts":"2026-09-23T05:32:39Z","kind":"gate","name":"guard:verification-boundaries","result":"pass","mark":"mk1-d16c0cdfea3bcbd9"}
+{"ts":"2026-09-23T05:32:40Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-1da78f70a928fe1a"}
+{"ts":"2026-09-23T05:32:40Z","kind":"task","id":"BP1.9","state":"done","evidence":"tasks/evidence-fragments/BP1.9.md","mark":"mk1-cf7a4462f1917748"}
+{"ts":"2026-09-23T06:12:05Z","kind":"task","id":"BP1.10","state":"started","mark":"mk1-24842e956602b412"}
+{"ts":"2026-09-23T06:12:05Z","kind":"note","text":"BP1.10: added a focused build-preset-tuning owner boundary for data/tuning/build-preset.v1.json so the new domain verifies through core.build-preset, not the red module fallback; extended the existing H7 boot tripwire to the new domain.","mark":"mk1-30026c05010eaa88"}
+{"ts":"2026-09-23T06:12:05Z","kind":"gate","name":"guard:tuning-immutability","result":"pass","mark":"mk1-39f76dfde7a53efd"}
+{"ts":"2026-09-23T06:12:06Z","kind":"gate","name":"guard:verification-boundaries","result":"pass","mark":"mk1-39fd68703b11d7e2"}
+{"ts":"2026-09-23T06:12:06Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-fca3877b9697889a"}
+{"ts":"2026-09-23T06:12:06Z","kind":"task","id":"BP1.10","state":"done","evidence":"tasks/evidence-fragments/BP1.10.md","mark":"mk1-3e71b7782fa45b18"}

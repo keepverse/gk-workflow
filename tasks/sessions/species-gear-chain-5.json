@@ -1,0 +1,43 @@
+{
+  "session": "species-gear-chain-5",
+  "program": "species-gear-chain",
+  "problem": "Work the species-gear-chain rows the reconciliation's block rule measures as OPEN at this tip, one commit each. Measured first, not assumed: the brief's '28 open task blocks' and 'start with T49' are stale -- T49 was completed and closed by lane sgc-4 (cb42970a6, plus the instrument re-confirmation). At HEAD the genuine open set is T37 (its heading names an owner ruling: not this lane's to close), T55 (the verification-boundary registry is scripts/**, outside this fence) and T60 (prose-only open; its named precondition -- 'no potential-max source' -- was removed by T61 half A, so its potential half is implementable in-fence). T60 taken first and closed; T55's in-fence half measured next.",
+  "mode": "worktree",
+  "branch": "cmdc/sgc-5",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-sgc-5",
+  "paths": [
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Server/**",
+    "tools/seedsmith/**",
+    "data/seed/items/**",
+    "data/tuning/**",
+    "tests/**",
+    "docs/architecture/species-gear-chain/**",
+    "tasks/species-gear-chain-todo.md",
+    "tasks/species-gear-chain-ledger.jsonl",
+    "tasks/reports/**",
+    "tasks/sessions/species-gear-chain-5.json"
+  ],
+  "started": "2026-09-22T18:52:50Z",
+  "status": "abandoned",
+  "notes": [
+    "Boundary recorded by the lane because NO record existed for this session in either tree, and the brief's own named verification (`verify-change.ps1 -Session species-gear-chain-5`) refuses to run without one ('session record not found'); the script's own check is the reason this file exists. `tasks/sessions/species-gear-chain-5.json` is therefore listed in this record's own paths -- the brief's fence list omits tasks/sessions/** while requiring the record, which is the same fence-short-of-the-named-work defect sgc-4 recorded for tools/tuning/**.",
+    "The brief's brief-vs-todo drift is measured, not argued: `tasks/reports/sgc5-open-blocks-20260922.md` carries the classification run and the exact open set (3 blocks: T37, T55, T60) beside the brief's 28.",
+    "worktree path is ABSOLUTE per docs/contributing/session-boundary.md:27 (the sgc-4 record carries the same correction and the incident that forced it)."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip cceb218a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/sgc-5",
+    "branchTip": "cceb218a",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip cceb218a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

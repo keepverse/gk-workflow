@@ -1,0 +1,21 @@
+{
+  "session": "resume-00a-final-acceptance-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Final manager acceptance of Phase 0A fail-closed code on a fresh integration base with the reviewed verification-boundary mapping present; prove exact verdict and ancestry contracts, then create one clean exact-SHA acceptance.",
+  "mode": "worktree",
+  "branch": "review/resume-00a-final-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-resume-00a-final-20260925",
+  "paths": [
+    ".claude/cmdc-agents/scripts/post-merge-check.ps1",
+    ".claude/cmdc-agents/scripts/accept-lane.ps1",
+    ".claude/cmdc-agents/scripts/merge-lanes.py",
+    ".claude/cmdc-agents/scripts/test_fail_closed_pipeline.py",
+    "tasks/reports/resume-00a-fail-closed-final-20260925.md",
+    "tasks/reports/resume-00a-final-acceptance-20260925.md",
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/VerificationBoundaryMappingRepairTests.cs"
+  ],
+  "started": "2026-09-25T05:05:00Z",
+  "status": "abandoned",
+  "notes": "Fresh manager acceptance attempt was blocked before tests by the registry integrity guard: the new Seedsmith boundary references test files that are not present in this Phase 0A-only worktree. The copied Phase 0A draft is preserved in the worktree; no commit or acceptance was made. A composite acceptance session owns the coupled executable set."
+}

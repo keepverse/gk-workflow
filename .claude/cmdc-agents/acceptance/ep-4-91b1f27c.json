@@ -1,0 +1,63 @@
+{
+  "when": "2026-09-22T10:23:06",
+  "attribution": {
+    "knownRedMatched": 0,
+    "unattributed": 0,
+    "newUnregistered": 0
+  },
+  "sha": "91b1f27c",
+  "contendedTree": false,
+  "verdict": "GREEN",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-102253\\boundary.log"
+    },
+    {
+      "check": "plan-gen",
+      "exit": 0,
+      "seconds": 5,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-102253\\plan-gen.log"
+    },
+    {
+      "check": "core-scorer",
+      "exit": 0,
+      "seconds": 5,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-102253\\core-scorer.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-4-20260922-102253\\ledger.log"
+    }
+  ],
+  "lane": "ep-4",
+  "logDir": "D:\\tmp\\accept-ep-4-20260922-102253"
+}

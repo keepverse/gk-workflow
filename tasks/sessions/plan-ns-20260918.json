@@ -1,0 +1,15 @@
+{
+  "session": "plan-ns-20260918",
+  "program": "notification-ssot",
+  "problem": "Write the notification-ssot plan/todo pair (prefix NS) from its map and nine module specs, under the summoner-convergence parent",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "started": "2026-09-18",
+  "status": "merged",
+  "paths": [
+    "tasks/notification-ssot-plan.md",
+    "tasks/notification-ssot-todo.md",
+    "tasks/sessions/plan-ns-20260918.json"
+  ]
+}

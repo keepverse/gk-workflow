@@ -1,0 +1,32 @@
+{
+  "session": "seed-corpus-20260920",
+  "program": "seed-corpus",
+  "started": "2026-09-21T15:35:00+07:00",
+  "status": "merged",
+  "mode": "worktree",
+  "branch": "cmdc/seed-corpus-1",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-seed-corpus-1",
+  "problem": "Work the four seed-corpus runbooks in their own order: item-seedgen (4 open rows), passive-tree (33), action-distribution-gaps (13, mostly owner-gated) and seedsmith-generated-seed-repair (2). Start with the executable passive-tree and seedsmith-repair rows; the item corpus fill is running as the owner's detached job BCU2.11, so do not duplicate generation over data/seed/items/** while it runs.",
+  "paths": [
+    "tasks/sessions/seed-corpus-20260920.json",
+    "tasks/item-seedgen-todo.md",
+    "tasks/passive-tree-todo.md",
+    "tasks/action-distribution-gaps-todo.md",
+    "tasks/seedsmith-generated-seed-repair-todo.md",
+    "tasks/seed-corpus-ledger.jsonl",
+    "tasks/evidence-fragments/*.md",
+    "tools/seedsmith/**",
+    "tools/ItemSeedValidator/**",
+    "data/seed/**",
+    "data/generated/**",
+    "data/tuning/**",
+    "tests/**"
+  ],
+  "notes": [
+    "Lane id seed-corpus-1 with session id seed-corpus-20260920 (the brief's id, which the runner's verify uses).",
+    "BCU2.11 (the owner-assigned item-seedgen full run) is a detached job writing in its own worktree; this lane must not duplicate item generation over data/seed/items/** while it runs, and any merge-time conflict in generated data is resolved by regenerating, never by hand-editing rows.",
+    "data/tuning/** and data/generated/** are EnforcedRoots: a new file there needs its boundaries[] owner row, which the manager places when a lane's fence excludes scripts/.",
+    "Lane retired 2026-09-21: its 12 earlier commits merged at 8fdecc9f9 and its J9-B1 fix at 39029506f (the codex vote now resolves; a duplicate nameKey no longer loses a whole tree), each with the lane's verify-change evidence. Its own last report: \"work complete for its queue\".",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

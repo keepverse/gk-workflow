@@ -1,0 +1,19 @@
+{
+  "session": "resume-08-passive-tree-binder-20260925",
+  "program": "passive-tree",
+  "problem": "Diagnose and narrowly repair the PassiveTree binder/resolver seam after vocabulary recovery; classify stale corpus versus code defect without regenerating BCU2.12 or hand-editing generated data.",
+  "mode": "worktree",
+  "branch": "opencode/resume-08-passive-tree-binder-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-08-passive-tree-binder-20260925",
+  "paths": [
+    "tools/TreeBinder/**",
+    "src/FusionRpg.Core/PassiveTree/**",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+    "tests/FusionRpg.Core.PassiveTree.Tests/**",
+    "tests/FusionRpg.Core.Tests/PassiveTree/**",
+    "tasks/reports/resume-08-passive-tree-binder-20260925.md"
+  ],
+  "started": "2026-09-25T09:05:04Z",
+  "status": "abandoned",
+  "notes": "Worker diagnosis and dirty parity repair were accepted through manager review at exact SHA 1984dfcd185a26b7d2127c871b712e4f0f985e5f. The predecessor lane is closed to release its fence; TreeBinder corpus, primary stat.modify route, pool resolver, stale generated evidence, and BCU2.12 remain open owner/content follow-ups."
+}

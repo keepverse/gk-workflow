@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+  storage-panel — vault-block draft for spec-storage-cache-ui.md §Design 1 (plan Task 4D.2a).
+
+  OWNER-ACCEPT CHECKPOINT: ACCEPTED 2026-09-16 (owner: "Approve"). The React mount in
+  `web/fusion-rpg-web/src/stages/world/inspector/` is built behind this pending
+  checkpoint per the task brief (record pending, build behind it, do not stall) —
+  this draft is the artifact the owner accepts, not a post-accept redraw.
+
+  Recipe: storage-panel — host SectorInspector block region (`inspector-block-vault`),
+  order forces → VAULT → warden (BLOCK_ORDER +1 "vault", nine existing ids untouched).
+  Slots: vault-header ("held by X", live OwnerFactionId) + capacity-meter[room]
+  (SlotsUsed/SlotCapacity, row-count unit) + tool-search + stock-row* (seq order) +
+  action-row (put-in deposit-cargo / take-out withdraw-cargo, no confirm) +
+  phase-bindings (loading / error+retry / empty+next-action / locked naming relic-vault).
+
+  Landmarks below match the React mount 1:1 (data-testid). Copy is fiction until the
+  GG-62 catalog names its home file — stub draft copy never ships as product.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Draft: storage-panel (vault block)</title>
+</head>
+<body>
+<section data-testid="inspector-block-vault" data-block-id="vault">
+  <h4 data-testid="vault-title">Vault</h4>
+
+  <!-- vault-header: binds SectorStorageDto.OwnerFactionId, live per open -->
+  <p data-testid="vault-header">held by dave</p>
+
+  <!-- capacity-meter[room]: binds SlotsUsed/SlotCapacity, never computes -->
+  <div data-testid="vault-room" data-used="1" data-capacity="6" data-room="5">
+    5 of 6 rooms open
+  </div>
+
+  <!-- tool-search: filter stored stacks (GG-50) -->
+  <input data-testid="vault-search" type="search" placeholder="Filter stored packs (draft copy)">
+
+  <!-- stock-row*: one per SectorStorageRowDto, seq order, stored state -->
+  <ul data-testid="vault-rows">
+    <li data-testid="vault-row-0">inst-c · 1 pack</li>
+    <li data-testid="vault-row-1">cont-b · 4 packs</li>
+  </ul>
+
+  <!-- action-row: put-in / take-out file deposit-cargo / withdraw-cargo (EntityId + SectorId + Seq) -->
+  <div data-testid="vault-actions">
+    <button type="button" data-testid="vault-deposit">Put in</button>
+    <button type="button" data-testid="vault-takeout">Take out</button>
+  </div>
+
+  <!-- phase-bindings: exactly one visible per state (draft shows all four states stacked) -->
+  <div data-testid="vault-phase-loading" data-phase="loading">Loading… (draft copy)</div>
+  <div data-testid="vault-phase-error" data-phase="error">
+    Vault unavailable (draft copy)
+    <button type="button" data-testid="vault-retry">Retry</button>
+  </div>
+  <div data-testid="vault-phase-empty" data-phase="empty">
+    Vault empty — send a band with goods. (draft copy)
+  </div>
+  <div data-testid="vault-phase-locked" data-phase="locked">
+    No vault built — raise a relic-vault to store packs here. (draft copy)
+  </div>
+</section>
+</body>
+</html>

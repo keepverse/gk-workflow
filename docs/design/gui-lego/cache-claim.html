@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+  cache-claim — cache-pin + claim-prompt draft for spec-storage-cache-ui.md
+  §§Design 2–4 (plan Task 4D.2b).
+
+  OWNER-ACCEPT CHECKPOINT: ACCEPTED 2026-09-16 (owner: "Approve"). The React mount in
+  `web/fusion-rpg-web/src/stages/world/render/CachePin.tsx` +
+  `web/fusion-rpg-web/src/stages/world/cacheClaim/` is built behind this pending
+  checkpoint per the task brief (record pending, build behind it, do not stall) —
+  this draft is the artifact the owner accepts, not a post-accept redraw.
+
+  Flow: pin → prompt → fits/left-behind → pick-up (§Design 2).
+  Pin binds presence + count only (CachePinView: CacheId, PlaceKind, PlaceRef,
+  ItemCount, AsOfTurn — count-only, never contents). The GET claimable-caches
+  response IS the fog rule: absent from the response = absent from the map.
+  Zero client fog logic: no position compares, no void/empty filtering,
+  no `visible: false` handling.
+
+  Pick-up files ONE `claim-cache` order (EntityId from path, CacheId from body,
+  CommandId caller-supplied via the claims filer). Button copy reserves the AP
+  slot: "pick up (N AP)" — N binds `claimCostMilli` (owner: world-action-economy
+  act-price-table, `data/tuning/world.v6.json` movement.claimCostMilli = 250
+  via `WorldTuning.cs` MovementTuning.ClaimCostMilli; debit owned by 4A.6).
+  Display slot only — never a local constant, never priced here.
+
+  Answer arrives at commit via the turn report (`cache.claimed:<c>+<s>` +
+  stored skip lists → per-row fits / left-behind on stock-row; stale pin folds
+  `cache.unreachable`) plus the GET cargo read-back — never the file response
+  (file-vs-resolve, GG-15). Double-submit replays on CommandId.
+
+  Capture notice (§Design 4): vault header always shows "held by X" from live
+  OwnerFactionId; loser gets exactly one toast via NotifyRail off the report
+  entry; winner gets no toast (their header already says "held by" them).
+
+  Landmarks below match the React mount 1:1 (data-testid). Copy is fiction until
+  the GG-62 catalog names its home file — stub draft copy never ships as product.
+  Never list: StoragePage.tsx, Relics "storage" tab, bulk routes, direct-mutation
+  POSTs, second tables — none appear here.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Draft: cache-claim (pin + prompt + capture notice)</title>
+</head>
+<body>
+
+<!-- pin layer: one entry per CachePinView in the selected legion's
+     ClaimableCacheListDto. Presence == response presence. -->
+<div data-testid="cache-claim-layer" data-entity="e-dave-legion-1" data-as-of-turn="3">
+  <div data-testid="cache-pin-cc-1" data-place-kind="world_sector" data-item-count="2">
+    <span aria-hidden="true">&#9672;</span> fallen cache &middot; 2 packs
+  </div>
+  <div data-testid="cache-pin-cc-2" data-place-kind="world_lane" data-item-count="1">
+    <span aria-hidden="true">&#9672;</span> fallen cache &middot; 1 pack
+  </div>
+</div>
+
+<!-- prompt: band-2 layer over the stage; closes back to the exact map state (GG-12) -->
+<section data-testid="cache-claim-prompt" data-cache="cc-1">
+  <h4 data-testid="cache-claim-title">Fallen cache</h4>
+  <p data-testid="cache-claim-count">2 packs lie within reach (draft copy)</p>
+
+  <!-- tool-search: filter rows (GG-50) -->
+  <input data-testid="cache-claim-search" type="search" placeholder="Filter packs (draft copy)">
+
+  <!-- fits/left-behind states fold here after commit (ideal §3 one-sentence rule:
+       what fits is aboard, what stays waits where it lies) -->
+  <ul data-testid="cache-claim-rows">
+    <li data-testid="cache-claim-outcome-cc-1-fits">2 aboard (draft copy)</li>
+    <li data-testid="cache-claim-outcome-cc-1-left-behind">1 waits where it lies (draft copy)</li>
+  </ul>
+
+  <!-- pick-up: ONE action filing claim-cache; AP slot bound to claimCostMilli -->
+  <div data-testid="cache-claim-actions">
+    <button type="button" data-testid="cache-claim-pickup">
+      pick up <span data-testid="cache-claim-ap">(250 AP)</span>
+    </button>
+  </div>
+
+  <!-- filing note answers the round trip; report note answers resolution (GG-15) -->
+  <p data-testid="cache-claim-file-note">Filed — resolution arrives with the turn report (draft copy)</p>
+  <p data-testid="cache-claim-report-note">As of turn 3 — re-read after every commit (draft copy)</p>
+</section>
+
+<!-- capture notice: header (always) + loser toast (exactly one, off the report entry) -->
+<div data-testid="cache-claim-capture" data-sector="ember-hollow">
+  <p data-testid="capture-header">held by dave</p>
+  <div data-testid="capture-toast" data-toast-for="rhea">
+    Your vault at ember-hollow is held by dave now. (draft copy)
+  </div>
+</div>
+
+</body>
+</html>

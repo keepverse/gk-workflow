@@ -1,0 +1,733 @@
+<title>Rise of Summoner Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F7F8F5; --panel:#FFFFFF; --panel-2:#EFF2EC;
+  --ink:#161A17; --ink-2:#414A43; --ink-3:#6B746C;
+  --rule:#D8DED6; --rule-2:#C2CABF;
+  --accent:#2F6F4E; --accent-soft:#E2EEE6; --accent-ink:#1E4A34;
+  --crit:#B3402F; --crit-soft:#F6E3DF;
+  --major:#9C6A12; --major-soft:#F6EBD6;
+  --minor:#4E6E7D; --minor-soft:#E3ECF1;
+  --ok:#3A7D5C;
+  --shadow:0 1px 2px rgba(22,26,23,.06),0 8px 24px -16px rgba(22,26,23,.28);
+  --fd:"IBM Plex Sans Condensed",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fb:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fm:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111512; --panel:#1A201B; --panel-2:#222A24;
+    --ink:#E9EEE8; --ink-2:#BCC5BC; --ink-3:#8B958C;
+    --rule:#2C352E; --rule-2:#3A453C;
+    --accent:#77C395; --accent-soft:#1D2B23; --accent-ink:#A8DCBE;
+    --crit:#E38472; --crit-soft:#33201C;
+    --major:#D6A648; --major-soft:#302716;
+    --minor:#8FB4C4; --minor-soft:#1B262B;
+    --ok:#7BC49D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111512; --panel:#1A201B; --panel-2:#222A24;
+  --ink:#E9EEE8; --ink-2:#BCC5BC; --ink-3:#8B958C;
+  --rule:#2C352E; --rule-2:#3A453C;
+  --accent:#77C395; --accent-soft:#1D2B23; --accent-ink:#A8DCBE;
+  --crit:#E38472; --crit-soft:#33201C;
+  --major:#D6A648; --major-soft:#302716;
+  --minor:#8FB4C4; --minor-soft:#1B262B;
+  --ok:#7BC49D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);line-height:1.55;margin:0;
+  font-size:15px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+h1,h2,h3,h4{font-family:var(--fd);margin:0;text-wrap:balance;letter-spacing:-.01em}
+code,.mono{font-family:var(--fm);font-size:.86em}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* ---- masthead ---- */
+.mast{border-bottom:2px solid var(--ink);padding-block:34px 18px;margin-bottom:8px}
+.eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap}
+.mast h1{font-size:clamp(30px,5.2vw,52px);line-height:1.02;margin:10px 0 12px;font-weight:700}
+.mast p{max-width:66ch;color:var(--ink-2);margin:0 0 6px}
+.stamps{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.stamp{font-family:var(--fm);font-size:11px;border:1px solid var(--rule-2);border-radius:2px;
+  padding:3px 8px;color:var(--ink-2);background:var(--panel)}
+.stamp b{color:var(--ink);font-weight:600}
+
+/* ---- controls ---- */
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--rule);padding-block:10px;margin-bottom:26px;
+  display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.ctl-group{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ctl-label{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-right:2px}
+.chip{font-family:var(--fm);font-size:11.5px;border:1px solid var(--rule-2);background:var(--panel);
+  color:var(--ink-2);border-radius:2px;padding:4px 9px;cursor:pointer;transition:.12s}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.sev-crit[aria-pressed="true"]{background:var(--crit);border-color:var(--crit);color:#fff}
+.chip.sev-major[aria-pressed="true"]{background:var(--major);border-color:var(--major);color:#fff}
+.chip.sev-minor[aria-pressed="true"]{background:var(--minor);border-color:var(--minor);color:#fff}
+.count{font-family:var(--fm);font-size:11px;color:var(--ink-3);margin-left:auto}
+
+/* ---- strata ---- */
+.stratum{margin-bottom:44px;scroll-margin-top:90px}
+.stratum > header{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);
+  padding-bottom:7px;margin-bottom:16px;flex-wrap:wrap}
+.stratum h2{font-size:23px;font-weight:700}
+.snum{font-family:var(--fm);font-size:11px;color:var(--accent);letter-spacing:.1em;font-weight:600}
+.slede{color:var(--ink-2);max-width:68ch;margin:0 0 18px;font-size:14.5px}
+
+/* ---- node grid ---- */
+.row{display:grid;gap:12px;margin-bottom:12px}
+.row.c2{grid-template-columns:repeat(2,1fr)}
+.row.c3{grid-template-columns:repeat(3,1fr)}
+.row.c4{grid-template-columns:repeat(4,1fr)}
+.row.c5{grid-template-columns:repeat(5,1fr)}
+@media(max-width:860px){.row.c3,.row.c4,.row.c5{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.row.c2,.row.c3,.row.c4,.row.c5{grid-template-columns:1fr}}
+
+.node{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:11px 12px 12px;
+  display:flex;flex-direction:column;gap:5px;min-height:0;position:relative;transition:.14s}
+.node.owns{border-left:3px solid var(--accent)}
+.node.host{background:var(--panel-2);border-style:dashed}
+.node .nname{font-family:var(--fd);font-weight:600;font-size:15px;letter-spacing:0}
+.node .nrole{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.node .npath{font-family:var(--fm);font-size:10.5px;color:var(--ink-3);word-break:break-all}
+.node.flagged{cursor:pointer}
+.node.lit{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+
+.marks{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+.mark{font-family:var(--fm);font-size:10px;font-weight:600;border-radius:2px;padding:1px 5px;
+  border:1px solid transparent;cursor:pointer;transition:.12s}
+.mark.crit{background:var(--crit-soft);color:var(--crit);border-color:var(--crit)}
+.mark.major{background:var(--major-soft);color:var(--major);border-color:var(--major)}
+.mark.minor{background:var(--minor-soft);color:var(--minor);border-color:var(--minor)}
+.mark:hover{filter:brightness(.94)}
+body.hide-defects .marks{display:none}
+body.hide-defects .node.lit{border-color:var(--rule);box-shadow:none}
+
+/* ---- flow arrow between rows ---- */
+.flow{display:flex;align-items:center;gap:9px;margin:2px 0 12px;color:var(--ink-3);
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+.flow::before,.flow::after{content:"";height:1px;background:var(--rule-2);flex:1}
+
+/* ---- law box ---- */
+.law{background:var(--accent-soft);border:1px solid var(--accent);border-radius:3px;
+  padding:13px 15px;margin:16px 0;color:var(--accent-ink)}
+.law h4{font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;font-family:var(--fm);font-weight:600}
+.law p{margin:0;font-size:14px;max-width:70ch}
+.law p + p{margin-top:8px}
+
+/* ---- two-col split ---- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+.pane{border:1px solid var(--rule);border-radius:3px;background:var(--panel);padding:13px 14px}
+.pane h4{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:9px;font-weight:600}
+.pane.yes h4{color:var(--ok)}
+.pane.no h4{color:var(--crit)}
+.pane ul{margin:0;padding-left:17px;font-size:13.5px;color:var(--ink-2)}
+.pane li{margin-bottom:5px}
+.pane li b{color:var(--ink);font-weight:600}
+
+/* ---- svg dag ---- */
+.dagwrap{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--panel);padding:8px}
+svg.dag{display:block;min-width:640px;width:100%;height:auto}
+
+/* ---- register ---- */
+.reg{border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--panel)}
+.reg-row{display:grid;grid-template-columns:52px 1fr 140px;gap:0;border-bottom:1px solid var(--rule);
+  align-items:start}
+.reg-row:last-child{border-bottom:none}
+.reg-row.head{background:var(--panel-2);font-family:var(--fm);font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);position:sticky;top:0}
+.reg-row.head > *{padding:7px 10px}
+.rid{font-family:var(--fm);font-size:11.5px;font-weight:600;padding:10px;border-right:1px solid var(--rule)}
+.rid.crit{color:var(--crit)} .rid.major{color:var(--major)} .rid.minor{color:var(--minor)}
+.rbody{padding:10px 12px}
+.rbody .rt{font-weight:600;font-size:13.5px;margin-bottom:3px}
+.rbody .rd{font-size:13px;color:var(--ink-2);margin-bottom:5px;max-width:78ch}
+.rbody .rc{font-family:var(--fm);font-size:10.5px;color:var(--ink-3);word-break:break-all}
+.rmeta{padding:10px;border-left:1px solid var(--rule);display:flex;flex-direction:column;gap:5px}
+.kind{font-family:var(--fm);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);border:1px solid var(--rule-2);border-radius:2px;padding:2px 5px;align-self:flex-start}
+.gowhere{font-family:var(--fm);font-size:10.5px;color:var(--accent);background:none;border:none;
+  padding:0;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:2px}
+.reg-row.dim{display:none}
+@media(max-width:700px){
+  .reg-row{grid-template-columns:44px 1fr}
+  .rmeta{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule);flex-direction:row;
+    align-items:center;gap:10px;padding:7px 10px}
+}
+.empty{padding:26px;text-align:center;color:var(--ink-3);font-family:var(--fm);font-size:12.5px}
+
+footer{margin-top:52px;border-top:1px solid var(--rule);padding-top:16px;color:var(--ink-3);font-size:12.5px}
+footer p{max-width:72ch;margin:0 0 7px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow"><span>Rise of Summoner</span><span>System map</span><span>2026-09-16</span></div>
+  <h1>Where the layers are, and where they overlap</h1>
+  <p>An RPG and empire-building overlay for <em>Plants vs. Zombies Fusion</em>: four processes, eight
+  assemblies, three control loops, three FSMs, a ten-layer actor stack and one battle engine. This page
+  draws all of it, then marks every place a module owns something it should not.</p>
+  <p>Read it as a schematic, not an essay. A <strong>left rule</strong> means the node is the single owner
+  of what it holds. A coloured tag is a recorded defect — click it to jump to the register, or click any
+  flagged node to light up what is wrong with it.</p>
+  <div class="stamps">
+    <span class="stamp"><b>27</b> defects recorded</span>
+    <span class="stamp"><b>7</b> branches to merge first</span>
+    <span class="stamp"><b>196</b> derived channels · 28 families</span>
+    <span class="stamp"><b>13</b> atom triggers</span>
+    <span class="stamp"><b>904</b> species</span>
+    <span class="stamp">Verified against code, <b>not</b> docs</span>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="ctl-group">
+    <span class="ctl-label">Severity</span>
+    <button class="chip sev-crit" data-sev="crit" aria-pressed="true">Critical 4</button>
+    <button class="chip sev-major" data-sev="major" aria-pressed="true">Major 17</button>
+    <button class="chip sev-minor" data-sev="minor" aria-pressed="true">Minor 6</button>
+  </div>
+  <div class="ctl-group">
+    <span class="ctl-label">Kind</span>
+    <button class="chip" data-kind="dual" aria-pressed="true">Two owners</button>
+    <button class="chip" data-kind="mode" aria-pressed="true">Mode-local</button>
+    <button class="chip" data-kind="orphan" aria-pressed="true">No owner</button>
+    <button class="chip" data-kind="dark" aria-pressed="true">Built, unreachable</button>
+    <button class="chip" data-kind="scope" aria-pressed="true">Wrong scope</button>
+  </div>
+  <span class="count" id="count">27 of 27 shown</span>
+</div>
+
+<!-- ============================================================ 1 PROCESSES -->
+<section class="stratum" id="s-process">
+  <header><span class="snum">STRATUM 01</span><h2>Processes</h2></header>
+  <p class="slede">Four things run on the player's machine, plus the game itself. The game is a legal
+  third-party install we never patch — we hook it in memory and observe. Nothing here talks to a cloud.</p>
+
+  <div class="row c5">
+    <div class="node host">
+      <span class="nname">PvZ Fusion</span>
+      <span class="nrole">The foundation. Owns the board, vanilla damage, spawn/die, the sun bank. We observe it and never rewrite it.</span>
+      <span class="npath">IL2CPP · Unity</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">Injector</span>
+      <span class="nrole">Harmony patches inside the game process. Hot path. Never awaits the server.</span>
+      <span class="npath">src/FusionRpg.Injector</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">Server</span>
+      <span class="nrole">SQLite, REST, SignalR. The only place SQL exists. Cold path.</span>
+      <span class="npath">src/FusionRpg.Server :5088</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">Web</span>
+      <span class="nrole">Browser control room — lawn, roster, stats, progression, storage.</span>
+      <span class="npath">web/fusion-rpg-web</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">Launcher</span>
+      <span class="nrole">WPF player entry. Installs the loader, picks a port, starts game and server.</span>
+      <span class="npath">src/FusionRpg.Launcher</span>
+    </div>
+  </div>
+  <div class="flow">Harmony hooks &rarr; event envelope &rarr; SignalR / HTTP inbox &rarr; SQLite &rarr; projections &rarr; browser</div>
+
+  <div class="law">
+    <h4>The rule this stratum exists to protect</h4>
+    <p>Every RPG feature lives in the RPG layer. It is <strong>never</strong> built by changing what PvZ
+    is. We may observe PvZ's events and contribute signed deltas back; we may not rewrite it, read its
+    current state, or make a feature depend on it representing a concept.</p>
+    <p>As of 2026-09-16 the write surface is narrower still: <strong>no term of the damage equation is
+    written into PvZ at all</strong> — attack, plant shield, armor and take-damage multiplier are retired.
+    The lawn transport is a delta over <code>hp</code>, <code>armor1</code>, <code>armor2</code>.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 2 ASSEMBLIES -->
+<section class="stratum" id="s-asm">
+  <header><span class="snum">STRATUM 02</span><h2>Assemblies</h2></header>
+  <p class="slede">A clean DAG, and the one place it matters most: the injector does <em>not</em> reference
+  <code>FusionRpg.Data</code>, which is what keeps SQL out of the hot path. <code>Contracts</code> depends
+  on nothing, which is why shared vocabularies have to be declared there.</p>
+
+  <div class="dagwrap">
+    <svg class="dag" viewBox="0 0 720 260" role="img" aria-label="Assembly dependency graph: Contracts at the base, then CheatCore and Core, then Data, Injector hosts and Server.">
+      <defs>
+        <marker id="ah" markerWidth="7" markerHeight="7" refX="6.4" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 z" fill="var(--rule-2)"/>
+        </marker>
+      </defs>
+      <g stroke="var(--rule-2)" stroke-width="1.3" fill="none" marker-end="url(#ah)">
+        <path d="M360,214 L140,182"/><path d="M360,214 L360,182"/>
+        <path d="M360,214 C360,200 590,200 590,182"/>
+        <path d="M140,150 L300,114"/><path d="M360,150 L320,114"/>
+        <path d="M360,150 L560,114"/><path d="M140,150 C140,130 540,130 560,114"/>
+        <path d="M300,82 C300,64 540,64 560,50"/>
+        <path d="M360,82 C380,64 540,64 560,50"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="11.5" text-anchor="middle">
+        <rect x="270" y="214" width="180" height="30" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/>
+        <text x="360" y="233" fill="var(--accent-ink)" font-weight="600">FusionRpg.Contracts</text>
+        <rect x="60" y="150" width="160" height="30" rx="3" fill="var(--panel-2)" stroke="var(--rule-2)"/>
+        <text x="140" y="169" fill="var(--ink)">FusionRpg.CheatCore</text>
+        <rect x="290" y="150" width="140" height="30" rx="3" fill="var(--panel-2)" stroke="var(--rule-2)"/>
+        <text x="360" y="169" fill="var(--ink)">FusionRpg.Core</text>
+        <rect x="510" y="150" width="160" height="30" rx="3" fill="var(--panel-2)" stroke="var(--rule-2)"/>
+        <text x="590" y="169" fill="var(--ink)">FusionRpg.Launcher</text>
+        <rect x="230" y="82" width="150" height="30" rx="3" fill="var(--panel-2)" stroke="var(--rule-2)"/>
+        <text x="305" y="101" fill="var(--ink)">FusionRpg.Data</text>
+        <rect x="480" y="82" width="170" height="30" rx="3" fill="var(--panel-2)" stroke="var(--rule-2)"/>
+        <text x="565" y="101" fill="var(--ink)">Injector ×3 hosts</text>
+        <rect x="480" y="20" width="170" height="30" rx="3" fill="var(--panel-2)" stroke="var(--rule-2)"/>
+        <text x="565" y="39" fill="var(--ink)">FusionRpg.Server</text>
+      </g>
+      <g font-family="IBM Plex Sans, sans-serif" font-size="10.5" fill="var(--ink-3)">
+        <text x="60" y="206">Launcher stands alone — zero project references</text>
+        <text x="60" y="26">Server is the only assembly that may see Data</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="law">
+    <h4>Boundary guard</h4>
+    <p><code>guard-dal.py</code> bans nine SQL-shaped regexes from every <code>.cs</code> outside
+    <code>src/FusionRpg.Data</code>, with an empty allowlist. This is the boundary that holds best in the
+    whole codebase — the injector genuinely cannot reach the database.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 3 LOOPS -->
+<section class="stratum" id="s-loops">
+  <header><span class="snum">STRATUM 03</span><h2>Control loops and FSMs</h2></header>
+  <p class="slede">Two async systems, deltas not absolutes, record-then-drain. Delay is the designed
+  degradation mode, not a problem to engineer around. Three FSMs exist and are deliberately orthogonal —
+  none of them is a combat FSM.</p>
+
+  <div class="row c3">
+    <div class="node owns">
+      <span class="nname">Hot — Injector</span>
+      <span class="nrole">Resolves a hit in-process and never awaits the server. Locked: no server round-trip on the hit path.</span>
+      <span class="npath">MatchPhase FSM · Idle→Starting→InMatch⇄Paused→Ending</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">Cold — Server</span>
+      <span class="nrole">Pushes grants, owns persistence, projects durable state. Never sits between a hit and its apply.</span>
+      <span class="npath">UniqueActor FSM · Roster→Deploying→ActiveBound→Retired</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">Intent — the seam</span>
+      <span class="nrole">Ephemeral binding of a durable specimen to a live pointer for the length of a match.</span>
+      <span class="npath">UniqueBindings · PendingSpawn→Bound→Cleared</span>
+    </div>
+  </div>
+
+  <div class="law">
+    <h4>Hard ban</h4>
+    <p>No Server FSM may sit between <code>combat.hit</code> and FA* apply. Combat procs never drive
+    UniqueActor transitions. Three orthogonal IDs that are never collapsed:
+    <code>typeId</code> (catalog species), <code>ptr</code> (one Unity object in one match),
+    <code>instanceId</code> (durable specimen GUID).</p>
+  </div>
+</section>
+
+<!-- ============================================================ 4 ACTOR -->
+<section class="stratum" id="s-actor">
+  <header><span class="snum">STRATUM 04</span><h2>What an actor's numbers are</h2></header>
+  <p class="slede">Ten layers, one fold. Every layer is a <em>source</em> of <code>DerivedModifier</code>s
+  into a single compose in <code>ActorHub</code> — never a stacking tier, because the channel's own
+  <code>DerivedComposeKind</code> already owns how contributions combine. A layer carrying its own stacking
+  rule would be a second composer wearing a new word.</p>
+
+  <div class="row c5">
+    <div class="node owns flagged" data-node="l1a">
+      <span class="nname">1a · Base species</span>
+      <span class="nrole">The race. Global, shared, frozen — a player action never rewrites it.</span>
+      <span class="npath">species-passive.{speciesId}</span>
+      <div class="marks"><button class="mark major" data-go="S6">S6</button></div>
+    </div>
+    <div class="node owns flagged" data-node="l1b">
+      <span class="nname">1b · Player species</span>
+      <span class="nrole">What this player's fusion lab made of it. Per (player, species), append-only.</span>
+      <span class="npath">player_species</span>
+      <div class="marks"><button class="mark major" data-go="S4">S4</button><button class="mark major" data-go="S5">S5</button></div>
+    </div>
+    <div class="node owns flagged" data-node="l2a">
+      <span class="nname">2a · Specimen</span>
+      <span class="nrole">One unique creature levelling itself. Mutually exclusive with 2b.</span>
+      <span class="npath">UniqueCreature allocation</span>
+      <div class="marks"><button class="mark major" data-go="S8">S8</button></div>
+    </div>
+    <div class="node owns flagged" data-node="l2b">
+      <span class="nname">2b · Empire species</span>
+      <span class="nrole">What an empire learned about fielding a species. Applies to every general actor of it.</span>
+      <span class="npath">rpg_actor_progression kind=species</span>
+      <div class="marks"><button class="mark crit" data-go="S1">S1</button><button class="mark major" data-go="S2">S2</button></div>
+    </div>
+    <div class="node owns">
+      <span class="nname">3 · Equipment</span>
+      <span class="nrole">Bound atoms from equipped items. Works end to end.</span>
+      <span class="npath">equip-assign → EquippedBoundAtoms</span>
+    </div>
+  </div>
+  <div class="row c5">
+    <div class="node owns">
+      <span class="nname">4 · Passive tree</span>
+      <span class="nrole">Per player. Projects from owned nodes, gate points and Θ.</span>
+      <span class="npath">TreeBoundAtomsCache</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">5a/5b · Titles</span>
+      <span class="nrole">Actor and empire title. In build in another program; 5b is the first empire-scope layer.</span>
+      <span class="npath">actor-title.* · empire-title.*</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">6 · Aura / patron</span>
+      <span class="nrole">Per side per match. Applies from the next match by design.</span>
+      <span class="npath">patron.aura</span>
+    </div>
+    <div class="node owns">
+      <span class="nname">7 · Buff / status</span>
+      <span class="nrole">Per actor, live, during a match.</span>
+      <span class="npath">StatusDerivedMods</span>
+    </div>
+    <div class="node owns flagged" data-node="prog">
+      <span class="nname">Progression input</span>
+      <span class="nrole">Θ from Dave's level. Species and type levels feed in — or should.</span>
+      <span class="npath">RpgProgressionSubsystem</span>
+      <div class="marks"><button class="mark crit" data-go="S3">S3</button><button class="mark major" data-go="S7">S7</button><button class="mark major" data-go="D9">D9</button></div>
+    </div>
+  </div>
+
+  <div class="flow">all ten contribute DerivedModifiers &darr;</div>
+
+  <div class="row c1">
+    <div class="node owns flagged" data-node="hub" style="border-left-width:5px">
+      <span class="nname">ActorHub — the one compose</span>
+      <span class="nrole">Composes actor combat derived and AppliedCombat exactly once. Lawn, sheet, battle,
+      delve, siege and sim all contribute through <code>IActorStatSubsystem</code> or consume Hub output.
+      A second composer is a defect: <code>BattleStatComposer</code> was one, and was deleted on 2026-09-13.
+      Guarded by <code>guard-actor-hub.py</code>.</span>
+      <span class="npath">ActorHub.ResolveDerived · 196 channels across 28 families · 12 subsystems</span>
+      <div class="marks"><button class="mark major" data-go="D4">D4</button><button class="mark major" data-go="D5">D5</button><button class="mark minor" data-go="D14">D14</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5 BATTLE -->
+<section class="stratum" id="s-battle">
+  <header><span class="snum">STRATUM 05</span><h2>The battle engine</h2></header>
+  <p class="slede">A deterministic battle resolver built on the atom effect engine and the FSM. It solves
+  every battle logic. A feature that changes a battle mechanism is an extension of it, built on top —
+  never beside it, never inside a mode.</p>
+
+  <div class="law">
+    <h4>The law, and the line it draws</h4>
+    <p><strong>A mode is a driver, never an owner.</strong> It may own its <em>loop</em> — a turn-ordered
+    delve and a real-time lawn cannot share a scheduler — and it may <strong>never</strong> own a
+    <em>mechanism</em>.</p>
+    <p><strong>The engine resolves; it never decides.</strong> Deciding is non-deterministic — a player
+    clicks, a policy weighs — so player control and battle AI are a separate system that hands the engine
+    data through <code>IIntentSource</code>. <em>Where</em> to move is AI; <em>whether that move is legal</em>
+    is the engine. Replay works precisely because deciding was never inside.</p>
+  </div>
+
+  <div class="split">
+    <div class="pane yes">
+      <h4>Mechanisms — one implementation, every mode</h4>
+      <ul>
+        <li><b>Damage calculator</b> — <code>OverlayCombatCalculator</code>, two call sites repo-wide</li>
+        <li><b>Mitigation primitives</b> — pierce, amp, divisive, avoidance band, sigmoid: each declared once</li>
+        <li><b>Targeting and area</b> — <code>TargetResolver.Resolve</code>, shared by dispatcher, bag, status and actions</li>
+        <li><b>Resource pools</b> — battle uses <code>LawnActorResourcePools</code> <em>verbatim</em>, by explicit choice</li>
+        <li><b>Shield</b> — <code>ShieldGate</code> on both apply paths</li>
+        <li><b>Elements, status, procs, actions, derived stats</b></li>
+      </ul>
+    </div>
+    <div class="pane no">
+      <h4>Not the engine — separate systems</h4>
+      <ul>
+        <li><b>Player control and battle AI</b> — five <code>IIntentSource</code> implementations against one seam: stub policy, siege AI, interactive player, delve raid, replay trace</li>
+        <li><b>Presentation</b> — VFX, HUD</li>
+        <li><b>Persistence</b> and encounter selection</li>
+        <li><b>Loot and reward generation</b></li>
+        <li>Progression <em>credit</em> — though <b>kill attribution itself is the engine's</b>, because who dealt the fatal blow is a deterministic fact</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow">the modes that drive it</div>
+
+  <div class="row c4">
+    <div class="node flagged" data-node="lawn">
+      <span class="nname">Lawn</span>
+      <span class="nrole">Real-time, PvZ-driven, injector-side. Cannot be deterministic, so it drives the mechanisms rather than being the resolver.</span>
+      <span class="npath">CombatDamageDispatcher → Funnel → FA10</span>
+      <div class="marks"><button class="mark major" data-go="D2">D2</button></div>
+    </div>
+    <div class="node flagged" data-node="battle">
+      <span class="nname">Battle / web match</span>
+      <span class="nrole">The deterministic round loop: status ticks → initiative → death cleanup → shield upkeep.</span>
+      <span class="npath">BattleEngine.Resolve</span>
+      <div class="marks"><button class="mark crit" data-go="D1">D1</button><button class="mark major" data-go="D3">D3</button><button class="mark crit" data-go="D11">D11</button><button class="mark minor" data-go="D6">D6</button><button class="mark minor" data-go="D8">D8</button></div>
+    </div>
+    <div class="node flagged" data-node="delve">
+      <span class="nname">Delve</span>
+      <span class="nrole">Party dungeon crawl. Drives the same engine, adds attrition and extraction.</span>
+      <span class="npath">DelveBattle → BattleEngine.Resolve</span>
+      <div class="marks"><button class="mark major" data-go="D10">D10</button><button class="mark major" data-go="D12">D12</button></div>
+    </div>
+    <div class="node flagged" data-node="siege">
+      <span class="nname">Siege / world assault</span>
+      <span class="nrole">Base defence and district assault on the world turn.</span>
+      <span class="npath">DistrictAssaultResolver → BattleEngine.Resolve</span>
+      <div class="marks"><button class="mark major" data-go="D7">D7</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6 SHARED -->
+<section class="stratum" id="s-shared">
+  <header><span class="snum">STRATUM 06</span><h2>Shared vocabularies</h2></header>
+  <p class="slede">Closed sets the code owns. A count here is a contract — assert it, and a change is a
+  reviewed decision. A count of a <em>population</em> (species, items) is a reading and is never asserted.</p>
+
+  <div class="row c4">
+    <div class="node owns">
+      <span class="nname">Atom triggers</span>
+      <span class="nrole">13 strings, one declaration since 2026-09-16. <code>AtomTriggers</code> aliases <code>EffectTriggers</code>; a guard fails if a literal returns.</span>
+      <span class="npath">Contracts/EffectDtos.cs</span>
+    </div>
+    <div class="node owns flagged" data-node="status">
+      <span class="nname">Status catalog</span>
+      <span class="nrole">Host-injected from <code>status-catalog.v{n}.json</code>; kind and payload enums stay closed in C#.</span>
+      <span class="npath">StatusCatalog · 24 ids today</span>
+      <div class="marks"><button class="mark major" data-go="X1">X1</button></div>
+    </div>
+    <div class="node owns flagged" data-node="element">
+      <span class="nname">Element roster</span>
+      <span class="nrole">Seven elements plus omni; the ring matrix decides matchup.</span>
+      <span class="npath">ElementTable · ElementRingMatrix</span>
+      <div class="marks"><button class="mark major" data-go="X2">X2</button></div>
+    </div>
+    <div class="node owns flagged" data-node="res">
+      <span class="nname">Actor resources</span>
+      <span class="nrole">Six, shared by every faction: hp, stamina, hunger, spirit, qi, poise. A faction difference is a display label, never a branch.</span>
+      <span class="npath">DerivedStatChannels</span>
+      <div class="marks"><button class="mark minor" data-go="X3">X3</button></div>
+    </div>
+  </div>
+  <div class="row c2">
+    <div class="node owns flagged" data-node="balance">
+      <span class="nname">Balance / analytic</span>
+      <span class="nrole">Closed-form predictors for balance guards and duel prediction. Estimators only — they never decide real damage.</span>
+      <span class="npath">Balance/Analytic/*</span>
+      <div class="marks"><button class="mark minor" data-go="X5">X5</button></div>
+    </div>
+    <div class="node owns flagged" data-node="web">
+      <span class="nname">Web display math</span>
+      <span class="nrole">The browser re-implements some display formulas in TypeScript.</span>
+      <span class="npath">web/fusion-rpg-web</span>
+      <div class="marks"><button class="mark minor" data-go="X4">X4</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ REGISTER -->
+<section class="stratum" id="s-reg">
+  <header><span class="snum">REGISTER</span><h2>Recorded defects</h2></header>
+  <p class="slede">Each one is verified against code, not inferred from a comment. Under the battle-engine
+  law most of these stop being "wiring gaps" and become SOLID defects, because the law names a single
+  owner for each mechanism and the code has either two or none.</p>
+  <div class="reg" id="reg">
+    <div class="reg-row head"><div>ID</div><div>Defect</div><div>Kind</div></div>
+  </div>
+  <div class="empty" id="empty" hidden>No defects match these filters.</div>
+</section>
+
+<footer>
+  <p><strong>Provenance.</strong> Drawn 2026-09-16 from four audits run against the working tree: the
+  battle derived-stat wiring audit, the combat-math duplication audit, and two layer inventories for 1b
+  and 2b. Every claim was verified against source; where a figure came from a live database it is marked
+  as a reading rather than a constant.</p>
+  <p><strong>Before any of this is acted on:</strong> seven branches carrying real work are unmerged —
+  <code>species-gear-chain</code> (51 <code>src</code> files), <code>passive-tree-repair</code> (9),
+  <code>achievement-title</code> (15), plus four docs/content branches — roughly 70,000 insertions in
+  total. The counts on this page were measured on the current tree and <strong>must be re-measured after
+  that merge</strong>, because four of those branches are half-built programs whose code is in scope.</p>
+  <p><strong>Sources of truth this page summarises and does not replace:</strong>
+  <code>docs/architecture/battle-engine-ssot.md</code> ·
+  <code>docs/architecture/actor-hub-ssot.md</code> ·
+  <code>docs/architecture/actor-layer-compose-ideal.md</code> ·
+  <code>docs/architecture/species-progression-ideal.md</code> ·
+  <code>docs/architecture/decisions.md</code>. When this page and those disagree, they win.</p>
+</footer>
+
+</div>
+
+<script>
+const DEFECTS = [
+ {id:"D1",sev:"crit",kind:"orphan",node:"battle",t:"Battle's effect path skips the damage resolver entirely",
+  d:"BattleEffectHost builds its EffectBag and never sets CombatMath, so CombatDamageDispatcher falls back to PassThroughCombatMath — whose Finalize returns the amount unchanged. Battle's basic attack does go through the resolver; every effect-driven hit does not. Twenty channel families are inert on a path that already runs.",
+  c:"BattleEffects.cs:55-64 · CombatDamageDispatcher.cs:28 · ICombatMath.cs:15-16"},
+ {id:"D2",sev:"major",kind:"mode",node:"lawn",t:"Reflect is lawn-only",
+  d:"TryReflect lives inside DispatchInstant, which battle never enters — and battle's bag never sets ActorResolve, so the guard would fail anyway. Four registered channel families are inert in battle, delve, siege and web match.",
+  c:"CombatDamageDispatcher.cs:83-85 · zero matches for \"Reflect\" under Battle/ or Actions/"},
+ {id:"D3",sev:"major",kind:"mode",node:"battle",t:"Nine of thirteen atom triggers never fire in battle",
+  d:"Battle raises OnActivate, OnDamageDealt, OnGranted and OnRemoved. OnDamageTaken, OnDeath, OnSpawn, OnTimer and the five match/board-economy triggers have no battle-side raise. The lawn raises all thirteen, so the same authored content behaves differently by mode.",
+  c:"BasicAttack.cs · EffectBag.cs:277-301"},
+ {id:"D4",sev:"major",kind:"mode",node:"hub",t:"Delve and siege compose with no HubInputs at all",
+  d:"Only the web match populates HubInputs richly. A player specimen fights a delve or a siege without its aptitude, equipment or star/loyalty — the same specimen has different combat numbers depending on which mode it is in.",
+  c:"Encounter.cs:206-212 · DistrictAssaultResolver.cs:360-385 · WebMatchService.cs:600-609"},
+ {id:"D5",sev:"major",kind:"dual",node:"hub",t:"Three compose paths register three different subsystem sets",
+  d:"BattleHubCompose builds its ActorHub directly and deliberately bypasses ActorHubBootstrap.CreateDefault, so battle registers neither RpgProgressionSubsystem nor StatusDerivedSubsystem. The lawn registers no StarLoyaltySubsystem. ActorHub is genuinely the sole composer — but the stat vocabulary an actor gets depends on the mode.",
+  c:"BattleHubCompose.cs:15-17,41-64 · CheatState.cs:49-81 · UniqueActorHubCompose.cs:70-76"},
+ {id:"D6",sev:"minor",kind:"orphan",node:"battle",t:"The mid-battle derived recompose is a permanent no-op",
+  d:"It runs every round against an input with zero production writers. BattleDerivedModifierLedger has one construction-time writer; its ActiveAuras input has none; the contribution entry point is invoked only from tests.",
+  c:"BattleEngine.cs:481 · BattleRunState.cs:460 · BattleEffects.cs:150"},
+ {id:"D7",sev:"major",kind:"dual",node:"siege",t:"Siege's damage estimate uses a defense shape the game dropped",
+  d:"SiegeExpectedDamage computes power minus defense while the shipped default is divisive — a shape that was abandoned because 17.1% of landed hits dealt nothing. It also carries no base-damage term and no amp or crit, while its own comment claims it is identical to the resolver.",
+  c:"SiegeExpectedDamage.cs:40 · combat.v1.json:24"},
+ {id:"D8",sev:"minor",kind:"dual",node:"battle",t:"The reflect formula is written twice, verbatim",
+  d:"The same assembly of primitives appears in the real damage path and again in the analytic phase model, with no shared function between them. The primitives underneath are correctly extracted; it is the assembly that is duplicated.",
+  c:"CombatDamageDispatcher.cs:113-118 · PhaseModel.cs:152-157"},
+ {id:"D9",sev:"major",kind:"orphan",node:"prog",t:"Kill attribution exists only on the lawn",
+  d:"Who dealt the fatal blow is a deterministic fact the engine knows, and it is the engine's responsibility — but outside the lawn nothing claims it. On the lawn the general horde has no owner row at all, so no empire earns from it either.",
+  c:"MatchHost.cs:322-324 · CreatureProgressionSource.cs:8-75"},
+ {id:"D10",sev:"major",kind:"mode",node:"delve",t:"Permanent death is delve-local",
+  d:"ExtractionSettlement decides Retire, Recover or Roster for a delve. No other mode has an equivalent, so a named battle-engine responsibility is implemented once, inside one mode.",
+  c:"Delve/Attrition/ExtractionSettlement.cs:7,36-44"},
+ {id:"D11",sev:"crit",kind:"orphan",node:"battle",t:"Equipment damage in battle has no implementation anywhere",
+  d:"Named as a battle-engine responsibility by the owner. There is no durability mechanic in the codebase — every \"durability\" match in source is an unrelated word-sense. OWNED BY species-gear-chain (owner ruling 2026-09-16) — a half-built program that merges into the remediation branch, is refactored with everything else, then continues its own plan and builds this. Out of the remediation fix list; on the register with a named owner.",
+  c:"measured 2026-09-16, whole tree"},
+ {id:"D12",sev:"major",kind:"mode",node:"delve",t:"Capture is built inside the Delve, not as a battle-engine extension",
+  d:"The owner named capture as definitely an extension of the battle engine. It lives under Delve/Wild as a pure chance formula, refused behind a cross-program flag that is false.",
+  c:"Delve/Wild/CaptureAction.cs · CrossProgramLandedFlags.ItemCostRowLanded = false"},
+ {id:"D14",sev:"minor",kind:"orphan",node:"hub",t:"Seventy-two per-element channels have no reader in any mode",
+  d:"Parry, block and reflect readers are omni-only, so the per-element members of those families are registered vocabulary that nothing consumes.",
+  c:"CombatDerivedReader.cs:53-57,67-68"},
+
+ {id:"S1",sev:"crit",kind:"scope",node:"l2b",t:"A lawn zombie is credited with the human player's species progression",
+  d:"The species-allocation delegate takes a speciesId and returns an allocation — no empire, no player. In production it is a flat dictionary fetched for the current human player. The lookup is side-aware, so a zombie resolves a real speciesId and then reads the human's allocation for it. The cache key is one dimension short.",
+  c:"SpeciesAllocationSource.cs:35,117 · CheatState.cs:176-177 · RpgClient.cs:484-520"},
+ {id:"S2",sev:"major",kind:"mode",node:"l2b",t:"Battle receives no species allocation at all",
+  d:"The battle compose adds commander plus the unique-creature allocation and stops — no CreatureType term — despite a comment four lines above claiming the species read stays per-actor. The effective-species-allocation call has exactly two production callers, neither on a compose path.",
+  c:"WebMatchService.cs:602-603 · AptitudeEndpoints.cs:164,184"},
+ {id:"S3",sev:"crit",kind:"scope",node:"prog",t:"Nothing credits progression to Zomboss's empire",
+  d:"Every species and type XP write goes to the capture's playerId, which is always the human. An ambient vanilla zombie is explicitly not one of Zomboss's registered units, so the general horde has no owner row. The 47,985 zombie-spawn awards level a zombie species on the player's own row.",
+  c:"RpgStore.Progression.cs:46-48,116-119 · MatchHost.cs:306-324"},
+ {id:"S4",sev:"major",kind:"orphan",node:"l1b",t:"Fusion picks are recorded and reach no stat",
+  d:"A pick lands in an effect_instance referenced only by player_species, and nothing binds that table — the materialiser writes instance and atom rows but never an effect_binding. The stat fold reads bindings by owner scope, and a player_species instance has no owner scope. It is a closed loop: fusion reads what fusion wrote.",
+  c:"RpgStore.PlayerSpecies.cs:98-126 · EquippedBoundAtoms.cs:23-25"},
+ {id:"S5",sev:"major",kind:"dark",node:"l1b",t:"The fusion picks feature is dark in production",
+  d:"Picks refuse when a sacrifice's species has no player_species row — and the method that creates those rows has no production caller at all. A player who has never run the debug reforge sees no pickable atoms, and the panel silently never renders. A shipped, validated, nine-refusal feature is unreachable because one upstream writer lost its caller.",
+  c:"RpgStore.Fusion.cs:266 · RpgStore.PlayerSpecies.cs:63 · FusionEndpoints.cs:194"},
+ {id:"S6",sev:"major",kind:"dark",node:"l1a",t:"Layer 1 binds nothing, and has two dark carriers rather than one",
+  d:"species-passive has three authored entries and is never bound to an actor; trait.species-magnitude has zero authored containers and its binder — complete, revision-aware and failing closed — returns early on every deploy. No binding is ever created for a plant- or zombie-scoped owner anywhere.",
+  c:"RpgStore.UniqueActors.cs:1588,1603,1615,1620"},
+ {id:"S7",sev:"major",kind:"orphan",node:"prog",t:"A plant type at level 4 composes exactly as one at level 1",
+  d:"The progression subsystem contributes exactly two modifiers: Θ and a realm stub. Of every reader of an actor-progression row, the plant and zombie kinds reach display counts, buckets and almanac name promotion only. The kinds that do reach a channel are species and player.",
+  c:"RpgProgressionSubsystem.cs:42-54 · RpgStore.Progression.cs:354-365,886-935"},
+ {id:"S8",sev:"major",kind:"scope",node:"l2a",t:"A Bound unique still resolves the empire species fallback on the hot path",
+  d:"The injector's Bound hot path resolves commander plus CreatureType for a Bound unique while the sheet Hub uses UniqueCreature. A unique must never receive the empire species fallback — it is banned by the ownership decision row and already pinned by a test.",
+  c:"decisions.md amendment 2026-09-12 · tracked as HF-lawn"},
+
+ {id:"X1",sev:"major",kind:"dual",node:"status",t:"Status id to resist category is declared twice",
+  d:"The bootstrap already passes a category per row, and a separate registry declares the same mapping again for all twenty-four ids. The resist evaluator reads the registry. No parity test binds them.",
+  c:"StatusCatalogBootstrap.cs:18-68 · StatusCategoryRegistry.cs:6-35 · ResistanceEvaluator.cs:166"},
+ {id:"X2",sev:"major",kind:"dual",node:"element",t:"Two element-id switches that disagree on failure",
+  d:"One throws on an unknown element; the other returns an empty string. The second feeds the ring-matrix lookup, so an element missed there reads as a neutral matchup — silently, with no error.",
+  c:"ActorElementTypes.cs:93 · ElementTable.cs:159"},
+ {id:"X3",sev:"minor",kind:"dual",node:"res",t:"Pool regeneration is implemented twice with different numerics",
+  d:"One path uses a double with no carry; the other uses long per-mille arithmetic, carry-corrected and checked. The stale header on the first still claims there is no shipped resolver to call — untrue since the action program closed.",
+  c:"ActionSchedule.cs:87 · ResourcePoolState.cs:55"},
+ {id:"X4",sev:"minor",kind:"dual",node:"web",t:"The C# and TypeScript sigmoids disagree today",
+  d:"For the same input the two display implementations produce roughly 1.0 percentage points against roughly 23.1. This is a display divergence rather than a combat one, but it means the browser shows a number the engine would not.",
+  c:"web/fusion-rpg-web · CombatProbability.Sigmoid"},
+ {id:"D15",sev:"major",kind:"dual",node:"lawn",t:"The lawn runs two time bases at once",
+  d:"The engine's clock abstraction is shipped and correct — ITimeAdvance has exactly two policies, next-event for turn-based and fixed-increment for real-time — and the kernel drives the lawn's DoT and shield upkeep as scheduled 100 ms events. But the injector wires EffectBag.UtcNow to SystemEffectClock, the raw wall clock, so status timing reads wall time while DoT scheduling reads the kernel's event queue. One board, two notions of when. The wall-clock wiring is a documented deliberate choice for the time SOURCE; the defect is that it silently became the SCHEDULER for half the tick vocabulary.",
+  c:"EffectRuntime.cs:58 · EffectBag.cs:236-246 · SimulationClock.cs:16-27"},
+ {id:"X5",sev:"minor",kind:"dual",node:"balance",t:"The analytic migration was a copy, not a move",
+  d:"The spec said to move the closed form out of the simulator; it was copied instead. Seven pairs now exist and six have no automated parity test — the only cross-check is a tool no CI workflow or script runs. The simulator already references Core, so every one of them could be a call-through.",
+  c:"spec-deterministic-core.md:12 · tools/ProvePredictor"}
+];
+
+const KINDLABEL={dual:"Two owners",mode:"Mode-local",orphan:"No owner",dark:"Built, unreachable",scope:"Wrong scope"};
+const reg=document.getElementById("reg"), empty=document.getElementById("empty"), countEl=document.getElementById("count");
+const state={sev:new Set(["crit","major","minor"]),kind:new Set(["dual","mode","orphan","dark","scope"])};
+
+for(const d of DEFECTS){
+  const row=document.createElement("div");
+  row.className="reg-row"; row.id="def-"+d.id;
+  row.dataset.sev=d.sev; row.dataset.kind=d.kind;
+  row.innerHTML=
+    '<div class="rid '+d.sev+'">'+d.id+'</div>'+
+    '<div class="rbody"><div class="rt"></div><div class="rd"></div><div class="rc"></div></div>'+
+    '<div class="rmeta"><span class="kind">'+KINDLABEL[d.kind]+'</span>'+
+    '<button class="gowhere" data-lit="'+d.node+'">Show in map &uarr;</button></div>';
+  row.querySelector(".rt").textContent=d.t;
+  row.querySelector(".rd").textContent=d.d;
+  row.querySelector(".rc").textContent=d.c;
+  reg.appendChild(row);
+}
+
+function apply(){
+  let shown=0;
+  for(const d of DEFECTS){
+    const on=state.sev.has(d.sev)&&state.kind.has(d.kind);
+    document.getElementById("def-"+d.id).classList.toggle("dim",!on);
+    if(on)shown++;
+  }
+  document.querySelectorAll(".mark").forEach(m=>{
+    const d=DEFECTS.find(x=>x.id===m.dataset.go);
+    m.hidden=!(d&&state.sev.has(d.sev)&&state.kind.has(d.kind));
+  });
+  countEl.textContent=shown+" of "+DEFECTS.length+" shown";
+  empty.hidden=shown>0;
+}
+
+document.querySelectorAll(".chip").forEach(c=>{
+  c.addEventListener("click",()=>{
+    const on=c.getAttribute("aria-pressed")==="true";
+    c.setAttribute("aria-pressed",String(!on));
+    const set=c.dataset.sev?state.sev:state.kind, key=c.dataset.sev||c.dataset.kind;
+    on?set.delete(key):set.add(key);
+    apply();
+  });
+});
+
+function litNode(n){
+  document.querySelectorAll(".node.lit").forEach(x=>x.classList.remove("lit"));
+  const el=document.querySelector('.node[data-node="'+n+'"]');
+  if(el){el.classList.add("lit");el.scrollIntoView({behavior:"smooth",block:"center"});}
+}
+document.addEventListener("click",e=>{
+  const go=e.target.closest(".mark");
+  if(go){
+    const row=document.getElementById("def-"+go.dataset.go);
+    row.scrollIntoView({behavior:"smooth",block:"center"});
+    row.animate([{background:"var(--accent-soft)"},{background:"transparent"}],{duration:1400});
+    return;
+  }
+  const back=e.target.closest(".gowhere");
+  if(back){litNode(back.dataset.lit);return;}
+  const node=e.target.closest(".node.flagged");
+  if(node){litNode(node.dataset.node);}
+});
+apply();
+</script>

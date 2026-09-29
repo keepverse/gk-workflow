@@ -1,0 +1,59 @@
+==> Test-substrate gate (static, profile-independent)
+TEST SUBSTRATE GUARD OK — no new swallowed deletes or temp-backed stores in tests/
+==> Test profile: default (fast)
+    filter: Category!=DiskSemantics&Category!=Heavy
+    projects:
+      D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Data.Tests\FusionRpg.Data.Tests.csproj
+      D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Server.Tests\FusionRpg.Server.Tests.csproj
+      D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.E2E.Tests\FusionRpg.E2E.Tests.csproj
+      D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Core.Tests\FusionRpg.Core.Tests.csproj
+
+==> dotnet test D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Data.Tests\FusionRpg.Data.Tests.csproj -c Release --filter "Category!=DiskSemantics&Category!=Heavy"
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  FusionRpg.Contracts -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Contracts\bin\Release\net6.0\FusionRpg.Contracts.dll
+  FusionRpg.CheatCore -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.CheatCore\bin\Release\net6.0\FusionRpg.CheatCore.dll
+  FusionRpg.Core -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Core\bin\Release\net6.0\FusionRpg.Core.dll
+  FusionRpg.Data -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Data\bin\Release\net8.0\FusionRpg.Data.dll
+  CreatureSpeciesImport -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tools\CreatureSpeciesImport\bin\Release\net8.0\CreatureSpeciesImport.dll
+  FusionRpg.Data.Tests -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Data.Tests\bin\Release\net8.0\FusionRpg.Data.Tests.dll
+Test run for D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Data.Tests\bin\Release\net8.0\FusionRpg.Data.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+
+Passed!  - Failed:     0, Passed:  1698, Skipped:     0, Total:  1698, Duration: 9 m 49 s - FusionRpg.Data.Tests.dll (net8.0)
+
+==> dotnet test D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Server.Tests\FusionRpg.Server.Tests.csproj -c Release --filter "Category!=DiskSemantics&Category!=Heavy"
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  FusionRpg.Contracts -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Contracts\bin\Release\net6.0\FusionRpg.Contracts.dll
+  FusionRpg.CheatCore -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.CheatCore\bin\Release\net6.0\FusionRpg.CheatCore.dll
+  FusionRpg.Core -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Core\bin\Release\net6.0\FusionRpg.Core.dll
+  FusionRpg.Data -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Data\bin\Release\net8.0\FusionRpg.Data.dll
+  FusionRpg.Server -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Server\bin\Release\net8.0\FusionRpg.Server.dll
+  FusionRpg.Server.Tests -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Server.Tests\bin\Release\net8.0\FusionRpg.Server.Tests.dll
+Test run for D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.Server.Tests\bin\Release\net8.0\FusionRpg.Server.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+
+Passed!  - Failed:     0, Passed:   726, Skipped:     0, Total:   726, Duration: 3 m 9 s - FusionRpg.Server.Tests.dll (net8.0)
+
+==> dotnet test D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.E2E.Tests\FusionRpg.E2E.Tests.csproj -c Release --filter "Category!=DiskSemantics&Category!=Heavy"
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  FusionRpg.Contracts -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Contracts\bin\Release\net6.0\FusionRpg.Contracts.dll
+  FusionRpg.CheatCore -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.CheatCore\bin\Release\net6.0\FusionRpg.CheatCore.dll
+  FusionRpg.Core -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Core\bin\Release\net6.0\FusionRpg.Core.dll
+  FusionRpg.Data -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Data\bin\Release\net8.0\FusionRpg.Data.dll
+  FusionRpg.Server -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\src\FusionRpg.Server\bin\Release\net8.0\FusionRpg.Server.dll
+  FusionRpg.E2E.Tests -> D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.E2E.Tests\bin\Release\net8.0\FusionRpg.E2E.Tests.dll
+Test run for D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.E2E.Tests\bin\Release\net8.0\FusionRpg.E2E.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:42.54]     FusionRpg.E2E.Tests.ExpeditionE2ETests.Full_loop_dispatch_force_due_collect [FAIL]
+  Failed FusionRpg.E2E.Tests.ExpeditionE2ETests.Full_loop_dispatch_force_due_collect [539 ms]
+  Error Message:
+   Assert.Contains() Failure: Filter not matched in collection
+Collection: [{"materialId":"shard.fused","qty":1}]
+  Stack Trace:
+     at FusionRpg.E2E.Tests.ExpeditionE2ETests.Full_loop_dispatch_force_due_collect() in D:\Works\source\plant-vs-zombie-rise-of-summoner\.claude\worktrees\cmdc-live-qa\tests\FusionRpg.E2E.Tests\ExpeditionE2ETests.cs:line 90
+--- End of stack trace from previous location ---

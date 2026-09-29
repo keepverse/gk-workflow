@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hall-console — gui-lego assembled surface</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="../pieces/_piece-kit.css">
+<style>
+  .console {
+    display: flex; flex-direction: column;
+    height: min(820px, 88vh);
+    border: 1px solid var(--border-control);
+    border-radius: var(--r-md);
+    background: linear-gradient(180deg, rgb(51 43 33 / 0.55), rgb(18 15 12 / 0.35)), var(--panel);
+    overflow: hidden;
+  }
+  .console > .cat-bar {
+    flex: none; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 10px 14px;
+    border-bottom: 1px solid var(--border); background: rgb(18 15 12 / 0.35);
+  }
+  .console > .slot-bar {
+    flex: none; display: flex; gap: 8px; align-items: center; padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .console > .inspect-split {
+    flex: 1; min-height: 0; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0;
+  }
+  .console > .inspect-split > .dock,
+  .console > .inspect-split > .inspect {
+    min-height: 0; overflow: auto; padding: 12px; border: 0; border-radius: 0;
+    background: transparent;
+  }
+  .console > .inspect-split > .dock { border-right: 1px solid var(--border); }
+  .console > .foot {
+    flex: none; padding: 8px 14px; border-top: 1px solid var(--border);
+  }
+  .hd-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-left: auto; }
+  .family-block + .family-block { margin-top: 14px; }
+  .row + .row { margin-top: 6px; }
+  .slot { min-width: 180px; }
+  .slot .lock { opacity: .55; font-style: italic; }
+</style>
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page" style="max-width:min(1600px,96vw)">
+  <h1>Surface <code>hall-console</code></h1>
+  <p class="lede">Empire Achievement Hall: trophy wall + 3-slot war table as a layer over the empire stage.
+  Assembled from gui-lego pieces + recipe slots. Candidate preview never mutates bindings; apply is atomic
+  with a skipped-slot report. Recipe: <code>recipes/hall-console.json</code>. Lego grammar.</p>
+
+  <div class="console" data-surface="hall-console">
+    <nav class="cat-bar" aria-label="Title families" data-testid="hall-families">
+      <button type="button" class="chip is-on">War</button>
+      <button type="button" class="chip">Vigor</button>
+      <button type="button" class="chip">Oaths</button>
+      <button type="button" class="chip">Marks</button>
+      <div class="hd-tools">
+        <input class="search" type="search" placeholder="Search titles" aria-label="Search titles">
+      </div>
+    </nav>
+
+    <div class="slot-bar" aria-label="Worn doctrine" data-testid="hall-slots">
+      <div class="slot"><strong>Slot 1</strong><div>Warlord <span aria-label="12 world turns left">· 12 turns left, back to Hall on expiry</span></div></div>
+      <div class="slot"><strong>Slot 2</strong><div class="lock">Empty — nothing worn, nothing lost</div></div>
+      <div class="slot"><strong>Slot 3</strong><div class="lock">Empty — nothing worn, nothing lost</div></div>
+    </div>
+
+    <div class="inspect-split">
+      <div class="dock">
+        <section class="family-block" aria-label="War">
+          <h2>War</h2>
+          <div class="row"><button type="button" class="chip is-on">Warlord</button> <span>+200 yield share · upkeep kept · <a href="#inspect">compare</a></span></div>
+          <div class="row"><button type="button" class="chip">First Blood</button> <span>unearned — <span class="lock">??? — win a lawn battle</span></span></div>
+        </section>
+        <section class="family-block" aria-label="Marks">
+          <h2>Marks</h2>
+          <div class="row"><span class="chip lock">???</span> <span class="lock">Some deeds leave a mark the Hall will not hang. Lift it with souls and matched essence, or carry it.</span></div>
+        </section>
+      </div>
+      <div class="inspect" id="inspect">
+        <h2>Warlord</h2>
+        <p>Held ground pays. Garrisoned might flows back as yield, and the tithe keeps it honest.</p>
+        <p><strong>Sources</strong></p>
+        <ul><li>hall-share might +200‰</li><li>upkeep tithe +100‰</li></ul>
+        <p><button type="button">Preview (no change)</button> <button type="button">Wear into Slot 2</button></p>
+      </div>
+    </div>
+
+    <div class="foot">Hall reads wherever reach permits; wearing is gated out of combat. Catalog copy only — no dotted ids.</div>
+  </div>
+</main>
+</body>
+</html>

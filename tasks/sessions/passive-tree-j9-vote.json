@@ -1,0 +1,41 @@
+{
+  "session": "passive-tree-j9-vote",
+  "program": "passive-tree",
+  "problem": "J9-B2: the codex vote resolves about one attempt in two, so one invocation of the J9 driver does not converge. The BCU2.12 bounded re-proof on the merged head (tasks/reports/BCU2.12-proof-20260921.json, 2 species / 4 attempts, local gemma-4-26b-a4b-qat) showed pass 1 writing AbyssSwordStar and leaving AcientSunNut with codexUnresolvedReason 'vote_unresolved', metadataWritten false, and the resume pass inverting exactly that. The resume pass is correct and retries species whose metadata was never written, but the retry depth at 840-species scale is unmeasured and a species unlucky on every attempt ends with no codex summary. Make one invocation converge with a bounded, named retry; measure the per-attempt resolve rate over >=8 species; keep the harness tests green.",
+  "mode": "worktree",
+  "branch": "cmdc/j9-vote",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-j9-vote",
+  "paths": [
+    "tools/seedsmith/seedsmith/adapters/trees/**",
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/tests/test_j9_batch_run.py",
+    "tools/seedsmith/tests/test_species_tree*.py",
+    "data/seed/passive-tree/**",
+    "tasks/passive-tree-todo.md",
+    "tasks/reports/**",
+    "tasks/evidence-fragments/**"
+  ],
+  "started": "2026-09-21T23:20:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Fence is file-precise on purpose: lane isg-gen-fix (session item-seedgen-genfix) concurrently holds the ITEMS half of tools/seedsmith/** (seedsmith/adapters/items/**, seedsmith/report/**). Its measured touch set at this spawn was exactly tools/seedsmith/seedsmith/adapters/items/setgen/role_repair.py and tools/seedsmith/seedsmith/report/cli.py, so the two lanes are disjoint by file, not merely by directory. Neither lane touches the other's files; a needed file outside this fence is a manager fence decision, stated in the fragment.",
+    "Blocks the released BCU2.12 / J9 840-species run: the owner released the model-spend gate on 2026-09-21 (every corpus run, local LM Studio google/gemma-4-26b-a4b-qat), so the remaining gate is convergence, not permission. The 840-species roster is NOT this lane's to run.",
+    "data/seed/passive-tree/** is generated: the shared ledger data/seed/passive-tree/_runs/tree-language.ledger.json is the resume mechanism, and a hand-edit there forks the corpus from its generator.",
+    "2026-09-22: fence widened by the manager to include tasks/evidence-fragments/**, which this lane's brief requires for its evidence contract but the copied fence lacked. Latent at the time of the widening (0 denials), so it was fixed before it cost a segment rather than after.",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip bb4601d8 has no GREEN acceptance artifact; artifact j9-vote-bb4601d8.json is not an acceptance proof. Ownership closed without claiming acceptance.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/j9-vote",
+    "branchTip": "bb4601d8",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": "j9-vote-bb4601d8.json",
+    "decision": "abandoned",
+    "reason": "Exact branch tip bb4601d8 has no GREEN acceptance artifact; artifact j9-vote-bb4601d8.json is not an acceptance proof. Ownership closed without claiming acceptance."
+  }
+}

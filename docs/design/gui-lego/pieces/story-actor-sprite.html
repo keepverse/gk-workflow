@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-actor-sprite — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-actor-sprite</code></h1>
+  <p class="lede">An actor's sprite, or an <strong>honest labelled shape</strong> carrying the actor's name
+  when the art is missing. Owner decision 2: never a blank, never a broken image, never one shared
+  placeholder for two different people. Spec:
+  <code>docs/architecture/story-scene/spec-actor-sprite.md</code>.</p>
+
+  <p class="lede">The three cases, side by side — note that the two missing actors are
+  <em>distinguishable</em> (name, initial, and pack accent), which the old shared <code>◈</code> was not.</p>
+
+  <div class="lego-grid three">
+    <section class="lego-card">
+      <h2>Art resolved (<code>phase: ready</code>)</h2>
+      <div class="piece-stage">
+        <div class="story-actor-sprite" data-piece="actor-sprite" style="--piece-accent:#c46bff; --piece-rail-edge:#c46bff">
+          <!-- Inline SVG stand-in: no actor art is authored yet, and the draft must render with no
+               external asset so the visual gate can open it from the filesystem. -->
+          <img class="story-actor-sprite__art" alt="" aria-hidden="true"
+               src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='12' fill='%23241433'/%3E%3Cpath d='M50 18 L62 44 L90 48 L68 66 L74 92 L50 78 L26 92 L32 66 L10 48 L38 44 Z' fill='%23c46bff'/%3E%3C/svg%3E"
+               style="width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 0 18px color-mix(in srgb, var(--piece-accent) 40%, transparent))">
+        </div>
+      </div>
+      <p class="note">Decorative: the dialogue line carries the meaning, so the art is
+      <code>alt=""</code> + <code>aria-hidden="true"</code>.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Art missing — Penny (<code>phase: empty</code>)</h2>
+      <div class="piece-stage">
+        <div class="story-actor-sprite" data-piece="actor-sprite" style="--piece-accent:#6fb7d4; --piece-rail-edge:#6fb7d4">
+          <div class="story-actor-sprite__placeholder" role="img" aria-label="Penny — art not yet available"
+               style="border-color:var(--piece-accent); box-shadow:0 0 18px color-mix(in srgb, var(--piece-accent) 30%, transparent)">
+            <span class="story-actor-sprite__initial" aria-hidden="true"
+                  style="border-color:var(--piece-accent); color:var(--piece-accent)">P</span>
+            <span class="story-actor-sprite__name" style="color:var(--piece-accent)">Penny</span>
+            <span class="story-actor-sprite__hint">art not yet authored</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lego-card">
+      <h2>Art missing — Dave (<code>phase: empty</code>)</h2>
+      <div class="piece-stage">
+        <div class="story-actor-sprite" data-piece="actor-sprite" style="--piece-accent:#d9a15c; --piece-rail-edge:#d9a15c">
+          <div class="story-actor-sprite__placeholder" role="img" aria-label="Dave — art not yet available"
+               style="border-color:var(--piece-accent); box-shadow:0 0 18px color-mix(in srgb, var(--piece-accent) 30%, transparent)">
+            <span class="story-actor-sprite__initial" aria-hidden="true"
+                  style="border-color:var(--piece-accent); color:var(--piece-accent)">D</span>
+            <span class="story-actor-sprite__name" style="color:var(--piece-accent)">Dave</span>
+            <span class="story-actor-sprite__hint">art not yet authored</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Landmarks and rules</h2>
+      <pre>.story-actor-sprite                  root; carries the pack's css custom properties
+  .story-actor-sprite__art           the &lt;img&gt; when a URL resolved
+  .story-actor-sprite__placeholder   shown instead, when art/variant is missing
+    .story-actor-sprite__initial     the actor's initial (ActorFrame's visual language)
+    .story-actor-sprite__name        the actor's displayName  ← the "honest" half
+    .story-actor-sprite__hint        "art not yet authored"</pre>
+      <ul class="note">
+        <li><code>spriteUrl === null</code> ⇒ placeholder. Never an <code>&lt;img&gt;</code> with an empty or unresolved <code>src</code>.</li>
+        <li>An <code>onError</code> load failure degrades to the same placeholder, so a broken URL cannot paint a broken glyph.</li>
+        <li><code>phase: empty</code> for "not authored" — <code>error</code> is reserved for a genuine failure.</li>
+        <li>Paint comes from <code>themeResolved.paint</code>; a neutral fallback still <strong>labels</strong> the actor.</li>
+        <li>No <code>side</code>-axis tint: neither actor is a plant or a zombie.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "actor-sprite",
+  "instanceId": "scene:actor:penny",
+  "phase": "empty",
+  "actorId": "penny",
+  "displayName": "Penny",
+  "initial": "P",
+  "variantId": "default",
+  "spriteUrl": null,
+  "speaking": true,
+  "themeRef": { "kind": "actor", "id": "penny" }
+}</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

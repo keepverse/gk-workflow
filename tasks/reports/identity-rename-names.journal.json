@@ -1,0 +1,2190 @@
+{
+  "identifiers": [],
+  "phase": "names",
+  "replacements": [
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 19,
+      "file": "CONTRIBUTING.md",
+      "kind": "replace",
+      "line": 1,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 149,
+      "file": "CONTRIBUTING.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 40,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 1,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 19,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 155,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 19,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "Hourbloom",
+      "before": "Penny",
+      "col": 167,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 19,
+      "rule": "penny"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 178,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 19,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 270,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 19,
+      "rule": "title"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 45,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 21,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 211,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 21,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 231,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 21,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Hourbloom",
+      "before": "Penny",
+      "col": 261,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 21,
+      "rule": "penny"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 134,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 25,
+      "rule": "title"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 20,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 27,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 89,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 41,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 116,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 52,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 144,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 52,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 95,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 54,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 29,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 57,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 159,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 60,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 167,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 114,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 404,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 114,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 3,
+      "file": "README.md",
+      "kind": "replace",
+      "line": 253,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 23,
+      "file": "docs/README.md",
+      "kind": "replace",
+      "line": 1,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 23,
+      "file": "docs/README.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 239,
+      "file": "docs/README.md",
+      "kind": "replace",
+      "line": 117,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 254,
+      "file": "docs/README.md",
+      "kind": "replace",
+      "line": 130,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 113,
+      "file": "docs/assets/banner.svg",
+      "kind": "replace",
+      "line": 1,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 3,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 1,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 34,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 34,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 69,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 68,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 89,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 68,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 52,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 72,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 29,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 74,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 17,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 77,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 47,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 77,
+      "rule": "dave"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 3,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 101,
+      "rule": "zomboss"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 35,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 101,
+      "rule": "zomboss"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 3,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 109,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 128,
+      "file": "docs/guide/README.md",
+      "kind": "replace",
+      "line": 119,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 54,
+      "file": "docs/guide/combat.md",
+      "kind": "replace",
+      "line": 11,
+      "rule": "title"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 31,
+      "file": "docs/guide/delves-and-sieges.md",
+      "kind": "replace",
+      "line": 56,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 3,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 34,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 5,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 50,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 5,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 117,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 5,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 267,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 5,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 181,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 7,
+      "rule": "title"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 3,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 40,
+      "rule": "zomboss"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 3,
+      "file": "docs/guide/features.md",
+      "kind": "replace",
+      "line": 44,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 28,
+      "file": "docs/guide/glossary.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 19,
+      "file": "docs/guide/glossary.md",
+      "kind": "replace",
+      "line": 41,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 24,
+      "file": "docs/guide/glossary.md",
+      "kind": "replace",
+      "line": 53,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 5,
+      "file": "docs/guide/glossary.md",
+      "kind": "replace",
+      "line": 54,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 5,
+      "file": "docs/guide/glossary.md",
+      "kind": "replace",
+      "line": 67,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 1,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 9,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 16,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 22,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 38,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 73,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 23,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 84,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 40,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 86,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 3,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 88,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 1,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "replace",
+      "line": 103,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 85,
+      "file": "docs/guide/mechanisms/_content/aptitudes.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 34,
+      "file": "docs/guide/mechanisms/_content/aptitudes.json",
+      "kind": "replace",
+      "line": 44,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 90,
+      "file": "docs/guide/mechanisms/_content/aptitudes.json",
+      "kind": "replace",
+      "line": 66,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 69,
+      "file": "docs/guide/mechanisms/_content/capture.json",
+      "kind": "replace",
+      "line": 51,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 80,
+      "file": "docs/guide/mechanisms/_content/commanders.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/commanders.json",
+      "kind": "replace",
+      "line": 45,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 88,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 6,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 16,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 23,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 53,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 37,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 12,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 59,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 56,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 63,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 67,
+      "rule": "zomboss"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 47,
+      "file": "docs/guide/mechanisms/_content/counter-development.json",
+      "kind": "replace",
+      "line": 67,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 13,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 3,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 14,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 8,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 66,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 73,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 53,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 13,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 46,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 23,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 16,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 31,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 11,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 46,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 27,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 51,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 35,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 52,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 23,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 53,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 52,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 53,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 54,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 100,
+      "file": "docs/guide/mechanisms/_content/dave-level.json",
+      "kind": "replace",
+      "line": 54,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/fog-of-war.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 97,
+      "file": "docs/guide/mechanisms/_content/fog-of-war.json",
+      "kind": "replace",
+      "line": 24,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 39,
+      "file": "docs/guide/mechanisms/_content/fog-of-war.json",
+      "kind": "replace",
+      "line": 33,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 12,
+      "file": "docs/guide/mechanisms/_content/fog-of-war.json",
+      "kind": "replace",
+      "line": 38,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 85,
+      "file": "docs/guide/mechanisms/_content/fog-of-war.json",
+      "kind": "replace",
+      "line": 63,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 17,
+      "file": "docs/guide/mechanisms/_content/fog-of-war.json",
+      "kind": "replace",
+      "line": 66,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 95,
+      "file": "docs/guide/mechanisms/_content/lawn-match.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 51,
+      "file": "docs/guide/mechanisms/_content/lawn-match.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 62,
+      "file": "docs/guide/mechanisms/_content/lawn-match.json",
+      "kind": "replace",
+      "line": 14,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 30,
+      "file": "docs/guide/mechanisms/_content/lawn-match.json",
+      "kind": "replace",
+      "line": 25,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 17,
+      "file": "docs/guide/mechanisms/_content/lawn-match.json",
+      "kind": "replace",
+      "line": 69,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 89,
+      "file": "docs/guide/mechanisms/_content/layer-rail.json",
+      "kind": "replace",
+      "line": 57,
+      "rule": "title"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 39,
+      "file": "docs/guide/mechanisms/_content/map-orders.json",
+      "kind": "replace",
+      "line": 17,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 24,
+      "file": "docs/guide/mechanisms/_content/naming-ritual.json",
+      "kind": "replace",
+      "line": 55,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 53,
+      "file": "docs/guide/mechanisms/_content/naming-ritual.json",
+      "kind": "replace",
+      "line": 55,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 44,
+      "file": "docs/guide/mechanisms/_content/new-world-prestige.json",
+      "kind": "replace",
+      "line": 39,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 57,
+      "file": "docs/guide/mechanisms/_content/new-world-prestige.json",
+      "kind": "replace",
+      "line": 72,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 50,
+      "file": "docs/guide/mechanisms/_content/new-world-prestige.json",
+      "kind": "replace",
+      "line": 98,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 40,
+      "file": "docs/guide/mechanisms/_content/passive-trees.json",
+      "kind": "replace",
+      "line": 17,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 129,
+      "file": "docs/guide/mechanisms/_content/relics-armoury.json",
+      "kind": "replace",
+      "line": 8,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 12,
+      "file": "docs/guide/mechanisms/_content/relics-armoury.json",
+      "kind": "replace",
+      "line": 44,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 44,
+      "file": "docs/guide/mechanisms/_content/relics-armoury.json",
+      "kind": "replace",
+      "line": 44,
+      "rule": "dave"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 104,
+      "file": "docs/guide/mechanisms/_content/save-select.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 90,
+      "file": "docs/guide/mechanisms/_content/save-select.json",
+      "kind": "replace",
+      "line": 13,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/save-select.json",
+      "kind": "replace",
+      "line": 17,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 26,
+      "file": "docs/guide/mechanisms/_content/save-select.json",
+      "kind": "replace",
+      "line": 23,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 72,
+      "file": "docs/guide/mechanisms/_content/save-select.json",
+      "kind": "replace",
+      "line": 58,
+      "rule": "title"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 81,
+      "file": "docs/guide/mechanisms/_content/siege.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 24,
+      "file": "docs/guide/mechanisms/_content/siege.json",
+      "kind": "replace",
+      "line": 17,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 40,
+      "file": "docs/guide/mechanisms/_content/siege.json",
+      "kind": "replace",
+      "line": 30,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 17,
+      "file": "docs/guide/mechanisms/_content/siege.json",
+      "kind": "replace",
+      "line": 60,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/species-builds.json",
+      "kind": "replace",
+      "line": 13,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 16,
+      "file": "docs/guide/mechanisms/_content/species-builds.json",
+      "kind": "replace",
+      "line": 45,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 61,
+      "file": "docs/guide/mechanisms/_content/specimen-fusion.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 59,
+      "file": "docs/guide/mechanisms/_content/system-settings.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 78,
+      "file": "docs/guide/mechanisms/_content/system-settings.json",
+      "kind": "replace",
+      "line": 56,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 128,
+      "file": "docs/guide/mechanisms/_content/type-specimen-xp.json",
+      "kind": "replace",
+      "line": 8,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 6,
+      "file": "docs/guide/mechanisms/_content/type-specimen-xp.json",
+      "kind": "replace",
+      "line": 16,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 54,
+      "file": "docs/guide/mechanisms/_content/type-specimen-xp.json",
+      "kind": "replace",
+      "line": 16,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 29,
+      "file": "docs/guide/mechanisms/_content/type-specimen-xp.json",
+      "kind": "replace",
+      "line": 23,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 24,
+      "file": "docs/guide/mechanisms/_content/type-specimen-xp.json",
+      "kind": "replace",
+      "line": 49,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 22,
+      "file": "docs/guide/mechanisms/_content/type-specimen-xp.json",
+      "kind": "replace",
+      "line": 51,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 139,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 78,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 13,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 60,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 46,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 75,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 46,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 18,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 60,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 60,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 60,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 100,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "replace",
+      "line": 63,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 50,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 8,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 11,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 79,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 11,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 6,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 17,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 51,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 29,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 19,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 31,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 43,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 60,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 90,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 62,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 22,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 64,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 35,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "replace",
+      "line": 66,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 52,
+      "file": "docs/guide/mechanisms/_content/virtual-turns.json",
+      "kind": "replace",
+      "line": 24,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 73,
+      "file": "docs/guide/mechanisms/_content/virtual-turns.json",
+      "kind": "replace",
+      "line": 33,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 55,
+      "file": "docs/guide/mechanisms/_content/virtual-turns.json",
+      "kind": "replace",
+      "line": 38,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 95,
+      "file": "docs/guide/mechanisms/_content/virtual-turns.json",
+      "kind": "replace",
+      "line": 63,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 17,
+      "file": "docs/guide/mechanisms/_content/virtual-turns.json",
+      "kind": "replace",
+      "line": 68,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 6,
+      "file": "docs/guide/mechanisms/_content/world-events.json",
+      "kind": "replace",
+      "line": 16,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 29,
+      "file": "docs/guide/mechanisms/_content/world-events.json",
+      "kind": "replace",
+      "line": 59,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 14,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 16,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 107,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 23,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 68,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 26,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 40,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 34,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 46,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 39,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 17,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 68,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 89,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 68,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 132,
+      "file": "docs/guide/mechanisms/_content/world-map.json",
+      "kind": "replace",
+      "line": 69,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 13,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 3,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 14,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 8,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 10,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 39,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 12,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 10,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 23,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 35,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 40,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 24,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 65,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 105,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 69,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 32,
+      "file": "docs/guide/mechanisms/_content/zomboss-commander.json",
+      "kind": "replace",
+      "line": 70,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 158,
+      "file": "docs/guide/relics-and-builds.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 161,
+      "file": "docs/guide/relics-and-builds.md",
+      "kind": "replace",
+      "line": 11,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 32,
+      "file": "docs/guide/relics-and-builds.md",
+      "kind": "replace",
+      "line": 12,
+      "rule": "zomboss"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 119,
+      "file": "docs/guide/relics-and-builds.md",
+      "kind": "replace",
+      "line": 54,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 49,
+      "file": "docs/guide/relics-and-builds.md",
+      "kind": "replace",
+      "line": 64,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 1,
+      "file": "docs/guide/relics-and-builds.md",
+      "kind": "replace",
+      "line": 98,
+      "rule": "dave"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 25,
+      "file": "docs/guide/site/README.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 16,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 8,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 12,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 10,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 36,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 25,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 23,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 75,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 23,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 77,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 69,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 96,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 17,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 100,
+      "rule": "title"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 84,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 126,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 59,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 177,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 21,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 266,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 21,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 272,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 62,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 372,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 69,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 433,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 42,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 496,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 21,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 542,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 13,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 543,
+      "rule": "zomboss"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 9,
+      "file": "docs/guide/site/index.html",
+      "kind": "replace",
+      "line": 576,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 4,
+      "file": "docs/guide/site/styles.css",
+      "kind": "replace",
+      "line": 1,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 72,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 5,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 3,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 11,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 62,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "Hourbloom",
+      "before": "Penny",
+      "col": 74,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "penny"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 85,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 192,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "dave"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 134,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 15,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Crazy Dave",
+      "col": 11,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 17,
+      "rule": "crazy-dave"
+    },
+    {
+      "after": "Hourbloom",
+      "before": "Penny",
+      "col": 163,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 17,
+      "rule": "penny"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 1,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 29,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 136,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 29,
+      "rule": "dave"
+    },
+    {
+      "after": "Hourbloom",
+      "before": "Penny",
+      "col": 157,
+      "file": "docs/guide/the-game.md",
+      "kind": "replace",
+      "line": 29,
+      "rule": "penny"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 74,
+      "file": "docs/guide/the-lawn.md",
+      "kind": "replace",
+      "line": 11,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 1,
+      "file": "docs/guide/the-lawn.md",
+      "kind": "replace",
+      "line": 70,
+      "rule": "title"
+    },
+    {
+      "after": "Garden Keeper and his Multiverse",
+      "before": "Rise of Summoner",
+      "col": 58,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 5,
+      "rule": "title"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 22,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 30,
+      "rule": "dave"
+    },
+    {
+      "after": "The Garden Keeper",
+      "before": "Dave",
+      "col": 1,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 32,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 16,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 34,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 67,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 52,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 143,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 54,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 311,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 54,
+      "rule": "dave"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 146,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 96,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 62,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 106,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 61,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 108,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 69,
+      "file": "docs/guide/the-loops.md",
+      "kind": "replace",
+      "line": 162,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 42,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 3,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Garden Keeper",
+      "before": "Dave",
+      "col": 9,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "dave"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 54,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 13,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 214,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 15,
+      "rule": "zomboss"
+    },
+    {
+      "after": "The Rotwright",
+      "before": "Zomboss",
+      "col": 1,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 25,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 8,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 31,
+      "rule": "zomboss"
+    },
+    {
+      "after": "the Rotwright",
+      "before": "Zomboss",
+      "col": 53,
+      "file": "docs/guide/the-rift.md",
+      "kind": "replace",
+      "line": 125,
+      "rule": "zomboss"
+    }
+  ],
+  "residue": [
+    {
+      "before": "Dave",
+      "col": 13,
+      "file": "README.md",
+      "kind": "residue",
+      "line": 122,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 3,
+      "file": "docs/guide/README.md",
+      "kind": "residue",
+      "line": 72,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 128,
+      "file": "docs/guide/how-you-play.md",
+      "kind": "residue",
+      "line": 52,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 22,
+      "file": "docs/guide/mechanisms/_content/naming-ritual.json",
+      "kind": "residue",
+      "line": 17,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 15,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "residue",
+      "line": 13,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 31,
+      "file": "docs/guide/mechanisms/_content/unlock-beats.json",
+      "kind": "residue",
+      "line": 46,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 13,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "residue",
+      "line": 3,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 87,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "residue",
+      "line": 12,
+      "reason": "doubled-article",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 65,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "residue",
+      "line": 23,
+      "reason": "prose-compound",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 20,
+      "file": "docs/guide/mechanisms/_content/unlock-chapters.json",
+      "kind": "residue",
+      "line": 65,
+      "reason": "doubled-article",
+      "rule": "dave"
+    },
+    {
+      "before": "Dave",
+      "col": 67,
+      "file": "docs/guide/site/index.html",
+      "kind": "residue",
+      "line": 334,
+      "reason": "prose-compound",
+      "rule": "dave"
+    }
+  ],
+  "rulesFile": "scripts/vocab-rename/identity-rename.v1.json",
+  "scanned": 91,
+  "schemaVersion": 1,
+  "tool": "vocab-rename"
+}

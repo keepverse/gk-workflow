@@ -1,0 +1,19 @@
+{
+  "program": "build-preset",
+  "mode": "worktree",
+  "status": "merged",
+  "started": "2026-09-25T15:40:00Z",
+  "session": "resume-32-bp1112-20260925",
+  "problem": "Land build-preset BP1.11 (RpgStore.BuildPresets two tables born (save_id, empire_id), CRUD, validate-on-read, human-only EmpireRef) and BP1.12 (BuildPresetEndpoints four routes) per the preset-store spec.",
+  "branch": "opencode/resume-32-bp1112-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-32-bp1112-20260925",
+  "paths": [
+    "src/FusionRpg.Data/Sqlite/RpgStore.BuildPresets.cs",
+    "tests/FusionRpg.Data.Tests/BuildPresets/BuildPresetStoreTests.cs",
+    "src/FusionRpg.Server/BuildPresetEndpoints.cs",
+    "src/FusionRpg.Server/Program.cs",
+    "tests/FusionRpg.Server.Tests/BuildPresetEndpointsTests.cs",
+    "tasks/sessions/resume-32-bp1112-20260925.json"
+  ],
+  "notes": "MERGED 2026-09-25 at 1419a235 (artifact resume-32-bp1112-20260925-1419a235.json). The LANE FAILED at turn 41; the manager salvaged one test contribution. BP1.11/BP1.12 were ALREADY SHIPPED at 005239e4b. Data slice first (BP1.11: two tables born (save_id, empire_id), validate-on-read, human-only EmpireRef throws EmpireScopeNotWidened), then the Server slice (BP1.12: GET/POST/PUT/DELETE /api/build-presets, wire playerId is SaveId). SQL only in FusionRpg.Data. Stop and report rather than widening if a new shared DTO, non-human empire semantics, or generated/tuning data is needed."
+}

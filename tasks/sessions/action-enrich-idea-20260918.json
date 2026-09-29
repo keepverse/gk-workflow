@@ -1,0 +1,15 @@
+{
+  "session": "action-enrich-idea-20260918",
+  "program": "action-enrich",
+  "problem": "Idea phase for enriching and extending the action system: an action base-stats block (the owner's atk retirement, action-base-stats-ideal.md) widened to the genre's full per-move stat set, and seedsmith's actions pipeline extended to emit it. Deliverable is the ideal doc only; no specs, plans or code.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "started": "2026-09-18T13:05:00Z",
+  "status": "merged",
+  "paths": [
+    "docs/architecture/action-enrich-ideal.md",
+    "docs/architecture/action-base-stats-ideal.md",
+    "tasks/sessions/action-enrich-idea-20260918.json"
+  ]
+}

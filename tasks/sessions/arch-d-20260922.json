@@ -1,0 +1,32 @@
+{
+  "session": "arch-d-20260922",
+  "program": "cross-program-architect",
+  "started": "2026-09-22T12:00:00+07:00",
+  "status": "merged",
+  "mode": "worktree",
+  "branch": "cmdc/arch-d",
+  "worktree": ".claude/worktrees/cmdc-arch-d",
+  "problem": "Verify and reconcile the three approved D-row plans (identity-rename, ip-censor, npc-story-events) against the convergence head, clear their answerable open questions, write the npc-story-events Phase 7 /idea-ui entry tasks, answer the aura-skill spec SS3.3/SS10.1 activation-SSOT question with evidence, and fold the deployment-scope register into a sequenced status report. Documents only: no product code, no test edits, no scripts.",
+  "paths": [
+    "tasks/sessions/arch-d-20260922.json",
+    "tasks/identity-rename-plan.md",
+    "tasks/identity-rename-todo.md",
+    "tasks/ip-censor-plan.md",
+    "tasks/ip-censor-todo.md",
+    "tasks/npc-story-events-plan.md",
+    "tasks/npc-story-events-todo.md",
+    "tasks/aura-skill-todo.md",
+    "tasks/backlog-clear-todo.md",
+    "tasks/deployment-hierarchy-todo.md",
+    "tasks/reports/aura-activation-ssot-answer-20260922.md",
+    "tasks/reports/deployment-scope-status-20260922.md",
+    "docs/architecture/**"
+  ],
+  "notes": [
+    "Lane arch-d (runner-assigned id; branch cmdc/arch-d from 15baa1454). Mode is worktree by the brief, so this record is worktree-mode by construction; the brief's allowed-path fence is tasks/** plus docs/architecture/**.",
+    "Documents only. No product code, no test edits, no scripts edited. Every claim in the addenda cites file:line at 15baa1454; two claims were tested by running them (dotnet build src/FusionRpg.Injector -> Ambiguous project name; guard-verification-boundaries.ps1 -> OK 26.95s).",
+    "The other three programs named in the plan files (aura-skill, backlog-clear, deployment-hierarchy) are touched only as: an evidence answer report plus one unticked pointer row each. No row was ticked for any program.",
+    "docs/architecture/** is claimed but nothing under it was edited: the aura question is answered in tasks/reports because the spec's SS3.3 is ask-first and the brief forbids implementing it.",
+    "RETIRED 2026-09-25 by the resumed manager: Branch cmdc/arch-d is fully merged (0 commits above HEAD)."
+  ]
+}

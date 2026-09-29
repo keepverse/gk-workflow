@@ -1,0 +1,31 @@
+{
+  "session": "resume-29-strain-reader-guard-review-20260925",
+  "program": "strain-splice-host",
+  "problem": "Manager exact-SHA clean-checkout review of the completed SSH7.1 guard and SSH8.4 companion reader conversion.",
+  "mode": "worktree",
+  "branch": "review/resume-29-strain-reader-guard-20260925",
+  "worktree": ".claude/worktrees/review-resume-29-strain-reader-guard-20260925",
+  "paths": [
+    "tests/FusionRpg.Guard.Tests/TuningRevisionLiteralGuardTests.cs",
+    "tools/seedsmith/tests/test_combogen.py",
+    "tests/FusionRpg.Core.Items.Tests/Items/CombinationCorpusTests.cs",
+    "tests/FusionRpg.Core.Items.Tests/Items/ComboContainerBuildTests.cs",
+    "tests/FusionRpg.Core.Items.Tests/Items/ItemUpgradeCostContractTests.cs",
+    "tests/FusionRpg.Core.Items.Tests/Items/StrainSpliceGridTests.cs",
+    "tests/FusionRpg.Data.Tests/Items/CraftWearInstanceOpTests.cs",
+    "tests/FusionRpg.Data.Tests/Items/MaterialSpendTests.cs",
+    "tests/FusionRpg.Server.Tests/CombinationImportTests.cs",
+    "tests/FusionRpg.Server.Tests/ComboPricingBootTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemUpgradeEndpointTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemWorkbenchAssuranceTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemWorkbenchEndpointsTests.cs",
+    "tests/FusionRpg.Server.Tests/ItemWorkbenchSpeciesWiringTests.cs",
+    "tasks/reports/resume-29-strain-splice-reader-guard-20260925.md",
+    "tasks/reports/resume-29-strain-reader-guard-review-20260925.md",
+    ".claude/cmdc-agents/acceptance/resume-29-strain-reader-guard-review-20260925-a120ce2d.json",
+    "tasks/sessions/resume-29-strain-reader-guard-review-20260925.json"
+  ],
+  "started": "2026-09-25T18:30:00Z",
+  "status": "merged",
+  "notes": "RETIRED 2026-09-25 by the resumed manager: Review complete; reviewed SHA a120ce2d8 and the review doc are in HEAD (merged 78d07423c). Original notes: Manager review of the worker's dirty diff from prepared base 29df99598. Exact 14-path fence; unrelated Data rest-shard failure remains explicit and must not be hidden."
+}

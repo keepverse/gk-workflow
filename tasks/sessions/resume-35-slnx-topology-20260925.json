@@ -1,0 +1,26 @@
+{
+  "session": "resume-35-slnx-topology-20260925",
+  "program": "test-verification-boundary",
+  "problem": "Fix TVB-F39: no single environment can compile FusionRpg.slnx - the two MelonLoader hosts share one FUSIONRPG_ML_GAMEDIR pack variable and the three hosts share one FUSIONRPG_GAME_PROFILE, so the merged-head gate can never reach GREEN.",
+  "mode": "worktree",
+  "branch": "opencode/resume-35-slnx-topology-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-35-slnx-topology-20260925",
+  "paths": [
+    "FusionRpg.slnx",
+    "src/FusionRpg.Injector.BepInEx/FusionRpg.Injector.BepInEx.csproj",
+    "src/FusionRpg.Injector.MelonLoader/FusionRpg.Injector.MelonLoader.csproj",
+    "src/FusionRpg.Injector.MelonLoader.39/FusionRpg.Injector.MelonLoader.39.csproj",
+    "Directory.Build.props",
+    "Directory.Build.targets",
+    "scripts/deploy-play.ps1",
+    "scripts/publish-player.ps1",
+    "scripts/guard-injector-compile.ps1",
+    "docs/architecture/game-versioning.md",
+    "tasks/sessions/resume-35-slnx-topology-20260925.json"
+  ],
+  "started": "2026-09-25T16:05:00Z",
+  "status": "merged",
+  "notes": "MERGED 2026-09-25 at 57a1224d (artifact resume-35-slnx-topology-20260925-57a1224d.json). Lane returned PARTIAL; the manager verified all three hosts build in one environment and accepted. Per-host pack/profile explicitness so all three injector hosts build in one environment. Must keep deploy-play.ps1 and publish-player.ps1 working and must GATE the fix on a real solution build. game-profiles.json is the profile catalog; fingerprints already exist there. Never record machine-local pack paths in tracked files.",
+  "shapeChosen": "A (per-cell pack variables), generalised. A cell is declared once in Directory.Build.props (cell + loader + its env var); the loader-wide roots feed a loader only while that loader has one cell, and FUSIONRPG_GAME_PROFILE no longer reaches MSBuild at all.",
+  "result": "All three cells compile in one environment (verified: 3/3 injector DLLs emitted by one dotnet build FusionRpg.slnx). A requested profile that disagrees with the cell is reported (FUSIONRPG0001) and the cell still wins, so FUSIONRPG_GAME_PROFILE can no longer re-point a host at another cell's bridge. A pack that is another cell's is refused before the compiler runs (FUSIONRPG0002, via scripts/guard-game-profile.ps1 - one matcher, not a second). A cell with no pack skips loudly as 'NOT COMPILED'. FusionRpg.slnx needed no change. deploy-play.ps1 and publish-player.ps1 needed no change: the exact dotnet build shapes both issue still succeed, and the pre-existing game-profile guard already refused the combinations that used to leak."
+}

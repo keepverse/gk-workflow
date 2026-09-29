@@ -1,0 +1,21 @@
+{
+  "session": "resume-04-expedition-durability-20260925",
+  "program": "expedition",
+  "problem": "Close expedition durable collect replay, database-enforced active membership, archived-save admission, and deterministic concurrency/fault-window coverage.",
+  "mode": "worktree",
+  "branch": "opencode/resume-04-expedition-durability-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-04-expedition-durability-20260925",
+  "paths": [
+    "src/FusionRpg.Server/ExpeditionEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Expeditions.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.cs",
+    "src/FusionRpg.Contracts/**",
+    "tests/FusionRpg.Data.Tests/ExpeditionStoreTests.cs",
+    "tests/FusionRpg.Data.Tests/ExpeditionRewardApplyTests.cs",
+    "tests/FusionRpg.E2E.Tests/ExpeditionE2ETests.cs",
+    "tasks/reports/resume-04-expedition-durability-20260925.md"
+  ],
+  "started": "2026-09-25T06:57:43Z",
+  "status": "abandoned",
+  "notes": "Stopped before edits because its original fence included src/FusionRpg.Contracts/**, which overlaps the active web recovery lane. The research worktree is preserved; no code or acceptance is claimed. A successor owns expedition paths without the shared Contracts fence and must report any DTO need for manager coordination."
+}

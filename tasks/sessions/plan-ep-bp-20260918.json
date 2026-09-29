@@ -1,0 +1,17 @@
+{
+  "session": "plan-ep-bp-20260918",
+  "program": "empire-progression + build-preset",
+  "problem": "Write the empire-progression (EP) and build-preset (BP) plan/todo pairs under the summoner-convergence parent plan (lane B).",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "tasks/empire-progression-plan.md",
+    "tasks/empire-progression-todo.md",
+    "tasks/build-preset-plan.md",
+    "tasks/build-preset-todo.md",
+    "tasks/sessions/plan-ep-bp-20260918.json"
+  ],
+  "started": "2026-09-18T00:00:00Z",
+  "status": "merged"
+}

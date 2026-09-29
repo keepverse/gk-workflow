@@ -1,0 +1,20 @@
+{
+  "session": "respec-rulings-20260918",
+  "program": "empire-progression+build-preset",
+  "problem": "Apply owner rulings R18 (specimen respec always priced; empire respec free allowance earned per empire level, spend-or-pay choice; commander free; presets charge the by-hand price) and R19 (new empire-level track fed by species level-ups) to the empire-progression and build-preset specs. Docs only; no code, data, or tuning edits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/empire-progression/spec-respec-free-counter.md",
+    "docs/architecture/empire-progression/spec-empire-level.md",
+    "docs/architecture/empire-progression/spec-specimen-respec-price.md",
+    "docs/architecture/empire-progression/spec-default-build.md",
+    "docs/architecture/empire-progression-map.md",
+    "docs/architecture/build-preset-map.md",
+    "docs/architecture/build-preset/**",
+    "tasks/sessions/respec-rulings-20260918.json"
+  ],
+  "started": "2026-09-18T18:00:00Z",
+  "status": "merged"
+}

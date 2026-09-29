@@ -1,0 +1,26 @@
+{
+  "session": "seedsmith-p1-audit-acceptance-20260925",
+  "program": "seedsmith-passive-tree-recovery",
+  "problem": "Manager acceptance review of the completed Seedsmith BCU2.12 finalization diff at a clean exact SHA; apply the scoped code/tests/report, rerun deterministic evidence, and record an acceptance artifact without resuming generation.",
+  "mode": "worktree",
+  "branch": "review/seedsmith-p1-audit-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-seedsmith-p1-audit-20260925",
+  "paths": [
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/species/generate_tree.py",
+    "tools/seedsmith/tests/adapters/trees/test_nodegen_language_stage.py",
+    "tools/seedsmith/tests/adapters/trees/test_tree_species_generate_tree.py",
+    "tools/seedsmith/tests/test_j9_batch_run.py",
+    "tools/seedsmith/tests/test_bcu212_launcher.py",
+    "tools/seedsmith/tests/test_bcu212_report.py",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-report.py",
+    "tasks/evidence-fragments/seedsmith-p1-audit-final-20260925/**",
+    "tasks/reports/seedsmith-p1-audit-final-20260925.md",
+    "tasks/reports/seedsmith-p1-audit-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T04:15:00Z",
+  "status": "abandoned",
+  "notes": "This isolated Seedsmith acceptance worktree was superseded by the composite acceptance because the repaired verification registry couples its test files to the Phase 0A manager test project. Its copied draft is preserved. The exact Seedsmith code is covered by the merged composite artifact at fc144f2cc4a67464d763051c428deed2937692ef; no model call, BCU2.12 resume, generated-data edit, or direct worker merge occurred."
+}

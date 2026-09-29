@@ -1,0 +1,25 @@
+{
+  "session": "resume-03-web-acceptance-20260925",
+  "program": "web-control-room",
+  "problem": "Manager clean-checkout acceptance of the web authoritative snapshot/match-isolation draft, correcting the worker's wrong working-directory test evidence and checking the shared DTO/server/web contract before any browser claim.",
+  "mode": "worktree",
+  "branch": "review/web-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-web-recovery-20260925",
+  "paths": [
+    "src/FusionRpg.Contracts/Dtos.cs",
+    "src/FusionRpg.Server/EventIngest.cs",
+    "src/FusionRpg.Server/RpgHub.cs",
+    "web/fusion-rpg-web/src/features/lawn/LawnPage.tsx",
+    "web/fusion-rpg-web/src/features/lawn/lawnProjectorFold.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnSessionFold.ts",
+    "web/fusion-rpg-web/src/lib/bus/hub-provider.tsx",
+    "web/fusion-rpg-web/src/lib/bus/log-store.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnProjectorFold.test.ts",
+    "web/fusion-rpg-web/src/features/lawn/lawnSessionFold.test.ts",
+    "web/fusion-rpg-web/src/lib/bus/hub-provider.test.tsx",
+    "tasks/reports/resume-03-web-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T08:20:00Z",
+  "status": "merged",
+  "notes": "Web recovery draft accepted at exact SHA 4ff99673b14dc919d654789b30c254f0d13efa77, corrected path-owned verification and clean-checkout focused evidence passed, and merged at c7d2cc93798f27189483d29e93591b3712f014eb. Artifact: .claude/cmdc-agents/acceptance/resume-03-web-20260925-4ff99673.json. Browser/live proof remains explicitly open."
+}

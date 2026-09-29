@@ -1,0 +1,17 @@
+{
+  "session": "status-metric-verified-20260927",
+  "program": "docs-consolidation",
+  "problem": "Stop the status reader from reporting a tick as done: split every program's done blocks by whether a GREEN acceptance names a SHA in this head, so the headline number an agent optimises can no longer be moved by ticking a box.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "scripts/program_status.py",
+    "tests/tools/test_program_status.py",
+    "AGENTS.md",
+    "tasks/sessions/status-metric-verified-20260927.json"
+  ],
+  "started": "2026-09-27T00:00:00Z",
+  "status": "merged",
+  "notes": "DONE. scripts/program_status.py carries the split and reached HEAD inside 501eb28a8, another session's guard-porting commit that swept the working tree - the whole change is in that SHA (verified marker by marker), and 6c581000b adds the tests. Reading at the time: of 2892 done blocks, 342 have a GREEN acceptance naming a SHA in this head and 2550 are ticked with nothing behind them; 49 programs report zero open blocks and all 49 are unverified. Tests 38/38. NOT DONE and deliberately: this changes what the tool REPORTS, not what counts as finished. A lane still closes by ticking, and nothing yet makes the merged-head gate (post-merge-check.ps1) a required step before a program may be called done - that is the remaining half and it is a policy decision, not a tool change."
+}

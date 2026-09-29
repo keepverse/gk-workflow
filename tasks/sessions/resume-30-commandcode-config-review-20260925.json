@@ -1,0 +1,15 @@
+{
+  "session": "resume-30-commandcode-config-review-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Read-only review of three unowned .commandcode paths after the owner selected tracked-configuration review.",
+  "mode": "worktree",
+  "branch": "opencode/resume-30-commandcode-config-review-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-30-commandcode-config-review-20260925",
+  "paths": [
+    "tasks/evidence-fragments/commandcode-config-review-20260925/**",
+    "tasks/reports/resume-30-commandcode-config-review-20260925.md"
+  ],
+  "started": "2026-09-25T18:00:00Z",
+  "status": "abandoned",
+  "notes": "Done report-only review harvested by the manager. The three .commandcode source paths, ignore policy, cleanup tools, and integration checkout remain untouched; six owner policy questions in the report remain open."
+}

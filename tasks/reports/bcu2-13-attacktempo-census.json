@@ -1,0 +1,26 @@
+{
+ "reading": "BCU2.13 \u2014 attackTempo and its provenance tag across the roster, model-free (no writes)",
+ "repoHead": "7fdc5b43b",
+ "rosterSpecies": 904,
+ "attackTempoValues": {
+  "flurry": 179,
+  "ponderous": 160,
+  "steady": 304,
+  "quick": 70,
+  "slow": 191
+ },
+ "confidenceTags": {
+  "high": 727,
+  "split": 173,
+  "deterministic-fallback": 1,
+  "(absent)": 3
+ },
+ "deterministicFallbackCount": 1,
+ "deterministicFallback": [
+  {
+   "species": "DoubleCherry",
+   "attackTempo": "quick",
+   "confidence": "deterministic-fallback"
+  }
+ ]
+}

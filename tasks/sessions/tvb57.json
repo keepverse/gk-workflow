@@ -1,0 +1,38 @@
+{
+  "session": "tvb57",
+  "program": "test-verification-boundary",
+  "problem": "Own TVB5.7 (first real Core.Tests split increment: shared set + manifest project 1 + its wiring) and the TVB5.8.k increments of test-verification-boundary (tasks/test-verification-boundary-todo.md), one manifest project per commit, each applied through the FileMove split --apply gate and landed with the ci.yml/release.yml pair, test-fast list and registry rewrite in the same commit. Wave 4/6 belong to summoner-convergence-lane-d2 (its own ledger; never write it). scripts/verification-boundaries.v1.json is also edited additively by other lanes.",
+  "mode": "worktree",
+  "branch": "cmdc/tvb57",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-tvb57",
+  "paths": [
+    "tests/core-test-projects.v1.json",
+    "tests/FusionRpg.Core.Tests.Shared/**",
+    "tests/FusionRpg.Core.AchievementTitlesTuningTests.Tests/**",
+    "tests/FusionRpg.Core.Tests/FusionRpg.Core.Tests.csproj",
+    "tests/FusionRpg.Core.Tests/AchievementTitlesTuningTests.cs",
+    "tests/FusionRpg.Core.Tests/AssemblyInfo.cs",
+    "tests/FusionRpg.Core.Tests/ContractTuningTestBootstrap.cs",
+    "tests/FusionRpg.Core.Tests/TestSupport/**",
+    "tests/FusionRpg.Core.Tests/Items/SocketOperationsTests.cs",
+    "tests/FusionRpg.Core.Tests/Items/UniqueCorpusTests.cs",
+    "tests/FusionRpg.Core.Tests/Atoms/Generation/FamilyExpansionTests.cs",
+    "tasks/tvb-wave5-ledger.jsonl",
+    "tasks/evidence-fragments/tvb5-*.md",
+    "tasks/test-verification-boundary-todo.md",
+    "tasks/item-seedgen-todo.md",
+    "tasks/strain-splice-host-todo.md",
+    "tasks/atom-family-expansion-todo.md",
+    "tasks/sessions/tvb57.json"
+  ],
+  "started": "2026-09-20T12:00:00Z",
+  "status": "merged",
+  "notes": [
+    "Carried from the tvb-wave5-20260920 record (TVB5.1-5.6, same program, same wave): this session continues wave 5. It must not write that record.",
+    "Narrowed from the brief's broad fence because keepverse-split.json is still ACTIVE and claims specific tests/** files; a broad tests/** here fails session-boundary-check on overlap. Amended per increment as wave5 did.",
+    "scripts/verification-boundaries.v1.json and scripts/test-fast.ps1 are edited under the brief's additive-union rule but are deliberately NOT listed above: tvb-wave5-20260920.json and keepverse-split.json (both still ACTIVE) claim them, so listing them would fail session-boundary-check on an overlap this session does not own.",
+    "The brief also names tool-written files outside this fence: src/FusionRpg.Core/InternalsVisibleTo.CoreTests.cs and FusionRpg.slnx (written by tools/FileMove split --apply), and .github/workflows/{ci,release}.yml is claimed by the still-active tvb-wave5 record and blocked by the pipeline guard. Flagged as blockers; not edited by hand.",
+    "Residual precondition repair (tests/** only) landed as its own commit 1fa3cef0 before any split increment, because the split gate builds and tests the residual.",
+    "Status set to merged 2026-09-22: superseded by lane tvb58, whose chain carried the same work forward; cmdc/tvb57 has 0 unmerged commits. Kept as history rather than deleted."
+  ]
+}

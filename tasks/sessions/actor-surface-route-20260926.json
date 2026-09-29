@@ -1,0 +1,39 @@
+{
+  "session": "actor-surface-route-20260926",
+  "program": "actor-hud",
+  "problem": "Serve GET /api/catalogs/actor-surface: the web client has requested this route since it landed, the server has never mapped it, and the actor-hud-bottom-anchor branch makes the silent fixture fallback fatal (HUD reads hudPresentation, the fixture has no such field, so every glyph is skipped).",
+  "mode": "worktree",
+  "branch": "fix/actor-surface-route-20260926",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/actor-surface-route-20260926",
+  "paths": [
+    "src/FusionRpg.Server/ActorSurfaceEndpoints.cs",
+    "src/FusionRpg.Server/DerivedSurfaceEndpoints.cs",
+    "src/FusionRpg.Server/Program.cs",
+    "src/FusionRpg.Core/ActorSurface/ActorSurfaceCatalogHub.cs",
+    "tests/FusionRpg.Server.Tests/ActorSurfaceEndpointsTests.cs",
+    "docs/architecture/decisions.md",
+    "tasks/sessions/actor-surface-route-20260926.json",
+    "tasks/reports/actor-surface-route-20260926.md"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "base": {
+    "branch": "merge/actor-hud-bottom-anchor-20260926",
+    "sha": "648b07d1ac9e7d381a0432664413459f47a0ceb2",
+    "note": "Read from `git rev-parse merge/actor-hud-bottom-anchor-20260926` at worktree creation, not taken on trust. The reason to build on the branch and not main: the DTO fields this route must serve (HudPresentation, ElementSurfaceEntryDto.HudGlyph) exist only there."
+  },
+  "ownerAnswers": {
+    "problem": "Map GET /api/catalogs/actor-surface and prove it over real HTTP",
+    "mode": "worktree (mandated by the brief; the branch lane's own worktree must not be edited)",
+    "branch": "fix/actor-surface-route-20260926 off merge/actor-hud-bottom-anchor-20260926 @ 648b07d1a",
+    "paths": "server endpoint file + Program.cs registration + Server.Tests + decisions.md + own report/record"
+  },
+  "scopeNote": "Spawned as a review-lane subagent against a 45-commit branch. Does NOT merge; the manager merges the reviewed SHA. web/fusion-rpg-web/** is the branch's to own and is out of fence - if the client must change, report and stop. data/** is out of fence (no tuning change is in scope: the DTO is a pure read of the already-loaded actor-hud.v7.json + *-catalog.v{n}.json). scripts/verification-boundaries.v1.json is out of fence, so the new endpoint file resolves to the module-level `server-fallback` boundary (project `server`, guard `dal`) rather than a curated focused boundary - see the report's hand-off item.",
+  "notes": [
+    "The route is NOT a new architecture decision. docs/architecture/decisions.md:50 ('Actor-surface catalogs (2026-09-07)') already names `GET /api/catalogs/actor-surface` and marks it 'still open'. This session closes that declaration, so the ADR action is to amend the existing row, not to add a duplicate one.",
+    "Route shape chosen: (1) a new dedicated route, not (2) folding hudPresentation into /api/catalogs/derived-surface. Reason: (2) alters an existing shipped response contract (DerivedSurfaceDto / SchemaVersion 2) and would require a client change inside the branch's fence; (1) adds a read-only surface the ADR already declares and perturbs no existing response.",
+    "CLAIMED CROSSING, region-checked, no overlap (session-boundary.md 'Before editing a file another stream might own'). Two ACTIVE records claim three files this session edits: `actor-hud-element-icons-20260917` and `actor-hud-bottom-anchor-20260916`, both on codex/actor-hud-bottom-anchor-20260916, and both already merged into this session's base (git merge-base --is-ancestor -> 0; only one further commit, dec17dff8, a docs addendum). Region evidence: (a) src/FusionRpg.Server/Program.cs -- the branch's hunks are at ~86-104 (hud tuning + ConfigureAll + the element-catalog reader) and ~887 (item workbench); this session's hunk is the 5-line app.MapActorSurface() registration at ~1368-1372; disjoint. (b) src/FusionRpg.Core/ActorSurface/ActorSurfaceCatalogHub.cs -- the branch added HudPresentation/HudGlyph; this session adds one DefaultOpen parameter and one line in BuildDto; adjacent, not overlapping, and the branch's version is already in this base. (c) docs/architecture/decisions.md -- whole-file table claimed by several records; this session amends row 50 in place, so a textual merge stays clean unless another lane edits that same row.",
+    "FOUND, NOT FIXED, and routed out of fence: the Server reads element-catalog.v1.json (Program.cs:102) while the Injector reads element-catalog.v2.json (RpgHost.cs:133). v2 is the only shipped catalog carrying `hudGlyph` (flame/crystal/wind/stone/star/eclipse on the six real elements; omni stays null and is presentationOnly). So the served fan-in has hudGlyph=null on all seven rows and the FE's actorHudElementArtUrl returns undefined for every element. `git log --all -S 'element-catalog.v2.json' -- src/FusionRpg.Server/Program.cs` returns nothing, so no branch has the switch. The one-line fix is Program.cs:102 v1 -> v2; the blast radius is exactly that one nullable field (same 7 ids, same colors, same ordinals). NOT done here: data/tuning/** and the Program.cs tuning reader are outside this session's fence, and the `actor-hud-element-icons-20260917` record claims BOTH data/tuning/element-catalog.v2.json and src/FusionRpg.Server/Program.cs for exactly this feature.",
+    "PRE-EXISTING RED, proven not mine: FusionRpg.Core.Expeditions.Tests is 11 failed / 27 passed at this session's base commit 648b07d1a in a pristine detached worktree with none of these changes present (11 failed / 27 passed there too). Failures are 'Sequence contains no elements' in ExpeditionResolver.PlannedRungFor (ExpeditionResolver.cs:186) and a CreatureRankFloors.ExpeditionWildBand admission failure -- the species-rank / creature-rank area, unrelated to actor-surface. It matters to the manager because touching src/FusionRpg.Core/** pulls the whole Core selection into the scoped runner, which then stops red."
+  ]
+}

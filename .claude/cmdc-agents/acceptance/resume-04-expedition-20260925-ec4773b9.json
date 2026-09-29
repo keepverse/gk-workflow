@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-04-expedition-acceptance-20260925",
+  "sha": "ec4773b9c2b4a90d9dae9c69834d78ae8493c87e",
+  "shortSha": "ec4773b9",
+  "mergedSha": "244e8fb9fac0f6c00f9ca34dcf99582b59ed8359",
+  "verdict": "GREEN",
+  "scope": "Expedition durable collect/recall result replay, database-enforced active membership, archived-save admission, and deterministic concurrency/fault seams",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "focused-expedition-tests-clean",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "13 store + 3 species + 5 reward + 8 E2E tests passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-04-expedition-acceptance-20260925/focused-expedition-tests-clean.log",
+      "command": "dotnet test Data ExpeditionStore/SpeciesExpedition/RewardApply filters; dotnet test E2E ExpeditionE2ETests"
+    },
+    {
+      "check": "expedition-guards",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "DAL and test-substrate guards passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-04-expedition-acceptance-20260925/expedition-guards.log",
+      "command": "scripts/guard-dal.ps1; scripts/guard-test-substrate.ps1"
+    },
+    {
+      "check": "path-owned-plan",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "Data/E2E/server/guard owners selected without scope escape",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-04-expedition-acceptance-20260925/path-owned-plan.log",
+      "command": "scripts/verify-change.ps1 -Paths <five concrete expedition paths> -Session resume-04-expedition-acceptance-20260925 -PlanOnly -Format json"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; status clean before and after focused checks",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-04-expedition-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> ec4773b9c2b4a90d9dae9c69834d78ae8493c87e; focused tests/guards/PlanOnly; git status --porcelain=v1",
+      "logSha256": "6170C786EF34C377FBBC944A8CCDC22315B18E97812D58E17FD7687192844AFB",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "knownLimitations": [
+    "The worker's complete path-owned Data selection was red on an out-of-fence Windows long-path SaveIdentity backup test; 1199/1200 selected Data tests passed. It is not counted as a green aggregate.",
+    "Legacy terminal rows without a manifest are not reconstructed, and duplicate active memberships fail closed during index installation.",
+    "No deployed production database, multi-process WAL, browser, or live proof was run."
+  ],
+  "changedPaths": [
+    "src/FusionRpg.Server/ExpeditionEndpoints.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Expeditions.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.cs",
+    "tests/FusionRpg.Data.Tests/ExpeditionStoreTests.cs",
+    "tests/FusionRpg.E2E.Tests/ExpeditionE2ETests.cs",
+    "tasks/reports/resume-04-expedition-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "ec4773b9c2b4a90d9dae9c69834d78ae8493c87e",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "mergeScope": "The reviewed SHA is accepted and merged for the scoped expedition contract; the out-of-fence Data test and migration/live questions remain open.",
+  "when": "2026-09-25T09:45:00Z",
+  "expectedSha": "ec4773b9c2b4a90d9dae9c69834d78ae8493c87e",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-04-expedition-acceptance-20260925"
+}

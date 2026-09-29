@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-05-vocabulary-recovery-acceptance-20260925",
+  "sha": "85d2c096f829edf2560ee1f67a80aef97c40cb13",
+  "shortSha": "85d2c096",
+  "mergedSha": "83febfacdc7dd205dcadd9030f7b996c74223d58",
+  "verdict": "GREEN",
+  "scope": "FamilyExpand manifest closed-kind schema recovery, generator-owned vocabulary regeneration, and affected Core consumer tests",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "generator-checks-clean",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "manifest/provenance and live vocabulary checks passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-05-vocabulary-recovery-acceptance-20260925/generator-checks-clean.log",
+      "command": "dotnet run --project tools/FamilyExpandGen -- --check; dotnet run --project tools/PassiveTreeRosterGen -- --atom-vocab-check"
+    },
+    {
+      "check": "generator-tests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "25 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-05-vocabulary-recovery-acceptance-20260925/generator-tests.log",
+      "command": "dotnet test tests/FusionRpg.PassiveTreeRosterGen.Tests"
+    },
+    {
+      "check": "core-consumer-tests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "52 passed, 0 failed, 0 skipped; the prior UnknownKind failures are resolved",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-05-vocabulary-recovery-acceptance-20260925/core-consumer-tests.log",
+      "command": "dotnet test tests/FusionRpg.Core.Tests --filter FullyQualifiedName~TraitMigrationParityTests|FullyQualifiedName~EventDeckGoldensTests|FullyQualifiedName~EventSeedContentTests|FullyQualifiedName~TreeAtomSourceParityTests|FullyQualifiedName~PassiveTreeMechanismRoundRecomposeTests|FullyQualifiedName~EquipAtomSourceIdTests|FullyQualifiedName~UniqueEquipmentAtomMappingTests"
+    },
+    {
+      "check": "generated-seed-and-substrate-guards",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "both guards passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-05-vocabulary-recovery-acceptance-20260925/generated-seed-and-substrate-guards.log",
+      "command": "scripts/guard-generated-seed.ps1; scripts/guard-test-substrate.ps1"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; focused checks passed; status clean",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-05-vocabulary-recovery-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> 85d2c096f829edf2560ee1f67a80aef97c40cb13; generator checks/tests/guards; git status --porcelain=v1",
+      "logSha256": "DEB7AD8E56640D9B521CED1F402958EE5848E7260DEC731FAC6954947DB70E58",
+      "logRetainedOutsideRepository": true
+    }
+  ],
+  "knownLimitations": [
+    "TreeBinder --check remains red on the pre-existing passive-tree corpus/registry mismatch; that output is outside this fence and was not regenerated or hand-edited.",
+    "The broad executable-path verifier over-selected split Core projects and stopped on MSB3021 Access Denied; the focused 52-test replacement is the accepted evidence.",
+    "CI atom-vocab wiring and stale fixture/Core pool-map handoffs remain open; no browser/live/model run was performed."
+  ],
+  "changedPaths": [
+    "data/seed/passive-tree/vocabulary.json",
+    "data/seed/atoms/generated/_family-expand.manifest.json",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/FusionRpg.PassiveTreeRosterGen.Tests.csproj",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/FamilyExpandClosureTests.cs",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/RosterMirrorTests.cs",
+    "tools/FamilyExpandGen/FamilyExpandGen.csproj",
+    "tools/FamilyExpandGen/FamilyExpandManifest.cs",
+    "tools/FamilyExpandGen/FamilyExpandPoolCatalog.cs",
+    "tools/FamilyExpandGen/Program.cs",
+    "tools/FamilyExpandGen/VersionedInputFile.cs",
+    "tools/PassiveTreeRosterGen/AtomVocabCheck.cs",
+    "tools/PassiveTreeRosterGen/Program.cs",
+    "tasks/reports/resume-05-vocabulary-recovery-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "85d2c096f829edf2560ee1f67a80aef97c40cb13",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "mergeScope": "The reviewed SHA is accepted and merged for the generator-owned vocabulary/manifest set; TreeBinder, CI, fixture, and Core pool-map handoffs remain open.",
+  "when": "2026-09-25T10:10:00Z",
+  "expectedSha": "85d2c096f829edf2560ee1f67a80aef97c40cb13",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-05-vocabulary-recovery-acceptance-20260925"
+}

@@ -1,0 +1,36 @@
+{
+  "session": "strain-splice-host-20260921",
+  "program": "strain-splice-host",
+  "started": "2026-09-21T11:58:00+07:00",
+  "status": "merged",
+  "mode": "worktree",
+  "branch": "cmdc/ssh28",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-ssh28",
+  "problem": "Take over the strain-splice-host rows from the drained lane ssh27: finish SSH5.12's second acceptance line (tighten the corpus host-set contract from subset to equality in C# and Python, green against the owner-authorized resocket --write corpus at ecf265a9), run the owner-authorized SSH5.13 (the R11 helm-host re-run whose re-print makes R13 answerable), then SSH6.2 ComboPricing, SSH5.10-P2 and the remaining SSH6.x rows.",
+  "paths": [
+    "tasks/sessions/strain-splice-host-20260921.json",
+    "tasks/strain-splice-host-todo.md",
+    "tasks/strain-splice-host-ledger.jsonl",
+    "tasks/evidence-fragments/SSH*.md",
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Server/**",
+    "tools/**",
+    "tests/**",
+    "data/seed/items/**",
+    "data/tuning/**",
+    "data/seed/**/_registry/**",
+    "docs/architecture/strain-splice-host/**",
+    "docs/architecture/strain-splice-host-map.md",
+    "docs/architecture/strain-splice-host-ideal.md"
+  ],
+  "notes": [
+    "Lane id ssh28 with session id strain-splice-host-20260921: ssh27 is drained (input 983 / output 3 tokens per continue, exitCodes [0,0,0]) but keeps its own branch cmdc/ssh27 and session record strain-splice-host-20260920; ssh28 must not edit that worktree or branch.",
+    "SSH5.12's owner half was executed by the manager (ecf265a9) because the owner authorized the write and the owning lane was drained; the row stays OPEN for its own second acceptance line, which is this lane's first task.",
+    "data/tuning/** is publish-only (A7/H7) and data/generated/** + data/tuning/** are EnforcedRoots: a new file there needs its boundaries[] owner row, which the manager places when the fence excludes scripts/.",
+    "The record was written by the lane itself because verify-change.ps1 requires an active record for the brief's session id and none existed at lane start; the paths are exactly the brief's allowed set.",
+    "H7: a tuning publish switches its readers in the same commit. Generated corpus under data/seed/items/** is seedsmith output, never hand-edited.",
+    "RETIRED DRAINED 2026-09-22, replaced by ssh29 (session strain-splice-host-20260922): four consecutive segments returned empty output in ~12s each and four feeds produced no commits, while its branch was fully merged (0 ahead). Not a judgement on the work it did -- 20+ commits of it are on the integration branch.",
+    "2026-09-22: worktree path made ABSOLUTE because docs/contributing/session-boundary.md:27 requires it and verify-change.ps1 reports a relative path as DRIFT -- lane isg-gen-fix hit exactly that and could not verify its own work. The manager wrote these records relative; that was the defect, not the lane's."
+  ]
+}

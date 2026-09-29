@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>story-advance-control — story-scene</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>story-advance-control</code></h1>
+  <p class="lede">One piece owning <strong>both</strong> verbs of a scene — advance and skip — plus their
+  pending and error states, so a scene never hand-rolls a footer. Spec:
+  <code>docs/architecture/story-scene/spec-advance-control.md</code>.</p>
+
+  <p class="lede"><strong>Skip is present on every beat, including the last</strong> (owner decision 5):
+  no first-scene nudge, no confirmation dialog. The narrative source's own rule —
+  <em>"Skipping never loses Souls, grants, content, or future story access"</em> — is why gating it would
+  be dishonest.</p>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Normal beat</h2>
+      <div class="piece-stage">
+        <div class="story-advance-control" data-piece="advance-control"
+             style="display:flex; width:100%; align-items:center; justify-content:space-between; gap:8px">
+          <button type="button" class="story-advance-control__skip"
+                  style="min-height:44px; padding:6px 12px; border:1px solid var(--border-control); border-radius:4px; background:transparent; color:var(--muted); font-size:12px">Skip intro</button>
+          <button type="button" class="story-advance-control__primary"
+                  style="min-height:44px; padding:6px 14px; border:1px solid var(--border-control); border-radius:4px; background:var(--lawn); color:var(--ink-dark); font-size:12px; font-weight:700">Next</button>
+        </div>
+      </div>
+      <p class="note">Primary label only changes on the last beat; skip never moves.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Last beat — skip still present</h2>
+      <div class="piece-stage">
+        <div class="story-advance-control" data-piece="advance-control"
+             style="display:flex; width:100%; align-items:center; justify-content:space-between; gap:8px">
+          <button type="button" class="story-advance-control__skip"
+                  style="min-height:44px; padding:6px 12px; border:1px solid var(--border-control); border-radius:4px; background:transparent; color:var(--muted); font-size:12px">Skip intro</button>
+          <button type="button" class="story-advance-control__primary"
+                  style="min-height:44px; padding:6px 14px; border:1px solid var(--border-control); border-radius:4px; background:var(--lawn); color:var(--ink-dark); font-size:12px; font-weight:700">Anchor the lawn</button>
+        </div>
+      </div>
+      <p class="note">On the last beat the primary completes the scene; skip resolves through the
+      <strong>same</strong> terminal path, so skipping can never leave half-written state.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Pending — both verbs disabled</h2>
+      <div class="piece-stage">
+        <div class="story-advance-control" data-piece="advance-control" data-pending="true"
+             style="display:flex; width:100%; align-items:center; justify-content:space-between; gap:8px">
+          <button type="button" class="story-advance-control__skip" disabled
+                  style="min-height:44px; padding:6px 12px; border:1px solid var(--border-control); border-radius:4px; background:transparent; color:var(--muted); font-size:12px; opacity:0.5">Skip intro</button>
+          <button type="button" class="story-advance-control__primary" disabled
+                  style="min-height:44px; padding:6px 14px; border:1px solid var(--border-control); border-radius:4px; background:var(--lawn); color:var(--ink-dark); font-size:12px; font-weight:700; opacity:0.5">Saving…</button>
+        </div>
+      </div>
+      <p class="note">Pending is the visible half of the double-click guard: the primary shows the
+      in-flight label and <strong>both</strong> verbs are disabled.</p>
+    </section>
+
+    <section class="lego-card">
+      <h2>Error — recovery, and the lawn stays reachable</h2>
+      <div class="piece-stage">
+        <div class="story-advance-control" data-piece="advance-control" data-error="true"
+             style="display:flex; flex-direction:column; width:100%; gap:8px">
+          <p class="story-advance-control__recovery" role="status"
+             style="color:var(--muted); font-size:12px">We couldn't save that just now — try again next time, or carry on to the lawn.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
+            <button type="button"
+                    style="min-height:44px; padding:6px 12px; border:1px solid var(--border-control); border-radius:4px; background:transparent; color:var(--muted); font-size:12px">Continue to lawn</button>
+            <button type="button"
+                    style="min-height:44px; padding:6px 14px; border:1px solid var(--border-control); border-radius:4px; background:var(--lawn); color:var(--ink-dark); font-size:12px; font-weight:700">Retry</button>
+          </div>
+        </div>
+      </div>
+      <p class="note">The error branch is a <strong>variant, not a fork</strong>: the player can still
+      reach the lawn without a successful acknowledgement, so a failed save is never a dead end.</p>
+    </section>
+  </div>
+
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure and rules</h2>
+      <pre>.story-advance-control
+  .story-advance-control__skip      ghost / secondary
+  .story-advance-control__primary   Next | Anchor the lawn
+  .story-advance-control__recovery  retry + bypass (error variant)</pre>
+      <ul class="note">
+        <li>Both verbs live in one piece; there is no second footer grammar.</li>
+        <li>Labels come from the payload — no player-visible string is hard-coded here.</li>
+        <li>The piece registers <strong>no</strong> keybinding: Enter/Space advance belongs to the stage on the focused body, and the keymap forbids F10.</li>
+        <li>Touch targets meet the kit minimum (44px) at the narrow breakpoint.</li>
+      </ul>
+    </section>
+
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "advance-control",
+  "instanceId": "scene:advance",
+  "phase": "ready",
+  "isLastBeat": false,
+  "nextLabel": "Next",
+  "finalLabel": "Anchor the lawn",
+  "skipLabel": "Skip intro",
+  "pending": false
+}</pre>
+      <p class="note">Error variant adds <code>error: true</code>, <code>retryLabel</code> and
+      <code>bypassLabel</code>. Pending adds <code>pending: true</code> and
+      <code>pendingLabel</code>.</p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

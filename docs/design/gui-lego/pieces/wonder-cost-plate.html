@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonder-cost-plate — gui-lego</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>wonder-cost-plate</code></h1>
+  <p class="lede">Cost-plate — one row keeping the whole price comparable (GG-47): relic foundation + materials + time, before the confirm. Consumed by the <code>wonder-composer</code> recipe; mount binds <code>foldWonderComposerVm.costPlate</code>. Density reuse: <code>stock-row</code> for candidate/cost rows, <code>capacity-meter</code>/<code>value-hero</code> for the effect hero — consumed by name. No per-mille rendered bare (GG-46): effect numbers arrive as player-words readings from the display catalog. Shortfalls name the blocker + next action (GG-55), never a bare number.</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> Sentences below are placeholders (idea-ui-phase §1). Status: <strong>pending-owner-review</strong> (see <code>recipes/wonder-composer.ACCEPTANCE.md</code>). Mount is built behind that recorded checkpoint per Task 4D.3 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage" style="display:grid;gap:8px;max-width:560px;">
+        <div data-testid="wonder-cost-plate" data-affordable="false" style="border:1px solid var(--border-control);border-radius:6px;padding:10px;background:var(--panel-inset);display:grid;gap:6px;">
+          <div data-testid="wonder-cost-relic-line" data-picked="1" data-needed="3" style="font-size:13px;">DRAFT: Laid into the foundation: 1 of 3 pieces of treasure</div>
+          <div data-testid="wonder-cost-materials-line" data-state="pending" style="font-size:13px;color:var(--muted);">DRAFT: From this ground's own stores: reading the stores…</div>
+          <div data-testid="wonder-cost-nights-line" data-nights="6" style="font-size:13px;">DRAFT: Rises over 6 nights</div>
+          <div data-testid="wonder-cost-blessing-line" style="font-size:13px;">DRAFT: every holding earns faster each night</div>
+          <div data-testid="wonder-cost-upkeep-line" data-state="pending" style="font-size:12px;color:var(--muted);">DRAFT: upkeep note joins when the ledger wire lands</div>
+          <p data-testid="wonder-cost-blocker" style="margin:4px 0 0;font-size:12px;">DRAFT: The foundation asks for 2 more pieces of treasure — lay them before confirming.</p>
+        </div>
+        <div data-testid="wonder-cost-plate" data-affordable="true" style="border:1px solid var(--border);border-radius:6px;padding:10px;background:var(--panel-inset);display:grid;gap:6px;">
+          <div data-testid="wonder-cost-relic-line" data-picked="1" data-needed="1" style="font-size:13px;">DRAFT: Laid into the foundation: 1 of 1 piece of treasure</div>
+          <div data-testid="wonder-cost-materials-line" data-state="pending" style="font-size:13px;color:var(--muted);">DRAFT: From this ground's own stores: reading the stores…</div>
+          <div data-testid="wonder-cost-nights-line" data-nights="4" style="font-size:13px;">DRAFT: Rises over 4 nights</div>
+          <div data-testid="wonder-cost-blessing-line" style="font-size:13px;">DRAFT: this ground earns faster each night</div>
+          <div data-testid="wonder-cost-upkeep-line" data-state="pending" style="font-size:12px;color:var(--muted);">DRAFT: upkeep note joins when the ledger wire lands</div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload</h2>
+      <pre>{
+  "piece": "wonder-cost-plate",
+  "structureId": "sunspire-throne",
+  "relicLine": { "picked": 1, "needed": 3, "state": "short" },
+  "materialsLine": { "state": "pending", "reason": "stores-wire-owed" },
+  "nightsLine": { "nights": 6 },
+  "blessingLine": { "copyKey": "wonder.effect.empire" },
+  "upkeepLine": { "state": "pending", "reason": "ledger-wire-owed" },
+  "affordable": false,
+  "blocker": "relic.shortfall"
+}</pre>
+      <h2 style="margin-top:12px;">Contract notes</h2>
+      <pre>Five lines, always comparable (GG-47).
+Confirm disabled with reason until affordable AND k == N (GG-55).
+Materials/upkeep lines render the designed pending state
+until their wires land — never a guessed number, never hidden.
+Blessing reading is catalog copy (GG-62), never per-mille.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

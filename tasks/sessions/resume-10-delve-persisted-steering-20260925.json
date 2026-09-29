@@ -1,0 +1,23 @@
+{
+  "session": "resume-10-delve-persisted-steering-20260925",
+  "program": "party-dungeon",
+  "problem": "Implement the owner-ruled persisted Delve steering record across the existing Server/Data decision and pre-room seams, with reconnect/new-handle proof and no CAI3.5 resume scope.",
+  "mode": "worktree",
+  "branch": "opencode/resume-10-delve-persisted-steering-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-resume-10-delve-persisted-steering-20260925",
+  "paths": [
+    "src/FusionRpg.Server/DelveWildEndpoints.cs",
+    "src/FusionRpg.Server/RpgHub.cs",
+    "src/FusionRpg.Server/DelveBattleSessionManager.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.Delve.cs",
+    "src/FusionRpg.Data/Sqlite/RpgStore.cs",
+    "tests/FusionRpg.Server.Tests/DelveWildEndpointsTests.cs",
+    "tests/FusionRpg.Server.Tests/DelveBattleSessionManagerTests.cs",
+    "tests/FusionRpg.Data.Tests/Delve/**",
+    "tests/FusionRpg.Core.Tests/Delve/**",
+    "tasks/reports/resume-10-delve-persisted-steering-20260925.md"
+  ],
+  "started": "2026-09-25T09:28:05Z",
+  "status": "abandoned",
+  "notes": "Manager accepted the persisted steering repair at exact SHA 41dd8af4fe6056e940ff5776ba7db81b38827c87 and merged it at 17cf1ef56abe7f5cd7946118d84c9105a4757cf6. The worker process was stopped after its report and dirty tree were preserved. Live proof, full aggregate, RpgHub.Resume, and CAI3.5 remain open."
+}

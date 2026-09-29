@@ -1,0 +1,22 @@
+{
+  "session": "strengthen-action-20260918",
+  "program": "action-enrich + action-skill-tiers",
+  "problem": "Adversarial strengthen pass over action-enrich and action-skill-tiers specs (citations, rulings, cross-program consistency, sequencing).",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/action-enrich-map.md",
+    "docs/architecture/action-enrich-ideal.md",
+    "docs/architecture/action-enrich/spec-action-base.md",
+    "docs/architecture/action-enrich/spec-lawn-action-base.md",
+    "docs/architecture/action-skill-tiers-map.md",
+    "docs/architecture/action-skill-tiers/spec-budget-calibration-report.md",
+    "docs/architecture/action-skill-tiers/spec-composer-tier-window.md",
+    "docs/architecture/action-skill-tiers/spec-holder-rung-pricing.md",
+    "docs/architecture/action-skill-tiers/spec-rung-table-activation.md",
+    "docs/architecture/action-skill-tiers/spec-scope-window-tunables.md"
+  ],
+  "started": "2026-09-18T00:00:00Z",
+  "status": "merged"
+}

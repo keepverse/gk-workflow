@@ -1,0 +1,15 @@
+{
+  "session": "plan-convergence-20260918",
+  "program": "summoner-convergence",
+  "problem": "Parent plan over every program specced or amended on 2026-09-18: lanes, hard edges, shared tuning ledger, checkpoints; review and commit the eight sub-plans.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "started": "2026-09-18T18:25:00Z",
+  "status": "merged",
+  "paths": [
+    "tasks/summoner-convergence-plan.md",
+    "tasks/summoner-convergence-todo.md",
+    "tasks/sessions/plan-convergence-20260918.json"
+  ]
+}

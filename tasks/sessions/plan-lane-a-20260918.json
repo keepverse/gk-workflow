@@ -1,0 +1,19 @@
+{
+  "session": "plan-lane-a-20260918",
+  "program": "action-skill-tiers + action-enrich + action (A33)",
+  "problem": "Write lane A sub-plans under summoner-convergence: action-skill-tiers (ST) and action-enrich (AE) plan/todo pairs, and append the A33 battle-holder-wiring task to the action plan/todo.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "started": "2026-09-18T00:00:00Z",
+  "status": "merged",
+  "paths": [
+    "tasks/action-skill-tiers-plan.md",
+    "tasks/action-skill-tiers-todo.md",
+    "tasks/action-enrich-plan.md",
+    "tasks/action-enrich-todo.md",
+    "tasks/action-todo.md",
+    "tasks/action-plan.md",
+    "tasks/sessions/plan-lane-a-20260918.json"
+  ]
+}

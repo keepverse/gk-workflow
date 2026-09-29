@@ -1,0 +1,19 @@
+{
+  "session": "resume-31-cleanup-repair-20260925",
+  "program": "multi-agent-runners",
+  "problem": "Repair the worktree-cleanup tool runner discovery so an OpenCode or cmdc lane owner forces manual-review (fail-closed), with a deterministic test proving each owner style.",
+  "mode": "worktree",
+  "branch": "opencode/resume-31-cleanup-repair-20260925",
+  "worktree": ".claude/worktrees/opencode-resume-31-cleanup-repair-20260925",
+  "paths": [
+    "scripts/worktree_cleanup_core.py",
+    "scripts/mark-worktree-cleanup.py",
+    "scripts/cleanup-worktrees.py",
+    "scripts/test_worktree_cleanup.py",
+    "docs/contributing/worktree-cleanup.md",
+    "tasks/sessions/resume-31-cleanup-repair-20260925.json"
+  ],
+  "started": "2026-09-25T15:35:00Z",
+  "status": "merged",
+  "notes": "MERGED 2026-09-25 by the resumed manager at reviewed SHA 6b36c52cd (accepted; artifact resume-31-cleanup-repair-20260925-6b36c52c.json). TVB-F37 closed. Owner-directed repair lane (TVB-F37). The adopted tool is preserved on adopt/worktree-cleanup-20260925 @ 6d2c48460; this lane extends runner discovery and adds the missing test. It may not run the tool against any live worktree and may not touch the pipeline plane."
+}

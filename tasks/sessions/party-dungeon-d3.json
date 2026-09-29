@@ -1,0 +1,39 @@
+{
+  "session": "party-dungeon-d3",
+  "program": "party-dungeon",
+  "problem": "Finish the D3.x partials of the event-deck module: D2.16 (verify the built freeze/resume/SignalR surface and name what is unmet), D3.3 (the deck goldens and the 256-seed sweep against real content), D3.5 (the resolver logic and its per-severity golden), D3.9 (the tenth preflight item's remaining 'non-event atom kind' conjunct).",
+  "mode": "worktree",
+  "branch": "cmdc/pd-d3",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-pd-d3",
+  "paths": [
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Server/**",
+    "tests/**",
+    "docs/architecture/party-dungeon/**",
+    "tasks/party-dungeon-todo.md",
+    "tasks/party-dungeon-ledger.jsonl",
+    "tasks/sessions/party-dungeon-d3.json",
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-22T00:00:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Mode is worktree by the brief (runner-created worktree cmdc-pd-d3 off 18972a5dc8f5). The runner's allowed-path fence is src/FusionRpg.Core|Data|Server/**, tests/**, docs/architecture/party-dungeon/**, tasks/party-dungeon-todo.md, tasks/party-dungeon-ledger.jsonl, tasks/reports/**. This record is declared in paths because scripts/verify-change.ps1 refuses to run without it and scripts/session-boundary-check.ps1 -Session party-dungeon-d3 reports DRIFT naming this session when it is absent.",
+    "tools/** and data/** are outside the fence: the event corpus's own generator (tools/seedsmith/seedsmith/adapters/dungeon/) cannot be edited from this lane, so the real-content finding D3.9's new conjunct surfaces is filed as a row in this program's own todo instead of fixed here."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip e14f02c8 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/pd-d3",
+    "branchTip": "e14f02c8",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip e14f02c8 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

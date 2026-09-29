@@ -1,0 +1,70 @@
+{
+  "when": "2026-09-21T22:55:24",
+  "lane": "ep-3",
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 2,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-3-20260921-225409\\boundary.log"
+    },
+    {
+      "check": "core-aptitudes",
+      "exit": 0,
+      "seconds": 31,
+      "summary": "Passed!  - Failed:     0, Passed:   278, Skipped:     0, Total:   278, Duration: 8 s - FusionRpg.Core.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-3-20260921-225409\\core-aptitudes.log"
+    },
+    {
+      "check": "server-species",
+      "exit": 0,
+      "seconds": 36,
+      "summary": "Passed!  - Failed:     0, Passed:   107, Skipped:     0, Total:   107, Duration: 27 s - FusionRpg.Server.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-3-20260921-225409\\server-species.log"
+    },
+    {
+      "check": "plan-gen",
+      "exit": 0,
+      "seconds": 5,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-3-20260921-225409\\plan-gen.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ep-3-20260921-225409\\ledger.log"
+    }
+  ],
+  "verdict": "RED-KNOWN (1 check(s), registered debt only)",
+  "contendedTree": false,
+  "sha": "e2e0170e",
+  "logDir": "D:\\tmp\\accept-ep-3-20260921-225409"
+}

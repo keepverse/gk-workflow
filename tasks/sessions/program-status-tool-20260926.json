@@ -1,0 +1,36 @@
+{
+  "session": "program-status-tool-20260926",
+  "program": "multi-agent-runners",
+  "problem": "Build a fail-closed Python program-status reader that answers what task blocks are done, open, partial, accepted, or still unproven at the current head, and make every agent read it.",
+  "mode": "worktree",
+  "branch": "manage/program-status-tool-20260926",
+  "worktree": ".claude/worktrees/program-status-tool-20260926",
+  "paths": [
+    "AGENTS.md",
+    "scripts/audit-program-pipeline.py",
+    "scripts/audit-doc-citations.py",
+    "tests/FusionRpg.Guard.Tests/DocCitationAuditTests.cs",
+    "scripts/program_status.py",
+    "tests/tools/test_program_status.py",
+    "scripts/verification-boundaries.v1.json",
+    "tasks/reports/program-status-20260926.md",
+    "tasks/sessions/program-status-tool-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "mergedSha": "08eec6b38",
+  "reviewedSha": "15a346f79",
+  "acceptance": {
+    "verdict": "GREEN_WITH_A_ROUTED_PLANE_DEFECT",
+    "cleanCheckout": "detached at 15a346f79, dirty 0",
+    "checks": [
+      "pytest tests/tools: 60 passed (34 new, 26 pre-existing unchanged)",
+      "program_status.py on the clean detached checkout: identical reading (670 open / 2889 done), so the output depends on no local state",
+      "audit-doc-citations.py --scope AGENTS.md: 0 HIGH (was 3 HIGH before this change)",
+      "dotnet test FusionRpg.Guard.Tests --filter DocCitationAudit: 6 passed",
+      "session-boundary-check.ps1: clean"
+    ],
+    "notGreen": "The composite verify-change.ps1 gate is RED on a defect in its OWN guard step, not on this change: it leaves a testhost holding FusionRpg.Guard.Tests.dll and the next build of the same project collides (MSB3027 / exit -1). Reproduced twice, diagnosed, routed as its own row in tasks/reports/program-status-20260926.md sections 8-9 and 11. Prior art: session cold-process-test-build-20260912-e5b1 fixed the same build/test-host race for tool tests."
+  },
+  "notes": "Manager-owned Python tooling slice. Read task blocks rather than raw checkbox lines; report current-head evidence and leftovers without inferring completion from commit or status labels. No product, generated data, live, or cleanup scope. Merged into features/mega-merge at 08eec6b38 with the main worktree holding another stream's uncommitted Python port (scripts/prove-slot-connection.py, scripts/deploy-play.py); both verified byte-identical before and after the merge and left unstaged."
+}

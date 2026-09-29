@@ -1,0 +1,146 @@
+{"ts":"2026-09-19T10:11:19Z","kind":"anchor","plan":"tasks/notification-ssot-plan.md","todo":"tasks/notification-ssot-todo.md","session":"summoner-convergence-lane-d3-20260919","specs":["docs/architecture/notification-ssot/spec-notify-vocabulary.md","docs/architecture/notification-ssot/spec-player-routing.md","docs/architecture/notification-ssot/spec-notify-store.md","docs/architecture/notification-ssot/spec-notify-format.md","docs/architecture/notification-ssot/spec-notify-service.md","docs/architecture/notification-ssot/spec-notify-client.md","docs/architecture/notification-ssot/spec-world-notify-source.md","docs/architecture/notification-ssot/spec-cache-notify-source.md","docs/architecture/notification-ssot/spec-notify-centre.md"],"standards":"AGENTS.md + docs/PRINCIPLES.md + .claude/cmdc-agents/rules.md + DESIGN-GATE topic index, read 2026-09-19","queue":["NS0.1","NS0.2","NS0.3","NS0.4","NS0.5","NS0.6","NS1.1","NS1.2","NS1.3","NS1.4","NS1.5","NS1.6","NS1.7","NS1.8","NSCP1","NS2.1","NS2.2","NS2.3","NS2.4","NS2.5","NS2.6","NS2.7","NSCP2","NS3.1","NS3.2","NS3.3","NS3.4","NS3.5","NS3.6","NS3.7","NSCP3","NS4.1","NS4.2","NS4.3","NS4.4","NS4.5","NS4.6","NSCP4","NS5.1","NS5.2","NS5.3","NS5.4","NS5.5","NS5.6","NS5.7","NS5.8","NS5.9","NS5.10","NS5.11","NS5.12","NS5.13","NSCP5","NS6.1","NS6.2","NS6.3","NS6.4","NS6.5","NS6.6","NS6.7","NS6.8","NS6.9","NS6.10","NS6.11","NS6.12","NSCP6","NS7.1","NS7.2","NS7.3","NS7.4"],"mark":"mk1-9f9e5f3b9fc491d5"}
+{"ts":"2026-09-19T10:11:46Z","kind":"note","text":"Split from lane D (cmdc/lane-d); its ledger shows zero NS tasks touched (still on SE1.3). Worktree started 540 commits behind mega-merge; ff-merged (no new commit) to get the NS map/plan/todo/specs, which exist only at tip.","mark":"mk1-6babac3bc1ff87e4"}
+{"ts":"2026-09-19T10:12:32Z","kind":"task","id":"NS0.1","state":"started","mark":"mk1-ac4a840c257832e2"}
+{"ts":"2026-09-19T10:12:32Z","kind":"task","id":"NS0.2","state":"started","mark":"mk1-9bec9b73deb66943"}
+{"ts":"2026-09-19T10:13:52Z","kind":"task","id":"NS0.1","state":"blocked","evidence":"tasks/evidence-fragments/NS0.1.md","reason":"Resolver is the repo owner speaking for world-stage; no default named. Blocks NS5.7-NS5.11 only.","mark":"mk1-d56ad47b917b71f1"}
+{"ts":"2026-09-19T10:14:02Z","kind":"task","id":"NS0.2","state":"blocked","evidence":"tasks/evidence-fragments/NS0.2.md","reason":"Resolver is the repo owner speaking for world-stage; no default named. Blocks NS5.2-NS5.3 only.","mark":"mk1-e236876cf5805919"}
+{"ts":"2026-09-19T10:20:19Z","kind":"task","id":"NS0.3","state":"started","mark":"mk1-8b0468a199a56770"}
+{"ts":"2026-09-19T10:20:21Z","kind":"task","id":"NS0.4","state":"started","mark":"mk1-4bef2dbdf2de1918"}
+{"ts":"2026-09-19T10:20:23Z","kind":"task","id":"NS0.5","state":"started","mark":"mk1-5c42fff3c4f2cc36"}
+{"ts":"2026-09-19T10:20:26Z","kind":"task","id":"NS0.6","state":"started","mark":"mk1-0cb9096025e5f775"}
+{"ts":"2026-09-19T10:20:28Z","kind":"task","id":"NS0.3","state":"done","evidence":"tasks/evidence-fragments/NS0.3.md","mark":"mk1-48ddb25f98095e32"}
+{"ts":"2026-09-19T10:20:30Z","kind":"task","id":"NS0.4","state":"done","evidence":"tasks/evidence-fragments/NS0.4.md","mark":"mk1-a2010b76d4527e59"}
+{"ts":"2026-09-19T10:20:31Z","kind":"task","id":"NS0.5","state":"done","evidence":"tasks/evidence-fragments/NS0.5.md","mark":"mk1-200a205476139b71"}
+{"ts":"2026-09-19T10:20:33Z","kind":"task","id":"NS0.6","state":"done","evidence":"tasks/evidence-fragments/NS0.6.md","mark":"mk1-3c1da71daa6a5cef"}
+{"ts":"2026-09-19T10:34:28Z","kind":"task","id":"NS1.1","state":"started","mark":"mk1-63bd0598945166cd"}
+{"ts":"2026-09-19T10:34:28Z","kind":"note","text":"verify-change.ps1 has zero web/** support repo-wide (projects map is dotnet-only, no npm branch); confirmed live on an existing shipped file. NS web verification runs via npm/vitest directly, never that script (protected pipeline file, not edited).","mark":"mk1-313196de34440038"}
+{"ts":"2026-09-19T10:34:28Z","kind":"task","id":"NS1.1","state":"done","evidence":"tasks/evidence-fragments/NS1.1.md","mark":"mk1-979a14bfb842e143"}
+{"ts":"2026-09-19T11:04:57Z","kind":"task","id":"NS1.2","state":"started","mark":"mk1-c96bbb62d7873e38"}
+{"ts":"2026-09-19T11:04:57Z","kind":"task","id":"NS1.2","state":"done","evidence":"tasks/evidence-fragments/NS1.2.md","mark":"mk1-dfa099cf4b9648a0"}
+{"ts":"2026-09-19T11:04:57Z","kind":"task","id":"NS1.3","state":"started","mark":"mk1-21c838a6bfa3ac88"}
+{"ts":"2026-09-19T11:04:57Z","kind":"task","id":"NS1.3","state":"done","evidence":"tasks/evidence-fragments/NS1.3.md","mark":"mk1-99ebc51aff889283"}
+{"ts":"2026-09-19T11:07:12Z","kind":"task","id":"NS1.4","state":"started","mark":"mk1-d916541a6b0891b4"}
+{"ts":"2026-09-19T11:07:12Z","kind":"task","id":"NS1.4","state":"done","evidence":"tasks/evidence-fragments/NS1.4.md","mark":"mk1-4975cdf7848e6e5c"}
+{"ts":"2026-09-19T11:07:12Z","kind":"task","id":"NS1.5","state":"started","mark":"mk1-654c3e7762a1651c"}
+{"ts":"2026-09-19T11:07:12Z","kind":"task","id":"NS1.5","state":"done","evidence":"tasks/evidence-fragments/NS1.5.md","mark":"mk1-c80b9d144c2f34be"}
+{"ts":"2026-09-19T11:30:38Z","kind":"task","id":"NS1.6","state":"started","mark":"mk1-5c2902da3ceec8c0"}
+{"ts":"2026-09-19T11:30:39Z","kind":"task","id":"NS1.6","state":"done","evidence":"tasks/evidence-fragments/NS1.6.md","mark":"mk1-1609f901883ffc68"}
+{"ts":"2026-09-19T11:30:41Z","kind":"task","id":"NS1.7","state":"started","mark":"mk1-cb50ff470130225c"}
+{"ts":"2026-09-19T11:30:43Z","kind":"task","id":"NS1.7","state":"done","evidence":"tasks/evidence-fragments/NS1.7.md","mark":"mk1-ba2b084597e5882a"}
+{"ts":"2026-09-19T11:31:32Z","kind":"note","text":"RpgHub ctor param broke 6 test files (11 tests) that hand-build it via DI; fixed with one AddSingleton line each. Full Server.Tests 566/566 after.","mark":"mk1-e5ddd8e44d071ec2"}
+{"ts":"2026-09-19T11:32:55Z","kind":"task","id":"NS1.8","state":"started","mark":"mk1-2cbc8eabc1e1e8c0"}
+{"ts":"2026-09-19T11:32:56Z","kind":"task","id":"NS1.8","state":"done","evidence":"tasks/evidence-fragments/NS1.8.md","mark":"mk1-6b3cb3e6cf079b56"}
+{"ts":"2026-09-19T11:32:57Z","kind":"gate","name":"NSCP1","result":"pass","mark":"mk1-229fb2f1527c215f"}
+{"ts":"2026-09-19T11:33:39Z","kind":"task","id":"NSCP1","state":"started","mark":"mk1-757384f39a82ba6c"}
+{"ts":"2026-09-19T11:33:40Z","kind":"task","id":"NSCP1","state":"done","evidence":"folded into NS1.2-NS1.8 fragments","mark":"mk1-cfacd0318d0cfe4a"}
+{"ts":"2026-09-19T13:28:16Z","kind":"note","text":"Review finding on aee70cc6: useSelectPlayer's joinCurrentPlayer call rejected on a disconnected hub (real prod bug, not just test noise). Fixed: joinCurrentPlayer never rejects now (state check + try/catch). Evidence: NS1-fix-hub-send-guard.md.","mark":"mk1-92c174a19f66ed9f"}
+{"ts":"2026-09-19T13:29:58Z","kind":"note","text":"Self-caught: commit 278d6862's pathspec swept in RpgStore.cs's NS2.1 hook line, which alone can't build (method not yet committed). No amend; NS2.1's commit follows now to restore a buildable tip.","mark":"mk1-a06b04a89d1fe4b2"}
+{"ts":"2026-09-19T13:42:02Z","kind":"task","id":"NS2.1","state":"started","mark":"mk1-945fd6a0bfa5c95a"}
+{"ts":"2026-09-19T13:42:03Z","kind":"task","id":"NS2.1","state":"done","evidence":"tasks/evidence-fragments/NS2.1.md","mark":"mk1-2c18df29269794f3"}
+{"ts":"2026-09-19T13:50:01Z","kind":"task","id":"NS2.2","state":"started","mark":"mk1-b197c1798555f13a"}
+{"ts":"2026-09-19T13:50:01Z","kind":"task","id":"NS2.2","state":"done","evidence":"tasks/evidence-fragments/NS2.2.md","mark":"mk1-2923d2642c01fb58"}
+{"ts":"2026-09-19T13:50:01Z","kind":"task","id":"NS2.3","state":"started","mark":"mk1-c4aed6b64f3678ad"}
+{"ts":"2026-09-19T13:50:02Z","kind":"task","id":"NS2.3","state":"done","evidence":"tasks/evidence-fragments/NS2.3.md","mark":"mk1-8963e44e1af29bd2"}
+{"ts":"2026-09-19T13:50:02Z","kind":"task","id":"NS2.4","state":"started","mark":"mk1-8e1184ea9e588b16"}
+{"ts":"2026-09-19T13:50:02Z","kind":"task","id":"NS2.4","state":"done","evidence":"tasks/evidence-fragments/NS2.4.md","mark":"mk1-2fda454288bf2989"}
+{"ts":"2026-09-19T13:55:17Z","kind":"task","id":"NS2.5","state":"started","mark":"mk1-a3e926075efd78a2"}
+{"ts":"2026-09-19T13:55:17Z","kind":"task","id":"NS2.5","state":"done","evidence":"tasks/evidence-fragments/NS2.5.md","mark":"mk1-eacb5d9736f973a1"}
+{"ts":"2026-09-19T13:55:17Z","kind":"task","id":"NS2.6","state":"started","mark":"mk1-197357d7d9433f4a"}
+{"ts":"2026-09-19T13:55:17Z","kind":"task","id":"NS2.6","state":"done","evidence":"tasks/evidence-fragments/NS2.6.md","mark":"mk1-0b496433c6df59dd"}
+{"ts":"2026-09-19T13:55:18Z","kind":"task","id":"NS2.7","state":"started","mark":"mk1-823bc0e66877c2cd"}
+{"ts":"2026-09-19T13:55:18Z","kind":"task","id":"NS2.7","state":"done","evidence":"tasks/evidence-fragments/NS2.7.md","mark":"mk1-54bb718d5af0c07e"}
+{"ts":"2026-09-19T13:55:18Z","kind":"task","id":"NSCP2","state":"started","mark":"mk1-a0231e291db458df"}
+{"ts":"2026-09-19T13:55:18Z","kind":"task","id":"NSCP2","state":"done","evidence":"folded into NS2.1-NS2.7 fragments","mark":"mk1-9ee0a11b9549f288"}
+{"ts":"2026-09-19T14:49:45Z","kind":"task","id":"NS3.1","state":"started","mark":"mk1-e67e18a457309f3e"}
+{"ts":"2026-09-19T14:49:45Z","kind":"task","id":"NS3.2","state":"started","mark":"mk1-1599f244991032c6"}
+{"ts":"2026-09-19T14:49:45Z","kind":"task","id":"NS3.3","state":"started","mark":"mk1-97f3f467823569aa"}
+{"ts":"2026-09-19T14:49:45Z","kind":"task","id":"NS3.4","state":"started","mark":"mk1-f69f6a98adf84493"}
+{"ts":"2026-09-19T14:49:45Z","kind":"task","id":"NS3.5","state":"started","mark":"mk1-951bdfbce19875d2"}
+{"ts":"2026-09-19T14:49:45Z","kind":"task","id":"NS3.6","state":"started","mark":"mk1-21fe0c08291f86b2"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.7","state":"started","mark":"mk1-baf22281d983ab30"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.1","state":"done","evidence":"tasks/evidence-fragments/NS3.1.md","mark":"mk1-5fc9cc9978134385"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.2","state":"done","evidence":"tasks/evidence-fragments/NS3.2.md","mark":"mk1-0d18eecf1b6b4c4a"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.3","state":"done","evidence":"tasks/evidence-fragments/NS3.3.md","mark":"mk1-81312efd215f73f3"}
+{"ts":"2026-09-19T14:49:46Z","kind":"note","text":"NS3.4 exposed a repo-wide regression: MapWorld's /commit route now needs WorldTurnNotificationPump, breaking 15 test files (66 tests) that map it without registering it. Fixed same commit: shared stub extension + NotificationHub collection.","mark":"mk1-24ffc65528fba3d5"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.4","state":"done","evidence":"tasks/evidence-fragments/NS3.4.md","mark":"mk1-60d2b3cccc64b4ca"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.5","state":"done","evidence":"tasks/evidence-fragments/NS3.5.md","mark":"mk1-69e1a8f52b379319"}
+{"ts":"2026-09-19T14:49:46Z","kind":"task","id":"NS3.6","state":"done","evidence":"tasks/evidence-fragments/NS3.6.md","mark":"mk1-ff9dd9279f20760f"}
+{"ts":"2026-09-19T14:49:47Z","kind":"task","id":"NS3.7","state":"done","evidence":"tasks/evidence-fragments/NS3.7.md","mark":"mk1-d8f94ce08db70a8f"}
+{"ts":"2026-09-19T14:49:47Z","kind":"task","id":"NSCP3","state":"started","mark":"mk1-5673295065def0e9"}
+{"ts":"2026-09-19T14:49:47Z","kind":"task","id":"NSCP3","state":"done","evidence":"folded into NS3.1-NS3.7 fragments","mark":"mk1-2566c18d603bd232"}
+{"ts":"2026-09-19T15:30:28Z","kind":"task","id":"NS4.1","state":"started","mark":"mk1-12ce4cae2aae3ca1"}
+{"ts":"2026-09-19T15:30:29Z","kind":"task","id":"NS4.2","state":"started","mark":"mk1-604cd2132f6ebe2a"}
+{"ts":"2026-09-19T15:30:31Z","kind":"task","id":"NS4.3","state":"started","mark":"mk1-3d211cf1d561660c"}
+{"ts":"2026-09-19T15:30:32Z","kind":"task","id":"NS4.4","state":"started","mark":"mk1-f92beb04ef725a10"}
+{"ts":"2026-09-19T15:30:34Z","kind":"task","id":"NS4.5","state":"started","mark":"mk1-4435453ed65d2f9f"}
+{"ts":"2026-09-19T15:30:36Z","kind":"task","id":"NS4.6","state":"started","mark":"mk1-c108f66373051897"}
+{"ts":"2026-09-19T15:31:55Z","kind":"task","id":"NS4.1","state":"done","evidence":"tasks/evidence-fragments/NS4.1.md","mark":"mk1-41498ecd2297ed92"}
+{"ts":"2026-09-19T15:31:57Z","kind":"task","id":"NS4.2","state":"done","evidence":"tasks/evidence-fragments/NS4.2.md","mark":"mk1-ae2a0d06d942cfd5"}
+{"ts":"2026-09-19T15:31:59Z","kind":"task","id":"NS4.3","state":"done","evidence":"tasks/evidence-fragments/NS4.3.md","mark":"mk1-b0c0fa3d130fda59"}
+{"ts":"2026-09-19T15:32:01Z","kind":"task","id":"NS4.4","state":"done","evidence":"tasks/evidence-fragments/NS4.4.md","mark":"mk1-6924acacc04dd4ec"}
+{"ts":"2026-09-19T15:32:04Z","kind":"task","id":"NS4.5","state":"done","evidence":"tasks/evidence-fragments/NS4.5.md","mark":"mk1-cef81936efce1f09"}
+{"ts":"2026-09-19T15:32:06Z","kind":"task","id":"NS4.6","state":"done","evidence":"tasks/evidence-fragments/NS4.6.md","mark":"mk1-820235c79d3f5ae1"}
+{"ts":"2026-09-19T15:32:12Z","kind":"task","id":"NSCP4","state":"started","mark":"mk1-12aea3f1d8eb3c50"}
+{"ts":"2026-09-19T15:32:14Z","kind":"task","id":"NSCP4","state":"done","evidence":"folded into NS4.1-NS4.6 fragments","mark":"mk1-fac8289723de4dde"}
+{"ts":"2026-09-19T15:42:52Z","kind":"task","id":"NS5.1","state":"started","mark":"mk1-501cf97fe25a1e42"}
+{"ts":"2026-09-19T15:42:54Z","kind":"task","id":"NS5.1","state":"done","evidence":"tasks/evidence-fragments/NS5.1.md","mark":"mk1-22d8450fd9a46d9a"}
+{"ts":"2026-09-19T15:49:44Z","kind":"task","id":"NS5.4","state":"started","mark":"mk1-53f17c584f5c26b5"}
+{"ts":"2026-09-19T15:49:45Z","kind":"task","id":"NS5.4","state":"done","evidence":"tasks/evidence-fragments/NS5.4.md","mark":"mk1-bc43919b141a5e81"}
+{"ts":"2026-09-19T16:11:26Z","kind":"task","id":"NS5.5","state":"started","mark":"mk1-fe84cc806cf2a580"}
+{"ts":"2026-09-19T16:11:28Z","kind":"task","id":"NS5.5","state":"done","evidence":"tasks/evidence-fragments/NS5.5.md","mark":"mk1-dafd538944d7826c"}
+{"ts":"2026-09-19T16:13:11Z","kind":"note","text":"NS5.6 H7 order: 1) publish.py writes v2.json (no reader touched) 2) Program.cs -> v2 3) catalog.ts -> v2 4) equivalence+coherence tests. All land in ONE commit, publish+both readers together.","mark":"mk1-f726af91e532c69b"}
+{"ts":"2026-09-19T16:25:55Z","kind":"task","id":"NS5.6","state":"started","mark":"mk1-cea1c4c81582d741"}
+{"ts":"2026-09-19T16:26:03Z","kind":"note","text":"NS5.6 coverage guard found 3 real gaps beyond ask A6: growth.pulse/develop.completed/development.raised had no playbackTable row. Fixed same commit (23->26 event prefixes, reviewed).","mark":"mk1-49c1750607651236"}
+{"ts":"2026-09-19T16:35:06Z","kind":"note","text":"Guard.Tests whole-project run hit pre-existing ClassSystemBaselineRegenTests/DominanceBaseline missing-Debug-build failures, unrelated to notify. notify-catalog-guard filtered: 7/7 green.","mark":"mk1-e23d8073d00f1009"}
+{"ts":"2026-09-19T16:35:13Z","kind":"task","id":"NS5.6","state":"done","evidence":"tasks/evidence-fragments/NS5.6.md","mark":"mk1-abc6fc15f168aaeb"}
+{"ts":"2026-09-19T16:36:26Z","kind":"task","id":"NS5.12","state":"started","mark":"mk1-962a47c3ce32e464"}
+{"ts":"2026-09-19T16:36:28Z","kind":"task","id":"NS5.12","state":"blocked","reason":"deps NS5.3, which deps NS5.2 (ask A2, unanswered).","mark":"mk1-c26dc2d923576895"}
+{"ts":"2026-09-19T16:36:29Z","kind":"task","id":"NS5.13","state":"started","mark":"mk1-fa1b5b1522aff5b5"}
+{"ts":"2026-09-19T16:36:31Z","kind":"task","id":"NS5.13","state":"blocked","reason":"deps NS5.10/5.11/5.12, all trace to A1/A2; also a live-probe/manager task.","mark":"mk1-008f091fa7801518"}
+{"ts":"2026-09-19T16:43:54Z","kind":"task","id":"NS6.1","state":"started","mark":"mk1-482471b94b59ffa6"}
+{"ts":"2026-09-19T16:43:56Z","kind":"task","id":"NS6.1","state":"done","evidence":"tasks/evidence-fragments/NS6.1.md","mark":"mk1-f925edb8c8f38019"}
+{"ts":"2026-09-19T16:48:44Z","kind":"task","id":"NS6.10","state":"started","mark":"mk1-035259e65152dcc9"}
+{"ts":"2026-09-19T16:48:46Z","kind":"task","id":"NS6.10","state":"done","evidence":"tasks/evidence-fragments/NS6.10.md","mark":"mk1-c3e52e060fa41436"}
+{"ts":"2026-09-19T16:54:46Z","kind":"task","id":"NS6.9","state":"started","mark":"mk1-76953bad847855a3"}
+{"ts":"2026-09-19T16:54:48Z","kind":"task","id":"NS6.9","state":"done","evidence":"tasks/evidence-fragments/NS6.9.md","mark":"mk1-ea3cbf2a56b6a3b8"}
+{"ts":"2026-09-19T17:01:11Z","kind":"note","text":"NS6.1 revision: spec-cache-notify-source.md's own designed API needs place_kind/place_ref/source_kind/item-count on CacheClockStartedRow and place fields on CacheDecayTickRow, not caught before NS6.1's first commit. Fixed before NS6.2 needs them.","mark":"mk1-a6fb79d37c8ecd20"}
+{"ts":"2026-09-19T17:32:49Z","kind":"task","id":"NS6.2","state":"started","mark":"mk1-9c1ac4dc386df76d"}
+{"ts":"2026-09-19T17:32:51Z","kind":"task","id":"NS6.2","state":"done","evidence":"tasks/evidence-fragments/NS6.2.md","mark":"mk1-68d2a84a543ee616"}
+{"ts":"2026-09-19T17:34:12Z","kind":"task","id":"NS6.6","state":"started","mark":"mk1-99d219c1b14ed572"}
+{"ts":"2026-09-19T17:34:14Z","kind":"task","id":"NS6.6","state":"done","evidence":"tasks/evidence-fragments/NS6.6.md","mark":"mk1-daf4392119b09766"}
+{"ts":"2026-09-19T17:35:59Z","kind":"task","id":"NS6.7","state":"started","mark":"mk1-4fe76921ce0524f3"}
+{"ts":"2026-09-19T17:36:01Z","kind":"task","id":"NS6.7","state":"done","evidence":"tasks/evidence-fragments/NS6.7.md","mark":"mk1-dbeb367d120bcb73"}
+{"ts":"2026-09-19T17:39:32Z","kind":"task","id":"NS6.8","state":"started","mark":"mk1-b5d576d925a6f74c"}
+{"ts":"2026-09-19T17:39:42Z","kind":"task","id":"NS6.8","state":"blocked","reason":"recipe authored+evidenced; the owner piece review (GUI Lego step 7) has no stated default, unlike NS6.7's ask - blocks only NS6.11's React per spec's own design.","mark":"mk1-42a5e8fc71314ede"}
+{"ts":"2026-09-19T17:47:23Z","kind":"task","id":"NS6.3","state":"started","mark":"mk1-1d48db964881470d"}
+{"ts":"2026-09-19T17:47:35Z","kind":"task","id":"NS6.3","state":"done","evidence":"tasks/evidence-fragments/NS6.3.md","mark":"mk1-d92bc23cfc16fa84"}
+{"ts":"2026-09-19T17:54:24Z","kind":"task","id":"NS6.4","state":"started","mark":"mk1-ff575ba4bbf4a792"}
+{"ts":"2026-09-19T17:54:35Z","kind":"task","id":"NS6.4","state":"done","evidence":"tasks/evidence-fragments/NS6.4.md","mark":"mk1-70a0889de0ef13b4"}
+{"ts":"2026-09-19T17:55:59Z","kind":"task","id":"NS6.5","state":"started","mark":"mk1-995e4052ea43848d"}
+{"ts":"2026-09-19T17:56:01Z","kind":"task","id":"NS6.5","state":"blocked","reason":"deps NS5.3, which deps NS5.2 (ask A2, unanswered). Transitively blocked.","mark":"mk1-985ec75d04a023a2"}
+{"ts":"2026-09-19T17:56:03Z","kind":"task","id":"NS6.11","state":"started","mark":"mk1-ce541acbaa86cf51"}
+{"ts":"2026-09-19T17:56:05Z","kind":"task","id":"NS6.11","state":"blocked","reason":"deps NS6.8's owner piece review, which has no stated default and is unanswered.","mark":"mk1-14ec336d1862c558"}
+{"ts":"2026-09-19T17:56:08Z","kind":"task","id":"NS6.12","state":"started","mark":"mk1-e9e70a67f9cd2c1e"}
+{"ts":"2026-09-19T17:56:10Z","kind":"task","id":"NS6.12","state":"blocked","reason":"deps NS6.11, itself blocked on NS6.8's owner review.","mark":"mk1-aef061e722b996bf"}
+{"ts":"2026-09-19T17:57:11Z","kind":"task","id":"NS7.1","state":"started","mark":"mk1-281a481d2fde1efe"}
+{"ts":"2026-09-19T17:57:21Z","kind":"task","id":"NS7.1","state":"blocked","reason":"deps SE save-identity's players.archived_utc + ListPlayers filter - lane B's unmerged work, does not exist here.","mark":"mk1-b842c5ad0ae79466"}
+{"ts":"2026-09-19T17:57:29Z","kind":"task","id":"NS7.2","state":"started","mark":"mk1-0ff43da9e60cb127"}
+{"ts":"2026-09-19T17:57:34Z","kind":"task","id":"NS7.2","state":"blocked","reason":"deps SE save-identity's SaveId type - lane B's unmerged work, does not exist here.","mark":"mk1-1abb673f0aca18ea"}
+{"ts":"2026-09-19T17:57:38Z","kind":"task","id":"NS7.3","state":"started","mark":"mk1-f2d8f40e94d785dc"}
+{"ts":"2026-09-19T17:57:40Z","kind":"task","id":"NS7.3","state":"blocked","reason":"deps the claim.lost: producer line landing in world-map - not built anywhere yet, external to this lane.","mark":"mk1-15ddbd8be46edea1"}
+{"ts":"2026-09-19T17:57:43Z","kind":"task","id":"NS7.4","state":"started","mark":"mk1-563b32424e1adebc"}
+{"ts":"2026-09-19T17:57:45Z","kind":"task","id":"NS7.4","state":"blocked","reason":"deps the audience arg on legion.starved: landing in loam - not built anywhere yet, external to this lane.","mark":"mk1-d83d132fbcb49b1b"}
+{"ts":"2026-09-19T17:58:21Z","kind":"task","id":"NS5.2","state":"started","mark":"mk1-73f8578740d5cdc5"}
+{"ts":"2026-09-19T17:58:21Z","kind":"task","id":"NS5.3","state":"started","mark":"mk1-cf52950f8d4f17f2"}
+{"ts":"2026-09-19T17:58:21Z","kind":"task","id":"NS5.7","state":"started","mark":"mk1-b18d08e2836e8af3"}
+{"ts":"2026-09-19T17:58:21Z","kind":"task","id":"NS5.8","state":"started","mark":"mk1-6397a52eb63f922a"}
+{"ts":"2026-09-19T17:58:22Z","kind":"task","id":"NS5.9","state":"started","mark":"mk1-57d68cf4e34dafd7"}
+{"ts":"2026-09-19T17:58:22Z","kind":"task","id":"NS5.10","state":"started","mark":"mk1-19af493f5fd5b47c"}
+{"ts":"2026-09-19T17:58:22Z","kind":"task","id":"NS5.11","state":"started","mark":"mk1-ffc0c8c36f9a53be"}
+{"ts":"2026-09-19T17:58:34Z","kind":"task","id":"NS5.2","state":"blocked","reason":"ask A2 (move fog rule to Core), unanswered.","mark":"mk1-b3ac3d03764e9c9c"}
+{"ts":"2026-09-19T17:58:34Z","kind":"task","id":"NS5.3","state":"blocked","reason":"deps NS5.2 (ask A2, unanswered).","mark":"mk1-a577deac2c4590e3"}
+{"ts":"2026-09-19T17:58:34Z","kind":"task","id":"NS5.7","state":"blocked","reason":"ask A1 (relocate world-notify), unanswered.","mark":"mk1-049a7681dcc69e45"}
+{"ts":"2026-09-19T17:58:34Z","kind":"task","id":"NS5.8","state":"blocked","reason":"deps NS5.7 (ask A1, unanswered).","mark":"mk1-900fdbfe29adf9a2"}
+{"ts":"2026-09-19T17:58:34Z","kind":"task","id":"NS5.9","state":"blocked","reason":"deps NS5.8 (ask A1, unanswered).","mark":"mk1-fc668a5aaebc6ceb"}
+{"ts":"2026-09-19T17:58:34Z","kind":"task","id":"NS5.10","state":"blocked","reason":"deps NS5.9 (ask A1, unanswered) and NS5.6 (done).","mark":"mk1-ac7a0700f72e5eab"}
+{"ts":"2026-09-19T17:58:35Z","kind":"task","id":"NS5.11","state":"blocked","reason":"deps NS5.10 (blocked on A1).","mark":"mk1-cceee741765c335f"}

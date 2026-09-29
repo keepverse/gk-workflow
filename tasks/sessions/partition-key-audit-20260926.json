@@ -1,0 +1,19 @@
+{
+  "session": "partition-key-audit-20260926",
+  "program": "backlog-clean-up",
+  "problem": "Audit the species-scoped item-set partition KEY disagreement (ItemSeedValidator's `sets/species/<raw speciesId>` vs the corpus's `sets/<hyphenated slug>`) against what the design intends, and fix whichever side is wrong -- not both, and not by weakening a metric.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "paths": [
+    "tools/ItemSeedValidator/Registries/NamespaceAllocation.cs",
+    "tools/seedsmith/seedsmith/adapters/items/_registry_snapshot/allocated_partitions.json",
+    "tools/seedsmith/tests/test_items_adapter.py",
+    "tests/FusionRpg.ItemSeedValidator.Tests/SetSpeciesPartitionKeyTests.cs",
+    "tests/FusionRpg.ItemSeedValidator.Tests/SeedFixture.cs",
+    "tasks/reports/partition-key-audit-20260926.md",
+    "tasks/sessions/partition-key-audit-20260926.json"
+  ],
+  "started": "2026-09-26T00:00:00Z",
+  "status": "merged",
+  "notes": "Owner instruction verbatim: 'audit what is correct, validator or corpus, fix wrong side instead of choice, check the idea first'. Audit lane: does NOT merge, the manager reviews. Reads the BCU2.11 residue (tasks/backlog-clean-up-todo.md) which recorded the disagreement as an unresolved owner contract call. Fence is the two tool trees plus this lane's own report/record; data/** and src/** are NOT editable, so any corpus-side conclusion is delivered as report + generator change only. Parallel streams share this tree -- .commandcode/taste/** (dirty at session start) and scripts/verify-change.py (the ps1-ban lane, modified during this session) are NOT this lane's and were never staged. VERDICT: the ALLOCATION side was wrong, specifically its undeclared species/ scope segment -- not the corpus, and not the spelling. Two commits for review: 04174d61a (the one-line fix + the derived snapshot regenerated through refresh_allocated_partitions.py --write + 7 contract tests, all 7 verified to FAIL on the pre-fix code) and 9086a6465 (the report). Measured at this head, reproduced: seedsmith check 931/612/153 -> 87/612/153, Coverage/EmptyPartition 911 -> 67 with every other metric +0; ItemSeedValidator PASS with warnings 2589 -> 2524 (the 65 PartitionMetaMismatch); verify-change.py scoped boundary exit 0. No data/seed/** row touched, so no regeneration is owed. The brief's 747 SemanticDedup/NearDuplicate does NOT reproduce -- measured 558, and the pair set is byte-identical before/after. Status stays active: the manager reviews and closes it."
+}

@@ -1,0 +1,16 @@
+{
+  "session": "notification-ssot-spec-20260918",
+  "program": "notification-ssot",
+  "problem": "Specify the notification-ssot program from its ideal (owner rulings R-N1 to R-N6): write the capability map and one spec per module, reconcile the consuming specs that cite the ideal, and point the ideal's status header at the map. Docs only; no code, data or commits.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/notification-ssot-map.md",
+    "docs/architecture/notification-ssot/**",
+    "docs/architecture/notification-ssot-ideal.md",
+    "tasks/sessions/notification-ssot-spec-20260918.json"
+  ],
+  "started": "2026-09-18T12:00:00Z",
+  "status": "merged"
+}

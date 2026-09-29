@@ -1,0 +1,15 @@
+# Anchor: summoner-convergence lane A (actions)
+Map: docs/architecture/action-skill-tiers-map.md · docs/architecture/action-enrich-map.md · docs/architecture/action-map.md §17 · Plan: tasks/summoner-convergence-plan.md · Todo: tasks/action-skill-tiers-todo.md + tasks/action-enrich-todo.md + tasks/action-todo.md (A26 T62/T63, A31 T67, A33 T74)
+Specs: docs/architecture/action-skill-tiers/spec-composer-tier-window.md · spec-holder-rung-pricing.md · spec-scope-window-tunables.md · spec-budget-calibration-report.md · spec-rung-table-activation.md · docs/architecture/action-enrich/spec-action-base.md · spec-lawn-action-base.md · action-map.md §17 A33 row (spec owed by T74) · spec-rulings-2026-09-18.md (R7, R8, R28)
+Session: summoner-convergence-impl-20260918 (direct; worktree cmdc/lane-a) · Paths: lane A build paths in the session record
+Standards: PRINCIPLES + DESIGN-GATE §1 rows (Anything, Actions, Battle-SSOT, Tunables, Magnitudes, Power, Caps, Stats) + decisions locks, read in this session
+Queue: ST1.1,ST1.2,ST1.3,STCP1,AE1.1,AE1.2,AE1.3,AE1.4,AE1.5,AE1.6,AECP1,AE2.1,AE2.2,AE2.3,AE2.4,AECP2,T62,T63,T67,T74,ST3.1,ST3.2,ST3.3,ST3.4,ST3.5,STCP3,ST4.1,ST4.2,ST4.3,ST4.4,ST4.5,STCP4,ST5.1,ST5.2,ST5.3,ST5.4,ST5.5,STCP2,STCP5
+Next: AE1.2
+Checkpoints: STCP1 = ST todo Checkpoint 1 (tier window real; after ST1.3) · AECP1 = AE todo Checkpoint 1 (battle reads the action; after AE1.6) · AECP2 = AE todo Checkpoint 2 (lawn reads the action + live probe; after AE2.4) · STCP3 = ST todo Checkpoint 3 (windows tunable; after ST3.5) · STCP4 = ST todo Checkpoint 4 (budget measured; after ST4.5) · STCP2 = ST todo Checkpoint 2 (ST2.1–ST2.5 all green + ST2.3 H1 first + A3 overflow clean; verify now, ST2 work already done) · STCP5 = ST todo Checkpoint 5 (A-G1 live + full suite + success criteria; program final, after ST5.5). Each checkpoint closes through the ledger with its own evidence fragment; owner-only items (live probe) go BLOCKED, never skipped.
+Peers: | Lane B (identity & progression) | (own anchor at lane start) | Receives AE1.5 H1 position; owns SP1.2, SP6.1, EP4.18 after | AE1.5 order |
+Drift gates: `python scripts/session-boundary-check.py` · `.\scripts\verify-change.ps1 -Paths <changed> --session summoner-convergence-impl-20260918` (+ `--plan-only` to preview)
+Evidence: `tasks/evidence-fragments/[task-id].md` per task (`| Criterion | Command | Result | Artifact |`)
+Ledger: `tasks/summoner-convergence-ledger.jsonl` — append-only run-state (`anchor|task|note|gate|queue|complete`); EVERY event through `python gk-core/scripts/anchor-ledger.py <ledger> ...` — never hand-write. `resume` first each window; `check` must exit 0.
+Verify: focused filter + guard per task Verify line, never full suite by default (full suite only at ST5 Checkpoint 5).
+H1: ST2.3 (done, no re-bless) → ST1.3 → AE1.5 → (lane B: SP1.2, SP6.1, EP4.18). One cause per commit, never red. SP/EP hand-off recorded in ledger when reached.
+Done: ST2.1–ST2.5, ST1.1–ST1.3, STCP1 (ledger); AE1.1 closed, pending commit. ST2.3 closed with no re-bless; H1 position stays open for ST1.3 → AE1.5.

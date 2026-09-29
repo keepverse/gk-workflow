@@ -1,0 +1,32 @@
+{
+  "session": "summoner-convergence-lane-b-20260919",
+  "program": "summoner-convergence lane B (identity & progression)",
+  "problem": "Build lane B of summoner-convergence to proven completion: SE wave 4 identity (commander-identity SE4.1-SE4.4, save-identity SE4.11 onward), then species-progression (SP), empire-progression (EP) and build-preset (BP). First anchor: identity foundation (SE4.1-SE4.4, SE4.11-SE4.14, Checkpoint 4a) then the SP wave-0 fusion-pick defect (SP0.1-SP0.4, Checkpoint 0). Hard edges H1 (SP1.2 -> SP6.1 -> EP4.18) and H2 (SE4.20 lands before any writer of a re-keyed row). Plan tasks/summoner-convergence-plan.md; rulings docs/architecture/spec-rulings-2026-09-18.md.",
+  "mode": "worktree",
+  "branch": "cmdc/lane-b",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-lane-b",
+  "paths": [
+    "tasks/**",
+    "src/FusionRpg.Core/**",
+    "src/FusionRpg.Data/Sqlite/**",
+    "src/FusionRpg.Server/**",
+    "src/FusionRpg.Injector/**",
+    "src/FusionRpg.Contracts/**",
+    "tests/FusionRpg.Core.Tests/**",
+    "tests/FusionRpg.Data.Tests/**",
+    "tests/FusionRpg.Server.Tests/**",
+    "tests/FusionRpg.Guard.Tests/**",
+    "tests/FusionRpg.E2E.Tests/**",
+    "tools/**",
+    "docs/**",
+    "scripts/guard-open-identity.ps1",
+    "scripts/enforcement-registry.v1.json",
+    "scripts/verification-boundaries.v1.json",
+    "data/seed/commanders/**",
+    "data/seed/saves/**"
+  ],
+  "started": "2026-09-19T00:00:00Z",
+  "status": "merged",
+  "retired": "2026-09-21",
+  "retiredReason": "the lane is terminal and its branch is an ancestor of features/mega-merge"
+}

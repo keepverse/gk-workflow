@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>legion-sheet-cargo — gui-lego recipe</title>
+<link rel="stylesheet" href="../../_kit/tokens.css">
+<link rel="stylesheet" href="../../_kit/kit.css">
+<link rel="stylesheet" href="../pieces/_piece-kit.css">
+</head>
+<body style="margin:0;background:var(--soil);color:var(--text);font-family:var(--font-ui);">
+<main class="lego-page">
+  <h1><code>legion-sheet / cargo-tab</code></h1>
+  <p class="lede">Recipe — sheet-menu host for one selected legion (actor-sheet-style menu with sub-tabs, each tab its own role) + cargo sub-tab per <code>spec-legion-sheet.md §§Design 1–2</code>. Locked Owner direction: sheet-menu with sub-tabs, header+toast, hidden-until-found, AP-cost lock. Rejected alternative (floating bare panel) stays rejected. Slot tree: <code>identity-strip + capacity-meter[slots+weight] + tool-search + scroll-region &gt; stock-row* + action-row (load / unload / hand-to-band)</code> → <code>cargo-fold</code> (pure) → events → <code>cargo-actions</code> bus (closed). Deposit/withdraw/claim ride the same bus shape for <code>storage-cache-ui</code> but are NOT bound on this tab. One legion per open (Diablo-memory precedent) — never the empire inventory. Close returns the exact map state (GG-12).</p>
+  <p class="lede"><strong>DRAFT — fiction labels only until owner-accept.</strong> All sentences below are placeholders. Status: <strong>owner-accepted 2026-09-16</strong> (see <code>legion-sheet-cargo.ACCEPTANCE.md</code>). Mount is built behind that recorded checkpoint per Task 4D.1 brief — it does not stall on acceptance.</p>
+  <div class="lego-grid two">
+    <section class="lego-card">
+      <h2>Structure (live) — landmarks</h2>
+      <div class="piece-stage">
+        <div data-testid="legion-sheet" data-tab="cargo" style="border:1px solid var(--border-control);border-radius:8px;overflow:hidden;background:var(--panel);max-width:640px;">
+          <div style="display:flex;min-height:380px;">
+            <div data-testid="legion-sheet-rail" role="tablist" aria-orientation="vertical" style="width:150px;flex:none;border-right:1px solid var(--border);padding:10px;display:grid;gap:6px;align-content:start;background:var(--soil-raised);">
+              <button type="button" data-testid="actor-sheet-close" style="font-size:12px;color:var(--muted);background:none;border:none;text-align:left;">Esc</button>
+              <button type="button" role="tab" aria-selected="false" data-testid="legion-sheet-tab-overview" style="text-align:left;font-size:13px;padding:6px 8px;border-radius:4px;background:var(--panel-inset);color:var(--muted);border:1px solid transparent;">Overview</button>
+              <button type="button" role="tab" aria-selected="true" data-testid="legion-sheet-tab-cargo" style="text-align:left;font-size:13px;padding:6px 8px;border-radius:4px;background:var(--lawn);color:var(--text);border:1px solid transparent;">Cargo</button>
+            </div>
+            <div data-testid="legion-sheet-panel" style="flex:1;min-width:0;padding:12px;display:grid;gap:10px;align-content:start;">
+              <div data-testid="legion-overview" data-role="identity-strip" style="font-size:12px;color:var(--muted);">DRAFT identity-strip: First Banner · dave · sector homeworld · 6 members</div>
+              <div data-testid="legion-cargo-tab" style="display:grid;gap:10px;">
+                <div data-testid="cargo-capacity-meter" data-density="slots+weight" data-gate-flag="weight">
+                  <div data-testid="cargo-capacity-slots-track" style="font-size:12px;color:var(--muted);">3/10 slots</div>
+                  <div data-testid="cargo-capacity-weight-track" style="font-size:12px;color:var(--muted);">108/120 wt</div>
+                  <p data-testid="cargo-capacity-gate-copy" style="margin:4px 0 0;font-size:12px;">DRAFT: Too heavy for the band to carry.</p>
+                </div>
+                <input data-testid="cargo-search" type="search" placeholder="DRAFT: Search packs" aria-label="Search packs" style="width:100%;padding:6px 8px;border-radius:4px;border:1px solid var(--border);background:var(--panel-inset);color:var(--text);font-size:13px;">
+                <div data-testid="cargo-rows" data-testid-scroll="scroll-region" style="display:grid;gap:6px;max-height:220px;overflow:auto;border:1px solid var(--border);border-radius:6px;padding:8px;background:var(--panel-inset);">
+                  <div data-testid="cargo-stock-row" data-seq="0" data-state="carried" style="font-size:13px;">DRAFT: Field rations · ×4 · 20 wt · carried</div>
+                  <div data-testid="cargo-stock-row" data-seq="1" data-state="carried" style="font-size:13px;">DRAFT: Spare bindings · ×1 · 10 wt · carried</div>
+                  <div data-testid="cargo-stock-row" data-seq="7" data-state="left-behind:weight" style="font-size:13px;">DRAFT: Salvaged plate · left behind — too heavy</div>
+                </div>
+                <div data-testid="cargo-empty" hidden style="font-size:13px;">DRAFT empty: Nothing aboard — load from the stash or march to a cache.</div>
+                <div data-testid="cargo-error" hidden style="font-size:13px;">DRAFT error: No such band. <button type="button">Retry</button></div>
+                <div data-testid="cargo-loading" hidden style="font-size:13px;">DRAFT: Reading packs…</div>
+                <div style="display:flex;gap:8px;" data-testid="cargo-action-row">
+                  <button type="button" data-testid="cargo-action-load">Load</button>
+                  <button type="button" data-testid="cargo-action-unload">Unload</button>
+                  <button type="button" data-testid="cargo-action-hand-to-band">Hand to band</button>
+                </div>
+                <p data-testid="cargo-file-note" style="margin:0;font-size:12px;color:var(--muted);">DRAFT filing note: Filed — resolution arrives with the turn report, not this button.</p>
+                <p data-testid="cargo-report-note" style="margin:0;font-size:12px;color:var(--muted);">DRAFT report note: As of turn 3 — re-read after every commit before acting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lego-card">
+      <h2>Sample payload (fold in, recipe out)</h2>
+      <pre>{
+  "recipe": "legion-sheet-cargo",
+  "legionSheetTab": "cargo",
+  "defaultTab": "overview",
+  "identity": {
+    "entityId": "e-dave-legion-1",
+    "displayName": "DRAFT: First Banner",
+    "ownerFactionId": "dave",
+    "memberCount": 6
+  },
+  "cargo": {
+    "worldId": "w-1",
+    "asOfTurn": 3,
+    "weightFraction": 0.9,
+    "slotFraction": 0.3,
+    "gateFlag": "weight"
+  },
+  "rows": [
+    { "seq": 0, "state": "carried", "copyKey": null },
+    { "seq": 1, "state": "carried", "copyKey": null },
+    { "seq": 7, "state": "left-behind:weight", "copyKey": "cargo.full.weight" }
+  ],
+  "actions": ["load", "hand-to-band", "unload"],
+  "bus": "cargo-actions (closed: load/unload/hand-to-band + carried deposit/withdraw/pick-up)",
+  "landmarks": [
+    "legion-sheet", "legion-sheet-rail",
+    "legion-sheet-tab-overview", "legion-sheet-tab-cargo",
+    "legion-sheet-panel", "legion-overview",
+    "legion-cargo-tab", "cargo-capacity-meter",
+    "cargo-capacity-slots-track", "cargo-capacity-weight-track",
+    "cargo-search", "cargo-rows", "cargo-stock-row",
+    "cargo-empty", "cargo-error", "cargo-loading",
+    "cargo-action-load", "cargo-action-unload",
+    "cargo-action-hand-to-band", "cargo-file-note",
+    "cargo-report-note"
+  ]
+}</pre>
+      <h2 style="margin-top:12px;">Recipe rules (no new strings)</h2>
+      <pre>Tabs closed: overview (default) + cargo. Future tabs
+by reservation only — never snuck into this recipe.
+Per-legion reset: switching legions returns to
+overview; rail-collapsed persists (new key family).
+Close (Esc / ✕ / empty-map deselect) never clears the
+pending queue (turn-scoped, not sheet-scoped).
+Lifecycle: loading = phase-loading; unknown legion =
+phase-error + retry; known-empty = phase-empty + next
+action (load from stash / march to cache).
+Search filters folded rows by name only; refused rows
+stay visible with reason (XCOM lesson).
+Buttons never disable silently (GG-55): known-
+unfilable stays enabled and answers with the refusal
+sentence, or carries inline reason where fold knows
+it (full packs). Filing ≠ resolving (GG-15): filer
+answers filed/replayed/refused-at-submit; report +
+read-backs answer moved/refused/partially-fit.
+One scope: exactly one GET .../cargo per open /
+selection / commit-advance; never empire-wide.
+Weight never on wire; capacity never recomputed
+client-side; no "fit N more" prediction; no id
+prettify; no position compare; no engine words.</pre>
+    </section>
+  </div>
+</main>
+</body>
+</html>

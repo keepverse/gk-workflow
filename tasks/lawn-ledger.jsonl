@@ -1,0 +1,86 @@
+{"ts":"2026-09-23T01:36:24Z","kind":"anchor","plan":"tasks/lawn-plan.md","todo":"tasks/lawn-todo.md","session":"lawn-1","specs":["docs/architecture/lawn-playable","docs/architecture/lawn-tuning-profile"],"queue":["LW1.1","LW1.2","LW1.3","LW1.4","LW1.5","LW1.6","LW2.1","LW2.2","LW2.3","LW2.4","LW2.5","LW2.6","LW3.1","LW3.2","LW4.1","LW4.2","LW5.1"],"mark":"mk1-8960e6c35328ab64"}
+{"ts":"2026-09-23T01:36:34Z","kind":"note","text":"verify-change -Session lawn-1 refuses: tasks/sessions/lawn-1.json is absent here, and tasks/sessions/** is outside the fence. Used -AllowUnscoped on the same paths plus each selected check run directly.","mark":"mk1-abe296228251735b"}
+{"ts":"2026-09-23T01:36:34Z","kind":"note","text":"LW1.1 evidence fragment lives in tasks/lawn-evidence.md -- the repo convention tasks/evidence-fragments/<ID>.md is outside this lane's allowed paths.","mark":"mk1-7adac1995c35ff61"}
+{"ts":"2026-09-23T01:36:34Z","kind":"task","id":"LW1.1","state":"started","mark":"mk1-fff5f8b1b2f775d9"}
+{"ts":"2026-09-23T01:36:46Z","kind":"note","text":"FINDING (not mine): tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs:111 pins sha256(BattleEffects.cs), red at this lane's base b2ea55f0. Cause: 5e33ad647 (2026-09-23, battle T6/W11) moved the file 447->466 lines after CAI-guard-1's re-pin. File unmodified here.","mark":"mk1-96bedec1d4d0c7bc"}
+{"ts":"2026-09-23T01:36:50Z","kind":"note","text":"FINDING (outside scope): PlantSideStatusGuardTests.cs:111 pins sha256(BattleEffects.cs) and is red at base b2ea55f0. Cause: 5e33ad647 (2026-09-23, battle T6/W11) moved the file 447->466 lines after CAI-guard-1's re-pin. File unmodified here.","mark":"mk1-3b71246f4a98d83c"}
+{"ts":"2026-09-23T01:36:50Z","kind":"note","text":"FINDING routing: owning row CAI-guard-1 (tasks/combat-ai-todo.md:1486) is still open but its recorded hashes are stale (names 52F8->02B04A; live mismatch is 02B04A->E1444D). That todo is outside this fence, so reported only.","mark":"mk1-35acc6847892d79c"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"guard-tuning-immutability","result":"pass","mark":"mk1-4c5a1a37d10298de"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"guard-verification-boundaries","result":"pass","mark":"mk1-88e7a18fb737f182"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"guard-doc-citations-strict-tasks/lawn-combat-wire-todo.md","result":"pass","mark":"mk1-c6ac03dd91abbd93"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"core-diagnostics-LawnPerfBudget-11of11","result":"pass","mark":"mk1-690dc27f434b09ae"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"server-module-819of819","result":"pass","mark":"mk1-0a89da302791c5f4"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"cheatcore-module-41of41","result":"pass","mark":"mk1-2ad74262aa81ab7a"}
+{"ts":"2026-09-23T01:36:51Z","kind":"gate","name":"guard-module-664of665","result":"fail","mark":"mk1-61c584e3c5e96cde"}
+{"ts":"2026-09-23T01:36:57Z","kind":"gate","name":"guard-tuning-immutability","result":"pass","mark":"mk1-aa92c4c59706fe8f"}
+{"ts":"2026-09-23T01:37:42Z","kind":"task","id":"LW1.1","state":"done","evidence":"commit 1438d5644; core-diagnostics 11/11, guard-scope 3/3, server 819/819, cheatcore 41/41; guard-tuning-immutability T1-T4 clean; boundary guard OK","mark":"mk1-5892ac574e39fea8"}
+{"ts":"2026-09-23T01:39:01Z","kind":"note","text":"BLOCKED: LW1.2 half (b) already landed 2026-09-20 (8e56f9e9e, SpawnFailDeployReportingTests). Half (a) needs tools/CreatureSpeciesGen/** + regenerated data/generated/creatures/**, both outside this fence. Ruling requested.","mark":"mk1-128d7dbc75647763"}
+{"ts":"2026-09-23T01:39:06Z","kind":"task","id":"LW1.2","state":"started","mark":"mk1-a8bfd27fb65c867d"}
+{"ts":"2026-09-23T01:39:07Z","kind":"task","id":"LW1.2","state":"blocked","reason":"half (a) requires tools/CreatureSpeciesGen/** and data/generated/creatures/** -- denied paths outside this lane's allowed set; half (b) already shipped 2026-09-20 (8e56f9e9e)","mark":"mk1-7fc1fc6507dd013a"}
+{"ts":"2026-09-23T02:10:07Z","kind":"task","id":"LW1.4","state":"started","mark":"mk1-7722516027f9d3b1"}
+{"ts":"2026-09-23T02:10:07Z","kind":"gate","name":"core-actor-liveness-revision-4of4","result":"pass","mark":"mk1-3fd2bd747dbd7717"}
+{"ts":"2026-09-23T02:10:07Z","kind":"gate","name":"guard-verification-boundaries-57of57","result":"pass","mark":"mk1-fdcf33032ffa9bae"}
+{"ts":"2026-09-23T02:10:07Z","kind":"gate","name":"guard-actor-hub","result":"pass","mark":"mk1-e5caf42b232e8138"}
+{"ts":"2026-09-23T02:10:08Z","kind":"gate","name":"guard-single-writer","result":"pass","mark":"mk1-e34e185fb7399ae6"}
+{"ts":"2026-09-23T02:10:21Z","kind":"task","id":"LW1.4","state":"done","evidence":"commit 2f9a4fc60; core.actor-liveness-revision 4/4; guard.verification-boundaries 57/57; guard-actor-hub OK; guard-single-writer OK; boundary guard OK","mark":"mk1-72798d81e482eded"}
+{"ts":"2026-09-23T02:21:11Z","kind":"task","id":"LW2.1","state":"started","mark":"mk1-25d0aa3da4a7031f"}
+{"ts":"2026-09-23T02:21:12Z","kind":"note","text":"LW2.1 trace: resource.regen is units/tick in the runtime (ResourceChannelReader, ResourcePoolState, BattleModels:475) but was fitted per ROUND in the POC (ActionEconomy.cs:123-127, one Tick() per round) -> 200x at a basic attack's 150+50 ticks. Tuning is v10, not v8.","mark":"mk1-c5acdb61cd613a08"}
+{"ts":"2026-09-23T02:21:12Z","kind":"note","text":"LW2.1 finding filed as LW5.2 (routed out) in tasks/lawn-todo.md: the repair publishes data/tuning/aptitudes.v{n+1}.json, outside this lane's fence and class-system's balance surface, and it moves battle too. Owning todo is not writable from here.","mark":"mk1-29d5d9fe78852182"}
+{"ts":"2026-09-23T02:21:12Z","kind":"gate","name":"core-resource-regen-unit-4of4","result":"pass","mark":"mk1-5cfebc1585a1aa22"}
+{"ts":"2026-09-23T02:21:12Z","kind":"gate","name":"guard-verification-boundaries-57of57","result":"pass","mark":"mk1-99c533009522cfb4"}
+{"ts":"2026-09-23T02:21:28Z","kind":"task","id":"LW2.1","state":"done","evidence":"commit 423579089; core.resource-regen-unit 4/4; guard.verification-boundaries 57/57; doc-citations 0 HIGH (14 citations); trace docs/architecture/lawn-tuning-profile/regen-unit-trace.md; finding filed as LW5.2 routed out","mark":"mk1-53f92667da9fe075"}
+{"ts":"2026-09-23T02:22:07Z","kind":"task","id":"LW1.3","state":"started","mark":"mk1-1468bacb709203f1"}
+{"ts":"2026-09-23T04:35:52Z","kind":"gate","name":"core-exhaustion-edge-7of7","result":"pass","mark":"mk1-83333f53e9d3ad10"}
+{"ts":"2026-09-23T04:35:52Z","kind":"gate","name":"exhaustion-filter-25of25","result":"pass","mark":"mk1-a242f019e19258bc"}
+{"ts":"2026-09-23T04:35:53Z","kind":"gate","name":"guard-injector-compile","result":"pass","mark":"mk1-aa763a145be8bc47"}
+{"ts":"2026-09-23T04:35:53Z","kind":"gate","name":"guard-funnel-delta","result":"pass","mark":"mk1-0971a2ad88a5d6c1"}
+{"ts":"2026-09-23T04:35:53Z","kind":"gate","name":"guard-actor-hub-LW1.3","result":"pass","mark":"mk1-3a98914adb1e78c6"}
+{"ts":"2026-09-23T04:35:54Z","kind":"gate","name":"guard-single-writer-LW1.3","result":"pass","mark":"mk1-c2af06fe91416bbe"}
+{"ts":"2026-09-23T04:35:55Z","kind":"note","text":"LW1.3: guard-injector-compile first FAILED (LawnExhaustionLifecycle missing 'using FusionRpg.Injector.Host;' -> CS0103 RpgHost x3) and passed after the fix. Run it with FUSIONRPG_ML_GAMEDIR set; bare runs print SKIPPED.","mark":"mk1-d7b5a095a441e143"}
+{"ts":"2026-09-23T04:53:25Z","kind":"task","id":"LW1.5","state":"started","mark":"mk1-761a9cea5f7ae38e"}
+{"ts":"2026-09-23T04:53:25Z","kind":"gate","name":"server-liveness-invalidation-5of5","result":"pass","mark":"mk1-17408853ed6a74d8"}
+{"ts":"2026-09-23T04:53:25Z","kind":"gate","name":"core-actor-liveness-revision-5of5","result":"pass","mark":"mk1-87075f73112e3cf3"}
+{"ts":"2026-09-23T04:53:25Z","kind":"gate","name":"server-module-831of831","result":"pass","mark":"mk1-8884d3e899abefc2"}
+{"ts":"2026-09-23T04:53:25Z","kind":"gate","name":"guard-verification-boundaries-57of57-LW1.5","result":"pass","mark":"mk1-1cb4e7365ce9c997"}
+{"ts":"2026-09-23T04:53:26Z","kind":"gate","name":"verify-change-LW1.5-exit0","result":"pass","mark":"mk1-874c270ea9c16ed0"}
+{"ts":"2026-09-23T04:53:30Z","kind":"note","text":"LW1.5: equip/unequip covered by a labelled source-text guard (no Server test creates a rolled item). The other three verbs are behavioural via real endpoints + a capturing IHubContext. Ladder stays SP6.6's power.index.reload.","mark":"mk1-e805c59b8e5f4011"}
+{"ts":"2026-09-23T04:54:40Z","kind":"task","id":"LW1.3","state":"done","evidence":"commit 467cfa058; core.exhaustion-edge 7/7; exhaustion filter 25/25; guard-injector-compile OK (with FUSIONRPG_ML_GAMEDIR); actor-hub/funnel-delta/single-writer OK; guard module 664/665 (pre-existing PlantSideStatus pin)","mark":"mk1-b181877e4169a508"}
+{"ts":"2026-09-23T04:54:40Z","kind":"task","id":"LW1.5","state":"done","evidence":"commit 6eb250bc4; server.liveness-invalidation 5/5; core.actor-liveness-revision 5/5; server module 831/831; server.passive-tree 27/27; verify-change exit 0","mark":"mk1-21908b7b6ed1dee8"}
+{"ts":"2026-09-23T05:09:33Z","kind":"gate","name":"core-liveness-14of14","result":"pass","mark":"mk1-2e0f14fc405348e2"}
+{"ts":"2026-09-23T05:09:33Z","kind":"gate","name":"guard-injector-compile-LW1.6","result":"pass","mark":"mk1-fb3fd28bbba34da2"}
+{"ts":"2026-09-23T05:09:33Z","kind":"gate","name":"guard-module-667of669-merged-head","result":"fail","mark":"mk1-0a4bd4f9daba4b44"}
+{"ts":"2026-09-23T05:09:40Z","kind":"note","text":"FINDING (merged head, not mine): 22fc4f3d3 (creature-seed T8) added picks.source-below-rank-floor at RpgStore.Fusion.cs:305 without moving the pin at PlayerSpeciesMaterialiseCallerGuardTests.cs:96-104,121 -> Guard module red for every lane.","mark":"mk1-a87ee3e50cf548ff"}
+{"ts":"2026-09-23T05:09:41Z","kind":"note","text":"LW1.6 live check NOT run: needs a running game on a pooled live slot; no game running this segment. Its named Verify (dotnet test --filter Liveness) is green at 14/14.","mark":"mk1-a2827b63357f6cdb"}
+{"ts":"2026-09-23T05:10:28Z","kind":"task","id":"LW1.6","state":"started","mark":"mk1-7ad4a76e4bd88ac8"}
+{"ts":"2026-09-23T05:10:29Z","kind":"task","id":"LW1.6","state":"done","evidence":"commit fcfc39789; core Liveness 14/14; guard-injector-compile OK; verify-change: guards OK, core 14/14, guard module 667/669 (2 reds outside this change); live check not run (no game)","mark":"mk1-f17c0cd10f4d6364"}
+{"ts":"2026-09-23T05:10:29Z","kind":"task","id":"LW2.2","state":"started","mark":"mk1-b2c2fcadf71cb868"}
+{"ts":"2026-09-23T05:10:29Z","kind":"task","id":"LW2.2","state":"blocked","reason":"needs data/tuning/mode-profiles.v1.json (new), outside this lane's allowed paths (data/tuning/lawn*.json only). Spec, plan H7 and LW2.4 all name that exact file; a lawn-prefixed rename would fork the plan.","mark":"mk1-2efa165c1a6c4ec9"}
+{"ts":"2026-09-23T05:10:30Z","kind":"note","text":"FENCE GATE: mode-profiles.v1.json gates the whole scale chain. LW2.3-2.6 depend on LW2.2, LW3.1/3.2 on wave 2, LW4.1 on wave 3, LW4.2 on LW4.1. LW5.1 needs src/FusionRpg.Data/** (also denied).","mark":"mk1-5626825b4630d1bb"}
+{"ts":"2026-09-23T05:10:31Z","kind":"task","id":"LW5.1","state":"started","mark":"mk1-2c8aa3293a0c9120"}
+{"ts":"2026-09-23T05:10:31Z","kind":"task","id":"LW5.1","state":"blocked","reason":"needs src/FusionRpg.Data/Sqlite/RpgStore.UniqueActors.cs:150-250 (the one existing unique-deploy admission gate), outside this lane's allowed paths.","mark":"mk1-c27650bdbcc428e9"}
+{"ts":"2026-09-23T05:44:47Z","kind":"gate","name":"core-summon-pool-plantability-20of20","result":"pass","mark":"mk1-f0bc8c7b4768e739"}
+{"ts":"2026-09-23T05:44:47Z","kind":"gate","name":"server-module-834of834","result":"pass","mark":"mk1-336f16dadb0eb252"}
+{"ts":"2026-09-23T05:44:47Z","kind":"gate","name":"core-module-9620of9620","result":"pass","mark":"mk1-9d427c3e5c7b4773"}
+{"ts":"2026-09-23T05:44:53Z","kind":"note","text":"LW1.2 half (a) LANDED at the serve point: SummonRoller now asks CreatureAdmission.ForWave (it was the 4th context re-deriving the raw Summonable flag); catalog reports the admitted answer. Row stays OPEN for the generator+registry half (tools/**, data/generated/**).","mark":"mk1-0393411c37fb66a6"}
+{"ts":"2026-09-23T05:44:53Z","kind":"note","text":"Two load-dependent reds diagnosed at their boundary and green in isolation: AtomBenchGuardTests (median 241ns/atom under a 70-project parallel run; 3/3 alone) and VerificationBoundaryWorkflowTests.P6 (1/1 alone). Neither touches a file this change edits.","mark":"mk1-8d2a659865ae710a"}
+{"ts":"2026-09-23T05:45:46Z","kind":"note","text":"LW5.1 RE-READ: only the Data wire is denied (RpgStore.UniqueActors.cs). The rest is in fence: Core policy+tuning+hub, CapPolicy refusal constants, ZombossDeployPolicy/Roster reconciliation, host loads, data/tuning/lawn-deploy.v1.json, Core tests.","mark":"mk1-4fecc4a3a34b8e0e"}
+{"ts":"2026-09-23T05:57:35Z","kind":"gate","name":"core-lawn-unique-deploy-cap-7of7","result":"pass","mark":"mk1-da37fca4c2ac7d7b"}
+{"ts":"2026-09-23T05:57:35Z","kind":"gate","name":"guard-dal-LW5.1","result":"pass","mark":"mk1-8f5c55486949ef59"}
+{"ts":"2026-09-23T05:57:35Z","kind":"gate","name":"guard-test-substrate-LW5.1","result":"pass","mark":"mk1-5201d118fbafc2ed"}
+{"ts":"2026-09-23T05:57:36Z","kind":"note","text":"LW5.1 in-fence half landed (policy+tuning+constants+file+host loads, 7/7 focused, server builds, injector compiles). Row stays blocked on TWO denied wires: RpgStore.UniqueActors.cs gate call, and the zomboss-deploy-ai publish that needs publish.py --drop-key.","mark":"mk1-82bc38acad08f2c0"}
+{"ts":"2026-09-23T05:57:59Z","kind":"task","id":"LW2.3","state":"started","mark":"mk1-be94a21dbf9d2d3d"}
+{"ts":"2026-09-23T05:57:59Z","kind":"task","id":"LW2.4","state":"started","mark":"mk1-b0bb8e560229a224"}
+{"ts":"2026-09-23T05:58:00Z","kind":"task","id":"LW2.5","state":"started","mark":"mk1-d11ba14169c4cae5"}
+{"ts":"2026-09-23T05:58:00Z","kind":"task","id":"LW2.6","state":"started","mark":"mk1-4175766fdfd04b0d"}
+{"ts":"2026-09-23T05:58:01Z","kind":"task","id":"LW3.1","state":"started","mark":"mk1-505b3c2a79a324a1"}
+{"ts":"2026-09-23T05:58:01Z","kind":"task","id":"LW3.2","state":"started","mark":"mk1-d5dbc9a399de5ca5"}
+{"ts":"2026-09-23T05:58:01Z","kind":"task","id":"LW4.1","state":"started","mark":"mk1-cdb8df85c573b87d"}
+{"ts":"2026-09-23T05:58:02Z","kind":"task","id":"LW4.2","state":"started","mark":"mk1-3d017b87ec8d07a0"}
+{"ts":"2026-09-23T05:58:02Z","kind":"task","id":"LW2.3","state":"blocked","reason":"depends on LW2.2, blocked: data/tuning/mode-profiles.v1.json is outside this lane's allowed paths","mark":"mk1-cc43a3a1257aca3b"}
+{"ts":"2026-09-23T05:58:02Z","kind":"task","id":"LW2.4","state":"blocked","reason":"depends on LW2.2, blocked: data/tuning/mode-profiles.v1.json is outside this lane's allowed paths (it also adds a key to that file)","mark":"mk1-e5be5874ad9a05e8"}
+{"ts":"2026-09-23T05:58:03Z","kind":"task","id":"LW2.5","state":"blocked","reason":"depends on LW2.2, blocked: data/tuning/mode-profiles.v1.json is outside this lane's allowed paths","mark":"mk1-fa53e4499870047d"}
+{"ts":"2026-09-23T05:58:03Z","kind":"task","id":"LW2.6","state":"blocked","reason":"depends on LW2.2 (LW2.1 done), blocked: data/tuning/mode-profiles.v1.json is outside this lane's allowed paths","mark":"mk1-e169b9f8f6b7ba0c"}
+{"ts":"2026-09-23T05:58:03Z","kind":"task","id":"LW3.1","state":"blocked","reason":"depends on LW2.3/LW2.4/LW2.5, all blocked behind LW2.2's denied data/tuning/mode-profiles.v1.json","mark":"mk1-dd2bba17bc48c47a"}
+{"ts":"2026-09-23T05:58:04Z","kind":"task","id":"LW3.2","state":"blocked","reason":"depends on LW2.6, blocked behind LW2.2's denied data/tuning/mode-profiles.v1.json","mark":"mk1-359579b2c12171db"}
+{"ts":"2026-09-23T05:58:04Z","kind":"task","id":"LW4.1","state":"blocked","reason":"depends on LW3.1/LW3.2 (wave 3), all blocked behind LW2.2's denied data/tuning/mode-profiles.v1.json; its own live probe also needs a running game on a pooled slot","mark":"mk1-544cb6747d2e5045"}
+{"ts":"2026-09-23T05:58:05Z","kind":"task","id":"LW4.2","state":"blocked","reason":"depends on LW4.1, blocked behind the same chain; LW1.1 (its other dep) is done","mark":"mk1-f8e458f106e9ecd5"}

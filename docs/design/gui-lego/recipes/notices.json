@@ -1,0 +1,54 @@
+{
+  "surfaceId": "notices",
+  "host": "chronicle-tab",
+  "version": 1,
+  "notes": "Design SSOT recipe (NS6.8, notification-ssot spec-notify-centre.md, brief: docs/architecture/notify-centre-ideal.md). One category browsed at a time, newest row first, every registered category listed (zero rows and off included, spec Objective). Reuses tool-search (category filter) and chip (per-row severity/state, source-list's own scrollable-list precedent for the category sidebar). notice-row is a NEW piece at the ALREADY-EXISTING ERM Row rung (channel-row is the precedent that rung is real) -- not a new density; the row's exact field set is proposed here for the owner piece review (authoring step 7) to accept or amend, the same gate any new piece needs before React (NS6.11). ChannelControl (the per-category channel switch) is bound but not yet relocatable -- world-notify-source's own move (NS5.9) is blocked on ask A1; this recipe references the piece by id only, and the actual import path is NS6.11's concern, not this file's.",
+  "root": {
+    "piece": "surface-shell",
+    "instanceId": "shell:notices",
+    "bind": "vm",
+    "slots": {
+      "tools": [
+        {
+          "piece": "tool-search",
+          "instanceId": "tool:notices-category-search",
+          "bind": "vm.categorySearch"
+        }
+      ],
+      "sidebar": {
+        "piece": "source-list",
+        "instanceId": "list:notices-categories",
+        "bind": "vm.categoryList",
+        "slots": {
+          "rows": {
+            "$bindArray": "vm.categories",
+            "piece": "chip",
+            "instanceIdTemplate": "chip:category:{id}"
+          }
+        }
+      },
+      "main": {
+        "piece": "scroll-region",
+        "instanceId": "scroll:notices-rows",
+        "bind": "vm.rowsScroll",
+        "slots": {
+          "content": {
+            "$bindArray": "vm.rows",
+            "piece": "notice-row",
+            "instanceIdTemplate": "notice:{dedupKey}"
+          }
+        }
+      },
+      "channelControl": {
+        "piece": "channel-control",
+        "instanceId": "control:notices-channel",
+        "bind": "vm.selectedChannel"
+      }
+    }
+  },
+  "lifecycleOverlays": {
+    "loading": { "piece": "phase-loading", "bind": "vm.phasePayload" },
+    "empty": { "piece": "phase-empty", "bind": "vm.phasePayload" },
+    "error": { "piece": "phase-error", "bind": "vm.phasePayload" }
+  }
+}

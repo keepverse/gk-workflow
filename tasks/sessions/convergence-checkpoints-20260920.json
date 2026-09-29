@@ -1,0 +1,26 @@
+{
+  "session": "convergence-checkpoints-20260920",
+  "program": "summoner-convergence checkpoint verification (CC1-CC7)",
+  "problem": "Verify CC1-CC7 of tasks/summoner-convergence-todo.md's Checkpoints section against plan section 6's own evidence clauses: read each clause, gather the actual evidence from the lanes' ledgers (tasks/summoner-convergence-lane-*-ledger.jsonl, tasks/*-ledger.jsonl) and tasks/evidence-fragments/, RE-RUN the gates it names on this merged features/mega-merge tree (guards, scoped suites, generator --checks) rather than trusting a fragment, then tick the checkpoint box only if every clause is met, with a short evidence fragment citing what was run and what it printed. A clause that cannot be proven is recorded blocked naming the dependency, never reworded to fit what passed. CC8 is owner/manager-owned (full suite + live probe), never this session's.",
+  "mode": "direct",
+  "branch": "cmdc/lane-b",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-lane-b",
+  "paths": [
+    "tasks/summoner-convergence-todo.md",
+    "tasks/sessions/convergence-checkpoints-20260920.json",
+    "tasks/summoner-convergence-checkpoints-ledger.jsonl",
+    "tasks/evidence-fragments/CC1.md",
+    "tasks/evidence-fragments/CC2.md",
+    "tasks/evidence-fragments/CC3.md",
+    "tasks/evidence-fragments/CC4.md",
+    "tasks/evidence-fragments/CC5.md",
+    "tasks/evidence-fragments/CC6.md",
+    "tasks/evidence-fragments/CC7.md"
+  ],
+  "started": "2026-09-20T00:00:00Z",
+  "status": "merged",
+  "result": "CC1 CLOSED, CC2 BLOCKED (SE4.30 owner-scope + SE4.4 missing guard script), CC3 CLOSED, CC4 CLOSED, CC5 BLOCKED (EP CP1-CP6 all unticked), CC6 BLOCKED (species-gear-chain Checkpoint-Complete + SSH Checkpoint 6/combo-budget tool unbuilt), CC7 BLOCKED (TVB Checkpoint 3 python lane + Checkpoint 5 Core split unticked). CC8 left to the manager. See tasks/evidence-fragments/CC1.md-CC7.md.",
+  "boundaryNote": "session-boundary-check.ps1 flags two crossings, both benign: (1) tasks/** overlap with this agent's own prior summoner-convergence-lane-b-20260919 session (same worktree/branch/operator, superseded by this narrower record for this new problem); (2) tasks/evidence-fragments/CC*.md overlap with lane-c/lane-d's own broad tasks/evidence-fragments/** globs -- neither lane writes a CC*.md file (their own prefixes are T*/SE*/etc.), so no real file collision. Coordinate, don't block, per session-boundary.md section 5.",
+  "retired": "2026-09-21",
+  "retiredReason": "status 'done' is not one of active/merged/abandoned; the session is finished, so it is recorded as merged"
+}

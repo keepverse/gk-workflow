@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh29-20260922-102413\\boundary.log"
+    },
+    {
+      "check": "data-sockets",
+      "exit": 0,
+      "seconds": 8,
+      "summary": "Passed!  - Failed:     0, Passed:    13, Skipped:     0, Total:    13, Duration: 1 s - FusionRpg.Data.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh29-20260922-102413\\data-sockets.log"
+    },
+    {
+      "check": "core-items",
+      "exit": 0,
+      "seconds": 4,
+      "summary": "Passed!  - Failed:     0, Passed:   139, Skipped:     0, Total:   139, Duration: 787 ms - FusionRpg.Core.Items.Tests.dll (net8.0)",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh29-20260922-102413\\core-items.log"
+    },
+    {
+      "check": "ledger",
+      "exit": 0,
+      "seconds": 0,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-ssh29-20260922-102413\\ledger.log"
+    }
+  ],
+  "when": "2026-09-22T10:24:28",
+  "verdict": "GREEN",
+  "sha": "27e4f29c",
+  "lane": "ssh29",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "logDir": "D:\\tmp\\accept-ssh29-20260922-102413",
+  "contendedTree": false
+}

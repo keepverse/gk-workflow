@@ -1,0 +1,13 @@
+# TVB-F33 — `guard.unique-allocation-reader` is a dead trait: the guard it names never runs for the files its own allowlist polices
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| the orphan reading at this head | `python gk-core/scripts/guard-verification-boundaries.py --report` | `Orphan VerificationId traits (no boundary selects them): 9`, grouped by project: `core-area-world-owners` — `data.action-pricing`, `data.ai-empire-specimen`, `data.allocation-respec`, `data.effective-unique-allocation`, `data.item-upgrade`, `server.lawn-order`, `server.lawn-quick-start`, `server.players-empires`; `guard` — `guard.unique-allocation-reader` | this fragment |
+| the trait and its owner | `grep -rn "guard.unique-allocation-reader" tests/ src/ scripts/` | declared once: `gk-core/tests/FusionRpg.Guard.Tests/UniqueAllocationReaderGuardTests.cs:14`; **registry occurrences: 0**. Added by `03bdd5cc7` (empire-progression EP1.14, 2026-09-20) | this fragment |
+| what the dead trait costs | `pwsh -NoProfile -Command "& ./scripts/verify-change.ps1 -Paths @('gk-core/src/FusionRpg.Data/Sqlite/RpgStore.Aptitudes.cs','gk-core/src/FusionRpg.Data/Sqlite/RpgStore.AllocationRespec.cs') -PlanOnly -AllowUnscoped"` | both → `data-fallback (module)`; `guard: dal`; `guard: test-substrate`; `test: data (sharded runner)`. **The Guard project is not selected** — so `No_file_outside_the_allowlist_reads_the_UniqueCreature_scope_directly` never runs for the two files its own allowlist names. CI's Guard step is the only witness, i.e. the TVB-F24 shape: local green, integration red | this fragment |
+| why the fix is a ruling, not a lane's edit | the registry's shape, read | **0 of 30 `kind: seam` boundaries carry a `verificationId`** (`level: seam` is its own level), so the only *additive* mechanism is whole-project: a seam `gk-core/src/FusionRpg.Data/**` → `project: guard` would add the 673-test Guard suite to every Data change. The non-additive option — a more specific owner on the resolver file — **replaces** `data-fallback` and drops the Data.Tests run | this fragment |
+| the map's §2 numbers have rotted | `-Report` + the registry | at this head: **475** boundaries, **141** projects, **9** orphans, still none `core.*`; the map's dated update says 463 / 137 / 8 (taken before the mega-merge brought other programs' rows) | this fragment |
+
+K3 (`TVB6.4`) is the precedent and it does not reach this one: it scoped itself to orphan **`core.*`** traits
+and to "a production file whose change the trait's tests are the direct proof of" — this trait is
+`guard.*`, and its test scans all of `src/` rather than pinning one file.

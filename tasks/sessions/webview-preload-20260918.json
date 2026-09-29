@@ -1,0 +1,19 @@
+{
+  "session": "webview-preload-20260918",
+  "program": "rift-gate",
+  "problem": "Preload the injector-owned WebView2 fallback after the launcher overlay host is confirmed absent, so F10 works without first clicking the Rift menu affordance.",
+  "mode": "worktree",
+  "branch": "codex/actor-hud-bottom-anchor-20260916",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.kilo/worktrees/actor-hud-bottom-anchor-20260916",
+  "paths": [
+    "src/FusionRpg.Core/Overlay/OverlayFallbackPolicy.cs",
+    "src/FusionRpg.Injector/Hud/OverlaySwitch.cs",
+    "tests/FusionRpg.Core.Tests/Overlay/OverlayFallbackPolicyTests.cs",
+    "tests/FusionRpg.Guard.Tests/OverlayFallbackPreloadGuardTests.cs",
+    "scripts/verification-boundaries.v1.json",
+    "docs/launcher/overlay-spec.md",
+    "tasks/sessions/webview-preload-20260918.json"
+  ],
+  "started": "2026-09-18T00:45:00Z",
+  "status": "merged"
+}

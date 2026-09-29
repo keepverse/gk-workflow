@@ -1,0 +1,16 @@
+# TVB-F30 — a manifest `include` pattern still claims four residual files, and A1 makes them unmovable
+
+| Criterion | Command | Result | Artifact |
+|---|---|---|---|
+| the divergence, measured | `python /tmp/tvb_leftovers.py` (walks the real manifest + residual) | **4** residual files match a manifest `include` pattern, all under `Stats/`: `ActorLivenessRevisionTests.cs`, `ActorLivenessRevisionsTests.cs`, `ResourceRegenUnitTests.cs`, `TurnChannelDeclarationTests.cs` | this fragment |
+| the pattern that claims them | the same walk | `FusionRpg.Core.Stats.Tests` `include: ["Stats/**"]` — A1 resolves patterns against `gk-core/tests/FusionRpg.Core.Tests/` (A1's own example is `["World/**"]`) | this fragment |
+| every other increment left the residual | the same walk | all **234** other `include` entries resolve to no residual file (`include pattern 'X' matches no file`), so `Stats/**` is the only pattern still matching | this fragment |
+| the tool cannot move them | `dotnet run --project gk-core/tools/FileMove -c Release -- split gk-core/tests/core-test-projects.v1.json --project FusionRpg.Core.Stats.Tests` | `REFUSED: manifest fails 1 A1 rule(s): [FusionRpg.Core.Stats.Tests] gk-core/tests/FusionRpg.Core.Stats.Tests already exists` — the target's directory rule (`gk-core/tools/FileMove/SplitManifest.cs:112-113`) | this fragment |
+| that rule is a pinned contract, not an oversight | `grep -n "target_project_directory_must_still_not_exist" gk-core/tests/FusionRpg.FileMove.Tests/SplitManifestTests.cs` | the test exists and asserts the refusal — so relaxing A1 overturns an asserted rule and needs a ruling | this fragment |
+| who added them, and when | `git log -1 --format='%h %ad %s' --date=short -- gk-core/tests/FusionRpg.Core.Tests/Stats/<f>.cs` | `6eb250bc4` lawn LW1.5, `fcfc39789` lawn LW1.6, `423579089` lawn LW2.1, `18139aec6` battle T17 — all 2026-09-23, after increment 60/68 `cb0f048fb` moved `Stats/**` | this fragment |
+| not a verification gap | `pwsh -NoProfile -Command "& ./scripts/verify-change.ps1 -Paths 'gk-core/src/FusionRpg.Core/Stats/ChannelPolicyTable.cs' -PlanOnly -AllowUnscoped"` | `core-area-stats (module)` → `core-area-stats-owners`, whose group already contains `gk-core/tests/FusionRpg.Core.Tests` — the four tests do run for a Stats change | this fragment |
+| the reconciliation guard, green | `dotnet test gk-core/tests/FusionRpg.FileMove.Tests/FusionRpg.FileMove.Tests.csproj -c Release --nologo --verbosity minimal --filter "FullyQualifiedName~SplitManifestReconciliationTests"` | `Passed! - Failed: 0, Passed: 2, Skipped: 0, Total: 2, Duration: 45 ms` | this fragment |
+| the guard is a guard, not a tautology | the same filter with a temp file planted at `tests/FusionRpg.Core.Tests/Stats/ZZPlantedDivergence.cs` — **that file is gone, deleted in the same step; it was never tracked** | `Failed! - Failed: 1, Passed: 1, Total: 2`, `Actual: [... , "Stats/ZZPlantedDivergence.cs"]` — the planted path is named; file removed afterwards (`git status --short gk-core/tests/FusionRpg.Core.Tests/` clean) | this fragment |
+
+`SplitManifestTests` and `SplitPlannerTests` are entirely in-memory over synthetic lists, so this is the
+first test that reconciles the manifest with the real tree — which is why the divergence went unseen.

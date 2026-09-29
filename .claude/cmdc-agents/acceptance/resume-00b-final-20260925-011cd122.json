@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-00b-final-acceptance-20260925",
+  "sha": "011cd122b384a71417a082f2882074cabc435ffb",
+  "shortSha": "011cd122",
+  "mergedSha": "9bc8598ca2885485603636f659b5f0301d9f3c8f",
+  "verdict": "GREEN",
+  "scope": "Phase 0B release/verification topology, release superset contract, CI and session/guard/seed topology, and player packaging reproducibility",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "path-owned-phase0b-verify",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "687 Guard tests; 18 verification-boundary tests; 8 workflow/wiring tests; 61 registry/guard tests; 17 workflow tests; 166 Launcher tests passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00b-final-acceptance-20260925/path-owned-phase0b-verify.log",
+      "command": "scripts/verify-change.ps1 -Paths <all concrete Phase 0B executable paths> -Session resume-00b-final-acceptance-20260925",
+      "logSha256": "7D23DFD12EEF5D50CA7F1F22E9C624EB20F8F71208E68C0344B854F8E9021492",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "verification-topology",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "10 passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00b-final-acceptance-20260925/verification-topology.log",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter FullyQualifiedName~VerificationTopologyTests"
+    },
+    {
+      "check": "focused-guard-boundary",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "104 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00b-final-acceptance-20260925/focused-guard-boundary.log",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter <Phase 0B Guard classes>"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; status clean before and after verification",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00b-final-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> 011cd122b384a71417a082f2882074cabc435ffb; git status --porcelain=v1"
+    },
+    {
+      "check": "syntax-and-structure",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "all selected structural checks passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00b-final-acceptance-20260925/syntax-and-structure.log",
+      "command": "YAML parse; PowerShell parser; git diff --check"
+    }
+  ],
+  "changedPaths": [
+    ".github/workflows/nightly.yml",
+    ".github/workflows/release.yml",
+    "scripts/enforcement-registry.v1.json",
+    "scripts/guard-generated-seed.ps1",
+    "scripts/publish-player.ps1",
+    "scripts/run-guards.ps1",
+    "scripts/session-boundary-check.ps1",
+    "scripts/verify-change.ps1",
+    "tests/FusionRpg.Guard.Tests/VerificationTopologyTests.cs",
+    "tasks/reports/resume-00b-final-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "011cd122b384a71417a082f2882074cabc435ffb",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "openIssues": [
+    "split-Core verification-boundary project remap is explicitly deferred",
+    "merged-head post-merge gate remains BLOCKED on legal game/interops",
+    "remote GitHub Actions/release and live evidence were not run"
+  ],
+  "mergeScope": "The reviewed SHA is accepted and merged; this artifact does not cover the deferred split-Core remap or unlisted paths.",
+  "when": "2026-09-25T07:00:00Z",
+  "expectedSha": "011cd122b384a71417a082f2882074cabc435ffb",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-00b-final-acceptance-20260925"
+}

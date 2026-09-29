@@ -1,0 +1,82 @@
+{"ts":"2026-09-19T10:07:22Z","kind":"anchor","plan":"tasks/test-verification-boundary-plan.md","todo":"tasks/test-verification-boundary-todo.md","session":"summoner-convergence-lane-d2-20260919","specs":["docs/architecture/test-verification-boundary/spec-registry-contract.md","docs/architecture/test-verification-boundary/spec-python-test-lane.md","docs/architecture/test-verification-boundary/spec-seam-coverage.md","docs/architecture/test-verification-boundary/spec-core-split-analyzer.md","docs/architecture/test-verification-boundary/spec-core-split-apply.md","docs/architecture/test-verification-boundary/spec-core-split-wiring.md","docs/architecture/test-verification-boundary/spec-core-registry-rekey.md","docs/architecture/test-verification-boundary/spec-data-tests-sharding.md"],"standards":"docs/PRINCIPLES.md","mark":"mk1-a769f78acd7c6377"}
+{"ts":"2026-09-19T10:07:38Z","kind":"queue","ids":["TVB1.1","TVB1.2","TVB1.3","TVB1.4","TVB1.5","TVB1.6","TVB1.7","TVB1.8","TVB1.9","TVB1.10","TVBCP1","TVBCPM","TVB2.1","TVB2.2","TVB2.3","TVB2.4","TVB2.5","TVB2.6","TVB2.7","TVBCP2","TVB3.1","TVB3.2","TVB3.3","TVB3.4","TVB3.5","TVB3.6","TVB3.7","TVB3.8","TVB3.9","TVB3.10","TVBCP3","TVB4.1","TVB4.2","TVB4.3","TVB4.4","TVB4.5","TVB4.6","TVB4.7","TVBCP4","TVB5.1","TVB5.2","TVB5.3","TVB5.4","TVB5.5","TVB5.6","TVB5.7","TVB5.8","TVB5.9","TVBCP5","TVB6.1","TVB6.2","TVB6.3","TVB6.4","TVBCP6"],"mark":"mk1-a74d796004dcf455"}
+{"ts":"2026-09-19T10:07:49Z","kind":"queue","ids":["TVB1.1","TVB1.2","TVB1.3","TVB1.4","TVB1.5","TVB1.6","TVB1.7","TVB1.8","TVB1.9","TVB1.10","TVBCP1","TVBCPM","TVB2.1","TVB2.2","TVB2.3","TVB2.4","TVB2.5","TVB2.6","TVB2.7","TVBCP2","TVB3.1","TVB3.2","TVB3.3","TVB3.4","TVB3.5","TVB3.6","TVB3.7","TVB3.8","TVB3.9","TVB3.10","TVBCP3","TVB4.1","TVB4.2","TVB4.3","TVB4.4","TVB4.5","TVB4.6","TVB4.7","TVBCP4","TVB5.1","TVB5.2","TVB5.3","TVB5.4","TVB5.5","TVB5.6","TVB5.7","TVB5.8","TVB5.9","TVBCP5","TVB6.1","TVB6.2","TVB6.3","TVB6.4","TVBCP6"],"mark":"mk1-80d66f8831268ba9"}
+{"ts":"2026-09-19T10:07:59Z","kind":"note","text":"Worktree was 540 commits stale (no TVB files); FF-merged to features/mega-merge tip (zero divergence, safe). Old lane-d session record still lists TVB paths pre-split; D2 proceeds per brief, flagged for manager reconciliation.","mark":"mk1-4ebf23103193128c"}
+{"ts":"2026-09-19T10:29:28Z","kind":"task","id":"TVB1.1","state":"started","evidence":"M","mark":"mk1-8abc11e2ca2f0fcd"}
+{"ts":"2026-09-19T10:29:28Z","kind":"task","id":"TVB1.1","state":"done","evidence":"tasks/evidence-fragments/tvb1-1.md","mark":"mk1-f89309c9864caf03"}
+{"ts":"2026-09-19T11:04:17Z","kind":"task","id":"TVB1.2","state":"started","evidence":"M","mark":"mk1-4335bd2102fd8768"}
+{"ts":"2026-09-19T11:04:17Z","kind":"note","text":"Fixed PSScriptRoot default-param bug: empty when a mandatory param precedes it in param(); resolved Root in body instead.","mark":"mk1-cb6c0a24365b42b0"}
+{"ts":"2026-09-19T11:04:18Z","kind":"task","id":"TVB1.2","state":"done","evidence":"tasks/evidence-fragments/tvb1-2.md","mark":"mk1-8e5afd2ec5fd6bee"}
+{"ts":"2026-09-19T11:12:00Z","kind":"task","id":"TVB1.3","state":"started","evidence":"XS","mark":"mk1-c1d33412f82d1dcd"}
+{"ts":"2026-09-19T11:12:00Z","kind":"task","id":"TVB1.3","state":"done","evidence":"tasks/evidence-fragments/tvb1-3.md","mark":"mk1-8b8693286cf6764c"}
+{"ts":"2026-09-19T11:16:04Z","kind":"task","id":"TVB1.4","state":"started","evidence":"S","mark":"mk1-55a8d7370d0d6e48"}
+{"ts":"2026-09-19T11:16:04Z","kind":"task","id":"TVB1.4","state":"done","evidence":"tasks/evidence-fragments/tvb1-4.md","mark":"mk1-4bc7a76d34525e13"}
+{"ts":"2026-09-19T13:50:07Z","kind":"task","id":"TVB1.5","state":"started","evidence":"S","mark":"mk1-366bcea8fa95ef21"}
+{"ts":"2026-09-19T13:50:07Z","kind":"note","text":"Fixed pre-existing worktree gap: tools/CombatSim + tools/DominanceBaseline never built in Debug here; built both, unrelated ClassSystemBaselineRegenTests failures resolved.","mark":"mk1-f83a584ab368df8c"}
+{"ts":"2026-09-19T13:50:07Z","kind":"task","id":"TVB1.5","state":"done","evidence":"tasks/evidence-fragments/tvb1-5.md","mark":"mk1-9998957d7c0919c6"}
+{"ts":"2026-09-19T14:01:25Z","kind":"task","id":"TVB1.6","state":"started","evidence":"M","mark":"mk1-485327c64f408e62"}
+{"ts":"2026-09-19T14:01:25Z","kind":"task","id":"TVB1.6","state":"done","evidence":"tasks/evidence-fragments/tvb1-6.md","mark":"mk1-8745383d7ce85f29"}
+{"ts":"2026-09-19T14:11:35Z","kind":"task","id":"TVB1.7","state":"started","evidence":"M","mark":"mk1-8d12bf4306501b4f"}
+{"ts":"2026-09-19T14:11:35Z","kind":"task","id":"TVB1.7","state":"done","evidence":"tasks/evidence-fragments/tvb1-7.md","mark":"mk1-a849a60555b52a99"}
+{"ts":"2026-09-19T14:15:29Z","kind":"task","id":"TVB1.8","state":"started","evidence":"M","mark":"mk1-c702d9fde6f8a008"}
+{"ts":"2026-09-19T14:15:29Z","kind":"task","id":"TVB1.8","state":"done","evidence":"tasks/evidence-fragments/tvb1-8.md","mark":"mk1-a99bf4aa44e6d7e1"}
+{"ts":"2026-09-19T14:22:43Z","kind":"task","id":"TVB1.9","state":"started","evidence":"M","mark":"mk1-2bcdbb7c886c185a"}
+{"ts":"2026-09-19T14:22:43Z","kind":"task","id":"TVB1.9","state":"done","evidence":"tasks/evidence-fragments/tvb1-9.md","mark":"mk1-39903883093ac95d"}
+{"ts":"2026-09-19T14:34:59Z","kind":"task","id":"TVB1.10","state":"started","evidence":"S","mark":"mk1-ab507defa71e59dc"}
+{"ts":"2026-09-19T14:34:59Z","kind":"note","text":"Real run over Core.Tests: 0 BLOCKS SPLIT at top-level-folder granularity. Map's named instance (GateCounterBoundaryGuardTests.cs:97) does not cross a candidate (both files under PassiveTree/) - a real finding, not a bug.","mark":"mk1-f57e3259fe5fc185"}
+{"ts":"2026-09-19T14:34:59Z","kind":"task","id":"TVB1.10","state":"done","evidence":"tasks/evidence-fragments/tvb1-10.md","mark":"mk1-bacf44078c9630f5"}
+{"ts":"2026-09-19T15:19:15Z","kind":"task","id":"TVB2.1","state":"started","evidence":"M","mark":"mk1-85e0aa6b0e17f94c"}
+{"ts":"2026-09-19T15:19:15Z","kind":"task","id":"TVB2.1","state":"done","evidence":"tasks/evidence-fragments/tvb2-1.md","mark":"mk1-f91e49ec4d3f9c32"}
+{"ts":"2026-09-19T15:39:22Z","kind":"task","id":"TVB2.2","state":"started","evidence":"M","mark":"mk1-7c2881887b2d916d"}
+{"ts":"2026-09-19T15:39:22Z","kind":"task","id":"TVB2.2","state":"done","evidence":"tasks/evidence-fragments/tvb2-2.md","mark":"mk1-aa38a2021d78c26f"}
+{"ts":"2026-09-19T16:24:50Z","kind":"task","id":"TVB2.3","state":"started","evidence":"M","mark":"mk1-2976edeefc5ec1ee"}
+{"ts":"2026-09-19T16:24:50Z","kind":"task","id":"TVB2.3","state":"done","evidence":"tasks/evidence-fragments/tvb2-3.md","mark":"mk1-0476c596281b570e"}
+{"ts":"2026-09-19T16:38:23Z","kind":"task","id":"TVB2.4","state":"started","evidence":"S","mark":"mk1-57ac60183e4d4acd"}
+{"ts":"2026-09-19T16:38:23Z","kind":"task","id":"TVB2.4","state":"done","evidence":"tasks/evidence-fragments/tvb2-4.md","mark":"mk1-cc5b32543cce997c"}
+{"ts":"2026-09-19T17:01:49Z","kind":"task","id":"TVB2.5","state":"started","evidence":"S","mark":"mk1-4647eb225c610c3b"}
+{"ts":"2026-09-19T17:01:49Z","kind":"task","id":"TVB2.5","state":"done","evidence":"tasks/evidence-fragments/tvb2-5.md","mark":"mk1-a1527f7bc27cba61"}
+{"ts":"2026-09-19T18:32:47Z","kind":"task","id":"TVB2.6","state":"started","evidence":"S","mark":"mk1-17deaba40bfaaad4"}
+{"ts":"2026-09-19T18:32:47Z","kind":"task","id":"TVB2.6","state":"done","evidence":"tasks/evidence-fragments/tvb2-6.md","mark":"mk1-89d926eaa47e1252"}
+{"ts":"2026-09-19T18:50:10Z","kind":"task","id":"TVB2.7","state":"started","evidence":"S","mark":"mk1-d80aa8f7784812eb"}
+{"ts":"2026-09-19T18:50:10Z","kind":"task","id":"TVB2.7","state":"done","evidence":"tasks/evidence-fragments/tvb2-7.md","mark":"mk1-87353063cf9f126e"}
+{"ts":"2026-09-19T21:01:39Z","kind":"task","id":"TVB3.1","state":"started","evidence":"S","mark":"mk1-984b23061ffe619d"}
+{"ts":"2026-09-19T21:01:40Z","kind":"task","id":"TVB3.1","state":"done","evidence":"tasks/evidence-fragments/tvb3-1.md","mark":"mk1-bc2f26bbcc879dd5"}
+{"ts":"2026-09-19T21:27:25Z","kind":"note","text":"Merged origin/features/mega-merge (60787417, b2361dc2). Resolved 4 file conflicts + 7 silent JSON boundary collisions (level mismatches, itemseedvalidator dup). Ported /**/*.md pattern into shared lib. guard + VerificationBoundaryWorkflowTests (40/40) green post-merge.","mark":"mk1-411ef816aa1b2b68"}
+{"ts":"2026-09-19T22:04:15Z","kind":"task","id":"TVB3.2","state":"started","evidence":"S","mark":"mk1-1b39147eca831de7"}
+{"ts":"2026-09-19T22:04:15Z","kind":"task","id":"TVB3.2","state":"done","evidence":"tasks/evidence-fragments/tvb3-2.md","mark":"mk1-cb10fde1a7e2db95"}
+{"ts":"2026-09-19T23:26:09Z","kind":"task","id":"TVB3.3","state":"started","evidence":"S","mark":"mk1-f7b59293363ac6c6"}
+{"ts":"2026-09-19T23:26:09Z","kind":"task","id":"TVB3.3","state":"done","evidence":"tasks/evidence-fragments/tvb3-3.md","mark":"mk1-50d61d508e51fc7b"}
+{"ts":"2026-09-19T23:47:31Z","kind":"task","id":"TVB3.4","state":"started","evidence":"S","mark":"mk1-57f502391d592315"}
+{"ts":"2026-09-19T23:47:31Z","kind":"task","id":"TVB3.4","state":"done","evidence":"tasks/evidence-fragments/tvb3-4.md","mark":"mk1-2fba54b7464bca85"}
+{"ts":"2026-09-20T01:52:31Z","kind":"note","text":"Merged origin/features/mega-merge (29e63e79) after TVB3.4, clean auto-merge (no conflicts this time). guard-verification-boundaries.ps1 OK, Guard.Tests builds clean.","mark":"mk1-1dc55247cf1e41e0"}
+{"ts":"2026-09-20T03:05:57Z","kind":"task","id":"TVB3.5","state":"started","evidence":"S","mark":"mk1-ac049d248b3d6465"}
+{"ts":"2026-09-20T03:05:57Z","kind":"task","id":"TVB3.5","state":"done","evidence":"tasks/evidence-fragments/tvb3-5.md","mark":"mk1-7ca1b8f6e00262ef"}
+{"ts":"2026-09-20T03:12:54Z","kind":"note","text":"Merged origin/features/mega-merge (c0b72300) after TVB3.5, clean auto-merge, no conflicts. guard-verification-boundaries.ps1 OK, Guard.Tests builds clean.","mark":"mk1-1b5f31155bf1a880"}
+{"ts":"2026-09-20T04:14:53Z","kind":"task","id":"TVB3.6","state":"started","evidence":"S","mark":"mk1-57ab062d60dd5bc0"}
+{"ts":"2026-09-20T04:14:58Z","kind":"task","id":"TVB3.6","state":"done","evidence":"tasks/evidence-fragments/tvb3-6.md","mark":"mk1-07bd84c672a5ab1d"}
+{"ts":"2026-09-20T05:08:10Z","kind":"task","id":"TVB3.7","state":"started","evidence":"S","mark":"mk1-95612d153247a6b7"}
+{"ts":"2026-09-20T05:08:10Z","kind":"task","id":"TVB3.7","state":"done","evidence":"tasks/evidence-fragments/tvb3-7.md","mark":"mk1-895bc1a782ca118f"}
+{"ts":"2026-09-20T05:39:49Z","kind":"task","id":"TVB3.8","state":"started","evidence":"S","mark":"mk1-fdc43db20d8c1965"}
+{"ts":"2026-09-20T05:39:49Z","kind":"task","id":"TVB3.8","state":"done","evidence":"tasks/evidence-fragments/tvb3-8.md","mark":"mk1-57d065a155b2004c"}
+{"ts":"2026-09-20T06:34:39Z","kind":"task","id":"TVB3.9","state":"started","evidence":"S","mark":"mk1-f080630840f0f9a6"}
+{"ts":"2026-09-20T06:34:40Z","kind":"task","id":"TVB3.9","state":"done","evidence":"tasks/evidence-fragments/tvb3-9.md","mark":"mk1-3c54014ae6a47466"}
+{"ts":"2026-09-20T06:37:46Z","kind":"note","text":"Merged local features/mega-merge (58 commits, 301ee424) after TVB3.9 -> 2aa477ba. Zero manual conflicts (verification-boundaries.v1.json +11, stub-register.md SR-20/21/22). Post-merge: guard OK, StubRegisterTests 7/7.","mark":"mk1-af61285a5289b804"}
+{"ts":"2026-09-20T07:07:42Z","kind":"task","id":"TVB3.10","state":"started","evidence":"S","mark":"mk1-480926ccc7bff8f2"}
+{"ts":"2026-09-20T07:07:42Z","kind":"task","id":"TVB3.10","state":"done","evidence":"tasks/evidence-fragments/tvb3-10.md","mark":"mk1-71eabdad24edf1eb"}
+{"ts":"2026-09-20T07:09:42Z","kind":"note","text":"Merged local features/mega-merge (11 commits, 12d3d8f3) after TVB3.10 -> 85faceb9. Zero conflicts (backlog-clear/aura work, unrelated area). guard OK.","mark":"mk1-363ed9a128f238a8"}
+{"ts":"2026-09-20T08:10:41Z","kind":"note","text":"Out-of-band fix per coordinator: test-fast.ps1 reordered scope-check before substrate gate (c0e9f41a), unblocking lane B's merge (Test_fast_requires_an_explicit_scope was masked by an unrelated substrate-gate failure).","mark":"mk1-18adeba35a5d5464"}
+{"ts":"2026-09-20T08:43:26Z","kind":"task","id":"TVB4.1","state":"started","evidence":"S","mark":"mk1-03397885906e707b"}
+{"ts":"2026-09-20T08:43:26Z","kind":"task","id":"TVB4.1","state":"done","evidence":"tasks/evidence-fragments/tvb4-1.md","mark":"mk1-6c713b958267c4aa"}
+{"ts":"2026-09-20T08:46:19Z","kind":"note","text":"Merged local features/mega-merge (112 commits incl. lane B save-identity/species-progression) after TVB4.1 -> ebe1f21a. Zero conflicts. guard OK, 4/4 key tests green.","mark":"mk1-f5c3efbbdc488529"}
+{"ts":"2026-09-20T09:00:42Z","kind":"task","id":"TVB4.2","state":"started","evidence":"S","mark":"mk1-8bb8e1a86dc0717a"}
+{"ts":"2026-09-20T09:00:42Z","kind":"task","id":"TVB4.2","state":"done","evidence":"tasks/evidence-fragments/tvb4-2.md","mark":"mk1-bd2635beef3cf3d5"}
+{"ts":"2026-09-20T09:19:08Z","kind":"note","text":"Perf fix per lane-b review: verify-change.ps1's own integrity pre-check was spawning the full repo-wide coverage-walk guard (415s/2 paths, 22 dotnet.exe). Added -SkipCoverageWalk (d2ff5f27); full class now 56/56 in 3m44s, zero timeouts (was repeated flakes all session).","mark":"mk1-164fb410b8d26d8b"}
+{"ts":"2026-09-20T09:19:44Z","kind":"task","id":"TVB4.3","state":"started","evidence":"S","mark":"mk1-4418668b74de90df"}
+{"ts":"2026-09-20T09:19:44Z","kind":"task","id":"TVB4.3","state":"done","evidence":"tasks/evidence-fragments/tvb4-3.md","mark":"mk1-c896c81858b4e339"}
+{"ts":"2026-09-20T10:11:32Z","kind":"task","id":"TVB4.4","state":"started","evidence":"S","mark":"mk1-683b526e16940d4f"}
+{"ts":"2026-09-20T10:11:32Z","kind":"task","id":"TVB4.4","state":"done","evidence":"tasks/evidence-fragments/tvb4-4.md","mark":"mk1-f75f5d121ebf94d1"}
+{"ts":"2026-09-20T10:16:12Z","kind":"task","id":"TVB4.5","state":"started","evidence":"S","mark":"mk1-944e4beabe8a24e0"}
+{"ts":"2026-09-20T10:16:12Z","kind":"task","id":"TVB4.5","state":"done","evidence":"tasks/evidence-fragments/tvb4-5.md","mark":"mk1-2af43f2548b62783"}
+{"ts":"2026-09-20T10:22:10Z","kind":"task","id":"TVB4.6","state":"started","evidence":"S","mark":"mk1-2890867afa31c553"}
+{"ts":"2026-09-20T10:22:10Z","kind":"task","id":"TVB4.6","state":"done","evidence":"tasks/evidence-fragments/tvb4-6.md","mark":"mk1-d3d5c67cbf45ab8b"}
+{"ts":"2026-09-20T10:29:16Z","kind":"note","text":"Merged features/mega-merge (48 commits) after TVB4.6 -> 71288f67. Fixed: duplicate CreatureBuildPlanGen owner (kept mine, real evidence), new unmapped combat-ai.v1.json (added tuning-combat-ai). Guard OK, 4/4 green.","mark":"mk1-e0dfb3f210b6a83d"}

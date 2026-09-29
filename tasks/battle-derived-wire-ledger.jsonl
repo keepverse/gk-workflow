@@ -1,0 +1,74 @@
+{"ts":"2026-09-23T00:17:56Z","kind":"anchor","plan":"tasks/battle-derived-wire-plan.md","todo":"tasks/battle-derived-wire-todo.md","session":"bdw-1","queue":["T3","T17","T18","T9","T6"],"mark":"mk1-bb7ffc2321596efc"}
+{"ts":"2026-09-23T00:17:56Z","kind":"task","id":"T3","state":"started","mark":"mk1-8606e657a8171385"}
+{"ts":"2026-09-23T00:17:56Z","kind":"note","text":"No tasks/sessions/bdw-1.json exists and tasks/sessions/** is outside this lane's fence, so verify-change.ps1 -Session bdw-1 is unrunnable; ran -AllowUnscoped with the same path-owned selection.","mark":"mk1-6e287b4e7e72e890"}
+{"ts":"2026-09-23T00:17:57Z","kind":"task","id":"T3","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-eb55d2730dfdaad5"}
+{"ts":"2026-09-23T00:17:57Z","kind":"gate","name":"guard-actor-hub","result":"pass","mark":"mk1-d9b42db1c1aca14b"}
+{"ts":"2026-09-23T00:17:57Z","kind":"gate","name":"guard-single-writer","result":"pass","mark":"mk1-c61423c61af251a9"}
+{"ts":"2026-09-23T00:17:57Z","kind":"gate","name":"guard-funnel-delta","result":"pass","mark":"mk1-c0bcfa870db54e26"}
+{"ts":"2026-09-23T00:17:57Z","kind":"gate","name":"guard-dal","result":"pass","mark":"mk1-6e87fe49f8177725"}
+{"ts":"2026-09-23T00:34:19Z","kind":"task","id":"T6","state":"started","mark":"mk1-8020a088a0fff276"}
+{"ts":"2026-09-23T00:34:20Z","kind":"task","id":"T6","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-f2c271c534a7827c"}
+{"ts":"2026-09-23T00:34:20Z","kind":"gate","name":"battle-responsibility","result":"pass","mark":"mk1-5fb3f86c87e8663b"}
+{"ts":"2026-09-23T00:34:21Z","kind":"gate","name":"funnel-delta","result":"pass","mark":"mk1-3af247e7c927046b"}
+{"ts":"2026-09-23T00:34:21Z","kind":"gate","name":"actor-hub","result":"pass","mark":"mk1-cef7d4aea5dc5ce9"}
+{"ts":"2026-09-23T00:34:21Z","kind":"gate","name":"single-writer","result":"pass","mark":"mk1-ccc5a0aee66ef1d1"}
+{"ts":"2026-09-23T00:34:21Z","kind":"gate","name":"dal","result":"pass","mark":"mk1-9fc2786625949ace"}
+{"ts":"2026-09-23T00:35:36Z","kind":"task","id":"T9","state":"started","mark":"mk1-8fdf89268fe0adba"}
+{"ts":"2026-09-23T00:35:37Z","kind":"task","id":"T17","state":"started","mark":"mk1-7f57eab7629f18b0"}
+{"ts":"2026-09-23T00:35:37Z","kind":"task","id":"T18","state":"started","mark":"mk1-bc6eeb82911e4945"}
+{"ts":"2026-09-23T00:35:37Z","kind":"task","id":"T9","state":"blocked","reason":"seed-to-concrete runtime generator not shipped; draught seed carries no magnitude","mark":"mk1-14751db0b7f17972"}
+{"ts":"2026-09-23T00:35:37Z","kind":"task","id":"T17","state":"blocked","reason":"note home docs/architecture/battle-timeline-map.md is outside this lane's fence; erratum needed","mark":"mk1-4e053885f91aa6e8"}
+{"ts":"2026-09-23T00:35:37Z","kind":"task","id":"T18","state":"blocked","reason":"feed seam is FusionRpg.Data (out of fence); suggested reserve home is the aptitude-coverage list, which loadout.slots (0 edges) does not belong to","mark":"mk1-e32cf99938cda7e8"}
+{"ts":"2026-09-23T00:35:38Z","kind":"note","text":"Segment ends with T3 and T6 closed; T9/T17/T18 recorded as blocked findings with file:line evidence in tasks/battle-derived-wire-todo.md and -evidence.md.","mark":"mk1-5a6b49143e1d2464"}
+{"ts":"2026-09-23T00:53:47Z","kind":"task","id":"T18","state":"started","mark":"mk1-c16b60f9a90fe8cd"}
+{"ts":"2026-09-23T00:53:47Z","kind":"task","id":"T18","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-90986779812d61c0"}
+{"ts":"2026-09-23T00:53:47Z","kind":"gate","name":"doc-citations","result":"pass","mark":"mk1-dd522e2ade8e5dea"}
+{"ts":"2026-09-23T00:53:47Z","kind":"gate","name":"actor-hub","result":"pass","mark":"mk1-10da6543a2088ab7"}
+{"ts":"2026-09-23T00:53:47Z","kind":"gate","name":"single-writer","result":"pass","mark":"mk1-bf9596bbaec2fb22"}
+{"ts":"2026-09-23T00:53:47Z","kind":"gate","name":"funnel-delta","result":"pass","mark":"mk1-3dc54ec41e9ce183"}
+{"ts":"2026-09-23T00:53:47Z","kind":"gate","name":"dal","result":"pass","mark":"mk1-898571384e6180a7"}
+{"ts":"2026-09-23T00:54:41Z","kind":"task","id":"T17","state":"started","mark":"mk1-4701871f647ab15f"}
+{"ts":"2026-09-23T00:54:42Z","kind":"task","id":"T17","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-e9ac670bc5e65ad8"}
+{"ts":"2026-09-23T00:54:42Z","kind":"note","text":"T17/T18 reopened and closed this session. T17 note relocated in-fence (declaring type + docs/architecture/battle/spec-readiness-model.md) because battle-timeline-map.md is outside the fence - erratum requested. T18 option (b) implemented in-fence.","mark":"mk1-d86d440ce0e12f7b"}
+{"ts":"2026-09-23T00:55:16Z","kind":"note","text":"T9 re-confirmed blocked on an external row: tasks/item-todo.md ~line 6822 'The seed -> concrete generator', a shared-SDK job; the 60 draught seeds have no effect_container rows, so no DraughtMod amount can be produced.","mark":"mk1-98e22249a9891400"}
+{"ts":"2026-09-23T02:17:39Z","kind":"task","id":"T2","state":"started","mark":"mk1-1e6264585bbc3799"}
+{"ts":"2026-09-23T02:17:39Z","kind":"task","id":"T2","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-ab67ca76b00843a7"}
+{"ts":"2026-09-23T02:17:40Z","kind":"note","text":"T2/W3 built: TryReflect internal, BattleRunState.ApplyHp calls it for landed negative deltas. Measured 26 passive-tree node files + aura-content author reflect; 0 of 5 battle goldens moved. ReflectHasNoBattlePathTests contract rewritten.","mark":"mk1-ee1d6a6d6784f0b4"}
+{"ts":"2026-09-23T02:17:40Z","kind":"gate","name":"battle-responsibility","result":"pass","mark":"mk1-2787464090812554"}
+{"ts":"2026-09-23T02:17:40Z","kind":"gate","name":"doc-citations","result":"pass","mark":"mk1-e88ea66edfa8bf07"}
+{"ts":"2026-09-23T03:55:02Z","kind":"task","id":"T4","state":"started","mark":"mk1-d06afc7a41e333d1"}
+{"ts":"2026-09-23T03:55:02Z","kind":"task","id":"T4","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-69d1ebeb8cc61d33"}
+{"ts":"2026-09-23T03:55:02Z","kind":"note","text":"T4/W7 built: WebMatchService.ActiveAurasFor is the first production ActiveAuras writer, reusing AuraRuntimeEndpoints.ActiveRuntime + AtomPushService.AuraChannelReferenceValue. Placed in Resolve (ActiveAuras is battle-level). 3/3 Server tests; verify-change exit 0.","mark":"mk1-21b4d10ea6051b92"}
+{"ts":"2026-09-23T03:55:03Z","kind":"gate","name":"guard-actor-hub","result":"pass","mark":"mk1-939e8ec382348b2e"}
+{"ts":"2026-09-23T03:55:03Z","kind":"gate","name":"guard-single-writer","result":"pass","mark":"mk1-3d5b99bff85a25a4"}
+{"ts":"2026-09-23T03:55:03Z","kind":"gate","name":"guard-funnel-delta","result":"pass","mark":"mk1-a40db4ddca3da175"}
+{"ts":"2026-09-23T03:55:03Z","kind":"gate","name":"guard-dal","result":"pass","mark":"mk1-6455e2a41c59c5ea"}
+{"ts":"2026-09-23T04:15:05Z","kind":"task","id":"T5","state":"started","mark":"mk1-a37d2b91e2859aa8"}
+{"ts":"2026-09-23T04:15:06Z","kind":"task","id":"T5","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-32b8592581eac2cd"}
+{"ts":"2026-09-23T04:15:06Z","kind":"task","id":"T14","state":"started","mark":"mk1-5843d7db8e4d9677"}
+{"ts":"2026-09-23T04:15:06Z","kind":"task","id":"T14","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-15d6555770eece23"}
+{"ts":"2026-09-23T04:15:12Z","kind":"note","text":"T5/W6 built and it IS the W4 decision: battle's derived ledger owns status->combat.* via Host.AddDerivedContribution; StatusDerivedSubsystem NOT registered (would double-apply). T14 superseded.","mark":"mk1-712fa3cd0843e027"}
+{"ts":"2026-09-23T04:16:45Z","kind":"task","id":"T15","state":"started","mark":"mk1-cec513b3501766c4"}
+{"ts":"2026-09-23T04:16:45Z","kind":"task","id":"T15","state":"blocked","reason":"W5 half built; W17 half routed to battle-wire-remainder W17 (BWR1.6, dormant). H1 golden-moving integration; this todo's own bullet 2 forbids folding it in.","mark":"mk1-2f270bb80e918fa4"}
+{"ts":"2026-09-23T04:16:46Z","kind":"note","text":"W17 measured: 6 aptitude edges into progression.bonus.* and 2 battle test files pass a non-empty Aptitude, so ResolveDerived -> Resolve is not inert.","mark":"mk1-71321c4177df95ff"}
+{"ts":"2026-09-23T04:44:37Z","kind":"task","id":"T15","state":"started","mark":"mk1-02c27bb4bdcdfab9"}
+{"ts":"2026-09-23T04:44:37Z","kind":"task","id":"T15","state":"done","evidence":"tasks/battle-derived-wire-evidence.md","mark":"mk1-4e84e2beaa8c9d52"}
+{"ts":"2026-09-23T04:44:37Z","kind":"note","text":"T15/W17 built: BattleHubCompose.Resolve calls hub.Resolve; ActorState consumes AppliedCombat by delta. Readings: Fortitude(7) maxHp 215->1935 (d1720), defense 7->2351 (d2344); 0 of 5 goldens moved.","mark":"mk1-8099321d45608646"}
+{"ts":"2026-09-23T04:49:26Z","kind":"note","text":"Checkpoint 6: W1-W17 closed ledger built in the evidence file (audit is out of fence). 15 closed, W8 external, W9 delve moot, W16 another program's. Full suite is CI-owned; live probe needs a live slot.","mark":"mk1-70f186e5bc649f9b"}
+{"ts":"2026-09-23T05:28:52Z","kind":"note","text":"T9 re-measured: Unique/Equipment/Gem ContainerBuild.From all exist; no consumable sibling. The item owner's fix is a fourth builder of an existing shape.","mark":"mk1-0fe7a9baa576c545"}
+{"ts":"2026-09-23T05:50:35Z","kind":"note","text":"T14 W4 pin added: BattleHubCompose.BuildHubForTest + Battle_registers_progression_but_not_the_status_derived_subsystem (rpg.progression present, l2b.derived absent). Closes T14's no-double-count bullet.","mark":"mk1-1c6119196cfc74ea"}
+{"ts":"2026-09-23T05:50:36Z","kind":"note","text":"CROSS-LANE FINDING: ExpeditionResolver.cs:186 PlannedRungFor Max() over an empty wave (d9d1b3195, creature-seed T10) fails 11/38 Expeditions tests on the merged head. Proven not ours (revert + rerun). Owner todo out of fence.","mark":"mk1-79ac3d3951677413"}
+{"ts":"2026-09-23T06:06:04Z","kind":"note","text":"Expeditions finding RESOLVED by the later merge (head de5e0d363): Expeditions.Tests now 38/38. The path-owned verify-change for the W4-pin paths now exits 0 (69 project runs).","mark":"mk1-766e26fc9d7a0fd9"}
+{"ts":"2026-09-23T06:06:05Z","kind":"gate","name":"verify-change","result":"pass","mark":"mk1-a41cf6d73a39e0f0"}
+{"ts":"2026-09-23T06:21:22Z","kind":"note","text":"Re-anchored T9's citation: the item-todo seed->concrete row moved 6822 -> 6839 (item lane active; no consumable builder yet). Core battle rows 38/38, 5 guards OK.","mark":"mk1-f9160deb41432d28"}
+{"ts":"2026-09-23T10:03:59Z","kind":"note","text":"Cross-lane finding: combat-ai specs cite moved lines into BattleRunState/BattleEngine/BattleEffects (e.g. AI block 687-699 -> 743-757; aggression 1037-1044 -> 1089-1090; Alive 85 -> 99). D1/D2 blind to it. Owner combat-ai; its todo is out of fence.","mark":"mk1-183531a6d91eccb9"}
+{"ts":"2026-09-23T11:08:18Z","kind":"note","text":"Corrected the combat-ai citation-drift counts to reproduced values (grep -rho): 687-699 x12 (not x5); 1037-1044 x4 + 1043-1044 x2; 877-885 x3; 595-620 x3 + 597-604 x2; BattleEngine 673-694 x3 + 683 x1; 85 x2; BattleEffects 238-250 x3; 182-183 x2.","mark":"mk1-e8e995e42b703884"}
+{"ts":"2026-09-23T11:14:39Z","kind":"note","text":"Re-anchored 35 combat-ai/species-skills/virtual-time citation tokens across 11 docs (in fence: docs/architecture/combat*/** + battle*/**). Old tokens grep to 0; doc-citations 0 HIGH.","mark":"mk1-7b3f4d6892cf7353"}
+{"ts":"2026-09-23T11:14:39Z","kind":"gate","name":"doc-citations","result":"pass","mark":"mk1-45ebf014f4b78c75"}
+{"ts":"2026-09-23T11:15:17Z","kind":"note","text":"Manager triage written: 9 blocked rows classified. FENCE (need path grants): audit file for T14b4/T15b3/Cp6; BWR todo for BWR1.1/1.2/1.6; tasks/sessions for -Session bdw-1. EXTERNAL: T9 item generator; Cp6 live probe. CONFLICT: full suite.","mark":"mk1-1cf18d647973ac1a"}
+{"ts":"2026-09-23T11:31:15Z","kind":"note","text":"BLOCKED: re-pinning tests/FusionRpg.Guard.Tests/PlantSideStatusGuardTests.cs:114 (baselineHash) is refused by the pipeline guard (protected guard file). My T6 5e33ad647 changed BattleEffects.cs (447->465 lines); hash needs 02B04A25.. -> E1444DB11B... Manager must re-pin.","mark":"mk1-0fbf2b87a1c00cc1"}
+{"ts":"2026-09-23T11:34:32Z","kind":"note","text":"Extended the granted tick set by two rows of the same class: BWR1.4 (W13, aee1ebe8d) and BWR1.5 (W14/W15, ce6e602be + 18139aec6) were also built by this lane and read open. Only BWR1.3 (W8) stays open, blocked external.","mark":"mk1-03f25c811373b644"}
+{"ts":"2026-09-23T12:34:22Z","kind":"note","text":"Re-verified on head 55de2a358: BattleEffects.cs still 465 lines, sha256 still E1444DB11B... (last change 5e33ad647) -- the re-pin value I reported is current. The 3 Guard.Tests failures still read Failed 3 / Passed 0.","mark":"mk1-71f9bcb79a3eb652"}
+{"ts":"2026-09-23T12:46:45Z","kind":"note","text":"Rulings (1-4,7,8) were already worked last segment: ba4a8d0e5 (7a), 913a6d76e (7b), bd30cd7de (Cp6 ledger + CI-owned box), 9fc56c549 + 32045b5a1 (BWR ticks), manager e5980809c (session record). All verified present on head c96c07b3b; no re-work done.","mark":"mk1-8fd5403dd57929ca"}
+{"ts":"2026-09-23T12:57:09Z","kind":"note","text":"Manager re-pin f73ed1d33 verified: PlantSideStatusGuardTests passes. Remaining Guard.Tests failures external: CiPytestWiringTests (registry tools-audit-tests root '.' has no CI step; keepverse 7624370dc) + creature-seed pick vocabulary.","mark":"mk1-70b9dae7198d4c3a"}
+{"ts":"2026-09-23T13:00:30Z","kind":"note","text":"BWR remainder triaged: 0 open battle-derived-wire rows; BWR1.3 external; the 7 combat-math-dedup rows each need a path this lane lacks (tools/CombatSim, web, Injector, docs/research/class-system baselines). No active owner for combat-math-dedup.","mark":"mk1-c60f0cb24e6485bd"}

@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "check": "boundary",
+      "exit": 1,
+      "seconds": 3,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-docs-citations-1-20260921-012823\\boundary.log"
+    },
+    {
+      "check": "decision-cites",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-docs-citations-1-20260921-012823\\decision-cites.log"
+    },
+    {
+      "check": "doc-citations-guard",
+      "exit": 0,
+      "seconds": 23,
+      "summary": "",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "D:\\tmp\\accept-docs-citations-1-20260921-012823\\doc-citations-guard.log"
+    }
+  ],
+  "contendedTree": false,
+  "sha": "0d19501d",
+  "logDir": "D:\\tmp\\accept-docs-citations-1-20260921-012823",
+  "when": "2026-09-21T01:28:58",
+  "verdict": "RED-KNOWN (1 check(s), registered debt only)",
+  "lane": "docs-citations-1"
+}

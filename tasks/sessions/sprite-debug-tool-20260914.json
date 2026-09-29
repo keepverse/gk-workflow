@@ -1,0 +1,17 @@
+{
+  "session": "sprite-debug-tool-20260914",
+  "program": "sprite-review-tool",
+  "problem": "Add a standalone repo-local HTML bench for storing and reviewing generated zombie animation sprite sheets.",
+  "mode": "direct",
+  "branch": "features/derived-stat-extension",
+  "worktree": null,
+  "paths": [
+    "tools/sprite-debug/**",
+    "tasks/sessions/sprite-debug-tool-20260914.json"
+  ],
+  "started": "2026-09-14T00:00:00Z",
+  "status": "merged",
+  "notes": [
+    "Marked merged 2026-09-17 by solid-remediation T0.1. Evidence: `git merge-base --is-ancestor <branch> features/mega-merge` returned 0 for this record's branch, so its work is fully contained in the remediation branch. Owner ruling 2026-09-17: \"there are no active session, i don't control any agent, only you work here so we can build whatever we want, everything already merged.\" The record was left `active` as stale metadata; a permanently dirty session-boundary-check is one everyone learns to ignore."
+  ]
+}

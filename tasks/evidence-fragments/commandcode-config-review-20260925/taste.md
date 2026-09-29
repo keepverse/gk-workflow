@@ -1,0 +1,21 @@
+# Taste
+- When creating a new skill, build it in its own new folder and leave existing/reference skills untouched/read-only rather than editing them. Confidence: 0.85
+- Prefers long-run multi-task programs to use an anti-bloat/anti-drift workflow: load active slice only, keep evidence out of task lists, and enforce deterministic drift gates plus a concise workflow-reminder goal prompt. Confidence: 0.85
+- Requires agents to verifiably read committed standards/principles in the current session rather than assuming prior reads or citing gitignored local files as truth. Confidence: 0.85
+- Prefers minimal, short-but-sufficient JSONL + stdlib Python ledgers for tracking and handoff so any agent can resume mid-run without restarting from scratch. Confidence: 0.9
+- Prefers autonomous execution without repeated confirmations or tool-permission blocks to avoid wasting time; keeps permissions fully open (bypass/auto-accept, --yolo) and expects agent to proceed directly, only flagging hard-destructive or out-of-scope moves; wants turn limits raised well beyond the default 100-turn cmdc goal limit. Confidence: 0.85
+- Preserves all generated game assets in the repo with 64/128/256 variants plus source masters for reuse across web FE and in-game Unity, never leaving them only in temp generation folders. Confidence: 0.9
+- Prefers minimal yet highly distinguishable elemental iconography; Light must not read as star/sun, Dark must not read as moon/crescent, Earth must read unmistakably as Earth rather than Ice or volcanic/fire-adjacent. Confidence: 0.85
+- Requires presentation features like actor HUD and VFX to be user-toggleable in the FE Display tab rather than env-var-only or always-on, especially when VFX tick can cause lag. Confidence: 0.85
+- Prefers maximally reusable VFX/asset structure spanning the 5 action categories and supporting 1-2 element slots from species data over per-action duplicate systems; pilots with Earth first before scaling to other elements. Confidence: 0.85
+- Insists on repo-native workflow commands/skills for each phase — idea command for ideas, spec skill for specs, plan command with correct program paths for plans, build command in full mode — and calls out when they are skipped. Confidence: 0.9
+- Expects specs for live visuals to include an explicit debug trigger endpoint so effects can be live-tested in game, not just specified. Confidence: 0.8
+- Prefers sub-agents to be deployed and managed through a centralized folder with subfolders, with JSONL communication including context plus brief files so the orchestrator can easily monitor and control. Confidence: 0.8
+- Wants unresolved owner decisions surfaced as a numbered set of concrete options with a recommendation, then decided by the owner — never silently chosen by the agent and never used as a reason to pause. Confidence: 0.9
+- Runs a post-spec reconciliation loop: cross-check specs for contradictions and gaps, fan out adversarial audits against the repo's standards/principles, and fix the violations before moving to planning. Confidence: 0.85
+- Splits any large feature into several explicitly-bounded sub-programs and works them with many parallel agent lanes (inventory, prior-art research, adversarial audit, spec writers, reviewers) rather than one serial pass. Confidence: 0.8
+- Prefers genre-neutral strategy/4X vocabulary in design prose and avoids franchise/IP character names even when the IP is licensed and used elsewhere. Confidence: 0.85
+- Prefers new mechanics grounded in researched prior art (comparable games, real-world models) over invented or hardcoded arbitrary values. Confidence: 0.8
+- Prefers simulations and features that stay performant by default — aggregated/abstraction-based systems with explicit budgets rather than per-entity simulation that scales into a burden. Confidence: 0.8
+- Prefers new mechanics promoted into generalized, data-driven channels (derived-stat channels, one shared power/valuation ladder) instead of bespoke per-feature math. Confidence: 0.75
+- Wants owner rulings captured in a dated, append-only decision register inside the repo (not only in chat) so later passes and agents can resolve references. Confidence: 0.8

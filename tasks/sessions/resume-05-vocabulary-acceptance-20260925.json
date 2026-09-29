@@ -1,0 +1,23 @@
+{
+  "session": "resume-05-vocabulary-acceptance-20260925",
+  "program": "creature-seed",
+  "problem": "Manager clean-checkout acceptance of the generator-first passive-tree vocabulary and FamilyExpandGen closure draft; verify provenance and regeneration from the owning tools, with CI/fixture/Core follow-ups kept explicit.",
+  "mode": "worktree",
+  "branch": "review/vocabulary-generator-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/review-vocabulary-generator-20260925",
+  "paths": [
+    "tools/FamilyExpandGen/**",
+    "tools/PassiveTreeRosterGen/**",
+    "data/seed/passive-tree/vocabulary.json",
+    "data/seed/atoms/generated/_family-expand.manifest.json",
+    "tests/FusionRpg.PassiveTreeRosterGen.Tests/**",
+    "tests/FusionRpg.Core.Tests/Battle/TreeAtomSourceParityTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/Adoption/PassiveTreeMechanismRoundRecomposeTests.cs",
+    "tests/FusionRpg.Core.Tests/Battle/EquipAtomSourceIdTests.cs",
+    "tests/FusionRpg.Core.Tests/Match/UniqueEquipmentAtomMappingTests.cs",
+    "tasks/reports/resume-05-vocabulary-acceptance-20260925.md"
+  ],
+  "started": "2026-09-25T08:30:00Z",
+  "status": "abandoned",
+  "notes": "Manager review found a real generator defect: FamilyExpandGen's emitted manifest contains refusal rows with an empty kind, and the path-owned Core test selection fails 14 tests (TraitMigrationParity and Delve event goldens) on UnknownKind. The dirty review worktree is preserved; no commit or acceptance is claimed. A generator-first recovery lane owns the fix and regeneration."
+}

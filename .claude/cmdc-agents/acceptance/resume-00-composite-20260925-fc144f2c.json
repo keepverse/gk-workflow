@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-00-composite-acceptance-20260925",
+  "sha": "fc144f2cc4a67464d763051c428deed2937692ef",
+  "shortSha": "fc144f2c",
+  "mergedSha": "86911a360d14f25929ac88c6ef325331d3527ad8",
+  "verdict": "GREEN",
+  "scope": "Phase 0A fail-closed merge/acceptance plane, focused verification-boundary mappings and CI wiring, and Seedsmith BCU2.12 finalization code/tests",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "path-owned-composite-verify",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "57 manager fail-closed tests; 774 Seedsmith tests and 27 subtests; 677 Guard tests; 61 verification-boundary tests; 17 workflow tests passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00-composite-acceptance-20260925/path-owned-composite-verify.log",
+      "command": "scripts/verify-change.ps1 -Paths <all executable changed paths> -Session resume-00-composite-acceptance-20260925",
+      "logSha256": "77EB588F8804DE765E7EF2FCB0AA14FB3D85CDCCBEB2D17DC49A0ADDA5F52201",
+      "logRetainedOutsideRepository": true
+    },
+    {
+      "check": "ci-pytest-wiring-regression",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "2 passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00-composite-acceptance-20260925/ci-pytest-wiring-regression.log",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter FullyQualifiedName~CiPytestWiringTests"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; status clean before and after verification",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00-composite-acceptance-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> fc144f2cc4a67464d763051c428deed2937692ef; git status --porcelain=v1"
+    },
+    {
+      "check": "syntax-and-structure",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "all selected structural checks passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00-composite-acceptance-20260925/syntax-and-structure.log",
+      "command": "JSON parse; Python py_compile; PowerShell parser; YAML parse; git diff --check"
+    }
+  ],
+  "history": [
+    {
+      "result": "RED",
+      "reason": "The first composite run exposed a missing CI step for the new manager-fail-closed pytest project.",
+      "repair": "Added the exact-root python -m pytest step in the owning Phase 0B review worktree; the targeted CI-wiring regression passed before the successful composite rerun."
+    }
+  ],
+  "changedPaths": [
+    ".claude/cmdc-agents/scripts/accept-lane.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-report.py",
+    ".claude/cmdc-agents/scripts/merge-lanes.py",
+    ".claude/cmdc-agents/scripts/post-merge-check.ps1",
+    ".claude/cmdc-agents/scripts/test_fail_closed_pipeline.py",
+    ".github/workflows/ci.yml",
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/VerificationBoundaryMappingRepairTests.cs",
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py",
+    "tools/seedsmith/seedsmith/adapters/trees/species/generate_tree.py",
+    "tools/seedsmith/tests/adapters/trees/test_nodegen_language_stage.py",
+    "tools/seedsmith/tests/adapters/trees/test_tree_species_generate_tree.py",
+    "tools/seedsmith/tests/test_bcu212_launcher.py",
+    "tools/seedsmith/tests/test_bcu212_report.py",
+    "tools/seedsmith/tests/test_j9_batch_run.py"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "fc144f2cc4a67464d763051c428deed2937692ef",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "openIssues": [
+    "Phase 0B release raw VERIFICATION_GATE contract and publish-player node_modules reproducibility findings remain in their separate review",
+    "The merged-head post-merge gate has not yet been run",
+    "BCU2.12 remains incomplete at 361/904 and no resume is authorized by this artifact"
+  ],
+  "mergeScope": "The reviewed SHA is accepted and merged; no other SHA or unlisted path is covered by this artifact.",
+  "when": "2026-09-25T06:00:00Z",
+  "expectedSha": "fc144f2cc4a67464d763051c428deed2937692ef",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-00-composite-acceptance-20260925"
+}

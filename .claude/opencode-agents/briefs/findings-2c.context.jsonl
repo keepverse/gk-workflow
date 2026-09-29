@@ -1,0 +1,3 @@
+{"kind": "handover", "text": "Predecessor findings-2b (seg 2, partial): full slice-2 staged, one structural slip breaks whole-project compilation. Tree inherits opencode/findings-2b."}
+{"kind": "defect", "text": "CreatureAdmissionTests.cs:117-118 orphan throw + brace after RepoRoot edit (CS1519/CS1001/CS1022, manager-measured). Delete orphans, confirm root choice by read, re-report."}
+{"kind": "constraint", "text": "NO-SHELL PROTOCOL. Tightest fence: 1 test file + keepverse todo/ledger. All other slice-2 files landed — untouched."}

@@ -1,0 +1,22 @@
+{
+  "session": "seedsmith-p1-audit-recovery-20260925",
+  "program": "seedsmith-passive-tree-recovery",
+  "problem": "Recover the failed Seedsmith BCU2.12 audit after external-directory permissions blocked the first worker; use an in-worktree read-only evidence bundle, classify A-E causes, reproduce fixes deterministically, and do not resume generation.",
+  "mode": "worktree",
+  "branch": "opencode/seedsmith-p1-audit-recovery-20260925",
+  "worktree": "D:/Works/source/plant-vs-zombie-rise-of-summoner/.claude/worktrees/opencode-seedsmith-p1-audit-recovery-20260925",
+  "paths": [
+    "tools/seedsmith/_j9_batch_run.py",
+    "tools/seedsmith/seedsmith/pipeline/**",
+    "tools/seedsmith/seedsmith/adapters/trees/**",
+    "tools/seedsmith/seedsmith/workflow/**",
+    "tools/seedsmith/tests/**",
+    ".claude/cmdc-agents/scripts/bcu212-full-run.ps1",
+    ".claude/cmdc-agents/scripts/bcu212-report.py",
+    "tasks/evidence-fragments/seedsmith-p1-audit-recovery-20260925/**",
+    "tasks/reports/seedsmith-p1-audit-recovery-20260925.md"
+  ],
+  "started": "2026-09-24T20:12:00Z",
+  "status": "abandoned",
+  "notes": "Recovery of the first audit lane, which made no changes and was abandoned after the runtime auto-rejected external-directory reads. The setup command copies the captured BCU2.12 log, stderr, ledger, and stale report into the new worktree as read-only evidence. No model generation, data/seed edit, commit, push, or merge is permitted. The recovery worker completed its scoped report and tests, but manager review rejected the done claim because the launcher still did not validate roster-command output and the report still hardcoded the interpreter and silently skipped malformed evidence. Its dirty worktree and evidence are preserved; a narrow follow-up lane owns the corrections. No acceptance is claimed for this abandoned lane."
+}

@@ -1,0 +1,25 @@
+{
+  "session": "rpg-simulator-slice0",
+  "program": "rpg-simulator",
+  "problem": "RS1 (slice 0, approved E1 (a) / A2 (a) / C3 (c)): build one E2E scenario file, no product code, that runs the first-session-forward chain (create a player -> award souls -> summon -> read the roster -> dispatch an expedition -> make it due -> collect -> read back progression + soul ledger + runs) over real routes only, with every verdict a read-back and the squad the expedition fought with asserted to be the roster this run built. Local-only: not wired into ci.yml.",
+  "mode": "worktree",
+  "branch": "cmdc/sim-slice0",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-sim-slice0",
+  "paths": [
+    "tests/FusionRpg.E2E.Tests/RpgScenarioSlice0E2ETests.cs",
+    "tests/fixtures/rpg-scenarios/first-session-forward.json",
+    "tasks/rpg-simulator-todo.md",
+    "tasks/test-verification-boundary-todo.md",
+    "tasks/rpg-simulator-ledger.jsonl",
+    "tasks/evidence-fragments/rpg-sim-rs1.md",
+    "tasks/sessions/rpg-simulator-slice0.json"
+  ],
+  "started": "2026-09-22T00:00:00Z",
+  "status": "merged",
+  "notes": [
+    "Worktree path is ABSOLUTE on purpose: docs/contributing/session-boundary.md requires it and verify-change.ps1 reports a relative one as DRIFT (measured on lane isg-gen-fix).",
+    "`paths` is file-exact rather than directory-wide: tests/FusionRpg.E2E.Tests/** is shared with every other E2E lane, and tasks/** is shared with every program, so a glob would claim another session's files.",
+    "The brief's fence is tests/FusionRpg.E2E.Tests/**, tests/fixtures/rpg-scenarios/** and tasks/**; nothing outside those trees was written. scripts/verification-boundaries.v1.json is deliberately NOT touched: tests/fixtures/rpg-scenarios/** is an unmapped file under the enforced root tests/fixtures/**, and that registry is owned by the active test-verification-boundary lanes (tvb58/tvb59) \u2014 reported as a row, not fixed here.",
+    "RETIRED 2026-09-25 by the resumed manager: Branch cmdc/sim-slice0 is fully merged (0 commits above HEAD)."
+  ]
+}

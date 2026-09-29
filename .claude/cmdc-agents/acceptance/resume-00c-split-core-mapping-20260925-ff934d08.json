@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 2,
+  "lane": "resume-00c-split-core-mapping-20260925",
+  "sha": "ff934d08baeaa9d8832e6fcbab00c1a4b50c0db1",
+  "shortSha": "ff934d08",
+  "mergedSha": "06ea826d629d5862ad3926232f8682761e12d3c1",
+  "verdict": "GREEN",
+  "scope": "Seven split-Core verification-boundary owner mappings and their focused structural/planner regression",
+  "attribution": {
+    "newUnregistered": 0,
+    "unattributed": 0,
+    "knownRedMatched": 0
+  },
+  "checks": [
+    {
+      "check": "split-core-mapping-tests",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "2 passed, 0 failed, 0 skipped",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00c-split-core-mapping-20260925/split-core-mapping-tests.log",
+      "command": "dotnet test tests/FusionRpg.Guard.Tests --filter FullyQualifiedName~SplitCoreVerificationMappingTests"
+    },
+    {
+      "check": "planner-plan-only",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "Activity, Delve, Expeditions, PassiveTree, Progression, Scope, Vfx, and Events resolved to intended owners; no core-residual check",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00c-split-core-mapping-20260925/planner-plan-only.log",
+      "command": "scripts/verify-change.ps1 -Paths <eight representative production paths> -Session resume-00c-split-core-mapping-acceptance-20260925 -PlanOnly -Format json"
+    },
+    {
+      "check": "boundary-guard-diagnostic",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "VERIFICATION BOUNDARY GUARD OK; 198.41s under concurrent load",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00c-split-core-mapping-20260925/boundary-guard-diagnostic.log",
+      "command": "pwsh -NoProfile -NonInteractive -File scripts/guard-verification-boundaries.ps1"
+    },
+    {
+      "check": "clean-checkout",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "detached checkout at reviewed SHA; status clean before and after focused tests/PlanOnly",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00c-split-core-mapping-20260925/clean-checkout.log",
+      "command": "git worktree add --detach <temporary-clean-checkout> ff934d08baeaa9d8832e6fcbab00c1a4b50c0db1; git status --porcelain=v1"
+    },
+    {
+      "check": "structure",
+      "exit": 0,
+      "seconds": 1,
+      "summary": "all selected structural checks passed",
+      "failedTests": [],
+      "knownRedTests": [],
+      "newRedTests": [],
+      "flakeSuspectTests": [],
+      "errors": [],
+      "log": "external-evidence/resume-00c-split-core-mapping-20260925/structure.log",
+      "command": "JSON parse; git diff --check"
+    }
+  ],
+  "knownLimitations": [
+    "The full 57-test VerificationBoundaryWorkflowTests selection was load-sensitive: one P6 subprocess timed out at 120s under concurrent load; P6 alone passed 1/1 and the direct boundary guard passed.",
+    "The worker's original full verify-change Guard process was terminated after two waits; it is not counted as green."
+  ],
+  "changedPaths": [
+    "scripts/verification-boundaries.v1.json",
+    "tests/FusionRpg.Guard.Tests/SplitCoreVerificationMappingTests.cs",
+    "tasks/reports/resume-00c-split-core-mapping-acceptance-20260925.md"
+  ],
+  "cleanCheckout": {
+    "reviewedSha": "ff934d08baeaa9d8832e6fcbab00c1a4b50c0db1",
+    "before": "CLEAN",
+    "after": "CLEAN",
+    "pathPolicy": "temporary path intentionally omitted from tracked artifact"
+  },
+  "mergeScope": "The reviewed SHA is accepted and merged; this artifact covers only the split-Core mapping/test/report paths. It does not claim the deferred legal-game/interops merged-head gate.",
+  "when": "2026-09-25T08:00:00Z",
+  "expectedSha": "ff934d08baeaa9d8832e6fcbab00c1a4b50c0db1",
+  "contendedTree": false,
+  "logDir": "external-evidence/resume-00c-split-core-mapping-20260925"
+}

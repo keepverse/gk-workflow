@@ -1,0 +1,8 @@
+# TVB0.4 — R24: wire the two tools/*.Tests projects; CiWiringGuardTests W7
+
+| Criterion | Command | Executed result | Artifact |
+|---|---|---|---|
+| both W7 pairs (LawnCombatObserver.Tests, ProveLiveProbe.Tests, each with its exit check) in "Restore / test (.NET)" after the FileMove pair; `ci.yml` only | read `.github/workflows/ci.yml:177-190` | both pairs sit after the FileMove pair (:180-181), each followed by its `throw "…failed"`; `git status --porcelain -- .github/workflows` shows only `ci.yml` | .github/workflows/ci.yml |
+| W7: every `tools/**/*.Tests.csproj` appears on a `dotnet test <path>` line followed by its exit check, or is in an exemption table — which lands empty | `dotnet test tests\FusionRpg.Guard.Tests\FusionRpg.Guard.Tests.csproj -c Release --verbosity minimal --filter "FullyQualifiedName~CiWiringGuardTests\|FullyQualifiedName~WorkflowExitCheckTests"` | `Passed!  - Failed: 0, Passed: 9, Skipped: 0, Total: 9, Duration: 18 ms` (`ExemptFromToolsCiWiring` is `Array.Empty`) | gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs |
+| red on a planted YAML where the path appears only in a comment | `A_tools_test_project_named_only_in_a_comment_is_reported` (same run) | green; `Assert.Single(missing)` + `Assert.Equal(path, missing[0])` | CiWiringGuardTests.cs |
+| acceptance verify | `.\scripts\verify-change.ps1 -Paths .github/workflows/ci.yml,gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs -Session summoner-convergence-lane-d-20260919` | not_run as one call (600 s cap). `-PlanOnly -Format json` exit 0 → `ci.yml -> ci-workflows (focused)` + `CiWiringGuardTests.cs -> guard-tests-fallback (module)`; focused run exit 0 (9 passed); module run exit 0 (`Passed!  - Failed: 0, Passed: 403, Total: 403, 2 m 26 s`) | — |

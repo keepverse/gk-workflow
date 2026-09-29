@@ -1,0 +1,40 @@
+{
+  "session": "rpg-sim-runner",
+  "program": "rpg-simulator",
+  "problem": "RS2.1-RS2.4 (approved C1 (a) / C2 (a) / A1 (a) / E2 (a)): the scenario contract, the verdict+digest contract, tools/RpgSim the runner, and the default in-process host. RS6 is in the brief but its paths (tests/FusionRpg.Data.Tests/**, tests/FusionRpg.Server.Tests/**, the moved helper) are outside this lane's fence; filed as a finding instead.",
+  "mode": "worktree",
+  "branch": "cmdc/sim-runner",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-sim-runner",
+  "paths": [
+    "tools/RpgSim/**",
+    "tests/fixtures/rpg-scenarios/**",
+    "tests/FusionRpg.E2E.Tests/**",
+    "tasks/rpg-simulator-todo.md",
+    "tasks/rpg-simulator-plan.md",
+    "tasks/rpg-simulator-ledger.jsonl",
+    "tasks/reports/**",
+    "tasks/sessions/rpg-sim-runner.json"
+  ],
+  "started": "2026-09-23T00:00:00Z",
+  "status": "abandoned",
+  "notes": [
+    "Worktree path is ABSOLUTE on purpose: docs/contributing/session-boundary.md requires it and verify-change.ps1 reports a relative one as DRIFT.",
+    "tasks/sessions/rpg-sim-runner.json is written here because the repo's session-boundary hard rule and the brief's 'worktree path must be ABSOLUTE' line both require a record; it did not exist when the lane started.",
+    "scripts/** is outside the fence, so the missing tools/RpgSim/** verification boundary is a finding (RS-F3), not a registry edit - the same handling lane sim-slice0 used for tests/fixtures/rpg-scenarios/** (RS-F2 -> TVB-F23, since landed as 80f388db7).",
+    "docs/architecture/** is outside the fence, so the module specs promised by the map (spec-scenario-format.md, spec-readback-verdict.md, ...) are written beside their machine under tools/RpgSim/ instead, the tools/CombatSim/README.md precedent. Named as a finding for the manager."
+  ],
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip 617801a6 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/sim-runner",
+    "branchTip": "617801a6",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip 617801a6 has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

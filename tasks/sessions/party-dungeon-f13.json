@@ -1,0 +1,33 @@
+{
+  "session": "party-dungeon-f13",
+  "program": "party-dungeon",
+  "problem": "F13: a head build against a REAL database 500s on the first client request because a column the code reads was never registered with EnsureColumn. Derive the complete missing-column list, register each at its owning table (additive only), and prove the upgrade path.",
+  "mode": "worktree",
+  "branch": "cmdc/f13-schema",
+  "worktree": "D:\\Works\\source\\plant-vs-zombie-rise-of-summoner\\.claude\\worktrees\\cmdc-f13-schema",
+  "paths": [
+    "src/FusionRpg.Data/**",
+    "src/FusionRpg.Core/**",
+    "tasks/party-dungeon-todo.md",
+    "tasks/party-dungeon-ledger.jsonl",
+    "tasks/sessions/party-dungeon-f13.json",
+    "tasks/reports/**"
+  ],
+  "started": "2026-09-22T08:32:38Z",
+  "status": "abandoned",
+  "scopeNote": "Lane fence is the runner's own allowed-path list for cmdc/f13-schema. It does NOT include tests/**, so the committed xunit regression test the brief prefers (tests/FusionRpg.Data.Tests/Delve/Domains/) cannot be authored from this lane; the strongest in-fence proof is an executed upgrade run of the production store against a copy of the owner's real 546 MB rpg-hot.sqlite, recorded in tasks/reports/f13-schema-upgrade-proof-20260922.md, plus the Data suite staying green. Filed as a finding for the manager: the owning program's todo (species-build / creature-progression for pvz_activity_facts) is outside the fence too, so the routing is recorded in the F13 row and the report rather than appended there.",
+  "closed": "2026-09-24T19:19:36Z",
+  "closeNote": "Exact branch tip fb0deb1a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge.",
+  "closureAudit": {
+    "report": "tasks/reports/mega-merge-program-ownership-audit-20260925.md",
+    "branch": "cmdc/f13-schema",
+    "branchTip": "fb0deb1a",
+    "integrationHead": "302719135eaff7a905b22872e4b5528141a80408",
+    "aheadCount": 0,
+    "worktreePresent": true,
+    "dirtyCount": 0,
+    "exactAcceptanceArtifact": null,
+    "decision": "abandoned",
+    "reason": "Exact branch tip fb0deb1a has no retained acceptance artifact. Ownership closed without claiming acceptance; the branch is already reachable from features/mega-merge."
+  }
+}

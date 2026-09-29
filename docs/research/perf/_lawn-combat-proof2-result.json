@@ -1,0 +1,67 @@
+{
+  "plants": {
+    "0": "1B7F8495480",
+    "1": "1B7F8495240",
+    "3": "1B7F849FD80",
+    "4": "1B7F84A6900"
+  },
+  "power": {
+    "0": 442,
+    "1": 442,
+    "3": 442,
+    "4": 442
+  },
+  "groups": {
+    "Earth|Earth|Same": {
+      "2028": [
+        2390
+      ]
+    },
+    "Earth|Ice|Weak": {
+      "2028": [
+        1899
+      ]
+    },
+    "Earth|Neutral|-": {
+      "2028": [
+        2390
+      ]
+    },
+    "Fire|Earth|Neutral": {
+      "2028": [
+        2390
+      ]
+    },
+    "Fire|Ice|Strong": {
+      "2028": [
+        2881
+      ]
+    },
+    "Fire|Neutral|-": {
+      "2028": [
+        2390
+      ]
+    }
+  },
+  "strongWeakChecks": [
+    {
+      "b": 2028,
+      "strong": 2881,
+      "weak": 1899,
+      "observedRatio": 1.51711,
+      "expectedRatio": 1.51656,
+      "withinRounding": true
+    }
+  ],
+  "neutralFalsifier": [
+    {
+      "b": 2028,
+      "fireVsNeutral": [
+        2390
+      ],
+      "earthVsNeutral": [
+        2390
+      ]
+    }
+  ]
+}

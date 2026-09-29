@@ -1,0 +1,90 @@
+{
+  "artefact": "J9-B2 — one J9 driver invocation converges: bounded codex re-vote + named failure record, measured over 8 roster species",
+  "date": "2026-09-21",
+  "session": "passive-tree-j9-vote",
+  "branch": "cmdc/j9-vote",
+  "model": "google/gemma-4-26b-a4b-qat (local LM Studio, no API credit)",
+  "command": "PYTHONPATH=tools/seedsmith python tools/seedsmith/_j9_batch_run.py --count 8 --out data/seed/passive-tree/_runs/j9-vote-rate.json",
+  "committed_artefacts": [
+    "data/seed/passive-tree/_runs/j9-vote-rate.json — per-species results; each row carries codexAttempts (the draw the species resolved on) and codexUnresolvedReason (null unless the bound was reached)",
+    "data/seed/passive-tree/species/<id>.json — 8 files for the 8 species of the slice; codexSummary + codexAttempts on a resolved species, codexSummary: null + codexUnresolvedReason + codexAttempts on a named failure"
+  ],
+  "what_changed": {
+    "driver": "tools/seedsmith/_j9_batch_run.py — finalize_codex re-draws the 3-sample vote for ONLY the species whose vote did not resolve, up to --codex-attempts TOTAL draws (draw 1 is run_species_tree's own), then writes the named failure record at the same species/<id>.json path when the bound is reached. resolve_codex_with_retry is the bounded loop; run_batch reports the per-draw tally.",
+    "metadata_shape": "tools/seedsmith/seedsmith/adapters/trees/species/generate_tree.py — species_metadata_document/write_species_metadata define the document ONCE (run_species_tree writes resolved ones, the driver writes resolved-or-failed ones); a document with no codexSummary must name its failure or the writer refuses.",
+    "bound": "tools/seedsmith/seedsmith/adapters/trees/species/generate_codex.py DEFAULT_CODEX_VOTE_ATTEMPTS = 6, exposed as --codex-attempts",
+    "why_6": "Each draw is 3 samples. With r the per-draw resolve probability, expected draws per species is (1 - r**A) / (1 - r): at r~=0.5 that is 1.75 at A=3, 1.94 at A=5, 1.97 at A=6, 2.0 as A grows -- draws past ~3 buy tail coverage almost for free. The worst case stays bounded at 3A calls (18 at A=6) against the 120 node calls one species already costs, and 6 is the smallest round bound that leaves under ~2% of a roster unresolved at r~=0.5. Reaching the bound is recorded by name, never silently retried."
+  },
+  "reading_of_the_completed_run": {
+    "species_in_slice": 8,
+    "species_reaching_the_codex_stage": 8,
+    "species_files_written": 8,
+    "resolved": 8,
+    "named_failures_at_the_bound": 0,
+    "codex_version": "single-linkage clustering at nodegen.dedup's 600-per-mille rung (J9-B1(a)), unchanged by this task",
+    "resolved_by_draw": {"1": 5, "2": 2, "3": 0, "4": 1},
+    "per_draw_resolve_rate": {
+      "draw_1": "5/8 = 0.625",
+      "draw_2": "2/3 entering unresolved = 0.667",
+      "draw_3": "0/1 = 0.0",
+      "draw_4": "1/1 = 1.0",
+      "pooled": "8 resolved over 13 draws = 0.615"
+    },
+    "per_species_draws": {
+      "AbyssSwordStar": 1, "AcientSunNut": 1, "AllPeater": 1, "Apple": 2,
+      "ArmedGargantuar": 1, "ArmoredImpZombie": 4, "AshThreePeater": 2, "BalloonZombie": 1
+    },
+    "codex_summary_lengths": {
+      "AbyssSwordStar": 129, "AcientSunNut": 117, "AllPeater": 130, "Apple": 130,
+      "ArmedGargantuar": 114, "ArmoredImpZombie": 136, "AshThreePeater": 134, "BalloonZombie": 128
+    },
+    "node_key_refused_reason_non_null": 0,
+    "model_calls_in_the_run": 212,
+    "model_calls_note": "212 `call complete` lines in the run's own stdout (gitignored log at data/seed/passive-tree/_runs/j9-vote-rate.log). The retry added 5 of the 13 draws = 15 sample calls; the rest of the run is node generation (AshThreePeater 14 accepted, BalloonZombie 12 accepted were the two species still owed nodes).",
+    "total_species_seconds": 616.4
+  },
+  "second_reading_interrupted_run": {
+    "what": "The first attempt at this measurement was killed by an infrastructure error after 6 of the 8 species. Its per-species draw counts were read from the species files before the completed run overwrote them, with: python -c \"import json,glob,os; [print(...) for ...]\" over data/seed/passive-tree/species/*.json.",
+    "per_species_draws": {
+      "AbyssSwordStar": 1, "AcientSunNut": 1, "AllPeater": 2, "Apple": 2,
+      "ArmedGargantuar": 1, "ArmoredImpZombie": 2
+    },
+    "resolved_by_draw": {"1": 3, "2": 3, "3": 0, "4": 0},
+    "named_failures_at_the_bound": 0,
+    "reproducible": false,
+    "why_kept": "It is a second, independent set of 6 first draws (pooled with the completed run: 8 of 14 first draws resolved = 0.571), and it is the evidence for the species-dependence question below: ArmoredImpZombie resolved on draw 2 here and on draw 4 in the completed run, while AbyssSwordStar and AcientSunNut resolved on draw 1 in both."
+  },
+  "interpretation": "One invocation now converges: all 8 species of the slice left a species/<id>.json, 8 with a resolved codex sentence and 0 with a named failure, so there is no silent gap to confuse with a model refusal. The vote is confirmed stochastic at roughly one resolve per two draws (pooled 8 of 13 draws this run; 8 of 14 first draws including the interrupted run) -- the J9-B2 reading reproduces with a larger n and a slightly better point estimate than the 2-species/4-draw proof that filed the row. Nothing in this fix explains WHY the draw fails: the retry converges around the flakiness, it does not remove it.",
+  "species_dependence": "NOT proved either way with n=1 species observed twice. The one species observed in two runs (ArmoredImpZombie: draw 2, then draw 4) moved, and the two species observed in both runs at draw 1 (AbyssSwordStar, AcientSunNut) stayed. That weakly favours a per-draw stochastic property over a per-species difficulty, but two observations cannot separate them; a per-species difficulty and a per-draw draw would look identical at this n.",
+  "residual_projection": {
+    "basis": "Measured per-draw rate 8/13 = 0.615 (Wilson 95% CI about 0.36-0.82). Residual after the default bound of 6 draws is (1 - r)**6.",
+    "point_estimate": "0.3% of a 904-species roster ~= 3 species",
+    "worst_end_of_the_ci": "~7% ~= 60 species (r = 0.36)",
+    "best_end_of_the_ci": "~0 species",
+    "observed": "the furthest any species went was 4 draws (ArmoredImpZombie), 0 of 8 reached the bound",
+    "cheap_resume": "a species that does reach the bound is re-drawable for 3 model calls (its 40 nodes are already in the shared ledger), so the tail is a short second pass over a NAMED list, not a re-run of the roster"
+  },
+  "release_reading": "The 840/904-species run can be released. One invocation now converges in the sense the row asked for -- every species in a slice ends with either a resolved codex summary or a named, bounded failure -- and the measured tail is small: 0 of 8 failed at the default bound, the worst species took 4 draws, and any failures are enumerable from the species files and cheap to resume. The residual is NOT zero and the projection is wide at n=13 draws; if BCU2.12's own run leaves more than a handful of named failures, the choices are a resume pass over the named list (3 calls each) or raising --codex-attempts, which the driver already exposes.",
+  "not_proved": [
+    "WHY the vote fails at roughly 4 draws in 10. Candidates are the 600-per-mille single-linkage rung (J9-B1(a)'s choice), the 3-sample count, and the prompt; none was isolated, and this fix deliberately does not change any of them.",
+    "Whether the per-draw resolve rate depends on the species. One species observed twice moved (draw 2 -> draw 4); the sample is too small to separate a per-species difficulty from a per-draw draw.",
+    "Whether the rate is stable across roster position, element/aptitude cell, or model load. All 8 species here are the first 8 of _index.json and share the same local model instance.",
+    "The residual failure count at 840/904 scale. The projection above is a CI over 13 measured draws, not a measurement of the roster.",
+    "How an unresolved codexSummary surfaces to a player (the Codex card's own rendering) -- no consumer of species/<id>.json with a null codexSummary was exercised here.",
+    "Whether a hard model/transport failure during a retry draw is named as well as a vote failure. A retry exception lands in run_batch's existing per-species `error` row; the unit tests cover the vote path, not a transport failure mid-retry."
+  ],
+  "verification": {
+    "focused_boundary": "cd tools/seedsmith && PYTHONPATH=. python -m pytest tests/test_j9_batch_run.py tests/adapters/trees/test_tree_species_generate_tree.py tests/adapters/trees/test_tree_species_codex.py tests/adapters/trees/test_tree_identity.py -q -> 42 passed in 1.73s",
+    "driver_check": "PYTHONPATH=tools/seedsmith python tools/seedsmith/_j9_batch_run.py --check --count 2 -> exit 0, plan printed (model-free)",
+    "guards": "scripts/guard-generated-seed.ps1 -> clean (22 changed files inspected); scripts/guard-verification-boundaries.ps1 -> OK",
+    "verify_change": "pwsh -NoProfile -Command \"& ./scripts/verify-change.ps1 -Paths @('<the four code/test paths>') -Session passive-tree-j9-vote\" -> 4307 passed / 22 failed / 3 skipped. NONE of the failing modules imports the files this lane changed, and every input they read is byte-identical to HEAD in this worktree, so the 22 are the base commit's own state, not this change. Read: affix `utility` tag count 17 != 19; affix `populationSize 125` with `acceptedCount 0`; `channelFamily` 54 != 55; creatures `_dump` hash mismatch; one population-pin P1 at tests/FusionRpg.Server.Tests/ComboPricingBootTests.cs:70; the action-corpus Content/FieldMissing cluster (action.family.academic.004, 1 of 181) is the known SR-25 red; test_audit_doc_citations is a CWD artifact of that invocation and passes from the repo root. Filed as PT-J9-F4.",
+    "verify_change_boundary_gap": "verify-change.ps1 refuses `data/seed/passive-tree/_runs/j9-vote-rate.json` with `VERIFICATION BOUNDARY MISSING: ... Add an owner mapping; do not run a broad suite as a fallback.` This lane cannot repair it (scripts/verify-change.ps1 is a guarded pipeline file outside its fence), so the run above covers the code/test paths only; reported, not worked around with a broad suite."
+  },
+  "other_findings": [
+    {
+      "file": ".claude/cmdc-agents/scripts/bcu212-full-run.ps1:45,49,53",
+      "cause": "The full-run launcher passes the species count POSITIONALLY (`python tools/seedsmith/_j9_batch_run.py $Smoke` / `$rosterCount`), while argparse only defined `--count`. Measured 2026-09-21: `python tools/seedsmith/_j9_batch_run.py 2 --check` -> `error: unrecognized arguments: 2`, exit 2. The launcher's own sibling (bcu212-proof.ps1:6-9) records the same refusal and fixed itself by switching to --count; bcu212-full-run.ps1 was never updated, so the 840-species run would have died in seconds before any model call.",
+      "handling": "Fixed here in the driver (in this lane's fence) by accepting the count positionally as a documented alias for the committed launcher, with --count still the documented form and disagreeing values refused. Filed as PT-J9-F2 in tasks/passive-tree-todo.md so the owning program can decide whether to also correct the launcher."
+    }
+  ]
+}

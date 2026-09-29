@@ -1,0 +1,2 @@
+{"kind":"fact","text":"Repository policy says a lane's own acceptance does not prove cross-lane interaction; the merged-head post-merge gate is the required integration evidence. The current QC index is a lead, not a substitute for independent review."}
+{"kind":"fact","text":"Do not run a live game or deploy from this read-only audit lane. Report environment blockers explicitly instead of fabricating live evidence."}

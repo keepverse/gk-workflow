@@ -1,0 +1,3 @@
+{"kind":"fact","text":"Audit base observed before dispatch: branch features/mega-merge, HEAD 1172e834e, with origin/features/mega-merge behind the local integration head. Verify all values independently."}
+{"kind":"fact","text":"Owner charter: exact model opencode/space-bunny-free, 500000 tokens per lane, maximum six concurrent lanes, read-only, stop after report or quota/context error."}
+{"kind":"fact","text":"Current convergence census measured 118 programs, 59 with open work, 507 open task blocks including 456 residue blocks. Treat these as a lead and recount if relevant."}

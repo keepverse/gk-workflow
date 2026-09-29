@@ -1,0 +1,17 @@
+{
+  "session": "decisions-rows-20260918",
+  "program": "multi",
+  "problem": "Owner ruling 2026-09-18: land every decisions.md row drafted by the 2026-09-18 specs now, before the plan phase (docs only). Rows: species-progression §9 (R21 Class system, R3/G3 Actor layer stack), save-identity S1-S4, empire-progression P1-P5 (P4 merged with R21 into one Class system amendment). Then mark each draft landed in its source map/spec. Owner explicitly authorised this edit of decisions.md, which the active solid-remediation-20260917 record also claims; the file was clean at start.",
+  "mode": "direct",
+  "branch": "features/mega-merge",
+  "worktree": null,
+  "paths": [
+    "docs/architecture/decisions.md",
+    "docs/architecture/species-progression-map.md",
+    "docs/architecture/empire-progression-map.md",
+    "docs/architecture/solid-enforcement/spec-save-identity.md",
+    "tasks/sessions/decisions-rows-20260918.json"
+  ],
+  "started": "2026-09-18T20:00:00Z",
+  "status": "merged"
+}
