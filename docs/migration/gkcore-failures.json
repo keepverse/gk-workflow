@@ -1,0 +1,2798 @@
+{
+ "measured_at_utc": "2026-09-30T08:08:17.945854Z",
+ "gk_core_head": "e2d0a02",
+ "note": "Failure inventory for gk-core at e2d0a02. Produced by a solution-wide `dotnet test FusionRpg.slnx --logger trx`, parsing every trx under tests/**/TestResults/. 398 non-passing in total: 75 across the ordinary projects plus 323 in FusionRpg.Guard.Tests. The guard suite is included only from e2d0a02 onward; before that commit it had no ProjectReference to FusionRpg.Core, produced 226 CS0234 build errors, and a solution-wide run reports an unbuildable project as absent rather than as an error, so it was silently excluded from every earlier total. A pre-e2d0a02 total of 75 is a true reading of a suite that could not run, not of gk-core.",
+ "counts": {
+  "total_non_passing": 398,
+  "guard_suite": 323,
+  "other_projects": 75
+ },
+ "failures": [
+  {
+   "proj": "FusionRpg.Core.ActorHub.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\design\\spec-derived-stat-sheet.md"
+  },
+  {
+   "proj": "FusionRpg.Core.ActorHub.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\design\\spec-derived-stat-sheet.md"
+  },
+  {
+   "proj": "FusionRpg.Core.ActorHub.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\effect-atom\\atom-family-library.md"
+  },
+  {
+   "proj": "FusionRpg.Core.ActorHub.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture'."
+  },
+  {
+   "proj": "FusionRpg.Core.ActorHub.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\effect-atom\\atom-family-library.md"
+  },
+  {
+   "proj": "FusionRpg.Core.ActorHub.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\element-hub-ssot.md"
+  },
+  {
+   "proj": "FusionRpg.Core.Atoms.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Core.Balance.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.InvalidOperationException : could not locate data\\seed\\atoms\\trait-critical-hunter.json above D:\\Works\\source\\Keepverse\\gk-core\\tests\\FusionRpg.Core.Balance.Tests\\bin\\Debug\\net8.0\\"
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\resource-hub-ssot.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\class-system\\spec-distribution-reconcile.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\power\\ssot-power-scale.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\resource-hub-ssot.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\contract\\types.ts'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\resource-hub-ssot.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\decisions.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\design\\spec-magnitude-and-units.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\class-system\\spec-distribution-reconcile.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\decisions.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.ClassSystem.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\contract\\types.ts'."
+  },
+  {
+   "proj": "FusionRpg.Core.Items.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\data\\tuning\\sockets.v3.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Items.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\tools\\seedsmith\\seedsmith\\adapters\\items\\registries.py'."
+  },
+  {
+   "proj": "FusionRpg.Core.Items.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Equal() Failure: Values differ | Expected: 31 | Actual:   3633"
+  },
+  {
+   "proj": "FusionRpg.Core.Items.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\data\\tuning\\materials.v6.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Items.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\tools\\seedsmith\\seedsmith\\adapters\\items\\registries.py'."
+  },
+  {
+   "proj": "FusionRpg.Core.Items.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\data\\tuning\\materials.v6.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.PassiveTree.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\data\\tuning\\power-scale.v2.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Status.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\examples\\status\\expose-row.overlay.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\power\\ssot-power-scale.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sunflower-kin.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameCaptureHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEntityRegistry.cs"
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sentinel-flora.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "not found: D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Actions\\LawnBasicAttackRow.cs"
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sunflower-kin.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\actions\\pairings.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\power\\ssot-power-scale.md'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\creatures\\species\\plant\\sunflower-kin.json'."
+  },
+  {
+   "proj": "FusionRpg.Core.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\src\\FusionRpg.Core\\Battle'."
+  },
+  {
+   "proj": "FusionRpg.Core.Vocabulary.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud"
+  },
+  {
+   "proj": "FusionRpg.Core.Vocabulary.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\ControlInspect.cs"
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing fixture web/fusion-rpg-web/e2e/fixtures/commander-list.json \u2014 run with FUSIONRPG_BLESS_CONTRACT_FIXTURES=1"
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found)."
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing fixture web/fusion-rpg-web/src/stages/world/fixtures/two-hearths.json \u2014 run with FUSIONRPG_BLESS_WORLD_FIXTURE=1"
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing fixture web/fusion-rpg-web/src/stages/world/fixtures/first-light.json \u2014 run with FUSIONRPG_BLESS_WORLD_FIXTURE=1"
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing fixture web/fusion-rpg-web/src/stages/world/fixtures/first-light-turn.json \u2014 run with FUSIONRPG_BLESS_WORLD_FIXTURE=1"
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing fixture web/fusion-rpg-web/e2e/fixtures/unique-actor.json \u2014 run with FUSIONRPG_BLESS_CONTRACT_FIXTURES=1"
+  },
+  {
+   "proj": "FusionRpg.E2E.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing fixture web/fusion-rpg-web/src/stages/world/fixtures/eighteen-ten.json \u2014 run with FUSIONRPG_BLESS_WORLD_FIXTURE=1"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"VERIFICATION BOUNDARY GUARD FAILED\\r\\n  pro\"\u00b7\u00b7\u00b7 | Not found: \"BOUNDARY-MISSING\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\OverlayViewHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-statpairsguard-1346f52bf78c49ff88a6f2c49710a7c9\\data\\seed\\derived-stats\\catalog.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudRowIdentity.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "exit=1 | stdout: | stderr:VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporter | project fil"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\ControlAct.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "tool-tree plan failed for 'tools/ProvePredictor/Program.cs' exit=1; stdout: ; stderr: VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing:"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.InvalidOperationException : cannot find the capability map at D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\solid-enforcement-map.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\tasks\\sessions'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"VERIFICATION BOUNDARY GUARD FAILED\\r\\n  pro\"\u00b7\u00b7\u00b7 | Not found: \"BOUNDARY-MISSING\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\.github\\workflows\\release.yml"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"python: can't open file 'D:\\\\\\\\Works\\\\\\\\sourc\"\u00b7\u00b7\u00b7 | Not found: \"W3\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\StatusDerivedMods.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "verification planner failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file miss"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Equal() Failure: Strings differ | \u2193 (pos 0) | Expected: \"946E578D0092A77EB8DD59FDAF8C48FD3113B6042\"\u00b7\u00b7\u00b7 | Actual:   \"38EAAB1B086867CB60991026B437034AC196961D1\"\u00b7\u00b7\u00b7 | \u2191 (pos 0)"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Equal() Failure: Collections differ | \u2193 (pos 0) | Expected: [\".claude/cmdc-agents/scripts/bcu212-full-run.ps1\", \".claude/cmdc-agents/scripts/bcu212-report.py\", \"tools/seedsmith/_j9_batch_run.py\"] | Actual:   [\".claude/cmdc-agents/scripts/bcu212-report.py\", \"tools/seedsmith/_j9_batch_run.py\"] "
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-statpairsguard-48a6be5820574e6da044df3f7b3e7296\\data\\seed\\derived-stats\\catalog.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\GateCounterHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the stub register is missing: docs/architecture/stub-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\testing\\foundation.md'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-statpairsguard-1a5d018f5888422090cf90f25db7b9ab\\data\\seed\\derived-stats\\catalog.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Bridges\\pvzrh-3.8.1\\CreateZombieSpawn.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "exit=1 | stdout: | stderr:VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporter | project fil"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.FileNotFoundException : Could not find file 'D:\\Works\\source\\Keepverse\\gk-core\\scripts\\session-boundary-check.py'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\power\\inventory.json"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\OverlayShaderProbe.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo root"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Launcher\\Services\\OverlayPipeServer.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\LawnCombatObserverBridge.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "CheatActions.cs no longer writes Time.timeScale - this guard watches the wrong file"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\shell\\overlayEmbed.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "guard failed exit=64 | stdout: | stderr: | STAT-PAIRS GUARD REFUSED CATALOG-MISSING | D:/Works/source/Keepverse/gk-core/data/seed/derived-stats/catalog.json does not exist, so the counterbalance rules have no subject; reporting clean would be a false green"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-17b1f05bd0c44fc0a646042093b68496\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\KernelDriveHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\FusionRpg.Injector.csproj"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"python: can't open file 'D:\\\\\\\\Works\\\\\\\\sourc\"\u00b7\u00b7\u00b7 | Not found: \"FUNNEL DELTA GUARD FAILED\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-29db09d3c80642bb9c1890129451483b\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.FileNotFoundException : Could not find file 'D:\\Works\\source\\Keepverse\\gk-core\\.github\\workflows\\release.yml'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "guard failed exit=1 | stdout: | stderr: | ACTOR-HUB GUARD FAILED | missing required file: FusionRpg.Injector\\Stats\\EntityApply.cs [hub-required] | missing required file: FusionRpg.Injector\\GameHooks.cs [hub-required]"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\LawnBasicAttackGrantBinder.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\lib\\bus\\overlay.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\InjectorLoop.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\lib\\bus\\overlay.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo root"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.BepInEx\\Plugin.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\launcher\\overlay-spec.md'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-c7c23c568a0c424184f137136afc6007\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats/EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporte"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats/EntityApply.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo root"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "guard failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimport"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityApply.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-18bdb91e80cd402eb5a1010917753b2f\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the FE debt register is missing: docs/architecture/fe-debt-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\shell\\notify\\catalog.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.BepInEx\\FusionRpg.Injector.BepInEx.csproj'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugRuntime.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "host project not found: D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.MelonLoader.39\\FusionRpg.Injector.MelonLoader.39.csproj"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporte"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudDirector.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find the guard-single-writer.py script"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the FE debt register is missing: docs/architecture/fe-debt-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.FileNotFoundException : Could not find file 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\kilo-class-system-regen-92527376b41e450ca3992f35c421924c\\_baseline-residual.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the stub register is missing: docs/architecture/stub-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "guard failed exit=1 | stdout: | stderr: | POWER GUARD FAILED: INVENTORY-MISSING D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\power\\inventory.json"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "exit=2 | python: can't open file 'D:\\\\Works\\\\source\\\\Keepverse\\\\gk-core\\\\scripts\\\\guard-single-writer.py': [Errno 2] No such file or directory"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\shell\\notify\\catalog.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-7ac21e99fa1c49a89105865583de1c1b\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-9b27ce6aea05456893143bed55996a7c\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\docs\\research\\class-system\\_baseline-dominance.json \u2014 run python scripts/regen_class_system_baselines.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "expected exit=0, got exit=1 | stdout: | stderr: | CLASS-SYSTEM GUARD FAILED: SOURCE-MISSING aptitudes roster.json missing: D:\\Works\\source\\Keepverse\\gk-core\\data\\seed\\aptitudes\\roster.json"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "tool-tree plan failed for 'tools/CombatSim/Analytic.cs' exit=1; stdout: ; stderr: VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: lau"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "deleted tool path plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file mi"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats/EntityApply.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "these files no longer name a retired combination-cap identifier; remove them from the allowlist: | tools/seedsmith/seedsmith/adapters/items/combogen/tuning.py | tools/seedsmith/tests/test_strain_splice_gen.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "vocab-rename harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 57, in <module> | code, out = cli(\"plan\", \"--rules\", request[\"rules\"], \"--phase\", phase, | ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ | \"--paths\", *request[\"paths\"]) | ^^^^^^^^^^^^^^^^^^^^"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorScreenAnchorResolver.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-ea76e072d27347d9863cbf1b525f6b91\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\VfxDirector.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\shell\\OverlayLeave.tsx'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo root"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"VERIFICATION BOUNDARY GUARD FAILED\\r\\n  pro\"\u00b7\u00b7\u00b7 | Not found: \"BOUNDARY-MISSING\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameDumps.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\tasks\\sessions'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "expected pass, got exit=2 | python: can't open file 'D:\\\\Works\\\\source\\\\Keepverse\\\\gk-core\\\\scripts\\\\guard-single-writer.py': [Errno 2] No such file or directory"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the stub register is missing: docs/architecture/stub-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\AnchorResolver.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects/EventDrainHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\VfxDirector.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\InjectorLoop.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.BepInEx\\Plugin.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatCommandRunner.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src/FusionRpg.Injector/Effects/EventDrainHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find the guard-single-writer.py script"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the FE debt register is missing: docs/architecture/fe-debt-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find the guard-single-writer.py script"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\StatusDerivedMods.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityApply.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find the guard-single-writer.py script"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\LawnBasicAttackGrantBinder.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "exemption escaped the operational roots: tasks/reports/f13_schema_upgrade_proof.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects/InjectorEntityRegistry.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "guard failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimport"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "host project not found: D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.MelonLoader\\FusionRpg.Injector.MelonLoader.csproj"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\tools\\LawnCombatObserver'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EventDrainHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-9781fa899eb44735a879e93b017e627d\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\StatusDerivedMods.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects/InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the FE debt register is missing: docs/architecture/fe-debt-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\shell\\notify\\catalog.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\scripts\\guard-single-writer.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"python: can't open file 'D:\\\\\\\\Works\\\\\\\\sourc\"\u00b7\u00b7\u00b7 | Not found: \"FUNNEL DELTA GUARD FAILED\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Launcher\\Services\\OverlayPipeServer.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\InjectorBootstrap.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\tools\\ItemSeedValidator\\Checks\\SocketMaxCheck.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudRowResources.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporte"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\KernelDriveHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudBuilder.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\scripts\\deploy-play.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-statpairsguard-a2008094012c4dc59626b161fb73637f\\data\\seed\\derived-stats\\catalog.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-statpairsguard-629930f2ff814125920c501c3641f4a2\\data\\seed\\derived-stats\\catalog.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\OverlaySwitchGui.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\GateCounterHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\ImpactStampPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\LawnBasicAttackFeature.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing art for glyph flame"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed for 'AGENTS.md' exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file miss"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudRowElements.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.False() Failure | Expected: False | Actual:   True"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.False() Failure | Expected: False | Actual:   True"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find the guard-single-writer.py script"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\LawnBasicAttackFeature.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "regen failed: ==> live tuning config: data/tuning/aptitudes.v10.json | ==> Wrote: | FAILED | TOOL-NOT-BUILT: tools/DominanceBaseline has no build output under tools\\DominanceBaseline\\bin\\Debug for --configuration Debug. Every invocation is --no-build; build it first, or pass the configuration that i"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src/FusionRpg.Injector/Effects/LawnCombatObserverBridge.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-statpairsguard-2687db2ac1b34aac8bae8913c9d97826\\data\\seed\\derived-stats\\catalog.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "a comment must never be scanned as a write | exit=2 | python: can't open file 'D:\\\\Works\\\\source\\\\Keepverse\\\\gk-core\\\\scripts\\\\guard-single-writer.py': [Errno 2] No such file or directory"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameCaptureHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "a == comparison must never be flagged | exit=2 | python: can't open file 'D:\\\\Works\\\\source\\\\Keepverse\\\\gk-core\\\\scripts\\\\guard-single-writer.py': [Errno 2] No such file or directory"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\scripts\\guard-funnel-delta.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Match\\MatchHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "R1: catalog script missing: single-writer -> scripts/guard-single-writer.py | catalog script missing: funnel-delta -> scripts/guard-funnel-delta.py | catalog script missing: session-boundary -> scripts/session-boundary-check.py | catalog script missing: doc-citations -> scripts/audit-doc-citations.p"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityStatWriter.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "host project not found: D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.BepInEx\\FusionRpg.Injector.BepInEx.csproj"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudRowStatuses.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "deleted-path plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporte"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityApply.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find the guard-single-writer.py script"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.BepInEx\\FusionRpg.Injector.BepInEx.csproj'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugRuntime.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "expected at least the BepInEx + two MelonLoader hosts, found 0"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"VERIFICATION BOUNDARY GUARD FAILED\\r\\n  pro\"\u00b7\u00b7\u00b7 | Not found: \"SESSION-REQUIRED\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "guard failed exit=1 | stdout: | stderr: | TEST SUBSTRATE GUARD FAILED \u2014 test temp-dir / swallowed-delete / untagged file-store / corpus copy or write violations: | tests/FusionRpg.AtomImporter.Tests/RealColdProcessTests.cs: baseline entry no longer violated \u2014 remove the line (the ratchet only shrink"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameCaptureHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameCaptureHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"python: can't open file 'D:\\\\\\\\Works\\\\\\\\sourc\"\u00b7\u00b7\u00b7 | Not found: \"FUNNEL DELTA GUARD FAILED\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed for '.claude/skills/creative-mode/SKILL.md' exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: "
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Lawn\\LawnCoords.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "git add data/seed/items/row.json failed: fatal: pathspec 'data/seed/items/row.json' did not match any files"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Stats\\EntityApply.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\OverlayViewHost.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ShieldBarOverlay.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.TypeInitializationException : The type initializer for 'FusionRpg.Guard.Tests.CaptureEnqueueOrderGuardTests' threw an exception. | ---- System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the FE debt register is missing: docs/architecture/fe-debt-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugActions.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector.BepInEx\\Plugin.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Host\\RpgHost.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"python: can't open file 'D:\\\\\\\\Works\\\\\\\\sourc\"\u00b7\u00b7\u00b7 | Not found: \"W2\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorVisualResolver.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"# gk-core \u2014 agent guide\\n\\nThe engine: Cont\"\u00b7\u00b7\u00b7 | Not found: \"verify-change.py\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-f2d62120abe24f3f8bf9fcc08f417239\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\RpgClient.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-bd2f1181fd894f57881dc927e54abb0b\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudRowIdentity.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the stub register is missing: docs/architecture/stub-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "expected OK exit, got 2 | stdout: | stderr: | python: can't open file 'D:\\\\Works\\\\source\\\\Keepverse\\\\gk-core\\\\scripts\\\\guard-funnel-delta.py': [Errno 2] No such file or directory"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\VfxDirector.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.TypeInitializationException : The type initializer for 'FusionRpg.Guard.Tests.CaptureEnqueueOrderGuardTests' threw an exception. | ---- System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\GameHooks.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src/FusionRpg.Injector/CheatCommandRunner.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudRowResources.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\VfxDirector.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed for 'docs/PRINCIPLES.md' exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project "
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "audit harness failed exit=1 | Traceback (most recent call last): | File \"<string>\", line 3, in <module> | audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit) | ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^ | File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module | File \""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporte"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-f966cf89abeb496083991a61c0893468\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\OverlaySwitch.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx\\VfxDirector.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\LawnBasicAttackFeature.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\OverlaySwitchGui.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\InjectorEffectActionSink.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"python: can't open file 'D:\\\\\\\\Works\\\\\\\\sourc\"\u00b7\u00b7\u00b7 | Not found: \"W2\""
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugLeaveBoard.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\docs\\architecture\\effect-runtime.md'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the stub register is missing: docs/architecture/stub-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-b45727e7b6d348b98b1e16ef458133a5\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\DebugRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "FusionRpg.Core.Balance.Tests references '$(GkForgeRoot)tools/DominanceBaseline/DominanceBaseline.csproj', not declared in its manifest entry"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.FileNotFoundException : Could not find file 'D:\\Works\\source\\Keepverse\\gk-core\\.github\\workflows\\release.yml'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Effects\\EffectRuntime.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-86baf1101d2f43f4a2fb3c38298168bb\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "the stub register is missing: docs/architecture/stub-register.md"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Launcher\\OverlayWindow.xaml.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\scripts\\deploy-play.py"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Launcher\\Services\\OverlayPipeServer.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\CheatState.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\RiftMenuArt.cs'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Equal() Failure: Collections differ | \u2193 (pos 0) | Expected: [\"src/FusionRpg.Injector/Host/InjectorLoop.cs\"] | Actual:   []"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Hud\\ActorHudPool.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\\Users\\NeneScarlet\\AppData\\Local\\Temp\\fusionrpg-classsystemguard-c8b31472a4aa4661bb7435d7de80eb35\\data\\seed\\aptitudes\\roster.json'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "missing D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Bridges\\pvzrh-3.9\\ZombieCombatFields.cs"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "plan failed exit=1 | stdout: | stderr: | VERIFICATION BOUNDARY GUARD FAILED | project file missing: elementenumgen | project file missing: proveliveprobe | project file missing: lawncombatobserver | project file missing: treebinder | project file missing: launcher | project file missing: atomimporte"
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\web\\fusion-rpg-web\\src\\shell\\notify\\catalog.ts'."
+  },
+  {
+   "proj": "FusionRpg.Guard.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : Could not find a part of the path 'D:\\Works\\source\\Keepverse\\gk-core\\src\\FusionRpg.Injector\\Fx'."
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "exit -196608 | Windows PowerShell | Copyright (C) Microsoft Corporation. All rights reserved. | The argument 'D:\\Works\\source\\Keepverse\\gk-core\\scripts\\collect-class-system-realrun.ps1' to the -File parameter does not exist. Provide the path to an existing '.ps1' file as an argument to the -File par"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Equal() Failure: Values differ | Expected: 1 | Actual:   0"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Item not found in collection | Collection: [] | Not found:  \"skill.might-off-t1-n0\""
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Equal() Failure: Values differ | Expected: 1 | Actual:   -196608"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.NotEmpty() Failure: Collection was empty"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "Assert.Contains() Failure: Sub-string not found | String:    \"'combo.strain-might-offense': the archety\"\u00b7\u00b7\u00b7 | Not found: \"atom.unsuch\""
+  },
+  {
+   "proj": "FusionRpg.Server.Tests",
+   "outcome": "Failed",
+   "cls": "?",
+   "test": "?",
+   "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
+  }
+ ]
+}
