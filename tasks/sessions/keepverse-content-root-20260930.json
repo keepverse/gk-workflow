@@ -1,0 +1,28 @@
+{
+  "session": "keepverse-content-root-20260930",
+  "program": "keepverse-split",
+  "problem": "Give the running program the workspace roots the split only gave MSBuild: a production C# resolver (KeepverseRoots) mirroring the existing Python contract, and SeedImportRunner.FindUp consulting it before its upward walk. Closes the content-root-consumer residue class behind conditions 8 and 10.",
+  "mode": "direct",
+  "branch": "main",
+  "worktree": null,
+  "paths": [
+    "tasks/sessions/keepverse-content-root-20260930.json",
+    "tasks/keepverse-split-ledger.jsonl",
+    "src/FusionRpg.Core/Workspace/**",
+    "src/FusionRpg.Data/Seed/SeedImportRunner.cs",
+    "tests/FusionRpg.Core.Workspace.Tests/Workspace/**",
+    "tests/FusionRpg.Data.Tests/Seed/SeedImportRunnerFindUpTests.cs"
+  ],
+  "started": "2026-09-30T00:00:00Z",
+  "status": "active",
+  "notes": [
+    "Continuation of the retired keepverse-split session, which built the TEST-ONLY resolver (tests/Shared/KeepverseRoots.cs) and fenced tests/FusionRpg.Core.Tests/Workspace/**, and which never built the production half. That omission is the whole defect: the split gave MSBuild GkDataRoot/GkContentRoot in Directory.Build.props and the running program none, so the solution built with 0 errors and FusionRpg.E2E.Tests then failed 296 of 296 at runtime.",
+    "src/FusionRpg.Core/Workspace/KeepverseRoots.cs is new. It mirrors tools/seedsmith/seedsmith/workspace_roots.py and scripts/lib/keepverse_roots.py exactly (same env overrides, same legacy-vs-workspace detection, same 'a root is never guessed'), and adds Roots() which is the one deliberate difference: it returns BOTH candidate roots for a caller that cannot tell whether a data/... path is content or core. Documented in the type, because two places computing the same question differently is how 209 art files got deleted.",
+    "src/FusionRpg.Data/Seed/SeedImportRunner.cs: FindUp gains a pre-pass over those roots and KEEPS the original walk as the fallback, so a monorepo checkout returns byte-identical answers and a path outside both roots (dist/FusionRpg.Server/data, a real call site in AtomImporter and CreatureSpeciesImport) still resolves.",
+    "CORRECTED MID-WORK: the first version of these tests was written at tests/FusionRpg.Core.Tests/Workspace/KeepverseRootsTests.cs. That was wrong twice over - FusionRpg.Core.Workspace.Tests already exists and already held a KeepverseRootsTests, so this would have been a duplicate class and namespace in a second assembly. The tests now live in the two projects that own the code: the resolver's in FusionRpg.Core.Workspace.Tests (extended, existing class and trait kept) and FindUp's in FusionRpg.Data.Tests, which is the only one of the two that references FusionRpg.Data.",
+    "Measured before the change, against the applied workspace with the private siblings absent: gk-core builds 0 errors, then FusionRpg.E2E.Tests fails 296 of 296 with FileNotFoundException on data/seed/saves/_registry/new-save-empires.v1.json, and all four generators exit 2 with 'could not locate data/tuning'. Those are the two conditions this closes. Verified after: 9/9 in FusionRpg.Core.Workspace.Tests, 6/6 in FusionRpg.Data.Tests.",
+    "MAPPING DEFERRED, NOT DONE: src/FusionRpg.Data/Seed/SeedImportRunner.cs is owned by NO boundary row and reaches verification only through the data-fallback and seam fallbacks - the unmapped-production-path defect the contributor guide names. I wrote the mapping (add the file to the keepverse-roots row, add a data-seed-findup owner row for project data with guards dal + test-substrate, verificationId data.seed-findup) and then REVERTED it: scripts/verification-boundaries.v1.json is claimed by the active session ps1-ban-manager-20260926, whose direct-mode fence on features/mega-merge spans 1107 paths. session-boundary-check reported the crossing, which is the mechanism working. The guide's branch is 'add/repair its mapping OR REPORT IT', and reporting is the honest option while another session owns the file. The registry is byte-identical to HEAD; nothing of theirs was touched. The two new test files carry the right VerificationId traits, so whoever applies the mapping gets a runnable focused check.",
+    "NOT YET PROVEN, and stated rather than implied: the fix is in the SOURCE repository. gk-core still holds the pre-fix tree, so conditions 8 and 10 stay NOT MET until this is re-staged and re-applied. That re-stage must be the same cycle as the scripts/** carve-out (ADDITION 5), because apply is not a dry run and its delete loop already cost 209 files once.",
+    "Main is dirty-free apart from this fence, so no other session's work is touched. Phase A is the owner's separate stream; this record does not claim tasks/keepverse-split-todo.md or any Phase A path."
+  ]
+}
