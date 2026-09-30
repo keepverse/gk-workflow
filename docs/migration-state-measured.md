@@ -12,6 +12,62 @@ Measurements taken 2026-09-30 against source `effc51d9b55f78aa7a5c47e14eef0e61b6
 
 ---
 
+## ADDENDUM 2026-09-30 (later) — two conditions moved, and one is now provably in tension
+
+Added after the snapshot above was taken. **Nothing above has been edited**, so the snapshot stays
+auditable; this section is the correction of record, in the same claim / now / why shape as the
+CORRECTIONS table, and every figure below was measured from disk rather than carried from the
+snapshot or from a manager.
+
+| The snapshot says | Now | Why |
+|---|---|---|
+| Condition 13: **NOT MET** — six repositories `+1` ahead of `origin/main` (`34bf27d0`, `2c2978ca`, `c732330f`, `d740f2d9`, `d2337d89`, `9467b587`), and an uncommitted ledger record asserted the opposite | **MET** | Measured across all nine: `gk-core 0/0 dirty 0`, `gk-forge 0/0/0`, `gk-fusion 0/0/0`, `gk-web 0/0/0`, `gk-data 0/0/0`, `gk-content 0/0/0`, `gk-tests 0/0/0`, `gk-assets 0/0/0`, workspace root `0/0` with 2 untracked files (two audit reports). Every repository holds its import commit; `gk-tests` and `gk-assets` never did, by design. No force was used at any point. The snapshot's own §0.3 warning is now moot in substance: the ledger rows are committed, and the source repo is clean and **intentionally unpushed** because Phase A is the owner's stream. |
+| Condition 8: **UNVERIFIED** — "no build or test was run" | **PARTLY MEASURED, and the remainder is now known to be in tension** | The guard layer is measured. The §D.1 warning that the UNVERIFIED conditions are "the expensive ones" held: this one turned out to be a decision, not a measurement. See the tension note below. |
+| Condition 6, A6 first half: gk-assets 228 @ `b02db75`, gk-tests 4 @ `0b3672a` | **UNCHANGED — re-verified** | Re-measured after a full day of edits across four repositories: gk-assets 228 tracked @ `b02db75`, gk-tests 4 tracked @ `0b3672ac`, both `dirty 0`, both still without an import commit. The out-of-scope invariance has held through every commit made since the snapshot. |
+
+### Why condition 8 cannot simply be measured green, and this is the crux
+
+ADDITION 8 asks that "gk-core builds and tests with every private sibling absent". Nine of this
+workspace's twenty-one gk-core guards had been resolving their subject against gk-core itself, so
+they were **refusing** — a named, honest, but non-zero outcome — on files that had never moved. They
+were repaired to resolve the subject from the repository that owns it. That repair is correct, and it
+has a consequence that has to be stated rather than discovered later:
+
+**A guard that genuinely reads another repository's data cannot pass when that repository is absent,
+and neither can any test asserting on that guard.** Measured, non-destructively, by pointing the four
+`KEEPVERSE_*_ROOT` overrides at a directory that does not exist: **0 crashes, 12 green, 6 named
+refusals at exit 64 or 2, 3 findings.** The guard *scripts* are now well-behaved under absence. The
+guard *test suite* is not, and cannot be, while the guards require a sibling.
+
+So condition 8 has two readings and they have opposite answers:
+
+- **"executes"** — gk-core's tooling runs to completion with siblings absent, names what it cannot
+  see, and does not crash or lie. **This is now true and measured.** A refusal is a verdict, not an
+  absence of one, and the exit code distinguishes it from a finding.
+- **"passes"** — gk-core's test suite is green with siblings absent. **This is false today**, and
+  making it true requires choosing between shipping a copy of the content into gk-core, or having
+  the affected tests skip when the sibling is absent.
+
+Both repairs prejudge the topology ruling reserved to the owner — whether a gk-core test may read a
+file owned by another repository. So condition 8 is reported as **partly met with the remainder
+blocked on that ruling**, not as met and not as failed, and no copy was shipped and no test was made
+to skip in order to move the number. The same ruling governs the one gk-core test that cannot be
+collected at all: `tests/tools/test_union_append_only.py` loads
+`.claude/cmdc-agents/scripts/union_append_only.py`, which is in the workspace root and not in gk-core,
+and it fails collection identically at the pre-session head — so it is pre-existing, not caused by any
+of today's work.
+
+### What the guard layer looks like now
+
+Twenty of twenty-one gk-core guard scripts exit 0, from twelve when the day's work began. The one red
+is `guard-verification-boundaries.py`, whose registry is owned by an active session
+(`ps1-ban-manager-20260926`) and is not this lane's to edit. The gk-core guard suite is **127 failed /
+594 passed / 721**, against **134 / 586 / 720** at the pre-session head `f2db59f` — seven better, with
+no test class worse. Every one of those figures was reproduced after the change set was moved fully
+aside, which is worth recording because the first two attempts at that comparison were invalid and
+would have reported a false improvement: `git checkout <ref> -- <paths>` **aborts entirely** when one
+pathspec does not exist at that commit, so both arms of the A/B silently ran the same code.
+
 ## CORRECTIONS — read before the tables below
 
 The lane's snapshot was accurate when taken. Four claims in it were made stale within the
