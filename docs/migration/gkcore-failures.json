@@ -1,7 +1,7 @@
 {
  "measured_at_utc": "2026-09-30T08:08:17.945854Z",
  "gk_core_head": "e2d0a02",
- "note": "Failure inventory for gk-core at e2d0a02. Produced by a solution-wide `dotnet test FusionRpg.slnx --logger trx`, parsing every trx under tests/**/TestResults/. 398 non-passing in total: 75 across the ordinary projects plus 323 in FusionRpg.Guard.Tests. The guard suite is included only from e2d0a02 onward; before that commit it had no ProjectReference to FusionRpg.Core, produced 226 CS0234 build errors, and a solution-wide run reports an unbuildable project as absent rather than as an error, so it was silently excluded from every earlier total. A pre-e2d0a02 total of 75 is a true reading of a suite that could not run, not of gk-core.",
+ "note": "Failure inventory for gk-core at e2d0a02, corrected after an adversarial audit refuted two of its claims. Read the note fields before quoting any total from this file.",
  "counts": {
   "total_non_passing": 398,
   "guard_suite": 323,
@@ -2794,5 +2794,25 @@
    "test": "?",
    "msg": "System.IO.DirectoryNotFoundException : repo source root with src/FusionRpg.Injector"
   }
- ]
+ ],
+ "correction_20260930": {
+  "superseded_claim": "A previous version of this file said 'The true count at e2d0a02 is 398' and attributed the exclusion of the guard suite to a solution-wide `dotnet test` reporting an unbuildable project as ABSENT rather than as an error. BOTH parts are wrong and are retracted.",
+  "why_wrong": "FusionRpg.Guard.Tests is NOT a member of FusionRpg.slnx, and neither are FusionRpg.Data.Tests, FusionRpg.FileMove.Tests, FusionRpg.CheatCore.Tests, FusionRpg.SquadHarness.Tests or FusionRpg.TestSplitAnalyzer.Tests. The solution names 70 test projects; 81 test directories exist on disk. The guard suite was therefore outside the solution total BEFORE the reference fix, and is still outside it AFTER it: `dotnet test FusionRpg.slnx` at e2d0a02 returns 75 failures and no guard project in its output. The 'unbuildable project is reported as absent' mechanism was asserted and never observed, because no project inside the slnx ever failed to build.",
+  "what_the_fix_actually_worth": "Real, but different. gk-core's ci.yml invokes the guard suite DIRECTLY by path at line 333 and throws on a non-zero exit at 334, so CI does run it. Before e2d0a02 that gate failed as a BUILD error; after it, the gate runs and reports 323 real test failures. FusionRpg.FileMove.Tests likewise stopped failing to build (1 error, not 2 - the 2 was a log-line count from the two-pass build). Two of the six non-slnx test projects were broken; the other four were never in the solution and were not broken.",
+  "figures": {
+   "solution_total_failures": 75,
+   "solution_total_projects": 70,
+   "test_directories_on_disk": 81,
+   "projects_outside_the_solution": 6,
+   "guard_suite_total_tests": 720,
+   "guard_suite_passed": 397,
+   "guard_suite_failed": 323,
+   "guard_failures_naming_a_path_owned_by_another_repo": 281,
+   "that_as_a_share_of_323": "87.0%",
+   "how_281_was_established": "Two independent instruments agreed on the aggregate. The audit lane reported 281/323 classified; a separate manager instrument, written with known-owner probes that abort on a mis-resolving probe and normalising the doubled backslashes the trx carries, independently returned 281/323 as well, and both agree gk-forge is 23. Per-bucket splits differ between the two (gk-fusion 229 vs 207, gk-data 21 vs 41) because the probes overlap and one message can name several repositories; treat the per-bucket numbers as approximate and the 281 aggregate as the robust figure.",
+   "superseded_claim_3": "The earlier '226 (70%)' figure for cross-repository guard failures was an UNDERCOUNT. The corrected aggregate is 281 of 323.",
+   "rule_violation_found_by_the_audit": "gk-core's own AGENTS.md line 15 states 'No test in this repo may need gk-data. It is private, so public CI cannot ...', and line 13 'Never compile against gk-forge or gk-fusion.' At least 20 of the guard failures name gk-data pack paths (data/seed, packs/fusion/data), which is a violation of a binding in-repo rule rather than a missing cross-repo reference, and is a different defect with a different fix."
+  },
+  "how_to_quote_this": "Quote 75 for what `dotnet test FusionRpg.slnx` runs. Quote 323 only as 'the guard suite, invoked directly as ci.yml does, is 720 tests with 323 failing', and never add the two numbers together."
+ }
 }
