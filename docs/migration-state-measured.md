@@ -26,6 +26,31 @@ snapshot or from a manager.
 | Condition 7, A7: **UNVERIFIED** — "this lane did not re-run the scan" | **MET, with the needle's own limits stated** | Run as ADDITION 4 defines it, `git rev-list --objects --all` over every ref of every repository. **0 private-content paths in all eight repositories that are not the content pack** — the workspace root, gk-core, gk-forge, gk-fusion, gk-web, gk-content, gk-tests, gk-assets. gk-data returns 3 366 and that is correct: it *is* the pack, holding `packs/fusion/data/**` by design. Visibility is a GitHub org setting, not readable from disk, so the scan ran on all nine rather than a confirmed-public subset — a check that passes on all nine is stronger. A second needle for generator provenance found 20 hits outside the pack, and **the needle is demonstrably too loose to be a verdict**: its best two matches are a `"model"` key holding a file path (`docs/research/class-system/_baseline-dominance.json` → `gk-core/data/tuning/aptitudes.v10.json`) and one holding a schema name (`data/tuning/creature-rank.v1.json` → `creature-rank-v1`). The rest are provenance metadata in documents *about* generation — two `tasks/reports/*.json` naming the local model, one session record naming the agent model, and the `ip-censor` synthetic fixture the snapshot already identified as the single `content-in-public-repo` residue. None of them is derived content, and the path check is the one that speaks to the condition. |
 | Condition 6, A6 first half: gk-assets 228 @ `b02db75`, gk-tests 4 @ `0b3672a` | **UNCHANGED — re-verified** | Re-measured after a full day of edits across four repositories: gk-assets 228 tracked @ `b02db75`, gk-tests 4 tracked @ `0b3672ac`, both `dirty 0`, both still without an import commit. The out-of-scope invariance has held through every commit made since the snapshot. |
 
+### Condition 11, partly proved by starting the server rather than reading it
+
+| The snapshot says | Now | Why |
+|---|---|---|
+| Condition 11: **UNVERIFIED** — "no server was started and no live probe was run" | **PARTLY MET, and the remainder is named** | The real server builds, publishes, starts and serves the real web UI from the Keepverse layout. gk-core builds clean (exit 0, 0 errors counting CS **and** NU **and** MSB); the web app is `gk-web/web/fusion-rpg-web` and its vite `outDir` **is** the server's `wwwroot`, so `npm run build` writes straight there (exit 0, 0 TS errors, 12.56s); `dotnet publish` exit 0; the server starts on `FUSIONRPG_URLS`. Measured: `/health` → 200 `{"ok":true,"contentSource":"imported","catalogRevision":1}`; `/` → the built `index.html`, byte-identical to the one vite wrote (403 B, sha `0c0fba0ce403610a` on both sides); its JS bundle → 200, 1,013,091 B, `text/javascript`; its CSS → 73,688 B; `/lawn` → the SPA shell. **NOT MET**: the live lawn has not been entered and no allocation has been read back through the normal path. |
+
+**Two measurements from this pass that were nearly believed and were not.** The rebuilt `wwwroot` is
+**not committed** — `.gitignore:102` ignores `**/wwwroot/` — so "0 files differ from HEAD" was zero
+differing files out of zero *tracked* files, which is the absence-as-success shape this session has
+already paid for three times; and the first ignore-check passed the *directory* to
+`git check-ignore`, which reported "not ignored" because the rule matches a file inside it. There is
+no FE reproducibility claim to make here and none is made. Separately, a `.trx` written by the 2026
+runner contains 899 `UnitTestResult` elements while the reader used here reported **zero** of them,
+agreeing with a passing run and contradicting the console's 6 failures; the console is the authority
+and the reader was wrong about the format, not about the code.
+
+**A defect this found, which is about evidence rather than about the UI.** `MapFallbackToFile` is
+unconstrained, so it answered *every* unmatched path — including `/api/**` — with `index.html` at
+HTTP 200. Measured on that build: `/api/players` returned real JSON, and
+`/api/definitely-not-a-route` returned 200 and the SPA shell. A typo'd API call therefore returned
+200 and an HTML body, and **every** `/api` path "responded" — which makes any evidence gathered about
+this API through a status code unfalsifiable, the shape of proof the goal prompt forbids. Terminating
+routes now precede the fallback for `/api` and `/hub` across every verb; a terminator for GET alone
+would have left `POST /api/nothing` reachable by the fallback, the same defect one verb narrower.
+
 ### Why condition 8 cannot simply be measured green, and this is the crux
 
 ADDITION 8 asks that "gk-core builds and tests with every private sibling absent". Nine of this
