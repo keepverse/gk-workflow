@@ -26,30 +26,66 @@ snapshot or from a manager.
 | Condition 7, A7: **UNVERIFIED** — "this lane did not re-run the scan" | **MET, with the needle's own limits stated** | Run as ADDITION 4 defines it, `git rev-list --objects --all` over every ref of every repository. **0 private-content paths in all eight repositories that are not the content pack** — the workspace root, gk-core, gk-forge, gk-fusion, gk-web, gk-content, gk-tests, gk-assets. gk-data returns 3 366 and that is correct: it *is* the pack, holding `packs/fusion/data/**` by design. Visibility is a GitHub org setting, not readable from disk, so the scan ran on all nine rather than a confirmed-public subset — a check that passes on all nine is stronger. A second needle for generator provenance found 20 hits outside the pack, and **the needle is demonstrably too loose to be a verdict**: its best two matches are a `"model"` key holding a file path (`docs/research/class-system/_baseline-dominance.json` → `gk-core/data/tuning/aptitudes.v10.json`) and one holding a schema name (`data/tuning/creature-rank.v1.json` → `creature-rank-v1`). The rest are provenance metadata in documents *about* generation — two `tasks/reports/*.json` naming the local model, one session record naming the agent model, and the `ip-censor` synthetic fixture the snapshot already identified as the single `content-in-public-repo` residue. None of them is derived content, and the path check is the one that speaks to the condition. |
 | Condition 6, A6 first half: gk-assets 228 @ `b02db75`, gk-tests 4 @ `0b3672a` | **UNCHANGED — re-verified** | Re-measured after a full day of edits across four repositories: gk-assets 228 tracked @ `b02db75`, gk-tests 4 tracked @ `0b3672ac`, both `dirty 0`, both still without an import commit. The out-of-scope invariance has held through every commit made since the snapshot. |
 
-### Condition 11, partly proved by starting the server rather than reading it
+### Condition 11: the web half is met, the live half is blocked by a third-party mod
 
 | The snapshot says | Now | Why |
 |---|---|---|
-| Condition 11: **UNVERIFIED** — "no server was started and no live probe was run" | **PARTLY MET, and the remainder is named** | The real server builds, publishes, starts and serves the real web UI from the Keepverse layout. gk-core builds clean (exit 0, 0 errors counting CS **and** NU **and** MSB); the web app is `gk-web/web/fusion-rpg-web` and its vite `outDir` **is** the server's `wwwroot`, so `npm run build` writes straight there (exit 0, 0 TS errors, 12.56s); `dotnet publish` exit 0; the server starts on `FUSIONRPG_URLS`. Measured: `/health` → 200 `{"ok":true,"contentSource":"imported","catalogRevision":1}`; `/` → the built `index.html`, byte-identical to the one vite wrote (403 B, sha `0c0fba0ce403610a` on both sides); its JS bundle → 200, 1,013,091 B, `text/javascript`; its CSS → 73,688 B; `/lawn` → the SPA shell. **NOT MET**: the live lawn has not been entered and no allocation has been read back through the normal path. |
+| Condition 11: **UNVERIFIED** — "no server was started and no live probe was run" | **NOT MET, and split in two** | The server half is proved by running it. The live-lawn half is blocked outside this workspace, and the block is named below rather than absorbed. |
 
-**Two measurements from this pass that were nearly believed and were not.** The rebuilt `wwwroot` is
-**not committed** — `.gitignore:102` ignores `**/wwwroot/` — so "0 files differ from HEAD" was zero
-differing files out of zero *tracked* files, which is the absence-as-success shape this session has
-already paid for three times; and the first ignore-check passed the *directory* to
-`git check-ignore`, which reported "not ignored" because the rule matches a file inside it. There is
-no FE reproducibility claim to make here and none is made. Separately, a `.trx` written by the 2026
-runner contains 899 `UnitTestResult` elements while the reader used here reported **zero** of them,
-agreeing with a passing run and contradicting the console's 6 failures; the console is the authority
-and the reader was wrong about the format, not about the code.
+**PROVED — the server starts and serves the real UI from the Keepverse layout.** gk-core builds clean
+(exit 0, 0 errors counting CS **and** NU **and** MSB); the web app is `gk-web/web/fusion-rpg-web` and
+its vite `outDir` **is** the server's `wwwroot`, so `npm run build` writes straight there (exit 0, 0 TS
+errors, 12.56s); `dotnet publish` exit 0; the server starts on `FUSIONRPG_URLS`. Measured: `/health` →
+200 `{"ok":true,"contentSource":"imported","catalogRevision":1}`; `/` → the built `index.html`,
+byte-identical to the one vite wrote (403 B, sha `0c0fba0ce403610a` both sides); its JS bundle → 200,
+1,013,091 B; its CSS → 73,688 B; `/lawn` → the SPA shell.
 
-**A defect this found, which is about evidence rather than about the UI.** `MapFallbackToFile` is
-unconstrained, so it answered *every* unmatched path — including `/api/**` — with `index.html` at
-HTTP 200. Measured on that build: `/api/players` returned real JSON, and
-`/api/definitely-not-a-route` returned 200 and the SPA shell. A typo'd API call therefore returned
-200 and an HTML body, and **every** `/api` path "responded" — which makes any evidence gathered about
-this API through a status code unfalsifiable, the shape of proof the goal prompt forbids. Terminating
-routes now precede the fallback for `/api` and `/hub` across every verb; a terminator for GET alone
-would have left `POST /api/nothing` reachable by the fallback, the same defect one verb narrower.
+**PROVED — the first successful deploy of the split workspace.** `deploy-play.py` completes **all
+twelve stages, exit 0, in 24s**: preconditions 0.0s, game lock 0.1s, game-profile precondition 0.2s,
+FE mirror 0.0s (index.html hash proven), injector build 9.1s, freshness 0.0s, server publish 11.3s into
+gk-core's dist, seed import 2.6s writing an 11,988 KB `rpg-hot.sqlite`. The injector lands carrying
+`FusionRpg.Bridge.dll` (8,192 B) — the new shared contract module — beside `FusionRpg.Injector.dll`
+(1,090,560 B), `FusionRpg.Core.dll`, `FusionRpg.Contracts.dll` and `FusionRpg.CheatCore.dll`.
+
+**PROVED — the injector loads cleanly and deterministically.** Three separate launches each produced
+`Loading [FusionRpg Injector 1.0.0]`, `[Harmony] ok=108 fail=0 (Hit* deferred until board.start)`,
+`FusionRpg injector loaded, game=pvzrh-3.8.1 server=http://127.0.0.1:5088 cheats=web`, and
+`Registered mono type FusionRpg.Injector.Plugin+RpgLoop in il2cpp domain`. **108 patches, zero
+failures, every time.**
+
+**BLOCKED — the live lawn, and the block is outside the migrated workspace.** Two independent causes:
+
+1. **A third-party mod terminates the game at boot.** The owner's 3.8.1 install carries **148 plugin
+   DLLs**. Every run's log ends at `[Modified-Plus] No server found, starting as server...` and the
+   process is gone; one run also produced a .NET fatal error in `Modified.Plugin.<obfuscated>()[T0]()`
+   (a `NullReferenceException`) plus an `APPCRASH`.
+2. **The clean alternate install cannot host the injector.** `H:\Games\PVZ-Fusion-3.9` is clean — its
+   only plugins are our own SignalR client dependencies, and it has never been run — but its
+   `BepInEx\interop` holds **3 DLLs against the 3.8.1 install's 99**, so the `pvzrh-3.9` profile was
+   never generated on this machine and the injector build fails with 682 `CS0246`/`CS0103` errors.
+
+Disabling the owner's third-party mod is a scope change only they can authorise, so it is reported and
+not worked around.
+
+**WHAT IS NOT ESTABLISHED, because this hour produced a wrong verdict about our own code.** Whether our
+patches contribute to the `Modified-Plus` crash. I A/B'd it by moving the plugin aside and relaunching,
+saw one crash **with** the injector and one survival **without** it, and wrote that our patches were
+implicated. Then a relaunch **with** the injector present survived 70s. The record is one crash in two
+runs with the injector and zero in one without, which implicates nothing: the crash is intermittent and
+its cause is not established. Corrected here rather than left standing.
+
+**Three defects this work found, all of the same class — a path resolved against a repository that does
+not own it.** Each is fixed, and each was invisible until something actually ran:
+
+| Found by | Defect | Consequence |
+|---|---|---|
+| a `--dry-run` | `deploy-play.py` built every path from its own root; the server is gk-core's, the web app gk-web's, AtomImporter gk-forge's | a 12-stage plan that could not complete at stage 4 |
+| the deploy's own precondition | the runner resolved every guard against gk-core; 4 guards live in gk-fusion and 2 in gk-workflow | `GUARD-SCRIPT-MISSING` naming guards that exist — **no deploy could run at all** |
+| the guard's own output | `guard-verification-boundaries.py` joined every declared repo-relative path onto gk-core | **292 findings, 274 of them a resolution failure** |
+
+And one of a different kind: the profile detector existed for the MelonLoader host and was **hardcoded**
+for the BepInEx host, so a 3.9 install silently got the 3.8.1 profile and failed with 682 errors that
+named a type rather than a version.
 
 ### Why condition 8 cannot simply be measured green, and this is the crux
 
