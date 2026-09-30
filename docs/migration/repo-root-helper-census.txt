@@ -1,0 +1,72 @@
+  helper                       defs  verdict             signals  done  evidence
+  ----------------------------------------------------------------------------------------------------
+  ActionsDir                      1  calls:bare                 0     0  joins (nothing)
+  BaseTypesDir                    1  calls:content              1     0  joins seed
+  CharmsDir                       1  already-delegates          0     1  
+  CombinationsDir                 1  already-delegates          0     1  
+  ContentRoot                     3  already-delegates          0     3  
+  CoreRoot                        3  already-delegates          0     3  
+  CoreSrcDir                      1  calls:core                 1     0  joins src
+  CorpusRoot                      2  already-delegates          0     2  
+  CreateTempDir                   1  calls:bare                 0     0  joins (nothing)
+  DelveDir                        1  calls:core                 1     0  joins src
+  Dir                             3  calls:bare                 0     0  joins (nothing)
+  DomainsDir                      2  already-delegates          0     2  
+  EncountersDir                   2  already-delegates          0     2  
+  EventsDir                       2  already-delegates          0     2  
+  ExistingSaveSeedTestsRepoRoot    1  already-delegates          0     1  
+  FindCoreFile                    1  calls:core                 1     0  joins src
+  FindDataDir                     4  calls:BOTH                20     0  joins generated/seed/tuning
+  FindRealTuningDir               1  already-delegates          0     1  
+  FindRepoDir                     1  calls:bare                 0     0  joins (nothing)
+  FindRepoFile                    5  calls:bare                 0     0  joins (nothing)
+  FindRepoRoot                  215  already-delegates          0   215  
+  FindRepoRootStatic              1  already-delegates          0     1  
+  FindScenariosDir               12  calls:core                 2     0  joins tests
+  FindShippedFile                 1  calls:core                 1     0  joins tuning
+  FindSourceDir                   1  already-delegates          0     1  
+  FindSourceFile                 10  calls:core                 2     1  joins src
+  ItemsDir                        1  calls:content              1     0  joins seed
+  LayoutsDir                      2  already-delegates          0     2  
+  LootDir                         1  already-delegates          0     1  
+  MovementDir                     1  calls:bare                 0     0  joins (nothing)
+  NewRoot                         1  calls:bare                 0     0  joins (nothing)
+  QuestsDir                       1  already-delegates          0     1  
+  ReadCoreFile                    6  calls:core                 6     3  joins src
+  ReadDataFile                    1  already-delegates          0     1  
+  ReadInjectorFile                4  already-delegates          0     4  
+  ReadItemDataFile                1  calls:content              1     0  joins seed
+  ReadRepoFile                    5  already-delegates          0     5  
+  RealCorpusRoot                  8  already-delegates          0     8  
+  RegistryDir                     3  calls:BOTH                 4     2  joins seed/tests/tuning
+  RepoRoot                      241  already-delegates          0   241  
+  RepoRootForCommittedSeed        1  already-delegates          0     1  
+  RepoRootForScript               1  already-delegates          0     1  
+  RepoRootForThisFile             1  already-delegates          0     1  
+  RepoSourceRoot                  1  calls:core                 4     0  joins src
+  RepoTuningDir                  19  calls:core                19     7  joins tuning
+  RoomsDir                        2  already-delegates          0     2  
+  Root                            1  calls:bare                 0     0  joins (nothing)
+  RungsSourceDir                  1  calls:core                 1     0  joins src
+  ScopeDir                        2  calls:core                 2     0  joins src
+  SpeciesDir                      2  already-delegates          0     2  
+  SrcDir                          1  calls:core                 1     0  joins src
+  SuppliesDir                     1  calls:content              1     0  joins seed
+  TempRoot                        1  calls:bare                 0     0  joins (nothing)
+  TimelineDir                     2  calls:core                 1     0  joins src
+  ToolSourceDir                   1  calls:bare                 0     0  joins (nothing)
+
+  verdicts: {'calls:bare': 10, 'calls:content': 4, 'already-delegates': 26, 'calls:core': 13, 'calls:BOTH': 2}
+  helpers still needing a human decision: 12 of 55
+     ActionsDir                   calls:bare
+     CreateTempDir                calls:bare
+     Dir                          calls:bare
+     FindDataDir                  calls:BOTH
+     FindRepoDir                  calls:bare
+     FindRepoFile                 calls:bare
+     MovementDir                  calls:bare
+     NewRoot                      calls:bare
+     RegistryDir                  calls:BOTH
+     Root                         calls:bare
+     TempRoot                     calls:bare
+     ToolSourceDir                calls:bare
