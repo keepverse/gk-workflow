@@ -49,9 +49,9 @@ under `gk-core/scripts/checks/`):
 
 | Script project | Command | CI line |
 |---|---|---|
-| `gen-content-validate` | `dotnet run --project gk-forge/tools/AtomImporter -c Release -- --check --validate --db <temp dir>` (the wrapper creates and removes the temp dir; a removal failure fails the check). CI passes `$env:RUNNER_TEMP/atom-validate-db`, so `GeneratorCheckCiParityTests` compares the command up to `--db` | `ci.yml:287` |
-| `gen-corpus-dump-verify` | `dotnet run --project gk-forge/tools/CreatureCorpusDump -c Release -- --verify gk-data/packs/fusion/data/seed/creatures/_dump` | `ci.yml:298` |
-| `gen-item-seed-validator` | `dotnet run --project gk-forge/tools/ItemSeedValidator -c Release` | `ci.yml:304` |
+| `gen-content-validate` | `dotnet run --project gk-forge/tools/AtomImporter -c Release -- --check --validate --db <temp dir>` (the wrapper creates and removes the temp dir; a removal failure fails the check). CI passes `$env:RUNNER_TEMP/atom-validate-db`, so `GeneratorCheckCiParityTests` compares the command up to `--db` | `gk-core/.github/workflows/ci.yml:466` |
+| `gen-corpus-dump-verify` | `dotnet run --project gk-forge/tools/CreatureCorpusDump -c Release -- --verify gk-data/packs/fusion/data/seed/creatures/_dump` | `gk-core/.github/workflows/ci.yml:477` |
+| `gen-item-seed-validator` | `dotnet run --project gk-forge/tools/ItemSeedValidator -c Release` | `gk-core/.github/workflows/ci.yml:483` |
 
 `generated-seed` (`gk-core/scripts/guard-generated-seed.py`; locally it checks the working tree plus staged
 changes against HEAD, `guard-generated-seed.py:22`) attaches as a **guard** to **every** generated
@@ -62,8 +62,8 @@ in the catalog row (`spec-guard-runner.md` rule 4); the planner calls it with no
 
 **A rewrite never verifies less.** Where this module replaces an existing entry, the new entry keeps
 the old one's `project`, `verificationId` and every guard. `deployment-hierarchy-tuning`
-(`verification-boundaries.v1.json:2928`) keeps `data` and `magic-numbers`. `lawn-attrition-tuning`
-(`:2313`) keeps `core.lawn-attrition-ladder`. It also keeps any guard `solid-enforcement` attached
+(`verification-boundaries.v1.json:3002-3013`) keeps `data` and `magic-numbers`. `lawn-attrition-tuning`
+(`:2355-2365`) keeps `core.lawn-attrition-ladder`. It also keeps any guard `solid-enforcement` attached
 meanwhile.
 
 ### S2 — per-root specifics
@@ -74,7 +74,7 @@ is a **seam** on the same paths. A boundary names exactly one project, and seams
 
 | Root | Pattern shape | Known owners to start from (verified) |
 |---|---|---|
-| `gk-core/data/tuning/**` | one owner per **domain**: `gk-core/data/tuning/<domain>.v*.json` (wildcard, so a `publish.py` `v{n+1}` is covered on arrival, `gk-core/tools/tuning/publish.py:10`) | replace the exact-name entries `lawn-attrition-tuning` (`verification-boundaries.v1.json:2313`), `deployment-hierarchy-tuning` (`:2928`), `power-scale-tuning` (`:2987`, which today leaves `power-scale.v1`/`v2` unmapped) with wildcard forms; `aptitudes.v*.json` gains `gen-resource-ownership` (`ci.yml:68` reads it) |
+| `gk-core/data/tuning/**` | one owner per **domain**: `gk-core/data/tuning/<domain>.v*.json` (wildcard, so a `publish.py` `v{n+1}` is covered on arrival, `gk-core/tools/tuning/publish.py:10`) | replace the exact-name entries `lawn-attrition-tuning` (`verification-boundaries.v1.json:2355-2365`), `deployment-hierarchy-tuning` (`:3002-3013`), `power-scale-tuning` (`:3061-3070`, which today leaves `power-scale.v1`/`v2` unmapped) with wildcard forms; `aptitudes.v*.json` gains `gen-resource-ownership` (`:193-196`; `gk-core/.github/workflows/ci.yml:98` reads it) |
 | `gk-core/tests/fixtures/**` | one owner per fixture subtree | `fixtures/effects/**`, `fixtures/combat/**` are linked into Core.Tests (`FusionRpg.Core.Tests.csproj:54-55`) → `core`; `action-traces`/`battle-traces` are read by `Actions/ActionAdoptionFixtures.cs`, `Battle/Adoption/*` → `core` until `core-registry-rekey` narrows them |
 | `gk-data/packs/fusion/data/generated/**` | one owner per generated tree, its `project` the tree's script check, guard `generated-seed` | `creatures/**` → `gen-creature-species`; `creatures/_species-build-plan.json` (exact) → `gen-build-plan`; `passive-tree/**` → existing `generated-trees` (`:607`, project `treebinder`, kept) + seam `gen-passive-tree`; all three carry `generated-seed` |
 | `gk-data/packs/fusion/data/seed/**` | one owner per top-level subtree; authored sub-trees (`**/_registry/**`, `**/_exemplars/**`) get their own entries where a reader differs | `items/**` → `gen-items-gate`, `gen-item-seed-validator`; `creatures/**` → `gen-creature-contract`, `gen-creature-report`, `gen-creature-metrics`, `gen-creature-preflight`; `creatures/_dump/**` → `gen-corpus-dump-verify`; `structures/**` → `gen-structure-contract`; `atoms/**` keeps `seed-atoms-fallback` + `effect-catalog-drift` seam, `atoms/generated/**` adds `gen-family-expand`, `generated-seed`; `passive-tree/**` → `gen-passive-tree`; the remaining subtrees are derived by S1 at build time |

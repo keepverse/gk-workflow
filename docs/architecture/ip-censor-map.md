@@ -79,7 +79,7 @@ Found by audit (`docs/research/ip-censor-spec-audit-2026-09-19.md` A1). `gk-core
 **throws** `VERIFICATION BOUNDARY MISSING` for any path with no owner boundary; the registry's 101
 boundaries cover 12 **C#** projects and contain **zero** entries for `gk-core/tools/ip-censor/**` or
 `gk-data/packs/fusion/data/seed/ip-censor/**` (verified by loading the registry). The nearest precedent,
-`tuning-publish-tool` (`gk-core/scripts/verification-boundaries.v1.json:863`), maps a `.py` file to a **C#**
+`tuning-publish-tool` (`gk-core/scripts/verification-boundaries.v1.json:2550-2565`), maps a `.py` file to a **C#**
 test project and runs the tool's real pytest only in a bespoke CI step (R15). And
 `gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs:49` walks `*.Tests.csproj` only, so nothing catches
 a missing Python CI step.
@@ -209,7 +209,7 @@ are recorded in each plan's own audit section.
 | M3 | MEDIUM | Release and CI scans specified with `working-directory: gk-core/tools/ip-censor`, where `git ls-files` lists only the tool | Fixed: `spec-wiring.md`; plan D4; todo T10–T12 |
 | M4 | MEDIUM | `spec-registry.md` omitted the `overwatch` day-one group, two of the three provenance shapes, the `import-renames.v1.json` file (with its `ids` section) and the plan pair in `self_paths` | Fixed: audit note in `spec-registry.md` |
 | M5 | MEDIUM | `spec-avoid-list.md` step 3 did not name the `--node` selector without which `--supersede` re-rolls the whole tree | Fixed: audit note |
-| M6 | LOW | Citation drift: the unmapped-path throw (`:95`, then `:118`) here and in `spec-report`, `spec-source`, `spec-wiring`; `ci.yml:300-306` (now `:311-317`) in `spec-wiring` | Fixed — the throw is `gk-core/scripts/verify-change.py:771` |
+| M6 | LOW | Citation drift: the unmapped-path throw (`:95`, then `:118`) here and in `spec-report`, `spec-source`, `spec-wiring`; the `tools/tuning` pytest step `spec-wiring` cited (`gk-core/.github/workflows/ci.yml:502-508`) | Fixed — the throw is `gk-core/scripts/verify-change.py:771` |
 | M7 | LOW | `spec-report.md`'s execute table routed the `Jackson*` family as names only | Fixed |
 | M8 | LOW | The ideal's IC-4 row still describes the `Jackson*` fix as a rename map only | Deferred: the ideal is outside this audit's edit set; the map and plan record G1 = yes |
 

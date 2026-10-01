@@ -574,7 +574,7 @@ item is done, and none needed a decision:
 | B1 | undefined interface types | `adapters/base.py` | `KindSpec`, `Dimension`, `Channel`, `RegistrySet`, `SeedAdapter` all defined |
 | B2 | item vocabulary inside the feature-agnostic modules | the `_stub` adapter + its conformance suite | `_stub` present, **10 seam tests**; the creatures adapter (feature 2) shipped without the core learning a creature concept |
 | B3 | no CLI specification | `seedsmith/report/cli.py` | `python -m seedsmith --help` → `{check, metrics}`, working |
-| B4 | no CI cutover for absorbing `seed_graph` | S10's cutover | `tools/seed_graph/` **deleted**; `ci.yml:85` runs *"Item seed reachability (seedsmith)"* with the cutover recorded in-line |
+| B4 | no CI cutover for absorbing `seed_graph` | S10's cutover | `tools/seed_graph/` **deleted**; `gk-core/.github/workflows/ci.yml:569` runs *"Item seed reachability (seedsmith)"* with the cutover recorded in-line |
 
 The grounding corrections landed with the specs they belonged to.
 

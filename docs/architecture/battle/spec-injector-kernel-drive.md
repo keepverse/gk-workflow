@@ -35,7 +35,7 @@ leaving it there.
 [x] I verified claims against CODE, not comments.
 [x] I read the surrounding section of every rule I quoted.
 [x] I tested (not assumed) any constraint I am reporting.
-    — "CI never builds the injector" is not assumed: `.github/workflows/ci.yml:62-77` runs ten
+    — "CI never builds the injector" is not assumed: `gk-core/.github/workflows/ci.yml:179-364` runs ten
       `dotnet test` calls and none of them is an injector project; there is no `dotnet build` of
       `gk-fusion/src/FusionRpg.Injector` anywhere in the workflow. This is the single load-bearing constraint
       behind §6's Core-vs-Injector split.
@@ -243,7 +243,7 @@ links.
 ## 6. Structure
 
 **Everything testable lives in Core. The injector file is an adapter and nothing else.** This is not
-style preference: `.github/workflows/ci.yml:62-77` runs ten test projects and never builds
+style preference: `gk-core/.github/workflows/ci.yml:179-364` runs 76 test projects and never builds
 `gk-fusion/src/FusionRpg.Injector`, so any logic placed there is untested by CI forever. The same split was
 applied for the same reason when the aura program extracted `EntityWriteGate` and
 `GrantedDerivedAtomReader` into Core.

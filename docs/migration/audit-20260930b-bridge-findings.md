@@ -153,7 +153,7 @@ solution-level gate should assert that each of the four cells reported a real pa
 
 Claim 5 is literally true about the two suites it names. It is false as a statement about gk-core.
 `FusionRpg.Guard.Tests` is in gk-core's `FusionRpg.slnx` (`FusionRpg.slnx:16`) and in its CI
-(`ci.yml:333`), and right now:
+(`gk-core/.github/workflows/ci.yml:339`), and right now:
 
 ```
 dotnet test tests\FusionRpg.Guard.Tests\FusionRpg.Guard.Tests.csproj   → EXIT 1
@@ -269,8 +269,8 @@ CI_STEP_EXIT=1        elapsed=0.6s
 - The gate the ledger row 137 row relies on — *"ci.yml now names the SOLUTION rather than a
   hand-maintained project list"* — is textually true and operationally dead. On every push and
   every PR this step exits 1 without testing anything.
-- The recorded measurement (*"runs 230 tests across three projects, all passing"*, `ci.yml:46-47`
-  and `release.yml:46`) is a **true statement about a local command** that the CI step does not run.
+- The recorded measurement (*"runs 230 tests across three projects, all passing"*, `gk-fusion/.github/workflows/ci.yml:46-47`
+  and `gk-fusion/.github/workflows/release.yml:46`) is a **true statement about a local command** that the CI step does not run.
   Two independent readings of the right number again.
 - The defect class is the retraction's own, inverted. The `error CS` counter could not see a
   failure. This guard *does* produce a non-zero exit — so the step is loudly red, not quietly green
@@ -278,8 +278,8 @@ CI_STEP_EXIT=1        elapsed=0.6s
   reads as a verified contract.
 
 I checked the sibling files before reporting: `gk-fusion/release.yml` uses `run: |` blocks with the
-guard at the same indent (correct), and `gk-core/ci.yml:170-171` uses the same correct
-`run: |` block shape. **This one occurrence is the only instance** — `ci.yml:69` (`run: dotnet build
+guard at the same indent (correct), and `gk-core/.github/workflows/ci.yml:170-171` uses the same correct
+`run: |` block shape. **This one occurrence is the only instance** — `gk-fusion/.github/workflows/ci.yml:69` (`run: dotnet build
 …`, lead 8) is correct; only line 73 is over-indented.
 
 Also in that step: the `throw` message names `FusionRpg.Launcher.Tests` while the command runs the
@@ -410,7 +410,7 @@ the standing gate that is supposed to keep the correction honest is broken (§3.
 
 ### Suggested order, cheapest first
 
-1. Fix `ci.yml:73` (dedent to 8) — the gate is dead and the fix is one character.
+1. Fix `gk-fusion/.github/workflows/ci.yml:73` (dedent to 8) — the gate is dead and the fix is one character.
 2. Add `src/FusionRpg.Bridge/FusionRpg.Bridge.csproj` to the `references` of the
    `FusionRpg.Core.Hud.Tests` entry in `gk-core/tests/core-test-projects.v1.json`, and **delete the
    `links` array's three host paths** — they name files that exist nowhere.

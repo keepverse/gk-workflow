@@ -219,7 +219,7 @@ bore, insert or bind. The bound is enforced at three points, and together they l
 | Point | Catches |
 |---|---|
 | the report's exit code, at publish time | an under-priced cell before any provenance is written |
-| the BalanceGuard test in CI (`.github/workflows/ci.yml:140`, `Category=BalanceGuard`) over the **shipped** tuning and corpus, recomputing the inequality — never trusting `measuredAgainst` | every commit that moves power or price by *any* route, including those provenance cannot see: atom-family magnitudes (`gk-data/packs/fusion/data/seed/items/affix-families/**`), power tables, a hand-typed provenance |
+| the BalanceGuard test in CI (`gk-core/.github/workflows/ci.yml:176`, `Category=BalanceGuard`) over the **shipped** tuning and corpus, recomputing the inequality — never trusting `measuredAgainst` | every commit that moves power or price by *any* route, including those provenance cannot see: atom-family magnitudes (`gk-data/packs/fusion/data/seed/items/affix-families/**`), power tables, a hand-typed provenance |
 | `ComboPricingProvenance.Check` at server boot | a local tree whose tuning revisions or combination corpus moved after the last passing measurement |
 
 ### 6. No-hard-ceilings, checked

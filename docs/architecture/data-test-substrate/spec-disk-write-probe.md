@@ -66,7 +66,7 @@ if ($after.NewDirs.Count -gt 0 -or $after.NewSqlite.Count -gt 0) { fail with the
 
 ### 3. Wiring
 
-- Add a CI step after `Restore / test (.NET)` (`ci.yml:139`) that runs the alarm around the Data
+- Add a CI step after `Restore / test (.NET)` (`gk-core/.github/workflows/ci.yml:179`) that runs the alarm around the Data
   suite (the suite that leaked 65.5 GB), then, if cheap, the full set.
 - **`ci.yml` is shared** with session `cold-process-test-build-20260912-e5b1` — the edit is
   owner-coordinated (a single added step), not concurrent.
@@ -145,7 +145,7 @@ None. The static half shipped; the runtime half's contract is fixed by the ideal
 - [x] Subsystem: Data/test infrastructure → docs read this session.
 - [x] Boundary recorded; `ci.yml` shared with another session and flagged.
 - [x] No decisions.md row owed.
-- [x] Claims cite file:line (`ci.yml:196-197`, `deploy-play.py:205`, the 153/154 scan).
+- [x] Claims cite file:line (`gk-core/.github/workflows/ci.yml:366-376`, `deploy-play.py:205`, the 153/154 scan).
 - [x] Verified against code: the shipped gate is static-only (read this session).
 - [x] Constraints tested: the gate fails on a planted violation and on a stale baseline (spike/probe).
 - [x] No DAL change.

@@ -384,7 +384,7 @@ root: scene-stage
 | A scene **route** (`/story/rift`) | GG-1 is stage + layers; the sibling spec says "never a new top-level route" for the same family |
 | Rename pieces `rift-*` | "Rift" is reserved; the system is `story-scene` |
 | Put beat copy in a TSX `const` | Scene 2 must not require a code edit |
-| Skip the band allowlist and ship anyway | That is what HEAD did; `bandGuard.test.ts` is red and CI's `npm test` step is a hard gate (`.github/workflows/ci.yml:421`) |
+| Skip the band allowlist and ship anyway | That is what HEAD did; `bandGuard.test.ts` is red and CI's `npm test` step is a hard gate (`gk-core/.github/workflows/ci.yml:683-689`) |
 
 ---
 

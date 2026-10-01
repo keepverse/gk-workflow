@@ -132,7 +132,7 @@ ideal is stale.
 | Event text has no wire path: `EventView` carries no name or flavor | `gk-web/web/fusion-rpg-web/src/contract/types.ts:1276-1282` |
 | `/talk` only commits an already-resolved join | `gk-core/src/FusionRpg.Server/DelveWildEndpoints.cs:14-22` |
 | Chain preflight tolerates an unresolved `chainRef` | `gk-core/src/FusionRpg.Core/Delve/Events/EventDeckPreflight.cs:55` |
-| `gk-forge/tools/seedsmith/**` has no verification boundary: `verify-change.py` throws for it; seedsmith's pytest runs only in CI | `gk-core/scripts/verify-change.py:771`; `docs/architecture/test-verification-boundary/spec-python-test-lane.md` line 16; `.github/workflows/ci.yml:284` |
+| `gk-forge/tools/seedsmith/**` has no verification boundary: `verify-change.py` throws for it; seedsmith's pytest runs only in CI | `gk-core/scripts/verify-change.py:771`; `docs/architecture/test-verification-boundary/spec-python-test-lane.md` line 16; `gk-core/.github/workflows/ci.yml:569-591` |
 
 The last four rows of the C# group are runtime wiring owned by other programs (§7); they are listed so
 no session reports them as walls.
@@ -371,7 +371,7 @@ calls) is a reading to be replaced by `narrative-planner`'s dry run. Batches are
 reviewer clears in one sitting; character anchors are accepted before any line call spends a token.
 
 **Verification.** seedsmith's own pytest suite is the verification for every module here; it runs in
-CI (`.github/workflows/ci.yml:284`). `verify-change.py` cannot select it yet because `gk-forge/tools/seedsmith/**`
+CI (`gk-core/.github/workflows/ci.yml:569-591`). `verify-change.py` cannot select it yet because `gk-forge/tools/seedsmith/**`
 has no boundary (§3.2); the mapping is `test-verification-boundary`'s `python-test-lane`, not this
 program's. Every test stubs the model transport so that a real call raises.
 

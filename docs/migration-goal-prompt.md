@@ -65,11 +65,14 @@ run, it has no preview mode, and `--confirm-migration-start` is the owner's gate
   anyway" was false, and cost 209 of gk-assets' 228 files — the whole art tree.
 
 **Rule: never pass `--confirm-migration-start` to learn what apply would do.** Compute the
-answer from `report.json` and the target repo, as this prompt's audit section requires.
+answer from the `kvsplit` `report.json` — a run artefact that does not exist in any repository, so
+re-derive it with `stage --plan-only` rather than looking for a committed copy — and from the target
+repo, as this prompt's audit section requires.
 
 ### H2 — a report row is not content
 
-`report.json`'s `reconciliation.placedPerRepo` counts only **primary** placements. The
+The `report.json` does not exist in any repository (it is a `kvsplit` run artefact), and its
+`reconciliation.placedPerRepo` counts only **primary** placements. The
 `files` array also holds `copies` rows (the same file staged into a second repo) and
 `template` rows (kvsplit emitting an `AGENTS.md` to seed a repo that lacks one).
 
@@ -215,7 +218,8 @@ The migration is complete when **all** of these hold, each with recorded evidenc
 5. Every residue id is either closed with no replacement, or named in a report as an open
    item with its owner and its reason. **A carried residue is an open item, not a pass.**
 6. A6: gk-assets and gk-tests tracked counts and HEADs unchanged; every other repo's
-   tracked count matches its `report.json` count.
+   tracked count matches its `report.json` count — that file does not exist in any repository, it is
+   a `stage` run artefact, so this clause is checkable only against a fresh `stage` run).
 7. A7: no derived content in any public repository's working tree **or history**.
 8. gk-core builds and tests with every private sibling absent.
 9. Per-repository build and test results at the lock SHAs.

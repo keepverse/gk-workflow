@@ -210,7 +210,7 @@ adding `BulletModify` beside them rather than making it three. Criterion 4 asser
 | `bullet.modify` bound in Battle | `RuntimeUnsupported` at bind |
 | Cheat `D-DMG-SET` set while a `bullet.modify` grant is live | cheat wins; an ordering test asserts it |
 
-**The injector is not built by CI** — `.github/workflows/ci.yml:75-103` runs ten test projects and no
+**The injector is not built by CI** — `gk-core/.github/workflows/ci.yml:179-364` runs 76 test projects and no
 injector build, because it needs the game assemblies. So every assertion that can live in Core does:
 plan-item shape, pricing, validation. The sink's forwarding is covered by a text guard in the
 `scripts\guard-*.ps1` family, the same technique `guard-single-writer.py` uses and that

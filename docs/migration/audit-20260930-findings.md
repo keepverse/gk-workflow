@@ -25,7 +25,7 @@ The two refutations (4 and 8) are load-bearing: both assert a property the code 
 | 3c | No `Compile Include` reaching another repo via `$(Gk*Root)` | **COULD NOT REPRODUCE — REFUTED** | Found 2 exact hits, in `gk-forge` and `gk-fusion` |
 | 4 | DominanceBaseline + CreatureSpeciesImport are process-only; only CreatureCorpusDump breaks a clone | **COULD NOT REPRODUCE — REFUTED** | Standalone clone + workspace-shaped clone, tests actually run |
 | 5 | Standalone clone fails with exactly 2 errors, both `CreatureCorpusDump` | **COULD NOT REPRODUCE** | MSBuild says **1**; and 6 test projects are **absent from the solution** |
-| 6 | kvsplit stage reproduces the placement/residue/balance figures | **partially reproduced — placements, residue, balance all exact; the rules digest does not match** | Re-ran `stage`, read `report.json` |
+| 6 | kvsplit stage reproduces the placement/residue/balance figures | **partially reproduced — placements, residue, balance all exact; the rules digest does not match** | Re-ran `stage`, read its `report.json` (a run artefact that does not exist in any repository, so the re-read is reproducible only by re-running `stage`) |
 | 7 | No public repo's history contains derived content | **reproduced: 0 in all six** | `git rev-list --objects --all` × 6, with a positive control on `gk-data` |
 | 8 | No test in gk-core may need gk-data | **COULD NOT REPRODUCE — REFUTED** | 184 files read a real pack path; 1470/1470 fail in a gk-data-less workspace |
 
@@ -211,7 +211,7 @@ That is a genuine content dependency inside
 `tests/FusionRpg.Core.Tests.Shared/ContractTuningTestBootstrap.cs:135` — compiled into 5 assemblies
 by `CoreTests.Shared.props:16-19` and by `Directory.Build.props:30`. gk-core's test suite cannot
 run without private content, and `FusionRpg.Server.Tests`/`E2E.Tests` bootstraps
-(`CommanderDirectoryTestBootstrap.cs:21-31`, `ContractTuningTestBootstrap.cs:53`) do the same.
+(`CommanderDirectoryTestBootstrap.cs:21-31`, `gk-core/tests/FusionRpg.E2E.Tests/ContractTuningTestBootstrap.cs:53`) do the same.
 The AGENTS.md rule is stated as fact and is not true.
 
 ### R3 — Claim 3c: "No file anywhere still contains a `Compile Include` reaching into another repository's source tree"

@@ -37,7 +37,7 @@ verification run for a two-file change (`DebugActions.cs`, `DebugEndpoints.cs`) 
   `verify-change.ps1:74-92` in the retired PowerShell form) resolves each changed path to its most-specific owner boundary
   and the seams layered on it; `guard-verification-boundaries.py:84-93` fails the registry itself if
   any `src/**` file has zero owner. The mechanism **works today**, proven by the `data-item-socket` /
-  `data-item-socket-test` pair (`verification-boundaries.v1.json:1724`, `:1738`; citations re-checked
+  `data-item-socket-test` pair (`verification-boundaries.v1.json:1755-1768`, `:1769-1781`; citations re-checked
   2026-09-18, since the registry is sorted by id and has grown): a change to
   `RpgStore.Sockets.cs` runs `dotnet test ... --filter VerificationId=data.item-socket`, not the whole
   `Data.Tests` project.

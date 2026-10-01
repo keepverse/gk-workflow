@@ -13,7 +13,7 @@ element row and channel policy.
 ## 1. The defect
 
 Verified 2026-09-03: a sweep of `scripts/`, `src/` and `.github/` for `AtomImporter` returns
-**`gk-fusion/scripts/deploy-play.py:351` and nothing else** (CI runs its *tests* at `ci.yml:97`, never the tool).
+**`gk-fusion/scripts/deploy-play.py:351` and nothing else** (CI runs its *tests* at `gk-fusion/.github/workflows/ci.yml:71-75`, never the tool).
 
 `gk-fusion/src/FusionRpg.Launcher/` — the WPF player entry that installs the loader, picks a port and starts the
 game and server — has **no import step**.

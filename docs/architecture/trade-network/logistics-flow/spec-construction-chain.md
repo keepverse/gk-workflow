@@ -145,9 +145,11 @@ a reader of `audit-magic-numbers.py` output do not mistake it for a progression 
 **Verification boundary for the publish.** `data/tuning/siege.v*.json` has no owner row in
 `gk-core/scripts/verification-boundaries.v1.json` (`gk-core/data/tuning/**` has no fallback; the audit of 2026-09-20 saw
 `verify-change.ps1 -PlanOnly` stop on `gk-core/data/tuning/world.v6.json` with *"VERIFICATION BOUNDARY MISSING"*).
-The publish commit adds an owner row `siege-tuning` (paths: each published `data/tuning/siege.v{n}.json`
-as an exact path — the matcher takes exact paths and `dir/**` only, `scripts/verify-change.ps1:70-75` —
-`gk-core/src/FusionRpg.Core/Battle/Board/SiegeTuning.cs`; project `core`) with the siege tuning loader's tests.
+The publish commit adds an owner row `siege-tuning` (paths: `gk-core/data/tuning/siege.v*.json`, one
+wildcard that covers every published version — the matcher accepts a final-segment wildcard, so a
+per-version row is no longer required (`gk-core/scripts/lib/verification_boundaries.py:49-59`) — plus
+`gk-core/src/FusionRpg.Core/Battle/Board/SiegeTuning.cs`; project `core`) with the siege tuning
+loader's tests.
 
 `construction.refineRubblePerIronwork` (4) is **not read by `Refine`** — the function reads only
 `refineYieldMilli` — and has no reader anywhere in `src/`. Two tunables describe one ratio; this module

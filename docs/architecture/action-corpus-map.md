@@ -110,7 +110,7 @@ ten — see the correction at the top of this document):**
 | A-T1 `type-weights` | **FULLY BUILT + WIRED** (Python, not C# — see §2 above) |
 | A-S1 `distribution-planner` | **FULLY BUILT + WIRED** — `distribution_planner/derive.py`, real `_briefs/round-1.json`, 93/93 tests |
 | A-G1 `tier-access-gate` | **FULLY BUILT + WIRED** — `RungRow.PowerBudgetMilli`, `StructureBudgetGuard.UndetectableAxes()`, real caller `RpgStore.ActionCatalog.cs:92-119` (every action passes through on the way to a battle-usable catalog) |
-| A-R1 `resource-ownership` | **FULLY BUILT + WIRED**, math corrected from the original "18 rows/216 edges" to the real, verified "24 rows/166 edges" — `gk-core/tools/tuning/resource_ownership.py`, byte-for-byte reproduction test, real CI gate (`.github/workflows/ci.yml:56-57`) |
+| A-R1 `resource-ownership` | **FULLY BUILT + WIRED**, math corrected from the original "18 rows/216 edges" to the real, verified "24 rows/166 edges" — `gk-core/tools/tuning/resource_ownership.py`, byte-for-byte reproduction test, real CI gate (`gk-core/.github/workflows/ci.yml:92-99`) |
 | A-S5 `coverage-report` | **FULLY BUILT** — real `_reports/coverage-round-2.json`, 37 tests |
 | A-S3 `dedup-select` | **FULLY BUILT + WIRED**, one owner-decided deviation from this table's own text: tier 3 ships as an in-repo token-overlap heuristic, not LlamaIndex (`spec-dedup-select.md:48-62`, 2026-09-03) — still advisory-only. Real `_rounds/round-{1,2,903}/`, 53 tests |
 | A-S6 `innate-picker` | **FULLY BUILT + WIRED** — real `species-innate.json`, real promotions in `committed-round-{1,2}.json` |

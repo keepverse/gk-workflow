@@ -188,8 +188,10 @@ No `apply`, no `--confirm-migration-start`, no `reset` / `checkout` / `stash` / 
 Correcting gk-tests surfaced the same violation **one repository over**, and it is deliberately
 not fixed here.
 
-`scripts/**` is placed in **gk-core** by the blanket `core-scripts` rule. Under that rule the
-import put these in gk-core, measured from `report.json` at the import SHA:
+`scripts/**` is placed in **gk-core** by the blanket `core-scripts` rule. Under that rule the import
+put these in gk-core — the `report.json` does not exist in any repository (it is a `kvsplit stage`
+run artefact), so these figures are re-derivable only by re-running `stage` — measured at the
+import SHA:
 
 ```
 gk-core/scripts/verification-boundaries.v1.json     a shared gate definition - the per-repo

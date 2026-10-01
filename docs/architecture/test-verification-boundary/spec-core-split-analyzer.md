@@ -34,7 +34,7 @@ folders plus `TestSupport/` and `Goldens/`, and 45 root files on this commit —
 - namespace-vs-folder mismatches (25 files, a reading; map G17). The split carries them unchanged,
   but a later `FileMove move` of one of them would rewrite its namespace, so the report lists them;
 - where each `VerificationId` and `Category` trait lives (feeds `core-registry-rekey` and the CI
-  BalanceGuard step, `ci.yml:140`).
+  BalanceGuard step, `gk-core/.github/workflows/ci.yml:176`).
 
 **User:** the owner and whoever writes the split manifest.
 
@@ -94,7 +94,7 @@ dotnet test tests\FusionRpg.TestSplitAnalyzer.Tests -c Release
 | `gk-core/tools/TestSplitAnalyzer/Report.cs` | (new) json/md, sorted |
 | `gk-core/tests/FusionRpg.TestSplitAnalyzer.Tests/` | (new) |
 | `gk-core/scripts/verification-boundaries.v1.json` | a `projects` id for the new test project (required by `registry-contract` C2) and one owner boundary over tool + tests (`filemove`'s shape) |
-| `.github/workflows/ci.yml` | map §7.1 E3 (approved, R15). In "Restore / test (.NET)", directly after the FileMove pair (`ci.yml:180-181`) and in the same commit as the project, because `CiWiringGuardTests.cs:45-71` fails without it: `dotnet test gk-core/tests/FusionRpg.TestSplitAnalyzer.Tests/FusionRpg.TestSplitAnalyzer.Tests.csproj -c Release --verbosity minimal --blame-hang --blame-hang-timeout 10min`, then `if ($LASTEXITCODE -ne 0) { throw "FusionRpg.TestSplitAnalyzer.Tests failed" }`. Not in `release.yml` (map §7.1) |
+| `.github/workflows/ci.yml` | map §7.1 E3 (approved, R15). In "Restore / test (.NET)", directly after the FileMove pair (`gk-core/.github/workflows/ci.yml:350-351`) and in the same commit as the project, because `CiWiringGuardTests.cs:45-71` fails without it: `dotnet test gk-core/tests/FusionRpg.TestSplitAnalyzer.Tests/FusionRpg.TestSplitAnalyzer.Tests.csproj -c Release --verbosity minimal --blame-hang --blame-hang-timeout 10min`, then `if ($LASTEXITCODE -ne 0) { throw "FusionRpg.TestSplitAnalyzer.Tests failed" }`. Not in `release.yml` (map §7.1) |
 
 ## Code style
 

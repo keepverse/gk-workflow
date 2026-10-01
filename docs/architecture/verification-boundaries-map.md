@@ -28,7 +28,7 @@ verification boundaries answer *what evidence those edited paths require*.
 | Existing architecture specs contain focused filters, but only as distributed prose. | e.g. `docs/architecture/species-gear-chain/spec-socket-combat-wiring.md:249-250` and `docs/architecture/passive-tree/spec-gate-counters.md:466`. | These are useful migration evidence, not an executable authority. |
 | Test-project references cross behavioral ownership boundaries for fixtures/tool apphosts. | `gk-core/tests/FusionRpg.Core.Tests/FusionRpg.Core.Tests.csproj`; `gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj`. | A project-reference graph cannot safely derive the required behavior tests. |
 | A shared worktree can contain another session's changes. | `docs/contributing/session-boundary.md` §1, §4; active-session inventory checked 2026-09-13. | A planner must accept explicit paths; it must not treat ambient `git diff` as this session's changes. |
-| Full CI is deliberately unfiltered. | `.github/workflows/ci.yml:195-216`. | Local narrowing must not weaken full, disk, cold-process, or E2E coverage. |
+| Full CI is deliberately unfiltered. | `gk-core/.github/workflows/ci.yml:389-398`. | Local narrowing must not weaken full, disk, cold-process, or E2E coverage. |
 | `--no-build` after a source edit can test stale dependent assemblies. | `docs/contributing/test-burden-audit.md` §5.2. | The canonical runner must build the selected test project before it tests it. |
 
 ## 3. Decisions this program makes

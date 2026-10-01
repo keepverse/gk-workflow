@@ -52,7 +52,7 @@ lines in Group 4, `testing-standard.md` §7). `dal` is not carried: it scans `sr
 nothing about a test edit.
 
 `PassiveTreeRosterGen.Tests` is held out of CI for a pre-existing content drift
-(`ci.yml:169-172`, `CiWiringGuardTests.cs:38-41`). Mapping it locally is still correct: an edit to it
+(`gk-core/.github/workflows/ci.yml:170-174`, `CiWiringGuardTests.cs:38-41`). Mapping it locally is still correct: an edit to it
 then runs it, and a red result is the honest answer.
 
 ### C2 — every test project is either registered or exempt with a reason
@@ -106,7 +106,7 @@ a compile error. The temp directory is removed in `finally`, and a failed remova
 an enforcement-catalog row `bench-compile` (`tier: ci`, `status: gating`, `localReason: null`), so
 SE's runner runs it in CI with no `ci.yml` edit, and `boundaries[].guards` names it by that id.
 
-The second consumer of C5 is **`magic-number-audit`** (`verification-boundaries.v1.json:2485`). Its
+The second consumer of C5 is **`magic-number-audit`** (`verification-boundaries.v1.json:2526-2536`). Its
 paths are `gk-core/scripts/audit-magic-numbers.py` alone — it also listed a thin PowerShell wrapper, retired
 2026-09-26 — and it names project
 `guard` — but no Guard test reads either script (map G15). Its only honest check is its own guard,
@@ -127,7 +127,7 @@ A `projects` value may also be an **array** of `.csproj` paths — a group, e.g.
 Every boundary keeps its single `project` field; the id may name a group.
 
 - **Module selection on a group** runs every member, sequentially, each with the default-profile filter.
-  This is what keeps `core-fallback` (`gk-core/src/FusionRpg.Core/**`, `verification-boundaries.v1.json:786`)
+  This is what keeps `core-fallback` (`gk-core/src/FusionRpg.Core/**`, `verification-boundaries.v1.json:802-811`)
   verifying *all* Core tests while they move into new projects — a split increment must never make a
   Core production change verify less than before.
 - **Focused selection on a group** runs only the members whose directory contains the

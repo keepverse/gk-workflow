@@ -49,12 +49,12 @@ test code and a one-subsystem change compiles one small project.
 | Runner: guards then `dotnet test` per selected project, `VerificationId` filter or the default-profile filter, stop at first failure | `gk-core/scripts/verify-change.py:1192` |
 | Integrity guard: schema allow-list, project/guard files exist, unique owner patterns, `VerificationId` has a `[Trait]` in the named project, every `src/**/*.cs` has an owner | `gk-core/scripts/guard-verification-boundaries.py:34-93` |
 | Depth reading (prints, asserts nothing) | `gk-core/scripts/guard-verification-boundaries.py:104-117` (`--report`) |
-| CI runs the integrity guard in its own step | `.github/workflows/ci.yml:256-262` |
+| CI runs the integrity guard in its own step | `gk-core/.github/workflows/ci.yml:435-441` |
 | Default profile owns the one local filter; requires `-Project` or `-AllDefault` | `scripts/test-fast.ps1:24,59-61` |
-| CI is unfiltered except BalanceGuard, asserted | `.github/workflows/ci.yml:210-219` |
+| CI is unfiltered except BalanceGuard, asserted | `gk-core/.github/workflows/ci.yml:389-398` |
 | Every `tests/**/*.Tests.csproj` appears in `ci.yml` or a named exemption | `gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs:35-71` |
 | Text-based C# file mover with assembly-cycle refusal and dry-run default | `gk-core/tools/FileMove/Program.cs:5-11`, `gk-core/tools/FileMove/FileMover.cs:24-48` |
-| R-TV2 production half for Data/Server/Launcher, the `launcher` re-point and `launcher-source-guards` seam | registry entries `data-*`, `server-*`, `launcher-*` (e.g. `data-fallback` at `gk-core/scripts/verification-boundaries.v1.json:1667`, `launcher-fallback` at `:2248`) |
+| R-TV2 production half for Data/Server/Launcher, the `launcher` re-point and `launcher-source-guards` seam | registry entries `data-*`, `server-*`, `launcher-*` (e.g. `data-fallback` at `gk-core/scripts/verification-boundaries.v1.json:1698-1710`, `launcher-fallback` at `:2301-2310`) |
 | Core focused boundaries that already existed before R-TV2 | `battle-effect-math` (`:32`), `elemental-resolver` (`:561`), `core-lawn-attrition` (`:134`), `core-creature-catalog-generator`, `core-creature-corpus-dump`, `tools-combat-sim`, `tools-prove-predictor` |
 
 ### Gaps found by running the tools, not by reading docs
@@ -67,19 +67,19 @@ this commit. Counts below are **readings** from that run, printed for scale and 
 |---|---|---|---|
 | G1 | Six test roots have no owner: `E2E`, `AtomImporter`, `ItemSeedValidator`, `FileMove`, `PassiveTreeRosterGen` tests, and `gk-core/tests/FusionRpg.Bench`. An edit there is refused, and nothing fails until someone edits one | `verify-change` → `VERIFICATION BOUNDARY MISSING` for each csproj; the guard walks only `src/` (`guard-verification-boundaries.py:84`) | `registry-contract` |
 | G2 | The matching tool trees are unmapped too: `gk-forge/tools/AtomImporter`, `gk-forge/tools/ItemSeedValidator`, `gk-core/tools/FileMove`, `gk-forge/tools/PassiveTreeRosterGen` | same planner refusal | `registry-contract` |
-| G3 | `level` disagrees with the selector in three entries: `battle-effect-math` has a `VerificationId` but says `module`; `session-and-program-records` says `focused` and has none; `effect-catalog-drift` is `kind: seam` but says `focused` | `verification-boundaries.v1.json:592-610`, `:3345-3356`, `:1950-1961`; the guard checks only membership (`guard-verification-boundaries.py:67`) | `registry-contract` |
-| G4 | Versioned tuning files are mapped by **exact** name, so every `gk-core/tools/tuning/publish.py` run (it writes `v{n+1}`, `publish.py:10`) produces an unmapped file. `power-scale.v1/v2`, `lawn-attrition.v3`-to-be, etc. The pattern grammar has no wildcard except a trailing `/**` | `verify-change.ps1:38-41`; `guard-verification-boundaries.py:21`; entries at `:727`, `:809`, `:835` | `registry-contract` (grammar), `seam-coverage` (entries) |
-| G5 | **No Python lane exists.** `projects` are all `.csproj` and the runner only emits `dotnet test` (`verify-change.ps1:116-117`). `gk-forge/tools/seedsmith/**` is unmapped; `gk-core/tools/tuning/publish.py` + `test_publish_add_key.py` resolve to `guard` (`:796-807`), and no Guard test touches `gk-core/tools/tuning` — the same "wrong project" defect R-TV2 fixed for the Launcher | planner output; `grep` of `gk-core/tests/FusionRpg.Guard.Tests` finds no `gk-core/tools/tuning` reference | `python-test-lane` |
-| G6 | `gk-core/tools/tuning`'s own pytest files run **nowhere** in CI — only `resource_ownership.py --check` does (`ci.yml:68`) | `ci.yml` has no `test_publish`/`test_resource_ownership` call | `python-test-lane` (CI step approved by R15; lands after the stale test is fixed) |
-| G7 | Generator `--check` and seedsmith corpus gates run only in CI (`ci.yml:68,78,88,99,111,343,353,363,373,389,408,419`, plus the three C# corpus gates `:287,298,304`); a local change to a generated tree or its generator has no local lane for them | planner has no such check kind | `python-test-lane` (`seam-coverage` adds the three C# gates) |
+| G3 | `level` disagrees with the selector in three entries: `battle-effect-math` has a `VerificationId` but says `module`; `session-and-program-records` says `focused` and has none; `effect-catalog-drift` is `kind: seam` but says `focused` | `verification-boundaries.v1.json:597-615`, `:3460-3471`, `:1982-1993`; the guard checks only membership (`guard-verification-boundaries.py:67`) | `registry-contract` |
+| G4 | Versioned tuning files are mapped by **exact** name, so every `gk-core/tools/tuning/publish.py` run (it writes `v{n+1}`, `publish.py:10`) produces an unmapped file. `power-scale.v1/v2`, `lawn-attrition.v3`-to-be, etc. — the entries are the defect, not the grammar: `pattern_match` accepts four shapes, one of them a final-segment wildcard, so a wildcard entry is already legal (`gk-core/scripts/lib/verification_boundaries.py:49-59`, `:104-119`) | `gk-core/scripts/lib/verification_boundaries.py:49-59`, `:104-119`; entries at `:727`, `:809`, `:835` | `registry-contract` (grammar), `seam-coverage` (entries) |
+| G5 | **`gk-forge/tools/seedsmith/**` is unmapped** — the registry holds no boundary reaching it. The runner is no longer C#-only: a boundary whose project is a pytest project emits a `pytest` check (`gk-core/scripts/verify-change.py:468`, `:817-828`), one per project over the union of its selectors | planner output; `grep` of `gk-core/tests/FusionRpg.Guard.Tests` finds no `gk-core/tools/tuning` reference | `python-test-lane` |
+| G6 | `gk-core/tools/tuning`'s own pytest files **do** run in CI — `gk-core/.github/workflows/ci.yml:502-508`, placed after the seedsmith lockfile install because pytest comes from it | `gk-core/.github/workflows/ci.yml:502-508` | `python-test-lane` — shipped |
+| G7 | Generator `--check` and seedsmith corpus gates still run **only** in CI — `gk-core/.github/workflows/ci.yml:98`, `:108`, `:118`, `:129`, `:141`, `:466`, `:477`, `:483`, `:589`, `:599`, `:609`, `:619`, `:635`, `:654`, `:679`; a local change to a generated tree or its generator has no local lane for them | planner has no such check kind | `python-test-lane` (`seam-coverage` adds the three C# gates) |
 | G8 | Most of `gk-core/data/tuning/**`, `gk-data/packs/fusion/data/seed/**`, `gk-data/packs/fusion/data/generated/**` and all of `gk-core/tests/fixtures/**` are unmapped (readings on this commit: 144 of 149, 2,215 of 2,234, 906 of 948, 79 of 79 files) | owner-pattern match over the trees | `seam-coverage` |
 | G9 | `gk-core/tests/FusionRpg.Bench` is an `Exe`; `dotnet test` on it restores and **does not build**, exits 0 — so mapping it to a test project would be false evidence | ran `dotnet test gk-core/tests/FusionRpg.Bench/FusionRpg.Bench.csproj -c Release`: restore only, exit 0 | `registry-contract` (guard-only boundary + compile guard) |
 | G10 | `FusionRpg.Core.Tests` is one assembly: 31 test-code folders (plus `TestSupport/` and `Goldens/`) and 45 root files (readings; the ideal's "26 subsystem folders" is an older reading), with one `[ModuleInitializer]` (`gk-core/tests/FusionRpg.Core.Tests.Shared/ContractTuningTestBootstrap.cs:43`), assembly-wide serialisation (`gk-core/tests/FusionRpg.Core.Tests.Shared/AssemblyInfo.cs:6`), and an `InternalsVisibleTo` grant to exactly that name (`gk-core/src/FusionRpg.Core/FusionRpg.Core.csproj:18`) | `ls`, the csproj | `core-split-*` |
 | G11 | A `VerificationId` can span folders that the split will put in different projects: `core.battle-effect-math` is on `Combat/OwnerElementFallbackTests.cs` **and** `Battle/BattleEffectMathTests.cs`; a boundary names one `project` | `grep` of `Trait("VerificationId", "core.` | `core-registry-rekey` |
 | G12 | Seven `core.*` traits have no boundary (`core.battle-mode-parity`, `core.kill-attribution`, `core.siege-estimator-parity`, `core.species-term-compose`, `core.species-passive-atoms`, `core.advanced-effect-clock`, `core.vocabulary-single-declaration`). The guard checks boundary→trait, never trait→boundary | same grep vs registry | `registry-contract` (reading), `core-registry-rekey` (entries) |
-| G13 | `Data.Tests` is the measured burden, and one in-process run cannot parallelise its in-memory stores (`test-architecture-audit.md` §4-5); CI runs it as one process (`ci.yml:155`) and again under the leak alarm (`ci.yml:196`) | audits + CI | `data-tests-sharding` |
-| G14 | **`release.yml` masks failures.** Its four `dotnet test` lines (`release.yml:43-46`) have no exit check between them, so only the last one (Launcher) decides the step: the exact defect `ci.yml:146-152` records fixing in CI. Nothing checks either workflow for the pattern | read the file; no Guard test mentions `release.yml` or `LASTEXITCODE` | `core-split-wiring` W0 |
-| G15 | Two more boundaries point at a project that does not read their paths: `magic-number-audit` (`verification-boundaries.v1.json:2485`, `gk-core/scripts/audit-magic-numbers.py`) and `tuning-publish-tool` (`:2509`) both run **Guard.Tests**, and no Guard test reads either script. Their `magic-numbers` guard is the only honest check. Same defect class as G5 and the old Launcher mapping | `git grep audit-magic-numbers tests/` hits only a comment in Core.Tests | `registry-contract` C5 (`magic-number-audit` → guard-only), `python-test-lane` D4 (`tuning-publish-tool` → pytest) |
+| G13 | `Data.Tests` is the measured burden, and one in-process run cannot parallelise its in-memory stores (`test-architecture-audit.md` §4-5); CI runs it as separate shard processes (`gk-core/.github/workflows/ci.yml:335`) and again under the leak alarm (`gk-core/.github/workflows/ci.yml:375`) | audits + CI | `data-tests-sharding` — shipped |
+| G14 | **CLOSED 2026-09-19.** `release.yml` masked failures: its four `dotnet test` lines had no exit check between them, so only the last one decided the step. Every call now checks its own exit code (`gk-core/.github/workflows/release.yml:57-65` records why), and `WorkflowExitCheckTests.cs` holds the rule over every workflow file, so the pattern cannot return | read the file; `gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs` | `core-split-wiring` W0 — shipped |
+| G15 | Two more boundaries point at a project that does not read their paths: `magic-number-audit` (`verification-boundaries.v1.json:2526-2536`, `gk-core/scripts/audit-magic-numbers.py`) and `tuning-publish-tool` (`:2550-2565`) both run **Guard.Tests**, and no Guard test reads either script. Their `magic-numbers` guard is the only honest check. Same defect class as G5 and the old Launcher mapping | `git grep audit-magic-numbers tests/` hits only a comment in Core.Tests | `registry-contract` C5 (`magic-number-audit` → guard-only), `python-test-lane` D4 (`tuning-publish-tool` → pytest) |
 | G16 | `CiWiringGuardTests` walks only `tests/` (`CiWiringGuardTests.cs:52-56`), matches by substring (`:65`, so a path in a YAML comment satisfies it), and never reads `release.yml`. A new Core test project could be absent from the release gate with every guard green. Already true today: `gk-fusion/tools/LawnCombatObserver.Tests` and `gk-fusion/tools/ProveLiveProbe.Tests` appear in neither workflow | the test's own code; `grep` of both workflows | `core-split-wiring` W5–W7 |
 | G17 | The split is not as mechanical as "move the folder" suggests. Readings on this commit: 25 source files in `gk-core/tests/FusionRpg.Core.Tests` declare a namespace their folder does not imply (`Atoms/EffectSeedFixtureOracle.cs` declares `FusionRpg.Core.Effects`; the other 24 are every file under `PassiveTree/tests-PassiveTree/`, which drop the `tests-PassiveTree` segment); 25 files locate repo files by walking `..` from `[CallerFilePath]`; `PassiveTree/GateCounters/GateCounterBoundaryGuardTests.cs:97` reads another test file by its literal `gk-core/tests/FusionRpg.Core.Tests/...` path | a namespace-vs-folder scan; `git grep CallerFilePath` | `core-split-analyzer` (reports), `core-split-apply` A2 (depth invariant) |
 | G18 | `FileMove`'s `Apply` has no undo, and its `PlannedEdit` cannot express one: a moved file's edit carries the **source** text as `Before` (`gk-core/tools/FileMove/FileMover.cs:60`) and the source deletion is not an edit at all (`:113-115`). "Restore every `Before`" would write the source text to the destination and never restore the source | read the code | `core-split-apply` A4 |
@@ -90,7 +90,7 @@ Measured 2026-09-18 on this commit:
 
 - `gk-forge/tools/seedsmith/tests/test_actions_description_completeness.py` — **5 failures**, all in
   `RealCommittedCorpusCleanPassTests` (e.g. `act.attack` and `action.family.academic.004` lack a
-  description). Because CI runs the whole seedsmith suite (`ci.yml:341`), that step is red for the
+  description). Because CI runs the whole seedsmith suite (`gk-core/.github/workflows/ci.yml:587`), that step is red for the
   same reason.
 - `gk-forge/tools/seedsmith/tests/test_items_adapter.py` — **passes today.** `AGENTS.md` still lists it as
   failing on a clean HEAD; that line is stale (AGENTS.md is local-only, so this is reported to the
@@ -260,10 +260,10 @@ apart. The ideal's sequencing note holds: R-TV2 test-side work that keys on Core
 ## 7. Owner rulings applied 2026-09-18 (R15, [spec-rulings-2026-09-18.md](spec-rulings-2026-09-18.md))
 
 1. ✅ **CI lines for new test projects — approved.** One `dotnet test` line per new project in `ci.yml`
-   (and `release.yml:43`), the analyzer's test project, and a `gk-core/tools/tuning` pytest step, in the existing
-   per-line exit-check pattern (`ci.yml:153-154`, the fix recorded at `:146-152`). The pytest step lands
+   (and `gk-core/.github/workflows/release.yml:64-65`), the analyzer's test project, and a `gk-core/tools/tuning` pytest step, in the existing
+   per-line exit-check pattern (`gk-core/.github/workflows/ci.yml:194-195`, the fix recorded at `:182-193`). The pytest step lands
    with the stale `test_resource_ownership.py` test fixed, never red.
-2. ✅ **Data.Tests sharding in CI — approved.** `ci.yml:155` becomes the sharded runner; the remainder
+2. ✅ **Data.Tests sharding in CI — approved.** `gk-core/.github/workflows/ci.yml:335` becomes the sharded runner; the remainder
    shard keeps the partition complete by construction.
 3. **The split manifest** stays a gate with a stated default, not a question: after `core-split-analyzer`
    runs, one project per reference-clean folder group; everything else stays in a residual
@@ -279,27 +279,32 @@ Each module owns its lines, and the spec named below holds the exact text. The p
 rules:
 
 - **(a) Per-line exit check.** Every test invocation (`dotnet test …`, `python -m pytest …`,
-  `.\scripts\test-sharded.ps1 …`) is followed on the very next line by
+  `python scripts/test_sharded.py …`) is followed on the very next line by
   `if ($LASTEXITCODE -ne 0) { throw "<name> failed" }`, in both workflows.
 - **(b) The pattern is enforced by a test.** `WorkflowExitCheckTests` (`core-split-wiring` W0)
-  asserts rule (a) over both files. `release.yml` violates it today (G14), so W0 lands first.
+  asserts rule (a) over every `.yml` in `gk-core/.github/workflows`. It shipped with the
+  `release.yml` fix (G14), so nothing here is a precondition any more.
 - **(c) The no-filter assertion is never loosened.** No new line carries `--filter`, except a
-  BalanceGuard line whose filter string is byte-identical to `ci.yml:140`. That keeps the no-filter
-  assertion (`ci.yml:210-219`) true without editing it.
+  BalanceGuard line whose filter string is byte-identical to `gk-core/.github/workflows/ci.yml:176`. That keeps the no-filter
+  assertion (`gk-core/.github/workflows/ci.yml:389-398`) true without editing it.
 - **(d) Nothing lands red.** A line lands only in the commit that makes it pass locally.
+
+As of 2026-10-02 the rows below are a **record of what R15 approved and where it landed**, not a
+backlog: E1, E2, E3 and E4 are in the file; E5's per-project shape is in; E7 was withdrawn — see
+the row.
 
 | # | File · position | Line(s) | Owner spec |
 |---|---|---|---|
-| E1 | `release.yml:43-46` | add the exit check after each of the four lines; align `--blame-hang-timeout 5min` → `10min` to match `ci.yml` and `test.runsettings` | `core-split-wiring` W0 |
-| E2 | `ci.yml`, a new step between "Install seedsmith from the lockfile" (ends `:321`) and "Item seed reachability" (`:323`) | `gk-core/tools/tuning` pytest step. pytest comes from the seedsmith lockfile (`requirements.lock:31`), so the step must follow that install | `python-test-lane` §CI |
-| E3 | `ci.yml`, "Restore / test (.NET)", after the FileMove pair (`:180-181`) | `FusionRpg.TestSplitAnalyzer.Tests` pair | `core-split-analyzer` |
-| E4 | `ci.yml:155-156` | replaced by the `test-sharded.ps1` pair | `data-tests-sharding` H3 |
-| E5 | `ci.yml:153-154` and `release.yml:43` | one pair per Core test project, manifest order, residual last | `core-split-wiring` |
-| E6 | `ci.yml:140-141` | one BalanceGuard pair per Core test project that holds a `Category=BalanceGuard` trait | `core-split-wiring` |
-| E7 | `ci.yml`, "Restore / test (.NET)", after the FileMove pair (`:180-181`) | two pairs: `dotnet test gk-fusion/tools/LawnCombatObserver.Tests/LawnCombatObserver.Tests.csproj …` and `dotnet test gk-fusion/tools/ProveLiveProbe.Tests/ProveLiveProbe.Tests.csproj …`, each with its exit check (**R24**) | `core-split-wiring` W7 |
+| E1 | **shipped 2026-09-19.** `gk-core/.github/workflows/release.yml:64-199` — the exit check follows each of the 68 calls, and `--blame-hang-timeout` is `10min` | done | `core-split-wiring` W0 |
+| E2 | **shipped.** `gk-core/.github/workflows/ci.yml:502-508`, between the seedsmith lockfile install (ends `:500`) and "Item seed reachability" (`:569`). pytest comes from the seedsmith lockfile (`requirements.lock:31`), so the step follows that install | done | `python-test-lane` §CI |
+| E3 | **shipped.** `gk-core/.github/workflows/ci.yml:356-357`, after the FileMove pair (`:350-351`) | done | `core-split-analyzer` |
+| E4 | **shipped**, as `python scripts/test_sharded.py` at `gk-core/.github/workflows/ci.yml:335` — the `test-sharded.ps1` this row named was ported away | done | `data-tests-sharding` H3 |
+| E5 | `gk-core/.github/workflows/ci.yml:328-329` and `gk-core/.github/workflows/release.yml:198-199` | one pair per Core test project, manifest order, residual last | `core-split-wiring` |
+| E6 | `gk-core/.github/workflows/ci.yml:176-177` | one BalanceGuard pair per Core test project that holds a `Category=BalanceGuard` trait | `core-split-wiring` |
+| E7 | **withdrawn.** `gk-fusion/tools/LawnCombatObserver.Tests` and `gk-fusion/tools/ProveLiveProbe.Tests` cannot run in gk-core — the seven calls naming gk-forge and gk-fusion test projects were **removed** from this workflow because they could never have run here (`gk-core/.github/workflows/ci.yml:170-174`). Those repositories run their own solutions from their own CI | withdrawn | `core-split-wiring` W7 |
 
-**Not in `release.yml`, deliberately:** E2, E3, E4 and E7. The release gate runs the four product test
-projects only (`release.yml:43-46`), never the tool suites. It has no Python setup, and its
+**Not in `release.yml`, deliberately:** E2, E3, E4 and E7. The release gate runs the Core test
+projects only (`gk-core/.github/workflows/release.yml:54-199`), never the tool suites. It has no Python setup, and its
 `Data.Tests` line stays a plain run, because its cost is not the burden R15 addresses. R15 approves
 edits in both files. It does not require every approved line in both.
 

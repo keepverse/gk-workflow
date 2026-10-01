@@ -21,7 +21,7 @@ resolves the open question this spec previously carried as a choice between foll
 `tuning-publish-tool` C#-lane precedent and adding a real Python project. **Decision: a real Python
 project.**
 
-**Why this matters, measured.** `spec-python-test-lane.md:11-20` records the exact failure the C# lane
+**Why this matters, measured.** `spec-python-test-lane.md:11-24` records the exact failure the C# lane
 produces today: `gk-core/tools/tuning/publish.py` maps to boundary `tuning-publish-tool` →
 `dotnet test` of **Guard.Tests**, *"which contains no reference to `gk-core/tools/tuning` — the check runs,
 passes, and proves nothing about the changed file."* A `python` runner lane is what fixes it.
@@ -100,7 +100,7 @@ exactly what it consumes.
 ### The precedent that lets `wiring` land before the lane does
 
 `TVB0.3` already shipped a **standalone pytest CI step** for `gk-core/tools/tuning` while the registry was still
-plain strings (`tasks/test-verification-boundary-todo.md:26`, live at `.github/workflows/ci.yml:311-317`):
+plain strings (`tasks/test-verification-boundary-todo.md:26`, live at `gk-core/.github/workflows/ci.yml:502-508`):
 
 ```yaml
       - name: gk-core/tools/tuning own tests (test-verification-boundary python-test-lane, R15)
@@ -124,7 +124,7 @@ So `wiring` has **two landable halves**, and this is the honest sequencing:
 still throws `VERIFICATION BOUNDARY MISSING`. The tool is usable via its CLI and its tests run in CI,
 but the repo's focused local-verification path does not cover it. That is a **named, temporary gap**
 with a named unblocker — not something to paper over by mapping the tool to a C# project, which is the
-trap `spec-python-test-lane.md:14-20` documents.
+trap `spec-python-test-lane.md:11-24` documents.
 
 ## The release gate hook — amended 2026-09-19 (owner ruling IC-3)
 

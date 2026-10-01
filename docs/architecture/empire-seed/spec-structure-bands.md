@@ -299,7 +299,7 @@ python gk-core/scripts/audit-overflow.py
 **Verification boundary.**
 - C#: `.\scripts\verify-change.ps1 -Paths … -Session …` selects `core-fallback`, `core-tests-fallback`,
   `gk-core/tests/FusionRpg.Data.Tests/**` and `gk-core/src/FusionRpg.Server/**` boundaries
-  (`gk-core/scripts/verification-boundaries.v1.json:132-141`, `:179-188`, `:491`, `:1058`, `:1137`).
+  (`gk-core/scripts/verification-boundaries.v1.json:802-811`, `:850-859`, `:1900-1909`, `:3270-3281`).
 - This module crosses Core, Data and Server, which is point 2 of AGENTS.md "Verification boundary", so
   the full suite runs once at close.
 - **Gap:** `gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**`, `data/tuning/structure-seed.*` and

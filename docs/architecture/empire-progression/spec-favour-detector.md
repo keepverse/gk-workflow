@@ -78,7 +78,7 @@ public static class BuildFavourMeasurer                                    // (n
 
 | File | Content | Gate |
 |---|---|---|
-| `gk-data/packs/fusion/data/generated/creatures/_species-build-plan.json` | unchanged | `--check` byte-compare (`.github/workflows/ci.yml:99`) |
+| `gk-data/packs/fusion/data/generated/creatures/_species-build-plan.json` | unchanged | `--check` byte-compare (`gk-core/.github/workflows/ci.yml:129`) |
 | `gk-data/packs/fusion/data/generated/creatures/_species-build-measure.json` (new) | the `BuildFavourMeasure`, canonically serialised | the same `--check` byte-compare |
 
 Both are generated output, never hand-edited. `lead-relabel-pass` **reads** the measure; it never

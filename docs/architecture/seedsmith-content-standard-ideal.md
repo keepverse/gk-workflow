@@ -107,7 +107,7 @@ localization) that no domain has today, generalized once instead of five times.
   set — not because they don't need the check, but because nobody extended it.
 - `Quality/FlavourMissing` is `gates = False` even for the one domain it covers
   (`metrics/quality.py:28`), and CI's own `--gate` invocation for items
-  (`.github/workflows/ci.yml:261`) only fails on `gates=True` findings — so even where the
+  (`gk-core/.github/workflows/ci.yml:589-590`) only fails on `gates=True` findings — so even where the
   detector exists, nothing stops a missing flavor from shipping today.
 - The "detect stale, regenerate only that" SHAPE (`stale_ids`: compare a recorded key against a
   freshly-computed one) is written independently **five times** —

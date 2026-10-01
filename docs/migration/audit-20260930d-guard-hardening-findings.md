@@ -49,7 +49,8 @@ repository to whatever the caller wrote. The commit's own words: *"root-first ca
 data the caller explicitly named."* True, and that is the hazard, not the safety property.
 
 **The half that does survive:** the real gk-core tree carries none of the three subjects, so the
-owner still wins there (`probe_a_subject_root.py` A1 — `data/seed/aptitudes/roster.json`,
+owner still wins there (a throwaway probe script, `probe_a_subject_root.py`, which does not exist in
+any repository — A1 — `data/seed/aptitudes/roster.json`,
 `data/seed/derived-stats/catalog.json`, `docs/architecture/power/inventory.json` all `exists=False`;
 `data/tuning` present with 202 JSON files). The claim is true for the real tree and false as a rule.
 
@@ -143,13 +144,18 @@ The gk-fusion copy still hands back a directory that is not there — the exact 
 gk-fusion's own guards consume it: `gk-fusion/scripts/guard-funnel-delta.py:65` and
 `guard-single-writer.py:67` call `core_root(...)` at **import time**, with the unvalidated copy.
 
-### R6 — "The two Python copies are byte-identical … a test asserts that" (`keepverse_roots.py:25`)
+### R6 — "The two Python copies are byte-identical … a test asserts that" (`gk-core/scripts/lib/keepverse_roots.py:29-34`)
 
-False on both halves. `difflib` on the two files: **31 differing lines**, all of them the `_env`
-body. And no test asserts the equality — a repo-wide search for a test reading both copies found
-none; `tests/tools/test_keepverse_roots.py` loads only gk-core's. The docstring's stated safeguard
-is not present, and the drift it warned about ("They have already drifted once") has now happened
-again, undetected.
+**Closed 2026-10-02 — this finding no longer reproduces.** It was true when written: `difflib` over
+the two files showed **31 differing lines**, all of them the `_env` body, and no test compared the
+copies. Both halves are now fixed. Measured on this commit: all three Python copies share one
+SHA-256 (`gk-core/scripts/lib/keepverse_roots.py`, `gk-fusion/scripts/lib/keepverse_roots.py`,
+`gk-forge/tools/seedsmith/seedsmith/workspace_roots.py`), and the asserted test exists —
+`gk-core/tests/FusionRpg.Guard.Tests/ResolverCopyParityTests.cs`, whose own docstring records this
+exact 31-line drift. It holds the copies byte-identical, checks they expose the same seven
+accessors, and asserts an override naming an absent directory is **refused** rather than handed back,
+which is the behaviour the unchecked `_env` broke. The docstring's claim is now enforced rather than
+asserted.
 
 ### R7 — "the target must still be a real, **tracked**, VERSIONED tuning file" (278f099, `immutable_path_is_valid`)
 
@@ -168,15 +174,17 @@ untouched *and* describes "tracked" as part of it, and the code has never checke
 never-committed tuning file satisfies the pin.
 
 Everything else in the shape rule holds: `../../etc/passwd` → False, `..\..\etc\passwd` → False,
-`gk-core/../../../etc/passwd` → False, `gk-core/data/tuning/../../../etc/passwd` → False,
-`gk-core/data/tuning/sub/deep.v1.json` → False, `x.V1.json` → False, a **directory** named
-`adir.v7.json` → False (`is_file()` saves it). All **seven** of the commit's own probes reproduce with
-0 mismatches.
+`gk-core/../../../etc/passwd` → False, `gk-core/data/tuning/../../../etc/passwd` → False. The last
+three probes are **hypothetical** fixtures the probe itself created — a path such as
+`gk-core/data/tuning/sub/deep.v1.json` does not exist in any repository, so neither does `x.V1.json`,
+and a **directory** named `adir.v7.json`, equally hypothetical, → False (`is_file()` saves it). All
+**seven** of the commit's own probes reproduce with 0 mismatches.
 
 ### R8 — "resolved against the repository that OWNS it" (278f099)
 
 It is resolved against the guard's own `repo_root`. The standard writes pins *workspace-qualified*,
-so `gk-fusion/data/tuning/x.v1.json` names a sibling's file — and the fix resolves it as
+so a pin like the hypothetical `gk-fusion/data/tuning/x.v1.json` — a fixture that does not exist in any
+repository — names a sibling's file, and the fix resolves it as
 `gk-core/gk-fusion/…`, which does not exist, so it returns False. Latent today (no sibling ships
 `data/tuning`; only gk-core does, 202 files), live the moment one does. The fix handles exactly the
 one case where the named repository is the guard's own, and the commit says so itself for the

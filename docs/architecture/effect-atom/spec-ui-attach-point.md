@@ -237,7 +237,7 @@ apparent budget, and it must not tax one either.
 | `KindCount == AtomKindRegistry.All.Count`, both one higher than before this module | pass (`AtomKindRegistryTests.cs:22`) |
 | `Every_kind_declares_a_runtime_a_trigger_and_a_power_category` (`AtomKindRegistryTests.cs:36-73`) | **green with the `cosmetic` exemption added** (§2b.1). Unamended it goes red at `:71`; the amendment is deliberate and named in the commit |
 
-**The injector is not built by CI** (`.github/workflows/ci.yml:75-103` — ten test projects, no injector
+**The injector is not built by CI** (`gk-core/.github/workflows/ci.yml:179-364` — 76 test projects, no injector
 build). Everything above except the Unity present asserts in `FusionRpg.Core.Tests` against
 `RecordingDamageFxSink` and a fake HUD cache; the adapter itself is confirmed by an owner-run lawn look,
 because a present is a thing you verify with your eyes — the VFX program's own recorded lesson.

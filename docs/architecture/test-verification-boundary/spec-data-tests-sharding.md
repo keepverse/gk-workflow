@@ -11,13 +11,13 @@ The cause is a **process-global** mutex in SQLite's in-memory VFS, so its stores
 inside one process at all; two concurrent `dotnet test` processes over disjoint halves ran in **23.9s
 vs 47.4s** sequential (`test-architecture-audit.md` §5). A thread cap is the rejected symptom
 treatment (`test-burden-audit.md` §6, first row, marked superseded). CI runs Data.Tests as one process
-(`ci.yml:155`).
+(`gk-core/.github/workflows/ci.yml:335`).
 
 This module makes "N concurrent processes over a complete, disjoint partition" a reusable runner, and
 adopts it in CI and in local module-level Data runs.
 
 **User:** CI; any contributor whose change resolves to `data-fallback`
-(`verification-boundaries.v1.json:1667`).
+(`verification-boundaries.v1.json:1698-1710`).
 
 ## Design
 
@@ -88,7 +88,7 @@ owned by `gk-core/scripts/test_fast.py:81` — the runner reads it from there ra
 
 ### H3 — adoption
 
-- **CI (approved, R15; map §7.1 E4):** `ci.yml:155-156` becomes exactly
+- **CI (approved, R15; map §7.1 E4):** `gk-core/.github/workflows/ci.yml:335` becomes exactly
 
   ```yaml
           .\scripts\test-sharded.ps1 -Project gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj
@@ -98,10 +98,10 @@ owned by `gk-core/scripts/test_fast.py:81` — the runner reads it from there ra
   The script ends with `exit <code>`, so `$LASTEXITCODE` carries its verdict into the existing
   per-line pattern. The csproj path stays literally on the CI line, so `CiWiringGuardTests.cs:45-71`
   still finds it, and truthfully, because the project is run there. No `--filter` appears in
-  `ci.yml`, so the no-filter assertion (`:210-219`) is untouched **and still true in spirit**: the
-  partition is complete. The leak-alarm re-run (`ci.yml:196`) is left as is. It reuses the Release
+  `ci.yml`, so the no-filter assertion (`gk-core/.github/workflows/ci.yml:389-398`) is untouched **and still true in spirit**: the
+  partition is complete. The leak-alarm re-run (`gk-core/.github/workflows/ci.yml:375`) is left as is. It reuses the Release
   build that step 1 of the runner produced, which is what its `--no-build` needs.
-  `release.yml:44` keeps its plain `dotnet test` (map §7.1).
+  `gk-core/.github/workflows/release.yml` keeps its plain `dotnet test` (map §7.1).
 - **Landing order:** the manifest, runner and H-T1–H-T4 land first, with the one-time completeness
   proof. The CI line lands in a second commit, and H-T5 lands with it.
 - **Local:** when `verify-change.py` selects a **module**-level check on a project that has a shard
@@ -125,7 +125,7 @@ dotnet test tests\FusionRpg.Guard.Tests -c Release --filter "FullyQualifiedName~
 | `gk-core/scripts/verify-change.py` | module-level runs on a sharded project delegate to the runner |
 | `gk-core/scripts/verification-boundaries.v1.json` | owner boundary for the two new files (`guard` project, `guard.test-shards` VerificationId) |
 | `gk-core/tests/FusionRpg.Guard.Tests/TestShardManifestTests.cs` | (new) |
-| `.github/workflows/ci.yml:155-156` | the two lines above (approved, R15) |
+| `gk-core/.github/workflows/ci.yml:335` | the two lines above (approved, R15) |
 | `docs/contributing/testing-standard.md` §6 "Wall-clock is its own axis" | one paragraph: the sharded runner is the process-boundary lever |
 
 ## Code style
@@ -155,7 +155,7 @@ if ($ExtraFilter) { $filter = "($filter)&($ExtraFilter)" }
 
 Never asserted: tests per shard, shard walls, number of shards — readings. The one-time
 **completeness proof** on the real project is a Success criterion, and it compares **sets, not
-counts** (`validation-ssot.md`; the leak alarm's own set-diff rule, `ci.yml:193-194`). The union of
+counts** (`validation-ssot.md`; the leak alarm's own set-diff rule, `gk-core/.github/workflows/ci.yml:372-373`). The union of
 the shards' executed test ids must equal the id set of one unsharded run with the same filter, and
 the pairwise intersection must be empty. A count match could hide one test lost and another run
 twice. The run is recorded in the commit body.

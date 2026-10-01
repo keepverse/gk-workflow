@@ -60,7 +60,7 @@ completed 2026-09-28; the rows are the program's record of the sites as they wer
 | retired `scripts/publish-player.ps1:165` | release packaging | same |
 | `gk-fusion/scripts/deploy-play.py:397-403` — a `pwsh -Command` string with a PS **hashtable literal** interpolated from Python | the deploy's positioned precondition | the call must be rebuilt, not renamed |
 | `.github/workflows/{ci,nightly,release}.yml` — `run-guards.ps1 -Tier ci` | the merge, nightly and release gates | same |
-| `.github/workflows/ci.yml:446` — `guard-verification-boundaries.py` | its own CI step (`ciEntry: own-step`) | same |
+| `gk-core/.github/workflows/ci.yml:435-441` — `guard-verification-boundaries.py` | its own CI step (`ciEntry: own-step`) | same |
 
 **Until `dispatcher-interpreter` lands, a guard cannot shed its `.ps1` at all.**
 

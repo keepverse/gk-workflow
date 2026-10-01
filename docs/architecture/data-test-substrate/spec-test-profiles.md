@@ -20,7 +20,7 @@ and heavy tests; one documented command runs everything; CI and the release gate
 ## Assumptions I'm making (correct me now)
 
 1. **xUnit `[Trait("Category", …)]` is the mechanism** — already used in this repo (`Category=BalanceGuard`,
-   CI `--filter "Category=BalanceGuard"` at `ci.yml:140`). No new framework.
+   CI `--filter "Category=BalanceGuard"` at `gk-core/.github/workflows/ci.yml:176`). No new framework.
 2. **A negative filter includes uncategorized tests** — verified this session:
    `--filter "Category!=DiskSemantics"` ran all 1,288. So only the tests being *excluded* need a trait;
    the other ~1,270 are untouched. (`Category!=A&Category!=B` was also verified to run all 1,288.)
@@ -210,7 +210,7 @@ None. Owner decided 2026-09-12: extend with module 7, two categories, fix the 12
 - [x] Subsystem: Data/test infrastructure → docs read this session.
 - [x] Boundary recorded; drift owner-accepted.
 - [x] No `decisions.md` row owed (test tooling).
-- [x] Claims cite file:line (`ci.yml:140`; `Directory.Build.props` RunSettingsFilePath).
+- [x] Claims cite file:line (`gk-core/.github/workflows/ci.yml:176`; `Directory.Build.props` RunSettingsFilePath).
 - [x] Verified this session: negative filters include uncategorized tests (both single and combined);
       `Category=BalanceGuard` returns 22.
 - [x] Measured, not assumed: 102 baseline files still write disk; 16 tests ≥20s; the 124.6s outlier.

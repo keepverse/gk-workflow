@@ -40,7 +40,7 @@ Not in scope: changing any current caller; optimising `ReconnectionCost`; the pa
 | Shared comment-and-string stripper for guard scripts | `gk-core/scripts/cscan.py:246` (`strip_comments_and_literals_preserving_layout`), `gk-core/scripts/guard-battle-responsibility.py:101` (`source_files`) |
 | Precedent: an ownership-shaped guard with its own JSON registry and a `-Root`/`-RegistryPath` override for fixtures | `gk-core/scripts/guard-battle-responsibility.py:1-40`; its tests drive it as a process with a fixture root, `gk-core/tests/FusionRpg.Guard.Tests/BattleResponsibilityGuardTests.cs:22-60` |
 | The enforcement registry catalogues **scripts**: `guards` is a map of id → `scripts/guard-*.ps1`, and R1 fails an uncatalogued guard on disk; R6 needs every invariant guarded xor reasoned; R8 needs every guard named by an invariant | `gk-core/scripts/enforcement-registry.v1.json` (`guards`, `invariants`); `gk-core/tests/FusionRpg.Guard.Tests/EnforcementRegistryGuardTests.cs:53`, `:177`, `:199` |
-| CI runs every gating `ci` guard through one runner | `.github/workflows/ci.yml:236-242` (`run-guards.ps1 -Tier ci`) |
+| CI runs every gating `ci` guard through one runner | `gk-core/.github/workflows/ci.yml:422-433` (`run-guards.ps1 -Tier ci`) |
 
 ### Real gap
 

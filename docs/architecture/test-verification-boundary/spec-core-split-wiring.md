@@ -3,8 +3,9 @@
 **Program:** [`test-verification-boundary`](../test-verification-boundary-map.md) · depends on:
 W0 — nothing (lands first, alone); everything else — [`core-split-apply`](spec-core-split-apply.md),
 **landing in the same commit as each apply increment** · R-TV1 · R15 (CI edits approved, map §7.1
-E1, E5, E6) · **R24** (the two `tools/*.Tests` projects wired into `ci.yml`, map §7.1 E7) · closes map
-gaps G14 and G16.
+E5, E6) · **R24 is withdrawn** — the two `tools/*.Tests` projects live in gk-fusion and run from its
+own CI, and the calls that named them here were removed (`gk-core/.github/workflows/ci.yml:170-174`) ·
+closes map gaps G14 and G16.
 
 ## Objective
 
@@ -15,9 +16,10 @@ somewhere it never looks.
 
 Two workflow defects make that failure easier than it looks, so this module fixes them first:
 
-- **`release.yml` masks failures today (G14).** Its four `dotnet test` lines (`release.yml:43-46`)
-  have no exit check between them, so only the Launcher line decides the step. Adding more Core lines
-  there without fixing that would add more lines whose failure nobody sees.
+- **`release.yml` masked failures until 2026-09-19 (G14, now closed).** Its four `dotnet test` lines
+  had no exit check between them, so only the Launcher line decided the step; adding more Core lines
+  there without fixing that would have added lines whose failure nobody sees. Every call now checks
+  its own exit code (`gk-core/.github/workflows/release.yml:57-65` records why).
 - **The wiring guard is weaker than its name (G16).** `CiWiringGuardTests` walks only `tests/`
   (`CiWiringGuardTests.cs:52-56`), accepts any substring (`:65`), so a path inside a YAML comment
   passes, and never reads `release.yml`. One real finding: `gk-fusion/tools/LawnCombatObserver.Tests` and
@@ -25,29 +27,31 @@ Two workflow defects make that failure easier than it looks, so this module fixe
 
 **User:** CI, the release gate, and every script a contributor runs against Core tests.
 
-## W0 — workflow exit checks (lands first, independent of the split)
+## W0 — workflow exit checks — SHIPPED 2026-09-19
 
-1. `release.yml:43-46`: after each `dotnet test` line, add
-   `if ($LASTEXITCODE -ne 0) { throw "<project> failed" }`. Also align `--blame-hang-timeout 5min` to
-   `10min`: `ci.yml:117-122` states the value must match `test.runsettings`' `TestTimeout` (10min),
-   and the release gate is the one place it does not.
-2. `gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs` (new), over both `ci.yml` and
-   `release.yml`. It asserts that every line whose trimmed text starts with `dotnet test `,
-   `python -m pytest ` or `python gk-core/scripts/test_sharded.py ` is immediately followed by a line matching
+Both halves are in the file, so this section records what landed rather than what to build:
+
+1. `gk-core/.github/workflows/release.yml:64-199` — after each of the 68 `dotnet test` calls, an
+   `if ($LASTEXITCODE -ne 0) { throw "<project> failed" }`. `--blame-hang-timeout` is `10min`, matching
+   `test.runsettings`' `TestTimeout`; `gk-core/.github/workflows/ci.yml:147-152` states the rule and why.
+2. `gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs` — over **every** `.yml` in
+   `gk-core/.github/workflows`, not a fixed pair. It asserts that every line whose trimmed text starts
+   with `dotnet test `, `python -m pytest ` or `python scripts/test_sharded.py ` is immediately followed by a line matching
    `^\s*if \(\$LASTEXITCODE -ne 0\) \{ throw `. It is a contract assertion, with no line or step
-   counts. One rule, one test, and it would have caught the `ci.yml` defect of 2026-08-24
-   (`ci.yml:124-129`) and this one.
+   counts, and it carries a planted-defect test so the rule itself is falsifiable. One rule, one test,
+   and it would have caught the `ci.yml` defect of 2026-08-24 (`gk-core/.github/workflows/ci.yml:182-193`)
+   and the release-gate one.
 
 W0 is verified with
-`python gk-core/scripts/verify-change.py --paths .github/workflows/release.yml,gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs --session <id>`.
+`python gk-core/scripts/verify-change.py --paths gk-core/.github/workflows/release.yml,gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs --session <id>`.
 
 ## Consumers (verified by `git grep FusionRpg.Core.Tests` on this commit)
 
 | Consumer | Today | After each increment |
 |---|---|---|
-| `.github/workflows/ci.yml:153-154` | one `dotnet test` pair for Core.Tests | one pair **per Core test project**, manifest order, residual last, exact shape below (map §7.1 E5). `CiWiringGuardTests.cs:45-71` fails the build until the line exists, which is why apply and wiring cannot ship apart |
-| `.github/workflows/ci.yml:140-141` | BalanceGuard: `--filter "Category=BalanceGuard"` on Core.Tests | one pair per Core test project that holds a `Category=BalanceGuard` trait (today all four live in `Balance/`, a reading), same filter string **byte-identical**, so the no-filter assertion (`:210-219`) still exempts it (E6). **A filter that matches no test exits 0**, so this is the one consumer where a stale path fails silently: W6 guards it |
-| `.github/workflows/release.yml:43` | Core.Tests in the release gate | one pair per Core test project, the same lines as `ci.yml` (E5) |
+| `gk-core/.github/workflows/ci.yml:328-329` | one `dotnet test` pair for Core.Tests | one pair **per Core test project**, manifest order, residual last, exact shape below (map §7.1 E5). `CiWiringGuardTests.cs:45-71` fails the build until the line exists, which is why apply and wiring cannot ship apart |
+| `gk-core/.github/workflows/ci.yml:176-177` | BalanceGuard: `--filter "Category=BalanceGuard"` on `Core.Balance.Tests` (it moved off `Core.Tests` when the four Balance traits landed) | one pair per Core test project that holds a `Category=BalanceGuard` trait (today all four live in `Balance/`, a reading), same filter string **byte-identical**, so the no-filter assertion (`gk-core/.github/workflows/ci.yml:389-398`) still exempts it (E6). **A filter that matches no test exits 0**, so this is the one consumer where a stale path fails silently: W6 guards it |
+| `gk-core/.github/workflows/release.yml:198-199` | Core.Tests in the release gate | one pair per Core test project, the same lines as `ci.yml` (E5) |
 | `gk-core/scripts/test_fast.py:360` | Core.Tests in `--all-default`'s list | every Core test project (still the explicit broad option; the list stays in this one file, `:356-362`) |
 | `gk-core/scripts/coverage.py:237`, `gk-core/scripts/mutate.py:455` | `--project` default `tests\FusionRpg.Core.Tests` | the default becomes the project that holds the namespace asked for; a mutant set (`gk-core/scripts/mutants/*.json`) whose tests moved names its project explicitly |
 | `gk-core/scripts/audit_status_vfx_identity.py:87` | runs Core.Tests | the project holding the status/VFX identity tests |
@@ -79,7 +83,7 @@ not count), followed on the next line by its exit check, or is in its exemption 
 ~~It lands with the two projects in that table, reason "not wired; owner question, map §9".~~
 **Ruled R24 (2026-09-18): *"Yes, both, with exit checks; the CI wiring guard then covers `tools/`."***
 W7 lands with an **empty** exemption table and these two pairs in `ci.yml`, "Restore / test (.NET)",
-after the FileMove pair (`.github/workflows/ci.yml:180-181`) — map §7.1 row E7, rule (a) shape:
+after the FileMove pair (`gk-core/.github/workflows/ci.yml:350-351`) — map §7.1 row E7, rule (a) shape:
 
 ```powershell
 dotnet test gk-fusion/tools/LawnCombatObserver.Tests/LawnCombatObserver.Tests.csproj -c Release --verbosity minimal --blame-hang --blame-hang-timeout 10min

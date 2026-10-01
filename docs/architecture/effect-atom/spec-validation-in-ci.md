@@ -51,11 +51,11 @@ independent of stdin, stdout and exit codes.
 schema, so every real call would evaluate nothing while looking clean. Printing the skip is the
 audit's own "no silent green" principle applied to the gate itself.
 
-**The CI wiring** — `.github/workflows/ci.yml:101-104` added `FusionRpg.Server.Tests` and
+**The CI wiring** — `gk-core/.github/workflows/ci.yml:361-364` added `FusionRpg.Server.Tests` and
 `FusionRpg.E2E.Tests` beside the existing seven. Neither needs game interop, so nothing else in the
 workflow changed. Each `dotnet test` call now carries its own `$LASTEXITCODE` check
-(`ci.yml:85-104`) — that per-call checking was **not** E24's work; it landed 2026-09-01 under the
-`seed-to-concrete` program, and `ci.yml:78-84` records why.
+(`gk-core/.github/workflows/ci.yml:182-193`) — that per-call checking was **not** E24's work; it landed 2026-09-01 under the
+`seed-to-concrete` program, and `gk-core/.github/workflows/ci.yml:182-188` records why.
 
 **The standing guard** — `gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs`:
 `Server_and_E2E_tests_are_wired_into_ci` (`:15-22`) pins the two literal project paths, and

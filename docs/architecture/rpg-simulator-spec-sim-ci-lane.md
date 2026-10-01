@@ -22,8 +22,8 @@ row's summary ("the CI lane is unbuilt") would send a lane to build what exists:
 
 | What | Measured |
 |---|---|
-| The fast in-process scenarios run in CI **with their exit check** | `.github/workflows/ci.yml:333` — `dotnet test gk-core/tests/FusionRpg.E2E.Tests/… -c Release` followed by `if ($LASTEXITCODE -ne 0) { throw "FusionRpg.E2E.Tests failed" }`. The in-process scenarios are tests in that project (`RpgScenarioSlice0E2ETests`, `RpgSimInProcHostTests`, `RpgSimGoldenTests`). |
-| The real-process scenarios run there too, unfiltered | the same step passes **no `--filter`**, and `ci.yml:352-368` *asserts* that CI stays the unfiltered full profile (only the BalanceGuard step is filtered) — so the `DiskSemantics`-tagged `RpgSimProcessHostTests` run in CI. |
+| The fast in-process scenarios run in CI **with their exit check** | `gk-core/.github/workflows/ci.yml:363-364` — `dotnet test gk-core/tests/FusionRpg.E2E.Tests/… -c Release` followed by `if ($LASTEXITCODE -ne 0) { throw "FusionRpg.E2E.Tests failed" }`. The in-process scenarios are tests in that project (`RpgScenarioSlice0E2ETests`, `RpgSimInProcHostTests`, `RpgSimGoldenTests`). |
+| The real-process scenarios run there too, unfiltered | the same step passes **no `--filter`**, and `gk-core/.github/workflows/ci.yml:389-398` *asserts* that CI stays the unfiltered full profile (only the BalanceGuard step is filtered) — so the `DiskSemantics`-tagged `RpgSimProcessHostTests` run in CI. |
 | The runner stays a tool | `gk-core/tools/RpgSim/RpgSim.csproj` carries **no `ProjectReference` and no `PackageReference`**; the E2E project references IT (the correct direction). |
 | The wiring is guarded for test projects | `gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs` asserts both that Server/E2E are named in ci.yml and that **every** `tests/**/*.Tests.csproj` appears there. |
 | **The literal gap** | no CI step invokes the **CLI** (`dotnet run --project gk-core/tools/RpgSim -- --host process …`). With no new step, "the first CI run of the new step is green" has nothing to run. |
@@ -37,7 +37,7 @@ row's summary ("the CI lane is unbuilt") would send a lane to build what exists:
 
 **Fast lane — the E2E project, and it is already the lane.** `gk-core/tests/FusionRpg.E2E.Tests` runs unfiltered in CI
 with its own exit check. The contract is therefore *negative*: the step stays unfiltered (the assertion at
-`ci.yml:352-368` is the guard), and a new scenario test lands in that project rather than in a new lane. Nothing
+`gk-core/.github/workflows/ci.yml:389-398` is the guard), and a new scenario test lands in that project rather than in a new lane. Nothing
 about a scenario needs its own workflow step, because a scenario IS an E2E test by another name (owner ruling
 C3 (c)'s own words).
 
@@ -48,7 +48,7 @@ that claims no live game slot") and not the *letter* ("…running the tool"). Th
 
 | Shape | What it is | Cost |
 |---|---|---|
-| **(a) the E2E step IS the lane** | the contract names `ci.yml:333`'s unfiltered step as the slow lane, on the ground that the CLI's `--host process` path is the same `ProcessHost` code the test drives (RS-F6 decided the CLI is a real-process front end, so the test and the CLI are two callers of one machine) | **nothing to build**; RS7 closes against its own measurement, and the row's "first CI run of the new step" clause is retired as moot |
+| **(a) the E2E step IS the lane** | the contract names `gk-core/.github/workflows/ci.yml:363-364`'s unfiltered step as the slow lane, on the ground that the CLI's `--host process` path is the same `ProcessHost` code the test drives (RS-F6 decided the CLI is a real-process front end, so the test and the CLI are two callers of one machine) | **nothing to build**; RS7 closes against its own measurement, and the row's "first CI run of the new step" clause is retired as moot |
 | **(b) the CLI runs in its own labelled step** | a step (or a scheduled workflow) runs `dotnet run --project gk-core/tools/RpgSim -- --host process --data-dir <fresh> --server-exe <path> --golden gk-core/tests/fixtures/rpg-scenarios/golden/<id>.verdict.json`, so CI also exercises the CLI's flags and the golden comparison | a `ci.yml` edit (**outside this lane's fence**) **plus** a wiring assertion of its own, because `CiWiringGuardTests` only walks `tests/**/*.Tests.csproj` — nothing fails today if a tool step is deleted, and adding that assertion lands in the protected `gk-core/tests/FusionRpg.Guard.Tests/**` tree |
 
 **This spec does not choose.** The choice is the manager's erratum (RS7's row carries it), and the measurement
@@ -69,7 +69,7 @@ The phrase is about the **game**, not about concurrency:
 
 ## 4. What the wiring must keep true
 
-1. **The E2E project's step stays unfiltered** — `ci.yml:352-368` already asserts it, and a filter would silently
+1. **The E2E project's step stays unfiltered** — `gk-core/.github/workflows/ci.yml:389-398` already asserts it, and a filter would silently
    drop the `DiskSemantics` real-process tests.
 2. **Every scenario in the corpus is executed by some CI step.** Today that is the E2E project (the corpus file is
    read by `RpgScenarioSlice0E2ETests` and `RpgSimGoldenTests`); a new corpus file with no test is unwired, and

@@ -77,7 +77,7 @@ the **output** and never parses a family file.
 - **§4's *"no second family namespace"* holds by construction.** The generator reads the one namespace;
   it never copies it.
 - **The precedent is shipped and already gated in CI:** `CreatureSpeciesGen --check` regenerates the
-  committed tree and fails on any difference (`ci.yml:43-51`), which is verbatim §5 test 2.
+  committed tree and fails on any difference (`gk-core/.github/workflows/ci.yml:101-109`), which is verbatim §5 test 2.
 
 **Acceptance 1 is rewritten accordingly** — the criterion is that the **generated rows** are swept and
 that a stale generation fails CI, not that the definitions are.

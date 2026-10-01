@@ -39,7 +39,7 @@ program's own exemplars and anchor lines.
 ## Tech Stack
 
 Python 3.11+, inside `gk-forge/tools/seedsmith` (its package, its lockfile, its CI step at
-`.github/workflows/ci.yml:326`). Standard library only (`json`). **No import of `ipcensor`:** the two
+`gk-core/.github/workflows/ci.yml:536-545`). Standard library only (`json`). **No import of `ipcensor`:** the two
 tools share no code (`spec-wiring.md` §Tool shape). The helper reads the registry's **data file** by its
 versioned contract; `ipcensor`'s `registry` module stays the validating authority, and the helper throws
 on any shape it cannot read rather than guessing.

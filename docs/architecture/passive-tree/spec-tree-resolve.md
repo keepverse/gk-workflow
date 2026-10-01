@@ -231,8 +231,8 @@ twelve aptitudes (`gk-core/tools/HybridViability/Program.cs:362`), so under the 
 reading every cell of §4.2's table would have measured something the model never computed.
 
 **Exactly one lender. Never a sum.** The measured model is
-`gk-core/tools/HybridViability/Program.cs:363-372` — the `"largest"` arm at `:367`, and its own comment at
-`:372` reading *"the GATE reads the credit"*. Power stays linear per tier; only the gate reads the
+`gk-core/tools/HybridViability/Program.cs:335-342` — the `"largest"` arm at `:337`, and its own comment at
+`:342` reading *"the GATE reads the credit"*. Power stays linear per tier; only the gate reads the
 credit.
 
 **Bounded by construction.** One mate is `O(1)`, and no k-way build can compound it — that is the

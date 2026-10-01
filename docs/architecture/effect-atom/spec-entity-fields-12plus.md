@@ -335,7 +335,7 @@ for the direction that is *not* obvious — a **raise**, not only the reduction 
 | The existing eleven channels | unchanged, goldens unmoved |
 | `guard-single-writer.py` | passes |
 
-**The injector is not built by CI** (`.github/workflows/ci.yml:75-103` — ten test projects, no injector
+**The injector is not built by CI** (`gk-core/.github/workflows/ci.yml:179-364` — 76 test projects, no injector
 build). Compose, direction, pricing and validation all assert in `FusionRpg.Core.Tests`; the writer
 half is covered by `guard-single-writer.py` plus the extras text guard, and confirmed live by the owner.
 

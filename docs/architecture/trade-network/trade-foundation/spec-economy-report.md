@@ -129,9 +129,10 @@ the file; the test reads it through the loader the way the server will.
   `tests/FusionRpg.Core.Tests/World/Economy/**`, project `core`. The loader file is new under
   `src/FusionRpg.Core/World/Trade/`; give it an owner row `core-trade-tuning` with verificationId
   `core.trade-tuning` whose paths are `src/FusionRpg.Core/World/Trade/**`,
-  `tests/FusionRpg.Core.Tests/World/Trade/**` **and every published `data/tuning/trade.v{n}.json`, one exact
-  path per version** — the matcher takes exact paths and `dir/**` only (`scripts/verify-change.ps1:70-75`),
-  so each `publish.py trade` change adds its new file to the row, the way `materials-tuning` lists v1–v3. The tuning file needs the
+  `tests/FusionRpg.Core.Tests/World/Trade/**` **and `gk-core/data/tuning/trade.v*.json`, one wildcard
+  covering every published version** — the matcher accepts a final-segment wildcard
+  (`gk-core/scripts/lib/verification_boundaries.py:49-59`), so a `publish.py trade` run no longer
+  forces the row to be edited for the new file, the way `materials-tuning` names v1–v3. The tuning file needs the
   row: `gk-core/data/tuning/**` has no fallback mapping, and `verify-change.ps1 -PlanOnly -AllowUnscoped -Paths
   gk-core/data/tuning/world.v6.json` stops with *"VERIFICATION BOUNDARY MISSING"* (run in the audit of
   2026-09-20). Whichever trade module creates `trade.v1.json` lands this row; every later publish of

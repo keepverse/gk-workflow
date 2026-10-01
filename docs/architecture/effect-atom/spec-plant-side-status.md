@@ -133,7 +133,7 @@ visible on the wire — that is the whole difference between this and the state 
 | Battle's path | byte-identical behaviour before and after — a regression test, not a new one |
 | Per-hit scan count on a 40-zombie board | unchanged or lower than before E39 |
 
-**The injector is not built by CI** (`.github/workflows/ci.yml:75-103` — ten test projects, no injector
+**The injector is not built by CI** (`gk-core/.github/workflows/ci.yml:179-364` — 76 test projects, no injector
 build). So: the `StatusRuntime` half, the target vocabulary and the refusal shape assert in
 `FusionRpg.Core.Tests` against a fake sink; the two executor rewrites are covered by a text guard in the
 `scripts\guard-*.ps1` family and confirmed by an owner-run lawn proof. **The planted-violation tests

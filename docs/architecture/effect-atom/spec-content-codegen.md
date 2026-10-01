@@ -83,7 +83,7 @@ concern — drift between two **live** sources — since a frozen fixture cannot
   done. Only `EffectAtomCatalog.Generated.cs` is actually a generated production file.
 - **It does not run as a CI step.** `.github/workflows/ci.yml` invokes `CreatureSpeciesGen --check`,
   `CreatureCorpusDump --verify` and `ItemSeedValidator`, but never `ElementEnumGen`. Equivalent assertions
-  run inside `gk-forge/tests/FusionRpg.ElementEnumGen.Tests`, which CI does run (`ci.yml:99-100`).
+  run inside `gk-forge/tests/FusionRpg.ElementEnumGen.Tests`, which CI does run (`gk-forge/.github/workflows/ci.yml:66-67`).
 - **It does not author content.** Every mode reads `gk-data/packs/fusion/data/seed/**` and compares or emits; none writes a
   seed file.
 - **It does not compile runner atoms.** `--effect-emit` refuses them outright.
@@ -127,7 +127,7 @@ gate):** *claimed* by a named module, a *named follow-up*, or *accepted as-is wi
   exists (`gk-forge/tools/ElementEnumGen/Program.cs:36`+, `EffectCatalogGen.cs`), so the check is *emit to a
   string and compare*; the asymmetry against the other two subjects is the argument on its own; and
   the repo already treats silent staleness in generated code as a first-class defect —
-  `.github/workflows/ci.yml:50` runs `CreatureSpeciesGen --check` for exactly this failure, with a
+  `gk-core/.github/workflows/ci.yml:101-109` runs `CreatureSpeciesGen --check` for exactly this failure, with a
   message telling the reader to regenerate and commit. **It must be a check, never an emit in CI**, and
   it lands **after** the two gates below are re-shaped, or it will fail for their reason instead of its
   own.

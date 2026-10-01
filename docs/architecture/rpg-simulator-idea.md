@@ -249,7 +249,7 @@ simulator's line must be drawn at the process boundary rather than blurred acros
 
 ### 2.11 CI coverage, measured
 
-- `ci.yml:291` runs `FusionRpg.E2E.Tests`. The E2E factory **is** a CI gate.
+- `gk-core/.github/workflows/ci.yml:363-364` runs `FusionRpg.E2E.Tests`. The E2E factory **is** a CI gate.
 - The file runs **60 distinct test projects** (counted by `grep -o "tests/[^ ]*\.csproj" | sort -u | wc -l`).
   ⚠ `AGENTS.md:155` says **13**; that prose predates the `core-split-wiring` E5 (TVB5.7) Core split. The
   CI file is the machine-guarded one — `gk-core/tests/FusionRpg.Guard.Tests/CoreTestProjectPolicyTests.cs:18`

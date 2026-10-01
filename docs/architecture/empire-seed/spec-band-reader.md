@@ -225,8 +225,8 @@ tests/... three bootstraps + a shared SeedSourceFixture helper
 | `test_structure_anchor_contract.py` (pytest) | 9, Python side |
 
 **Verification boundary.** The C# paths map to `core-fallback` / `core-tests-fallback`
-(`gk-core/scripts/verification-boundaries.v1.json:132-141`, `:179-188`), `gk-core/src/FusionRpg.Server/**` (`:1058`) and
-`gk-core/tests/FusionRpg.Data.Tests/**` (`:491`). Run
+(`gk-core/scripts/verification-boundaries.v1.json:802-811`, `:850-859`), `gk-core/src/FusionRpg.Server/**` (`server-fallback`, `:3270-3281`) and
+`gk-core/tests/FusionRpg.Data.Tests/**` (`data-tests-fallback`, `:1900-1909`). Run
 `.\scripts\verify-change.ps1 -Paths <changed> -Session <id>`. The change spans Core, Data and Server test
 projects, which is point 2 of AGENTS.md's "Verification boundary", so the full suite is also run once at
 this module's close. **Gap:** `data/seed/structures/_registry/**`, `data/tuning/structure-seed.*` and

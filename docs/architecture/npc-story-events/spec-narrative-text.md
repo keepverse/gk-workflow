@@ -35,7 +35,7 @@ exactly at the tokens; no display name ever travels from the server; `npm run ex
   (`narrative-seed-ideal.md:481-482`).
 - **Generated-file precedent**: `gk-web/web/fusion-rpg-web/scripts/gen-tokens.mjs` generates a committed file and its
   `--check` mode, run by the test suite, fails on drift (`gen-tokens.mjs:1-9`). CI already fails when the extracted
-  catalog is stale (`.github/workflows/ci.yml:434-444`).
+  catalog is stale (`gk-core/.github/workflows/ci.yml:710-716`).
 
 ## Design
 
@@ -119,7 +119,7 @@ catalog excludes that folder. The narrative module and catalog are loaded with a
 narrative surface mounts, so they never enter the entry chunk; `npm run check:bundle` proves it. A large catalog is a
 splitting problem, never a reason to drop lingui (CLAUDE.md buy-before-build).
 
-CI needs no new step: the existing extract step fails when `src/i18n/locales` drifts (`ci.yml:434-444`), and the
+CI needs no new step: the existing extract step fails when `src/i18n/locales` drifts (`gk-core/.github/workflows/ci.yml:710-716`), and the
 generator's `--check` runs inside `npm test` (the `gen-tokens` precedent).
 
 ### 5. Rendering (web)

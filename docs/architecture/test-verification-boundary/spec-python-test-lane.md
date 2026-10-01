@@ -8,24 +8,23 @@ pre-existing-red rule (D6, map §3.9).
 
 ## Objective
 
-`verify-change.py` can only run `dotnet test`: every `projects` value is a `.csproj`
-(`gk-core/scripts/verification-boundaries.v1.json:3-15`, checked as a file at
-`guard-verification-boundaries.py:38-42`) and the runner hard-codes the command
-(`verify-change.ps1:116-117`). Measured on this commit:
+`verify-change.py` now runs pytest as well as `dotnet test`: a boundary whose project is a pytest
+project emits a `pytest` check, one per project over the union of its selectors
+(`gk-core/scripts/verify-change.py:468`, `:817-828`). What it **cannot** do is reach
+`gk-forge/tools/seedsmith/**`, which no registry entry maps. Measured on this commit:
 
 - any path under `gk-forge/tools/seedsmith/**` → `VERIFICATION BOUNDARY MISSING`;
 - `gk-core/tools/tuning/publish.py` and `test_publish_add_key.py` → boundary `tuning-publish-tool`
-  (`verification-boundaries.v1.json:2508-2523`) → `dotnet test` of **Guard.Tests**, which contains no
+  (`verification-boundaries.v1.json:2550-2565`) → `dotnet test` of **Guard.Tests**, which contains no
   reference to `gk-core/tools/tuning` — the check runs, passes, and proves nothing about the changed file;
-- `gk-core/tools/tuning/resource_ownership.py` → unmapped;
 - the generator `--check` and seedsmith corpus gates run only in CI
-  (`ci.yml:68,78,88,99,111,343,353,363,373,389,408,419`), so a local change to a generator has no lane;
-- `gk-core/tools/tuning`'s own pytest files run nowhere in CI (map G6).
+  (`gk-core/.github/workflows/ci.yml:98`, `:108`, `:118`, `:129`, `:141`, `:466`, `:477`, `:483`, `:589`, `:599`, `:609`, `:619`, `:635`, `:654`, `:679`), so a local change to a generator has no lane;
+- `gk-core/tools/tuning`'s own pytest files now run in CI at `gk-core/.github/workflows/ci.yml:502-508` (map G6 — shipped).
 
 Seedsmith is where most generated content comes from (the generated-seed hard rule: "fix the
 generator and regenerate"), so a contributor changing it today either runs nothing or runs the whole
-suite (`ci.yml:341`, the only invocation). This module gives Python a first-class lane with focused
-selection, gives generators a local `--check` lane, and wires `gk-core/tools/tuning`'s tests into CI.
+suite (`gk-core/.github/workflows/ci.yml:587`, the only invocation). This module gives Python a first-class lane with focused
+selection and gives generators a local `--check` lane.
 
 **User:** every session that edits seedsmith, `gk-core/tools/tuning`, or a `tools/*Gen` generator.
 
@@ -38,7 +37,7 @@ fails today. Diagnosed in the strengthen pass: it pins two **readings**. `versio
 the latest published `aptitudes` version, and `len(generated) == 166 == len(shipped)` (`:40`) is the
 edge population. The shipped file is `aptitudes.v8.json`, and the contract assertion
 (`edge_triples(generated) == edge_triples(shipped)`, `:39`) passes against it, just as
-`resource_ownership.py --check` does in CI (`ci.yml:68`).
+`resource_ownership.py --check` does in CI (`gk-core/.github/workflows/ci.yml:98`).
 
 Fix: delete the two pinned lines and keep the triple equality. The version under test is whatever
 `load_shipped_resource_edges` resolves as the latest (`resource_ownership.py:204-205`), which is the
@@ -132,18 +131,18 @@ to** the path's owner:
 
 | Script project | Command | CI line | Seam paths (this module) |
 |---|---|---|---|
-| `gen-creature-species` | `dotnet run --project gk-forge/tools/CreatureSpeciesGen -- --check` | `ci.yml:78` | `gk-forge/tools/CreatureSpeciesGen/**` |
-| `gen-family-expand` | `dotnet run --project gk-forge/tools/FamilyExpandGen -- --check` | `ci.yml:88` | `gk-forge/tools/FamilyExpandGen/**` (owner `familyexpandgen-tool` unchanged) |
-| `gen-build-plan` | `dotnet run --project gk-forge/tools/CreatureBuildPlanGen -- --check` | `ci.yml:99` | `gk-forge/tools/CreatureBuildPlanGen/**` |
-| `gen-passive-tree` | `dotnet run --project gk-forge/tools/TreeBinder -- --check` | `ci.yml:111` | `gk-forge/tools/TreeBinder/**` (owner `treebinder-tool` unchanged) |
-| `gen-resource-ownership` | `python gk-core/tools/tuning/resource_ownership.py --check` | `ci.yml:68` | `gk-core/tools/tuning/resource_ownership.py` |
-| `gen-fusion-recipe` | `python -m seedsmith.adapters.creatures.fusion.reconcile --check` | `ci.yml:408` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/fusion/**` |
-| `gen-items-gate` | `python -m seedsmith check --adapter items --gate ../../data/seed/items` | `ci.yml:343` | `gk-forge/tools/seedsmith/seedsmith/adapters/items/**` |
-| `gen-creature-contract` | `python -m seedsmith creatures contract --audit` | `ci.yml:353` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**` |
-| `gen-structure-contract` | `python -m seedsmith structures contract --audit` | `ci.yml:363` | `gk-forge/tools/seedsmith/seedsmith/adapters/structures/**` |
-| `gen-creature-report` | `python -m seedsmith report --gate --creature-dump ../../data/seed/creatures/_dump` | `ci.yml:373` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**`, `gk-forge/tools/seedsmith/seedsmith/report/**` |
-| `gen-creature-metrics` | `python -m seedsmith creatures metrics --gate` | `ci.yml:389` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**` |
-| `gen-creature-preflight` | `python -m seedsmith creatures preflight --skip-model` | `ci.yml:419` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**` |
+| `gen-creature-species` | `dotnet run --project gk-forge/tools/CreatureSpeciesGen -- --check` | `gk-core/.github/workflows/ci.yml:108` | `gk-forge/tools/CreatureSpeciesGen/**` |
+| `gen-family-expand` | `dotnet run --project gk-forge/tools/FamilyExpandGen -- --check` | `gk-core/.github/workflows/ci.yml:118` | `gk-forge/tools/FamilyExpandGen/**` (owner `familyexpandgen-tool` unchanged) |
+| `gen-build-plan` | `dotnet run --project gk-forge/tools/CreatureBuildPlanGen -- --check` | `gk-core/.github/workflows/ci.yml:129` | `gk-forge/tools/CreatureBuildPlanGen/**` |
+| `gen-passive-tree` | `dotnet run --project gk-forge/tools/TreeBinder -- --check` | `gk-core/.github/workflows/ci.yml:141` | `gk-forge/tools/TreeBinder/**` (owner `treebinder-tool` unchanged) |
+| `gen-resource-ownership` | `python gk-core/tools/tuning/resource_ownership.py --check` | `gk-core/.github/workflows/ci.yml:98` | `gk-core/tools/tuning/resource_ownership.py` |
+| `gen-fusion-recipe` | `python -m seedsmith.adapters.creatures.fusion.reconcile --check` | `gk-core/.github/workflows/ci.yml:654` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/fusion/**` |
+| `gen-items-gate` | `python -m seedsmith check --adapter items --gate ../../data/seed/items` | `gk-core/.github/workflows/ci.yml:589` | `gk-forge/tools/seedsmith/seedsmith/adapters/items/**` |
+| `gen-creature-contract` | `python -m seedsmith creatures contract --audit` | `gk-core/.github/workflows/ci.yml:599` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**` |
+| `gen-structure-contract` | `python -m seedsmith structures contract --audit` | `gk-core/.github/workflows/ci.yml:609` | `gk-forge/tools/seedsmith/seedsmith/adapters/structures/**` |
+| `gen-creature-report` | `python -m seedsmith report --gate --creature-dump ../../data/seed/creatures/_dump` | `gk-core/.github/workflows/ci.yml:619` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**`, `gk-forge/tools/seedsmith/seedsmith/report/**` |
+| `gen-creature-metrics` | `python -m seedsmith creatures metrics --gate` | `gk-core/.github/workflows/ci.yml:635` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**` |
+| `gen-creature-preflight` | `python -m seedsmith creatures preflight --skip-model` | `gk-core/.github/workflows/ci.yml:679` | `gk-forge/tools/seedsmith/seedsmith/adapters/creatures/**` |
 
 `gk-forge/tools/CreatureSpeciesGen/**` and `gk-forge/tools/CreatureBuildPlanGen/**` have **no owner today**. This module
 adds `creaturespeciesgen-tool` → `core` (module). The evidence is `FusionRpg.Core.Tests.csproj:50`,
@@ -170,7 +169,7 @@ Readings from the strengthen pass on 2026-09-18:
 The rule has five parts:
 
 1. **Never deselect.** Every selected test runs. No skip marker, deselect list or `-k` exclusion is
-   ever added to make a lane green. CI is untouched and unfiltered, so `ci.yml:341` stays red until
+   ever added to make a lane green. CI is untouched and unfiltered, so `gk-core/.github/workflows/ci.yml:587` stays red until
    the owning program fixes the tree.
 2. **`knownRed` entries** (registry, `schemaVersion` 4) have the shape
    `{ "project": "seedsmith", "test": "tests/test_actions_description_completeness.py::RealCommittedCorpusCleanPassTests::test_every_real_committed_action_carries_provenance", "debt": "SR-nn" }`.
@@ -281,9 +280,9 @@ function Invoke-PytestCheck($project, [string[]]$files) {
 ## Testing
 
 Guard tests assert the **plan** (`-PlanOnly -Format json`) and the D6 decision over **planted result
-files**, not a pytest execution. CI's `Restore / test` step runs before the seedsmith environment
-exists (`ci.yml:143` precedes `:307`), so a Guard test that shells out to pytest would fail in CI for
-an environment reason.
+files**, not a pytest execution. CI's `Restore / test` step ends at
+`gk-core/.github/workflows/ci.yml:364`, before the seedsmith environment exists at `:486`, so a Guard test
+that shells out to pytest would fail in CI for an environment reason.
 
 | # | Case (planted tree under `-Root`, throwing delete in `finally`) | Asserts |
 |---|---|---|

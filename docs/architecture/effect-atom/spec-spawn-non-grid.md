@@ -146,7 +146,7 @@ So: E40 prices what it can and **flags the rest rather than guessing**.
 | `count` above 1 on a pet spawn | E28's loop spawns that many; overflow on a large `count` throws |
 | `present` as a `kind` | refused — it is not a spawn (§2b) |
 
-**The injector is not built by CI** (`.github/workflows/ci.yml:75-103` runs ten test projects and no
+**The injector is not built by CI** (`gk-core/.github/workflows/ci.yml:179-364` runs 76 test projects and no
 injector build). The domain, validation, plan-item shape and pricing assert in `FusionRpg.Core.Tests`;
 the four executor arms are covered by a text guard in the `scripts\guard-*.ps1` family and confirmed by
 an owner-run lawn proof — one placement per kind, verified by the existing `debug.spawn.*` /
