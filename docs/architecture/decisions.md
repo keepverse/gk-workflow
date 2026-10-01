@@ -152,6 +152,7 @@ Locked for v1. Change here before changing code. **This table is an index**: one
 | **Narrative names are tokens (2026-09-19)** | [content-gen](decisions/content-gen.md) |
 | **Generated antagonist content obeys counter-doctrine (2026-09-19)** | [content-gen](decisions/content-gen.md) |
 | **No hard-coded model in seedsmith (2026-09-19)** | [content-gen](decisions/content-gen.md) |
+| **Seedsmith authors in two modes: a delegated agent, or an API (2026-10-02)** | [content-gen](decisions/content-gen.md) |
 | **The spine is a generated seed kind with a planned frame (2026-09-19)** | [content-gen](decisions/content-gen.md) |
 
 ## Why REST and SignalR together
