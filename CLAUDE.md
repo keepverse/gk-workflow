@@ -2,8 +2,15 @@
 
 **The contributor guide is [AGENTS.md](AGENTS.md).** Read that; it is the single instruction file for
 this repo and it carries every hard rule, the session-boundary policy, the verification boundary
-(`python scripts\verify-change.py --paths <files> --session <id>`) and the context tooling
-(CodeGraph + caveman).
+(`python gk-core\scripts\verify-change.py --paths <repo-relative files> --session <id>`) and the
+context tooling (CodeGraph + caveman).
+
+The command in that sentence used to name the planner at this root, under a `scripts/` directory
+this repository does not have — the planner lives in `gk-core` — so every agent that followed it
+got a missing-file error naming the root it invented, and no guidance. Corrected to the path that
+runs from here. The retired shape is deliberately NOT restated in a runnable form above: a guard
+resolves every `python <path>` invocation named in an instruction file, so a correction that
+quoted the broken command verbatim would fail that guard.
 
 This file is kept only because paths still resolve to it:
 
