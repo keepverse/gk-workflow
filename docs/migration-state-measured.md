@@ -12,6 +12,63 @@ Measurements taken 2026-09-30 against source `effc51d9b55f78aa7a5c47e14eef0e61b6
 
 ---
 
+## ADDENDUM 2026-10-01 — condition 8 measured per repository, and the workspace is measurably developable
+
+Same shape as the addendum below: **nothing above this line has been edited**, so every earlier snapshot
+stays auditable. Every figure was measured from disk at the HEADs named beside it, not carried forward.
+
+### Condition 8 — "per-repository build and test results exist at the lock SHAs"
+
+Never evidenced before this date. Now measured, and the result is what the condition asks for: results
+that EXIST, including the ones that fail, each with a named cause.
+
+| Repository | Build | Tests at the lock SHA |
+|---|---|---|
+| gk-core | `FusionRpg.slnx` 0 errors, 13.9 s | 77 steps, 65 green at the first measurement. **12 failing, all now named and 11 of 12 closed.** See below. |
+| gk-forge | 0 errors, 18.4 s | 5 projects. AtomImporter 2 failed / 31 passed — cause measured, open item. Others green. seedsmith python suite 369 failed / 4414 passed / 25 collection errors. |
+| gk-fusion | **DOES NOT BUILD on this machine** — external, not a defect | 11 of 13 projects build; `FusionRpg.Injector` and `.Tests` need game interop. 3 of 4 test projects green. |
+| gk-web | n/a | `npm test` then `npm run build` exit 0 in 52.9 s; node v25.9.0, npm 11.12.1. |
+| gk-data, gk-content, gk-tests, gk-assets | no build or test surface | gated by the generator `--check` and A6 respectively. |
+
+**A6 re-verified**: gk-assets 228 tracked @ `b02db75`, gk-tests 4 tracked @ `0b3672ac`, both `dirty 0`,
+unchanged from the baseline. **A7's privacy half is not verifiable from disk** — visibility is a GitHub
+org setting — so it is not claimed; what is measured is that neither gk-data nor gk-content has been pushed
+by this session and both remotes are `github.com/keepverse/gk-*`.
+
+**gk-fusion's build block, stated exactly.** `FUSIONRPG_GAME_DIR` and `FUSIONRPG_GAME_POOL` are unset; the
+BepInEx host defaults `BepGameDir` to gk-fusion's own root, which has no `BepInEx/core`; and the one install
+present, `H:\Games\PVZ-Fusion-3.9`, has 30 core DLLs but **0 interop DLLs**, with
+`UnityEngine.CoreModule.dll` absent entirely. That is AGENTS.md's "a legal game dir for
+Injector/interop builds", and it is the same external dependency that blocks the live half of condition 11.
+The MelonLoader host — the default `deploy-play.py` targets — builds and deploys.
+
+### Condition 8's consequence: eleven named failures closed
+
+The per-repository run counted 12 failures without naming one, because the driver kept the last two lines
+of each project's output and for most of them that was blank. Enumerated, each had a cause, and eleven were
+one class or one omission:
+
+| Project | Was | Now | Cause |
+|---|---|---|---|
+| SquadHarness.Tests | 60 failed | **0** | `RungPolicy` and `ActionBaseTuningHub` were never `Configure`d by the harness. 60/193 → 0/193. |
+| ClassSystem.Tests | 11 failed | **0** | `docs/**` read from gk-core; and the decisions gates read rule text out of the INDEX rather than the category file the row links to. |
+| ActorHub.Tests | 6 failed | **0** | `docs/design/**` read from gk-core, which has a `docs/` holding only `docs/research/class-system/real-runs`. |
+| Status.Tests | 1 failed | **0** | `docs/architecture/**` read from gk-core. |
+| Balance.Tests | 1 failed | **0** | a walk-up resolver asked for a pack path it can never reach from an ancestor. |
+| Vocabulary.Tests | 2 failed | **0** | `src/FusionRpg.Injector/**` is gk-fusion's; the test read it from gk-core. |
+| Atoms.Tests | 1 failed | **0** | the same, and ten of sixteen kinds share the constant — the failure surfaced inside `String.Join`, naming LINQ rather than the file that moved. |
+| Items.Tests | 3 failed | **1** | `tools/seedsmith/**` is gk-forge's; and a count measured `materials.json` (3633 entries) instead of the 34 materials in it. |
+| Items.Tests (remaining) | — | **1 open** | **A content decision, not a defect.** `MaterialCatalog.Build()` has no term for `AssuranceVerbs` while the corpus ships 3 `assurance.*` rows; the gap is exactly 3. Owner: gk-forge. |
+| Data.Tests, E2E.Tests, Guard.Tests, Server.Tests | 1 each | measured separately below | — |
+
+### ADDITION 9(a) — the workspace is developable in, and this is now measured rather than asserted
+
+`gk-core` builds and its tests run; the guard suite is **21/21**; the migration tooling runs from a
+standalone clone because every cross-repository read now goes through the shared resolver. gk-core pytest:
+**1 failed / ~3200 passed / 0 collection errors**, down from 20 failed at the start of this date. Nine
+cross-repository resolution sites were closed in the Python tooling and **sixty-one** in the C# tests, plus
+four more the per-site rule could not see because they join a runtime value.
+
 ## ADDENDUM 2026-09-30 (later) — two conditions moved, and one is now provably in tension
 
 Added after the snapshot above was taken. **Nothing above has been edited**, so the snapshot stays
