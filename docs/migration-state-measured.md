@@ -1,5 +1,98 @@
 # Migration state, measured
 
+
+## ADDENDUM 2026-10-01 (guard suite) — 48 → 4, and the four that remain are decisions, not defects
+
+**Read this before the older addenda below.** It supersedes their pytest and Guard.Tests figures.
+
+### The figure I had been carrying was wrong
+
+Guard.Tests was reported at 76 failures. It was 48. Nine of the 76 were a stale
+`%TEMP%\inspect.py` — my own probe of 2026-09-30 — and the Guard.Tests harness makes it importable by
+writing its probe script *into* `%TEMP%`, which is what puts that directory on `sys.path[0]`. Six tests
+then failed with
+
+    AttributeError: module 'inspect' has no attribute 'get_annotations'
+
+which reads exactly like a defect in `scripts/lib/verification_boundaries.py` and is not one. An
+inventory of `%TEMP%` for names shadowing a stdlib module found one `.py` (`inspect`) and no package
+directories. The trap was already written down in this session's own notes and I walked into it anyway.
+
+Measured now, on a clean run: **Failed 4, Passed 724, Skipped 0, Total 728.**
+
+### The 4 remaining, and why none is worked around
+
+| Test | What it found | Why it is not fixed here |
+|---|---|---|
+| `GeneratorCheckCiParityTests` | `gk-core/.github/workflows/ci.yml` names **15 distinct paths (35 occurrences) that live in four other repositories** — gk-forge's generators and seedsmith, gk-web's web tree, gk-workflow's `.claude` scripts. In a single-repository CI checkout those steps cannot run at all. | CI topology. Three shapes are possible (one workspace-level workflow; per-repository workflows joined by the reusable `workflow_call` gk-core's `release.yml` already uses; or move the generator and seedsmith steps to a gk-forge workflow) and they have different owners and blast radii. The guard is left **red**, not exempted, because it is right. |
+| `NarrativeDoctrineReadingGuardTests` | The guard assembly now **references `FusionRpg.Core`**; the test asserts it does not, and says why: "this project references no Core assembly, so the member set above is enforced over the source text." At the import commit `34bf27d` there were two ProjectReferences and **0** guard files using `FusionRpg.Core.Workspace`; today there are three and **119**. `git log -S` names `e2d0a02`: "the guard suite and FileMove.Tests had no reference to FusionRpg.Core, so neither compiled". | An architecture boundary was crossed by a *build fix*. Retiring the contract (and re-examining 99 `File.ReadAllText` assertions) or keeping it (and building a dependency-free resolver) is a `decisions.md` question. Not reverted: that breaks 119 files. |
+| `VocabRenameTests` ×2 | `scripts/vocab-rename.py` derives its scope from one repository's `git ls-files`, so a change to a path gk-workflow or gk-web carries is invisible to it. | A rename tool spanning nine repositories needs a **fence** and a path **vocabulary** — `read_text`/`write_text`/`dirty_files` all resolve against `repo_root()`, and the phase rules carry globs like `docs/guide/**` that must match a repository-qualified path. A design, not a patch. |
+
+### What the pass actually fixed, and the two shapes worth noticing
+
+Most of the 44 was one class: **a gk-core test reading a path another repository carries.** Closed per
+site, never by a sweep — of 168 lines naming an owned path, the large majority are *fixture* writes into
+temp directories and are correct as written. Rewriting those is what the retracted destructive sweep did
+(509 deletions, Guard.Tests 82→115, `BepInEx.Core.dll` stubs written into the workspace).
+
+Two findings are worth more than their test counts:
+
+1. **A guard that proved nothing over an empty set.** `Drain_flags_have_only_their_known_writers`
+   scanned gk-core's `src` for writers while naming gk-fusion's `DebugRuntime.cs` as the only allowed
+   writer — so the list it compared was empty and `Assert.All` over an empty list passes. It is now
+   anchored on the scan volume **and** on a non-empty writer list, because volume alone would pass on a
+   small tree and owner alone is the failure it had. The same shape appeared as a *vacuous-in-the-dangerous-
+   direction* single-writer guard: `Time.timeScale` is written only by the Injector, so scanning a tree
+   with none of them made `offenders.Count == 0` true by construction — a second writer would have been
+   invisible. Its own `scanned > 50` anchor is what caught it.
+
+2. **The planner could not be asked about a sibling's file.** `verify-change.py` resolved every
+   `--paths` value against the repository holding its own tooling, so a change to a workspace document, a
+   gk-forge test or a gk-data pack file was refused with `PATH-NOT-FOUND` — while the documented primary
+   entry point for verifying such a change is exactly that command. It now asks the shared resolver's
+   `owning_base` (searches `root` first, then the fixed sibling set, `None` when nothing carries the file,
+   so a typo still fails closed) and each plan line names the repository that carries a foreign path. A
+   `pathOwners` key was added to `Plan` — a *sibling* key, not a field on `Selection`, whose per-kind key
+   set is a documented plan contract.
+
+### The instruction file documented a command that cannot run
+
+`CLAUDE.md` said `python scripts\verify-change.py …`. The workspace root has no `scripts/`; the planner is
+gk-core's. Measured: `can't open file 'D:\Works\source\Keepverse\scripts\verify-change.py'`. Every agent
+that read the top-level instruction file and followed it got that. Corrected, and the guard that should
+have caught it now **resolves the documented `python <path>` invocation** rather than substring-matching
+the tool's name — a mention is not a command, and that difference is where the defect lived.
+
+### A falsifier that earned its place twice
+
+`LawnCoordsGuardTests`' Fx rule used `\.bounds\b`, matching `sprite?.bounds.size` — a Sprite's size in its
+own space — the same as a Renderer's world-space AABB, and failing a file that resolves through
+`UnitFrameResolver` at three call sites. Narrowing a pattern is only safe if the narrowed pattern is shown
+to keep its teeth, so a falsifier went in beside it. It failed twice, both times finding a real hole in a
+pattern I had just written: `Renderer\s*\??` allows `?` but not the null-forgiving `!` (missing
+`slot.Renderer!.bounds`), and the `GetComponentInChildren<Renderer>` alternative required a leading `.`
+(missing a bare `GetComponentInChildren<Renderer>()!.bounds`). **When a guard's pattern is too broad,
+narrowing it without a falsifier is indistinguishable from deleting the guard.**
+
+### Also fixed, with the evidence that made each decidable
+
+- **The guard catalog is workspace-wide.** 6 of its 29 entries name a script gk-core does not carry (four
+  gk-fusion, two at the root), so both halves of R1 were partial. A name appearing in two repositories is
+  now a hard failure rather than a silent resolution.
+- **The BattleEffects byte pin was not stale.** The old pin is the source repository's own hash at HEAD;
+  the difference arrived with the migration's documented path-literal transform and is exactly one comment
+  line (`src/FusionRpg.Core/Battle/**` → `gk-core/src/…`), 8 bytes. A CRLF explanation looked right and was
+  my own probe — `Out-File` rewrites LF as it writes; read from `git cat-file`, the source blob has zero
+  CRLF, as both repositories' `* text=auto eol=lf` says.
+- **A test suite for a deleted PowerShell launcher.** `test_bcu212_launcher.py` spawned `pwsh` against
+  `bcu212-full-run.ps1`, which exists in no repository: 8 failures. Its replacement's suite passes 31/31.
+  Removed, and the boundary row that named it corrected.
+- **The class-system baseline regen** looked for gk-forge's `DominanceBaseline` inside gk-core and refused
+  with `TOOL-NOT-BUILT` against a tool that is present and built. It now resolves each tool through
+  `owning_base`, and puts `scripts/lib` on `sys.path` so a file-run can import the resolver without
+  `PYTHONPATH` — without which the guarded import silently returned the pre-split root and the fix appeared
+  to work in a shell and failed under the test.
+
 Written by the context-collector lane. Read-only: this lane edited no repository, ran no
 `apply`, passed no `--confirm-migration-start`, and issued no `reset`/`checkout`/`stash`/`clean`.
 
