@@ -177,7 +177,7 @@ gk-core/tests/FusionRpg.Data.Tests/  (WorldGraphDiff / WorldStore test classes) 
   debug read-back hash check — proves the check sees the new rows.
 - **Invariant:** constructing a packet with `Qty <= 0` in the canonical writer throws.
 
-Verification boundary: Core (canonical) plus Data (tables, diff) — `verify-change.ps1` with the changed
+Verification boundary: Core (canonical) plus Data (tables, diff) — `verify-change.py` with the changed
 paths selects both; `guard-dal.py` for the SQL.
 
 ## Acceptance (contract)

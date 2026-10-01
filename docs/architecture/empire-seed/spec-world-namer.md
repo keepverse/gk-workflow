@@ -226,7 +226,7 @@ attempt and counts calls. The structures `NamingFamily` has its own tests next t
 call in any test.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` and `data/seed/structures/_generation/**` are
-unmapped (`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary`
+unmapped (`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary`
 `python-test-lane`. The pytest command in §6 is the boundary.
 
 ## 9. Hard edges

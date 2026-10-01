@@ -173,7 +173,7 @@ rift.quarantine.fade   sealed horizon settles into the final still
 The visual grammar should combine a warped tear silhouette, layered rim glow, depth/parallax shift,
 short particle streaks, a readable impact pulse, and the clean geometric quarantine mark. No cue may
 write gameplay state, depend on HP polling, or bypass `VfxDirector`. Each cue needs a Core recipe,
-rate/cap policy, an anchor decision, a reduced-motion/static fallback, and a `prove-vfx.ps1` assertion.
+rate/cap policy, an anchor decision, a reduced-motion/static fallback, and a `prove_vfx.py` assertion.
 
 The full effect may degrade to the story sprite plus a static seal when the injector is absent, a shader
 probe fails, the VFX cap is reached, or reduced motion is enabled. The story still advances.

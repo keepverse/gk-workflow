@@ -33,9 +33,9 @@ dotnet test gk-core/tests/FusionRpg.Guard.Tests
 
 Player zip (needs a legal game install for Injector interop refs):
 
-```powershell
-$env:FUSIONRPG_GAME_DIR = "<your game folder with BepInEx\core and BepInEx\interop>"
-.\scripts\publish-player.ps1
+```text
+set FUSIONRPG_GAME_DIR=<your game folder with BepInEx\core and BepInEx\interop>
+python gk-core/scripts/publish_player.py
 ```
 
 Never hardcode machine-local paths like `H:\Games\...` in code or player docs.

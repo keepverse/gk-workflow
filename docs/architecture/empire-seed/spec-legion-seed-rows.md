@@ -154,7 +154,7 @@ python -m pytest tools/seedsmith/tests/test_legion_planner.py tools/seedsmith/te
 scripted stub transport. Core.Tests catalog builds over the committed tree cover 4.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` and `data/seed/legion/**` are unmapped
-(`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
+(`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
 The pytest command is the boundary.
 
 ## 9. Hard edges

@@ -70,7 +70,7 @@ docs/contributing/testing-standard.md                profile policy updated by w
 - Always: use `-LiteralPath`, fixed command argument lists, non-zero propagation, and elapsed-time
   reporting.
 - Ask first: adding an executable check type, CI invocation behavior, or an owner-only full mode.
-- Never: run a no-argument `test-fast.ps1`, call `deploy-play.py`, use `--no-build` on the first
+- Never: run a no-argument `test_fast.py`, call `deploy-play.py`, use `--no-build` on the first
   selected project after source input, treat a successful build as test evidence, or use a broad
   suite as a fallback for a failed/missing focused selection.
 

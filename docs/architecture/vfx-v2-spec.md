@@ -12,7 +12,7 @@ The 2026-08-20 audit of the shipped VFX layer (cue → recipe → primitive) fou
 
 | Goal | Gap today | Outcome when done |
 |---|---|---|
-| **Producibility** | No `status.*` producer path exists — a status VFX cannot be added by "catalog entry + emit line" because nothing emits. LIVE probe never ran. Spec/doc/prove drift (light/dark elements in code, not in docs or prove script). | A new status VFX = 1 catalog entry + 1 producer line + 1 prove line, and `prove-vfx.ps1` passes LIVE with all 6 elements. |
+| **Producibility** | No `status.*` producer path exists — a status VFX cannot be added by "catalog entry + emit line" because nothing emits. LIVE probe never ran. Spec/doc/prove drift (light/dark elements in code, not in docs or prove script). | A new status VFX = 1 catalog entry + 1 producer line + 1 prove line, and `prove_vfx.py` passes LIVE with all 6 elements. |
 | **Performance** | `VfxDirector.Tick` resolves `Camera.main` (tag scan) every frame even with zero live VFX — a named suspect in the 9.2 ms/frame `loop.tick` finding. `AnchorResolver` duplicates `InjectorEntityRegistry` with its own string-keyed cache and its own `FindObjectsOfType` sweep. | `vfx.tick` ≤ **0.5% of wall** at the 300z stress tier; **zero** `FindObjectsOfType` owned by VFX code; near-zero cost when no VFX are live. |
 | **Visual quality** | Floaters are raw IMGUI labels (no shadow — unreadable on bright lawns). Every burst is the same radial puff. `Flash` is implemented but unused by any recipe. Big and small hits look identical apart from the number. | Shadowed, crit-popping, amount-tiered floaters; three burst shapes; impact flash on hits — all inside the existing primitives and pool, zero new allocations per hit. |
 
@@ -100,7 +100,7 @@ Replace `AnchorResolver`'s private cache + sweep with lookups into `InjectorEnti
 ### W2 — Idle-cheap Tick
 - Resolve the camera in `Draw()` only, only when floaters exist, cached and re-resolved on null (a destroyed camera on scene change must not strand stale state).
 - `Tick` early-outs the per-frame work when queue, floaters, bursts, and flashes are all empty (`AnchorResolver.Tick` clock keeps running).
-- **Accept:** unit-testable early-out logic in core where possible; next stress run shows `vfx.tick` ≤ 0.5% wall at 300z (F8 budget lands in `stress-test.ps1` expectations). ⚠️ **This acceptance was never run, and §2a measures 91.8% against it — at 80z, because 300z is not reachable. Restate the board size before re-measuring.**
+- **Accept:** unit-testable early-out logic in core where possible; next stress run shows `vfx.tick` ≤ 0.5% wall at 300z (F8 budget lands in `stress_test.py` expectations). ⚠️ **This acceptance was never run, and §2a measures 91.8% against it — at 80z, because 300z is not reachable. Restate the board size before re-measuring.**
 
 ### W3 — Floater visual pack (pure math + Draw)
 - Shadow pass: each label draws twice — black at (+1,+1) then color — same style, ~2× label cost, floaters only exist ≤0.9s.
@@ -117,13 +117,13 @@ Replace `AnchorResolver`'s private cache + sweep with lookups into `InjectorEnti
 ### W5 — Status cue producer path (unblocks all future status VFX)
 - `StatusRuntime` gains an optional `IVfxSink` (core interface already exists; injector wires `VfxDirector.Sink` in `InjectorStatusBridge`). On a successful status apply it emits `status.{statusId}.apply` with the host ptr; resisted applies emit nothing.
 - Seed recipes for the statuses with existing prove packs (per SSOT §4.2 criterion — butter, freeze/cold, poison/blight family; exact list read from the status catalog at seeding).
-- **Accept:** core test — recording sink sees `status.{id}.apply` on apply and nothing on resist; each seeded cue gets a `prove-vfx.ps1` line.
+- **Accept:** core test — recording sink sees `status.{id}.apply` on apply and nothing on resist; each seeded cue gets a `prove_vfx.py` line.
 
 ### W6 — Sync + LIVE gate
 - `vfx-ssot.md` §16.2 gains `light` (255,232,120) and `dark` (150,90,220) rows; status line updated.
-- `prove-vfx.ps1`: 6-element coverage, one shape case, one status-apply case; verdict JSON unchanged in shape.
-- Stress expectations: `vfx.tick` budget assertion noted in `stress-test.ps1` docs.
-- **Final gate: run `scripts/prove-vfx.ps1` LIVE** (lawn open, via `setup-lab-run.ps1`) — this closes F2, which has been open since the VFX layer shipped.
+- `prove_vfx.py`: 6-element coverage, one shape case, one status-apply case; verdict JSON unchanged in shape.
+- Stress expectations: `vfx.tick` budget assertion noted in `stress_test.py` docs.
+- **Final gate: run `gk-core/scripts/prove_vfx.py` LIVE** (lawn open, via `setup_lab_run.py`) — this closes F2, which has been open since the VFX layer shipped.
 
 ## 4. Commands
 
@@ -167,7 +167,7 @@ Repo rules apply unchanged: no throws into the game loop (guarded try/catch, ski
 - **Unit (core, no Unity):** every new curve, tier, shape envelope, and the status-emit decision — same pattern as the existing `gk-core/tests/FusionRpg.Core.Vfx.Tests/Vfx/` suite.
 - **Guard:** source-level pin that `Fx/` contains no `FindObjectsOfType` after W1.
 - **Compile:** MelonLoader 3.9 build against the real game assemblies after every injector-touching item.
-- **LIVE:** `prove-vfx.ps1` is the only acceptance for on-screen behavior; it runs once at W6 and its JSON lands in `docs/research/perf/../effect-runtime/`. Perf acceptance reads the next stress run's `vfx.tick`.
+- **LIVE:** `prove_vfx.py` is the only acceptance for on-screen behavior; it runs once at W6 and its JSON lands in `docs/research/perf/../effect-runtime/`. Perf acceptance reads the next stress run's `vfx.tick`.
 
 ## 8. Boundaries
 

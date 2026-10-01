@@ -174,7 +174,7 @@ Retarget on `OnSpawn` only if def also lists `OnSpawn` (elite-on-spawn Passive p
 |---|---|---|
 | `ModifyStat` | Upsert ModifierBag (`ApplyOwnerKey` ← grant `ownerKey`) → Resolve filter → EntityApply → EntityStatWriter | Direct field assign; unscoped `ReapplyAllLiving` for entity/type grants |
 
-LIVE read path for scope prove: `POST /api/debug/board-stats` → event `debug.board-stats` (`plants[]`/`zombies[]` combat fields + effect `sessionMods[].applyOwnerKey`). See [`smoke-effect-scoped-atk.ps1`](../../scripts/smoke-effect-scoped-atk.ps1).
+LIVE read path for scope prove: `POST /api/debug/board-stats` → event `debug.board-stats` (`plants[]`/`zombies[]` combat fields + effect `sessionMods[].applyOwnerKey`). See [`smoke_effect_scoped_atk.py`](../../gk-core/scripts/smoke_effect_scoped_atk.py).
 | `ApplyStatus` / `ClearStatus` | **StatusExecutor** only | Call `Buttered` from Secondary |
 | `SpawnEntity` | PvzIntent (`pvz.effect.spawn` or reuse spawn-extra / plant / bullet cmds) | Feature-local Create* |
 | `BoardAction` | PvzIntent board ops | Board field poke |

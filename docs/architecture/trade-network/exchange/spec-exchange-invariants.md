@@ -88,7 +88,7 @@ evidence rule 6). This spec states the requirement; it does not edit either docu
   each for I1–I5, the no-scale scan, the no-stored-Access scan and order-independence
   (`spec-order-book.md` Acceptance 1), each naming `trade-invariants` as its guard. The registry's
   meta-test fails on a rule covered by nothing (DESIGN-GATE §5, last box).
-- Wired into `scripts/run-guards.ps1` and CI like the existing guards.
+- Wired into `gk-core/scripts/run_guards.py` and CI like the existing guards.
 
 ### 5. Scaffold, then completion
 

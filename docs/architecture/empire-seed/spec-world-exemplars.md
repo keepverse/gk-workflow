@@ -166,8 +166,8 @@ python -m seedsmith check gk-data/packs/fusion/data/seed/structures --adapter st
 `SeedFileReaderTests.Exemplars_are_skipped` fed a real exemplar file (3, C#). All offline.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` and `gk-data/packs/fusion/data/seed/**` are unmapped
-(`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
-The pytest command in §6 is the boundary. The C# test runs through `verify-change.ps1`
+(`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
+The pytest command in §6 is the boundary. The C# test runs through `verify-change.py`
 (`core-tests-fallback`).
 
 ## 9. Hard edges

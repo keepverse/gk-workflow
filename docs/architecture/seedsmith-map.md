@@ -556,7 +556,7 @@ which would have shipped:
 |---|---|---|
 | 1 | Multi-set membership risks set jail; audit wanted a structural cap | **No cap.** The problem is the missing pipeline, not the absence of a rule — see [spec-planner §8](seedsmith/spec-planner.md#8-generation-pipelines--the-architecture-the-agentic-build-never-had). A planner that resolves member demands with sight of every set spreads them deliberately; a cap only refuses at an arbitrary number. |
 | 2 | `opWeight[More] = 0.55` stands in for a non-constant relationship | **Ship it.** An adjustable tuning number, revisited for balance later. |
-| 3 | Appendix A omits its own most frequent defect class | **Pipelines plus ordering plus validators.** Correct for the ordering half; the residue — logic bugs *inside* a check — is answered by mutation testing (`scripts/mutate.ps1`), now scoped into W1. |
+| 3 | Appendix A omits its own most frequent defect class | **Pipelines plus ordering plus validators.** Correct for the ordering half; the residue — logic bugs *inside* a check — is answered by mutation testing (`gk-core/scripts/mutate.py`), now scoped into W1. |
 | 4 | Calibrating a budget threshold is the same motion as editing a target to hide a failure | **Not material.** `budget` is a config file set before a run, not a live gate being negotiated. |
 
 Decision 1 and decision 3 turned out to be the same decision. Both blockers traced to one absent

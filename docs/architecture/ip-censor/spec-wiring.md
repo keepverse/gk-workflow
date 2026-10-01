@@ -13,7 +13,7 @@ IC-5)** — adds the release-gate hook and the advisory CI scan.
 
 `ip-censor` is an **independent Python tool, shaped like `gk-forge/tools/seedsmith`** — its own package, its own
 `pyproject.toml`, its own exact-pinned `requirements.lock`, its own `tests/`, and a **first-class
-verification lane** so `verify-change.ps1` runs *its* pytest suite rather than a C# project that proves
+verification lane** so `verify-change.py` runs *its* pytest suite rather than a C# project that proves
 nothing about it.
 
 Owner decision (2026-09-19): *"add a python tool like seedsmith, independent tool for this task."* That
@@ -30,7 +30,7 @@ passes, and proves nothing about the changed file."* A `python` runner lane is w
 - `.\scripts\verify-change.ps1 -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <active>` returns a
   **plan that names the ip-censor pytest lane** — not the throw
   `"VERIFICATION BOUNDARY MISSING: <path>. Add an owner mapping; do not run a broad suite as a
-  fallback."` (`scripts/verify-change.ps1:118`), and not a `dotnet test` of an unrelated project.
+  fallback."` (`gk-core/scripts/verify-change.py:771`), and not a `dotnet test` of an unrelated project.
 - `python -m pytest gk-core/tools/ip-censor/tests -q` runs from a **clean clone** after installing from the
   committed lockfile; no reliance on a machine that happens to have `pyahocorasick`.
 - `ci.yml` runs the tool's tests and fails the build on a red suite. (This tests the **tool**; it is
@@ -39,7 +39,7 @@ passes, and proves nothing about the changed file."* A `python` runner lane is w
 - **Amended 2026-09-19 (owner ruling IC-3).** The release workflow runs
   `python -m ipcensor.report scan --fail-on enforced` before it publishes, and an enforced finding
   fails the release. The release checklist names the same command. CI runs the scan **advisory** only:
-  it uploads the report and exits 0 on findings. No commit, `verify-change.ps1` run or CI job is
+  it uploads the report and exits 0 on findings. No commit, `verify-change.py` run or CI job is
   blocked by a finding.
 
 ## Tool shape — mirrored from `gk-forge/tools/seedsmith`, deliberately
@@ -117,7 +117,7 @@ So `wiring` has **two landable halves**, and this is the honest sequencing:
    install step, and a CI step in exactly the `TVB0.3` form. The tool is runnable and its suite runs in
    CI — the whole value, without the lane.
 2. **After `python-test-lane` Wave 3 lands:** add the `ipcensor` project (`runner: "pytest"`) and its
-   owner boundary, so `verify-change.ps1` selects the tool's own tests locally. This is the half that
+   owner boundary, so `verify-change.py` selects the tool's own tests locally. This is the half that
    closes A1 fully.
 
 **What half 1 does not fix, said out loud:** until half 2, `verify-change.ps1 -Paths <ip-censor file>`
@@ -159,7 +159,7 @@ Python **3.11+** floor (seedsmith's), tested on 3.13.12. Exact-pinned third-part
 see `spec-scan.md`, which notes `regex`'s `(?V1)\b` **also** fails on `PvZ融合版`). `pytest==9.0.2` in a
 `dev` extra, mirroring seedsmith.
 
-No new C# dependency, no change to `verify-change.ps1`'s command building from this program (that is
+No new C# dependency, no change to `verify-change.py`'s command building from this program (that is
 `python-test-lane`'s), and no change to `guard-verification-boundaries.py`'s project validation beyond
 accepting the object form the lane's schema 4 defines.
 
@@ -250,11 +250,11 @@ path must exit 0 and name the ipcensor lane.
 - **Ask first:** adding any dependency beyond the two pinned matchers; adding a `knownRed` entry (it is
   almost certainly this program's defect instead); pointing CI at a wrapper script rather than the
   direct command.
-- **Never:** make an unmapped path acceptable by loosening `verify-change.ps1` — `AGENTS.md` names the
+- **Never:** make an unmapped path acceptable by loosening `verify-change.py` — `AGENTS.md` names the
   missing mapping the defect and *"never compensate by running the full suite"*; import `seedsmith`
   from `ipcensor`; commit a `.env`; use a floating version; register the tool as a `guard` (it is a
   project with tests, and `python-test-lane` D5 is explicit that a script check is **not** a guard);
-  make the CI scan step fail on findings, or add the scan to `verify-change.ps1` (IC-3 — only the
+  make the CI scan step fail on findings, or add the scan to `verify-change.py` (IC-3 — only the
   release blocks).
 
 ## Open Questions

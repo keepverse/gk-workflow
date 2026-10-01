@@ -26,8 +26,7 @@ from debug_status_apply import invoke_status_apply_until_started
 invoke_status_apply_until_started(status_id="wither", host_ptr=target_ptr, duration_ms=8000)
 ```
 
-`gk-core/scripts/lib/debug_status_apply.py` is the module; `scripts/lib/DebugStatusApply.ps1` was its PowerShell
-form and is retired (ported 2026-09-29).
+`gk-core/scripts/lib/debug_status_apply.py` is the module; it replaced the retired `scripts/lib/DebugStatusApply.ps1` (ported 2026-09-29).
 
 Or HTTP (RPG path — custom VFX):
 

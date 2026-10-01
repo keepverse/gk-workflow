@@ -32,7 +32,7 @@ running them.
 | Only `gk-core/src/FusionRpg.Server/**` (or something it alone depends on) changed | **A — server-only restart.** Never touches the game/injector. |
 | `gk-fusion/src/FusionRpg.Injector*/**`, `gk-core/src/FusionRpg.Core/**`, or `gk-core/src/FusionRpg.Contracts/**` changed | **B — full clean redeploy.** A server-only restart leaves a stale injector DLL running. |
 | `GET /api/debug/lawn/state` reports `Cycling`, `Defeated`, or `Victorious` and you are **not** going through `/lawn/quick-start` (which self-heals these) | Call `POST /api/debug/reset-board` directly; if it recurs, treat it as **C**. |
-| The game window visibly shows a stuck screen (seed-picker, defeat/victory overlay) and no injector/Core/Contracts source changed | **C — game-only restart (`scripts/restart-game.ps1`).** Fastest reliable fix — see below. `debug.ui-nav` (`back-to-menu` then `enter-main-menu`) can get you back to the real main menu without a restart, but whether the *next* `enter-level` after that is a genuinely fresh scene is unverified and deliberately deferred (see [lawn-run-state-machine.md](../architecture/live-probe/lawn-run-state-machine.md) §1 "Defeat/victory overlay dismissed by the player") — don't spend time chasing it live; restart instead. |
+| The game window visibly shows a stuck screen (seed-picker, defeat/victory overlay) and no injector/Core/Contracts source changed | **C — game-only restart (`gk-core/scripts/restart_game.py`).** Fastest reliable fix — see below. `debug.ui-nav` (`back-to-menu` then `enter-main-menu`) can get you back to the real main menu without a restart, but whether the *next* `enter-level` after that is a genuinely fresh scene is unverified and deliberately deferred (see [lawn-run-state-machine.md](../architecture/live-probe/lawn-run-state-machine.md) §1 "Defeat/victory overlay dismissed by the player") — don't spend time chasing it live; restart instead. |
 | `GET /health` shows `injectorConnected: false`, or `/lawn/state` reports `Unknown` and you don't know why | **C** if only the game process is suspect; **B** if injector/Core/Contracts source also changed. Don't guess — a fresh process/deploy removes the ambiguity either way. |
 | You genuinely don't know what changed, or it's the first action of a new session | **B.** When in doubt, redeploy — it is always safe. |
 
@@ -247,7 +247,7 @@ the real cause — both now self-report instead of requiring a manual event-log 
   `Board`/`InitBoard` references — `hasBoard`/`hasInitBoard` are confirmed to stay `true` through this
   whole sequence, see [lawn-run-state-machine.md](../architecture/live-probe/lawn-run-state-machine.md))
   is unverified and was deliberately deferred. **When a clean, provably-fresh board matters more than
-  speed, use `scripts/restart-game.ps1` (Step 1 Procedure C) instead** — do not report an in-place
+  speed, use `gk-core/scripts/restart_game.py` (Step 1 Procedure C) instead** — do not report an in-place
   `ui-nav` recovery as "a fresh run" without independently confirming it on the actual screen.
 
 Both checks run automatically inside `/lawn/quick-start` (`DebugEndpoints.cs`) — driving the API by
@@ -294,7 +294,7 @@ Invoke-RestMethod -Method POST http://127.0.0.1:5088/api/debug/session/end
 | Melon env | `$env:FUSIONRPG_ML_GAMEDIR` = Melon pack (3.9) |
 | Game | Injector connected — **no manual lawn** when using `Ensure-LiveLabBoard` / `audit -Live` |
 
-All-in-one board setup (preferred): [`scripts/lib/LiveLawnSetup.ps1`](../../scripts/lib/LiveLawnSetup.ps1) / Python `ensure_lab_board()` / skill [live-lawn-quick-start](../../.claude/skills/live-lawn-quick-start/SKILL.md). Legacy mid-match: operator in Adventure day + `setup-lab-run.ps1`.
+All-in-one board setup (preferred): [`gk-core/scripts/lib/live_lawn_setup.py`](../../gk-core/scripts/lib/live_lawn_setup.py) / Python `ensure_lab_board()` / skill [live-lawn-quick-start](../../.claude/skills/live-lawn-quick-start/SKILL.md). Legacy mid-match: operator in Adventure day + `setup_lab_run.py`.
 
 Deploy (Melon, reuse server):
 
@@ -306,7 +306,7 @@ python scripts\deploy-play.py --loader-host MelonLoader --no-server
 
 From assistant sessions: start server with `Start-Process dist\FusionRpg.Server\FusionRpg.Server.exe` (tool-tree `deploy-play` can kill the server). Launching it directly this way needs `-WorkingDirectory dist\FusionRpg.Server` (or `Set-Location` there first) — the app's `ContentRoot` is the exe's own directory, and starting it from the repo root instead throws `NotSupportedException: The content root changed` (real incident 2026-09-14).
 
-If the game/board state is stuck (defeat overlay, unresponsive) and no injector/server source changed, prefer `.\scripts\restart-game.ps1` over redeploying — see §0 Step 1 Procedure C.
+If the game/board state is stuck (defeat overlay, unresponsive) and no injector/server source changed, prefer `python gk-core/scripts/restart_game.py` over redeploying — see §0 Step 1 Procedure C.
 
 ## 2. Command / event model
 
@@ -512,25 +512,33 @@ python -m live_test monitor bar-status --interval 1
 
 Flags: `--base-url`, `--enter-level`, `--force-setup`, `--amount` (shield absorb).
 
-## 7. PowerShell → Python map (parity)
+## 7. Legacy script → Python pack map (parity)
 
-| Legacy script | Scenario / command | Parity |
-|---|---|---|
-| `deploy-play.py --loader-host MelonLoader` | `live_test deploy --launch` | ≈ |
-| `setup-shield-bar-lab.ps1` | `run shield.lab` | ≈ |
-| `probe-live-shield-bar.ps1` | `run shield.bar` | ≈ |
-| `probe-shield-damage.ps1` | `run shield.absorb` / `shield.decade` | ≈ (decade stronger in Python) |
-| `setup-lab-run.ps1` | `run lab.overlay` / `lab.empty` | ≈ (PS1 has richer lawn refuse / `-ThenProve`) |
-| `prove-overlay-combat.ps1` | `run combat.probe` | **PS1 stronger** (C1–C10 matrix) |
-| `prove-status-full.ps1` | `run status.l2.catalog` / organic | **PS1 stronger** (full status-l2-* matrix) |
-| ~~`prove-status-l2-one.ps1`~~ | `prove_status_l2_one.py` | **ported** — the Python is now the only form; the `.ps1` is gone (2026-09-29) |
-| `prove-vfx.ps1` | `run vfx.play` / `status.l2.apply` | **PS1 stronger** (shown/mute/rate/state + organic) |
-| `stress-test.ps1` | `run stress.fill` | **PS1 stronger** (census settle + perf window) |
-| `smoke-melon-live.ps1` | *(no Python pack)* | checklist / Melon host smoke |
-| `smoke-effect-scoped-atk.ps1` | *(no Python pack)* | effect scope S1–S5 |
-| `gk-core/scripts/probe_perf.py` | *(backlog)* | perf capture, not scenario assert |
+Each legacy script was retired to the Python module beside it when the PowerShell tooling was
+retired (completed 2026-09-28). The parity verdicts below were measured against the PowerShell
+forms and the ports are behaviour-preserving, so each verdict still describes the module against
+the `live_test` pack.
 
-Prefer Python for **new shield/lab smoke**. Do not delete PS1 until a Python pack has hard-assert parity and this table says ≈.
+| Legacy script | Script module (its only form) | Scenario / command | Parity |
+|---|---|---|---|
+| ~~`deploy-play.ps1`~~ | `gk-fusion/scripts/deploy-play.py` | `live_test deploy --launch` | ≈ |
+| ~~`setup-shield-bar-lab.ps1`~~ | `gk-core/scripts/setup_shield_bar_lab.py` | `run shield.lab` | ≈ |
+| ~~`probe-live-shield-bar.ps1`~~ | `gk-core/scripts/probe_live_shield_bar.py` | `run shield.bar` | ≈ |
+| ~~`probe-shield-damage.ps1`~~ | `gk-core/scripts/probe_shield_damage.py` | `run shield.absorb` / `shield.decade` | ≈ (decade stronger in Python) |
+| ~~`setup-lab-run.ps1`~~ | `gk-core/scripts/setup_lab_run.py` | `run lab.overlay` / `lab.empty` | ≈ (the script module has richer lawn refuse / `--then-prove`) |
+| ~~`prove-overlay-combat.ps1`~~ | `gk-core/scripts/prove_overlay_combat.py` | `run combat.probe` | **script module stronger** (C1–C10 matrix) |
+| ~~`prove-status-full.ps1`~~ | `gk-core/scripts/prove_status_full.py` | `run status.l2.catalog` / organic | **script module stronger** (full status-l2-* matrix) |
+| ~~`prove-status-l2-one.ps1`~~ | `gk-core/scripts/prove_status_l2_one.py` | `prove_status_l2_one.py` | **ported** — the Python is the only form (2026-09-29) |
+| ~~`prove-vfx.ps1`~~ | `gk-core/scripts/prove_vfx.py` | `run vfx.play` / `status.l2.apply` | **script module stronger** (shown/mute/rate/state + organic) |
+| ~~`stress-test.ps1`~~ | `gk-core/scripts/stress_test.py` | `run stress.fill` | **script module stronger** (census settle + perf window) |
+| ~~`smoke-melon-live.ps1`~~ | `gk-core/scripts/smoke_melon_live.py` | *(no Python pack)* | checklist / Melon host smoke |
+| ~~`smoke-effect-scoped-atk.ps1`~~ | `gk-core/scripts/smoke_effect_scoped_atk.py` | *(no Python pack)* | effect scope S1–S5 |
+| — | `gk-core/scripts/probe_perf.py` | *(backlog)* | perf capture, not scenario assert |
+
+Prefer Python for **new shield/lab smoke**. A legacy script module is only retired once a Python
+pack has hard-assert parity and this table says ≈. No legacy script met that bar: the ports in the
+middle column exist because the pack parity gate was never reached, and those modules remain the
+surface for the rows marked "script module stronger".
 
 Maintain rule: [live-test-maintain.md](../contributing/live-test-maintain.md) (agents: `.cursor/rules/live-test-maintain.mdc`).
 
@@ -543,7 +551,7 @@ Three tiers — a matrix row alone is **not** covered until product fields use `
 | **Python hard** | `Report.require` on product fields | `shield.bar`, `shield.absorb`, `shield.decade`, `shield.hide` |
 | **Python smoke** | Event ack / soft `check` / explicit SKIP | `shield.toggle` (F9 manual), `combat.probe` payload soft, `status.apply` Unity CC only |
 | **Python L2 hard** | `Report.require` on sustained VFX | `status.l2.apply`, `status.l2.catalog`, `status.l2.organic` |
-| **PS1 / checklist only** | Full regression surface | F1–F78, C1–C10, Melon host X/H/S, effect L1–L14, `prove-*.ps1` |
+| **Script module / checklist only** | Full regression surface | F1–F78, C1–C10, Melon host X/H/S, effect L1–L14, `prove_*.py` |
 
 **Python encodes well:** tip cursor, Adventure lawn gate, `--enter-level`, Melon deploy, shield lab→bar→absorb→decade→hide, per-target clear → emit kind `debug.shield.cleared`.
 
@@ -552,9 +560,9 @@ Three tiers — a matrix row alone is **not** covered until product fields use `
 | Need | Source |
 |---|---|
 | F-row / C-row regression | [debug-live-checklist.md](debug-live-checklist.md), [melon-live-checklist.md](melon-live-checklist.md) |
-| Overlay matchup / miss / crit | `scripts/prove-overlay-combat.ps1` |
-| StatusRuntime L2 | `scripts/prove-status-full.ps1` (not `status.catalog`) |
-| VFX lifecycle | `scripts/prove-vfx.ps1` |
+| Overlay matchup / miss / crit | `gk-core/scripts/prove_overlay_combat.py` |
+| StatusRuntime L2 | `gk-core/scripts/prove_status_full.py` (not `status.catalog`) |
+| VFX lifecycle | `gk-core/scripts/prove_vfx.py` |
 | Assistant server lifetime | §1 — `Start-Process` server exe |
 
 **Command vs emit kind (trap):** `POST /shield/clear` needs `targetPtr`; success event is `debug.shield.cleared` (not `debug.shield.clear`). Stress fill/clear emit `debug.stress.fill` / `debug.stress.clear` (dots, not hyphens).

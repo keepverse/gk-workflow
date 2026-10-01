@@ -260,7 +260,7 @@ following the `IDelveLivePush` precedent (`DelveLivePush.cs:48-52`).
 
 1. Tests 1–11 green.
 2. The only change to `WorldEndpoints.cs` is the pump call after an advancing commit.
-3. `verify-change.ps1` and `guard-dal.py` green.
+3. `verify-change.py` and `guard-dal.py` green.
 4. Map gate **G1** (routed and durable) holds end to end with `player-routing` in place.
 
 ## Seedsmith / generator

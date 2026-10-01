@@ -59,7 +59,7 @@ gk-core/tools/ip-censor/
 ```
 
 **⚠️ Every path above is currently unmapped in `gk-core/scripts/verification-boundaries.v1.json`, and that is
-a build blocker (audit finding A1).** `scripts/verify-change.ps1:118` **throws**
+a build blocker (audit finding A1).** `gk-core/scripts/verify-change.py:771` **throws**
 `"VERIFICATION BOUNDARY MISSING: <path>"` for a path with no owner boundary, and the registry's 101
 boundaries cover **12 C# projects** with no Python lane. The mapping is owned by the amended `wiring`
 module (see [spec-wiring.md](spec-wiring.md)). **Resolution, owner decision 2026-09-19:** `ip-censor`

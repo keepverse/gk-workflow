@@ -224,9 +224,9 @@ pack, haul, extract — without a client driving it.
 
 ### 2.9 Scripted-client precedents (a driver against a *real* process)
 
-- `scripts/probe-sim-shield.ps1:12-24` — posts a whole shield scenario to `/api/sim/*` and reads
+- `gk-core/scripts/probe_sim_shield.py:71-75` — posts a whole shield scenario to `/api/sim/*` and reads
   `/api/sim/state`. A scenario *is* just a script of posts.
-- `scripts/smoke-player-pack.ps1:44-53` — boots a **published** `FusionRpg.Server.exe` as its own
+- `gk-core/scripts/smoke_player_pack.py:190` — boots a **published** `FusionRpg.Server.exe` as its own
   process with **SIM off** and probes it. This is the honest end of the spectrum: nothing is faked.
 - `gk-core/tests/FusionRpg.E2E.Tests/WorldTurnFixtureTests.cs:32` — **six scripted world turns** on the
   `first-light` template, chosen to produce one entry of each visibility class, and asserted before the
@@ -327,7 +327,7 @@ A `gk-core/tools/RpgSim` (or `src/FusionRpg.SimHost`) console app that boots the
 
 ### Option C — A scripted client against a **real server process**, SIM off
 
-The `scripts/smoke-player-pack.ps1:44` shape: boot a published or `dist/` server as its own process with
+The `gk-core/scripts/smoke_player_pack.py:190` shape: boot a published or `dist/` server as its own process with
 `FUSIONRPG_SIM=0`, and drive it over HTTP exactly as the web FE would.
 
 - **Covers:** the **published** path — copy rules, catalog presence, boot order, the things

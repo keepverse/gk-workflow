@@ -71,6 +71,6 @@ Each batch is one commit. The lane reports carry exact lines.
 
 ## Verification
 
-Documents only, so `verify-change.ps1` selects no tests. Run `python scripts/audit-doc-citations.py`
+Documents only, so `verify-change.py` selects no tests. Run `python scripts/audit-doc-citations.py`
 over the touched files so new pointers do not cite dead paths. Spot-check three random pointers per
 batch by opening the cited commit or file.

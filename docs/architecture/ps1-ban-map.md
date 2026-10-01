@@ -46,17 +46,18 @@ renamed.
 **`dispatcher-interpreter` is Wave 0 and contains no port.**
 
 Every guard reaches the outside world through a small set of dispatchers, and every one of them is
-PowerShell-specific:
+PowerShell-specific. Every `.ps1` site in this table was deleted with the PowerShell retirement,
+completed 2026-09-28; the rows are the program's record of the sites as they were.
 
 | Dispatcher site | What it does | Consequence for a `.py` guard |
 |---|---|---|
-| `scripts/run-guards.ps1:191` — `& $pwsh -NoProfile -File $script @guardArgs` | runs **all 29** guards | `pwsh -File guard-x.py` does not execute Python |
-| `scripts/verify-change.ps1:359` — `& (Join-Path $Root $scriptRel)` | runs every selected `script` check | the PS call operator cannot invoke `.py` (`PATHEXT` has no `.py`) |
-| `scripts/verify-change.ps1:29` — `powershell -File …guard-verification-boundaries.py` | hardcoded interpreter | same |
-| `scripts/verify-change.ps1:188-190` — `powershell -File …session-boundary-check.py` | hardcoded interpreter | same |
-| `scripts/test-fast.ps1:45` — `& (Join-Path $Root "scripts\guard-test-substrate.py")` | the default local profile's gate | same |
+| retired `scripts/run-guards.ps1:191` — `& $pwsh -NoProfile -File $script @guardArgs` | runs **all 29** guards | `pwsh -File guard-x.py` does not execute Python |
+| retired `scripts/verify-change.ps1:359` — `& (Join-Path $Root $scriptRel)` | runs every selected `script` check | the PS call operator cannot invoke `.py` (`PATHEXT` has no `.py`) |
+| retired `scripts/verify-change.ps1:29` — `powershell -File …guard-verification-boundaries.py` | hardcoded interpreter | same |
+| retired `scripts/verify-change.ps1:188-190` — `powershell -File …session-boundary-check.py` | hardcoded interpreter | same |
+| retired `scripts/test-fast.ps1:45` — `& (Join-Path $Root "scripts\guard-test-substrate.py")` | the default local profile's gate | same |
 | `Directory.Build.targets:53` — `<Exec … -File "$(FusionRpgProfileGuardScript)">` | runs **before every `Build;CoreCompile`** of the three injector host projects | same, and it takes the whole injector build with it |
-| `scripts/publish-player.ps1:165` | release packaging | same |
+| retired `scripts/publish-player.ps1:165` | release packaging | same |
 | `gk-fusion/scripts/deploy-play.py:397-403` — a `pwsh -Command` string with a PS **hashtable literal** interpolated from Python | the deploy's positioned precondition | the call must be rebuilt, not renamed |
 | `.github/workflows/{ci,nightly,release}.yml` — `run-guards.ps1 -Tier ci` | the merge, nightly and release gates | same |
 | `.github/workflows/ci.yml:446` — `guard-verification-boundaries.py` | its own CI step (`ciEntry: own-step`) | same |
@@ -102,8 +103,8 @@ This is the only wave whose proof is "nothing changed".
 ### `registry-repoint` — the 29 rows, one commit
 `gk-core/scripts/enforcement-registry.v1.json` names a `.ps1` in all 29 `script` fields.
 `gk-core/scripts/verification-boundaries.v1.json` carries a further **51 `.ps1` rows** in `paths` arrays.
-A row and its file must move in the **same commit**; a dangling row makes `run-guards.ps1` throw
-`guard script missing` and the boundary guard throw `script file missing`.
+A row and its file must move in the **same commit**; a dangling row makes `gk-core/scripts/run_guards.py:308`
+throw `guard script missing` and the boundary guard throw `script file missing`.
 
 ### `shim-guards` — 5 guards, highest leverage, near-free
 Each is a 7–18 line wrapper that already delegates to a substantial Python tool that exists today:
@@ -140,10 +141,10 @@ matches. Six sites, all confirmed by reading:
 
 | Reader | Reads | Fails |
 |---|---|---|
-| `scripts/verify-change.ps1:43-50` | `scripts/test-fast.ps1`, regex `\$Filter\s*=\s*"([^"]+)"` | `throw` — loud |
+| `gk-core/scripts/verify-change.py:363` (pattern at `:83`) | `gk-core/scripts/test_fast.py:81`, regex `\$?filter\s*=\s*"([^"]+)"` | `Refusal("DEFAULT-FILTER-UNREADABLE")` — loud |
 | `NarrativeGuardContractTests.cs:65-77` | `guard-narrative.py`'s `@'…'@` here-string row-map | `Assert.NotEmpty` — loud |
 | `VerificationBoundaryWorkflowTests.cs:1376` | a **literal PowerShell expression** in `guard-verification-boundaries.py` | `Assert.Contains` — loud |
-| `VerificationBoundaryWorkflowTests.cs:1434-1442` | `lib/VerificationBoundaries.ps1` and **textually rewrites** `$Script:EnforcedRoots` | loud — and it *mutates* the file it reads |
+| `VerificationBoundaryWorkflowTests.cs:1434-1442` | `lib/VerificationBoundaries.ps1` and **textually rewrote** `$Script:EnforcedRoots`; that helper was replaced by the Python import probe at `:85-120` | loud — and it *mutated* the file it read |
 | `gk-core/tests/tools/test_program_status.py:311-327` | `session-boundary-check.py`'s `$validModes`/`$validStatus`/`$required` | `assertIsNotNone` — loud |
 | `gk-core/tests/tools/test_program_status.py:25,332` | `accept_lane.py`'s `ACCEPTANCE_VERDICTS` tuple — **was `accept-lane.ps1`'s `$AcceptanceVerdicts` until the port.** A HALF-RENAME happened here first: the sweep rewrote the path and left the PowerShell variable name beside it, producing a row that mixed a Python module with a PowerShell symbol and READ as updated. A mechanical rename cannot catch that — the retired thing's IDENTIFIERS are part of the prose — so a reader has to | loud, and the port turned the bare read into a refusal, so a future owner change names the missing owner instead of raising `FileNotFoundError` from the middle of a vocabulary assertion |
 
@@ -179,7 +180,7 @@ in PowerShell, and a test enforces the mirror.
 
 ### `lib-ports` — `gk-core/scripts/lib/*.ps1` (5)
 A `.ps1` cannot dot-source a `.py`, so each of the six dot-source sites is a real restructure.
-`keepverse_roots.py` already exists beside `KeepverseRoots.ps1`.
+`gk-core/scripts/lib/keepverse_roots.py` already existed beside the retired `gk-core/scripts/lib/KeepverseRoots.ps1`.
 
 ### `harness-ports` — the manager/lane tooling
 `.claude/cmdc-agents/scripts/accept_lane.py` and `post_merge_check.py`. **Ported first, on purpose:**

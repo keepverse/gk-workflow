@@ -230,7 +230,7 @@ squatting in a cross-row ledger, `TagAxisNotApplicable` gating on a field the re
 advisory. A pipeline cannot catch a wrong predicate — it will run the wrong check in exactly the
 right order.
 
-That residue needs its own answer, and this repo already has the tool: **`scripts/mutate.ps1`**.
+That residue needs its own answer, and this repo already has the tool: **`gk-core/scripts/mutate.py`**.
 Mutation testing on the metric suite — break each check on purpose, confirm a fixture notices — is
 the only mechanism that tests the tester. Cheap, established here, and it belongs in W1 beside the
 metrics rather than as a later nicety.

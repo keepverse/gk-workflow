@@ -273,7 +273,7 @@ not by a balance swing; the build task records how that value was measured.
 
 ## Success criteria
 
-The four acceptance items above, `verify-change.ps1` green for the changed paths, `guard-actor-hub.py`
+The four acceptance items above, `verify-change.py` green for the changed paths, `guard-actor-hub.py`
 green, overflow and magic-number audits at 0, the §10.2 row written.
 
 ## Open questions

@@ -46,8 +46,9 @@ records will otherwise cost you the same investigation: per-test durations in a 
 than at the default 32** on a 32-core box. It also lists the hypotheses already ruled out with numbers,
 so they are not re-tested.
 
-For the routine loop use `.\scripts\test-fast.ps1` (the `default` profile — see
-[testing-standard.md](testing-standard.md) §6), which excludes the disk-writing and long tests.
+For the routine loop use `python gk-core/scripts/test_fast.py --project <project>` (the `default`
+profile — see [testing-standard.md](testing-standard.md) §6), which excludes the disk-writing and
+long tests.
 
 ## Injector refs (no hardcoded game path)
 
@@ -87,4 +88,4 @@ See [player-pack-smoke.md](../testing/player-pack-smoke.md) and [release-prove.m
 
 Push a tag `v*` (e.g. `v1.0.0`). GitHub Actions [`.github/workflows/release.yml`](../../gk-fusion/.github/workflows/release.yml) runs unit tests, then publishes the zip.
 
-**Cloud runners** prefer repository secret `FUSIONRPG_INTEROP_ZIP_URL` (private zip of `BepInEx\interop` including `Assembly-CSharp.dll`) so the Injector rebuilds from source. If that secret is unset, Release falls back to committed `artifacts/ci-drop-into-game` (AGPL plugin DLLs only — refresh with `scripts/sync-ci-drop-into-game.ps1`). Do not commit interop DLLs to git.
+**Cloud runners** prefer repository secret `FUSIONRPG_INTEROP_ZIP_URL` (private zip of `BepInEx\interop` including `Assembly-CSharp.dll`) so the Injector rebuilds from source. If that secret is unset, Release falls back to committed `artifacts/ci-drop-into-game` (AGPL plugin DLLs only — refresh with `gk-core/scripts/sync_ci_drop_into_game.py`). Do not commit interop DLLs to git.

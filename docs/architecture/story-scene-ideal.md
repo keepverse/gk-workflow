@@ -472,7 +472,7 @@ Scene **copy** (lines, teaching sentences, speaker names) is neither a tunable n
 - Whether the Injector, the server, or a later mechanism drives a cue; this doc fixes only the seam.
 - **Amending GG-61** — S1 records a scoped exemption citing it; changing a GG is an owner/ADR action.
 - The **four unrelated band violations** on other surfaces.
-- Any change to the four VFX recipes or `prove-vfx.ps1`.
+- Any change to the four VFX recipes or `prove_vfx.py`.
 - Any runtime code, spec, plan, or todo.
 
 ---

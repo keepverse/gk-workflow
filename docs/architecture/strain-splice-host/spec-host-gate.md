@@ -190,7 +190,7 @@ refuse by name; read capacity from the same lookup the workbench uses.
 - [ ] Rulings 1, 2, 3 each have a test that fails if the rule is broken; ruling 3's includes the R11
       derivation (a ceiling of 4 makes any role, the helm included, a word host with no code change).
 - [ ] A base row above its role ceiling cannot be bored past it at runtime.
-- [ ] `verify-change.ps1` over the changed paths is green.
+- [ ] `verify-change.py` over the changed paths is green.
 
 ## Open questions
 

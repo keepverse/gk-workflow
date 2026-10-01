@@ -14,7 +14,7 @@ The module has **two halves**:
 | Half | What it catches | Status |
 |---|---|---|
 | **Static gate** — `guard-test-substrate.py` | a test *source* that swallows a temp-delete, or builds a store from a temp path | ✅ **shipped `7183a59e`** |
-| **Runtime alarm** — `test-substrate-leak-alarm.ps1` | a test run that *actually* leaves temp dirs or `rpg-*.sqlite` behind, even if the source pattern changed | ⬜ **this spec's build task (T19b)** |
+| **Runtime alarm** — `test_substrate_leak_alarm.py` | a test run that *actually* leaves temp dirs or `rpg-*.sqlite` behind, even if the source pattern changed | ⬜ **this spec's build task (T19b)** |
 
 **Success looks like:** the static gate refuses a bad pattern at authoring time; the runtime alarm
 refuses a leak that got past it, on every CI run.
@@ -41,12 +41,12 @@ refuses a leak that got past it, on every CI run.
 
 `gk-core/scripts/test-substrate-baseline.txt` is the ratchet: one line per grandfathered file
 (`path : code`); a file whose violation is fixed **must** lose its line, and a stale line fails.
-Wired into `deploy-play.py` (`:205`, through `run-guards.ps1`), `ci.yml` (`:196-197`), and `FusionRpg.Guard.Tests`. The gate's own
+Wired into `deploy-play.py` (`:205`, through `run_guards.py`), `ci.yml` (`:196-197`), and `FusionRpg.Guard.Tests`. The gate's own
 tests are self-exempt (they contain the patterns as fixtures) by one named-file exclusion.
 
 ### 2. The runtime alarm (the build task)
 
-`scripts/test-substrate-leak-alarm.ps1`:
+`gk-core/scripts/test_substrate_leak_alarm.py`:
 
 ```powershell
 param([string]$Root = …, [scriptblock]$Run, [string]$RepoRoot)
@@ -125,7 +125,7 @@ The alarm is proven by **planting** a leak, exactly as the static gate's tests d
 
 ## Success criteria
 
-1. `test-substrate-leak-alarm.ps1` passes on a clean tree and **fails** on a planted leak (both a
+1. `test_substrate_leak_alarm.py` passes on a clean tree and **fails** on a planted leak (both a
    temp dir and an `rpg-*.sqlite`).
 2. It is wired into CI after the test step (owner-coordinated on shared `ci.yml`).
 3. The static gate keeps passing unchanged; its tests stay green.

@@ -194,7 +194,7 @@ tests/FusionRpg.Guard.Tests/LaneFieldReadersGuardTests.cs            (new)
   same commands through the same admission.
 
 Verification boundary: Core (World/Logistics, World/District), Guard (the reader guard), and the command
-plumbing across Data, Contracts and Server — `verify-change.ps1` with every changed path.
+plumbing across Data, Contracts and Server — `verify-change.py` with every changed path.
 
 ## Acceptance (contract)
 

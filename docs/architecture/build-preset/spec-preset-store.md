@@ -227,7 +227,7 @@ module; every later change is `v{n+1}` through `gk-core/tools/tuning/publish.py`
 - [ ] Two tables, four routes, the closed five-kind vocabulary.
 - [ ] Save-time shape rules refuse by name; validate-on-read never drops a row.
 - [ ] `build-preset.v1.json` loads; a missing key rejects.
-- [ ] `guard-dal.py` and `verify-change.ps1` green.
+- [ ] `guard-dal.py` and `verify-change.py` green.
 
 ## Open questions
 

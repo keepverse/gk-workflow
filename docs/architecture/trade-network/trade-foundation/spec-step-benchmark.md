@@ -42,7 +42,7 @@ injector's arrive at `POST /api/perf`; a world-phase window endpoint is a later,
 | The `Stopwatch` lives in `Core/Diagnostics` | `PerfProbe.cs:1`, `:102`, `:112` |
 | The determinism guard scans `Core/World`, `Core/Battle`, `Core/Effects` only; `Stopwatch` and `Environment.TickCount` are banned there; comment text is stripped | `gk-core/tests/FusionRpg.Guard.Tests/WorldDeterminismGuardTests.cs:39-49`, `:254-267` |
 | Precedent for a probe scope inside a guarded tree | `gk-core/src/FusionRpg.Core/Effects/EffectBag.cs:362` |
-| Bench precedent: an xunit class named `*Bench` that prints and never asserts timing; `coverage.ps1` excludes `*Bench` | `gk-core/tests/FusionRpg.Core.Tests/World/Topology/ReconnectionCostBench.cs:9-17`; `scripts/coverage.ps1:46` |
+| Bench precedent: an xunit class named `*Bench` that prints and never asserts timing; `coverage.py` excludes `*Bench` | `gk-core/tests/FusionRpg.Core.Tests/World/Topology/ReconnectionCostBench.cs:9-17`; `gk-core/scripts/coverage.py:63` |
 | Release-only bench exe, runs every bench in sequence, no argument parsing | `gk-core/tests/FusionRpg.Bench/FusionRpg.Bench.csproj:3-11`; `gk-core/tests/FusionRpg.Bench/Program.cs:1-40` |
 
 ### Real gap

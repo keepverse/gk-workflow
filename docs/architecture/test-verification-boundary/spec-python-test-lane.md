@@ -8,7 +8,7 @@ pre-existing-red rule (D6, map §3.9).
 
 ## Objective
 
-`verify-change.ps1` can only run `dotnet test`: every `projects` value is a `.csproj`
+`verify-change.py` can only run `dotnet test`: every `projects` value is a `.csproj`
 (`gk-core/scripts/verification-boundaries.v1.json:3-15`, checked as a file at
 `guard-verification-boundaries.py:38-42`) and the runner hard-codes the command
 (`verify-change.ps1:116-117`). Measured on this commit:
@@ -65,7 +65,7 @@ because this program owns the step that needs it green.
 not data. A `script` project is an argument-free wrapper whose exit code is the verdict (D5). It is
 **not** a guard (map §3.4). This change moves `schemaVersion` from `3` (set by `registry-contract`) to
 `4` (map §3.2), in the same commit as planner and guard support, so a stale planner refuses the file
-(`verify-change.ps1:28`).
+(`gk-core/scripts/verify-change.py:358`).
 
 ### D2 — file selectors, never `-k`
 
@@ -101,7 +101,7 @@ anywhere else.
   fails, it stops with "python test environment missing — install per AGENTS.md 'Seedsmith'". It
   never installs anything and never skips.
 - Checks run in the existing order: guards, then tests, stopping at the first failure
-  (`verify-change.ps1:108-120`). Guards run through `run-guards.ps1 -Only` since SE0.7.
+  (`gk-core/scripts/verify-change.py:1192`). Guards run through `run-guards.ps1 -Only` since SE0.7.
 
 ### D4 — initial boundaries
 
@@ -244,8 +244,8 @@ cd gk-forge/tools/seedsmith; python -m pip install -r requirements.lock; python 
 | Path | Change |
 |---|---|
 | `gk-core/tools/tuning/test_resource_ownership.py` | step 0: drop the two pinned readings (`:38`, `:40`) |
-| `scripts/lib/VerificationBoundaries.ps1` | project-kind resolution; `testFiles` expansion (sorted); `selfSelect` split; result-file parsing for D6 |
-| `scripts/verify-change.ps1` | pytest and script runner branches (D3); `knownRed` outcome (D6); accept `schemaVersion` 4 |
+| `gk-core/scripts/lib/verification_boundaries.py` | project-kind resolution; `testFiles` expansion (sorted); `selfSelect` split; result-file parsing for D6 |
+| `gk-core/scripts/verify-change.py` | pytest and script runner branches (D3); `knownRed` outcome (D6); accept `schemaVersion` 4 |
 | `gk-core/scripts/guard-verification-boundaries.py` | object projects, runner vocabulary, D2 pairing rules, `selfSelect` rule, `testFiles` existence, `knownRed` rules |
 | `scripts/checks/gen-*.py` | (new) twelve wrappers (D5) |
 | `gk-core/scripts/verification-boundaries.v1.json` | `schemaVersion: 4`; two pytest and twelve script projects; D4/D5 boundaries; `knownRed` |

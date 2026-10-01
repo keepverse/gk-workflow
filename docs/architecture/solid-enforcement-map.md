@@ -47,7 +47,7 @@ There are **18** `scripts/guard-*.ps1`. They are listed by hand in **three** pla
 |---|---|
 | `.github/workflows/ci.yml` (merge gate) | 8 |
 | `gk-fusion/scripts/deploy-play.py` (local deploy) | 16 |
-| `scripts/verify-change.ps1` via `verification-boundaries.v1.json` | per-boundary subset |
+| `gk-core/scripts/verify-change.py` via `verification-boundaries.v1.json` | per-boundary subset |
 
 Of the **9 guards CI never runs**, running each one today gives:
 
@@ -140,7 +140,7 @@ creature files are **generated**, so the fix is a generator change followed by r
 | Module id | Responsibility | Depends on |
 |---|---|---|
 | `enforcement-registry` | One machine-readable register: invariant → guard → tier → status → backlog module. A meta-test keeps it honest | — |
-| `guard-runner` | One runner (`scripts/run-guards.ps1`) that CI, `deploy-play` and `verify-change` all call. Deletes the three hand-kept lists | `enforcement-registry` |
+| `guard-runner` | One runner (`gk-core/scripts/run_guards.py`) that CI, `deploy-play` and `verify-change` all call. Deletes the three hand-kept lists | `enforcement-registry` |
 | `debt-ledger` | `stub-register.md` becomes the one ledger of SOLID debt *instances* across programs | `enforcement-registry` |
 | `wire-green-guards` | The five green, unwired guards gate in CI. The two game-bound guards are classified `local` with a reason | `guard-runner` |
 | `commit-policy-green` | GitHub web-merge commits pass the identity policy; the guard gates | `guard-runner` |
@@ -157,7 +157,7 @@ creature files are **generated**, so the fix is a generator change followed by r
 | `action-base-stats` | **Wave 5, idea phase.** Every action owns its base (`BasePowerMilli`, `HitCount`); damage stops reading the creature's `atk`. Ideal: [action-base-stats-ideal.md](action-base-stats-ideal.md). Spec follows its two open questions | `retire-atk` |
 
 Sixteen modules. **Each ends green:** its guard gates in CI (or is registered `local` or
-`unguardable` with a reason), the scoped `verify-change.ps1` passes, and every guard still passes.
+`unguardable` with a reason), the scoped `verify-change.py` passes, and every guard still passes.
 
 ## Build order
 

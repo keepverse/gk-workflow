@@ -104,7 +104,7 @@ See also: [`06-combat-metrics-hit-vs-speed.md`](06-combat-metrics-hit-vs-speed.m
 
 Full catalog prove on BepInEx lawn (`simEnabled=false`, `injectorConnected=true`).
 
-- Script: [`../../../scripts/prove-status-full.ps1`](../../../scripts/prove-status-full.ps1)
+- Script: [`gk-core/scripts/prove_status_full.py`](../../../gk-core/scripts/prove_status_full.py)
 - Dump: [`_prove-status-full.json`](_prove-status-full.json) — **27/27 PASS**
 - Checklist: [`../../runbook/debug-live-checklist.md`](../../runbook/debug-live-checklist.md) F52–F78
 
@@ -122,7 +122,7 @@ Offline prove (no game required):
 LIVE rows: **closed 2026-08-30**, 13/13 PASS on a real MelonLoader 3.9 lawn —
 [`../../runbook/melon-live-checklist.md`](../../runbook/melon-live-checklist.md) §8b, raw JSON
 [`_prove-overlay-combat.json`](_prove-overlay-combat.json). Script:
-[`../../../scripts/prove-overlay-combat.ps1`](../../../scripts/prove-overlay-combat.ps1).
+[`gk-core/scripts/prove_overlay_combat.py`](../../../gk-core/scripts/prove_overlay_combat.py).
 `OVERLAY-COMBAT` is now default-on in all three cheat registries (was gated behind the toggle when
 this section was first written).
 

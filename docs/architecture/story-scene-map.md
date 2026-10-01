@@ -135,7 +135,7 @@ green guard baseline exists to prove the band fix against.
 | **The FE↔host bridge mechanism itself** | **Sibling** `rift-gate-ideal` (decision 9) | Redefine it here; this program **consumes** it. ⚠️ **2026-09-23 — the bridge now EXISTS**, so "no bridge" is no longer a reason to stop: `OverlayCommandNames.Hide` = `overlay.hide` (`gk-core/src/FusionRpg.Core/Overlay/OverlayCommandNames.cs:19`), route `POST /api/overlay/leave` (`gk-core/src/FusionRpg.Server/OverlayEndpoints.cs:21`), injector arm (`gk-fusion/src/FusionRpg.Injector/CheatCommandRunner.cs:112-114`), FE sender (`gk-web/web/fusion-rpg-web/src/lib/bus/overlay.ts:13-14`). Its vocabulary holds exactly one verb, so T27b needs a **new verb** (an owner ruling) plus `src/` edits, and locked decision 4 still says the FE owns the cue. T27b is blocked on those, not on a missing channel |
 | First-session reveal **contract** + `spec-first-session-progression` | **Sibling** `spec-first-session-progression` | Change its checkpoint semantics (only presentation is absorbed) |
 | Rift Gate mechanism (overlay transport, host selection, first-open capture) | **Sibling** `rift-gate-ideal` | Decide its transport here |
-| **`gk-core/scripts/verification-boundaries.v1.json` / `verify-change.ps1` / `test-fast.ps1`** | **Sibling** `verification-boundaries-20260913-6f31` (**active**) | Edit them — the FE verification mapping stays follow-up **F1**, un-absorbable |
+| **`gk-core/scripts/verification-boundaries.v1.json` / `verify-change.py` / `test_fast.py`** | **Sibling** `verification-boundaries-20260913-6f31` (**active**) | Edit them — the FE verification mapping stays follow-up **F1**, un-absorbable |
 
 ---
 
@@ -176,7 +176,7 @@ green guard baseline exists to prove the band fix against.
 | **Story arcs, beat scheduling, chapter sequencing** | Owner N3: `scene-trigger` adds an **eligibility seam only**. Authoring what story happens when is a future program |
 | **The FE↔host bridge mechanism** | Sibling `rift-gate-ideal` decision 9 owns it. T27 **consumes** it; it does not create a second channel. **2026-09-23:** that channel shipped as `overlay.hide` (one verb); a story cue needs a new verb in it, which is an owner ruling plus `src/` work — see the row above |
 | **The first-session reveal's contract, data, and lifecycle** | Sibling `spec-first-session-progression`. T26 absorbs **presentation only** and does not edit that spec |
-| **`gk-core/scripts/verification-boundaries.v1.json`, `verify-change.ps1`, `test-fast.ps1`** | Fenced by the **active** session `verification-boundaries-20260913-6f31`. Stays follow-up **F1** |
+| **`gk-core/scripts/verification-boundaries.v1.json`, `verify-change.py`, `test_fast.py`** | Fenced by the **active** session `verification-boundaries-20260913-6f31`. Stays follow-up **F1** |
 | Dr. Zomboss as a v1 actor | Deliberate story deferral (owner) |
 | Branching narrative / ink / Yarn Spinner | No branch exists; revisit then |
 | Amending GG-61 in `game-gui-principles.md` | S1 records a **scoped exemption** citing GG-61; changing a GG is an owner/ADR action |

@@ -3,7 +3,7 @@
 **Program:** `actor-hub-and-combat-power-solid-fixing` · **Map:** [../actor-hub-and-combat-power-solid-fixing-map.md](../actor-hub-and-combat-power-solid-fixing-map.md)  
 **Ideal:** handoff prove path · gk-core/tools/ProveAptitude prior art  
 **Wave:** 4 (after Waves 1–3 Done gates)  
-**Code anchors:** `gk-core/tools/ProveAptitude` · Standing / Hub / Bound lawn paths · `scripts/prove-aptitude.ps1`
+**Code anchors:** `gk-core/tools/ProveAptitude` · Standing / Hub / Bound lawn paths · `gk-core/scripts/prove_aptitude.py`
 
 ---
 
@@ -44,7 +44,7 @@ dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~Prov
 | Path | Duty |
 |---|---|
 | `gk-forge/tools/ProveHubCombat` or extend ProveAptitude | Emit pass/fail JSON; exit 1 on delta |
-| `scripts/prove-hub-combat.ps1` | Thin wrapper |
+| `gk-core/scripts/prove_hub_combat.py` | Thin wrapper |
 | Fixtures | High-dodge Standing; Bound vs species isolation |
 | Docs/runbook | How to run after fuse |
 

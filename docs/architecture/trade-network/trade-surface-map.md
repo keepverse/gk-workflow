@@ -156,7 +156,7 @@ A module spec reads this map, not its links.
 | **No escort stance** — stances are `March`, `Scout`, `Hold`, `Dowse` only (`gk-core/src/FusionRpg.Core/World/Movement/LaneCost.cs:22`) | The "escort" throttle answer needs `fleet` first |
 | **No treaty command kinds** — `WorldCommandKinds` ends at the cargo verbs (`gk-core/src/FusionRpg.Core/World/Turn/WorldCommand.cs:7-119`), and ideal §8.7's new-kind list has none for treaties either | The treaty screen needs `counterparties` to name them (see §10 contradiction 3) |
 | **No teach-once record** — no generic "the player has been taught X" store exists (only domain ledgers such as `gk-core/src/FusionRpg.Core/Items/Surfaces/CompendiumReveal.cs:16`) | GG-45 needs a once-only fact |
-| **Web paths have no verification boundary** — `gk-core/scripts/verification-boundaries.v1.json` contains no `web/` path (grep count 0), so `verify-change.ps1` cannot select vitest for any FE module here | An unmapped production path is a verification-boundary defect (AGENTS.md); every FE module below must add its mapping or report it |
+| **Web paths have no verification boundary** — `gk-core/scripts/verification-boundaries.v1.json` contains no `web/` path (grep count 0), so `verify-change.py` cannot select vitest for any FE module here | An unmapped production path is a verification-boundary defect (AGENTS.md); every FE module below must add its mapping or report it |
 
 ## 6. Modules
 
@@ -785,7 +785,7 @@ catalog rows, a designed unknown placeholder, a vocabulary guard); UI-gate modul
 
 | # | Owner | Violation | Fix |
 |---|---|---|---|
-| S-X1 | verification-boundary owners (`guard-verification-boundary-tests`) | No `web/` path in `gk-core/scripts/verification-boundaries.v1.json`, so `verify-change.ps1` cannot select vitest for any module here (an unmapped production path is a boundary defect, AGENTS.md) | Add a `web-world-trade` boundary row mapping `web/fusion-rpg-web/src/features/trade/**` and the touched `stages/world/**` files to their vitest files; until then each FE task reports the gap and runs its own vitest files by path, never the full suite |
+| S-X1 | verification-boundary owners (`guard-verification-boundary-tests`) | No `web/` path in `gk-core/scripts/verification-boundaries.v1.json`, so `verify-change.py` cannot select vitest for any module here (an unmapped production path is a boundary defect, AGENTS.md) | Add a `web-world-trade` boundary row mapping `web/fusion-rpg-web/src/features/trade/**` and the touched `stages/world/**` files to their vitest files; until then each FE task reports the gap and runs its own vitest files by path, never the full suite |
 | S-X2 | IA owner and `decisions.md` (Game GUI row) | OD-1's Diplomacy layer is recorded (`decisions.md` — 'Treaties, Diplomacy rail layer, flow lens (2026-09-19)') but the Game GUI row (`:110`, "8 layers") and `design/information-architecture.md` §3/§4/§5/§7 are unamended | Amend both before `treaty-screen` is built (already its listed requirement) |
 | S-X3 | `design/spec-magnitude-and-units.md` / world-stage `world-numbers` | Two unit classes are now needed: `goodsUnits` (per-good quantities) and a value unit for the headline totals | One reviewed widening covering both (`trade-wire` §3 files it) |
 

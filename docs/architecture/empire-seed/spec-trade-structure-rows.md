@@ -352,9 +352,9 @@ python -m pytest gk-forge/tools/seedsmith/tests/test_structure_corpus.py gk-forg
 Existing structure suites plus new pytest cases for criteria 1–5 and 8, and one Core test for criterion 7.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**` and
-`data/tuning/structure-seed.*` are unmapped (`scripts/verify-change.ps1:118`); the owner of the fix is
+`data/tuning/structure-seed.*` are unmapped (`gk-core/scripts/verify-change.py:771`); the owner of the fix is
 `test-verification-boundary` `python-test-lane`. The pytest command is the boundary. The C# test runs through
-`verify-change.ps1` (`core-tests-fallback`).
+`verify-change.py` (`core-tests-fallback`).
 
 ## 9. Hard edges
 

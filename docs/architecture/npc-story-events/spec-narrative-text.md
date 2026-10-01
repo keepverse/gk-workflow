@@ -181,8 +181,8 @@ npx vitest run src/features/narrative
 npm run extract ; npm run build ; npm run check:bundle
 ```
 
-`web/**` has no entry in `gk-core/scripts/verification-boundaries.v1.json` (`verify-change.ps1` throws for it,
-`scripts/verify-change.ps1:95`); web verification is the npm commands above until a web boundary exists.
+`web/**` has no entry in `gk-core/scripts/verification-boundaries.v1.json` (`verify-change.py` throws for it,
+`gk-core/scripts/verify-change.py:771`); web verification is the npm commands above until a web boundary exists.
 
 ## Structure
 
@@ -293,4 +293,4 @@ seed text field, C# or TS source outside the registry; guard: the two-name-set r
 `narrative-validators` literal-name rule. `ns-one-narrative-text-dto` — one wire shape for story text; guard: a
 Contracts reflection test that no DTO other than `NarrativeTextDto` carries a `key` + token map. **Verification-boundary
 ask:** a web boundary for `web/fusion-rpg-web/src/features/narrative/**` and `scripts/gen-narrative-messages.mjs`
-(today `verify-change.ps1` throws for `web/**`).
+(today `verify-change.py` throws for `web/**`).

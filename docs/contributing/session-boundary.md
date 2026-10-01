@@ -154,7 +154,7 @@ Run it at session start; a clean run is the precondition for editing.
 
 **`-Session <id>` scopes the verdict to one session.** Drift that names that session — its record,
 its branch, an overlap with its paths — fails; drift that belongs only to other sessions is printed
-under its own heading and does not fail. `verify-change.ps1` passes `-Session` to this guard, so
+under its own heading and does not fail. `verify-change.py` passes `-Session` to this guard, so
 another session's leftovers never block your verification. They are still never yours to fix: a
 record, branch or worktree you did not create is not yours to remove or re-mark.
 

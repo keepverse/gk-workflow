@@ -7,9 +7,9 @@ Operator path: ship a GitHub Release and prove the player zip on a real game ins
 - [ ] `dotnet test tests\FusionRpg.Launcher.Tests -c Release` green (includes `PlayerPackProbe`)
 - [ ] `$env:PYTHONPATH = "gk-core/tools/ip-censor"; python -m ipcensor.report scan --format json --fail-on enforced --authored-only` exits 0 — the IP release gate (IC-3); `--authored-only` keeps it offline, so it never waits on a model endpoint
 - [ ] `$env:FUSIONRPG_GAME_DIR = "<legal game with BepInEx\interop>"`
-- [ ] `.\scripts\publish-player.ps1`
+- [ ] `python gk-core/scripts/publish_player.py`
 - [ ] `.\scripts\smoke-player-pack.ps1` → `SMOKE PASSED` / a run-generated `artifacts/player-pack-smoke.json` (does not exist until a smoke run creates it, never tracked)
-- [ ] Cloud release: secret `FUSIONRPG_INTEROP_ZIP_URL` **or** committed `artifacts/ci-drop-into-game` (refresh via `scripts/sync-ci-drop-into-game.ps1`)
+- [ ] Cloud release: secret `FUSIONRPG_INTEROP_ZIP_URL` **or** committed `artifacts/ci-drop-into-game` (refresh via `gk-core/scripts/sync_ci_drop_into_game.py`)
 
 ## Commit / push / tag
 

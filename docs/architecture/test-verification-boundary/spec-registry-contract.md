@@ -10,8 +10,8 @@ only), G15 (`magic-number-audit`), and provides the project groups the Core spli
 
 The integrity guard today proves one thing about coverage: every `src/**/*.cs` has an owner
 (`gk-core/scripts/guard-verification-boundaries.py:84-93`). Test code, tool trees and versioned tuning can
-go unmapped with nothing failing until someone edits them and `verify-change.ps1` refuses
-(`verify-change.ps1:83`). That is how `LawnQuickStartEndpointTests.cs` sat unmapped (ideal, "Wiring
+go unmapped with nothing failing until someone edits them and `verify-change.py` refuses
+(`gk-core/scripts/verify-change.py:771`). That is how `LawnQuickStartEndpointTests.cs` sat unmapped (ideal, "Wiring
 gap"), and it is still true for six test roots today (map §2 G1).
 
 This module makes the registry's **contract** strict enough that an unmapped test file, a test
@@ -19,7 +19,7 @@ project the registry has never heard of, a `level` that lies about the selector,
 all fail the guard — and it adds the two grammar features later modules need. It does **not** add
 coverage for data trees (that is `seam-coverage`) or Python (that is `python-test-lane`).
 
-**User:** every contributor who runs `verify-change.ps1`; the owner reading `-Report`.
+**User:** every contributor who runs `verify-change.py`; the owner reading `-Report`.
 
 ## What changes
 
@@ -73,7 +73,7 @@ see its csproj comment and map §6". Same shape and reason as `CiWiringGuardTest
 
 (`seam-coverage` S3 adds a fifth row later: `owner` with neither `project` nor `guards` → `full`.)
 
-`level` stays in the file (the planner prints it, `verify-change.ps1:103`), but a mismatch fails the
+`level` stays in the file (the planner prints it, `gk-core/scripts/verify-change.py:522`), but a mismatch fails the
 guard. Fix the three entries that violate it today (map G3): `battle-effect-math` → `focused`,
 `session-and-program-records` → `module`, `effect-catalog-drift` → `seam`. No selection changes —
 only the label.
@@ -82,19 +82,19 @@ only the label.
 
 Pattern grammar gains one form: a `*` inside the **final** segment only, matching `[^/]*`
 (e.g. `data/tuning/lawn-attrition.v*.json`). `/**` keeps its meaning; `*` elsewhere stays invalid.
-Both `Matches` functions change together (`verify-change.ps1:38-41`,
+Both `Matches` functions change together (`gk-core/scripts/lib/verification_boundaries.py`,
 `guard-verification-boundaries.py:23-26`); the path validator (`guard-verification-boundaries.py:16-22`) accepts the new form.
 
 Specificity becomes an ordered pair: **(class, length)** with class `exact` > `wildcard` > `/**`,
-then longer wins. Today it is length alone (`verify-change.ps1:79,84`); without the class rank an
+then longer wins. Today it is length alone (`gk-core/scripts/lib/verification_boundaries.py:122`); without the class rank an
 exact file and a same-length wildcard would tie and raise `AMBIGUOUS`. The guard's report and the
-planner must use the same rule — extract it to `scripts/lib/VerificationBoundaries.ps1` (new) and
+planner must use the same rule — extract it to `gk-core/scripts/lib/verification_boundaries.py` (new) and
 dot-source it from both, so the two copies cannot drift (they are duplicated today).
 
 ### C5 — guard-only boundaries
 
 `project` becomes optional **iff** `guards` is non-empty. The planner then emits no test check for
-that path (`verify-change.ps1:97` stops being unconditional). The guard rejects a boundary with
+that path (`gk-core/scripts/verify-change.py:837` stops being unconditional). The guard rejects a boundary with
 neither. This exists for `gk-core/tests/FusionRpg.Bench`, whose only honest proof is "it still compiles":
 `dotnet test` on that `Exe` restores and exits 0 without building (map G9, run on this commit), so
 mapping it to any test project would be the same false evidence R-TV2 removed from the Launcher.
@@ -158,7 +158,7 @@ script in the strengthen pass, and it is a reading, not a pinned count.
 
 C3, C4, C5, C7 and C8 change what a reader must understand, so this module moves `schemaVersion`
 from `2` (set by SE0.7) to `3`, in the same commit as planner and guard support (map §3.2).
-`verify-change.ps1:28` and the guard (`guard-verification-boundaries.py:35`) accept exactly `3`, so a
+`gk-core/scripts/verify-change.py:358` and the guard (`guard-verification-boundaries.py:35`) accept exactly `3`, so a
 stale copy of either script refuses the file instead of misreading it.
 
 ## Commands
@@ -176,8 +176,8 @@ dotnet test tests\FusionRpg.Guard.Tests -c Release --filter "VerificationId=guar
 
 | Path | Change |
 |---|---|
-| `scripts/lib/VerificationBoundaries.ps1` | (new) `Test-PatternMatch`, `Get-PatternSpecificity`, `Resolve-Owner` — shared by planner and guard |
-| `scripts/verify-change.ps1` | use the lib; guard-only boundaries emit no test check |
+| `gk-core/scripts/lib/verification_boundaries.py` | (new) `Test-PatternMatch`, `Get-PatternSpecificity`, `Resolve-Owner` — shared by planner and guard |
+| `gk-core/scripts/verify-change.py` | use the lib; guard-only boundaries emit no test check |
 | `gk-core/scripts/guard-verification-boundaries.py` | C1 walk, C2 completeness + exemption table, C3 derivation, C4 grammar, C5 rule, C6 reading |
 | `gk-core/scripts/guard-bench-compile.py` | (new; PowerShell form retired 2026-09-26) |
 | `gk-core/scripts/enforcement-registry.v1.json` | one catalog row, `bench-compile` (C5) |

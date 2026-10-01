@@ -58,7 +58,7 @@ Melon log: `MelonLoader\Latest.log` or `MelonLoader\Logs\Latest.log`.
 
 ## 3. Capture baseline `afterId`
 
-`ListEvents(afterId=0)` returns **oldest** rows. Always page from a high watermark (`smoke-melon-live.ps1` does this), e.g.:
+`ListEvents(afterId=0)` returns **oldest** rows. Always page from a high watermark (`smoke_melon_live.py` does this), e.g.:
 
 ```powershell
 # Prefer smoke script; manual: use /api/events?afterId=<knownMax>&limit=...

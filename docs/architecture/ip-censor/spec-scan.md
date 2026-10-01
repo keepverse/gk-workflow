@@ -24,7 +24,7 @@ cannot tell those apart produces the thousands-of-false-positives failure that g
 
 **`scan` is a release gate, and only a release gate.** It runs before any release and a finding in an
 enforced bucket blocks the release. It does **not** run inside generation and does **not** block a
-commit, a `verify-change.ps1` run or CI: the owner ruled that *"block generation will cost more than
+commit, a `verify-change.py` run or CI: the owner ruled that *"block generation will cost more than
 help."* CI may run it **advisory** (report uploaded, exit 0). Generation-time prevention is the free
 avoid-list in briefs ([spec-avoid-list.md](spec-avoid-list.md)), which calls no model and retries
 nothing. The hook points are owned by [spec-wiring.md](spec-wiring.md).
@@ -164,7 +164,7 @@ Levels:
   ruled (IC-3); adding a fuzzy/phonetic match mode.
 - **Never:** edit, write, or `git mv` anything (that is the separate execute program); use bare `\b`;
   use `.lower()` for folding; auto-rename a fuzzy hit; report a count as a contract; run inside a
-  generator's retry loop or block a commit, `verify-change.ps1` or CI on findings (IC-3 — the release
+  generator's retry loop or block a commit, `verify-change.py` or CI on findings (IC-3 — the release
   is the only thing `scan` blocks).
 
 ## Mixed code files — audit 2026-09-19

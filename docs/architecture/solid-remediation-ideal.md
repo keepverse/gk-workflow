@@ -280,7 +280,7 @@ ownership there is nobody else, and the permission costs nothing.
 |---|---|
 | **Precondition** | The owner cuts a new branch. Every other active session merges its work into it and **stops**. `scripts/session-boundary-check.py` is clean and this program's record is the only `active` one |
 | **During** | `solid-remediation` is the **sole writer**. `src` may be unbuildable inside a module, and only inside a module |
-| **Per module** | A module ends green — builds, guards pass, its scoped `verify-change.ps1` passes. "Module by module" is the unit of green, not the unit of work |
+| **Per module** | A module ends green — builds, guards pass, its scoped `verify-change.py` passes. "Module by module" is the unit of green, not the unit of work |
 | **Live probes** | Only at a module boundary, never mid-module, because a live probe needs a build |
 
 > ⚠️ **The permission is conditional, and the condition is the whole argument.** It holds *because* this
@@ -456,7 +456,7 @@ The exclusive branch makes recovery simpler than usual, and it is worth stating 
 - **Inside a module**, the branch may be red. That is the granted permission, and the recovery is
   `git reset` to the module's start commit — no other session is affected, because there is no other session.
 - **A module ends green or it does not end.** "Module by module" is the unit of green: builds, guards
-  pass, scoped `verify-change.ps1` passes. A module that cannot get green is reverted to its start commit
+  pass, scoped `verify-change.py` passes. A module that cannot get green is reverted to its start commit
   and re-planned, not left half-applied for the next one to inherit.
 - **The one thing that is never acceptable** is a red branch at a point where the owner might need a live
   build. Live probes happen at module boundaries; if one is needed mid-module, the module is finished or

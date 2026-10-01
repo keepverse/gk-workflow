@@ -339,7 +339,7 @@ is the legacy repo (has `FusionRpg.slnx` and `data/seed/`) or the workspace (has
 layout `<Content Link="data\...">` preserves.
 
 Landed: `workspace_roots.py` (seedsmith) + `scripts/lib/keepverse_roots.py`,
-`KeepverseRoots.ps1`, and `KeepverseRoots.cs` linked into every `*.Tests`; 45 C# test
+`gk-core/scripts/lib/KeepverseRoots.ps1` (retired — `gk-core/scripts/lib/keepverse_roots.py` is its only form), and `KeepverseRoots.cs` linked into every `*.Tests`; 45 C# test
 content readers routed; 563 tests green across 7 projects; `scripts/**/*.py` is 13 files,
 of which 4 of 6 consumers are routed.
 

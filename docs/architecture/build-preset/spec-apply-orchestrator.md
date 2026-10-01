@@ -191,7 +191,7 @@ public static class BuildPresetPlan
 - [ ] Preview names every price and refusal; apply refuses whole plans and stale or dearer ones.
 - [ ] An interrupted apply converges on retry without a second charge.
 - [ ] Steps 5–7 proven order-independent.
-- [ ] `verify-change.ps1` and `guard-actor-hub.py` green.
+- [ ] `verify-change.py` and `guard-actor-hub.py` green.
 
 ## Open questions
 

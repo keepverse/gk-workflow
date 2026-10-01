@@ -70,7 +70,7 @@ meanwhile.
 
 Where several checks apply to one subtree, one of them is the owner's `project` and each of the others
 is a **seam** on the same paths. A boundary names exactly one project, and seams are additive
-(`verify-change.ps1:89-91`).
+(`gk-core/scripts/verify-change.py:794-802`).
 
 | Root | Pattern shape | Known owners to start from (verified) |
 |---|---|---|
@@ -122,9 +122,9 @@ rg -l "lawn-attrition\.v" tests tools --glob "*.cs" --glob "*.py"
 | Path | Change |
 |---|---|
 | `gk-core/scripts/verification-boundaries.v1.json` | domain/subtree owners for the four roots; wildcard rewrites of the three exact tuning entries |
-| `scripts/lib/VerificationBoundaries.ps1` | enforced-roots list; `full` level |
+| `gk-core/scripts/lib/verification_boundaries.py` | enforced-roots list; `full` level |
 | `gk-core/scripts/guard-verification-boundaries.py` | S3 rules; S4 walk; report section |
-| `scripts/verify-change.ps1` | `full` prints and selects nothing |
+| `gk-core/scripts/verify-change.py` | `full` prints and selects nothing |
 | `gk-core/scripts/checks/gen-content-validate.py`, `gen-corpus-dump-verify.py`, `gen-item-seed-validator.py` | (new) `script` projects |
 | `gk-core/tests/FusionRpg.Guard.Tests/VerificationBoundaryWorkflowTests.cs` | cases below |
 | `docs/contributing/testing-standard.md` §6 | one paragraph: data inputs select through the planner; `full` means CI-only |

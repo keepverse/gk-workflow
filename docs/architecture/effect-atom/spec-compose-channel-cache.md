@@ -114,7 +114,7 @@ gate):** *claimed* by a named module, a *named follow-up*, or *accepted as-is wi
   Turning it into a real budget would mean pinning a number to a runtime and a GC that nothing in this
   repo controls.
   **The probe is a separate, non-blocking task, and it needs a running game — so it cannot be decided
-  from the repo.** *What to check:* run `.\scripts\probe-perf.ps1` over a compose-heavy scenario from
+  from the repo.** *What to check:* run `python gk-core/scripts/probe_perf.py` over a compose-heavy scenario from
   [perf-probe-plan.md](../../runbook/perf-probe-plan.md)'s B1–B9 matrix, once with the cache live and
   once with `AllCombatChannelIds` forced to rebuild per call, and land the result in
   `docs/research/perf/`. *What a pass looks like:* a recorded before/after for the compose section,

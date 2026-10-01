@@ -124,7 +124,7 @@ python -m pytest gk-forge/tools/seedsmith/tests/test_structure_metrics.py -q
 `test_structure_metrics.py` is extended for criteria 1-8. Fixtures are in-memory row lists or a
 `tmp_path` copy of the tree, the latter only where the disk is the subject (criterion 5).
 
-**Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` is unmapped (`scripts/verify-change.ps1:118`). The
+**Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` is unmapped (`gk-core/scripts/verify-change.py:771`). The
 owner of the fix is `test-verification-boundary` `python-test-lane`. The pytest command in §6 is the
 boundary.
 

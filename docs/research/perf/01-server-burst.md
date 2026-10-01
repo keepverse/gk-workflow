@@ -31,10 +31,10 @@ real stress fill's rate. SQLite insert pressure is **not** the failure mode.
 
 ## Outcome
 
-- **No server code change needed.** Ingest headroom proven and `burst-repro.ps1` stays as the
+- **No server code change needed.** Ingest headroom proven and `burst_repro.py` stays as the
   regression harness (re-run after any EventIngest/RpgStore change).
 - Operational rule added to the dev notes: never start the long-lived dev server from a
-  background/task shell — use `deploy-play.ps1` from a foreground terminal (or let the
+  background/task shell — use `deploy-play.py` from a foreground terminal (or let the
   Launcher own it).
 - Spec acceptance reinterpreted honestly: criterion 1 ("repro exists") produced a *negative*
   repro, which is itself the finding; criteria 3–4 (server healthy under burst, XP kinds

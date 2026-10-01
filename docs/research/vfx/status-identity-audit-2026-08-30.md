@@ -4,7 +4,7 @@
 **Scope:** 13 custom overlay statuses in the PVZ injector sustained VFX layer  
 **Out of scope:** 8 engine-wrapped vanilla statuses (sustained overlay intentionally absent)  
 **Machine JSON:** [`_status-identity-audit.json`](_status-identity-audit.json)  
-**Harness:** [`scripts/audit-status-vfx-identity.ps1`](../../../scripts/audit-status-vfx-identity.ps1)  
+**Harness:** [`gk-core/scripts/audit_status_vfx_identity.py`](../../../gk-core/scripts/audit_status_vfx_identity.py)  
 **Core analysis:** [`StatusVfxIdentity.cs`](../../../gk-core/src/FusionRpg.Core/Vfx/StatusVfxIdentity.cs), [`StatusVfxIdentityScoring.cs`](../../../gk-core/src/FusionRpg.Core/Vfx/StatusVfxIdentityScoring.cs)
 
 ---

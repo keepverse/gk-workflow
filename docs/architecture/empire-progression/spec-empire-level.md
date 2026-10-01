@@ -367,7 +367,7 @@ corpus.
 - [ ] Each empire level-up writes its grants once.
 - [ ] Zomboss's empire has its own track in every save.
 - [ ] The §10.1 row landed in `ssot-power-scale.md`.
-- [ ] `verify-change.ps1` and `guard-power.py` green.
+- [ ] `verify-change.py` and `guard-power.py` green.
 
 ## Open questions
 

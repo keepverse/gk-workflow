@@ -159,7 +159,7 @@ A per-row product `points × 1000` stays far inside `long` at any reachable `Θ`
 - [ ] Aptitude and gear parts land in their own libraries; the active aptitude preset is reused when it
       still fits.
 - [ ] Capture is atomic across the three libraries.
-- [ ] `verify-change.ps1` green.
+- [ ] `verify-change.py` green.
 
 ## Open questions
 

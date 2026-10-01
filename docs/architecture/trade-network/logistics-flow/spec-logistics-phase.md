@@ -211,7 +211,7 @@ tests/FusionRpg.Core.Tests/World/Logistics/LogisticsPhaseTests.cs (new)
   scanned `World` root (`WorldDeterminismGuardTests.cs:253-266`); no new guard is needed, one assertion
   proves the directory is covered.
 
-Verification boundary: `verify-change.ps1` with the changed paths. This module crosses Core and Data
+Verification boundary: `verify-change.py` with the changed paths. This module crosses Core and Data
 (the runtime is passed from the store), so the full suite runs once at module end (AGENTS.md
 *Verification boundary*, point 2).
 

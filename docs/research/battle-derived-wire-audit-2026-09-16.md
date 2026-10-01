@@ -545,7 +545,7 @@ re-baseline.
    runtime count depends on the injected element roster (`DerivedStatChannels.cs:403`), so the 196 figure
    is "28 families × today's 7 slots", not a value I observed the registry emit.
 5. **No test suite was run.** This audit made no source edits and ran no verification command; the plan
-   in `tasks/battle-derived-wire-plan.md` names the `verify-change.ps1` invocation for each task.
+   in `tasks/battle-derived-wire-plan.md` names the `verify-change.py` invocation for each task.
 6. **`tools/**` was excluded** from the "production" reachability judgement except where explicitly
    noted. `SquadHarness`, `ProveAptitude`, `ProveHubCombat` do build `HubInputs`, but they are probes,
    not gameplay.

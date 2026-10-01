@@ -235,7 +235,7 @@ None owned. Reads `price-curve`'s and `exchange-hub`'s keys through their functi
   row `core-world-trade-orders`; admission tests beside the existing admission tests.
 - `WorldCommand` and the submit DTO widen (`gk-core/src/FusionRpg.Contracts/WorldDtos.cs:518`, `:580-584`,
   `gk-core/src/FusionRpg.Server/WorldEndpoints.cs:122`, `:138-165`), so this module crosses Core, Contracts and Server:
-  run the focused boundaries `verify-change.ps1` selects for those paths, and the world determinism
+  run the focused boundaries `verify-change.py` selects for those paths, and the world determinism
   guard (`gk-core/tests/FusionRpg.Guard.Tests/WorldDeterminismGuardTests.cs`). The full suite runs once, at
   the end of wave 3 with `settlement-payment` (AGENTS.md verification point 2), not per task.
 

@@ -28,7 +28,7 @@ project: cell, loader, env var); `Directory.Build.targets` holds the two consequ
   `pvzrh-3.9` bridge.
 - A cell is **refused** when the pack it resolved is another cell's (`FUSIONRPG0002`), checked by
   `gk-fusion/scripts/guard-game-profile.py` against the fingerprints below — the same matcher
-  `deploy-play.py` and `publish-player.ps1` already run. A pack is never silently assumed.
+  `deploy-play.py` and `publish_player.py` already run. A pack is never silently assumed.
 
 A cell with no pack root resolves nothing and the project takes its own skip path, printing
 `NOT COMPILED — skipping …` at high importance. A skipped host is never counted as a compiled host,
@@ -82,7 +82,7 @@ Legacy flat `DropIntoGame\*.dll` and unscoped `DropIntoGame\BepInEx\` remain acc
 
 ## Author process (new Fusion build)
 
-1. `.\scripts\dump-game-profile.ps1` → `docs/research/game-types-{id}.md`
+1. `python gk-core/scripts/dump_game_profile.py` → `docs/research/game-types-{id}.md`
 2. Diff HP widths / TakeDamage / SetZombie / namespace
 3. Add `Bridges/{id}/` + host flavor (csproj `GameProfile`)
 4. Nested Drop + fingerprint row in `game-profiles.json`
@@ -98,7 +98,7 @@ Legacy flat `DropIntoGame\*.dll` and unscoped `DropIntoGame\BepInEx\` remain acc
 | `FUSIONRPG_GAME_DIR_PVZRH_3_8_1` | Bep pack root **for cell pvzrh-3.8.1** |
 | `FUSIONRPG_ML_GAMEDIR_PVZRH_3_8_1` | Melon pack root **for cell pvzrh-3.8.1** (the Blooms 3.8.1 `Game Files`) |
 | `FUSIONRPG_ML_GAMEDIR_PVZRH_3_9` | Melon pack root **for cell pvzrh-3.9** |
-| `FUSIONRPG_GAME_PROFILE` | **Script layer only.** `deploy-play.py` / `publish-player.ps1` read it to choose *which* host project to build. MSBuild no longer reads it: a host project is one cell and is not re-targeted, and a request that disagrees is reported (`FUSIONRPG0001`). |
+| `FUSIONRPG_GAME_PROFILE` | **Script layer only.** `deploy-play.py` / `publish_player.py` read it to choose *which* host project to build. MSBuild no longer reads it: a host project is one cell and is not re-targeted, and a request that disagrees is reported (`FUSIONRPG0001`). |
 
 Per-cell names are the profile id upper-cased with `-` and `.` → `_`; the cell table that binds them
 lives in `Directory.Build.props`, so adding a cell is one explicit row plus its host project

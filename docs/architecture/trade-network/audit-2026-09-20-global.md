@@ -229,8 +229,8 @@ The trade-foundation map lists `sector-features` as *"independent, any order"*
 
 ### M6 — The first slice's seedsmith, corpus and tuning paths have no verification boundary
 
-`verify-change.ps1` throws *"VERIFICATION BOUNDARY MISSING"* for any path with no owner row
-(`scripts/verify-change.ps1:118`). No row covers `gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**` or
+`verify-change.py` throws *"VERIFICATION BOUNDARY MISSING"* for any path with no owner row
+(`gk-core/scripts/verify-change.py:771`). No row covers `gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**` or
 `data/tuning/structure-seed.*` (`empire-seed-map.md:704`; `empire-seed/spec-trade-structure-rows.md:283`
 *"Verification boundary: a gap"*), and `gk-core/data/tuning/**` has no fallback at all
 (`trade-foundation/spec-economy-report.md:131`). Every empire-seed first-slice module and every first

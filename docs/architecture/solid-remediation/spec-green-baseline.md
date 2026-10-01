@@ -183,7 +183,7 @@ here so no later module re-litigates them:
   assertion. Passes alone in 2s.
 
 ⚠️ **What CP0's closing sentence does and does not claim.** It claims that a module's **scoped**
-`verify-change.ps1` can be read as a fact about that module's own change — which holds, because a
+`verify-change.py` can be read as a fact about that module's own change — which holds, because a
 scoped boundary runs one project, not twelve back to back. It does **not** claim that a twelve-project
 sweep on a loaded machine is deterministic; these two tests say it is not, and 31 concurrent `dotnet`
 processes were observed during one such run. A module that sees either of these must re-run it in
@@ -215,5 +215,5 @@ Exit criteria, all measured in one pass, not remembered from separate ones:
 
 ## Success criteria
 
-The next module can run `verify-change.ps1` and read the result as a fact about its own change, with no
+The next module can run `verify-change.py` and read the result as a fact about its own change, with no
 "except for the known ones" caveat. If that sentence is not literally true, this module is not done.

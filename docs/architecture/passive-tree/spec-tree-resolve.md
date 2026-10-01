@@ -681,7 +681,7 @@ D21 gives every actor its own state, so the memo is not optional.
 | 19 | `Missing_tunable_is_a_load_rejection_naming_the_key` | T5. No built-in default |
 | 20 | `Memo_self_corrects_on_a_changed_state_reference` | No external bump. `AptitudeSubsystem.cs:32-52`'s lesson |
 
-**Mutation, not just coverage.** `.\scripts\mutate.ps1` with a `passive-tree` set — the concentration
+**Mutation, not just coverage.** `python gk-core/scripts/mutate.py` with a `passive-tree` set — the concentration
 and gate arithmetic is exactly the shape where a covered line asserted by nothing is worth nothing.
 Four mutants to write by hand: swap `max` for `sum` in cross-unlock (tests 3 and 3a must go red);
 swap the divide order in the magnitude read (test 14); read the skill-point wallet instead of the

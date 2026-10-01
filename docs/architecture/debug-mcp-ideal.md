@@ -53,7 +53,7 @@ had diagnosis tools but no unified, scope-honest verification path.
   bodies (any injector relay ⇒ injector-shaped; persisted/domain write with no
   relay ⇒ server-shaped). Rule text at its lines 6–14.
 - **Probe runners**: `gk-fusion/tools/ProveLiveProbe/` (worktree), `gk-core/tools/ProveAptitude/`,
-  `scripts/prove-vfx.ps1`, `scripts/smoke-effect-scoped-atk.ps1` — the
+  `gk-core/scripts/prove_vfx.py`, `gk-core/scripts/smoke_effect_scoped_atk.py` — the
   adapter surface already exists as CLIs.
 - **SIM/test doors**: `/api/sim/*` + `/api/test/*` only under `FUSIONRPG_SIM=1`
   (`software-architecture.md:146`); E2E `RpgApiFactory` proves reset/seed flows

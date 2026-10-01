@@ -50,7 +50,7 @@ Envelope tests in `VfxAuraMathTests`.
 - `StatusVfxIdentityScoring` predicts Pass sustain-glance for `spore` and `charm_pulse`
 - Motion-grammar pair count drops from 4 → 1 repo-wide (`pact_mark`/`command` only)
 - Predicted sustain-glance: **13 Pass / 0 Conditional / 0 Fail**
-- `.\scripts\audit-status-vfx-identity.ps1` (static)
+- `python gk-core/scripts/audit_status_vfx_identity.py` (static)
 
 ## Grammar note
 

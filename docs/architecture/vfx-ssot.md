@@ -341,7 +341,7 @@ House pattern, extended:
 | Per-cue mute | `fx.mute <cueId>` / `fx.unmute <cueId>` cheat commands for debugging noise |
 | `fx.play <cueId> [col row \| ptr]` | Cheat command to preview any catalog cue in-game; the existing cell-flash command becomes the alias above |
 | `fx.list` | Dump catalog cue ids + recipe summaries |
-| `scripts/prove-vfx.ps1` | Plays every catalog cue via `fx.play`, asserts one `debug.fx.shown` per cue (or expected skip), catches broken recipes and stripped shaders in one pass |
+| `gk-core/scripts/prove_vfx.py` | Plays every catalog cue via `fx.play`, asserts one `debug.fx.shown` per cue (or expected skip), catches broken recipes and stripped shaders in one pass |
 
 ---
 
@@ -349,7 +349,7 @@ House pattern, extended:
 
 - Core tests (no Unity): catalog completeness (every cue id has a recipe; every recipe references known primitive kinds), rules constants locked, rate-limit math, `RecordingVfxSink` assertions on producer wiring (Funnel emits `combat.hit` with correct tag/amount).
 - Existing `OverlayCombat*` and `OverlayProc*` tests pin producer behavior through the migration — they must pass unmodified in every phase.
-- Injector-side behavior (shader fallback, anchor cache) is proven LIVE via `prove-vfx.ps1` + debug events, matching the existing prove-pack culture. No Unity test framework is introduced.
+- Injector-side behavior (shader fallback, anchor cache) is proven LIVE via `prove_vfx.py` + debug events, matching the existing prove-pack culture. No Unity test framework is introduced.
 
 ---
 
@@ -358,7 +358,7 @@ House pattern, extended:
 | Phase | Change | Proof |
 |---|---|---|
 | **1** | Add `VfxCueDto`, `IVfxSink`, `VfxCatalog` (+`combat.hit`/`combat.heal`/`debug.probe` recipes), `VfxDirector` delegating internally to existing `DamageFxOverlay`/`OverlayWorldFx`. `IDamageFxSink` becomes an adapter emitting cues. | All existing tests green; LIVE damage floaters unchanged |
-| **2** | Extract `AnchorResolver` (hook-fed cache, §9) + `FxResources`; rewrite the two overlays as `FloaterPrimitive` + pooled `BurstPrimitive` (§8.4) driven by recipe specs; Repaint gating + cached style + camera cache (§8.3); `ClearAll` on `Board.Die` (§8.1); retire `debug.fx.world.*` events. Hosts call director only. | `prove-vfx.ps1` v1; [../protocol/events.md](../protocol/events.md) + [../runbook/debug-pipeline.md](../runbook/debug-pipeline.md) updated in-change |
+| **2** | Extract `AnchorResolver` (hook-fed cache, §9) + `FxResources`; rewrite the two overlays as `FloaterPrimitive` + pooled `BurstPrimitive` (§8.4) driven by recipe specs; Repaint gating + cached style + camera cache (§8.3); `ClearAll` on `Board.Die` (§8.1); retire `debug.fx.world.*` events. Hosts call director only. | `prove_vfx.py` v1; [../protocol/events.md](../protocol/events.md) + [../runbook/debug-pipeline.md](../runbook/debug-pipeline.md) updated in-change |
 | **3** | `fx.play` / `fx.list` / `fx.mute` commands + rate limiting + `FlashPrimitive`. | Prove script asserts rate-limit skips |
 | **4** | First new content cues (`status.{id}.apply` roster) as pure catalog + producer-emit changes. | One prove line per new cue |
 
@@ -477,7 +477,7 @@ Element coloring must add **zero** per-hit allocations, **zero** material or sha
 
 ### 16.7 Order and proof
 
-Lands as **migration phase 4** content — phases 1–3 (director, pooling, `fx.play`) must ship first; coloring pooled primitives before pooling exists would be building on the code this spec deletes. Proof: `prove-vfx.ps1` gains `fx.play combat.hit` variants for each single element and one hybrid payload, asserting `debug.fx.shown` per variant, plus one `SYS-ELEMENT-FX`-off run asserting the neutral path.
+Lands as **migration phase 4** content — phases 1–3 (director, pooling, `fx.play`) must ship first; coloring pooled primitives before pooling exists would be building on the code this spec deletes. Proof: `prove_vfx.py` gains `fx.play combat.hit` variants for each single element and one hybrid payload, asserting `debug.fx.shown` per variant, plus one `SYS-ELEMENT-FX`-off run asserting the neutral path.
 
 ---
 

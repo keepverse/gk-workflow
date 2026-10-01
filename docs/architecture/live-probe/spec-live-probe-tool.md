@@ -75,8 +75,8 @@ equivalent that results in a genuinely Unity-spawned entity) — the debug short
   URL, not `RpgStore.InMemory()`. This is the deliberate divergence from those tools' internals; their
   *project structure* convention (a `tools/<Name>` console app wrapped by a thin `scripts/<name>.ps1`)
   is still worth matching for discoverability.
-- `scripts/prove-live-probe.ps1` — thin wrapper (`Push-Location gk-fusion/tools/ProveLiveProbe; dotnet run --
-  ...`), mirroring `scripts/prove-hub-combat.ps1`'s own wrapper shape exactly.
+- `gk-core/scripts/prove_live_probe.py` — thin wrapper (`Push-Location gk-fusion/tools/ProveLiveProbe; dotnet run --
+  ...`), mirroring `gk-core/scripts/prove_hub_combat.py`'s own wrapper shape exactly.
 - Async ack/poll for the Injector-relayed step (6): the same pattern `DebugEndpoints.cs` already uses
   server-side (`PollForKind`, e.g. lines 85/373/382) — poll `GET /api/debug/events?kinds=debug.board-
   stats` after sending the command, with a bounded timeout, not a fixed sleep.
@@ -100,7 +100,7 @@ equivalent that results in a genuinely Unity-spawned entity) — the debug short
 |---|---|
 | `gk-fusion/tools/ProveLiveProbe/Program.cs` | The 6-step HTTP client + assertions |
 | `gk-fusion/tools/ProveLiveProbe/ProveLiveProbe.csproj` | net8.0 console app, references `FusionRpg.Contracts` for typed request/response DTOs (no ad-hoc JSON shape guessing) |
-| `scripts/prove-live-probe.ps1` | Thin wrapper, same shape as `scripts/prove-hub-combat.ps1` |
+| `gk-core/scripts/prove_live_probe.py` | Thin wrapper, same shape as `gk-core/scripts/prove_hub_combat.py` |
 | `docs/runbook/local-dev.md` | Gets a short "live-probe-tool" section pointing here, alongside the existing `live-lawn-quick-start` skill reference |
 
 ## Code style

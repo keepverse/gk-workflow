@@ -9,7 +9,7 @@ How to enrich and keep honest the LIVE harness and docs. Agent rule: [`.cursor/r
 | `gk-fusion/tools/live_test` (Python) | One-liner smoke — shield/lab first; tip cursor, lawn gate, deploy |
 | Checklists + `scripts/prove-*.ps1` / `smoke-*.ps1` | Full regression (F/C rows, Melon host, effects) until Python has hard-assert parity |
 
-`status.catalog` is Unity CC smoke — **not** StatusRuntime L2 (`prove-status-full.ps1`). `combat.probe` is a single probe — **not** C1–C10 (`prove-overlay-combat.ps1`).
+`status.catalog` is Unity CC smoke — **not** StatusRuntime L2 (`prove_status_full.py`). `combat.probe` is a single probe — **not** C1–C10 (`prove_overlay_combat.py`).
 
 ## When to update what
 

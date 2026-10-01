@@ -159,7 +159,7 @@ export async function joinCurrentPlayer(c: HubConnection, playerId: number): Pro
 1. `JoinPlayer` exists, refuses unknown ids, and moves a connection between player groups.
 2. `IPlayerPush` reaches only the target player's connections, proven by the isolation test.
 3. The web re-joins on start, reconnect and player switch, each with its own test.
-4. `verify-change.ps1` green; `guard-dal.py` green (this module adds no SQL).
+4. `verify-change.py` green; `guard-dal.py` green (this module adds no SQL).
 
 ## Seedsmith / generator
 

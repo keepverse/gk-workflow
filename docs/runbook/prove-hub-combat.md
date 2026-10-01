@@ -5,7 +5,7 @@ compose gate, no reintroduced dual engine — without a live game.
 
 Two scripts, both Core/Server-only console tools over `RpgStore.InMemory()`:
 
-## `scripts/prove-aptitude.ps1` — aptitude resolve, overlay vs battle
+## `gk-core/scripts/prove_aptitude.py` — aptitude resolve, overlay vs battle
 
 Proves `AptitudeResolver.Resolve` composes identically whether consumed by the overlay
 (`DerivedComposer`) or by battle (`BattleHubCompose`, post `battle-hub-fuse` T6 — was
@@ -18,7 +18,7 @@ Proves `AptitudeResolver.Resolve` composes identically whether consumed by the o
 
 Exit 0 on zero delta across compared channels; exit 1 (and a printed per-channel diff) otherwise.
 
-## `scripts/prove-hub-combat.ps1` — battle Hub vs sheet Hub, plus Standing honesty
+## `gk-core/scripts/prove_hub_combat.py` — battle Hub vs sheet Hub, plus Standing honesty
 
 Two independent proves in one run (`gk-forge/tools/ProveHubCombat`):
 
@@ -29,7 +29,7 @@ Two independent proves in one run (`gk-forge/tools/ProveHubCombat`):
    full-snapshot diff: sheet and battle deliberately register different subsystem sets (battle alone
    seeds a contest-shaped accuracy/crit/dodge baseline from Atk/Defense and a resource-pool baseline
    the sheet never computes — a real, accepted structural difference, not a defect). Aptitude's own
-   battle-vs-overlay parity is `prove-aptitude.ps1`'s job, not re-proven here.
+   battle-vs-overlay parity is `prove_aptitude.py`'s job, not re-proven here.
 2. **Standing rises via a real Hub combat writer, never via Θ alone** — grants a shipped
    `skill.cooldown`/`skill.effectiveness` aptitude edge (a genuine non-atom writer with no equip/tree
    analog) and asserts some Standing axis moves; a separate fixture proves a real, nonzero specimen

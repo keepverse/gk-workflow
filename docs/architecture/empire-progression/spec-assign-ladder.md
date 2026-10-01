@@ -225,7 +225,7 @@ No test counts species, plan rows, or shapes.
 - [ ] `species-favour` succeeds on committed plan rows.
 - [ ] The FE computes no shares; it renders what `/suggest` returns.
 - [ ] Ladder order lives in `aptitude-presets.v2.json`, and its load contract is tested.
-- [ ] `verify-change.ps1` green for every touched path.
+- [ ] `verify-change.py` green for every touched path.
 
 ## Open questions
 

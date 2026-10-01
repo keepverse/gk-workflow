@@ -279,7 +279,7 @@ Values are read from the loaded tuning, never a literal 1 or 25.
 - [ ] Empire level-ups fill the stock; a replacement asks the player to spend one or pay souls.
 - [ ] Preview and spend share one quote.
 - [ ] The registry row for the free empire respec landed.
-- [ ] `verify-change.ps1` green; `CreatureBuildPlanGen --check` green.
+- [ ] `verify-change.py` green; `CreatureBuildPlanGen --check` green.
 
 ## Open questions
 

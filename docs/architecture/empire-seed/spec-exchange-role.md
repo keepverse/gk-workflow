@@ -172,9 +172,9 @@ python scripts/audit-doc-citations.py --scope <each annotated document>
 | `test_declared_pairs_are_legal_before_rows_exist` | pytest | 4 |
 | `test_every_role_is_filled_or_planned` | pytest | 5 |
 
-**Verification boundary.** The C# test runs through `verify-change.ps1` (`core-tests-fallback`). **Gap:**
+**Verification boundary.** The C# test runs through `verify-change.py` (`core-tests-fallback`). **Gap:**
 `gk-forge/tools/seedsmith/**`, `data/seed/structures/_registry/**` and `data/tuning/structure-seed.*` are unmapped
-(`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
+(`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
 The pytest command in §6 is the boundary for those paths.
 
 ## 9. Hard edges

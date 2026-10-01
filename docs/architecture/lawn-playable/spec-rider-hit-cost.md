@@ -90,7 +90,7 @@ frame graph, so they belong in data (`tunables-ssot.md`), and every one starts m
 - ✅ A deferred expensive record still lands — deferral never silently discards.
 - ✅ Order is preserved per victim (attribution depends on it — the melee/ambient bracket work in
   `lawn-combat-wire` L-N39 relies on pairing).
-- ❌ Never assert µs or a frame share in a unit test. Those are readings; `probe-perf.ps1` owns them.
+- ❌ Never assert µs or a frame share in a unit test. Those are readings; `probe_perf.py` owns them.
 
 ## Boundaries
 

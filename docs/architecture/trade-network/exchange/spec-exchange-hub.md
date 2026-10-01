@@ -380,7 +380,7 @@ renamed to the player vocabulary *trade hub*, ideal §14b). `price.floorUnits` a
   `core-world-trade-hub`; canonical/hash tests beside the existing world hash tests.
 - Seedsmith is untouched by this module (the role tuple is empire-seed's).
 - Crosses `StructureCatalog` (shared by structures, siege, loam): run the focused boundary plus the
-  structure catalog tests `verify-change.ps1` selects for `StructureCatalog.cs`; not the full suite.
+  structure catalog tests `verify-change.py` selects for `StructureCatalog.cs`; not the full suite.
 
 ## Hard edges
 

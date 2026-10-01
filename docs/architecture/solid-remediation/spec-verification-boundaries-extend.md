@@ -32,7 +32,7 @@ to rebuild is effort spent twice.
 
 ## Shape
 
-Extend the existing mapping that `scripts/verify-change.ps1` reads. Two properties matter more than
+Extend the existing mapping that `gk-core/scripts/verify-change.py` reads. Two properties matter more than
 coverage:
 
 1. **A path maps to the tests that would actually notice it breaking**, not to the nearest suite by name.
@@ -41,7 +41,7 @@ coverage:
 2. **An unmapped path under these trees is a failure**, not a silent pass. That is the rule G3 cites; a
    boundary that quietly ignores what it does not know is how the gap appeared.
 
-`scripts/verify-change.ps1` requires `-Session`, so this module also confirms the session record created
+`gk-core/scripts/verify-change.py` requires `--session`, so this module also confirms the session record created
 in `green-baseline` works for the tool trees.
 
 ## Tests to write

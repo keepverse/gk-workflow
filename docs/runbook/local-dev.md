@@ -104,7 +104,7 @@ The web UI build runs by default (2026-08-30 — it used to be opt-in via `-Rebu
 leaving a stale FE served for a whole session). Flags: `-LoaderHost` (`MelonLoader`/`BepInEx`), `-NoGame`,
 `-NoServer`, `-NoRebuildUi` (skip the web UI build), `-RestartServer`, `-QuickTest`.
 
-**`-QuickTest` (2026-09-14).** The slowest step by far is the default test profile (`test-fast.ps1`,
+**`-QuickTest` (2026-09-14).** The slowest step by far is the default test profile (`test_fast.py`,
 13k+ tests) — a real cost when a redeploy follows a small, already-hand-verified edit. `-QuickTest`
 skips only that step; every boundary guard still runs, and a loud warning prints every time it's used.
 **Never the default, never proof of anything** — re-run without it (or the targeted `dotnet test`

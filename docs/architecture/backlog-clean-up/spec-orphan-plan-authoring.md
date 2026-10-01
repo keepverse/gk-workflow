@@ -40,7 +40,7 @@ plan like any other. This module plans; it does not build.
    ```
    - [ ] **<PREFIX><wave>.<n> — <title>** · <XS|S|M|L> · deps · *(spec: <module-id>)*
    ```
-   Each task has acceptance, `verify-change.ps1` verification and ≤5 files. No L+ task. Prefixes:
+   Each task has acceptance, `verify-change.py` verification and ≤5 files. No L+ task. Prefixes:
    `LW` lawn, `DH` deployment-hierarchy, `EPL` effect-pipeline, `BWR` battle-wire-remainder.
 3. **Cross-program edges** use `<prefix><id>`. Examples: `SP6.6` (lawn), `SE4.31`–`SE4.36` (lawn),
    `class-system P9.0` (battle-wire readers), `party-dungeon PackGrid` (deployment-hierarchy D4).

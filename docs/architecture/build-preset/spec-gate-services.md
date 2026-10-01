@@ -186,7 +186,7 @@ HTTP. Everything after it is the service.
 - [ ] Four services exist; the four endpoint groups call them.
 - [ ] Existing route tests are green with no edit.
 - [ ] `AptitudePresetActivation.Preview` returns exactly what `Activate` writes and charges.
-- [ ] `verify-change.ps1` green.
+- [ ] `verify-change.py` green.
 
 ## Open questions
 

@@ -29,7 +29,7 @@ LIVE checklist: [`_checklist-effect-foundation-live.json`](_checklist-effect-fou
 | B2 `pvz.status.apply` audit emit | **Done** — injector sink tags `effect_id` / `grant_id` |
 | B5 Effect host | **Done** — injector bag + adapters; `effects.reload` push |
 | LIVE L1–L14 scenarios | **Shipped** — Bep lawn PASS; **Melon 3.9 also PASS** 2026-08-16 ([`_prove-melon39-foundation-live.json`](_prove-melon39-foundation-live.json); [`melon-live-checklist.md`](../../runbook/melon-live-checklist.md)) |
-| FA1 ModifyStat apply scope | **Done** — `StatModifier.ApplyOwnerKey` + Resolve filter; LIVE read via `debug.board-stats`; see [`unique-entity-effects.md`](../../architecture/unique-entity-effects.md) + [`smoke-effect-scoped-atk.ps1`](../../../scripts/smoke-effect-scoped-atk.ps1) |
+| FA1 ModifyStat apply scope | **Done** — `StatModifier.ApplyOwnerKey` + Resolve filter; LIVE read via `debug.board-stats`; see [`unique-entity-effects.md`](../../architecture/unique-entity-effects.md) + [`smoke_effect_scoped_atk.py`](../../../gk-core/scripts/smoke_effect_scoped_atk.py) |
 | Secondary plugins | **Out of scope** (grant/overlay only when coded later) |
 
 ## Explicitly out until later

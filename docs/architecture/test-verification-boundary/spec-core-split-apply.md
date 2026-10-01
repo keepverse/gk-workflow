@@ -150,7 +150,7 @@ Extensions to `FileMove`:
 The apply sequence for one project: write the journal → create the directory, csproj, props and
 attribute file → edit the residual csproj (first increment only) → move files → `dotnet build` the
 new project **and** the residual → `dotnet test` both with the default-profile filter (the one
-`scripts/test-fast.ps1:24` owns) → keep, or revert and exit 1 with the compiler or test output.
+`gk-core/scripts/test_fast.py:81` owns) → keep, or revert and exit 1 with the compiler or test output.
 
 ### A5 — increments and the residual
 
@@ -228,7 +228,7 @@ there (`testing-standard.md` R2) — deleted with the throwing delete the fixtur
 | F10 | `Revert` when a moved file was edited after `Apply` | stops with exit 3 and the journal path; that file is untouched |
 | F11 | project directory already exists / is not a direct child of `tests/` | refused |
 
-The real increments are proven by the build+test step inside `--apply` and by `verify-change.ps1` on
+The real increments are proven by the build+test step inside `--apply` and by `verify-change.py` on
 the moved paths — not by a test that counts moved files.
 
 ## Boundaries

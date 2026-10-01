@@ -122,7 +122,7 @@ actually asks for.
 | `DerivedStatChannels.cs` · `DerivedStatRegistry.cs:189,204` | the generalised family (C) |
 | `OverlayCombatMath.cs:81` · `StatusEffectBridge.cs:89` | read the generalised channel (C) |
 | `_baseline-residual.json` · `_baseline-dominance.json` · `_baseline-goldens.json` | **re-bless required** for A, C, D |
-| `scripts/prove-aptitude.ps1` | re-run — fails on any non-zero per-channel delta |
+| `gk-core/scripts/prove_aptitude.py` | re-run — fails on any non-zero per-channel delta |
 | `class-system-todo.md` P7.2 | A closes this named gap |
 
 **Not affected:** the action corpus, the atom catalog, the rung table, every closed action vocabulary.

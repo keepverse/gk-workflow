@@ -479,7 +479,7 @@ trail.
    and auditability.
 
 3. **Enforcement point and severity.** Advisory `scan` report only, or a new guard (does not exist
-   yet) that **fails** `scripts/verify-change.ps1`/CI? (A blocking gate with an uncurated registry will
+   yet) that **fails** `gk-core/scripts/verify-change.py`/CI? (A blocking gate with an uncurated registry will
    be disabled within a day — this is coupled to Q2.)
 
 4. **The live findings — fix now, or accept as risk and record?** `Overwatch Protocol`

@@ -58,7 +58,7 @@ rule is enforced by).
 section. Two id→script maps would be a DRY defect in the enforcement layer itself. Dependency
 direction settles it: *which invariant a guard enforces and where it runs* is the guard's identity,
 and *which path a guard verifies* is a consumer of that identity. So this registry **owns the
-catalog**, and `guard-runner` moves `verify-change.ps1` onto it and removes the duplicate section. This
+catalog**, and `guard-runner` moves `verify-change.py` onto it and removes the duplicate section. This
 module only asserts that the two agree (see the meta-test), so it can land without touching
 `verify-change`.
 
@@ -162,7 +162,7 @@ public void R3_backlog_guard_names_a_module_in_the_map()
 - [ ] One invariant row per `DESIGN-GATE.md` §2 item and per uncovered `CLAUDE.md` hard rule. Every
       row is guarded or carries an `unguardableReason`.
 - [ ] R1–R8 pass on the real tree, and each has a falsifier that fails on a broken tree.
-- [ ] `verify-change.ps1` maps both new files.
+- [ ] `verify-change.py` maps both new files.
 
 ## Self-audit — the debate
 
@@ -179,7 +179,7 @@ reads only the first backtick-quoted token of each row under `## Modules`, and t
 ("cannot find the module table") rather than passing vacuously when the table's shape changes.
 
 **Objection: "R7 only asserts agreement. Why not delete the duplicate map now?"** Because
-`verify-change.ps1` reads it, and editing the verification path belongs to `guard-runner`, which is
+`verify-change.py` reads it, and editing the verification path belongs to `guard-runner`, which is
 the module that owns *how guards are invoked*. Deleting it here would give one module two
 responsibilities. R7 makes the duplication safe until then.
 
@@ -197,7 +197,7 @@ accounted for", not "everything is scannable" (map decision D2).
   `guard-*.ps1` **plus** every script any catalog or boundary entry names.
 - **R5 needs a transitional form.** Before `guard-runner` exists, CI lists guards by hand. R5 checks
   the script path appears in `ci.yml` until the runner lands, and after that checks the runner reads
-  the registry. The test carries both branches, keyed on whether `scripts/run-guards.ps1` exists, so
+  the registry. The test carries both branches, keyed on whether `gk-core/scripts/run_guards.py` exists, so
   this module is green on the day it lands.
 - **Found in the program-level review: one guard legitimately runs in its own CI step.**
   `guard-verification-boundaries.py` gates the registry `verify-change` reads, and `ci.yml` isolates

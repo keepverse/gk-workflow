@@ -236,8 +236,8 @@ python scripts\audit-magic-numbers.py --domain narrative ; python scripts\audit-
 ```
 
 `gk-core/src/FusionRpg.Core/**` maps to `core-fallback` today (`gk-core/scripts/verification-boundaries.v1.json`).
-`gk-core/data/tuning/narrative.v1.json` and `gk-data/packs/fusion/data/seed/narrative/**` have **no** mapping, so `verify-change.ps1` throws
-`VERIFICATION BOUNDARY MISSING` for them (`scripts/verify-change.ps1:95`). This module's build change adds a
+`gk-core/data/tuning/narrative.v1.json` and `gk-data/packs/fusion/data/seed/narrative/**` have **no** mapping, so `verify-change.py` throws
+`VERIFICATION BOUNDARY MISSING` for them (`gk-core/scripts/verify-change.py:771`). This module's build change adds a
 focused boundary `core-narrative` covering `gk-core/src/FusionRpg.Core/Narrative/**`, `gk-core/tests/FusionRpg.Core.Tests/Narrative/**`,
 `data/tuning/narrative.v*.json` and `gk-data/packs/fusion/data/seed/narrative/_registry/**`, verified by
 `python gk-core/scripts/guard-verification-boundaries.py`.
@@ -282,7 +282,7 @@ gk-core/scripts/verification-boundaries.v1.json                          (edited
 
 1. Every missing-key and cross-reference rejection has a named test. 2. Catalogs and the seedsmith adapter agree
 from one file per vocabulary. 3. `audit-magic-numbers.py --domain narrative` reports no balance literal in
-`Narrative/Vocabulary/`. 4. The `core-narrative` boundary is registered and `verify-change.ps1` selects it for
+`Narrative/Vocabulary/`. 4. The `core-narrative` boundary is registered and `verify-change.py` selects it for
 the paths above. 5. No member list duplicates a narrative-seed or dungeon registry.
 
 ## Boundaries
@@ -360,7 +360,7 @@ validation-ssot, ideal §10 and the round-3/round-4 owner rulings, and the seed-
 `narrative.v{n}.json` key required, no built-in default; guard `NarrativeVocabularyTests` (missing-key loop).
 **Verification-boundary ask:** `core-narrative` covering `gk-core/src/FusionRpg.Core/Narrative/**`,
 `gk-core/tests/FusionRpg.Core.Tests/Narrative/**`, `data/tuning/narrative.v*.json`, `data/tuning/narrative-cast-catalog.v*.json`,
-`gk-data/packs/fusion/data/seed/narrative/_registry/**` (today `verify-change.ps1` throws `VERIFICATION BOUNDARY MISSING` for the data paths).
+`gk-data/packs/fusion/data/seed/narrative/_registry/**` (today `verify-change.py` throws `VERIFICATION BOUNDARY MISSING` for the data paths).
 
 ## Cross-lane alignment (2026-09-20)
 

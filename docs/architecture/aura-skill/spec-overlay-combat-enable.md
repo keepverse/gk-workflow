@@ -63,7 +63,7 @@ harness already proves both states.
 | `gk-core/src/FusionRpg.CheatCore/CheatSchema.cs` | edit — promote `OVERLAY-COMBAT` to `T(id, true)` |
 | `gk-core/src/FusionRpg.CheatCore/CheatRegistry.cs` | edit — same default |
 | `gk-fusion/src/FusionRpg.Injector/CheatState.cs` | edit — same default |
-| `scripts/prove-overlay-combat.ps1` | edit — **add heal cases C11–C13** |
+| `gk-core/scripts/prove_overlay_combat.py` | edit — **add heal cases C11–C13** |
 | `docs/runbook/debug-live-checklist.md` | edit — fill the Pass column |
 | `docs/research/effect-runtime/04-proof-results.md` | edit — replace PENDING with the result |
 | `docs/README.md` | edit — `:73` says *"overlay CombatMath deferred"*, stale |
@@ -130,7 +130,7 @@ C13 exists because the missing chip floor is a **behavioural** change, not just 
 ## 5. Code style
 
 Cheat-id defaults are data, not logic — one call each in the three registries, no branching. Script
-additions match the existing case shape in `prove-overlay-combat.ps1` (named case, structured
+additions match the existing case shape in `prove_overlay_combat.py` (named case, structured
 `pass`/`detail`, JSON out).
 
 ---
@@ -140,7 +140,7 @@ additions match the existing case shape in `prove-overlay-combat.ps1` (named cas
 **Automated:** full Core, Guard and Data suites before and after the flip; diff the results. Any golden
 move is a **stop-and-ask**, because §4.2 predicts none.
 
-**Live (owner-run, cannot be automated):** `prove-overlay-combat.ps1` with C1–C13 on a real lawn, all
+**Live (owner-run, cannot be automated):** `prove_overlay_combat.py` with C1–C13 on a real lawn, all
 green, `-OutJson` committed. Then fill `debug-live-checklist.md`'s Pass column and replace
 `04-proof-results.md`'s PENDING row with the real result.
 

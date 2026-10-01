@@ -190,7 +190,7 @@ python -m pytest gk-forge/tools/seedsmith/tests/test_structure_planner.py tools/
 and 7. Fixtures use a `tmp_path` budget with a deficit so entries exist.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` and `gk-data/packs/fusion/data/seed/structures/_plan.json` are
-unmapped (`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary`
+unmapped (`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary`
 `python-test-lane`. The pytest command in §6 is the boundary.
 
 ## 9. Hard edges

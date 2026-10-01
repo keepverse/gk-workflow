@@ -1051,7 +1051,7 @@ the asymmetry into content.
 - **+92 edges** if both families go dense (216 total); fewer if efficiency stays sparse.
 - **All three class-system baselines re-blessed.** They are the diff target every later phase compares
   against, so this is expected, not a surprise.
-- `prove-aptitude.ps1` re-run — it fails on any non-zero per-channel delta between the two engines.
+- `prove_aptitude.py` re-run — it fails on any non-zero per-channel delta between the two engines.
 - **`RulesetVersion`:** no combat formula changes, but actor resolve output does. Whether that warrants a
   bump follows the precedent already set twice in `decisions.md` — verify against content, do not assume.
 
@@ -1311,7 +1311,7 @@ against cost **×13.15** — a **1.40× escalation tax** (`spec-rung-table.md` �
 Not a design item, but it was the one genuinely open thing found while auditing this phase, and it was
 silently corrupting the diff target Phase 0's own balance-neutrality claims rest on.
 
-**The defect:** `scripts/regen-class-system-baselines.ps1` had a variable named `$liveAptitudesPath`
+**The defect:** `gk-core/scripts/regen_class_system_baselines.py` had a variable named `$liveAptitudesPath`
 pointing at `aptitudes.v2.json` — while **v5** shipped. `ClassSystemBaselineRegenTests` then asserted the
 recorded metadata *said* `aptitudes.v2.json`. **Script, baselines and test agreed with each other and all
 three disagreed with reality** — the same version-pinning class §33.1 already fixed in the tests, surviving

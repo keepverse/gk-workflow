@@ -33,7 +33,7 @@ Read in this session, before forming any view:
   (it is never measured in this document).
 
   *(Closed by the program, 2026-09-23: `combat-math-dedup` ran every piece of this — `ProvePredictor`,
-  `scripts/regen-class-system-baselines.ps1`, the full `test-fast -AllDefault` project list and the
+  `gk-core/scripts/regen_class_system_baselines.py`, the full `test_fast.py --all-default` project list and the
   `gk-web/web/fusion-rpg-web` suite — and execution contradicted none of the audit's structural findings. The
   one numeric claim the program had to change was the audit's own D11, where the C# sigmoid read was
   the wrong side. The box stays unticked because it records the audit session's own scope, not the

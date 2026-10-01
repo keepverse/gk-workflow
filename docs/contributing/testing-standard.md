@@ -197,7 +197,7 @@ exclusion removes the test from the default profile.
 | **gate** | `release.yml` tags | `dotnet test <proj>` (no filter), required |
 | **nightly** | `.github/workflows/nightly.yml` | `dotnet test <proj>` (no filter) |
 
-**The default lives in exactly one place.** `scripts/test-fast.ps1` owns the filter, so deliberate
+**The default lives in exactly one place.** `gk-core/scripts/test_fast.py` owns the filter, so deliberate
 broad local validation cannot drift. Agents use `verify-change.py` first; `deploy-play.py` still
 calls the explicit default profile. CI keeps calling `dotnet test` directly with
 **no** filter, so CI is `full` by construction and can never accidentally inherit the dev default.
@@ -205,7 +205,7 @@ A negative filter includes uncategorized tests, so only the *excluded* tests nee
 
 ### The guards run on `full` only — except the static gate, which runs on `default` too
 
-**The runtime leak alarm (`test-substrate-leak-alarm.ps1`) runs against the `full` profile only.** The
+**The runtime leak alarm (`test_substrate_leak_alarm.py`) runs against the `full` profile only.** The
 default profile *intentionally* writes the file-bound directories — those are the `DiskSemantics` tests —
 so a disk-leak alarm run around it would either false-positive every time or need an ever-growing
 allowlist. **Do not "optimize" the alarm onto the fast profile.**
@@ -213,10 +213,10 @@ allowlist. **Do not "optimize" the alarm onto the fast profile.**
 **The static gate (`guard-test-substrate.py`) also runs in the default profile** — added 2026-09-13.
 It reads *source*, so it is profile-independent and cannot false-positive on those intentional writes: it
 refuses a test that **swears** a temp delete, builds a store from a temp path, or builds a file-backed
-store without the `DiskSemantics` tag that would keep it out of the routine loop. `scripts/test-fast.ps1`
+store without the `DiskSemantics` tag that would keep it out of the routine loop. `gk-core/scripts/test_fast.py`
 calls it first and exits non-zero on failure ("DEFAULT PROFILE REFUSED"), which makes the dev loop
 **self-guarding** — a leaking test cannot be added and then run unnoticed. Verified by planting a
-leaking probe: `test-fast.ps1` refused with the file named, then the probe was removed.
+leaking probe: `test_fast.py` refused with the file named, then the probe was removed.
 
 `full` is the only profile that catches a disk regression at *runtime* — hence the nightly workflow: it
 reruns everything unfiltered within a day, instead of waiting for a release tag.
@@ -248,7 +248,7 @@ defects it found (`EnsureColumn`'s swallowed `ALTER TABLE`; the `--no-build` sta
 
 **The process-boundary lever is a reusable runner, not a one-off measurement.**
 `data-tests-sharding` (`test-verification-boundary`) turns "N concurrent processes over a complete,
-disjoint partition" into `scripts/test-sharded.ps1` plus a manifest (`gk-core/scripts/test-shards.v1.json`):
+disjoint partition" into `gk-core/scripts/test_sharded.py` plus a manifest (`gk-core/scripts/test-shards.v1.json`):
 one project id per entry, named shards as class/namespace prefixes, and exactly one `remainder` shard
 whose filter is the exact complement of the named ones, so completeness is a property of the
 partition's construction, not of counting. It builds the project once, runs each shard as its own
@@ -256,7 +256,7 @@ partition's construction, not of counting. It builds the project once, runs each
 executed in two shards) and for an empty named shard (a manifest defect) before reporting success.
 CI adopted it for `FusionRpg.Data.Tests` (`ci.yml`, R15); a **local** `verify-change.py` module-level
 check on a project the manifest owns also delegates to it, with `-ExtraFilter` set to the one default
-profile filter `scripts/test-fast.ps1` owns — never restated as a second copy of that string. A
+profile filter `gk-core/scripts/test_fast.py` owns — never restated as a second copy of that string. A
 **focused** (`VerificationId`) check stays a plain `dotnet test`: it is small, and the shard runner's
 own bookkeeping (build the manifest view, spawn N processes, read N TRX files) would be pure overhead
 for a handful of tests.

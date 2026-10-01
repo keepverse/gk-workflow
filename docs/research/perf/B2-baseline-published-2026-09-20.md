@@ -35,7 +35,7 @@ entities), normal speed", measuring scaling with board size.
   were captured 13-47 minutes apart on the same day with no log connecting a specific optimization
   landing to a specific `-oN` suffix. Publishing the raw numbers is what this task asked for; a
   causal write-up needs either the original author's context or a fresh, clean before/after
-  `probe-perf.ps1` run against the current `RulesetVersion`, not a re-interpretation of five-week-old
+  `probe_perf.py` run against the current `RulesetVersion`, not a re-interpretation of five-week-old
   numbers with an unexplained 200x outlier in the middle of them.
 
 ## Recommendation

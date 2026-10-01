@@ -56,7 +56,7 @@ touching disk.
 
 **Where the default is applied.** The exclusion is documented in
 [`testing-standard.md`](../../contributing/testing-standard.md) and driven from **one** place so the
-default cannot drift: a small `scripts/test-fast.ps1` (mirroring `deploy-play.py`'s guard style) that
+default cannot drift: a small `gk-core/scripts/test_fast.py` (mirroring `deploy-play.py`'s guard style) that
 both the developer and any agent run. `deploy-play.py` calls it. CI keeps calling `dotnet test`
 directly with **no** filter, so CI is `full` by construction and cannot accidentally inherit the dev
 default.
@@ -78,9 +78,9 @@ the fast profile.
 **The static gate (`guard-test-substrate.py`) is different and was added to the default profile
 2026-09-13.** It reads *source*, not the filesystem, so it is profile-independent
 and cannot false-positive on those intentional writes; it refuses a test that **swears** a temp delete
-or builds a store from a temp path. `scripts/test-fast.ps1` runs it first and exits non-zero on failure,
+or builds a store from a temp path. `gk-core/scripts/test_fast.py` runs it first and exits non-zero on failure,
 so the dev loop is **self-guarding**: a leaking test cannot be added and then run unnoticed. Verified by
-planting a leaking probe — `test-fast.ps1` refused it by name.
+planting a leaking probe — `test_fast.py` refused it by name.
 
 This closes the one gap the profiles left: previously the default profile relied entirely on tests being
 correctly migrated/tagged, with no independent check of that assumption.
@@ -144,8 +144,8 @@ public void A_seed_tree_on_disk_imports_end_to_end() { … }
 
 | Concern | Verify |
 |---|---|
-| The default profile excludes the tagged tests | `test-fast.ps1` run count < full run count, and the difference equals the tagged count |
-| The default profile writes **no** disk | the T19b runtime alarm run around `test-fast.ps1` reports **0** new `fusionrpg-*` dirs |
+| The default profile excludes the tagged tests | `test_fast.py` run count < full run count, and the difference equals the tagged count |
+| The default profile writes **no** disk | the T19b runtime alarm run around `test_fast.py` reports **0** new `fusionrpg-*` dirs |
 | `full` still runs everything | CI is unfiltered; a local unfiltered run equals the pre-change 1,288 |
 | Guards are unaffected | `guard-test-substrate.py` green; the alarm runs on `full` |
 | Nothing was deleted or weakened | per-file `Assert.` counts unchanged for every tagged file |
@@ -162,12 +162,12 @@ public void A_seed_tree_on_disk_imports_end_to_end() { … }
 
 ## Success criteria
 
-1. `scripts/test-fast.ps1` runs the suite minus `DiskSemantics` and `Heavy`, printing its filter.
+1. `gk-core/scripts/test_fast.py` runs the suite minus `DiskSemantics` and `Heavy`, printing its filter.
    **"writes no disk" is a *later* criterion** — see the ordering note below; it holds only once the
    migration (T18b–T18f) has retired the 102 files that are neither tagged nor migrated.
 2. `full` (CI/`release.yml`/nightly) runs everything; CI is unfiltered (asserted by a T28 step).
 3. The two categories exist and are documented in `testing-standard.md` with the profile table.
-4. The runtime alarm runs only on `full`; the static gate also runs in the default profile (`test-fast.ps1` runs it first).
+4. The runtime alarm runs only on `full`; the static gate also runs in the default profile (`test_fast.py` runs it first).
 5. No test is deleted, and every tagged file's assertion count is unchanged.
 6. A nightly workflow exists so a disk regression is caught within a day.
 
@@ -180,7 +180,7 @@ Server 49, Delve 12, Actions 5, DataRoot 6, Core 4, PassiveTree 3, E2E 3). The f
 those tests stay in the default profile and still write.
 
 Proven, not assumed: an isolated run of `ArmouryTests` in a private temp root leaked **14**
-`fusionrpg-armoury-*` dirs; the leak alarm around `test-fast.ps1` reported **436** survivors.
+`fusionrpg-armoury-*` dirs; the leak alarm around `test_fast.py` reported **436** survivors.
 
 **Two consequences this spec now states explicitly:**
 

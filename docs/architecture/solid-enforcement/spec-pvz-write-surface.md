@@ -135,7 +135,7 @@ re-pinning.
 
 ## Gaps found and closed while writing
 
-- **The first draft proposed a new `guard-pvz-write-surface.ps1`.** Reading
+- **The first draft proposed a new `guard-pvz-write-surface.ps1`, which was never created.** Reading
   `guard-single-writer.py` showed it already owns the file boundary. A second guard over the same
   files would split one invariant across two scripts, so it was folded in as W2/W3.
 - **The raw grep counted the commented-out atk lines as live writes** (26 targets, not 23). Comment

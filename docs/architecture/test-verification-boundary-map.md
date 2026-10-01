@@ -45,8 +45,8 @@ test code and a one-subsystem change compiles one small project.
 
 | Capability | Where |
 |---|---|
-| Planner: explicit paths, session-scope check, most-specific owner + additive seams, fail on unmapped/ambiguous | `scripts/verify-change.ps1:49-92` (unmapped throw `:83`, ambiguity `:86`, seams `:89-91`) |
-| Runner: guards then `dotnet test` per selected project, `VerificationId` filter or the default-profile filter, stop at first failure | `scripts/verify-change.ps1:108-120` |
+| Planner: explicit paths, session-scope check, most-specific owner + additive seams, fail on unmapped/ambiguous | `gk-core/scripts/verify-change.py:688` (session fence `:633`, unmapped throw `:771`, ambiguity `:779`, seams `:794-802`) |
+| Runner: guards then `dotnet test` per selected project, `VerificationId` filter or the default-profile filter, stop at first failure | `gk-core/scripts/verify-change.py:1192` |
 | Integrity guard: schema allow-list, project/guard files exist, unique owner patterns, `VerificationId` has a `[Trait]` in the named project, every `src/**/*.cs` has an owner | `gk-core/scripts/guard-verification-boundaries.py:34-93` |
 | Depth reading (prints, asserts nothing) | `gk-core/scripts/guard-verification-boundaries.py:104-117` (`--report`) |
 | CI runs the integrity guard in its own step | `.github/workflows/ci.yml:256-262` |
@@ -103,7 +103,7 @@ Measured 2026-09-18 on this commit:
   The contract half, `edge_triples(generated) == edge_triples(shipped)` (`:39`), passes against v8. The
   fix (drop the two pins, keep the equality) is `python-test-lane` step 0, and it lands before the CI
   pytest step (R15). The other 18 tests in `gk-core/tools/tuning` pass.
-- `scripts/mutate.ps1:93-95` refuses to run the `seedsmith` mutant set while that suite is red.
+- `gk-core/scripts/mutate.py:347` refuses to run the `seedsmith` mutant set while that suite is red.
 
 **How a lane behaves when a selected test is already red** is defined once, in
 [`python-test-lane`](test-verification-boundary/spec-python-test-lane.md) D6, and applies to every
@@ -119,7 +119,7 @@ deselect, skip marker or silent allowlist exists anywhere.
    so a ratchet would protect nothing.
 2. **The registry file keeps its name. `schemaVersion` is the contract version, and one sequence
    covers both programs that edit it.** The planner already reads the field, not the file name
-   (`verify-change.ps1:28`), and the guard pins it (`guard-verification-boundaries.py:35`). A change
+   (`gk-core/scripts/verify-change.py:358`), and the guard pins it (`guard-verification-boundaries.py:35`). A change
    that alters what a reader must understand bumps the version by one, in the same commit as planner
    and guard support. A stale copy of either script (another worktree) then refuses the file instead
    of misreading it. The sequence below is fixed here and cross-referenced from
@@ -215,12 +215,12 @@ apart. The ideal's sequencing note holds: R-TV2 test-side work that keys on Core
 - **`solid-enforcement` / `enforcement-registry` + `guard-runner`**
   ([spec-enforcement-registry.md](solid-enforcement/spec-enforcement-registry.md),
   [spec-guard-runner.md](solid-enforcement/spec-guard-runner.md)). Both programs edit
-  `gk-core/scripts/verification-boundaries.v1.json`, `scripts/verify-change.ps1` and
+  `gk-core/scripts/verification-boundaries.v1.json`, `gk-core/scripts/verify-change.py` and
   `gk-core/scripts/guard-verification-boundaries.py`. There is **one order, with no conditionals**. (The first
   draft said "a catalog row if that registry exists by then, else a `guards`-map entry": two shapes
   and no owner.)
   1. SE0.1–SE0.4 land first: the catalog (`gk-core/scripts/enforcement-registry.v1.json`, not on disk yet),
-     its tests, and `run-guards.ps1`. SE0.3 maps the new files in this registry and changes no schema
+     its tests, and `run_guards.py`. SE0.3 maps the new files in this registry and changes no schema
      field.
   2. **SE0.7** removes the `guards` section and sets `schemaVersion` 2 (§3.2). Catalog ids must equal
      today's `guards` keys, all 12 of them, including `magic-numbers` and `session-boundary`.

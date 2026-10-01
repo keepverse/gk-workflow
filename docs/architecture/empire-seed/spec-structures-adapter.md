@@ -199,7 +199,7 @@ tools/seedsmith/tests/test_structures_adapter.py            new
 Every test runs offline. No test imports the transport.
 
 **Verification boundary: a gap, stated.** `gk-forge/tools/seedsmith/**` and `gk-data/packs/fusion/data/seed/structures/**` have no
-mapping in `gk-core/scripts/verification-boundaries.v1.json`, so `scripts/verify-change.ps1:118` throws
+mapping in `gk-core/scripts/verification-boundaries.v1.json`, so `gk-core/scripts/verify-change.py:771` throws
 `VERIFICATION BOUNDARY MISSING`. The owner of the fix is `test-verification-boundary` `python-test-lane`
 (`docs/architecture/test-verification-boundary/spec-python-test-lane.md:16`, `:110-112`). Until it
 lands, the focused pytest command in §6 is the boundary. It is not replaced by a broad suite.

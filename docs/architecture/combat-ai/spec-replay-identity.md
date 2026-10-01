@@ -350,7 +350,7 @@ Contract and closed vocabulary only (`validation-ssot.md`; DESIGN-GATE §3 rule 
 5. The boot sweep marks a profile refusal terminally, in the same shape as the four existing guards.
 6. A NULL stamp replays exactly as today, and `RulesetVersion >= 6` with a NULL stamp is unreachable.
 7. **`BattleGoldenTests` unchanged**, all four constants untouched.
-8. `guard-dal.py` and `guard-test-substrate.py` green; `verify-change.ps1` clean for the changed paths.
+8. `guard-dal.py` and `guard-test-substrate.py` green; `verify-change.py` clean for the changed paths.
 
 ## Open questions
 

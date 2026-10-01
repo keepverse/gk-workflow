@@ -143,7 +143,7 @@ Every later exchange module follows the same rule.
 - **Boundary rows.** New paths today fall to `core-fallback` (`gk-core/src/FusionRpg.Core/**`, a whole-project
   run; `gk-core/scripts/verification-boundaries.v1.json` entry `core-fallback`). This module adds a focused
   boundary `core-world-trade-valuation` (paths `src/FusionRpg.Core/World/Trade/Valuation/**` and its
-  tests, `verificationId` `core.world-trade.valuation`) so `verify-change.ps1` selects seconds, not the
+  tests, `verificationId` `core.world-trade.valuation`) so `verify-change.py` selects seconds, not the
   project. `gk-core/scripts/guard-verification-boundaries.py` stays green.
 - Verify once: `.\scripts\verify-change.ps1 -Paths <every changed file> -Session <id>`; plus
   `python gk-core/scripts/guard-power.py` and `python gk-core/scripts/audit-overflow.py`.

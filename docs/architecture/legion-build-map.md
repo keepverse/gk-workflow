@@ -205,7 +205,7 @@ deterministically). ~~World `RulesetVersion` to the next integer and a turn-gold
 the kind is persisted and hashed **by name** (`RpgStore.World.cs:378,632`; `WorldCanonical.cs:157`) and no
 saved world ever held a caravan. No golden moves.
 
-**Verification boundary.** `verify-change.ps1`; `EntityNamingTests`, `WorldStoreTests`, web `npm test`.
+**Verification boundary.** `verify-change.py`; `EntityNamingTests`, `WorldStoreTests`, web `npm test`.
 
 **Hard edges.** None. The enum is closed; removing a never-constructed member is the reviewed change.
 
@@ -333,7 +333,7 @@ legion and to no other actor. Withdrawal on disband or rout removes every contri
 Every contribution carries a non-empty SourceId that `FictionLabel` explains. Binding is idempotent and
 refuses a non-`world-buff` container. The guard stays green.
 
-**Verification boundary.** `verify-change.ps1`; atom bind-gate tests, owner-scope parse tests, the reader's
+**Verification boundary.** `verify-change.py`; atom bind-gate tests, owner-scope parse tests, the reader's
 own tests, `gk-core/scripts/guard-actor-hub.py`.
 
 **Hard edges.** Widens a closed vocabulary (`OwnerKind`) and the layer list; three register rows move in the
@@ -914,7 +914,7 @@ this section and the text above disagree, this section wins.
 | A-LB8 | MEDIUM | `standing-orders` walked entities in ordinal order, while `escort-stance` §3 needs every charge's command before its escort's | **Fixed** — per-kind pass rank; the emitter walks `(Pass, EntityId)` (`spec-standing-orders.md` §5) |
 | A-LB9 | MEDIUM | `stack-combatant` narrowed `LivingUnits` into the pipeline's `int hitCount` (`gk-core/src/FusionRpg.Core/Combat/DamageApplyPipeline.cs:66`, `gk-core/src/FusionRpg.Core/Combat/Shield/ShieldGate.cs:51`) with a checked cast: with `Count` unbounded by design, a large stack would throw mid-battle — an arithmetic ceiling on army size where a wider type exists | **Fixed** — both parameters widen to `long` (callers widen implicitly; no golden moves) |
 | A-LB10 | MEDIUM | `RulesetVersion` numbers were pre-assigned ("13 today, so 14") while `world-continuity` `world-victory` also bumps "to the next integer" — two programs in parallel would mint one number for two rule sets | **Fixed** — rule R1 below (shared with `world-continuity-map.md` *Audit 2026-09-20* R1) |
-| A-LB11 | MEDIUM | New tuning and seed files (`legion.v1.json`, `legion-seed.v1.json`, `data/seed/legion/**`) have no verification mapping, so `scripts/verify-change.ps1:118` throws for them; no `legion-build` spec named the gap | **Fixed as an obligation** — rule R3 below |
+| A-LB11 | MEDIUM | New tuning and seed files (`legion.v1.json`, `legion-seed.v1.json`, `data/seed/legion/**`) have no verification mapping, so `gk-core/scripts/verify-change.py:771` throws for them; no `legion-build` spec named the gap | **Fixed as an obligation** — rule R3 below |
 | A-LB12 | LOW | Closed-vocabulary counts written as transitions ("stances 4 → 5", "`WorldCommandKinds` 18 → 20") while other modules widen the same lists (`warden`, `depart`, `advance`, `produce-gear`, …) | **Fixed** — the pinned test names members; the count is what the list holds at landing |
 | A-LB13 | LOW | Design prose named IP characters ("Zomboss's rows", "a non-Dave empire") where the vocabulary rule asks for generic terms; enum ids keep their names | **Fixed** in `spec-general-member-hub.md` and this map (X5, §3, §5.5, Q2) |
 | A-LB14 | LOW | `legion-cohesion` listed a Core "loader hook"; Core never reads a file | **Fixed** — a pure parser; the host reads (tunables-ssot §7.2) |

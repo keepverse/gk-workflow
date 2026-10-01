@@ -23,18 +23,18 @@ defect, not the tests.
 The owner's concern: `FusionRpg.Core.Tests` has 13,513 test cases in one assembly, and a scoped
 verification run for a two-file change (`DebugActions.cs`, `DebugEndpoints.cs`) fell back to running
 **all** of it (plus all 442 of `Server.Tests`) because the registry-driven selector
-(`scripts/verify-change.ps1`) had no narrower mapping for those paths. The owner asked: is this my
+(`gk-core/scripts/verify-change.py`) had no narrower mapping for those paths. The owner asked: is this my
 (the agent's) mistake, or an architecture problem, and how does the industry solve it at this scale.
 
 ## What already exists
 
 ### Built
 
-- **`gk-core/scripts/verify-change.py` (the planner; ported 2026-09-26 from `scripts/verify-change.ps1`) + `gk-core/scripts/verification-boundaries.v1.json` + `gk-core/scripts/guard-verification-boundaries.py`**
+- **`gk-core/scripts/verify-change.py` (the planner; ported 2026-09-26 from the retired `scripts/verify-change.ps1`) + `gk-core/scripts/verification-boundaries.v1.json` + `gk-core/scripts/guard-verification-boundaries.py`**
   — a hand-authored, integrity-guarded path→test mapping. This *is* a lightweight, repo-specific
   version of the Bazel-style "target graph" pattern the industry uses (see Prior art) — not a naive
-  fallback. The planner (`verify-change.py:_build_checks` / the original `verify-change.ps1:74-92`)
-  resolves each changed path to its most-specific owner boundary
+  fallback. The planner (`gk-core/scripts/verify-change.py:_build_checks`, or
+  `verify-change.ps1:74-92` in the retired PowerShell form) resolves each changed path to its most-specific owner boundary
   and the seams layered on it; `guard-verification-boundaries.py:84-93` fails the registry itself if
   any `src/**` file has zero owner. The mechanism **works today**, proven by the `data-item-socket` /
   `data-item-socket-test` pair (`verification-boundaries.v1.json:1724`, `:1738`; citations re-checked
@@ -77,8 +77,8 @@ verification run for a two-file change (`DebugActions.cs`, `DebugEndpoints.cs`) 
   had zero registry entry until today, despite `LawnQuickStartEndpointTests` itself already existing
   and being exercised repeatedly by prior sessions.
 - `verification-boundaries.v1.json` has a `"seam"` boundary *kind* already defined
-  (the planner applies seam matches on top of the owner match; the original
-  `verify-change.ps1:89-91` is where that was first written) and **one seam entry**
+  (the planner applies seam matches on top of the owner match; the seam loop came from the
+  retired `verify-change.ps1:89-91`, now `gk-core/scripts/verify-change.py:794-802`) and **one seam entry**
   — `effect-catalog-drift`, added 2026-09-15 by `8be05e50` (this doc said "zero" until 2026-09-18;
   it was written against an older registry). Seams are exactly what the Bazel tooling research below
   calls out as the easy thing to miss: shared fixtures, tuning JSON, generated trees — inputs outside
@@ -446,8 +446,8 @@ fence and have no owner boundary at all — filed as TVB-F25 for the manager to 
 
 ### The planner moved to Python, and the guard step stopped racing its own build — 2026-09-26
 
-`gk-core/scripts/verify-change.py` + `gk-core/scripts/lib/verification_boundaries.py` replace
-`scripts/verify-change.ps1` + `scripts/lib/VerificationBoundaries.ps1` as the **named** entry point
+`gk-core/scripts/verify-change.py` + `gk-core/scripts/lib/verification_boundaries.py` replaced the
+retired `scripts/verify-change.ps1` + `scripts/lib/VerificationBoundaries.ps1` as the **named** entry point
 (AGENTS.md "Verification boundary"). Two measured reasons, both recorded because they are the kind of
 defect that recurs:
 
@@ -457,7 +457,7 @@ defect that recurs:
    FusionRpg.Guard.Tests.dll ... The file is locked by: testhost"`, or the run died with `exit -1`.
    Reproduced twice on 2026-09-26. The port never lets a test spawn a build: `Runner._build` runs
    `dotnet build` **once per project** (memoized on the absolute project path) and every test then
-   runs with `--no-build` — the shape `scripts/test-sharded.ps1:139-152` already uses, and the same
+   runs with `--no-build` — the shape `gk-core/scripts/test_sharded.py:273` already uses, and the same
    defect class `cold-process-test-build-20260912-e5b1` fixed for tool tests.
 2. **PowerShell loses output silently.** `Write-Host` writes the INFORMATION stream, so `2>&1`
    captures *nothing* from a script that is working correctly (AGENTS.md "Language for new tooling").
@@ -471,12 +471,14 @@ implementations over the same inputs and failing if they disagree — the librar
 fragment, the planner over the real registry. Two implementations of one rule is the C4 defect, so it
 is pinned rather than trusted.
 
-**The PowerShell pair is still on disk, and that is a known, deliberate state.** `guard-verification-boundaries.py`
-dot-sources `lib/VerificationBoundaries.ps1`, `deploy-play.py` invokes `verify-change.ps1`, and four
-Guard test classes use `verify-change.ps1` as their repo-root marker — none of which were in the
-porting lane's fence. Deleting either file before those callers move would break the guard suite and
-CI, which is worse than the duplication. See
-`tasks/reports/verify-change-python-20260926.md` for the exact call list.
+**As of 2026-09-26 the PowerShell pair was still on disk, and that was a known, deliberate state.**
+`guard-verification-boundaries.py` dot-sourced the retired `lib/VerificationBoundaries.ps1`,
+`gk-fusion/scripts/deploy-play.py` invoked the retired `verify-change.ps1`, and four Guard test
+classes used the PowerShell planner as their repo-root marker — none of which were in the porting
+lane's fence, which is why deleting either file then would have broken the guard suite and CI. All
+three have since moved: the guard imports the Python lib, the deploy shells
+`gk-core/scripts/verify-change.py`, and the landmark classes point at the `.py`. See
+`tasks/reports/verify-change-python-20260926.md` for the call list as it stood.
 
 ---
 

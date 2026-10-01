@@ -199,7 +199,7 @@ npx vitest run src/features/narrative/scenes src/features/story-scene src/ui/sto
 npm run extract ; npm run build ; npm run check:bundle
 ```
 
-Web paths have no verification boundary (`scripts/verify-change.ps1:95`); the npm commands are their verification.
+Web paths have no verification boundary (`gk-core/scripts/verify-change.py:771`); the npm commands are their verification.
 The change crosses Core, Server and web, so the build task ends with one full-suite run (AGENTS.md verification
 boundary, point 2).
 

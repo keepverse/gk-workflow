@@ -198,7 +198,7 @@ decisions survived, but neither survived unchanged:
    grouping) is still worth adding for human readability, but it is not what makes the rule
    enforceable — the guard is. File split stays deferred; the guard does not.
 2. **The live-probe "recipe" is an operator script, not a new server endpoint — but this is net-new
-   engineering, not a citation of existing precedent.** The audit read `prove-hub-combat.ps1` and
+   engineering, not a citation of existing precedent.** The audit read `prove_hub_combat.py` and
    `gk-forge/tools/ProveHubCombat/Program.cs` directly: it drives `RpgStore.InMemory()` **in-process**, with
    **zero `HttpClient` usage** anywhere in the file — it proves an offline/in-memory invariant, not a
    live server + live game over real HTTP. Citing it as "this repo's own precedent" for a live,

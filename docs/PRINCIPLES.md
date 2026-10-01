@@ -295,14 +295,14 @@ same commit as a refactor. [architecture/tunables-ssot.md](architecture/tunables
 - **The full suite** runs only when finishing a large feature, for a change crossing modules, or right
   before a live probe *(previously local-only)*. CI, nightly and release gates run unfiltered.
   [architecture/test-verification-boundary-ideal.md](architecture/test-verification-boundary-ideal.md).
-- **Coverage says what tests touched; mutation says what they would notice.** `scripts/coverage.ps1`,
-  `scripts/mutate.ps1`; every surviving mutant needs an explanation next to the code.
+- **Coverage says what tests touched; mutation says what they would notice.** `gk-core/scripts/coverage.py`,
+  `gk-core/scripts/mutate.py`; every surviving mutant needs an explanation next to the code.
 - **Web:** `npm test`, `npm run build` (type errors fail it), `npm run test:e2e`.
 
 ## 8. Guard scripts
 
 Seventeen `scripts/guard-*.ps1` scripts enforce the invariants above; each fails individually, and
-`verify-change.ps1` selects the ones a change needs. The table of what each enforces lives in
+`verify-change.py` selects the ones a change needs. The table of what each enforces lives in
 [architecture/software-architecture.md](architecture/software-architecture.md) §10.
 
 ## 9. Frontend and player surfaces

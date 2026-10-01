@@ -115,7 +115,7 @@ Invoke-RestMethod -Method POST http://127.0.0.1:5088/api/debug/effect/grant -Con
 Invoke-RestMethod -Method POST http://127.0.0.1:5088/api/debug/effect/fire-synthetic -ContentType application/json -Body '{"row":2,"x":7.5}'
 ```
 
-Full L2 matrix: [`scripts/prove-status-full.ps1`](../../scripts/prove-status-full.ps1). Single scenario: [`gk-core/scripts/prove_status_l2_one.py`](../../gk-core/scripts/prove_status_l2_one.py).
+Full L2 matrix: [`gk-core/scripts/prove_status_full.py`](../../gk-core/scripts/prove_status_full.py). Single scenario: [`gk-core/scripts/prove_status_l2_one.py`](../../gk-core/scripts/prove_status_l2_one.py).
 
 ## TypeId catalog (defaults — confirm with `/api/types`)
 

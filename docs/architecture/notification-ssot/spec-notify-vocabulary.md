@@ -308,7 +308,7 @@ that list is **open** and its size is a reading (validation-ssot, DESIGN-GATE §
    test.
 3. No category can reach toast or Critical except through `promotions`, proven by test 2.
 4. `retainPerCategory` and `repeatWindowWorldTurns` are the only numbers, and each has a unit.
-5. `verify-change.ps1` green on the changed paths; `audit-magic-numbers.py` has no new M1/M2.
+5. `verify-change.py` green on the changed paths; `audit-magic-numbers.py` has no new M1/M2.
 
 ## Seedsmith / generator
 

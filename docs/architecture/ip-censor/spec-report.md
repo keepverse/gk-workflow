@@ -35,7 +35,7 @@ need to change, suggest new censor token"* — in two forms:
 - The CLI exits non-zero only when explicitly asked (`--fail-on enforced`). **Amended 2026-09-19
   (owner ruling IC-3):** that flag is the **release gate's** invocation and nothing else's. The
   default (exit 0 with findings) is what the advisory CI step and every ad hoc run use; no commit,
-  `verify-change.ps1` run or CI job fails on findings.
+  `verify-change.py` run or CI job fails on findings.
 - **`--authored-only` requires no network.** The release gate calls `scan` only, which never reaches
   `suggest`, so the gate needs no model and no network by construction. *Erratum 2026-09-23 (ip-censor
   T12):* the gate's command line did not carry the flag, and `scan` does build the LLM proposer unless
@@ -64,7 +64,7 @@ $env:PYTHONPATH = "gk-core/tools/ip-censor"; python -m pytest gk-core/tools/ip-c
 
 **Verified by the `wiring` module (A1):** `.\scripts\verify-change.ps1 -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <id>`
 must return a **plan naming the `ipcensor` pytest lane** — not the `VERIFICATION BOUNDARY MISSING`
-throw that `verify-change.ps1:118` currently produces for every path this program proposes. The lane's
+throw that `gk-core/scripts/verify-change.py:771` currently produces for every path this program proposes. The lane's
 runner kind is owned by `test-verification-boundary/python-test-lane` (Wave 3, unbuilt); see
 [spec-wiring.md](spec-wiring.md) for the two-half landing.
 
@@ -147,7 +147,7 @@ Levels:
   (owner ruling IC-2):** `curate admit` writes `gk-data/packs/fusion/data/seed/ip-censor/_registry/marks.v1.json`, and only
   from a candidate file a person has decided ([spec-curate.md](spec-curate.md)); edit a plan by hand; assert a count as truth;
   print a model name into a file the owner did not ask for; wire `--fail-on enforced` into a
-  per-commit guard (a `guard-ip-vocabulary.ps1`), `verify-change.ps1` or a blocking CI step —
+  per-commit guard (a `guard-ip-vocabulary.ps1`), `verify-change.py` or a blocking CI step —
   **amended 2026-09-19 (owner ruling IC-3):** the release is the only thing the scan blocks.
 
 ## Boundaries — where this program stops

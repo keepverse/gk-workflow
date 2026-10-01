@@ -596,7 +596,7 @@ proves the fixture, not the fix.
 
 ### Mutation
 
-`.\scripts\mutate.ps1` over the new subsystem. The two mutants that matter: flipping the
+`python gk-core/scripts/mutate.py` over the new subsystem. The two mutants that matter: flipping the
 `IsDerivedChannel` guard to always-true (must be caught by the primary-channel test) and replacing the
 `TryParseOp` default arm with `Flat` (must be caught by the `more` test). A survivor in either needs an
 explanation next to the code.

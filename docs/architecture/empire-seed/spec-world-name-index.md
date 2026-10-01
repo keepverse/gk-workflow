@@ -136,7 +136,7 @@ python -m pytest tools/seedsmith/tests/test_briefkit_names.py gk-forge/tools/see
 offline.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` and `data/seed/_registry/**` are unmapped
-(`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
+(`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
 The pytest command in §6 is the boundary until then. `--check` joins CI's seedsmith gates once that lane
 exists.
 

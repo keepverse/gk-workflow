@@ -222,8 +222,8 @@ gk-core and name those scripts by relative path:
 | `gk-core/.github/workflows/ci.yml` | `scripts/audit-magic-numbers.py`, `audit-overflow.py`, `audit-program-pipeline.py`, `enforcement-registry.v1.json`, `fix-doc-citations.py`, `test_fast.py`, `test_sharded.py`, `test_substrate_leak_alarm.py`, `guard-verification-boundaries.py`, `run_guards.py`, `session-boundary-check.py` |
 | `gk-core/.github/workflows/nightly.yml` | `test_fast.py`, `test_substrate_leak_alarm.py`, `run_guards.py`, `session-boundary-check.py` |
 | `gk-core/Directory.Build.targets` | `run_guards.py`, `guard-game-profile.py`/`.ps1` |
-| `tools/SquadHarness/SquadHarness.csproj` | `scripts/guard-dal.ps1` |
-| `tests/FusionRpg.Guard.Tests/…csproj` | `scripts/regen-class-system-baselines.ps1` |
+| `tools/SquadHarness/SquadHarness.csproj` | `gk-core/scripts/guard-dal.py` |
+| `tests/FusionRpg.Guard.Tests/…csproj` | `gk-core/scripts/regen_class_system_baselines.py` |
 | `src/FusionRpg.Server/…csproj` | `scripts/publish_player.py` |
 
 `Directory.Build.targets` is imported by **every** project in gk-core, so a target naming

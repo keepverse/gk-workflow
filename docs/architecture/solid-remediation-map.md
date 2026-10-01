@@ -36,7 +36,7 @@ order rather than the end.
 ### Decisions this map records
 
 **1. `green-baseline` is a real module, and it is first.** The per-module gate "ends green — builds,
-guards pass, scoped `verify-change.ps1` passes" is unsatisfiable against a red baseline: a module could be
+guards pass, scoped `verify-change.py` passes" is unsatisfiable against a red baseline: a module could be
 perfect and still fail its own exit criteria on failures it did not cause. Owner ruling 2026-09-17: clear
 the reds and make "all green" literal, rather than freezing a known-red baseline and gating on "no new red".
 
@@ -277,7 +277,7 @@ later — we don't really do tuning phase in this repo yet because we still not 
 
 A module ends green: it builds, the guards pass, and its scoped verification passes.
 
-`scripts/verify-change.ps1` **requires `-Session <id>`**, and DESIGN-GATE §5 requires
+`gk-core/scripts/verify-change.py` **requires `--session <id>`**, and DESIGN-GATE §5 requires
 `session-boundary-check.py` to be clean. Both were unrunnable when this map was first written: no
 `solid-remediation` session record existed, and 14 stale records with ~15 crossing claims made the
 boundary check dirty.

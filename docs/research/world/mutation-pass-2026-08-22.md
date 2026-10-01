@@ -1,7 +1,7 @@
 # Mutation pass — `ai-commander` W25–W31
 
 > Superseded as a *method*: this pass was run by hand from a throwaway script. It is now
-> `scripts/mutate.ps1` with the mutants in `gk-core/scripts/mutants/*.json`, and `scripts/coverage.ps1`
+> `gk-core/scripts/mutate.py` with the mutants in `gk-core/scripts/mutants/*.json`, and `gk-core/scripts/coverage.py`
 > sits beside it. The findings below stand; re-run them with `.\scripts\mutate.ps1 -Set world-ai`.
 
 **Run:** 2026-08-22, ten hand-written mutants across the six files W25–W30 added or changed.
@@ -86,10 +86,10 @@ mutant was written for:
 Two caveats the tools now carry in their own help:
 
 - A **timing assertion cannot survive instrumentation.** `AtomBenchGuardTests` asserts nanoseconds
-  per atom and fails under coverlet, which rewrites every sequence point. `coverage.ps1` excludes
+  per atom and fails under coverlet, which rewrites every sequence point. `coverage.py` excludes
   `~Bench` by default rather than letting it look like a regression.
 - **Restoring a mutant leaves MSBuild holding the mutated assembly**, because the restored file has
-  the older timestamp. `mutate.ps1` touches every file it restores. Discovered the hard way: a full
+  the older timestamp. `mutate.py` touches every file it restores. Discovered the hard way: a full
   sweep came back with four failures against clean source.
 
 ## Second pass, W31–W34: the harness lied to me, then caught itself
@@ -100,7 +100,7 @@ report of *"all 22 caught"* had been false.
 
 **A red baseline makes every mutant look caught.** A concurrent stream had `FusionRpg.Core` briefly
 uncompilable during that run. `dotnet test` exits non-zero either way, so the script counted 22
-build failures as 22 tests noticing 22 defects. `mutate.ps1` now verifies the suite is green
+build failures as 22 tests noticing 22 defects. `mutate.py` now verifies the suite is green
 **before** applying anything and refuses to start otherwise. It fired on its very next run, correctly.
 
 Two more flaws in the tool, both found by using it:

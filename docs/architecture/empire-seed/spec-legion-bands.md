@@ -194,7 +194,7 @@ covers criterion 4. Fixture pieces are the committed exemplars (`data/seed/legio
 
 **Verification boundary.** Core C# paths map to `core-fallback` / `core-tests-fallback`
 (`gk-core/scripts/verification-boundaries.v1.json:132-141`, `:179-188`). **Gap:** `data/tuning/legion-seed.*`
-and `data/seed/legion/**` are unmapped (`scripts/verify-change.ps1:118`). The owner of the fix is
+and `data/seed/legion/**` are unmapped (`gk-core/scripts/verify-change.py:771`). The owner of the fix is
 `test-verification-boundary` `python-test-lane`.
 
 ## 9. Hard edges

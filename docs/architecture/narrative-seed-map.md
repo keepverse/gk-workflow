@@ -132,7 +132,7 @@ ideal is stale.
 | Event text has no wire path: `EventView` carries no name or flavor | `gk-web/web/fusion-rpg-web/src/contract/types.ts:1276-1282` |
 | `/talk` only commits an already-resolved join | `gk-core/src/FusionRpg.Server/DelveWildEndpoints.cs:14-22` |
 | Chain preflight tolerates an unresolved `chainRef` | `gk-core/src/FusionRpg.Core/Delve/Events/EventDeckPreflight.cs:55` |
-| `gk-forge/tools/seedsmith/**` has no verification boundary: `verify-change.ps1` throws for it; seedsmith's pytest runs only in CI | `scripts/verify-change.ps1:95`; `docs/architecture/test-verification-boundary/spec-python-test-lane.md` line 16; `.github/workflows/ci.yml:284` |
+| `gk-forge/tools/seedsmith/**` has no verification boundary: `verify-change.py` throws for it; seedsmith's pytest runs only in CI | `gk-core/scripts/verify-change.py:771`; `docs/architecture/test-verification-boundary/spec-python-test-lane.md` line 16; `.github/workflows/ci.yml:284` |
 
 The last four rows of the C# group are runtime wiring owned by other programs (§7); they are listed so
 no session reports them as walls.
@@ -371,7 +371,7 @@ calls) is a reading to be replaced by `narrative-planner`'s dry run. Batches are
 reviewer clears in one sitting; character anchors are accepted before any line call spends a token.
 
 **Verification.** seedsmith's own pytest suite is the verification for every module here; it runs in
-CI (`.github/workflows/ci.yml:284`). `verify-change.ps1` cannot select it yet because `gk-forge/tools/seedsmith/**`
+CI (`.github/workflows/ci.yml:284`). `verify-change.py` cannot select it yet because `gk-forge/tools/seedsmith/**`
 has no boundary (§3.2); the mapping is `test-verification-boundary`'s `python-test-lane`, not this
 program's. Every test stubs the model transport so that a real call raises.
 
@@ -392,7 +392,7 @@ program's. Every test stubs the model transport so that a real call raises.
 | Species display names in the target language (shared by every surface that shows a species) | coordinated with `creature-seed` | Own or fork a species name table; narrative prose never names a species anyway (R8) |
 | Renaming shipped surfaces: the Rift prologue (`actorCast.ts`, `sceneScript.ts` and its messages), the player guide, the `decisions.md` Product vision row, the player-facing title (R9, R12, IC-1b) | `identity-rename` | Edit any of them; this program only publishes the names registry they point at |
 | seedsmith core (corpus, budget, metrics, planner, pipeline, workflow runtime) | seedsmith core | Put narrative knowledge in the core (P5) |
-| `verify-change.ps1` mapping for `gk-forge/tools/seedsmith/**` | `test-verification-boundary` (`python-test-lane`) | Edit `gk-core/scripts/verification-boundaries.v1.json`. **Reconciled 2026-09-23 (NS70):** this program DID add its rows there (NS1, NS2 and the wave-1 tasks), under the protected-path grant the runner gives each lane — the mapping and its guard still belong to `python-test-lane`, and the narrative rows are this program's content inside that mapping. A lane without the grant reports the missing mapping instead of editing the file. |
+| `verify-change.py` mapping for `gk-forge/tools/seedsmith/**` | `test-verification-boundary` (`python-test-lane`) | Edit `gk-core/scripts/verification-boundaries.v1.json`. **Reconciled 2026-09-23 (NS70):** this program DID add its rows there (NS1, NS2 and the wave-1 tasks), under the protected-path grant the runner gives each lane — the mapping and its guard still belong to `python-test-lane`, and the narrative rows are this program's content inside that mapping. A lane without the grant reports the missing mapping instead of editing the file. |
 
 ### Hand-off (Checkpoint 1, recorded 2026-09-23 by lane `ns-2`)
 

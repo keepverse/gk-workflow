@@ -207,8 +207,8 @@ python -m seedsmith check data/seed/legion --adapter legion
 `LegionSeedParseTests` covers 8. All offline.
 
 **Verification boundary: a gap.** `gk-forge/tools/seedsmith/**` and `data/seed/legion/**` are unmapped
-(`scripts/verify-change.ps1:118`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
-The pytest command is the boundary. The C# tests go through `verify-change.ps1`.
+(`gk-core/scripts/verify-change.py:771`). The owner of the fix is `test-verification-boundary` `python-test-lane`.
+The pytest command is the boundary. The C# tests go through `verify-change.py`.
 
 ## 9. Hard edges
 

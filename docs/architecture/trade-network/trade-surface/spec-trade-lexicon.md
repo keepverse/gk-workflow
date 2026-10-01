@@ -181,7 +181,7 @@ withdrew that member**, so the collision is gone at the source: no code name sha
 - **Guard:** the vocabulary guard in `FusionRpg.Guard.Tests` — `guard-tests-fallback`.
 - **Web:** `tradeLabel` placeholder test and the no-raw-token render test (vitest).
   **Gap, stated:** `gk-core/scripts/verification-boundaries.v1.json` has no `web/` path (grep count 0) and its
-  `projects` map lists `.csproj` files only, so `verify-change.ps1` cannot select vitest. Per AGENTS.md
+  `projects` map lists `.csproj` files only, so `verify-change.py` cannot select vitest. Per AGENTS.md
   this is a boundary defect to report, never a reason to run the full suite; the fix is owned by the
   `guard-verification-boundary-tests` owners.
 

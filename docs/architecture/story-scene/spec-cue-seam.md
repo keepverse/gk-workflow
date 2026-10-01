@@ -54,7 +54,7 @@ export type StoryCueId =
 |---|---|
 | The four Unity-side VFX recipes (`gk-core/src/FusionRpg.Core/Vfx/VfxCatalog.cs:65-68`, `:442,466,490,514`) | Not this program. They exist as data and are unwired (a **wiring gap**, reported in the ideal, not a wall) |
 | A transport/bridge to the Injector | The **sibling** Rift Gate program, whose ideal owns overlay transport and host selection |
-| `prove-vfx.ps1` coverage | Whoever wires the Unity channel |
+| `prove_vfx.py` coverage | Whoever wires the Unity channel |
 | Retiring or modifying the `rift.*` recipes | A later increment, deliberately deferred |
 
 **Why deferring is correct, not lazy:** the recipes are cue-id-agnostic data consumed by
@@ -103,7 +103,7 @@ npm run build
 - **Always:** typed cue ids; pack-owned cue rendering; reduced-motion = instant; the seam stays optional.
 - **Ask first:** adding a fifth cue id; wiring the Unity channel; changing a cue's visual meaning.
 - **Never:** an injector story state machine; a socket/keybinding from a scene; rendering a cue id or
-  scene id as player text; editing `VfxCatalog.cs` or `prove-vfx.ps1` here.
+  scene id as player text; editing `VfxCatalog.cs` or `prove_vfx.py` here.
 
 ## Project structure
 

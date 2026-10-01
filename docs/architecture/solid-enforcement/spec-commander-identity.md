@@ -175,7 +175,7 @@ python gk-core/scripts/guard-open-identity.py
   executable.
 - **Falsifiers for I1/I2.**
 - **Commands:** `dotnet test tests\FusionRpg.Core.Tests --filter "FullyQualifiedName~Commander|FullyQualifiedName~KillAttribution|FullyQualifiedName~SpeciesAllocation"`,
-  then the Guard.Tests falsifiers for `guard-open-identity`, then `verify-change.ps1` with every touched
+  then the Guard.Tests falsifiers for `guard-open-identity`, then `verify-change.py` with every touched
   path.
 
 ## Boundaries

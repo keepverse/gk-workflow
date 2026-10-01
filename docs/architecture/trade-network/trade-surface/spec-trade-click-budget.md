@@ -60,7 +60,7 @@ this spec.
 ## Test plan and verification boundary
 
 Vitest only. **Gap, stated:** `gk-core/scripts/verification-boundaries.v1.json` has no `web/` path (grep count 0)
-and its `projects` map is `.csproj`-only, so `verify-change.ps1` cannot select these tests; report it,
+and its `projects` map is `.csproj`-only, so `verify-change.py` cannot select these tests; report it,
 never run the full suite instead.
 
 ## Hard edges

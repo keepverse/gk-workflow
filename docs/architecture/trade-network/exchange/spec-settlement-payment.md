@@ -270,7 +270,7 @@ free exchange would be a lossless conversion, P5; load rejection otherwise).
   boundary row `core-world-trade-settlement`.
 - `gk-core/tests/FusionRpg.Data.Tests/` (commit transaction: budget logging, soul row, dedupe, rollback,
   replay), in memory per the test-substrate rule; the existing Data boundary for
-  `RpgStore.WorldTurns.cs` and `RpgStore.Souls.cs` is what `verify-change.ps1` selects.
+  `RpgStore.WorldTurns.cs` and `RpgStore.Souls.cs` is what `verify-change.py` selects.
 - Crosses Core and Data together: run the full suite **once**, at the end of wave 3 with `order-book`
   (AGENTS.md verification point 2), plus `guard-dal.py` (all SQL stays in `FusionRpg.Data`).
 

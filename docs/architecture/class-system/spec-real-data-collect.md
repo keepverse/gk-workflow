@@ -36,8 +36,8 @@ PerfProbe.SnapshotAndReset()          gk-core/src/FusionRpg.Core/Diagnostics/Per
 
 **First pass over-claimed a gap.** `PerfProbe.cs:230` (past where an earlier grep of this file stopped
 reading) sets `["t"] = DateTime.UtcNow.ToString("o")` inside `SnapshotAndReset()` — every window already
-carries a wall-clock timestamp, and `scripts/probe-perf.ps1` (the perf program's own baseline-capture
-script) already dedups incoming windows on it. Found by reading `probe-perf.ps1` for a design reference,
+carries a wall-clock timestamp, and `gk-core/scripts/probe_perf.py` (the perf program's own baseline-capture
+script) already dedups incoming windows on it. Found by reading `probe_perf.py` for a design reference,
 not by re-grepping the same two files a third time.
 
 What is **still** genuinely missing, narrower than first written:
@@ -51,7 +51,7 @@ What is **still** genuinely missing, narrower than first written:
 recent` — no change to `PerfProbe.cs`/`PerfReporter.cs`/`PerfWindowBuffer.cs` needed.** This removes
 what was originally this doc's second reason to need a decision (editing another program's own files
 without their review, `perf-probe-plan.md` §1.4) — the collector this spec authorizes is a new,
-class-system-owned reader of an existing public endpoint, the same relationship `probe-perf.ps1` itself
+class-system-owned reader of an existing public endpoint, the same relationship `probe_perf.py` itself
 already has to it, just continuous and multi-run instead of one fixed-duration capture.
 
 ## 3. Options considered

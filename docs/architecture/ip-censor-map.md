@@ -71,11 +71,11 @@ lives in a different tool and depends only on the registry's committed data file
 (owner ruling IC-3):** the only blocking caller is the **release** — a step in
 `.github/workflows/release.yml` and a line in `docs/runbook/release-prove.md`, both owned by `wiring`.
 The earlier design of a per-change guard script (`guard-ip-vocabulary.ps1`, never built) is withdrawn:
-no commit, `verify-change.ps1` run or CI job blocks on a finding. CI may run the scan advisory.
+no commit, `verify-change.py` run or CI job blocks on a finding. CI may run the scan advisory.
 
 ### Why `wiring` is a module and not a task (amendment 2026-09-19)
 
-Found by audit (`docs/research/ip-censor-spec-audit-2026-09-19.md` A1). `scripts/verify-change.ps1:118`
+Found by audit (`docs/research/ip-censor-spec-audit-2026-09-19.md` A1). `gk-core/scripts/verify-change.py:771`
 **throws** `VERIFICATION BOUNDARY MISSING` for any path with no owner boundary; the registry's 101
 boundaries cover 12 **C#** projects and contain **zero** entries for `gk-core/tools/ip-censor/**` or
 `gk-data/packs/fusion/data/seed/ip-censor/**` (verified by loading the registry). The nearest precedent,
@@ -159,7 +159,7 @@ Every row was re-read in this session; code beats the ideal where they disagree.
 | **The live shipped collision** | `gk-data/packs/fusion/data/seed/passive-tree/nodes/command.json:537-539` (`"Overwatch Protocol"`), produced by the unguarded prompt at `gk-forge/tools/seedsmith/seedsmith/adapters/trees/nodegen/brief.py:62-68`. `:542` carries `"promptVersion": "tree-language/3"` — so it is generator-owned, not a direct edit (A3). Fixed before release (IC-4.1). |
 | **The upstream almanac is imported by the server** | `gk-core/src/FusionRpg.Server/Program.cs:1426-1445` reads `pvz-fusion-almanac-3.6.1.json` and calls `store.ImportAlmanacEnrichment` (`gk-core/src/FusionRpg.Data/Sqlite/RpgStore.AlmanacSeedEnrichment.cs:36`). The ideal's citation of `gk-core/src/FusionRpg.Server/Program.cs:1382` has drifted. |
 | **Both release surfaces exist** (IC-3 hook points) | `.github/workflows/release.yml` runs on a `v*` tag (`:3-6`), `Unit tests (pre-publish)` at `:40` before `Publish player pack` at `:81`; `docs/runbook/release-prove.md` §"Before tagging" at `:5`. `gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs` requires every workflow command's exit code to be checked. |
-| **No Python lane exists in the verification registry** (audit A1) | `scripts/verify-change.ps1:118` throws `VERIFICATION BOUNDARY MISSING`; `gk-core/scripts/verification-boundaries.v1.json` has 101 boundaries over 12 `*.csproj` projects and zero `gk-core/tools/ip-censor/**` entries. |
+| **No Python lane exists in the verification registry** (audit A1) | `gk-core/scripts/verify-change.py:771` throws `VERIFICATION BOUNDARY MISSING`; `gk-core/scripts/verification-boundaries.v1.json` has 101 boundaries over 12 `*.csproj` projects and zero `gk-core/tools/ip-censor/**` entries. |
 | **The program's own docs carry 110 of the marks it bans** (audit A2) | Measured by exact directory glob: `ip-censor-ideal.md` 69, the seven specs 31, the map 10; plus `tasks/**` 247 across 393 files. A reading at the time of the audit, not a constant. |
 | **All 10,338 text-extension tracked files are valid UTF-8** (audit A8) | Measured this session, zero exceptions — so `source` throws on a decode failure rather than guessing. |
 
@@ -209,13 +209,13 @@ are recorded in each plan's own audit section.
 | M3 | MEDIUM | Release and CI scans specified with `working-directory: gk-core/tools/ip-censor`, where `git ls-files` lists only the tool | Fixed: `spec-wiring.md`; plan D4; todo T10–T12 |
 | M4 | MEDIUM | `spec-registry.md` omitted the `overwatch` day-one group, two of the three provenance shapes, the `import-renames.v1.json` file (with its `ids` section) and the plan pair in `self_paths` | Fixed: audit note in `spec-registry.md` |
 | M5 | MEDIUM | `spec-avoid-list.md` step 3 did not name the `--node` selector without which `--supersede` re-rolls the whole tree | Fixed: audit note |
-| M6 | LOW | Citation drift: `verify-change.ps1:95` (now `:118`) here and in `spec-report`, `spec-source`, `spec-wiring`; `ci.yml:300-306` (now `:311-317`) in `spec-wiring` | Fixed |
+| M6 | LOW | Citation drift: the unmapped-path throw (`:95`, then `:118`) here and in `spec-report`, `spec-source`, `spec-wiring`; `ci.yml:300-306` (now `:311-317`) in `spec-wiring` | Fixed — the throw is `gk-core/scripts/verify-change.py:771` |
 | M7 | LOW | `spec-report.md`'s execute table routed the `Jackson*` family as names only | Fixed |
 | M8 | LOW | The ideal's IC-4 row still describes the `Jackson*` fix as a rename map only | Deferred: the ideal is outside this audit's edit set; the map and plan record G1 = yes |
 
 No generated seed is edited by any task (IC-4.1 and IC-4.2 go through generators); no test pins a
 population (the registry member list and closed enums only); the IC-3 ruling holds everywhere (no
-generation, commit, `verify-change.ps1` or CI blocking; CI advisory only).
+generation, commit, `verify-change.py` or CI blocking; CI advisory only).
 
 **Proposed enforcement-registry rows** and **verification-boundary asks:** see
 `tasks/ip-censor-plan.md` §"Standards audit (2026-09-19)" (this audit edits no shared file).

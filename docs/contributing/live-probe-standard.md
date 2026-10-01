@@ -209,7 +209,7 @@ command to do that."* And on paths: *"remember dont have coded game folder."*
   `FUSIONRPG_GAME_SOURCE`) or explicit parameters (`scripts/live-slot.ps1 -PoolRoot -SourceInstall`).
   Machine-specific values live in the environment or in gitignored runtime state (`.kilo/sessions/**`).
   A committed drive letter is a defect in whichever file carries it, including this one.
-- **Three live runs at a time, machine-wide.** `scripts/live-slot.ps1` is the entire protocol: `-Status`
+- **Three live runs at a time, machine-wide.** `gk-core/scripts/live_slot.py` is the entire protocol: `-Status`
   lists each slot's state, holder, install, age and any live game process; `-Clone -Session <id>` populates a
   slot once and **verifies** it against the required install shape; `-Acquire -Session <id>` claims it (cloning
   on first use); `-Release -Session <id>` returns it to `ready` **keeping the install** so the next session
@@ -219,7 +219,7 @@ command to do that."* And on paths: *"remember dont have coded game folder."*
 - **Agents coordinate through a lock file, never a human.** The registry (`<pool-root>/slots.json`) is
   read-modified-written only while holding an exclusively-created `<pool-root>/slots.lock`; the lock is
   released immediately after that write, never held for the duration of a probe. This is deliberately a
-  *different* lock from `game-lock.ps1`, which fences one install against another session: the pool lock
+  *different* lock from `game_lock.py`, which fences one install against another session: the pool lock
   allocates slots, the game lock protects an install.
 - **Each slot has its own SERVER and PORT.** The owner's server is one process on `:5088`; a lane runs its own via
   `scripts/lane-server.ps1 -Start -Slot <n>` on `BasePort + slot` (default `5101`, `5102`, `5103`) with its own data

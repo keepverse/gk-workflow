@@ -128,7 +128,7 @@ gap level.** The gaps are inside G1 and G3, and in the propagation the spec dema
 | MW-16 | §11.1 A10b — the shipped vehicle, needing G1 + G2 **plus a Battle status → `BattleDerivedModifierLedger` producer that no module's modified-files table contains** | MISSING | Neither a task nor an ask. The spec says it is *"not scoped here"*, so the plan is the place it becomes visible |
 | MW-17 | §12 OQ1 — does the L2b resist path read status-granted resist channels? *"Owner call, because it changes shipped resist math"* | MISSING | Not in the non-blocking-asks table |
 | MW-18 | §12 OQ2 — `aura-skill` T13's ack on the per-round-recompose split | MISSING | Needs that program's acknowledgement; B2 lands the change regardless |
-| MW-19 | §6 Mutation — `mutate.ps1` over the new subsystem; the `IsDerivedChannel` and `TryParseOp` mutants | MISSING | The standing verification block names coverage/guards but not mutation |
+| MW-19 | §6 Mutation — `mutate.py` over the new subsystem; the `IsDerivedChannel` and `TryParseOp` mutants | MISSING | The standing verification block names coverage/guards but not mutation |
 
 ---
 
@@ -305,7 +305,7 @@ refusal.
 - [ ] `StatusDerivedWiringGuardTests` — a text guard, because the injector cannot host a test project
 - [ ] `IsDerivedChannel` extracted to one public predicate, read by both the parser and the subsystem
 - [ ] `more` on a derived channel is refused **at parse** with a named error, never coerced to `Flat`
-- [ ] `mutate.ps1` over the subsystem: the always-true `IsDerivedChannel` mutant and the `Flat`
+- [ ] `mutate.py` over the subsystem: the always-true `IsDerivedChannel` mutant and the `Flat`
       default-arm mutant are both caught
 **Verification:** `dotnet test gk-core/tests/FusionRpg.Guard.Tests`; the two named mutants die.
 **Depends on:** B1. **Scope:** S.

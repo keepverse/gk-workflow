@@ -26,7 +26,7 @@ ceiling.
 
 ## Tech stack
 
-`FusionRpg.Injector` (`LawnBasicAttackFeature`), `scripts/probe-perf.ps1`, the existing PerfProbe
+`FusionRpg.Injector` (`LawnBasicAttackFeature`), `gk-core/scripts/probe_perf.py`, the existing PerfProbe
 pipeline-share metric. Plus one tuning file, because a ceiling written in a task list is not a ceiling
 anyone can change.
 
@@ -88,7 +88,7 @@ to data here, and the module that reads it is this one.
   exactly one place.
 - ✅ The ceiling is read from tuning, not a `const` — a guard for that too, since that is the rule this
   module exists to stop breaking.
-- ❌ No test asserts the share. It is a reading, produced by `probe-perf.ps1` and committed as a file.
+- ❌ No test asserts the share. It is a reading, produced by `probe_perf.py` and committed as a file.
 
 ## Boundaries
 

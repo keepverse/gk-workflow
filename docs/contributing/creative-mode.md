@@ -338,7 +338,7 @@ decision:
 
 ## 8. Build, review, test, ship — the evidence rules
 
-The normal rules apply: `verify-change.ps1` per change, the guards, the full suite at the end of a
+The normal rules apply: `verify-change.py` per change, the guards, the full suite at the end of a
 feature, and [live-probe-standard.md](live-probe-standard.md) for anything live. Creative mode adds the
 checks that caught every defect autonomous workers self-certified in the 2026-09-18/19 runs.
 
@@ -456,7 +456,7 @@ Pass `.\scripts\verify-change.ps1 -Paths <every path the task touched> -Session 
   specific owner claims them, and every Markdown path also gets
   `audit-doc-citations.py --strict --scope <that file>`. A doc the run touches must have no HIGH
   citation finding, including older ones in that file.
-- **`tasks/**`** runs the `session-boundary` guard, and `verify-change.ps1` hands it `-Session`: the
+- **`tasks/**`** runs the `session-boundary` guard, and `verify-change.py` hands it `-Session`: the
   guard fails only on drift that names this sub-program (its record, its branch, an overlap with its
   paths). Other sessions' drift is printed and does not fail, and is never the run's to clear (§3.9).
 - The setup baseline (§11) stays useful as a record of what was already broken when the program
@@ -515,7 +515,7 @@ Defaults, per sub-program unless a row says otherwise; the intake may change any
 
 | What | Path |
 |---|---|
-| Session records | One per program (`tasks/sessions/<program-id>.json`, which owns the landing branch and `docs/ideas/<program-id>/**`) and one per sub-program (`tasks/sessions/<program-id>-<n>.json`), each with every field of `tasks/sessions/_template.json` (`session`, `program`, `problem`, `mode: worktree`, `branch` — the landing branch for the program, `worktree-<program-id>-<n>` for a sub-program — `worktree`, `paths`, `started`, `status: active`). A record must exist with identical content on the integration branch, because `session-boundary-check.py` reads it there, and on the branch that works under it, because `verify-change.ps1` reads it from its own worktree and refuses a path outside `paths`. The program record is committed on the integration branch before the landing branch is created from it; a sub-program record is committed on the integration branch and then identically as the first commit of the sub-program's branch. Every later change is made identically on both (the skill's *Boundary change* procedure); identical changes merge cleanly |
+| Session records | One per program (`tasks/sessions/<program-id>.json`, which owns the landing branch and `docs/ideas/<program-id>/**`) and one per sub-program (`tasks/sessions/<program-id>-<n>.json`), each with every field of `tasks/sessions/_template.json` (`session`, `program`, `problem`, `mode: worktree`, `branch` — the landing branch for the program, `worktree-<program-id>-<n>` for a sub-program — `worktree`, `paths`, `started`, `status: active`). A record must exist with identical content on the integration branch, because `session-boundary-check.py` reads it there, and on the branch that works under it, because `verify-change.py` reads it from its own worktree and refuses a path outside `paths`. The program record is committed on the integration branch before the landing branch is created from it; a sub-program record is committed on the integration branch and then identically as the first commit of the sub-program's branch. Every later change is made identically on both (the skill's *Boundary change* procedure); identical changes merge cleanly |
 | Boundary baseline | The checker's full output at setup (skill Phase 1), kept in `state.md`. Drift already present then belongs to other sessions; the run's check is that no **new** line names its own record, branch or paths (§8.5) |
 | Record lifecycle | **The program closes its own records.** A sub-program's record becomes `merged` when it lands on the landing branch, `abandoned` when it is killed or ends NO-GO. The program record closes when its last sub-program closes: `merged` if any sub-program landed, otherwise `abandoned`. Each close is a boundary change (the skill's procedure) |
 | Brief and intake | `docs/ideas/<program-id>/brief.md` (tracked) · `.kilo/sessions/<program-id>.local.json` (machine-local) — §0.6 |

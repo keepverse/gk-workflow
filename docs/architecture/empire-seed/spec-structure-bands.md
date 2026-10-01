@@ -303,7 +303,7 @@ python gk-core/scripts/audit-overflow.py
 - This module crosses Core, Data and Server, which is point 2 of AGENTS.md "Verification boundary", so
   the full suite runs once at close.
 - **Gap:** `gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**`, `data/tuning/structure-seed.*` and
-  `data/tuning/loam.*` are unmapped, and `scripts/verify-change.ps1:118` throws. The owner of the fix is
+  `data/tuning/loam.*` are unmapped, and `gk-core/scripts/verify-change.py:771` throws. The owner of the fix is
   `test-verification-boundary` `python-test-lane`. The pytest command in §7 is the boundary for the
   Python side until it lands.
 

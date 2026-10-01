@@ -42,7 +42,7 @@ list.
   yields one `absorbed-no-pointer` row (B3).
 - `--only`, `--json`, `--include-closed` and `--fail-on-open` keep their v1 meaning. `--strict` is added.
 - Tests live at `gk-core/tests/tools/test_audit_program_pipeline.py` (new; does not exist yet), or the repo's established location for
-  script tests if one exists. Check `verify-change.ps1`'s mapping, and add the mapping if the path is
+  script tests if one exists. Check `verify-change.py`'s mapping, and add the mapping if the path is
   unmapped.
 
 ## Verification

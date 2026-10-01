@@ -145,7 +145,7 @@ gk-forge/tools/seedsmith/seedsmith/adapters/structures/planner.py   validate_bud
 ## 9. Test plan and verification boundary
 
 Tests as in §5 and §8. All offline, with no transport import. **Verification boundary: a gap.**
-`gk-forge/tools/seedsmith/**` is unmapped (`scripts/verify-change.ps1:118` throws `VERIFICATION BOUNDARY MISSING`).
+`gk-forge/tools/seedsmith/**` is unmapped (`gk-core/scripts/verify-change.py:771` throws `VERIFICATION BOUNDARY MISSING`).
 The owner of the fix is `test-verification-boundary` `python-test-lane`. The focused pytest command in
 §6 is the boundary until then.
 

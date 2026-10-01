@@ -63,7 +63,7 @@ adopts it in CI and in local module-level Data runs.
 - `maxParallelThreads` is passed per shard run as `-- xUnit.MaxParallelThreads=<n>`, so it applies to
   sharded runs only; unsharded default-profile runs are unchanged.
 
-### H2 — the runner: `scripts/test-sharded.ps1` (new)
+### H2 — the runner: `gk-core/scripts/test_sharded.py` (new)
 
 `-Project <csproj path>` `[-Configuration Release] [-ExtraFilter <profile filter>]`. The manifest's
 `projects` keys are registry project ids; the runner resolves the given csproj to its id through the
@@ -84,7 +84,7 @@ verification registry's `projects` map and refuses a csproj with no shard entry.
    An empty **remainder** is legal.
 
 `-ExtraFilter` lets the local default profile reuse it (`Category!=DiskSemantics&Category!=Heavy`,
-owned by `scripts/test-fast.ps1:24` — the runner reads it from there rather than restating it).
+owned by `gk-core/scripts/test_fast.py:81` — the runner reads it from there rather than restating it).
 
 ### H3 — adoption
 
@@ -104,7 +104,7 @@ owned by `scripts/test-fast.ps1:24` — the runner reads it from there rather th
   `release.yml:44` keeps its plain `dotnet test` (map §7.1).
 - **Landing order:** the manifest, runner and H-T1–H-T4 land first, with the one-time completeness
   proof. The CI line lands in a second commit, and H-T5 lands with it.
-- **Local:** when `verify-change.ps1` selects a **module**-level check on a project that has a shard
+- **Local:** when `verify-change.py` selects a **module**-level check on a project that has a shard
   manifest entry, the runner calls `test-sharded.ps1 -ExtraFilter <default profile>` instead of one
   `dotnet test`. Focused (`VerificationId`) runs are unchanged — they are small.
 
@@ -121,8 +121,8 @@ dotnet test tests\FusionRpg.Guard.Tests -c Release --filter "FullyQualifiedName~
 | Path | Change |
 |---|---|
 | `gk-core/scripts/test-shards.v1.json` | (new) |
-| `scripts/test-sharded.ps1` | (new) |
-| `scripts/verify-change.ps1` | module-level runs on a sharded project delegate to the runner |
+| `gk-core/scripts/test_sharded.py` | (new) |
+| `gk-core/scripts/verify-change.py` | module-level runs on a sharded project delegate to the runner |
 | `gk-core/scripts/verification-boundaries.v1.json` | owner boundary for the two new files (`guard` project, `guard.test-shards` VerificationId) |
 | `gk-core/tests/FusionRpg.Guard.Tests/TestShardManifestTests.cs` | (new) |
 | `.github/workflows/ci.yml:155-156` | the two lines above (approved, R15) |
@@ -150,7 +150,7 @@ if ($ExtraFilter) { $filter = "($filter)&($ExtraFilter)" }
 | H-T2 | every prefix starts with the project's root namespace and ends with `.`; no prefix is a **substring** of another (contains semantics) |
 | H-T3 | every namespace prefix is declared by some `namespace` line, every class prefix by some class, in the project's sources (join) |
 | H-T4 | shard ids unique; project ids exist in the verification registry's `projects` |
-| H-T5 | the CI Data.Tests line invokes `test-sharded.ps1` with the csproj path, and the next line is the exit check (lands with the CI commit) |
+| H-T5 | the CI Data.Tests line invokes `test_sharded.py` with the csproj path, and the next line is the exit check (lands with the CI commit) |
 | H-T6 | runner logic over **planted TRX files** (no `dotnet test`): an id in two shards fails; an empty named shard fails; an empty remainder passes |
 
 Never asserted: tests per shard, shard walls, number of shards — readings. The one-time

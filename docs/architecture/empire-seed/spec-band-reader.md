@@ -230,7 +230,7 @@ tests/... three bootstraps + a shared SeedSourceFixture helper
 `.\scripts\verify-change.ps1 -Paths <changed> -Session <id>`. The change spans Core, Data and Server test
 projects, which is point 2 of AGENTS.md's "Verification boundary", so the full suite is also run once at
 this module's close. **Gap:** `data/seed/structures/_registry/**`, `data/tuning/structure-seed.*` and
-`gk-forge/tools/seedsmith/**` are unmapped (`scripts/verify-change.ps1:118` throws). The owner of the fix is
+`gk-forge/tools/seedsmith/**` are unmapped (`gk-core/scripts/verify-change.py:771` throws). The owner of the fix is
 `test-verification-boundary` `python-test-lane`. Until then, the Python side runs
 `$env:PYTHONPATH = "gk-forge/tools/seedsmith"; python -m pytest gk-forge/tools/seedsmith/tests/test_structure_anchor_contract.py -q`.
 

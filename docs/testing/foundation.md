@@ -49,7 +49,7 @@ There is **no** GitHub Actions workflow in-repo yet; “CI” here means the aut
 ## Out of CI (real game only)
 
 - Harmony patch load inside BepInEx **or** MelonLoader (Melon host needs local `FUSIONRPG_ML_GAMEDIR` refs; not built on CI)
-- Melon LIVE Pass/Fail: [melon-live-checklist.md](../runbook/melon-live-checklist.md) + `scripts/smoke-melon-live.ps1` (author session; Bep record is [debug-live-checklist.md](../runbook/debug-live-checklist.md))
+- Melon LIVE Pass/Fail: [melon-live-checklist.md](../runbook/melon-live-checklist.md) + `gk-core/scripts/smoke_melon_live.py` (author session; Bep record is [debug-live-checklist.md](../runbook/debug-live-checklist.md))
 - Game × loader matrix compile when local refs present (`pvzrh-3.8.1` Bep/Melon + `pvzrh-3.9` Melon); see [game-versioning.md](../architecture/game-versioning.md)
 - Melon `Il2Cpp.*` LIVE capture/write parity vs Blooms (see [melonloader-assembly-csharp-p0.md](../research/melonloader-assembly-csharp-p0.md); emergency stub via `FUSIONRPG_MELON_SKIP_HARMONY=1`)
 - Whether `Plant.Start` HP is overwritten later (`stat.limhealth` observe; enable `SYS-LIMHEALTH-GATE` only if proven)

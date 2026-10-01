@@ -51,7 +51,7 @@ No guard names `ReconnectionCost`.
 The map (§2.3) placed the guard in `tests/FusionRpg.Guard.Tests/LogisticsRoutingGuardTests.cs` with
 "one row" in the enforcement registry. A registry row cannot name an xunit test: guard ids resolve to
 `scripts/guard-*.ps1` entries only. So the guard is a **script**, catalogued and run by
-`run-guards.ps1`, and the xunit file holds its falsifiers — the `battle-responsibility` shape.
+`run_guards.py`, and the xunit file holds its falsifiers — the `battle-responsibility` shape.
 
 ## Design
 

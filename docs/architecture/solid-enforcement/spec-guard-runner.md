@@ -6,11 +6,11 @@
 ## Objective
 
 **One place decides which guards run where.** Before this module, three hand-kept lists disagreed:
-`ci.yml` ran 8 guards, `deploy-play` ran 16, and `verify-change.ps1` resolved guard ids through a
+`ci.yml` ran 8 guards, `deploy-play` ran 16, and `verify-change.py` resolved guard ids through a
 third map inside `verification-boundaries.v1.json`. Every new guard had to be added to all three by
 hand, and nothing noticed when one was missed. That is the mechanism that left nine guards unwired.
 
-After this module, `scripts/run-guards.ps1` reads `enforcement-registry.v1.json` and every caller
+After this module, `gk-core/scripts/run_guards.py` reads `enforcement-registry.v1.json` and every caller
 invokes it. Wiring a guard means editing one registry row, which is Open/Closed applied to the
 enforcement layer: extend by data, never by editing three scripts.
 
@@ -18,7 +18,7 @@ enforcement layer: extend by data, never by editing three scripts.
 
 The module above removed the hand lists but left the runner wired into the **deploy**, and that was
 wrong: it made every deploy pay the whole suite. Owner ruling 2026-09-26, and the measurement behind
-it — `-Tier local -IncludeBacklog` selects the WIDEST tier (every `ci` guard plus the machine-only
+it — `--tier local --include-backlog` selects the WIDEST tier (every `ci` guard plus the machine-only
 ones, plus the report-only rows): **28 guards, 203 seconds**, run before a deploy whose
 measured stages come to **28.3 seconds** up to the publish (game lock 0.14s, game-profile
 0.62s, FE build 21.5s, injector build 5.8s, freshness 0.24s — 2026-09-26, default MelonLoader
@@ -39,21 +39,21 @@ before citing: `deploy-play.py --json` prints per-stage seconds for the run you 
 |---|---|---|
 | `.github/workflows/ci.yml` | `run-guards.ps1 -Tier ci -CiRange …` | the merge gate |
 | `.github/workflows/release.yml`, `nightly.yml` | `run-guards.ps1 -Tier ci -CiRange …` | the release gate |
-| `scripts/verify-change.ps1` | the ids `verification-boundaries.v1.json` assigns to the **touched paths** | the implement phase's gate — where a change is verified, once |
+| `gk-core/scripts/verify-change.py` | the ids `verification-boundaries.v1.json` assigns to the **touched paths** | the implement phase's gate — where a change is verified, once |
 | `gk-fusion/scripts/deploy-play.py` | **`-Only game-profile -Tier local`** and nothing else | a deploy PRECONDITION (right bridge into the right install), not a suite. Running it is part of deploying correctly |
 
 So `deploy-play` appears in the runner's callers for exactly one id whose *position* is part of its
 meaning, and it must never run a tier batch. `GuardWiring.AssertDeployRunsNoGuardSuite` in
 `gk-core/tests/FusionRpg.Guard.Tests/TestSupport/GuardWiring.cs` pins that: it scans the deploy's CODE
 (docstring and comments dropped, string literals kept) and fails on any `-IncludeBacklog`, or on an
-invocation of `run-guards.ps1` that does not name one id via `-Only`. A `local`-tier guard can never
+invocation of `run_guards.py` that does not name one id via `--only`. A `local`-tier guard can never
 run in CI (it needs a game install or interop assemblies), which is why `injector-compile` is gated
 by the implement phase through `verification-boundaries.v1.json` and `game-profile` by the deploy
 precondition.
 
 ## Design
 
-### `scripts/run-guards.ps1`
+### `gk-core/scripts/run_guards.py`
 
 ```powershell
 .\scripts\run-guards.ps1 -Tier ci              # every tier=ci, status=gating guard      (CI, merge gate)
@@ -93,7 +93,7 @@ Behaviour, and why each rule exists:
 | `ci.yml` "Verification-boundary integrity" step | its own step, deliberately | **stays its own step.** It guards the registry `verify-change` reads, and the existing comment explains why it must not share a block |
 | `scripts/deploy-play.ps1` lines ~168–250 (retired 2026-09-26; `gk-fusion/scripts/deploy-play.py` replaced it) | 14 hand-written calls plus a bespoke class-system G3 tolerance block | **removed entirely** — a deploy runs no guard suite. The G3 tolerance the block encoded is the registry's `class-system: backlog` row, which the runner reports without failing |
 | `gk-fusion/scripts/deploy-play.py` (replaced `deploy-play.ps1`, retired 2026-09-26) | the game-profile precondition runs inline before the injector build | stays inline, and is the deploy's ONLY runner call. Its position is its meaning: it validates the install after the loader host is known and immediately before the injector build consumes it — `-Only game-profile -Tier local -LocalArgs …` |
-| `scripts/verify-change.ps1` | `$registry.guards.($check.id)` from `verification-boundaries.v1.json` | resolves through the enforcement registry's catalog, and is where a change's guards actually gate |
+| `gk-core/scripts/verify-change.py` | `$registry.guards.($check.id)` from `verification-boundaries.v1.json` | resolves through the enforcement registry's catalog, and is where a change's guards actually gate |
 | `gk-core/scripts/verification-boundaries.v1.json` | carries a `guards` map | **the `guards` section is removed.** `boundaries[].guards` keeps listing guard *ids*, now resolved against the catalog |
 | `gk-core/scripts/guard-verification-boundaries.py` | requires the `guards` section | requires it **absent**, and requires every `boundaries[].guards` id to exist in the enforcement registry |
 
@@ -119,11 +119,11 @@ dotnet test tests\FusionRpg.Guard.Tests --filter "FullyQualifiedName~GuardRunner
 
 | Path | Change |
 |---|---|
-| `scripts/run-guards.ps1` | **new** |
+| `gk-core/scripts/run_guards.py` | **new** |
 | `gk-core/tests/FusionRpg.Guard.Tests/GuardRunnerTests.cs` | **new** |
 | `.github/workflows/ci.yml` | Boundary guards step → one runner call |
 | `gk-fusion/scripts/deploy-play.py` | hand list → the positioned `-Only game-profile` precondition (2026-09-26: the tier batch was removed from the deploy; it gated nothing a deploy could break and cost 203s per deploy) |
-| `scripts/verify-change.ps1` | guard lookup → catalog |
+| `gk-core/scripts/verify-change.py` | guard lookup → catalog |
 | `gk-core/scripts/verification-boundaries.v1.json` | `guards` section removed |
 | `gk-core/scripts/guard-verification-boundaries.py` | schema updated |
 | `gk-core/scripts/enforcement-registry.v1.json` | optional per-row `args` |
@@ -163,13 +163,13 @@ The real-tree check is simply `run-guards.ps1 -Tier ci` exiting 0 in CI.
 - **Always:** run every selected guard before failing. Take arguments from the registry.
 - **Ask first:** letting a caller pass arguments for anything except machine-local paths.
 - **Never:** hand-add a `guard-*.ps1` call to `ci.yml`, `gk-fusion/scripts/deploy-play.py` or
-  `verify-change.ps1`. Never let the runner decide status: the registry decides.
+  `verify-change.py`. Never let the runner decide status: the registry decides.
 - **Never (2026-09-26):** give the deploy a guard TIER BATCH. A deploy runs exactly one guard, by
   id, when running it is a deploy precondition. Verification is the implement phase's and CI's.
 
 ## Success criteria
 
-- [x] `ci.yml`, `gk-fusion/scripts/deploy-play.py` and `verify-change.ps1` contain no hand-listed guard scripts,
+- [x] `ci.yml`, `gk-fusion/scripts/deploy-play.py` and `verify-change.py` contain no hand-listed guard scripts,
       except the integrity step and the positioned `game-profile` call, each commented with why.
 - [x] `verification-boundaries.v1.json` has no `guards` section, and its integrity guard enforces that.
 - [x] One CI run is green with the runner's summary table visible in the log.
@@ -186,7 +186,7 @@ alternative, running in-process, is the documented `exit` hazard. Correctness wi
 per-guard timing column keeps the cost visible.
 
 **Objection: "Removing `verification-boundaries.v1.json`'s `guards` section breaks anyone reading it."**
-The only readers are `verify-change.ps1` and `guard-verification-boundaries.py`, and both change in
+The only readers are `verify-change.py` and `guard-verification-boundaries.py`, and both change in
 this module. The integrity guard then *requires* the section's absence, so it cannot come back
 quietly as a second map.
 

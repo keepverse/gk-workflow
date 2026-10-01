@@ -197,7 +197,7 @@ tests/FusionRpg.Core.Tests/World/Logistics/AutoBankingTests.cs   (new)
 - **Round trip:** a stored `route-set` payload survives the command store and reloads with every field.
 
 Verification boundary: Core (World/Logistics, World/Turn) and Data (command store). The command crosses
-Core, Data, Contracts and Server — `verify-change.ps1` with all changed paths selects each boundary.
+Core, Data, Contracts and Server — `verify-change.py` with all changed paths selects each boundary.
 
 ## Acceptance (contract)
 

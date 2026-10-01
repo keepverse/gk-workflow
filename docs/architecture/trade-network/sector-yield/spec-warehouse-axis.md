@@ -206,7 +206,7 @@ through `ContentScale.Apply` (divide by 1000 once, last). Capacity is a content-
 
 If this module creates `data/tuning/trade.v1.json`, it lands the `core-trade-tuning` owner row
 (`trade-foundation` `economy-report` §Test plan) in the same change: `gk-core/data/tuning/**` has no fallback
-mapping, so without it `verify-change.ps1` stops on the tuning file.
+mapping, so without it `verify-change.py` stops on the tuning file.
 
 ```powershell
 .\scripts\verify-change.ps1 -Paths @(

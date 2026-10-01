@@ -157,7 +157,7 @@ $env:PYTHONPATH = "gk-forge/tools/seedsmith"; python -m pytest gk-forge/tools/se
 $env:PYTHONPATH = "gk-forge/tools/seedsmith"; python -m pytest gk-forge/tools/seedsmith/tests/test_affix_families_gen.py -q
 ```
 
-`verify-change.ps1` cannot select `gk-forge/tools/seedsmith/**` yet (`scripts/verify-change.ps1:95`); seedsmith's
+`verify-change.py` cannot select `gk-forge/tools/seedsmith/**` yet (`gk-core/scripts/verify-change.py:771`); seedsmith's
 pytest is the verification and runs in CI (`.github/workflows/ci.yml:284`).
 
 ## Project structure

@@ -42,7 +42,7 @@ Apply burst overrides via `StatusApplyBurst()`:
 - `StatusVfxIdentityCollisionTests.Batch1_drip_trio_has_no_shared_motion_grammar`
 - `StatusVfxIdentityScoring` predicts Pass sustain-glance for all three
 - Motion-grammar pair count drops from 10 → 7 repo-wide
-- `.\scripts\audit-status-vfx-identity.ps1` (static)
+- `python gk-core/scripts/audit_status_vfx_identity.py` (static)
 
 ## Grammar note
 

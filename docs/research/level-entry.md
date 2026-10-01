@@ -152,6 +152,6 @@ Wrap vanilla entry — do not invent a Board:
 
 ## Related
 
-- Lab script: `scripts/setup-lab-run.ps1` (requires live Adventure lawn)  
+- Lab script: `gk-core/scripts/setup_lab_run.py` (requires live Adventure lawn)  
 - Runbook: [debug-pipeline.md](../runbook/debug-pipeline.md)  
 - Env LEVEL-BOUND: [08-environment-field-surface.md](effect-runtime/08-environment-field-surface.md)

@@ -197,7 +197,7 @@ collections, not magnitudes.
 - [ ] Five appliers behind one interface.
 - [ ] Price-equality test green for every kind and the combined preset.
 - [ ] Each gate's precondition is one function used by its write and its quote.
-- [ ] `guard-actor-hub.py`, `guard-dal.py`, `verify-change.ps1` green.
+- [ ] `guard-actor-hub.py`, `guard-dal.py`, `verify-change.py` green.
 
 ## Open questions
 

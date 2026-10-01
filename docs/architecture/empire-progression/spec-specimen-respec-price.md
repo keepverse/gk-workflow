@@ -319,7 +319,7 @@ Prices are read from the loaded tuning and `PriceOf`, never literals.
 - [ ] Spending unspent points stays free.
 - [ ] Preset activation and the by-hand routes charge the same.
 - [ ] The species price is byte-identical.
-- [ ] `verify-change.ps1` green; `CreatureBuildPlanGen --check` green.
+- [ ] `verify-change.py` green; `CreatureBuildPlanGen --check` green.
 
 ## Open questions
 

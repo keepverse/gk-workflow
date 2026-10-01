@@ -14,9 +14,9 @@ Companion: [ip-censor-map.md](../architecture/ip-censor-map.md) ·
 
 ## Findings, ranked
 
-### A1 — BLOCKER: no file the specs propose can be verified by `verify-change.ps1`
+### A1 — BLOCKER: no file the specs propose can be verified by `verify-change.py`
 
-Reproduced: `scripts/verify-change.ps1:83` **throws** on any path with no owner boundary:
+Reproduced: `gk-core/scripts/verify-change.py:771` **throws** on any path with no owner boundary:
 
 ```
 if ($hits.Count -eq 0) { throw "VERIFICATION BOUNDARY MISSING: $path. Add an owner mapping; do not

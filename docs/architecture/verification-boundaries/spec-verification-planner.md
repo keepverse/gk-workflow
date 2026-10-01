@@ -11,7 +11,7 @@ see and challenge the exact required evidence before spending time.
 
 ## Interface
 
-The canonical entry point is part of `scripts/verify-change.ps1`:
+The canonical entry point is part of `gk-core/scripts/verify-change.py`:
 
 ```powershell
 .\scripts\verify-change.ps1 -Paths gk-core/src/FusionRpg.Data/Sqlite/RpgStore.Items.cs -PlanOnly

@@ -118,7 +118,7 @@ port: it read `aptitudes.v1.json` — this tool's own bundled POC copy — never
 the live shipped config carrying P8.2's stamina fix and P8.3's mitigation dial.** No `--models` override
 was passed in the commands shown above, so it silently took the default.
 
-**Re-measured** (`scripts/regen-class-system-baselines.ps1`, now pointing `predict --models` at the live
+**Re-measured** (`gk-core/scripts/regen_class_system_baselines.py`, now pointing `predict --models` at the live
 `gk-core/data/tuning/aptitudes.v2.json` directly, same scratch-copy elements technique, same seed 8888):
 
 | Arrow | predicted (closed-form) | simulated (element-live) | residual |
@@ -486,7 +486,7 @@ since this session does not commit (AGENTS.md, git hands-off): the DATA side is 
 
 ## `_baseline-dominance.json` cannot be regenerated correctly via `trinity` right now — a NEW finding
 
-`_baseline-dominance.json` (per `scripts/regen-class-system-baselines.ps1`) is produced by
+`_baseline-dominance.json` (per `gk-core/scripts/regen_class_system_baselines.py`) is produced by
 `gk-core/tools/CombatSim`'s own `trinity --json` command. Read `Trinity()` directly
 (`gk-core/tools/CombatSim/Program.cs:558`): it loads `var modelName = o.Models ?? "aptitudes.v1"` — **`gk-core/tools/CombatSim`'s own INTERNAL copy**, `gk-core/tools/CombatSim/tuning/aptitudes.v1.json`, not the shipped
 `gk-core/data/tuning/` config at all. That internal copy is a tracked file under the same directory already

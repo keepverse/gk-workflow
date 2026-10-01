@@ -154,7 +154,7 @@ The catalog's size is a reading; no test asserts it.
 python scripts/audit-doc-citations.py --scope docs/architecture/empire-resource-ssot.md
 ```
 
-If `verify-change.ps1` reports the new `World/Goods/` path as unmapped, the mapping is added in the
+If `verify-change.py` reports the new `World/Goods/` path as unmapped, the mapping is added in the
 same change (a missing boundary is the defect; the full suite is not the fallback).
 
 ## Structure

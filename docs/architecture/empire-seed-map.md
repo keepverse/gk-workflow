@@ -125,7 +125,7 @@ the ideal.
 | **`ROLE_TO_STRUCTURE_KIND` is known wrong and still shipped.** It maps Extract/Multiply → `LoamSource` and Bank → `Storage`; the real rows are `Yield`, and the C# catalog ignores it | `gk-forge/tools/seedsmith/seedsmith/adapters/structures/anchor/schema.py:64-69`; `gk-core/src/FusionRpg.Core/World/StructureCatalog.cs:282-288` |
 | **Core reads files.** `StructureCorpus.Load` calls `File.ReadAllText` inside Core, against tunables-ssot T8 | `gk-core/src/FusionRpg.Core/World/StructureSeed/StructureCorpus.cs:95`; the host call is `gk-core/src/FusionRpg.Server/Program.cs:223-224` |
 | **The structure pipeline has no emit path and writes no name.** `generate_anchor.py` votes enums per field and records provenance; nothing writes an accepted row to disk, and the anchor has no flavour field | `gk-forge/tools/seedsmith/seedsmith/adapters/structures/generate_anchor.py:52-65`, `:186-221`; schema `gk-forge/tools/seedsmith/seedsmith/adapters/structures/anchor/schema.py:157-198` |
-| **`gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**` and `data/tuning/structure-seed.*` have no verification boundary** — `verify-change.ps1` throws for them; seedsmith's pytest runs only in CI | `scripts/verify-change.ps1:118`; owned by `test-verification-boundary`'s `python-test-lane` |
+| **`gk-forge/tools/seedsmith/**`, `gk-data/packs/fusion/data/seed/structures/**` and `data/tuning/structure-seed.*` have no verification boundary** — `verify-change.py` throws for them; seedsmith's pytest runs only in CI | `gk-core/scripts/verify-change.py:771`; owned by `test-verification-boundary`'s `python-test-lane` |
 
 ### 3.3 Real gap (no mechanism anywhere)
 
@@ -384,7 +384,7 @@ vocabulary only.
   role is a load rejection; `test_no_role_has_zero_rows` holds once `trade-structure-rows` lands (until
   then the plan reports the gap as a finding, which is the planner doing its job).
 - **Verification:** seedsmith pytest (structure tests) and `FusionRpg.Core.Tests` through
-  `verify-change.ps1`.
+  `verify-change.py`.
 
 ### 5.6 `decision-45-revision` (D-E2)
 
@@ -612,7 +612,7 @@ resolve through `P(Θ)`; doctrine trade-off magnitudes are signed modifiers read
   roll seed enters); a legion-equipment piece's resolved budget is strictly below a unique item's at the
   same tier (the share is read from tuning); magnitudes are `long`; a missing band is a load rejection;
   no number appears in any legion seed file.
-- **Verification:** `FusionRpg.Core.Tests` through `verify-change.ps1`.
+- **Verification:** `FusionRpg.Core.Tests` through `verify-change.py`.
 
 ### 5.15 `legion-seed-rows`
 
@@ -1012,7 +1012,7 @@ verification gap is named in every spec with its owner (`test-verification-bound
 | Item | Owner | Fix |
 |---|---|---|
 | §10.2 rows for the standard tier and tradition rank multiplier ladders (A-ES2) | the power program | Rows in the row-38 shape, PS-4 |
-| `data/tuning/legion-seed.*` is unmapped for `verify-change.ps1` (`scripts/verify-change.ps1:118`) | this program's `legion-bands` adds the tuning mapping in its publishing change; `data/seed/legion/**` stays `python-test-lane`'s (§8) | One mapping row per new tuning file |
+| `data/tuning/legion-seed.*` is unmapped for `verify-change.py` (`gk-core/scripts/verify-change.py:771`) | this program's `legion-bands` adds the tuning mapping in its publishing change; `data/seed/legion/**` stays `python-test-lane`'s (§8) | One mapping row per new tuning file |
 
 ### DESIGN-GATE §5 (this audit)
 

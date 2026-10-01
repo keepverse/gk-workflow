@@ -120,7 +120,7 @@ python scripts\audit-magic-numbers.py --summary
 `difficulty.profiles` block of `data/tuning/world-continuity.v1.json` (numbers, units stated per knob).
 **Verification boundary (audit 2026-09-20):** neither file is mapped in
 `gk-core/scripts/verification-boundaries.v1.json` (tuning files are mapped one by one, e.g. `:880-883`), so
-`scripts/verify-change.ps1:118` throws for them; the module that first publishes them adds their mapping
+`gk-core/scripts/verify-change.py:771` throws for them; the module that first publishes them adds their mapping
 in the same change, the precedent every mapped tuning file followed. First publish goes through
 `gk-core/tools/tuning/publish.py`, which cannot yet publish a first version of a new domain
 (`gk-core/tools/tuning/publish.py:60-68`); the module that first needs a new domain file extends the tool

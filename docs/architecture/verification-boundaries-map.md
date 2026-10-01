@@ -22,7 +22,7 @@ verification boundaries answer *what evidence those edited paths require*.
 
 | Finding | Evidence | Consequence |
 |---|---|---|
-| The routine profile excludes `DiskSemantics` and `Heavy`, but no-argument `test-fast.ps1` selects four projects. | `scripts/test-fast.ps1:1-11,50-56` | The local default is still broader than a narrow source edit needs. |
+| The routine profile excludes `DiskSemantics` and `Heavy`, but no-argument `test_fast.py` selects four projects. | `scripts/test-fast.ps1:1-11,50-56` | The local default is still broader than a narrow source edit needs. |
 | `deploy-play.py` invoked the no-argument routine profile on every deploy (corrected 2026-09-15: it now runs tests only on request). | `gk-fusion/scripts/deploy-play.py:212-216` runs `test-fast.ps1 -AllDefault` only under `--full-suite`. | Resolved: a live deploy no longer inherits the broad test scope; `--paths` selects scoped verification. |
 | Current xUnit traits are profile/special-purpose labels, not positive ownership labels. | `rg "[Trait(" tests` finds `DiskSemantics`, `Heavy`, and `BalanceGuard`; no `VerificationId`. | A source path cannot select its focused test family by stable contract. |
 | Existing architecture specs contain focused filters, but only as distributed prose. | e.g. `docs/architecture/species-gear-chain/spec-socket-combat-wiring.md:249-250` and `docs/architecture/passive-tree/spec-gate-counters.md:466`. | These are useful migration evidence, not an executable authority. |
@@ -239,7 +239,7 @@ see `architecture/validation-ssot.md`.
 |---|---|
 | Subsystem identified | Contributor verification and session boundaries. |
 | Required documents read | `architecture/software-architecture.md`, `architecture/decisions.md`, `contributing/session-boundary.md`, `contributing/testing-standard.md`, `architecture/validation-ssot.md`, burden/architecture audits. |
-| Code verified | `test-fast.ps1`, `deploy-play.py`, CI workflow, test-project files, trait inventory, and session records inspected 2026-09-13. |
+| Code verified | `test_fast.py`, `deploy-play.py`, CI workflow, test-project files, trait inventory, and session records inspected 2026-09-13. |
 | Session boundary | `tasks/sessions/verification-boundaries-20260913-6f31.json`. |
 | Boundary checker | Run before this map. It reports one pre-existing unclaimed legacy worktree (`worktree-agent-a4497053e6313d493`); it does not overlap this session's documentation paths. |
 | Test claims | No new timing or compatibility claim is made without an implementation spike. Existing performance facts are cited to their measured audits. |

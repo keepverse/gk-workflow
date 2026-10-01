@@ -85,7 +85,7 @@ Prove L2 instances, resisted telemetry, and contagion. **Do not** mix with F5–
 
 Pin profiles on spawn (`derivedProfile`). After the fire-synthetic harness fix, `debug.effect.synthetic.actorPtr` and `debug.status.instances[].attackerPtr` must be the **plant** at col 2 / row 2, not the seed zombie (`attackerPtr != hostPtr`).
 
-Automated prove: [`../../scripts/prove-status-full.ps1`](../../scripts/prove-status-full.ps1) (default skips F5–F10; pass `-IncludeUnityBypass` for those). Raw dump: [`../research/effect-runtime/_prove-status-full.json`](../research/effect-runtime/_prove-status-full.json).
+Automated prove: [`../../gk-core/scripts/prove_status_full.py`](../../gk-core/scripts/prove_status_full.py) (default skips F5–F10; pass `-IncludeUnityBypass` for those). Raw dump: [`../research/effect-runtime/_prove-status-full.json`](../research/effect-runtime/_prove-status-full.json).
 
 **Polling:** do **not** use `GET /api/debug/events?limit=1` as `afterId` — that page is the oldest events. Capture max id (binary search on `/api/events`), run **one** scenario, wait for `debug.run-steps.done`, then page `afterId` for `debug.status`, `debug.status.resisted`, `debug.actor-derived`, `debug.effect.synthetic`.
 
@@ -291,7 +291,7 @@ Invoke-RestMethod 'http://127.0.0.1:5088/api/debug/events?kinds=debug.combat.ove
 | C9 | `overlay-earth-vs-air` | earth vs air | `matchupBonus ≈ 25` | | | |
 | C10 | `overlay-force-crit` | forceCrit + actor crit.damage channels | `crit=true`, `critMultiplierFinal > 1` | | | needs plant ActorPtr |
 
-Offline golden tests (complex damage SSOT): `dotnet test gk-core/tests/FusionRpg.Core.Tests --filter FullyQualifiedName~Combat`. LIVE (narrow telemetry only): `.\scripts\setup-lab-run.ps1` then `.\scripts\prove-overlay-combat.ps1 -TargetPtr <ZombiePtr>`. Level entry probe (separate): [level-entry.md](../research/level-entry.md).
+Offline golden tests (complex damage SSOT): `dotnet test gk-core/tests/FusionRpg.Core.Tests --filter FullyQualifiedName~Combat`. LIVE (narrow telemetry only): `python gk-core/scripts/setup_lab_run.py` then `python gk-core/scripts/prove_overlay_combat.py --target-ptr <ZombiePtr>`. Level entry probe (separate): [level-entry.md](../research/level-entry.md).
 
 ## 9. Sign-off
 

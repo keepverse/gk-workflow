@@ -12,7 +12,7 @@ bar and the live deployment safety checks that are relevant to a change.
 ## Local workflow contract
 
 For any implementation task, an agent supplies its changed paths to `verify-change` and reports the
-resulting evidence. It does not run raw unfiltered `dotnet test`, no-argument `test-fast.ps1`, or
+resulting evidence. It does not run raw unfiltered `dotnet test`, no-argument `test_fast.py`, or
 `deploy-play.py` merely to decide whether a narrow change is correct.
 
 The agent does not broaden after a failure. A missing path mapping, selector with zero tests, or
@@ -20,7 +20,7 @@ out-of-session path is a fast boundary defect. A failed selected test is diagnos
 selected behavior. Either case may lead to a registry/spec correction, but neither authorizes a
 full-suite fallback.
 
-`test-fast.ps1` changes to require an explicit `-Project` for routine use. An intentional broad local
+`test_fast.py` changes to require an explicit `--project` for routine use. An intentional broad local
 run requires `-AllDefault`; both the invocation and output say it is broad validation. This preserves
 the existing category filter in one place but removes the silent four-project default.
 
@@ -61,7 +61,7 @@ tests/FusionRpg.Guard.Tests/VerificationWorkflowTests.cs
 
 ## Testing strategy
 
-- Script-level tests prove no-argument `test-fast.ps1` refuses with an explicit message and
+- Script-level tests prove no-argument `test_fast.py` refuses with an explicit message and
   `-AllDefault` is required to select all historical default projects.
 - Tests prove deploy forwards supplied verification paths and never implicitly selects broad tests.
 - CI-configuration tests prove existing full `dotnet test` calls remain unfiltered and the new static
