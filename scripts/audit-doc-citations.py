@@ -415,6 +415,38 @@ def _ls_files(cwd):
     return {p for p in out.replace("\\", "/").split("\n") if p}
 
 
+def citation_prefix(base: str) -> str:
+    """The prefix a document uses for a path under `base`, in this workspace's citation spelling.
+
+    A REPOSITORY is named by itself: `gk-core`, `gk-forge`, `gk-fusion`, `gk-web`, `gk-content`. The content
+    pack is NOT a repository — `content_root()` returns `<workspace>/gk-data/packs/fusion`, a subdirectory of
+    gk-data — and every document spells its files `gk-data/packs/fusion/...`.
+
+    Indexing the pack under `os.path.basename(base)` therefore made `fusion/data/...` the indexed spelling
+    while the documents said `gk-data/packs/fusion/data/...`, so `c.endswith(ref)` was false for every pack
+    file and D3 fired on citations that are unambiguous. Measured: 36 of 186 D3 findings printed "1 files share
+    this name" — the finding's own note refuting it — and all 36 were pack citations.
+
+    So the prefix is the path from the CONTAINING repository down to `base`, under that repository's name. The
+    repository is found by walking up to the nearest directory holding `.git`, which keeps the `packs/` layout
+    out of this function: a pack nested differently later still resolves.
+
+    Falls back to the basename when no repository is found above, which is the pre-split behaviour for a
+    single checkout.
+    """
+    directory = base
+    for _ in range(6):
+        if os.path.isdir(os.path.join(directory, ".git")):
+            relative = os.path.relpath(base, directory).replace("\\", "/")
+            name = os.path.basename(directory)
+            return name if relative == "." else f"{name}/{relative}"
+        parent = os.path.dirname(directory)
+        if parent == directory:
+            break
+        directory = parent
+    return os.path.basename(base)
+
+
 def sibling_repositories():
     """Every sibling repository beside this one, from the shared resolver.
 
@@ -468,7 +500,10 @@ def tracked_files():
     """
     paths = _ls_files(os.getcwd())
     for base in sibling_repositories():
-        prefix = os.path.basename(base)
+        # NOT os.path.basename(base): the content pack is a SUBDIRECTORY of gk-data, so its
+        # basename is `fusion` while every document spells it `gk-data/packs/fusion`. See
+        # citation_prefix for the measurement that made this a defect rather than a preference.
+        prefix = citation_prefix(base)
         for rel in _ls_files(base):
             paths.add(f"{prefix}/{rel}")
     return sorted(paths)
