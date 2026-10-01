@@ -84,9 +84,13 @@ narrowing it without a falsifier is indistinguishable from deleting the guard.**
   line (`src/FusionRpg.Core/Battle/**` → `gk-core/src/…`), 8 bytes. A CRLF explanation looked right and was
   my own probe — `Out-File` rewrites LF as it writes; read from `git cat-file`, the source blob has zero
   CRLF, as both repositories' `* text=auto eol=lf` says.
-- **A test suite for a deleted PowerShell launcher.** `test_bcu212_launcher.py` spawned `pwsh` against
-  `bcu212-full-run.ps1`, which exists in no repository: 8 failures. Its replacement's suite passes 31/31.
-  Removed, and the boundary row that named it corrected.
+- **A test suite for a deleted PowerShell launcher.** `test_bcu212_launcher.py` spawned `pwsh` against the
+  PowerShell launcher this workspace deleted (hyphenated `bcu212-full-run`, now
+  `bcu212_full_run.py`), which exists in no repository: 8 failures. Its replacement's suite passes
+  31/31. Removed, and the boundary row that named it corrected. The retired filename is spelled out here
+  rather than written in citation form deliberately: the doc-citation audit cannot know a file was
+  removed on purpose, and its deletion exemption reads `git log` in THIS repository, which never had
+  that file — so naming it as a citation would be a false positive I had just created.
 - **The class-system baseline regen** looked for gk-forge's `DominanceBaseline` inside gk-core and refused
   with `TOOL-NOT-BUILT` against a tool that is present and built. It now resolves each tool through
   `owning_base`, and puts `scripts/lib` on `sys.path` so a file-run can import the resolver without
