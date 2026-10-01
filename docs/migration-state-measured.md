@@ -65,9 +65,39 @@ one class or one omission:
 
 `gk-core` builds and its tests run; the guard suite is **21/21**; the migration tooling runs from a
 standalone clone because every cross-repository read now goes through the shared resolver. gk-core pytest:
-**1 failed / ~3200 passed / 0 collection errors**, down from 20 failed at the start of this date. Nine
-cross-repository resolution sites were closed in the Python tooling and **sixty-one** in the C# tests, plus
-four more the per-site rule could not see because they join a runtime value.
+**13 failed / 3217 passed / 20 skipped / 1033 subtests / 0 collection errors** (762.93 s), down from
+20 failed / 3209 passed at the start of this date. Nine cross-repository resolution sites were closed in
+the Python tooling and **sixty-one** in the C# tests, plus four more the per-site rule could not see because
+they join a runtime value.
+
+> **CORRECTION, same day.** This line first read "**1 failed** / ~3200 passed". That number was the
+> *`Items.Tests`* failure being described two paragraphs above, restated as the *pytest* figure — a claim
+> about one suite reported as a figure for another. Reproduced at this HEAD, pytest is **13 failed**. The
+> 13 are: 3 actor_hub, 1 class_system, 1 clock_seam, 2 power, 1 test_substrate, 3 reemit (the dead rescue
+> ref), and 2 more; all named on the ledger. This is ADDITION 3's own failure mode — a figure carried into
+> a place it was not measured — committed by me and corrected by me, and recorded rather than quietly
+> overwritten.
+
+**ADDITION 8's generator condition is NOT MET, measured.** The sixteen `scripts/checks/` wrappers were run
+with no arguments, and **7 agree with the committed tree and 9 do not**:
+
+| Wrapper | Message |
+|---|---|
+| `gen-family-expand.py` | `FamilyExpandGen --check found the generated tree stale` |
+| `gen-passive-tree.py` | `TreeBinder --check found the generated catalog stale` |
+| `gen-fusion-recipe.py` | `fusion-recipe seed is stale` |
+| `gen-resource-ownership.py` | `resource_ownership.py --check found drift` |
+| `gen-item-seed-validator.py` | `item seed corpus failed validation` |
+| `gen-corpus-dump-verify.py` | `creature corpus dump under data/seed/creatures/_dump is not seeded` |
+| `gen-creature-metrics.py`, `gen-creature-preflight.py`, `gen-creature-report.py` | `found a gated finding` |
+
+Agreeing: `gen-build-plan`, `gen-content-validate`, `gen-creature-contract`, `gen-creature-species`,
+`gen-items-gate`, `gen-structure-contract`, `web_fusion_rpg_web`.
+
+**The drift is pre-existing, not caused by this session's work.** `gk-data` is untouched at its import SHA
+`9467b58` and clean, and no generator was run in write mode — so the generated trees have been stale with
+respect to the seed data since the split moved that data into the pack. Closing it is a generator-owner
+regeneration, and each message above names the command to run.
 
 ## ADDENDUM 2026-09-30 (later) — two conditions moved, and one is now provably in tension
 
