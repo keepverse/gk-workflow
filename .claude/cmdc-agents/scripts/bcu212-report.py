@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """BCU2.12 report artefact: readings, never assertions.
 
-Run from the worktree after `bcu212-full-run.ps1`. Writes `tasks/reports/BCU2.12-full-run.json`.
+Run from the worktree after `bcu212_full_run.py` (which replaced the retired `bcu212-full-run.ps1`). Writes `tasks/reports/BCU2.12-full-run.json`.
 Every section is guarded: a reporting failure must never lose the run, so each records either its
 reading or the exception that stopped it. The launcher passes its selected interpreter with
 `--python`; when omitted this process uses `sys.executable`. Malformed node/species evidence is
