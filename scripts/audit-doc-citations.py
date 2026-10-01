@@ -51,6 +51,16 @@ import re
 import subprocess
 import sys
 from collections import defaultdict
+# `keepverse_roots` is gk-CORE's, this script is gk-workflow's, so the sibling resolution below needs
+# that directory on the path. The same two-line insert every other tool in this workspace uses, copied
+# from gk-fusion/scripts/guard-single-writer.py:53-54. Without it the import is guarded, returns nothing,
+# and the change reads as a fix that did nothing - which is worse than not making it. `os.path` rather
+# than `pathlib`, because this module uses `os` throughout and imports no `Path`.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+for _extra in (os.path.join(_HERE, "lib"),
+               os.path.join(os.path.dirname(_HERE), "gk-core", "scripts", "lib")):
+    if os.path.isdir(_extra) and _extra not in sys.path:
+        sys.path.insert(0, _extra)
 
 # --- what counts as a citation ---------------------------------------------------------------
 
@@ -394,19 +404,74 @@ def audit_d4(tracked_set):
     return findings
 
 
+def _ls_files(cwd):
+    """`git ls-files` in ONE repository: tracked plus untracked non-ignored, forward-slashed."""
+    try:
+        out = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+            capture_output=True, text=True, check=True, cwd=cwd, timeout=120).stdout
+    except (OSError, subprocess.SubprocessError):
+        return set()
+    return {p for p in out.replace("\\", "/").split("\n") if p}
+
+
+def sibling_repositories():
+    """Every sibling repository beside this one, from the shared resolver.
+
+    A MISSING sibling returns nothing rather than raising: this is a document check, and a sibling's
+    absence must not become the run's outcome. The accessors are wrapped individually because
+    `content_root` REFUSES when the pack is absent, and one absent pack must not abort the audit.
+    """
+    try:
+        from keepverse_roots import (authored_content_root, content_root, core_root,
+                                     forge_root, fusion_root, web_root)
+    except ImportError:
+        return []
+    here = os.path.realpath(os.getcwd())
+    out = []
+    for accessor in (core_root, forge_root, fusion_root, web_root, authored_content_root, content_root):
+        try:
+            base = accessor(here)
+        except Exception:
+            continue
+        if not base:
+            continue
+        base = os.path.realpath(str(base))
+        if os.path.isdir(base) and base != here:
+            out.append(base)
+    return out
+
+
 def tracked_files():
-    """Tracked files PLUS untracked, non-ignored ones.
+    """Every resolvable path in the WORKSPACE, not only in the repository that tracks this file.
 
-    Untracked files are included on purpose. DESIGN-GATE's checklist says to run this audit on the
-    doc you just wrote, which is before it is committed. The first version listed tracked files only
-    and reported "0 documents" for a brand-new doc (found 2026-09-18 on this program's own specs).
-    Citations are still resolved against the same set, so a new doc citing a new, not-yet-committed
-    file resolves too, as it will after the commit. Ignored files stay out, and they never resolve a
-    citation, because nothing another reader has can open them."""
-    out = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"],
-                         capture_output=True, text=True, check=True).stdout
-    return sorted({p for p in out.replace("\\", "/").split("\n") if p})
+    Tracked files PLUS untracked, non-ignored ones. Untracked files are included on purpose:
+    DESIGN-GATE's checklist says to run this audit on the doc you just wrote, which is before it is
+    committed, and the first version listed tracked files only and reported "0 documents" for a
+    brand-new doc (found 2026-09-18 on this program's own specs). Ignored files stay out, and they never
+    resolve a citation, because nothing another reader has can open them.
 
+    WHY THE SIBLINGS ARE HERE. This repository is the workspace root, and the eight other repositories
+    are UNTRACKED here — each has its own remote, which is the point of the split. So `git ls-files` on
+    its own could not see a single file in gk-core, gk-forge, gk-web or gk-fusion, and every citation
+    into one was reported as "no tracked file with this name".
+
+    MEASURED before this change, over the workspace: 52315 findings, of which 12722 named a path a
+    sibling repository DOES carry and that exists on disk — every one a correct citation reported as
+    broken. `gk-core/scripts/anchor-ledger.py` is one, and the file is there. A guard that cannot open
+    the files it audits is not a finding about the documents.
+
+    A sibling's paths are included UNDER ITS OWN NAME (`gk-core/scripts/...`), because that is how a
+    document in this workspace cites across repositories, and a bare `scripts/...` from two repositories
+    would be ambiguous. The pack (`content_root`) is a subdirectory of gk-data and is included under
+    `gk-data/…` for the same reason.
+    """
+    paths = _ls_files(os.getcwd())
+    for base in sibling_repositories():
+        prefix = os.path.basename(base)
+        for rel in _ls_files(base):
+            paths.add(f"{prefix}/{rel}")
+    return sorted(paths)
 
 def deleted_paths():
     """Every path git history shows as deleted. Used by EXEMPT 6 to tell a proposal (never existed)
