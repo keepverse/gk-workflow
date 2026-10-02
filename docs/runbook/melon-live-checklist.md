@@ -188,7 +188,7 @@ both ways).
 
 Setup: `POST /api/debug/lawn/quick-start` (`.claude/skills/live-lawn-quick-start/`) opened level 1,
 froze the wave, fired `lab-overlay`, and returned `targetPtr=22D78434960` / `plantPtr=22D77EF5240`.
-Proof: `.\scripts\prove-overlay-combat.ps1 -TargetPtr 22D78434960 -ActorPtr 22D77EF5240`.
+Proof: `.\scripts\prove_overlay_combat.py -TargetPtr 22D78434960 -ActorPtr 22D77EF5240`.
 
 | # | Scenario | Pass | Notes |
 |---|---|---|---|

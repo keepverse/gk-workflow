@@ -192,7 +192,7 @@ exclusion removes the test from the default profile.
 
 | Profile | Where | Command |
 |---|---|---|
-| **default** | explicit local broad validation, `deploy-play.py` | `.\scripts\test-fast.ps1 -Project <project>` → `dotnet test <proj> --filter "Category!=DiskSemantics&Category!=Heavy"` |
+| **default** | explicit local broad validation, `deploy-play.py` | `.\scripts\test_fast.py -Project <project>` → `dotnet test <proj> --filter "Category!=DiskSemantics&Category!=Heavy"` |
 | **full** | CI pull-request | `dotnet test <proj> -c Release` (no filter) |
 | **gate** | `release.yml` tags | `dotnet test <proj>` (no filter), required |
 | **nightly** | `.github/workflows/nightly.yml` | `dotnet test <proj>` (no filter) |

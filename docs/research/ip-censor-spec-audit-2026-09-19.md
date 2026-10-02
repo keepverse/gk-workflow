@@ -193,7 +193,7 @@ Add a 7th module so A1 and A6 have an owner instead of being nobody's problem:
 
 | Module id | Responsibility | Depends on |
 |---|---|---|
-| `wiring` | An **independent Python tool, shaped like `gk-forge/tools/seedsmith`**: package, exact-pinned `requirements.lock`, `tests/`, and a real **`pytest` verification project** (not a C# mapping). Proves `verify-change.ps1 -Paths gk-core/tools/ip-censor/**` returns a **plan naming the ipcensor lane**. | `report`, **externally `python-test-lane` TVB3.1/TVB3.2** |
+| `wiring` | An **independent Python tool, shaped like `gk-forge/tools/seedsmith`**: package, exact-pinned `requirements.lock`, `tests/`, and a real **`pytest` verification project** (not a C# mapping). Proves `verify-change.py -Paths gk-core/tools/ip-censor/**` returns a **plan naming the ipcensor lane**. | `report`, **externally `python-test-lane` TVB3.1/TVB3.2** |
 
 Build order becomes `source → registry → census → scan → suggest → report → wiring`. `wiring` is
 independently testable (does the mandated command work?) and could be built first as a thin

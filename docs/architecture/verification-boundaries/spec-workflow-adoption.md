@@ -53,7 +53,7 @@ python scripts\deploy-play.py -VerificationPaths gk-fusion/src/FusionRpg.Injecto
 AGENTS.md                                           contributor rule and reporting expectation
 docs/contributing/testing-standard.md               profiles + evidence-level policy
 docs/contributing/dev-setup.md                      human-facing command examples
-scripts/test-fast.ps1                               explicit broad opt-in
+scripts/test_fast.py                               explicit broad opt-in
 gk-fusion/scripts/deploy-play.py                             supplied-path verification integration
 .github/workflows/ci.yml                            static guard; full suite unchanged
 tests/FusionRpg.Guard.Tests/VerificationWorkflowTests.cs

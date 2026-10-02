@@ -236,7 +236,7 @@ machine, same session:
 The direction of the projection holds and its magnitude does not: the touched-subsystem build is
 ~3.4× faster in `Csc` and ~2.4× faster wall than the residual, not the ~28× the file-count division
 implied, because fixed cost and the known non-linear term both dominate at this size. The whole-profile
-claim in the same session: `scripts/test-fast.ps1 -AllDefault` ran **39 of the Core test projects, 0
+claim in the same session: `scripts/test_fast.py -AllDefault` ran **39 of the Core test projects, 0
 failures** before the harness cut the call at ~15 minutes (`FusionRpg.Data.Tests` alone is 10m16s), and
 the manager's independent run of the same command at the merged head was **Failed 0 / Passed 18273** —
 so the finished-suite evidence is that run plus every increment's own apply-gate and focused verify, not
@@ -446,10 +446,10 @@ fence and have no owner boundary at all — filed as TVB-F25 for the manager to 
 
 ### The planner moved to Python, and the guard step stopped racing its own build — 2026-09-26
 
-`gk-core/scripts/verify-change.py` + `gk-core/scripts/lib/verification_boundaries.py` replaced the
-retired `scripts/verify-change.ps1` + `scripts/lib/VerificationBoundaries.ps1` as the **named** entry point
-(AGENTS.md "Verification boundary"). Two measured reasons, both recorded because they are the kind of
-defect that recurs:
+One thing R-TV2's Core half does **not** have: a green `test_fast.py -AllDefault`. Every leg is green
+(Data 1,766/0, Server 826/0, the Core group 68 projects / 15,836 tests / 0 failures) except
+`gk-core/tests/FusionRpg.E2E.Tests`, which is red for two stale **web** fixtures that live outside this program's
+fence and have no owner boundary at all — filed as TVB-F25 for the manager to route.
 
 1. **The guard-module step's `dotnet test` could not finish its own job.** `dotnet test` spawns
    `tests/FusionRpg.Guard.Tests/bin/Release/net8.0/testhost.exe`, which **outlived** the `dotnet test`

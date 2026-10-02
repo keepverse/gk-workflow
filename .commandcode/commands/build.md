@@ -25,7 +25,7 @@ Pick the next pending task from the plan. Then:
 2. Load relevant context (existing code, patterns, types)
 3. Write a failing test for the expected behavior (RED)
 4. Implement the minimum code to pass the test (GREEN)
-5. Run `.\scripts\verify-change.ps1 -Paths <every changed path> -Session <id>` to check for regressions (the path-owned boundary, not an unfiltered suite)
+5. Run `.\scripts\verify-change.py -Paths <every changed path> -Session <id>` to check for regressions (the path-owned boundary, not an unfiltered suite)
 6. Run the build to verify compilation
 7. Commit with a descriptive message
 8. Mark the task complete and stop

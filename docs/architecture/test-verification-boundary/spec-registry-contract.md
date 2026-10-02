@@ -244,7 +244,7 @@ backlog is closed by the real-registry case T9, not by a count.
 
 ## Success criteria
 
-- [ ] `verify-change.ps1 -PlanOnly` resolves every file under the six roots of C1 and the four tool trees.
+- [ ] `verify-change.py -PlanOnly` resolves every file under the six roots of C1 and the four tool trees.
 - [ ] Planting an unmapped `tests/**/*.cs` file makes `guard-verification-boundaries.py` exit 1.
 - [ ] A test csproj missing from the registry and the exemption table makes the guard exit 1.
 - [ ] The three G3 entries carry derived levels; a mismatched `level` fails the guard.
@@ -255,7 +255,7 @@ backlog is closed by the real-registry case T9, not by a count.
 - [ ] A stale exact path fails the guard; the real registry passes C8.
 - [ ] `schemaVersion` is 3 and both scripts accept only 3.
 - [ ] T1–T15 green, verified with
-      `.\scripts\verify-change.ps1 -Paths gk-core/scripts/guard-verification-boundaries.py,scripts/verify-change.ps1,scripts/lib/VerificationBoundaries.ps1,gk-core/scripts/verification-boundaries.v1.json,scripts/guard-bench-compile.ps1,gk-core/tests/FusionRpg.Guard.Tests/VerificationBoundaryWorkflowTests.cs --session <id>`.
+      `.\scripts\verify-change.py -Paths gk-core/scripts/guard-verification-boundaries.py,scripts/verify-change.py,scripts/lib/verification_boundaries.py,gk-core/scripts/verification-boundaries.v1.json,scripts/guard-bench-compile.py,gk-core/tests/FusionRpg.Guard.Tests/VerificationBoundaryWorkflowTests.cs --session <id>`.
 
 ## Open questions
 

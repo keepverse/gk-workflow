@@ -138,7 +138,7 @@ sight, `world-map-program.md` line 46).
     and season; `planned-sinks` is registered later by `empire-goods-sinks` and shocks by `trade-stories`,
     so no arrow points back. Clan consumption reads the vector's demand; it registers no term.
 - **Verification boundary:** `FusionRpg.Core.Tests` (World/Trade, World/Ai filters) through
-  `verify-change.ps1 -Paths`; `WorldDeterminismGuardTests` in `FusionRpg.Guard.Tests`.
+  `verify-change.py -Paths`; `WorldDeterminismGuardTests` in `FusionRpg.Guard.Tests`.
 
 ### 2. `empire-roster`
 

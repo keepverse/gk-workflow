@@ -477,8 +477,8 @@ python scripts\audit-overflow.py
 python scripts\audit-magic-numbers.py --domain passive-tree
 
 # Test quality -- a gate counter is arithmetic, so coverage alone proves nothing
-.\scripts\coverage.ps1 -Namespace FusionRpg.Core.PassiveTree.GateCounters
-.\scripts\mutate.ps1   -Set gate-counters
+.\scripts\coverage.py -Namespace FusionRpg.Core.PassiveTree.GateCounters
+.\scripts\mutate.py   -Set gate-counters
 ```
 
 ---

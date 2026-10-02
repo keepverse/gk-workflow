@@ -44,7 +44,7 @@ Edit only these paths in this lane:
 - `gk-forge/tools/seedsmith/seedsmith/adapters/trees/**`
 - `gk-forge/tools/seedsmith/seedsmith/workflow/**`
 - `gk-forge/tools/seedsmith/tests/**`
-- `.claude/cmdc-agents/scripts/bcu212-full-run.ps1`
+- `.claude/cmdc-agents/scripts/bcu212_full_run.py`
 - `.claude/cmdc-agents/scripts/bcu212-report.py`
 - `tasks/reports/seedsmith-p1-audit-20260925.md`
 

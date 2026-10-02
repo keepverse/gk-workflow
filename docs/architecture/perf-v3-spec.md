@@ -23,7 +23,7 @@ under the 5% bar, loop residue named and its top offender fixed, so the stress c
 flat as the summoner features stack on top.
 
 ### Acceptance criteria
-1. `stress-test.ps1 -Zombies 600` verdict PASS (share ≤5%, corrected arithmetic).
+1. `stress_test.py -Zombies 600` verdict PASS (share ≤5%, corrected arithmetic).
 2. Every `InjectorLoop.Tick` callee ≥0.1 ms/frame appears in a probe section (no dark cost).
 3. `AutoCollectTick`/`TickContinuous` do zero `FindObjectsOfType` (registry-fed).
 4. Death flush is O(pending-for-ptr), not O(ring): ptr-indexed pending records.
@@ -38,15 +38,15 @@ flat as the summoner features stack on top.
 | F2 | Registry-fy AutoCollectTick (CoinSun/CoinMoney via hook-fed registry or throttle) + TickContinuous | audit: per-frame scans |
 | F3 | Ptr-index pending drain records (Dictionary<IntPtr, small list> alongside ring) | 600z: flush churn outside budget |
 | F4 | Incremental `BoardSnapshot` (mutate-on-add/remove, copy-on-freeze semantics preserved) | capture 57→467µs scaling |
-| F5 | stress-test.ps1: subtract nested-section overlap in verdict | double-count noted |
+### Work items (from measured findings)
+| # | Item | Evidence |
+|---|---|---|
+| F1 | Probe sections: `vfx.tick`, `cheat.continuous`, `cheat.autocollect`, `poll.board`, `pump.main` | loop.tick 9.2ms dark (baseline §v2-stress) |
+| F2 | Registry-fy AutoCollectTick (CoinSun/CoinMoney via hook-fed registry or throttle) + TickContinuous | audit: per-frame scans |
+| F3 | Ptr-index pending drain records (Dictionary<IntPtr, small list> alongside ring) | 600z: flush churn outside budget |
+| F4 | Incremental `BoardSnapshot` (mutate-on-add/remove, copy-on-freeze semantics preserved) | capture 57→467µs scaling |
+| F5 | stress_test.py: subtract nested-section overlap in verdict | double-count noted |
 | F6 | Fold in Critical/Important findings from the 2026-08-21 five-axis review | review in flight |
-
-### Commands / structure / style / testing
-Same as [`event-pipeline-v2-spec.md`](event-pipeline-v2-spec.md) — same test suites, guards,
-deploy, probe scripts; new code lives beside the v2 files it refines
-(`Core/Events`, `Injector/Effects`, `Injector/Host`, `Core/Combat/BoardSnapshot`).
-Offline-first: F3/F4 get Core unit tests before any deploy; F2 verified by probe delta.
-
 ### Boundaries
 Same three tiers as the v2 spec. Additionally **never**: change v2 SSOT semantics (coalescing
 key, pair suppression, chain depth, budget contract) — v3 is implementation-only.

@@ -131,7 +131,7 @@ dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~Stan
 dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~SiegeAi|FullyQualifiedName~Golden"
 dotnet test gk-core/tests/FusionRpg.Guard.Tests --filter "FullyQualifiedName~Golden"
 
-.\scripts\verify-change.ps1 -Paths @(
+.\scripts\verify-change.py -Paths @(
   'gk-core/src/FusionRpg.Core/Battle/BattleRunState.cs',
   'gk-core/src/FusionRpg.Core/Battle/BasicAttack.cs',
   'gk-core/src/FusionRpg.Core/Battle/TimelineDispatch.cs',

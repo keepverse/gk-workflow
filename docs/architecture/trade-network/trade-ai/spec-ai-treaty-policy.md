@@ -189,7 +189,7 @@ Read, never duplicated: `acceptMilli.{band}`, `treaty.minimumTermTurns`, tariff 
 - A campaign scenario with one rival (the `counterparties` Q2 fixture) run for 20 turns; the existing
   campaign tests (`gk-core/tests/FusionRpg.Core.Tests/World/TwoHearthsCampaignTests.cs`) are **run and reported**,
   never assumed unchanged (`spec-ai-commander.md` §Momentum point 4).
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>` (`core-world-ai-trade`,
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>` (`core-world-ai-trade`,
   `data-world-ai-fill`); `FrontierRulesPolicy.cs` changes, so the full suite runs once at module end.
 
 ## Hard edges

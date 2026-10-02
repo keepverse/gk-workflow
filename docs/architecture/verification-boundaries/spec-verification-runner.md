@@ -51,7 +51,7 @@ json` writes the same data to stdout. No tracked report is written by default.
 ## Project structure
 
 ```text
-scripts/verify-change.ps1                          planner + runner façade
+scripts/verify-change.py                          planner + runner façade
 gk-core/scripts/verification-boundaries.v1.json             declarative input
 tests/FusionRpg.Guard.Tests/VerificationRunnerTests.cs
 docs/contributing/testing-standard.md                profile policy updated by workflow-adoption

@@ -55,7 +55,7 @@ return `FAIL` naming what is missing.
    (`--blame-hang --blame-hang-timeout 15min`) so a hang fails instead of blocking you. For FE, use
    the repo's `npm test` / `npm run build` form.
 5. **Guards.** Run every guard the task lists. For this repo's Data/test work that always includes
-   `python gk-core/scripts/guard-test-substrate.py`; include `guard-dal.ps1` when `gk-core/src/FusionRpg.Data` changed.
+   `python gk-core/scripts/guard-test-substrate.py`; include `guard-dal.py` when `gk-core/src/FusionRpg.Data` changed.
    Never accept a weakened guard. A non-zero exit is `FAIL`.
 6. **Regression.** Run the touched project's wider suite (e.g. `FusionRpg.Data.Tests`,
    `FusionRpg.Server.Tests`) when the change can affect siblings — a factory, a base class, or a

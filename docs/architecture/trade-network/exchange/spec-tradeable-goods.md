@@ -126,7 +126,7 @@ must include:
 - `tests/FusionRpg.Core.Tests/World/Trade/Goods/` (new), trait `core.world-trade.goods`; one boundary
   row `core-world-trade-goods` in `gk-core/scripts/verification-boundaries.v1.json`.
 - Admission tests in the same folder drive `WorldCommandAdmission.Admit` directly.
-- `verify-change.ps1 -Paths` with the code, the amended docs (it runs the citation audit on changed
+- `verify-change.py -Paths` with the code, the amended docs (it runs the citation audit on changed
   `.md` files) and the test files.
 
 ## Hard edges

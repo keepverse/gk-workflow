@@ -133,7 +133,7 @@ On a world without the clan and trade capabilities there are no clans, so nothin
   (`trade-foundation` `synthetic-graph` can seed clans, counterparties ask A4).
 - `gk-core/tests/FusionRpg.Core.Tests/World/Ai/FrontierRulesTests.cs` and `WorldAiAcceptanceTests.cs`: 7, run
   and reported.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>`; `FrontierRulesPolicy.cs`
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>`; `FrontierRulesPolicy.cs`
   changes, so the full suite once at module end.
 
 ## Hard edges

@@ -177,7 +177,7 @@ Reused: `threatMap.staleDecayPerTurn`, `frontierRules.momentumMarginMilli` (`gk-
 - `gk-core/tests/FusionRpg.Core.Tests/World/TwoHearthsCampaignTests.cs` and the AI acceptance scenario are
   **run and reported**; criterion 8 predicts no movement on worlds without trade, and a movement is a
   defect in this change, never a re-bless.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>`; `FrontierRulesPolicy.cs`
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>`; `FrontierRulesPolicy.cs`
   changes, so the full suite once at module end.
 
 ## Hard edges

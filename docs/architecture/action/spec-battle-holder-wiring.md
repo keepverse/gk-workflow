@@ -92,7 +92,7 @@ unlockTuning: UnlockTuningPolicy.Tuning,
 dotnet test tests\FusionRpg.Server.Tests --filter "FullyQualifiedName~BattleHolderWiring"
 dotnet test tests\FusionRpg.Core.Tests --filter "FullyQualifiedName~ActionCostsCooldownsAdoption|FullyQualifiedName~BattleGolden"
 python gk-core/scripts/guard-dal.py
-.\scripts\verify-change.ps1 -Paths <files> -Session <session>
+.\scripts\verify-change.py -Paths <files> -Session <session>
 ```
 
 ## 6. Structure

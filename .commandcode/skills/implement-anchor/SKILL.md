@@ -70,7 +70,7 @@ Session: [session id] ([mode], [branch]) · Paths: [paths fence]
 Standards: PRINCIPLES + DESIGN-GATE §1 rows [subsystems] + decisions locks, read in this session
 Peers: | Peer | Anchor | Provides | Consumes |
 Drift gates: `python scripts/session-boundary-check.py` ·
-  `.\scripts\verify-change.ps1 -Paths <changed> -Session [id]` (+ `-PlanOnly` to preview)
+  `.\scripts\verify-change.py -Paths <changed> -Session [id]` (+ `-PlanOnly` to preview)
 Evidence: `tasks/evidence-fragments/[task-id].md` per task (`| Criterion | Command | Result | Artifact |`)
 Verify: focused filter + guard per task Verify line, never full suite by default.
 ```
@@ -95,15 +95,15 @@ No new check script — reuse only:
    Push/PR only when the owner asks.
 
 ## Step 4 — Goal prompt (<=4000 chars, then ask owner to set it)
-
-Fill the template, then check with `Measure-Object -Character` (or `wc -m`). If over 4000, drop
-examples first — never drop gates, fence, or evidence contract. Then ASK the owner to paste it into
-the manager / Claude Code goal field. The goal is a workflow reminder (anti-cheat instruction), not
-a second anchor file.
-
-Template (`[BRACKETS]` filled per run):
-
-```text
+1. `/session-start` — write `tasks/sessions/<session>.json` (template `tasks/sessions/_template.json`:
+   `session/program/problem/mode/branch/worktree/paths/started/status`), commit with first change.
+2. `python scripts/session-boundary-check.py` — exit 0 before first edit and before each commit.
+3. `.\scripts\verify-change.py -Paths <changed> -Session <id>` — every changed path must resolve to
+   exactly one owner (`verification-boundaries.v1.json`); `-PlanOnly` previews without running.
+4. Per-task `Verify:` line — focused `dotnet test --filter` + applicable `scripts/guard-*.ps1`.
+   Full suite only at: large-feature finish, cross-program change, or right before a live probe.
+5. Commits with plain `git` (explicit paths) (the session fence), never `all=true`.
+   Push/PR only when the owner asks.
 COMPLETE [program]: SOURCE OF TRUTH: [plan] [todo active tasks] [specs]. Read ENTIRE scope first;
 it owns requirements, deps, acceptance, evidence. Do not skip, reinterpret, or reduce.
 MISSION: Drive to PROVEN COMPLETE. Every item resolved + evidenced.

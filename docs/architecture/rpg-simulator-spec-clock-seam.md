@@ -210,7 +210,7 @@ agree on Data exactly (142) and differ elsewhere by a handful. The migration is 
 
 ## 6. Migration order, and the bypass retirement
 
-Each increment is its own commit with its own verification (`verify-change.ps1 -Paths <files>`), because a
+Each increment is its own commit with its own verification (`verify-change.py -Paths <files>`), because a
 203-site sweep that lands as one commit cannot be reviewed or bisected.
 
 | # | Increment | Files | State |

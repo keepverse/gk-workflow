@@ -62,7 +62,7 @@ $env:PYTHONPATH = "gk-core/tools/ip-censor"; python -m ipcensor.report registry-
 $env:PYTHONPATH = "gk-core/tools/ip-censor"; python -m pytest gk-core/tools/ip-censor/tests/test_report.py -q
 ```
 
-**Verified by the `wiring` module (A1):** `.\scripts\verify-change.ps1 -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <id>`
+**Verified by the `wiring` module (A1):** `.\scripts\verify-change.py -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <id>`
 must return a **plan naming the `ipcensor` pytest lane** — not the `VERIFICATION BOUNDARY MISSING`
 throw that `gk-core/scripts/verify-change.py:771` currently produces for every path this program proposes. The lane's
 runner kind is owned by `test-verification-boundary/python-test-lane` (Wave 3, unbuilt); see

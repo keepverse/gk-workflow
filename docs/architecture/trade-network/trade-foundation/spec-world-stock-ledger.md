@@ -142,7 +142,7 @@ None.
 - `gk-core/scripts/verification-boundaries.v1.json` owner row `data-world-stock-ledger`: paths
   `src/FusionRpg.Data/Sqlite/RpgStore.WorldLedger.cs` and the test file, project `data`, guards `dal`,
   `test-substrate`. `RpgStore.WorldTurns.cs` and `RpgStore.World.cs` stay on `data-fallback`.
-- Verify: `.\scripts\verify-change.ps1 -Paths <changed files> -Session <id>`; `python gk-core/scripts/guard-dal.py`.
+- Verify: `.\scripts\verify-change.py -Paths <changed files> -Session <id>`; `python gk-core/scripts/guard-dal.py`.
 
 ## Hard edges
 

@@ -321,7 +321,7 @@ python gk-core/scripts/guard-dal.py      # no new SQL in this module — must st
 ```
 
 Idea phase runs no suite — no test movement claimed by this spec (ideal Hand-off checklist,
-consumed). The wave-2 build verifies with the scoped `verify-change.ps1 -Paths <files>` boundary
+consumed). The wave-2 build verifies with the scoped `verify-change.py -Paths <files>` boundary
 for the recipe/fold/bus/draft files it touches.
 
 ## Structure

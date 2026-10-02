@@ -182,7 +182,7 @@ Policy-only keys stay in the AI domain because `Step` never reads it (TC5).
 
 - `tests/FusionRpg.Core.Tests/World/Ai/Trade/TradeBuildingsTests.cs` (new): 2–5, 8, 9.
 - `gk-core/tests/FusionRpg.Data.Tests/WorldAiCommitTests.cs` (extend): 1, 6, 7 through the real fill.
-- `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>` (`core-world-ai-trade`,
+- `.\scripts\verify-change.py -Paths <changed paths> -Session <id>` (`core-world-ai-trade`,
   `data-world-ai-fill`). The composed policy changes `FrontierRulesPolicy`'s layer list, so the full
   suite runs once at module end, not per task.
 

@@ -4,8 +4,8 @@ The prior recovery lane `resume-00a-fail-closed-recovery-20260925` was stopped a
 
 ## Allowed paths
 
-- `.claude/cmdc-agents/scripts/post-merge-check.ps1`
-- `.claude/cmdc-agents/scripts/accept-lane.ps1`
+- `.claude/cmdc-agents/scripts/post_merge_check.py`
+- `.claude/cmdc-agents/scripts/accept_lane.py`
 - `.claude/cmdc-agents/scripts/merge-lanes.py`
 - `.claude/cmdc-agents/scripts/test_fail_closed_pipeline.py`
 - `tasks/reports/resume-00a-fail-closed-final-20260925.md`
@@ -18,10 +18,10 @@ Do not edit CI, release, product, registry, generated, or other paths. Do not co
 2. `merge-lanes.py` has the same prefix regex. Even though its later GREEN check blocks merging `GREENjunk`, the evidence consumer must reject the malformed schema rather than rely on a later comparison. Use `fullmatch`/an anchored pattern and add a consumer regression.
 3. The merge plane does not prove that the reviewed lane SHA descends from the current `features/mega-merge` integration branch. Add a fail-closed ancestry preflight for the exact reviewed SHA in both the direct acceptance/merge path and the batch merge path, with a fixture that creates an unrelated history and proves refusal. Do not weaken the existing exact-SHA, clean-tree, wrong-branch, or schema checks.
 4. Preserve the repaired behavior already present: nonzero RED/BLOCKED status, clean merged checkout before/between/after phases, legal-game/interops limitations as BLOCKED, non-empty declared Core surface, zero-exit parsed-failure rejection, and no alternate-model evidence.
-
-## Verification
-
-Use the existing focused fixture and run at least:
+1. `accept_lane.py` still validates the verdict with `^(GREEN|RED|RED-KNOWN|UNATTRIBUTED)` without a terminating anchor. A value such as `GREENjunk` can pass schema parsing and be written as a GREEN artifact. Use an exact closed-vocabulary match and add an end-to-end acceptance regression for a junk suffix.
+2. `merge-lanes.py` has the same prefix regex. Even though its later GREEN check blocks merging `GREENjunk`, the evidence consumer must reject the malformed schema rather than rely on a later comparison. Use `fullmatch`/an anchored pattern and add a consumer regression.
+3. The merge plane does not prove that the reviewed lane SHA descends from the current `features/mega-merge` integration branch. Add a fail-closed ancestry preflight for the exact reviewed SHA in both the direct acceptance/merge path and the batch merge path, with a fixture that creates an unrelated history and proves refusal. Do not weaken the existing exact-SHA, clean-tree, wrong-branch, or schema checks.
+4. Preserve the repaired behavior already present: nonzero RED/BLOCKED status, clean merged checkout before/between/after phases, legal-game/interops limitations as BLOCKED, non-empty declared Core surface, zero-exit parsed-failure rejection, and no alternate-model evidence.
 
 ```powershell
 python .claude/cmdc-agents/scripts/test_fail_closed_pipeline.py

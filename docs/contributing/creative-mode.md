@@ -448,7 +448,7 @@ sub-program is not merged: its branch stays, and the report says why. Never push
 
 ### 8.5 Which verification covers which path
 
-Pass `.\scripts\verify-change.ps1 -Paths <every path the task touched> -Session <sub-program id>`
+Pass `.\scripts\verify-change.py -Paths <every path the task touched> -Session <sub-program id>`
 **every** path, documents included:
 
 - **Documents and assistant config** (`docs/**`, `.claude/**`, `.agents/**`, `.commandcode/**`,

@@ -99,7 +99,7 @@ env (`gk-core/src/FusionRpg.Server/Program.cs:14-17`) carry it. Point the game a
 python gk-fusion/scripts/deploy-play.py --no-server --no-rebuild-ui --server-url http://127.0.0.1:<BasePort + slot>
 ```
 
-⛔ A pooled deploy that omits `-ServerUrl` is **refused** (it would inherit the owner's 5088), and `lane-server.ps1`
+⛔ A pooled deploy that omits `-ServerUrl` is **refused** (it would inherit the owner's 5088), and `lane_server.py`
 refuses any slot that resolves to 5088. If `/health` on your port is down while another lane's is up, that is your
 server, not the owner's — read `<pool-root>/slot-<n>-server.log`.
 - **Release is part of the probe.** A slot left `occupied` is a slot nobody else can use. If your game is still
@@ -113,13 +113,13 @@ boundary: they close **only the game running from the session's own install** (p
 pass `game_dir` + `base_url` + `session` for a clone setup). Killing by bare process/image name
 is forbidden — it would take down the owner's game and every other session's clone. A game lock
 held by another live session refuses the restart; that refusal is the backstop, not a prompt to
+`debug_restart_game` (and `restart_game.py`) may be used without asking first, with one hard
+boundary: they close **only the game running from the session's own install** (path-scoped kill;
+pass `game_dir` + `base_url` + `session` for a clone setup). Killing by bare process/image name
+is forbidden — it would take down the owner's game and every other session's clone. A game lock
+held by another live session refuses the restart; that refusal is the backstop, not a prompt to
 work around it. `debug_cursor` stays explicit-opt-in per call (`confirmed=true`): it moves the
 real machine-wide mouse, so no install scoping can contain it.
-
-## Choose the smallest tool
-
-The server exposes nineteen adapter tools. Keep the operation observable and bounded:
-
 - `debug_call` — allowlisted HTTP reads for static/server contracts; it cannot be used as arbitrary
   code execution.
 - `debug_events` — budgeted event reads with cursors; never request an unbounded dump.

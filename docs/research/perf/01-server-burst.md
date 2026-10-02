@@ -6,7 +6,7 @@ During the 1000-zombie stress run (2026-08-21 ~02:21), the server stopped respon
 ("connection actively refused") mid-capture while the game ran on unaffected. Initial read:
 crash under the spawn/death event burst.
 
-## Repro attempts (scripts/burst-repro.ps1 — kept as a regression harness)
+## Repro attempts (scripts/burst_repro.py — kept as a regression harness)
 
 Scratch server instance (own port + data dir), synthetic bursts POSTed to `/api/events`:
 

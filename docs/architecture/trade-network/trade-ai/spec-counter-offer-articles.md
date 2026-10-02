@@ -175,7 +175,7 @@ Step sizes are `exchange`'s (`orderStepUnits`, tariff band steps, term step).
   over generated proposals and needs; hand cases per article.
 - `gk-core/tests/FusionRpg.Data.Tests/WorldAiCommitTests.cs` (extend): a declined player proposal writes one
   report line to the proposer carrying the terms, and replay reproduces it.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>` (the `core-world-ai-trade`
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>` (the `core-world-ai-trade`
   boundary `deal-valuation` adds).
 
 ## Hard edges

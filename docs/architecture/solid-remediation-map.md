@@ -286,7 +286,7 @@ boundary check dirty.
 the crossing claims are stale metadata rather than live conflicts. This program therefore:
 
 - creates **one** session record, `tasks/sessions/solid-remediation-<date>.json`, as `green-baseline`'s
-  first task, so `verify-change.ps1 -Session solid-remediation-<date>` is runnable for every module;
+  first task, so `verify-change.py -Session solid-remediation-<date>` is runnable for every module;
 - marks the 14 stale records merged or abandoned in the same task, so the boundary check is clean and
   stays a real signal rather than noise everyone learns to ignore;
 - does **not** treat a dirty boundary check as a reason to skip scoped verification.

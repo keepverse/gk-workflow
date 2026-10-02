@@ -37,8 +37,8 @@ before citing: `deploy-play.py --json` prints per-stage seconds for the run you 
 
 | Caller | Guards it runs | Why |
 |---|---|---|
-| `.github/workflows/ci.yml` | `run-guards.ps1 -Tier ci -CiRange …` | the merge gate |
-| `.github/workflows/release.yml`, `nightly.yml` | `run-guards.ps1 -Tier ci -CiRange …` | the release gate |
+| `.github/workflows/ci.yml` | `run_guards.py -Tier ci -CiRange …` | the merge gate |
+| `.github/workflows/release.yml`, `nightly.yml` | `run_guards.py -Tier ci -CiRange …` | the release gate |
 | `gk-core/scripts/verify-change.py` | the ids `verification-boundaries.v1.json` assigns to the **touched paths** | the implement phase's gate — where a change is verified, once |
 | `gk-fusion/scripts/deploy-play.py` | **`-Only game-profile -Tier local`** and nothing else | a deploy PRECONDITION (right bridge into the right install), not a suite. Running it is part of deploying correctly |
 
@@ -161,7 +161,7 @@ The real-tree check is simply `run-guards.ps1 -Tier ci` exiting 0 in CI.
 ## Boundaries
 
 - **Always:** run every selected guard before failing. Take arguments from the registry.
-- **Ask first:** letting a caller pass arguments for anything except machine-local paths.
+The real-tree check is simply `run_guards.py -Tier ci` exiting 0 in CI.
 - **Never:** hand-add a `guard-*.ps1` call to `ci.yml`, `gk-fusion/scripts/deploy-play.py` or
   `verify-change.py`. Never let the runner decide status: the registry decides.
 - **Never (2026-09-26):** give the deploy a guard TIER BATCH. A deploy runs exactly one guard, by

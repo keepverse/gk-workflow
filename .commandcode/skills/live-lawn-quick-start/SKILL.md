@@ -10,8 +10,8 @@ All-in-one LIVE board setup for MelonLoader (default) or BepInEx. **Do not** ask
 ## When to use
 
 - LIVE status VFX identity audit
-- Overlay combat prove (`prove-overlay-combat.ps1`)
-- VFX organic path (`prove-vfx.ps1` with `-TargetPtr`)
+- Overlay combat prove (`prove_overlay_combat.py`)
+- VFX organic path (`prove_vfx.py` with `-TargetPtr`)
 - Python `live_test run status.l2.*`
 - Any script needing a living zombie ptr on a lab board
 

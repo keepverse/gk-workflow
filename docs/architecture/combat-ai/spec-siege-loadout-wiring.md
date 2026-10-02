@@ -63,7 +63,7 @@ dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~Gold
 dotnet test gk-core/tests/FusionRpg.Data.Tests --filter "FullyQualifiedName~WorldTurn|FullyQualifiedName~Loadout|FullyQualifiedName~Grant"
 dotnet test gk-core/tests/FusionRpg.Server.Tests --filter "FullyQualifiedName~WebMatch|FullyQualifiedName~SpecimenLoadout"
 
-.\scripts\verify-change.ps1 -Paths @(
+.\scripts\verify-change.py -Paths @(
   'gk-core/src/FusionRpg.Core/World/Turn/DistrictAssaultResolver.cs',
   'gk-core/src/FusionRpg.Core/Actions/IContainerEffectResolver.cs',
   'gk-core/src/FusionRpg.Data/Sqlite/RpgStore.Loadouts.cs',

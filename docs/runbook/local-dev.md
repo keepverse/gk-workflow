@@ -137,7 +137,7 @@ run as real HTTP against a running `FusionRpg.Server`, never a fabricated actor 
 # Cold-start the lawn first via the `live-lawn-quick-start` skill (enter level 1, lab-overlay,
 # target ptr) -- Mode B refuses outright if step 1 is given the Mode-A-only debug shortcut, since
 # that shortcut's synthetic ptr never exists on a real board.
-.\scripts\prove-live-probe.ps1 -Mode B -PlayerId 1 -Side plant -BannerId <banner-id> `
+.\scripts\prove_live_probe.py -Mode B -PlayerId 1 -Side plant -BannerId <banner-id> `
     -AptitudeId Might -AptitudePoints 30 -Role <slot> -ItemInstanceId <owned-item-id> -TimeoutSec 30
 ```
 

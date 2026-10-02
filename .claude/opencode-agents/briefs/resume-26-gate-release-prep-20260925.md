@@ -2,7 +2,7 @@
 
 ## Task
 
-Read the repaired `post-merge-check.ps1`, the Phase 0B acceptance report, the legal interop preflight,
+Read the repaired `post_merge_check.py`, the Phase 0B acceptance report, the legal interop preflight,
 and the current manager handoff. Produce a read-only release/gate readiness report: exact environment
 variables, clean-branch requirements, expected verdict semantics, known blockers, and the evidence
 paths a future manager run must record. Do not run the full gate and do not edit code.

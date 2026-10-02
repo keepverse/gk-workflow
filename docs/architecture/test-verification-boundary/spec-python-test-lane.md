@@ -100,7 +100,7 @@ anywhere else.
   fails, it stops with "python test environment missing — install per AGENTS.md 'Seedsmith'". It
   never installs anything and never skips.
 - Checks run in the existing order: guards, then tests, stopping at the first failure
-  (`gk-core/scripts/verify-change.py:1192`). Guards run through `run-guards.ps1 -Only` since SE0.7.
+  (`gk-core/scripts/verify-change.py:1192`). Guards run through `run_guards.py -Only` since SE0.7.
 
 ### D4 — initial boundaries
 
@@ -325,11 +325,15 @@ entries there are.
       `…/test_actions_description_completeness.py` passes the plan with five `KNOWN RED` lines, and
       would fail if any sixth failure appeared.
 - [ ] `scripts/checks/gen-*.py` wrappers exit 0 on a clean tree where CI's step is green.
+- [ ] Step 0: `cd gk-core/tools/tuning; python -m pytest . -q` is fully green; the CI step lands after it and
+      is green on its first CI run.
+- [ ] `gk-forge/tools/seedsmith/**` and `gk-core/tools/tuning/*.py` resolve; none maps to Guard.Tests.
+- [ ] Changing `gk-forge/tools/seedsmith/seedsmith/adapters/items/<file>.py` plans the items test files plus
+      `gen-items-gate`, not the whole suite.
+- [ ] Changing one seedsmith test file plans exactly that file; changing `conftest.py` plans the module.
+- [ ] Run once locally: `verify-change.py -Paths gk-forge/tools/seedsmith/tests/test_items_adapter.py` green;
+      `…/test_actions_description_completeness.py` passes the plan with five `KNOWN RED` lines, and
+      would fail if any sixth failure appeared.
+- [ ] `scripts/checks/gen-*.py` wrappers exit 0 on a clean tree where CI's step is green.
 - [ ] `schemaVersion` is 4 and both scripts accept it; P1–P12 green, verified with
-      `.\scripts\verify-change.ps1 -Paths <every changed path> -Session <id>`.
-
-## Open questions
-
-None. The file selection vs `-k` choice, wrappers vs commands in JSON, script checks vs guards, the
-CI-order constraint on test shape, and the pre-existing-red rule are technical, and each is resolved
-above. The CI step was approved by R15.
+      `.\scripts\verify-change.py -Paths <every changed path> -Session <id>`.

@@ -171,7 +171,7 @@ python gk-core/scripts/audit-overflow.py
 python gk-core/scripts/audit-magic-numbers.py --summary
 
 # Test quality on the one new class
-.\scripts\coverage.ps1 -Namespace FusionRpg.Core.Stats.Derived
+.\scripts\coverage.py -Namespace FusionRpg.Core.Stats.Derived
 ```
 
 The injector half (G1's adapter) cannot be unit-tested — that assembly needs the game's interop DLLs —

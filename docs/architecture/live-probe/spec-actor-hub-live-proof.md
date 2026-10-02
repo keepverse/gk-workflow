@@ -55,7 +55,7 @@ makes cold. Before either command below:
     -AptitudeId Might -AptitudePoints 30
 
 # T14 — loadout via Hub (Bound WallNut; equip a real, owned item first, per live-probe-tool's recipe)
-.\scripts\prove-live-probe.ps1 -Mode B -PlayerId 1 -Side plant -BannerId <banner-id> `
+.\scripts\prove_live_probe.py -Mode B -PlayerId 1 -Side plant -BannerId <banner-id> `
     -Role <slot> -ItemInstanceId <owned-item-id>
 ```
 

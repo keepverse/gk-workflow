@@ -89,7 +89,7 @@ equivalent that results in a genuinely Unity-spawned entity) — the debug short
     -AptitudeId Might -AptitudePoints 30 -Role <slot> -ItemInstanceId <owned-item-id>
 
 # Mode B — full proof, real summon + live match/board + Injector connected required
-.\scripts\prove-live-probe.ps1 -Mode B -PlayerId 1 -Side plant -BannerId <banner-id> `
+.\scripts\prove_live_probe.py -Mode B -PlayerId 1 -Side plant -BannerId <banner-id> `
     -AptitudeId Might -AptitudePoints 30 -Role <slot> -ItemInstanceId <owned-item-id> -TimeoutSec 30
 # exits 0 on full pass, non-zero + a labeled failure line naming which of the 2 halves (persisted vs live) failed
 ```

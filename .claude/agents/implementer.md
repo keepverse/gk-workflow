@@ -22,7 +22,7 @@ true today. Record the gap as a ledger note, and never quietly pick one side.
 2. Implement it in the RPG layer, through the existing seams (ActorHub, Funnel, EntityStatWriter, SQL
    only in `FusionRpg.Data`). Never hand-edit generated data. Put balance numbers in
    `gk-core/data/tuning`. Integer magnitudes are `long` and `checked`.
-3. Verify at the boundary: `.\scripts\verify-change.ps1 -Paths <every changed file> -Session <id>`.
+3. Verify at the boundary: `.\scripts\verify-change.py -Paths <every changed file> -Session <id>`.
    Run a whole test project only when you changed its shared bootstrap. Never run the full suite
    "to be safe". **Run it in the foreground.** See "Never end a turn waiting" below.
 4. Commit: `git add <explicit paths>`, then `git commit`. One commit per task, with the code, the

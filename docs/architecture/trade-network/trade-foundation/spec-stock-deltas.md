@@ -209,7 +209,7 @@ None.
   `core.world-ledger-keys` and `core.world-stock-deltas` (or a sibling row with the second id — one per
   verificationId, as the registry's other rows do). The phase files stay on `core-fallback`, which runs
   the world goldens — the right boundary for criterion 3.
-- Verify: `.\scripts\verify-change.ps1 -Paths <changed files> -Session <id>`.
+- Verify: `.\scripts\verify-change.py -Paths <changed files> -Session <id>`.
 
 ## Hard edges
 

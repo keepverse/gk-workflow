@@ -91,10 +91,13 @@ owned by `gk-core/scripts/test_fast.py:81` — the runner reads it from there ra
 - **CI (approved, R15; map §7.1 E4):** `gk-core/.github/workflows/ci.yml:335` becomes exactly
 
   ```yaml
-          .\scripts\test-sharded.ps1 -Project gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj
+          .\scripts\test_sharded.py -Project gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj
           if ($LASTEXITCODE -ne 0) { throw "FusionRpg.Data.Tests failed (sharded)" }
   ```
 
+  The script ends with `exit <code>`, so `$LASTEXITCODE` carries its verdict into the existing
+  per-line pattern. The csproj path stays literally on the CI line, so `CiWiringGuardTests.cs:45-71`
+  still finds it, and truthfully, because the project is run there. No `--filter` appears in
   The script ends with `exit <code>`, so `$LASTEXITCODE` carries its verdict into the existing
   per-line pattern. The csproj path stays literally on the CI line, so `CiWiringGuardTests.cs:45-71`
   still finds it, and truthfully, because the project is run there. No `--filter` appears in
@@ -105,11 +108,8 @@ owned by `gk-core/scripts/test_fast.py:81` — the runner reads it from there ra
 - **Landing order:** the manifest, runner and H-T1–H-T4 land first, with the one-time completeness
   proof. The CI line lands in a second commit, and H-T5 lands with it.
 - **Local:** when `verify-change.py` selects a **module**-level check on a project that has a shard
-  manifest entry, the runner calls `test-sharded.ps1 -ExtraFilter <default profile>` instead of one
+  manifest entry, the runner calls `test_sharded.py -ExtraFilter <default profile>` instead of one
   `dotnet test`. Focused (`VerificationId`) runs are unchanged — they are small.
-
-## Commands
-
 ```powershell
 .\scripts\test-sharded.ps1 -Project gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj     # full profile, CI shape
 .\scripts\test-sharded.ps1 -Project gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj -ExtraFilter "Category!=DiskSemantics&Category!=Heavy"
@@ -183,3 +183,11 @@ twice. The run is recorded in the commit body.
 ## Open questions
 
 None. The CI edit was approved by R15.
+- [ ] `test_sharded.py -Project gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj` is green on a clean tree, and
+      the union of its shards' executed test ids equals an unsharded run's id set, with no id in two
+      shards (recorded once, as a reading).
+- [ ] Wall-clock for 2 and 4 shards measured and written to `_meta.measured`; the manifest uses the
+      faster count.
+- [ ] A local `data-fallback` change runs the sharded runner with the default-profile filter.
+- [ ] H-T1–H-T4 and H-T6 green; H-T5 green in the CI commit; the first CI run after it is green.
+- [ ] Verified with `.\scripts\verify-change.py -Paths gk-core/scripts/test-shards.v1.json,scripts/test_sharded.py,scripts/verify-change.py,gk-core/tests/FusionRpg.Guard.Tests/TestShardManifestTests.cs -Session <id>`.

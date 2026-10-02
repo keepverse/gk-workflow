@@ -4,7 +4,7 @@
 
 The evidence-bundled recovery worker `seedsmith-p1-audit-recovery-20260925` completed a broad, useful BCU2.12 audit and left a dirty scoped diff. The manager did **not** accept its `done` report. Independent source review found two concrete gaps that its tests did not cover:
 
-1. `.claude/cmdc-agents/scripts/bcu212-full-run.ps1` runs the roster-count command but does not validate its process exit, non-empty output, or integer/positive result before launching smoke/full generation. A broken roster command can therefore become an unsafe continuation.
+1. `.claude/cmdc-agents/scripts/bcu212_full_run.py` runs the roster-count command but does not validate its process exit, non-empty output, or integer/positive result before launching smoke/full generation. A broken roster command can therefore become an unsafe continuation.
 2. `.claude/cmdc-agents/scripts/bcu212-report.py` shells to hardcoded `python` and silently skips malformed node/species JSON. That can make corrupt evidence look like an ordinary incomplete/untouched reading and breaks the injected deterministic launcher test.
 
 This is a narrow finalization lane, not a new corpus run. The prior diff and report are copied into this worktree as an unreviewed starting draft. Fix the gaps, add bounded tests, update the report, and leave the worktree dirty for manager review. Do not resume BCU2.12 and do not make a model call.
@@ -16,6 +16,7 @@ Read `AGENTS.md`, `docs/DESIGN-GATE.md`, the PassiveTree/Seedsmith design docume
 ## Allowed paths
 
 - `.claude/cmdc-agents/scripts/bcu212-full-run.ps1`
+- `.claude/cmdc-agents/scripts/bcu212_full_run.py`
 - `.claude/cmdc-agents/scripts/bcu212-report.py`
 - `gk-forge/tools/seedsmith/_j9_batch_run.py`
 - `gk-forge/tools/seedsmith/seedsmith/adapters/trees/nodegen/run.py`
@@ -27,7 +28,6 @@ Read `AGENTS.md`, `docs/DESIGN-GATE.md`, the PassiveTree/Seedsmith design docume
 - `gk-forge/tools/seedsmith/tests/test_bcu212_report.py`
 - `tasks/evidence-fragments/seedsmith-p1-audit-final-20260925/**` (read-only copies; do not edit)
 - `tasks/reports/seedsmith-p1-audit-final-20260925.md`
-
 Do not edit `gk-data/packs/fusion/data/seed/**`, `gk-data/packs/fusion/data/generated/**`, `src/**`, CI/release files, or the original `corpus-bcu212` worktree. Do not commit, push, or merge.
 
 ## Required repairs

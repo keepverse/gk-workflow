@@ -138,12 +138,15 @@ $env:FUSIONRPG_ML_GAMEDIR = 'H:\Games\PVZ-Fusion-3.9_MelonLoader'
 dotnet build src\FusionRpg.Injector.MelonLoader.39\FusionRpg.Injector.MelonLoader.39.csproj -p:OutputPath="$env:TEMP\fusionrpg-vfx-build\"
 
 # LIVE gate (W6, owner-run with game open)
-.\scripts\setup-lab-run.ps1
-.\scripts\prove-vfx.ps1
+.\scripts\setup_lab_run.py
+.\scripts\prove_vfx.py
 ```
 
 ## 5. Project structure (touched files only)
 
+```
+gk-core/src/FusionRpg.Core/Vfx/            VfxRules (curves/tiers), VfxRecipes (+Shape), VfxBurstMath (new),
+                                   VfxCatalog (seed additions), ElementFxPalette (no change)
 ```
 gk-core/src/FusionRpg.Core/Vfx/            VfxRules (curves/tiers), VfxRecipes (+Shape), VfxBurstMath (new),
                                    VfxCatalog (seed additions), ElementFxPalette (no change)
@@ -154,12 +157,9 @@ gk-fusion/src/FusionRpg.Injector/Effects/    InjectorStatusBridge (sink wiring)
 gk-fusion/src/FusionRpg.Injector/GameHooks.cs  remove now-duplicate anchor Register lines
 gk-core/tests/FusionRpg.Core.Vfx.Tests/Vfx/    new: burst math, curves, status-cue tests
 gk-core/tests/FusionRpg.Guard.Tests/       LawnCoordsGuardTests: no-FindObjectsOfType-in-Fx pin
-scripts/prove-vfx.ps1              6-element + shape + status coverage
+scripts/prove_vfx.py              6-element + shape + status coverage
 docs/architecture/vfx-ssot.md      §16.2 palette rows, status line
 ```
-
-## 6. Code style
-
 Repo rules apply unchanged: no throws into the game loop (guarded try/catch, skip + `debug.fx.skipped`); every tunable constant lives in `VfxRules`; decision logic stays in pure Core (injector classes are thin shells); no `renderer.material`, no per-cue `FindObjectsOfType`, no per-burst instantiate (SSOT ban list); comments state constraints, not narration; neutral project voice, no vendor names.
 
 ## 7. Testing strategy

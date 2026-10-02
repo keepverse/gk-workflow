@@ -14,8 +14,8 @@ Audit whether the repository's gates, CI topology, test selection, deployment/li
 - `docs/contributing/live-probe-standard.md`
 - `docs/runbook/local-dev.md`
 - `.github/workflows/ci.yml`
-- `scripts/verify-change.ps1`
-- `scripts/test-fast.ps1`
+- `scripts/verify-change.py`
+- `scripts/test_fast.py`
 - all `scripts/guard-*.ps1` and the current QC index/reports
 
 ## Method

@@ -102,7 +102,7 @@ Queue: [ordered task ids, dependency order, comma-separated, ids only]
 Next: [concrete next task id — first unblocked undone queue item]
 Peers: | Peer | Anchor | Provides | Consumes |
 Drift gates: `python scripts/session-boundary-check.py` ·
-  `.\scripts\verify-change.ps1 -Paths <changed> -Session [id]` (+ `-PlanOnly` to preview)
+  `.\scripts\verify-change.py -Paths <changed> -Session [id]` (+ `-PlanOnly` to preview)
 Evidence: `tasks/evidence-fragments/[task-id].md` per task (`| Criterion | Command | Result | Artifact |`)
 Ledger: `tasks/<program>-ledger.jsonl` — append-only run-state (`anchor|task|note|gate|queue|complete`);
   EVERY event written through `python gk-core/scripts/anchor-ledger.py <ledger> ...` — never hand-write
@@ -143,22 +143,22 @@ No new check script — reuse only:
 ## Step 4 — Goal prompt (<=4000 chars, then ask owner to set it)
 
 Fill the template, then check with `Measure-Object -Character` (or `wc -m`) — raw AND filled for
-a realistic lane. If over 4000, trim the queue display (ids only, no titles) and paths first —
-never drop loop, anti-cheat, gates, blocked protocol, or proof rules. Program detail lives in the
-anchor, not the goal. Then ASK the owner to paste it into the manager / Claude Code goal field.
-The goal is a workflow reminder (anti-cheat instruction), not a second anchor file.
-
-Template (`[BRACKETS]` filled per run; this is the first fenced text block in this file and the
-orchestrator measures it, so do not add another one):
-
-```text
-COMPLETE [program]
-
-SOURCE OF TRUTH: [plan] + [todo]. Queue: [queue]. They own requirements, order, acceptance, evidence. Read the parent plan + the FULL lane todo(s) first; other todos only for queue prerequisites. Never skip, reinterpret, replace, or reduce.
-
-MISSION: Drive the queue to PROVEN COMPLETE. Every item resolved + evidenced.
-
-CYCLE — EVERY ITEM: 1.READ req+contract+evidence. 2.BUILD full fix. 3.OBSERVE metrics/logs. 4.PROBE falsifier vs real behavior. 5.TEST focused filter+guard. 6.REVIEW callers/contracts/edges. 7.FIX every gap. 8.COVER regression tests. 9.VERIFY reread the item, prove it satisfied. A changed file, build, green test, or launched probe is NOT enough — the item itself must be proven.
+1. `/session-start` — write `tasks/sessions/<session>.json` (template `tasks/sessions/_template.json`:
+   `session/program/problem/mode/branch/worktree/paths/started/status`), commit with first change.
+2. `python scripts/session-boundary-check.py` — exit 0 before first edit and before each commit.
+   Ledger writes: one `anchor` line at setup (with `--queue`); one `queue --ids` line when
+   adopting an already-anchored ledger or re-ordering (latest wins); one `task --state started|done|blocked`
+   per task transition; one `note` per decision future sessions must not rediscover; one `gate` per
+   deterministic gate result; `complete` at the end. EVERY write goes through
+   `gk-core/scripts/anchor-ledger.py` — the script stamps time + integrity mark; hand-written lines fail
+   `check`. Resume: `python gk-core/scripts/anchor-ledger.py tasks/<program>-ledger.jsonl resume` is the
+   first command of every fresh context window on the same session record; `... check` must exit 0 (schema + sequence drift).
+3. `.\scripts\verify-change.py -Paths <changed> -Session <id>` — every changed path must resolve to
+   exactly one owner (`verification-boundaries.v1.json`); `-PlanOnly` previews without running.
+4. Per-task `Verify:` line — focused `dotnet test --filter` + applicable `scripts/guard-*.ps1`.
+   Full suite only at: large-feature finish, cross-program change, or right before a live probe.
+5. Commits with plain `git` (explicit paths) (the session fence), never `all=true`.
+   Push/PR only when the owner asks.
 
 DEPENDENCIES: Follow queue + hard-edge order. Prerequisites before dependents. Never skip hard items for easy ones.
 

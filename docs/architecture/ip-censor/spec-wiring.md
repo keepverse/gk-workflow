@@ -27,7 +27,7 @@ produces today: `gk-core/tools/tuning/publish.py` maps to boundary `tuning-publi
 passes, and proves nothing about the changed file."* A `python` runner lane is what fixes it.
 
 **Success criteria**
-- `.\scripts\verify-change.ps1 -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <active>` returns a
+- `.\scripts\verify-change.py -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <active>` returns a
   **plan that names the ip-censor pytest lane** — not the throw
   `"VERIFICATION BOUNDARY MISSING: <path>. Add an owner mapping; do not run a broad suite as a
   fallback."` (`gk-core/scripts/verify-change.py:771`), and not a `dotnet test` of an unrelated project.
@@ -84,12 +84,12 @@ exactly what it consumes.
 
 ### What this spec consumes from `python-test-lane` (already decided there — do not re-decide)
 
-- **Runner vocabulary** is closed: `dotnet` / `pytest` / `script` (`spec-python-test-lane.md` D1). This
-  spec uses `pytest`; it adds no fourth member.
-- **Project shape:** `{ "runner": "pytest", "root": "gk-core/tools/ip-censor", "tests": "tests" }` (D1).
-- **Selector:** a boundary on a `pytest` project selects with `testFiles`, **never**
-  `verificationId`, and **never `pytest -k`** (D2) — *"a substring match over test names, so a rename
-  silently selects zero or extra tests."*
+| Fact | Evidence |
+|---|---|
+| The lane is **spec'd, not built** | `docs/architecture/test-verification-boundary/spec-python-test-lane.md` (Wave 3: TVB3.1–TVB3.5, all `[ ]` in `tasks/test-verification-boundary-todo.md:168-196`) |
+| The registry is still `schemaVersion: 1`, `projects` all strings, **no `runner` key**, no `knownRed` | Loaded `gk-core/scripts/verification-boundaries.v1.json` directly |
+| The shared lib does not exist | `Test-Path scripts/lib/verification_boundaries.py` → **False**; `gk-core/scripts/checks/` → **False** |
+| Wave 3 is gated behind Wave 2 (`registry-contract`, schema 3) | `tasks/test-verification-boundary-todo.md:170` — TVB3.1 deps `TVB2.*`, all `[ ]` |
 - **`selfSelect`** for a changed file named `test_*.py` under the project's tests directory; any other
   file there (a conftest.py, fixtures) selects the module run (D2).
 - **Exit 5 is a failure** — a selector collecting nothing is a registry defect, not a pass (D3).
@@ -139,11 +139,11 @@ never blocks generation. The repo already has both release surfaces, measured th
 
 The gate needs no model and no network (`scan` never reaches `suggest`), and the registry is tracked
 (IC-5), so the gate is reproducible on the release runner.
-
-*Audit 2026-09-19:* the install runs in `gk-core/tools/ip-censor`, but the **scan** runs from the repository
-root, and `report` resolves the tree from `git rev-parse --show-toplevel`: `git ls-files` run inside
-`gk-core/tools/ip-censor` lists only that folder, and a gate over it would pass vacuously. The same holds for the
-advisory CI step.
+**What half 1 does not fix, said out loud:** until half 2, `verify-change.py -Paths <ip-censor file>`
+still throws `VERIFICATION BOUNDARY MISSING`. The tool is usable via its CLI and its tests run in CI,
+but the repo's focused local-verification path does not cover it. That is a **named, temporary gap**
+with a named unblocker — not something to paper over by mapping the tool to a C# project, which is the
+trap `spec-python-test-lane.md:11-24` documents.
 
 **What the gate does not replace.** The IC-4 fixes are release-blocking in their own right (see the
 map's *Release-blocking fixes*). The `Jackson*` species ids are compound identifiers
@@ -196,11 +196,11 @@ gk-core/scripts/verification-boundaries.v1.json   → half 2: + 1 project, + 1 o
 .github/workflows/release.yml             → the release gate step (IC-3)
 docs/runbook/release-prove.md             → one "Before tagging" checklist line (IC-3)
 gk-core/tests/FusionRpg.Guard.Tests/              → + a lane-wiring guard (half 2)
+# After half 2 (the lane): the focused path, which must name the ipcensor lane
+.\scripts\verify-change.py -Paths gk-core/tools/ip-censor/ipcensor/report.py -Session <active-session-id> -PlanOnly
+# Registry integrity, must stay green through the schema-4 amendment
+python gk-core/scripts/guard-verification-boundaries.py
 ```
-
-## Code Style
-
-```jsonc
 // half 2 — registry addition, consuming python-test-lane's schema 4 (D1 shape)
 "projects": {
   // ...existing...
@@ -266,7 +266,7 @@ path must exit 0 and name the ipcensor lane.
    at build time by scanning `tests/` for imports of the changed module and committing the result. The
    illustration above is a form, not the final list.
 3. **Timing of half 2.** Should `wiring` (a) land half 1 now and half 2 when `python-test-lane` Wave 3
-   ships, or (b) wait for Wave 3 and land both together? Recommendation: **(a)** — half 1 is
-   independently valuable and has precedent (TVB0.3), and waiting would block the tool on an unrelated
+The acceptance criterion is the **command**, not a proxy: `verify-change.py -PlanOnly` over a proposed
+path must exit 0 and name the ipcensor lane.
    program's schedule. The cost of (a) is a documented temporary gap in local verification; the cost of
    (b) is indefinite.

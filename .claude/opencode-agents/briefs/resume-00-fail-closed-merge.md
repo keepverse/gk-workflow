@@ -15,8 +15,8 @@ Repair the manager-owned merge/acceptance scripts so a red merged-head result, m
 
 ## Allowed paths
 
-- `.claude/cmdc-agents/scripts/post-merge-check.ps1`
-- `.claude/cmdc-agents/scripts/accept-lane.ps1`
+- `.claude/cmdc-agents/scripts/post_merge_check.py`
+- `.claude/cmdc-agents/scripts/accept_lane.py`
 - `.claude/cmdc-agents/scripts/merge-lanes.py`
 - `.claude/cmdc-agents/scripts/test_fail_closed_pipeline.py`
 

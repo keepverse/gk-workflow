@@ -91,7 +91,7 @@ python gk-core/scripts/guard-test-substrate.py
 ```
 gk-core/scripts/guard-test-substrate.py        → static gate (shipped)
 gk-core/scripts/test-substrate-baseline.txt     → the ratchet (shipped)
-scripts/test-substrate-leak-alarm.ps1   → runtime alarm (NEW)
+scripts/test_substrate_leak_alarm.py   → runtime alarm (NEW)
 .github/workflows/ci.yml                → one added step (shared; coordinate)
 gk-core/tests/FusionRpg.Guard.Tests/TestSubstrateGuardTests.cs → static gate's tests (shipped)
 ```

@@ -211,7 +211,7 @@ earlier "does not register a band-blind rule" hold is lifted.
   under boundary row `core-world-diplomacy`. Property tests generate fact sequences with
   `SeededRng.DeriveStream` (`gk-core/src/FusionRpg.Core/Battle/SeededRng.cs:26`) and print, never assert, how
   many sequences ran.
-- `verify-change.ps1 -Paths` on the `Access` files and tests.
+- `verify-change.py -Paths` on the `Access` files and tests.
 
 ## Hard edges
 

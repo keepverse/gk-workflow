@@ -59,9 +59,9 @@ class-system gate):
    enforce that at tuning-load or guard time instead of at compose time.
 3. Some other resolution this spec's owner picks.
 
-**Tracked:** `tasks/class-system-todo.md` P3.1 (blocked on this — "prove-aptitude.ps1 covers all twelve
+**Tracked:** `tasks/class-system-todo.md` P3.1 (blocked on this — "prove_aptitude.py covers all twelve
 with zero deltas" cannot be true while this gap stands) and `.remember/now.md` (cross-program pending
-item). Reproduce: `.\scripts\prove-aptitude.ps1 -Source <any of the twelve> -Channels ""` — exits 1
+item). Reproduce: `.\scripts\prove_aptitude.py -Source <any of the twelve> -Channels ""` — exits 1
 every time, none of the twelve pass unfiltered.
 
 ### Baseline re-tune (owner decision: preserve today's feel — the Chaos-style balance mechanism)

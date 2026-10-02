@@ -176,7 +176,7 @@ there are — all three are readings that move whenever content ships.
 - [ ] `-Report` prints "inputs with no local proof".
 - [ ] No boundary maps an input to a project that does not read it (each S1 owner cites its evidence).
 - [ ] `schemaVersion` is 5 and both scripts accept only 5.
-- [ ] S-T1–S-T8 green, verified with `.\scripts\verify-change.ps1 -Paths <every changed script, registry and test path> -Session <id>`.
+- [ ] S-T1–S-T8 green, verified with `.\scripts\verify-change.py -Paths <every changed script, registry and test path> -Session <id>`.
 
 ## Open questions
 

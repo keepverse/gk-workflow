@@ -154,7 +154,7 @@ Every command here is filed only when the stamp grants the capability that admit
 - `tests/FusionRpg.Core.Tests/World/Ai/Trade/AiLogisticsTests.cs` (new): 2–6, 9.
 - `gk-core/tests/FusionRpg.Core.Tests/World/Ai/FrontierRulesTests.cs` (extend): 1, 5, 8.
 - `gk-core/tests/FusionRpg.Guard.Tests/` (the widened routing guard): 7.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>`; `FrontierRulesPolicy.cs`
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>`; `FrontierRulesPolicy.cs`
   changes, so the full suite once at module end; campaign tests run and reported.
 
 ## Hard edges

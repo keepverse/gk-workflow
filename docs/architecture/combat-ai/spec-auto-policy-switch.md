@@ -57,8 +57,8 @@ dotnet run --project gk-forge/tools/DominanceBaseline -- --theta 100    # record
 
 # 3. After the re-bless: the full suite, because this crosses program/module boundaries
 #    (AGENTS.md "Verification boundary", case 2).
-.\scripts\test-fast.ps1 -AllDefault
-.\scripts\verify-change.ps1 -Paths <changed files> -Session backlog-clean-up-20260920
+.\scripts\test_fast.py -AllDefault
+.\scripts\verify-change.py -Paths <changed files> -Session backlog-clean-up-20260920
 ```
 
 ## Project structure
@@ -239,14 +239,14 @@ B=0-specific `BattleMagnitudeParityTests`"*). Same procedure:
 2. Run the whole battle suite and the `BalanceGuard` category.
 3. Enumerate every failure. The allowed set is: the four hash constants, and literal `RulesetVersion`
    assertions. **Anything else is a finding**, and it goes in the writeup before it is touched.
+1. Make the policy change and the version bump. Do **not** touch a constant.
+2. Run the whole battle suite and the `BalanceGuard` category.
+3. Enumerate every failure. The allowed set is: the four hash constants, and literal `RulesetVersion`
+   assertions. **Anything else is a finding**, and it goes in the writeup before it is touched.
 4. Confirm the must-holds in §4(c) are green.
 5. Only then re-bless the four constants, in one edit, with the ledger paragraph.
-6. Run the full suite (`test-fast.ps1 -AllDefault`) — this change crosses Core/Server/tools, which is
+6. Run the full suite (`test_fast.py -AllDefault`) — this change crosses Core/Server/tools, which is
    AGENTS.md's case 2 for the unfiltered suite.
-
-A golden that is re-blessed before it is explained is a re-bless of an unknown, which is what the
-file's own header forbids: *"A diff here is a determinism break or a balance change and MUST be a
-conscious `RulesetVersion`/`EngineVersion` bump, never a silent re-bless"* (`:10-14`).
 
 ## Tunables
 
@@ -382,21 +382,21 @@ outside siege.
    move, (b) the bounded behavioural prediction with its fixture-shape evidence, (c) what held,
    (d) the **measured** expedition reward-rate delta per tier including the loyalty-threshold crossings,
    (e) the twin and baseline results.
+1. `RulesetVersion` is 6 with a v6 paragraph in its doc comment; `decisions.md:44` is amended in the
+   same commit.
+2. Battle and expedition auto-resolve run the profiled policy through the router's single fallback
+   chain, at both `BasicAttack` and `Reselect`.
+3. Exactly four golden constants are re-blessed, exactly once, with a ledger paragraph that records the
+   triage.
+4. `Golden_outcomes_hold_their_shapes` and every rate golden are green **and unedited**.
+5. `docs/research/combat-ai/predicted-delta-rulesetversion-6.md` exists and contains (a) why the hashes
+   move, (b) the bounded behavioural prediction with its fixture-shape evidence, (c) what held,
+   (d) the **measured** expedition reward-rate delta per tier including the loyalty-threshold crossings,
+   (e) the twin and baseline results.
 6. `gk-core/tools/ProvePredictor` under `1e-4`; the dominance baseline re-run and recorded as unchanged.
 7. Every match logged after the bump carries a non-NULL `combat_ai_profile`.
-8. The full suite is green (`test-fast.ps1 -AllDefault`), and this is one of the three occasions
+8. The full suite is green (`test_fast.py -AllDefault`), and this is one of the three occasions
    AGENTS.md sanctions running it.
-
-## Open questions
-
-1. ~~**Does the expedition reward-rate measurement need a tuning response in the same program?**~~
-   **CLOSED — owner ruling 2026-09-20: accept the drift.** A smarter auto-resolve earning more is the
-   intended outcome, so there is no compensating expedition retune, in this commit or as a follow-up.
-   The writeup still measures and records the per-tier delta, because the economy's owner needs the
-   number even when nothing is being corrected. The record below is the reasoning that led there.
-
-   **Does the expedition reward-rate measurement need a tuning response in the same program?** If the
-   measured victory rate moves enough to change the idle economy's pace, the fix is an expedition
    tuning pass, not an AI change. Options: (a) report the delta and let the economy owner decide;
    (b) pre-emptively retune `SpecimenXpPerBattleWon` in the same commit. **Recommended default: (a)** —
    (b) is a second cause in a one-cause commit, and the economy's own owner has the calibration target.

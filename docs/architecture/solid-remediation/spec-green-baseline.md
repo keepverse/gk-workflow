@@ -156,7 +156,7 @@ inherits them. That is a narrower gate than "npm test green", stated openly rath
 
 ### 6. Session record and boundary
 
-Create `tasks/sessions/solid-remediation-<date>.json` so `verify-change.ps1 -Session …` is runnable for
+Create `tasks/sessions/solid-remediation-<date>.json` so `verify-change.py -Session …` is runnable for
 every later module, and mark the 14 stale records merged or abandoned so `session-boundary-check.py` is
 clean. Owner ruling 2026-09-17: no other agents are on this tree, so the ~15 crossing claims are stale
 metadata, not live conflicts. A boundary check that is permanently dirty is one everyone learns to ignore.

@@ -48,4 +48,4 @@ list.
 ## Verification
 
 `python -m pytest <test file> -q`, then
-`.\scripts\verify-change.ps1 -Paths gk-core/scripts/audit-program-pipeline.py,<test file> -Session <id>`.
+`.\scripts\verify-change.py -Paths gk-core/scripts/audit-program-pipeline.py,<test file> -Session <id>`.

@@ -12,7 +12,7 @@
 | `FusionRpg.Injector.MelonLoader.39` | **hardcodes** `pvzrh-3.9` | `FUSIONRPG_ML_GAMEDIR` | pointed at the 3.8.1 Blooms pack → **4× CS0266** in `Bridges/pvzrh-3.9/ZombieCombatFields.cs:13-14` |
 
 Both Melon hosts read the **same** `FUSIONRPG_ML_GAMEDIR`, and they need **different** packs. That is
-the core defect. `post-merge-check.ps1` builds the solution, so it can never reach GREEN — it reports
+the core defect. `post_merge_check.py` builds the solution, so it can never reach GREEN — it reports
 `build: non-interop project errors: FusionRpg.Injector.MelonLoader.csproj` and exits 1.
 
 Evidence reproduced in this session (all four directions):
@@ -28,9 +28,9 @@ All three packs exist on this machine. CI never builds the solution (it runs per
 
 Make the build topology satisfy the matrix in `docs/architecture/game-versioning.md` §Model —
 `GameProfile × LoaderHost → one compiled DLL` — so that **one environment with the legal packs builds
-the whole solution**, without breaking `deploy-play.py` or `publish-player.ps1`.
-
-Choose and implement ONE shape, and state why in the report:
+Make the build topology satisfy the matrix in `docs/architecture/game-versioning.md` §Model —
+`GameProfile × LoaderHost → one compiled DLL` — so that **one environment with the legal packs builds
+the whole solution**, without breaking `deploy-play.py` or `publish_player.py`.
 
 - **(A) Per-host pack variables** — e.g. `FUSIONRPG_ML_GAMEDIR` stays the 3.9/default pack for
   `MelonLoader.39`, and the legacy host reads a separate `FUSIONRPG_ML_GAMEDIR_38`
@@ -50,16 +50,16 @@ bridge its interop cannot satisfy — that leak is the second half of the defect
 2. `gk-fusion/src/FusionRpg.Injector.BepInEx/FusionRpg.Injector.BepInEx.csproj`
 3. `gk-fusion/src/FusionRpg.Injector.MelonLoader/FusionRpg.Injector.MelonLoader.csproj`
 4. `gk-fusion/src/FusionRpg.Injector.MelonLoader.39/FusionRpg.Injector.MelonLoader.39.csproj`
+1. `FusionRpg.slnx` (only if the fix changes what is in the solution)
+2. `gk-fusion/src/FusionRpg.Injector.BepInEx/FusionRpg.Injector.BepInEx.csproj`
+3. `gk-fusion/src/FusionRpg.Injector.MelonLoader/FusionRpg.Injector.MelonLoader.csproj`
+4. `gk-fusion/src/FusionRpg.Injector.MelonLoader.39/FusionRpg.Injector.MelonLoader.39.csproj`
 5. `Directory.Build.props` (or a new `Directory.Build.targets` beside it — name it in the report)
 6. `gk-fusion/scripts/deploy-play.py`
-7. `scripts/publish-player.ps1`
-8. `scripts/guard-injector-compile.ps1`
+7. `scripts/publish_player.py`
+8. `scripts/guard-injector-compile.py`
 9. `tasks/sessions/resume-35-slnx-topology-20260925.json` (this record only)
 10. `docs/architecture/game-versioning.md` (only if the env contract changes — say so)
-
-Nothing else. Do not edit `gk-fusion/src/FusionRpg.Injector/**` shared code, the bridges, tests, CI workflows,
-`.claude/**`, or `game-profiles.json` unless your chosen shape needs it — if it does, say so in the
-report rather than widening silently.
 
 ## Hard rules
 
@@ -76,13 +76,13 @@ report rather than widening silently.
 ```powershell
 # 1) The whole solution builds with the legal packs (this is the fix's own proof).
 $env:FUSIONRPG_GAME_DIR  = '<BepInEx 3.8.1 source root, e.g. the FULL MOD TOOL pack>'
-$env:FUSIONRPG_ML_GAMEDIR = '<the 3.9 MelonLoader source root>'
-# plus whatever second pack variable your shape introduces
-dotnet build FusionRpg.slnx -c Debug --nologo
-# MUST print 'Build succeeded' and 0 lines matching ': error '
-
-# 2) Both hosts still compile individually with their own pack.
-dotnet build gk-fusion/src/FusionRpg.Injector.BepInEx/FusionRpg.Injector.BepInEx.csproj -c Debug --nologo
+- **Never record a machine-local pack path** (`H:\Games\...`) in any tracked file. Paths come from env
+  or `game-profiles.json` fingerprints only.
+- **Never make the build silently skip a host.** A skipped host must print its reason at high
+  importance (as `MelonLoader.39` does today) and must never be counted as a compiled host.
+- Keep `deploy-play.py --loader-host BepInEx` and `--loader-host MelonLoader` working, and keep
+  `publish_player.py`'s per-profile Drop layout exactly as it is.
+- Commit nothing; leave the tree dirty for harvest. Never create a branch or push.
 dotnet build gk-fusion/src/FusionRpg.Injector.MelonLoader/FusionRpg.Injector.MelonLoader.csproj -c Debug --nologo
 dotnet build gk-fusion/src/FusionRpg.Injector.MelonLoader.39/FusionRpg.Injector.MelonLoader.39.csproj -c Debug --nologo
 
@@ -97,4 +97,7 @@ solution build in one environment, **say so and stop** — do not claim a partia
 
 ```
 <<<REPORT {"status":"done|blocked","summary":"...","shape_chosen":"A|B|C","changed_files":[...],"commits":[],"verification":[{"command":"...","result":"..."}],"not_proved":["..."]} REPORT>>>
+```
+# 3) The compile guard still passes.
+.\scripts\guard-injector-compile.py
 ```

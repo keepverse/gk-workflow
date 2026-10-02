@@ -25,4 +25,4 @@ treat it as binding. This definition adds the rules for refactors.
 - **Source-scan guard tests** that name the old symbol are part of the blast radius. They are add-only
   for you, so record the exact assertion change as a blocker for the manager.
 - **Verify wider than a feature task.** Run every test project whose code you touched, in full, plus
-  `scripts/run-guards.ps1 -Tier ci`, before the final commit.
+  `scripts/run_guards.py -Tier ci`, before the final commit.

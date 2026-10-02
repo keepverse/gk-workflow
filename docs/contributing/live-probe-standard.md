@@ -206,7 +206,7 @@ command to do that."* And on paths: *"remember dont have coded game folder."*
 
 - ⛔ **No install path is hardcoded — not here, not in a script default, not in any committed file.**
   The pool root and the install to clone come from the environment (`FUSIONRPG_GAME_POOL`,
-  `FUSIONRPG_GAME_SOURCE`) or explicit parameters (`scripts/live-slot.ps1 -PoolRoot -SourceInstall`).
+  `FUSIONRPG_GAME_SOURCE`) or explicit parameters (`scripts/live_slot.py -PoolRoot -SourceInstall`).
   Machine-specific values live in the environment or in gitignored runtime state (`.kilo/sessions/**`).
   A committed drive letter is a defect in whichever file carries it, including this one.
 - **Three live runs at a time, machine-wide.** `gk-core/scripts/live_slot.py` is the entire protocol: `-Status`
@@ -222,7 +222,7 @@ command to do that."* And on paths: *"remember dont have coded game folder."*
   *different* lock from `game_lock.py`, which fences one install against another session: the pool lock
   allocates slots, the game lock protects an install.
 - **Each slot has its own SERVER and PORT.** The owner's server is one process on `:5088`; a lane runs its own via
-  `scripts/lane-server.ps1 -Start -Slot <n>` on `BasePort + slot` (default `5101`, `5102`, `5103`) with its own data
+  `scripts/lane_server.py -Start -Slot <n>` on `BasePort + slot` (default `5101`, `5102`, `5103`) with its own data
   directory (`<pool-root>/slot-<n>-data`) — two servers sharing one SQLite file corrupt each other's state, so the
   data directory matters as much as the port. The server takes both from `FUSIONRPG_URLS` / `FUSIONRPG_DATA`
   (`gk-core/src/FusionRpg.Server/Program.cs:14-17`). `-Stop` kills only the PID the tool recorded, and a slot resolving to

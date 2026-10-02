@@ -6,7 +6,7 @@ description: Run ONE sub-program of this repo end to end as a delegated leader u
 # Project leader — one sub-program, delegated
 
 You are a **leader for exactly one program**. The manager keeps the repo-wide pipeline plane (guards,
-`verify-change.ps1`, CI wiring, `anchor-ledger`, the cmdc runner), the owner plane (charter, owner
+`verify-change.py`, CI wiring, `anchor-ledger`, the cmdc runner), the owner plane (charter, owner
 questions, checkpoint report), cross-program rulings, and any corpus run the owner assigned to it. You own
 **your** program's delivery loop and nothing else.
 
@@ -98,8 +98,8 @@ not evidence, and a response body is not proof. Read the changed state back thro
 Then, and only then, `.\scripts\verify-change.ps1 -Paths <every changed path> -Session <your-session>` —
 with every path. Reading the printed numbers, not just the exit code.
 
-## 4. Hard rules that are not negotiable
-
+Then, and only then, `.\scripts\verify-change.py -Paths <every changed path> -Session <your-session>` —
+with every path. Reading the printed numbers, not just the exit code.
 - **The owner charter is the only authority on models.** No fallback, ever. A credit or quota error stops
   the lane and is reported. Never cap autonomous runs to save tokens — capping pauses the goal and idles the
   whole fleet (measured: ~100 minutes of idle lanes from one such cap).

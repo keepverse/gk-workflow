@@ -160,7 +160,7 @@ dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~Rift
 dotnet test gk-core/tests/FusionRpg.Guard.Tests --filter "FullyQualifiedName~OverlayPipeContract"
 
 # Boundary selected for these paths (never the whole suite — AGENTS.md verification boundary)
-.\scripts\verify-change.ps1 -Paths gk-fusion/src/FusionRpg.Injector/Hud/RiftMenuTombstone.cs,gk-fusion/src/FusionRpg.Injector/Hud/OverlaySwitchGui.cs,gk-fusion/src/FusionRpg.Injector/Hud/OverlaySwitch.cs -Session rift-gate-spec-20260915-c41a
+.\scripts\verify-change.py -Paths gk-fusion/src/FusionRpg.Injector/Hud/RiftMenuTombstone.cs,gk-fusion/src/FusionRpg.Injector/Hud/OverlaySwitchGui.cs,gk-fusion/src/FusionRpg.Injector/Hud/OverlaySwitch.cs -Session rift-gate-spec-20260915-c41a
 
 # Injector compiles with real interop (the part CI cannot build)
 dotnet build gk-fusion/src/FusionRpg.Injector.MelonLoader.39 -c Release -p:MlGameDir=$env:FUSIONRPG_ML_GAMEDIR -p:GameProfile=pvzrh-3.9

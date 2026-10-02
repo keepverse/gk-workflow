@@ -198,7 +198,7 @@ balance pass never moves them.
 
 - `tests/FusionRpg.Core.Tests/World/Diplomacy/` (new), trait `core.world-diplomacy.vocabulary`;
   boundary row `core-world-diplomacy` (paths `src/FusionRpg.Core/World/Diplomacy/**` and its tests).
-- `verify-change.ps1 -Paths` on the reader, the registry file, the tuning file and the tests.
+- `verify-change.py -Paths` on the reader, the registry file, the tuning file and the tests.
 
 ## Hard edges
 

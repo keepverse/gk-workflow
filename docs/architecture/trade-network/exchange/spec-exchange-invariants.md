@@ -136,7 +136,7 @@ None. Generator parameters are test inputs, printed.
 - `tests/FusionRpg.Core.Tests/World/Trade/Invariants/` (new), trait `core.world-trade.invariants`,
   boundary row `core-world-trade-invariants`; the guard script's own test in
   `gk-core/tests/FusionRpg.Guard.Tests/`.
-- `verify-change.ps1 -Paths` selects the invariants boundary for any change under `World/Trade/`
+- `verify-change.py -Paths` selects the invariants boundary for any change under `World/Trade/`
   (the boundary row lists `src/FusionRpg.Core/World/Trade/**` as a seam into it).
 
 ## Hard edges

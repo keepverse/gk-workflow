@@ -175,7 +175,7 @@ Guard scripts enforce it on every CI run and every local deploy — among them:
 
 ```text
 python gk-fusion/scripts/guard-single-writer.py   # combat writes only via EntityStatWriter
-.\scripts\guard-secondary-no-unity.ps1  # gameplay plugins stay Unity-free
+.\scripts\guard-secondary-no-unity.py  # gameplay plugins stay Unity-free
 python gk-fusion/scripts/guard-funnel-delta.py    # HP deltas only through the Funnel
 python gk-core/scripts/guard-actor-hub.py       # one actor stat compose, no parallel composer
 python gk-core/scripts/guard-dal.py             # SQL only inside FusionRpg.Data

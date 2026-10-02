@@ -206,7 +206,7 @@ reads it, so re-tuning the AI never trips the world stamp's replay check (TC5).
 - `gk-core/tests/FusionRpg.Guard.Tests/` (new source scan): criterion 1.
 - `gk-core/tests/FusionRpg.Core.Tests/World/Ai/ConsiderationTests.cs` is unchanged; the scorer's contract is
   already tested.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>`. `World/Ai/**` resolves only to
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>`. `World/Ai/**` resolves only to
   `core-fallback` today; the change adds a focused `core-world-ai-trade` boundary row covering
   `src/FusionRpg.Core/World/Ai/Trade/**` and its tests.
 

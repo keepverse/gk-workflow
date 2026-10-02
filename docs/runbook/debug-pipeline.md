@@ -20,7 +20,7 @@ python scripts\deploy-play.py --loader-host BepInEx
 # MelonLoader against a *different* pack than the default (Blooms 3.8.1 Melon pack — not 3.9)
 $env:FUSIONRPG_ML_GAMEDIR = "<Blooms Game Files>"
 python scripts\deploy-play.py
-# After lawn open: .\scripts\smoke-melon-live.ps1
+# After lawn open: .\scripts\smoke_melon_live.py
 ```
 
 Enter any level. Leave the lawn running. Prefer Simulator **off**. Leave `FUSIONRPG_MELON_SKIP_HARMONY` unset for Melon LIVE.

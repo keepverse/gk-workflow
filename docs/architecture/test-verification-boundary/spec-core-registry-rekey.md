@@ -114,7 +114,7 @@ The `-Report` before/after numbers go in the commit body as readings. No test pi
 - [ ] A one-area Core production change plans that area's project (or group), not every Core test.
 - [ ] Every pre-existing `core.*` focused boundary still selects its tests after the split.
 - [ ] Orphans with a production owner have boundaries; the rest appear in `-Report`.
-- [ ] K-T1–K-T4 green, verified with `.\scripts\verify-change.ps1 -Paths gk-core/scripts/verification-boundaries.v1.json,<changed gk-core/tools/TestSplitAnalyzer paths> -Session <id>`.
+- [ ] K-T1–K-T4 green, verified with `.\scripts\verify-change.py -Paths gk-core/scripts/verification-boundaries.v1.json,<changed gk-core/tools/TestSplitAnalyzer paths> -Session <id>`.
 
 ## Open questions
 

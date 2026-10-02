@@ -41,5 +41,5 @@ entities), normal speed", measuring scaling with board size.
 ## Recommendation
 
 If this comparison is still wanted for real optimization decisions, re-run
-`.\scripts\probe-perf.ps1 -Scenario B2 -DurationSec 90` fresh against current code, twice, and diff
+`.\scripts\probe_perf.py -Scenario B2 -DurationSec 90` fresh against current code, twice, and diff
 those two runs — do not keep extending inference from these four unlabeled captures.

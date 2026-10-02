@@ -2,7 +2,7 @@
 
 ## Why this lane exists
 
-TVB5.9's third acceptance line (`test-fast.ps1 -AllDefault` green once) is
+TVB5.9's third acceptance line (`test_fast.py -AllDefault` green once) is
 blocked on TVB-F25: two stale **web** fixtures outside every TVB fence. The
 owner approved a lane re-bless (2026-09-23). The Core group (68 projects,
 15,836 tests), Data (1,766/0) and Server (826/0) legs are already green —

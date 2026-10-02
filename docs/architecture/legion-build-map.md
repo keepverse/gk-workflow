@@ -179,7 +179,7 @@ saved world.
 - `BannerElement` weights each element by `Count`, ties still broken by ring order.
 - Cargo capacity reads `Σ Count` and slot capacity is `long`, `checked`.
 
-**Verification boundary.** `.\scripts\verify-change.ps1 -Paths <changed> -Session <id>`; focused suites
+**Verification boundary.** `.\scripts\verify-change.py -Paths <changed> -Session <id>`; focused suites
 `TurnEngineTests`, `WorldCanonicalSeamGuardTests`, `WorldStoreTests`, `WorldGraphDiffTests`, `SupplyTests`,
 `gk-core/tests/FusionRpg.Core.Tests/World/LegionCargo/**`, `DistrictAssaultResolverTests`; web `npm test` for the
 world adapters. `python gk-core/scripts/audit-overflow.py --targets A3` for the new arithmetic.

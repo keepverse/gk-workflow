@@ -99,7 +99,7 @@ the program with a report.
 ### Boundary change
 
 A record must stay identical on the integration branch (the checker reads it there) and on the branch
-that works under it (`verify-change.ps1` reads it from its own worktree). A worktree-isolated session
+that works under it (`verify-change.py` reads it from its own worktree). A worktree-isolated session
 cannot run git in the main tree, so each change goes:
 
 1. `ExitWorktree` with `action: "keep"` — back to the main tree.
@@ -214,10 +214,10 @@ A checkpoint follows each phase; the first is the playable slice.
 
 Run the **`/build full`** loop (`.claude/commands/build.md`, *Zero-attention*) yourself, or hand the
 tasks to a worker lane the charter allows (§13) and keep the gates: for each task, RED → GREEN →
-`verify-change.ps1` → `build-gate` → commit. Plain git, explicit paths; one task is one commit, carrying
+Run the **`/build full`** loop (`.claude/commands/build.md`, *Zero-attention*) yourself, or hand the
+tasks to a worker lane the charter allows (§13) and keep the gates: for each task, RED → GREEN →
+`verify-change.py` → `build-gate` → commit. Plain git, explicit paths; one task is one commit, carrying
 the code, the tests and the ticked todo box.
-
-- **Golden moves:** a single cause per commit, the re-bless in the same commit; log each one.
 - **Tuning:** an existing domain publishes `v{n+1}` through `gk-core/tools/tuning/publish.py`, with every host
   reader that loads it; a new domain's first file is written directly (§6, G4). **Generated data:**
   change the generator, regenerate on the local LLM endpoint (§0.5), run its `--check`.

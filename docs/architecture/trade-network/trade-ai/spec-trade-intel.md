@@ -203,7 +203,7 @@ non-ascending array is a load rejection (T5).
 - `gk-core/tests/FusionRpg.Guard.Tests/WorldDeterminismGuardTests.cs` already scans `World/` for clocks and
   `System.Random` and `World/Ai/` for `WorldState` (`:108`); the view reads live under `Intel/`, which the
   engine side may read.
-- Run: `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>`. Today `World/Intel/**` resolves
+- Run: `.\scripts\verify-change.py -Paths <changed paths> -Session <id>`. Today `World/Intel/**` resolves
   only to the module-level `core-fallback` boundary (`gk-core/scripts/verification-boundaries.v1.json`); this
   module's change adds a focused boundary row for `World/Intel/` plus its test file, per AGENTS.md
   (an unmapped path is a boundary defect to fix, not a reason for the full suite).

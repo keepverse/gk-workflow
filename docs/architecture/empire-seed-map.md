@@ -354,7 +354,7 @@ material tier, relic cost, wonder effect values) resolves from `structure-seed` 
   covers the whole row, not only `anchor`); every playable row's ordinals resolve; the corpus has one
   writer and a rerun is byte-identical; `LoamPolicy` exposes no structure cost, yield, capacity or build
   turn; `python gk-core/scripts/audit-magic-numbers.py` shows no new literal on the balance surface.
-- **Verification:** `.\scripts\verify-change.ps1 -Paths <changed C# and test files> -Session <id>`
+- **Verification:** `.\scripts\verify-change.py -Paths <changed C# and test files> -Session <id>`
   (Core, Data and Server tests through their boundaries), plus
   `python -m pytest gk-forge/tools/seedsmith/tests/test_structure_corpus.py -q`. This module crosses Core, Data
   and Server test projects, so it is one of the three points where the full suite is the right call
@@ -750,18 +750,18 @@ Rows per role and per cell, grid density, unresolved rate, calls spent per batch
 ## 11. Contradictions found (code wins; each is corrected by the named module, not by this map)
 
 1. **"11 roles."** The ideal (§6.1) and `trade-network-ideal.md:161` count eleven roles including
-   `wonder`. The closed list has **ten** (`gk-forge/tools/seedsmith/seedsmith/adapters/structures/anchor/schema.py:41`); `wonder/` is a directory whose two
-   rows are `Extract` and `Bank`. With `exchange` there will be eleven. → `exchange-role`,
-   `decision-45-revision`.
-2. **The density band "moves from a test literal to a tuning value."** It is already a tuning value
-   (`gk-core/data/tuning/structure-seed.v1.json:23`), read by the planner (`structures/planner.py:146`); the
-   tests and a declared target string restate it. → `world-budgets`.
-3. **The trade rows "land at ~4.0–4.4 per cell."** That reading assumed base-defense's ~36-row target;
-   the generator deliberately stopped at 25 (`structures/generate_corpus.py:13-20`) and the corpus holds
-   28. Density is a reading the planner prints, never a design input. → `call-budget-dry-run`.
-4. **"One shared reader" named `ConcreteSpeciesSeedReader` as a second copy.** It reads GENERATED
-   concrete output, not seed plus bands (§5.2 scope note). The duplicate that does exist is `Bands.cs`
-   against the tuning tier ladder. → `band-reader`.
+| Concern | Owner | This program must not |
+|---|---|---|
+| Structure and legion **seed** contracts, their registries, exemplars, tone brief, planner, metrics, naming stage and committed corpora; the band tables for seed ordinals | `empire-seed` | — |
+| The structure schema's shipped modules 23–29 and their history | `base-defense` history, **owned by `empire-seed` from D-E2** | Rewrite base-defense's shipped history; only annotate it (§5.6) |
+| Warehouse capacity axis, bank points, production halt, the reward layer | `trade-network` `sector-yield` | Add a capacity field without that module. (Round 6 C2: the only `StructureKind` a feature building carries is the neutral `Feature`, landed once by `trade-foundation` `sector-features`; this program emits the value and adds no kind) |
+| Clearing capacity, prices, the trade hub's behaviour | `trade-network` `exchange` | Price anything |
+| Depots, crews, caravans as legions on standing orders | `trade-network` `fleet`, `legion-build` | Build a hauler catalog (withdrawn by the owner, ideal §6.2) |
+| Trade storylets, their hosts, predicate leaves and rate limits | `narrative-seed` (`narrative` adapter) and `npc-story-events` (runtime) | Build a second storylet generator |
+| Legion slot list, tradition trigger facts, carrier roles, layer 5c, `OwnerKind.Legion`, stack `Count`, the stack-scoped equipment layer, the legion-equipment stock registry row (P4, P6, `empire-resource-ssot.md` §3) | `legion-build` | Invent any of these vocabularies or fold an actor number |
+| The IP registry and the shared `avoid-list` helper | `ip-censor` | Keep a private banned-word list |
+| ~~`verify-change.py` mapping for `gk-forge/tools/seedsmith/**` and `gk-data/packs/fusion/data/seed/**`~~ **Overruled 2026-09-20 for this file only** (reconciliation R-17): adding owner rows to `gk-core/scripts/verification-boundaries.v1.json` is the trade-network family's **own work**, in the task that first needs the path. `AGENTS.md` is explicit that an unmapped production path is a verification-boundary defect to add or repair, never something to compensate for by widening the suite, and `landing-order.md` §7 blocked row 0b on exactly these rows. `test-verification-boundary` still owns the **tool** (`verify-change.py`, the registry's schema and its guard); a second overlapping row at the same specificity throws `VERIFICATION BOUNDARY AMBIGUOUS`, so each path gets **one** owner row from **one** task | `test-verification-boundary` owns the tool; this family owns its own rows | Add a second overlapping row for a path another task already mapped |
+| The orphaned `demons` adapter | seedsmith core | Build on it (named so no one does) |
 5. **Byte-identical acceptance versus coarse bands.** A three-rung `costProfile` cannot reproduce the
    shipped costs (`moderate` spans 0 to 300 across six rows). Resolved in §5.4 obligation 2.
 6. **One tuning file for two owners.** `empire-seed-ideal.md` §8 and `legion-build-ideal.md` §9 both put

@@ -180,7 +180,7 @@ These belong to the individual module specs (each spec carries its own):
 
 - ~~`registry` — where the registry lives and whether it is tracked~~ → **IC-5**: tracked, under
   `gk-data/packs/fusion/data/seed/ip-censor/`.
-- ~~`report` — advisory, or fail `verify-change.ps1`~~ → **IC-3**: a release gate; CI advisory; no
+- ~~`report` — advisory, or fail `verify-change.py`~~ → **IC-3**: a release gate; CI advisory; no
   per-change blocking.
 - ~~`scan` — the `docs/` enforcement split~~ → **IC-1**: citations are out of scope, so they are
   report-only findings, never enforced.

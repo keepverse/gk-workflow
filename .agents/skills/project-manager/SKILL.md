@@ -33,7 +33,7 @@ task: a scout for "where is X / who calls Y", a verifier for a triggered re-run,
 
 You do exactly four things personally:
 
-1. **The pipeline plane** — guards, `verify-change.ps1`, the CI workflow, `anchor-ledger`, the runner.
+1. **The pipeline plane** — guards, `verify-change.py`, the CI workflow, `anchor-ledger`, the runner.
    A lane's fence denies these by design; that denial is why the manager owns them.
 2. **Verdicts and rulings** — errata, fence assignment, routing a finding to its owning program's todo,
    acceptance, merge.
@@ -206,19 +206,19 @@ work here:
   `git branch rescue/<name> <sha>` — before any removal of a worktree with commits of its own.
 - **A record's status is a claim, and it has been wrong.** Measured 2026-09-26: `cmdc/lane-d` is
   recorded `abandoned` while its branch is an **ancestor of the integration branch**, so its work
+- **A unique commit that no ref points at is an emergency, not a cleanup item.** A detached HEAD's
+  commits survive only while its worktree directory exists. `git worktree remove` makes them
+  unreachable, and unreachable commits are collectable. **Create the rescue ref first, always** —
+  `git branch rescue/<name> <sha>` — before any removal of a worktree with commits of its own.
+- **A record's status is a claim, and it has been wrong.** Measured 2026-09-26: `cmdc/lane-d` is
+  recorded `abandoned` while its branch is an **ancestor of the integration branch**, so its work
   landed; across all records, 93 `merged` against 70 `abandoned`. Reconcile the record against the
   tree; never let the status alone decide a verdict. A `merged` record says the *code* landed and is
   silent about uncommitted evidence — "branch merged" is not "lane finished".
 - **A name test cannot see a moved file, and a commit count cannot see a rename.** The Core test
-  split made 8 relocated files read as "existing nowhere"; ps1-ban's `deploy-play.ps1` → `.py`
+  split made 8 relocated files read as "existing nowhere"; ps1-ban's `deploy-play.py` → `.py`
   rename made a stale worktree look like it held unlanded content. Compare line sets, and treat a
   symmetric one-for-one difference as the rename it is.
-
-### Six blind spots the cleanup tool does not cover (binding: say so, do not work around)
-
-- **A leftover directory that holds nothing is now reclaimed; one that holds content is classified
-  before it is adjudicated.** The planner enumerates *registered* worktrees, plus the directories
-  beside them that git no longer claims — a `git worktree remove` de-registers first and deletes
   second, so a failed delete (a Windows long path, a denied ACL, a live handle) leaves something git
   can never reclaim and never lists again, and a long-path delete that fails partway **creates** one.
   `--reclaim-only` removes the **provably empty** ones: a directory with zero entries cannot hold

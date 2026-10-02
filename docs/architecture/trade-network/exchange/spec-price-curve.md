@@ -160,7 +160,7 @@ Values are decided by principle at publish time. The file is a Math surface: no 
   row `core-world-trade-pricing`. Property tests draw inputs from a seeded generator
   (`gk-core/src/FusionRpg.Core/Battle/SeededRng.cs:26`, `DeriveStream`), print the number of cases, and never
   assert a count of cases.
-- `verify-change.ps1 -Paths` on the Pricing files and tests; `python gk-core/scripts/audit-overflow.py`;
+- `verify-change.py -Paths` on the Pricing files and tests; `python gk-core/scripts/audit-overflow.py`;
   `python gk-core/scripts/audit-magic-numbers.py --targets M1` shows nothing in `Pricing/`.
 
 ## Hard edges

@@ -126,7 +126,7 @@ is not running in this session), with a logged warning on a null field.
 dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~RiftMenuAnchor"
 
 # Boundary selected for these paths (never the whole suite — AGENTS.md verification boundary)
-.\scripts\verify-change.ps1 -Paths gk-core/src/FusionRpg.Core/Overlay/RiftMenuAnchor.cs,src/FusionRpg.Injector/Hud/MenuPresenceHook.cs -Session rift-gate-spec-20260915-c41a
+.\scripts\verify-change.py -Paths gk-core/src/FusionRpg.Core/Overlay/RiftMenuAnchor.cs,src/FusionRpg.Injector/Hud/MenuPresenceHook.cs -Session rift-gate-spec-20260915-c41a
 
 # Injector compiles with real interop (the patch is the part CI cannot build)
 dotnet build gk-fusion/src/FusionRpg.Injector.MelonLoader.39 -c Release -p:MlGameDir=$env:FUSIONRPG_ML_GAMEDIR -p:GameProfile=pvzrh-3.9

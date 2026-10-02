@@ -119,7 +119,7 @@ dotnet test gk-core/tests/FusionRpg.Data.Tests/FusionRpg.Data.Tests.csproj -c Re
 ## Project structure
 
 ```
-scripts/test-fast.ps1                     → new: the default-profile runner (one place for the filter)
+scripts/test_fast.py                     → new: the default-profile runner (one place for the filter)
 .github/workflows/ci.yml                  → unchanged behaviour (full); a comment naming the profiles
 .github/workflows/nightly.yml             → new: schedule-triggered full run (catches a disk regression within a day)
 .github/workflows/release.yml             → full + required gate

@@ -127,7 +127,7 @@ the sub-program's last checkpoint, so the full suite runs once when it lands (AG
 boundary*, point 1).
 
 **The bench file needs its own mapping (audit 2026-09-20).** `gk-core/tests/FusionRpg.Bench/**` has no fallback
-row: `verify-change.ps1 -PlanOnly -AllowUnscoped -Paths gk-core/tests/FusionRpg.Bench/AtomFormBench.cs` stops with
+row: `verify-change.py -PlanOnly -AllowUnscoped -Paths gk-core/tests/FusionRpg.Bench/AtomFormBench.cs` stops with
 *"VERIFICATION BOUNDARY MISSING"* (run in the audit). `trade-foundation` `step-benchmark` maps only its own
 bench files (`spec-step-benchmark.md` Test plan) and `Program.cs`. This module adds an owner row
 `logistics-bench` whose paths are `tests/FusionRpg.Bench/LogisticsBench.cs` and

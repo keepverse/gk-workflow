@@ -65,7 +65,7 @@ dotnet test gk-core/tests/FusionRpg.Core.Tests --filter "FullyQualifiedName~Gold
 dotnet test gk-core/tests/FusionRpg.Server.Tests --filter "FullyQualifiedName~Delve"
 dotnet test gk-core/tests/FusionRpg.E2E.Tests --filter "FullyQualifiedName~Delve"
 
-.\scripts\verify-change.ps1 -Paths @(
+.\scripts\verify-change.py -Paths @(
   'gk-core/src/FusionRpg.Server/RpgHub.cs',
   'gk-core/src/FusionRpg.Server/DelveBattleSessionManager.cs',
   'src/FusionRpg.Server/DelveAutomatedPolicy.cs',

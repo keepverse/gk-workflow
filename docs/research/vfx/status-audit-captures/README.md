@@ -41,4 +41,4 @@ Clear between captures: `POST /api/debug/clear-status` `{ "ptr": "<TargetPtr>" }
 
 ## LIVE status (2026-08-30)
 
-Automated harness green: **13/13** `sustainedStarted` via `audit-status-vfx-identity.ps1 -Live -Stress` (all-in-one `Ensure-LiveLabBoard`). Screenshots in this folder still pending owner capture.
+Automated harness green: **13/13** `sustainedStarted` via `audit_status_vfx_identity.py -Live -Stress` (all-in-one `Ensure-LiveLabBoard`). Screenshots in this folder still pending owner capture.

@@ -6,11 +6,11 @@ at `5df61d81` (code identical to the lane branch HEAD at the time), per
 
 ## Preconditions
 
-- Full default suite green first (`test-fast.ps1 -AllDefault`, run in a clean checkout of the branch):
+- Full default suite green first (`test_fast.py -AllDefault`, run in a clean checkout of the branch):
   Data 1547/1547, Server 551/551, E2E 226/226, Core 14207/14208. The one Core failure is
   `DungeonLootTableSeedFileTests` (a worktree-only CRLF artifact); the same test passes 4/4 in the main
   checkout.
-- Deploy: `deploy-play.ps1 -NoServer -NoRebuildUi` (injector + server publish), server started with
+- Deploy: `deploy-play.py -NoServer -NoRebuildUi` (injector + server publish), server started with
   `Start-Process dist\FusionRpg.Server\FusionRpg.Server.exe`.
 
 ## Scopes

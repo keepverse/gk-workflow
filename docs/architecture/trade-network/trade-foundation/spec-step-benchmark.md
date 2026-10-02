@@ -52,7 +52,7 @@ No bench references `TurnEngine` (the bench project holds `AtomFormBench.cs`, `W
 
 ### Found this session
 
-`gk-core/tests/FusionRpg.Bench/**` has **no verification boundary**: `verify-change.ps1 -PlanOnly -AllowUnscoped
+`gk-core/tests/FusionRpg.Bench/**` has **no verification boundary**: `verify-change.py -PlanOnly -AllowUnscoped
 -Paths gk-core/tests/FusionRpg.Bench/WorldGraphWriteBench.cs` stops with *"VERIFICATION BOUNDARY MISSING"*.
 This module maps the files it touches; the pre-existing bench files stay the gap of their owners.
 
@@ -143,6 +143,8 @@ values are printed from the ideal as targets; they become assertions nowhere.
 
 - `tests/FusionRpg.Core.Tests/World/Turn/TurnStepBench.cs` (prints) and
   `tests/FusionRpg.Core.Diagnostics.Tests/Diagnostics/PerfProbeWorldSectionTests.cs` (criteria 1, 3, 4, 6), both
+- `tests/FusionRpg.Core.Tests/World/Turn/TurnStepBench.cs` (prints) and
+  `tests/FusionRpg.Core.Diagnostics.Tests/Diagnostics/PerfProbeWorldSectionTests.cs` (criteria 1, 3, 4, 6), both
   `[Trait("VerificationId", "core.turn-step-bench")]`.
 - `gk-core/scripts/verification-boundaries.v1.json` gains owner row `turn-step-bench`: paths the two test files,
   `tests/FusionRpg.Bench/TurnStepBench.cs` and `gk-core/tests/FusionRpg.Bench/Program.cs`, project `core`,
@@ -151,9 +153,7 @@ values are printed from the ideal as targets; they become assertions nowhere.
   Core caller.
 - The guard run: `dotnet test tests\FusionRpg.Guard.Tests --filter "FullyQualifiedName~WorldDeterminismGuardTests"`.
 - The Release run (evidence, manual): `dotnet run -c Release --project tests\FusionRpg.Bench -- --only turn-step`.
-- Verify: `.\scripts\verify-change.ps1 -Paths <changed files> -Session <id>`.
-
-## Hard edges
+- Verify: `.\scripts\verify-change.py -Paths <changed files> -Session <id>`.
 
 - **No golden moves and no `RulesetVersion` bump**: `Step`'s output is unchanged by construction;
   criterion 1 is the proof, and the Core world goldens run under `core-fallback` in the same change.

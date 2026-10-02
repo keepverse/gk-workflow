@@ -134,7 +134,7 @@ boundary (no precision loss).
 
 - Always: recipe + fold + bus, never a god TSX; mount inside PanelShell (never
   fork shells); pieces never fetch; side-by-side draft screenshots before done;
-  `verify-change.ps1 -Paths` + vitest + build before commit.
+  `verify-change.py -Paths` + vitest + build before commit.
 - Ask first: `panel-rail` host mount wiring (gui-lego owns shells); queue row
   placement; title-rarity pack; any new piece beyond the 4 named.
 - Never: sibling `/hall` route (GG-1 — layers, not pages); Tailwind mood-board

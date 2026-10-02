@@ -190,8 +190,8 @@ defaults (`RivalEmpires`, `Clans`, `LegionsPerEmpire`) are test inputs, not bala
 - `gk-core/scripts/verification-boundaries.v1.json` gains one owner row: `world-synthetic`, paths
   `tests/FusionRpg.Core.Tests/World/Synthetic/**`, project `core`, verificationId `core.world-synthetic`,
   level `focused`. Without it the path falls to `core-tests-fallback` (the whole Core suite), which
-  `verify-change.ps1 -PlanOnly` showed this session for `gk-core/tests/FusionRpg.Core.Tests/World/Topology/GraphShapes.cs`.
-- Verify: `.\scripts\verify-change.ps1 -Paths <changed files> -Session <id>`;
+  `verify-change.py -PlanOnly` showed this session for `gk-core/tests/FusionRpg.Core.Tests/World/Topology/GraphShapes.cs`.
+- Verify: `.\scripts\verify-change.py -Paths <changed files> -Session <id>`;
   `dotnet test tests\FusionRpg.Core.Tests --filter "VerificationId=core.world-synthetic"`.
 
 ## Hard edges

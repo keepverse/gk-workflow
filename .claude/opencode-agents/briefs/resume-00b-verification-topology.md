@@ -19,12 +19,12 @@ Close the remaining false-green verification/release paths identified by the dee
 - `.github/workflows/ci.yml`
 - `.github/workflows/release.yml`
 - `.github/workflows/nightly.yml`
-- `scripts/run-guards.ps1`
+- `scripts/run_guards.py`
 - `gk-core/scripts/guard-generated-seed.py`
-- `scripts/verify-change.ps1`
+- `scripts/verify-change.py`
 - `scripts/session-boundary-check.py`
 - `gk-core/scripts/enforcement-registry.v1.json`
-- `scripts/publish-player.ps1`
+- `scripts/publish_player.py`
 - `gk-core/tests/FusionRpg.Guard.Tests/WorkflowExitCheckTests.cs`
 - `gk-core/tests/FusionRpg.Guard.Tests/VerificationTopologyTests.cs`
 

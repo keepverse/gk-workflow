@@ -50,7 +50,7 @@ test code and a one-subsystem change compiles one small project.
 | Integrity guard: schema allow-list, project/guard files exist, unique owner patterns, `VerificationId` has a `[Trait]` in the named project, every `src/**/*.cs` has an owner | `gk-core/scripts/guard-verification-boundaries.py:34-93` |
 | Depth reading (prints, asserts nothing) | `gk-core/scripts/guard-verification-boundaries.py:104-117` (`--report`) |
 | CI runs the integrity guard in its own step | `gk-core/.github/workflows/ci.yml:435-441` |
-| Default profile owns the one local filter; requires `-Project` or `-AllDefault` | `scripts/test-fast.ps1:24,59-61` |
+| Default profile owns the one local filter; requires `-Project` or `-AllDefault` | `scripts/test_fast.py:24,59-61` |
 | CI is unfiltered except BalanceGuard, asserted | `gk-core/.github/workflows/ci.yml:389-398` |
 | Every `tests/**/*.Tests.csproj` appears in `ci.yml` or a named exemption | `gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs:35-71` |
 | Text-based C# file mover with assembly-cycle refusal and dry-run default | `gk-core/tools/FileMove/Program.cs:5-11`, `gk-core/tools/FileMove/FileMover.cs:24-48` |

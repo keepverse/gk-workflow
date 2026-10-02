@@ -25,7 +25,7 @@ No Contracts, web, generated/data, tuning, or unrelated paths. No commit, push, 
 
 - Use OpenCode CLI `opencode/space-bunny-free#max`, no fallback, no subagent, no external-directory reads, and no process-lock hunting.
 - Run restored focused tests one project at a time; a clean `--no-restore` command that executes zero tests is not evidence. If a test/build lock occurs, record the exact bounded failure and continue with the other project; do not inspect `C:\Users` or kill unrelated processes.
-- Use `verify-change.ps1` with every concrete executable path if it completes within the selected boundary; do not substitute a broad suite.
+- Use `verify-change.py` with every concrete executable path if it completes within the selected boundary; do not substitute a broad suite.
 - Leave the tree dirty and write the report with full changed paths, exact commands/results, source reasoning, open owner questions, and next steps.
 
 <<<REPORT {"status":"done|partial|blocked","summary":"...","changed_files":["..."],"verification":["..."],"open_issues":["..."],"next_steps":["..."]} REPORT>>>

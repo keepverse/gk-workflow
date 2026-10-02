@@ -111,5 +111,5 @@ npm run build
 gk-web/web/fusion-rpg-web/src/features/story-scene/storyCue.ts        # StoryCueId + resolution
 gk-web/web/fusion-rpg-web/src/features/story-scene/storyCue.test.ts
 web/fusion-rpg-web/src/features/gui-lego/themes/scene-*.json   # vfx.select ids
-# NOT touched here: gk-core/src/FusionRpg.Core/Vfx/VfxCatalog.cs, scripts/prove-vfx.ps1
+# NOT touched here: gk-core/src/FusionRpg.Core/Vfx/VfxCatalog.cs, scripts/prove_vfx.py
 ```

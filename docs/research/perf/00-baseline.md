@@ -142,7 +142,7 @@ runs outside the drain budget (`effect.onCapture` 379ms/5s > `drain.tick` 222ms/
 1000z finding: **server died under the spawn/death event burst** (~2000+ entity rows +
 events in seconds) — injector unaffected, game playable; server stability under burst is now
 a v3 item. Verdict-formula note: drain.tick contains onEvent-in-drain; summing both
-double-counts — fix stress-test.ps1 arithmetic.
+double-counts — fix stress_test.py arithmetic.
 
 ## v3 gate curve (2026-08-21 ~03:10 — NOTE: tiers 2–3 ran under owner-buffed sustained-war
 conditions, far harsher than the v2 benchmark: plants ATK×5/HP×100/DEF×30, zombies HP×60)
@@ -165,12 +165,12 @@ perf window. **Pending live validation: one war-tier re-run on the v4 build** (d
 `stress-test.ps1 -Zombies 600` under buffed sustained-war conditions) — expected: death-flush
 cost inside budget, `onCaptureOutside` collapses, latency measured directly.
 
-### v5 — persistent-carry saturation fix (2026-08-21 ~04:00)
-
-Storage split into ring (new records) + persistent coalesced carry with cursor (never
-re-coalesced). Validated live (`v5-600z-war`, conditions escalated AGAIN to 2,123 damage
-events/s — 30× the original war): carry churn 2.07M → 508k *and the number now means true
-backlog (~300 records)*; drain progresses every frame instead of re-coalescing; first ring
+All four items below shipped and offline-verified (875 Core tests): death-flush per-frame
+allowance with shed counter (`droppedDeathBudget`), `maxRecordUs` + expensive threshold
+0.5→0.35, `combat.dispatch`/`funnel.flush` probe decomposition, `maxLatencyFrames` in the
+perf window. **Pending live validation: one war-tier re-run on the v4 build** (deploy +
+`stress_test.py -Zombies 600` under buffed sustained-war conditions) — expected: death-flush
+cost inside budget, `onCaptureOutside` collapses, latency measured directly.
 drops appeared (123,858 — designed shed under input≫output, counted). fps 18.3 dominated by
 base-game sim of ~118 attacks/frame; our share 11.8%.
 
@@ -219,21 +219,21 @@ beyond the base game's own renderable density. **Perf campaign closed.**
 6. **Server burst stability** (1000z finding): server process died under a ~2000-row
    spawn/death event burst — reproduce headless (POST synthetic events), find the crash
    (likely SQLite insert pressure or OOM in EventIngest), add backpressure. Injector is
+1. Instrument `InjectorLoop` subsections (`vfx.tick`, `cheat.continuous`, `cheat.autocollect`,
+   `poll.board`) — find the 9 ms.
+2. Registry-fy `AutoCollectTick` (coin scans per frame) and `TickContinuous`.
+3. Spec criterion 2 formally near-miss (≈5 ms per 5s per 100 events/s vs the 2 ms letter) —
+   intent met at 0.7% wall; revisit the number or the pipeline after the loop work lands.
+4. **Death-flush batching** (600z finding a): index pending records by ptr, or mark-dead and
+   let the next drain handle them first — removes the O(ring)-per-death churn outside budget.
+5. **Incremental board snapshot** (600z finding b): maintain the snapshot in place on
+   registry add/remove instead of rebuild-on-invalidate; cost stops scaling with entities.
+6. **Server burst stability** (1000z finding): server process died under a ~2000-row
+   spawn/death event burst — reproduce headless (POST synthetic events), find the crash
+   (likely SQLite insert pressure or OOM in EventIngest), add backpressure. Injector is
    already immune (queue + drop policy).
-7. stress-test.ps1 verdict arithmetic double-counts nested sections (drain contains onEvent);
+7. stress_test.py verdict arithmetic double-counts nested sections (drain contains onEvent);
    subtract the overlap.
-
-### Remaining (next iteration)
-
-1. **Capture count went up** (~60–113/s vs 21/s) — cheap now (~0.34 ms), ~3% of wall time, but
-   something invalidates or captures near per-frame; find the caller, consider append-in-place
-   instead of full invalidate on spawn.
-2. `takeDamage.prefix` still ~7.3 ms per hit at low rate — inner cost is no longer capture;
-   profile candidates: `TryStampDamageFrom` interop casts, double Emit per hit, `stats.resolve`
-   (avg rose to 850 µs — was 25 µs; investigate).
-3. 25–92 ms frame spikes remain under load — separate base-game share (B8/B9 controls) before
-   attributing.
-
 ## b2-live-x2-o3 — after event-pipeline round (2026-08-21, 18 windows, fps capped 120)
 
 fpsAvg 112 (at cap), frameMax 87.7 ms, gen2 0. `board.capture` avg **24.8 µs** (was 9,554 —

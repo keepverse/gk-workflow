@@ -34,7 +34,7 @@ These copies are evidence, not corpus source. Do not edit them. The original fil
 - `gk-forge/tools/seedsmith/seedsmith/adapters/trees/**`
 - `gk-forge/tools/seedsmith/seedsmith/workflow/**`
 - `gk-forge/tools/seedsmith/tests/**`
-- `.claude/cmdc-agents/scripts/bcu212-full-run.ps1`
+- `.claude/cmdc-agents/scripts/bcu212_full_run.py`
 - `.claude/cmdc-agents/scripts/bcu212-report.py`
 - `tasks/evidence-fragments/seedsmith-p1-audit-recovery-20260925/**` (read-only evidence; do not edit)
 - `tasks/reports/seedsmith-p1-audit-recovery-20260925.md`

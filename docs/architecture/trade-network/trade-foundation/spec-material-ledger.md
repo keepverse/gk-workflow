@@ -187,7 +187,7 @@ None.
   (script, registry, guard tests; project `guard`). The edited `RpgStore.Materials.cs`,
   `RpgStore.Expeditions.cs`, `RpgStore.Fusion.cs`, `RpgStore.Loot.cs`, `RpgStore.Workbench.cs` and
   `RpgStore.cs` stay on `data-fallback`; `ShardRungs.cs` is already `data.shard-rungs`.
-- Verify: `.\scripts\verify-change.ps1 -Paths <changed files> -Session <id>`; `python gk-core/scripts/guard-dal.py`;
+- Verify: `.\scripts\verify-change.py -Paths <changed files> -Session <id>`; `python gk-core/scripts/guard-dal.py`;
   `.\scripts\guard-ledger-writers.ps1`.
 
 ## Hard edges

@@ -467,7 +467,7 @@ lines). Reading stdout alone yields an empty list under a heading that says six.
   ! ps1-ban-l4-artifacts-20260926.json: branch 'ps1ban/l4-artifacts' does not exist
   ! ps1-ban-manager-20260926.json: branch 'features/mega-merge' does not exist
   ! resume-34-cai2-2-20260925.json: branch 'opencode/resume-34-cai2-2-20260925' does not exist
-  ! ps1-ban-l4-artifacts-20260926.json and ps1-ban-manager-20260926.json both claim 'tasks/reports/f13-schema-upgrade-proof.ps1' / 'tasks/reports/f13-schema-upgrade-proof.ps1' while active — narrow the scope or move one to a worktree
+  ! ps1-ban-l4-artifacts-20260926.json and ps1-ban-manager-20260926.json both claim 'tasks/reports/f13_schema_upgrade_proof.py' / 'tasks/reports/f13_schema_upgrade_proof.py' while active — narrow the scope or move one to a worktree
   ! ps1-ban-manager-20260926.json and resume-34-cai2-2-20260925.json both claim 'src/FusionRpg.Data/Sqlite/RpgStore.cs' / 'src/FusionRpg.Data/Sqlite/RpgStore.cs' while active — narrow the scope or move one to a worktree
   ! ps1-ban-manager-20260926.json and resume-34-cai2-2-20260925.json both claim 'src/FusionRpg.Server/Program.cs' / 'src/FusionRpg.Server/Program.cs' while active — narrow the scope or move one to a worktree
 ```

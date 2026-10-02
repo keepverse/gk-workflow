@@ -210,7 +210,7 @@ None.
 - `gk-core/scripts/verification-boundaries.v1.json` owner row `core-world-ledger`: paths
   `src/FusionRpg.Core/World/Ledger/**` and `tests/FusionRpg.Core.Tests/World/Ledger/**`, project `core`,
   verificationId `core.world-ledger-keys`, level `focused`.
-- Verify: `.\scripts\verify-change.ps1 -Paths <changed files> -Session <id>`.
+- Verify: `.\scripts\verify-change.py -Paths <changed files> -Session <id>`.
 
 ## Hard edges
 

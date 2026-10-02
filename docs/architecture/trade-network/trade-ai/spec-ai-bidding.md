@@ -185,7 +185,7 @@ Reused: `needs.reserveTurns` (`counterparties`), `orderStepUnits` (`exchange`).
 - `tests/FusionRpg.Core.Tests/World/Ai/Trade/AiBiddingTests.cs` (new): 1–6, 8, 10 over scripted views.
 - `tests/FusionRpg.Core.Tests/World/Trade/` integration with `exchange`'s book: criterion 7.
 - `gk-core/tests/FusionRpg.Data.Tests/WorldAiCommitTests.cs` (extend): criterion 9 through the real fill.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>` (`core-world-ai-trade`).
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>` (`core-world-ai-trade`).
 
 ## Hard edges
 

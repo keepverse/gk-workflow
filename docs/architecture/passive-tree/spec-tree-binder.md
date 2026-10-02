@@ -812,7 +812,7 @@ static long CoefficientMicro(long treeShareMilli, long treeBudgetMilli, long bud
 | `explain_output_names_every_input` | the audit trail is complete for any node |
 
 Coverage says what the tests touched; mutation says what they would notice. Run
-`.\scripts\coverage.ps1 -Namespace FusionRpg.Core.PassiveTree` and add a `gk-core/scripts/mutants/*.json` set
+`.\scripts\coverage.py -Namespace FusionRpg.Core.PassiveTree` and add a `gk-core/scripts/mutants/*.json` set
 for the binder — a surviving mutant on the coefficient formula needs an explanation next to the code.
 
 ## Boundaries

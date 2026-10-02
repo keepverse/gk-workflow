@@ -175,7 +175,7 @@ The loader rejects a missing key, a `policyOrdersBase < 1` and a `policyOrdersPe
 - `gk-core/tests/FusionRpg.Data.Tests/WorldAiCommitTests.cs` (extend): criteria 2–4 with fake policies.
 - `tests/FusionRpg.Core.Tests/World/Ai/Trade/SpendLimitTests.cs` (new): 1, 6, 7, 8 with a scripted view.
 - `gk-core/tests/FusionRpg.Guard.Tests/` (new scan): criterion 5.
-- Run `.\scripts\verify-change.ps1 -Paths <changed paths> -Session <id>`. `RpgStore.WorldTurns.cs`
+- Run `.\scripts\verify-change.py -Paths <changed paths> -Session <id>`. `RpgStore.WorldTurns.cs`
   resolves only to `data-fallback` and `World/Ai/**` to `core-fallback` today; the change touches Core
   and Data together, so per AGENTS.md it runs the full suite **once** at module end, and adds focused
   boundary rows (`data-world-ai-fill`, `core-world-ai-trade`).

@@ -48,7 +48,7 @@ evidence, and unmapped paths. Text output is rendered from the same data.
 ## Project structure
 
 ```text
-scripts/verify-change.ps1                         public command and planner functions
+scripts/verify-change.py                         public command and planner functions
 gk-core/scripts/verification-boundaries.v1.json            declarative input
 tests/FusionRpg.Guard.Tests/VerificationPlannerTests.cs
 tasks/sessions/*.json                              optional scope authorization input
