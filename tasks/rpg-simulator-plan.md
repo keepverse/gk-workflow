@@ -22,7 +22,7 @@ the plan, so nobody re-checks it from scratch.
 | Premise | State | Evidence |
 |---|---|---|
 | All twenty owner questions are answered, five as overrides | **Done** | `tasks/rpg-simulator-decisions.md` carries an `ANSWER:` line per question (B1/B2/B3/F1/F2 are the overrides) |
-| The clock's `decisions.md` row exists, so `clock-seam` has its gate | **Done** | `docs/architecture/decisions.md:174` |
+| The clock's `decisions.md` row exists, so `clock-seam` has its gate | **Done** | `docs/architecture/decisions/combat.md` (Battle time model) |
 | The real-server in-process host exists and is CI-covered | **Done** | `gk-core/tests/FusionRpg.E2E.Tests/RpgApiFactory.cs:9`; one instance per collection, serialized (`gk-core/tests/FusionRpg.E2E.Tests/FoundationE2ETests.cs:308`) |
 | The sim feed exists and is gated on `FUSIONRPG_SIM` | **Done** | `gk-core/src/FusionRpg.Server/Program.cs:2050-2051`; flag `gk-core/src/FusionRpg.Server/SimFlags.cs:7-8` |
 | The honest-scope refusal exists and is the property the simulator inherits | **Done** | `gk-core/src/FusionRpg.Server/SimService.cs:25-30`; liveness `gk-core/src/FusionRpg.Data/Sqlite/RpgStore.cs:1207-1210` |
@@ -244,7 +244,7 @@ reachable from a tool. The map's gate S2.
 
 - **RS3 — full `TimeProvider` migration, then retire `ForceExpeditionDue`** · L · *approved B1 (a),
   B3 (a); B2 (b) makes it product surface* · module: `clock-seam`.
-  - **Gates before any code:** (i) the `decisions.md` row — present (`docs/architecture/decisions.md:174`);
+  - **Gates before any code:** (i) the battle-time decision — present (`docs/architecture/decisions/combat.md`, Battle time model; the decisions.md index has no clock row);
     (ii) the seam's spec names its **product shape** and that shape is agreed with the
     module that consumes it, `world-continuity`'s `hibernation-clock`
     (`docs/architecture/world-continuity-map.md:118`). Until both hold, this row is **blocked on an

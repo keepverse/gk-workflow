@@ -1371,7 +1371,7 @@ mapping is a verification-boundary defect to repair, not a reason to run the who
 ### Wave 5 — the clock (gated)
 
 - [x] **RS3 — full `TimeProvider` migration, then retire `ForceExpeditionDue`** · L · *approved B1 (a), B3 (a); B2 (b) makes it product surface* · module: **`clock-seam`**
-  - **Gates before any code:** (i) the `decisions.md` row — present (`docs/architecture/decisions.md:174`);
+  - **Gates before any code:** (i) the battle-time decision — present (`docs/architecture/decisions/combat.md`, Battle time model; the decisions.md index has no clock row);
     (ii) `spec-clock-seam.md` names the seam's **product shape**, agreed with the module that consumes
     it, `world-continuity`'s `hibernation-clock` (`docs/architecture/world-continuity-map.md:118`).
     Until both hold this row waits on an external agreement — not on its own work.

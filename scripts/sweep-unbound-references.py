@@ -7,16 +7,20 @@ one, so the module imports cleanly - the old name usually still exists elsewhere
 graph, so collection passes - and the failure appears only on the specific path that reaches the
 missed line, as a `NameError` rather than as a wrong path.
 
-WHY THIS EXISTS ALONGSIDE `scripts/sweep-unbound-names.py`. That script walks each function body
+WHY THE WALK IS WRITTEN THE WAY IT IS. An earlier draft of this tool walked each function body
 with `for child in ast.iter_child_nodes(node): self.generic_visit(child)`. `generic_visit` does
 not dispatch on the child's own type, so every `visit_Assign`, `visit_AnnAssign`,
-`visit_For`-target and `visit_If`-nested binding inside a function body is skipped, and the names
-it binds are never recorded. It therefore reports `x = 1` inside a function as an unbound use of
-`x`, and measured over these nine repositories it returns 101,560 hits for 5,328 distinct names -
+`visit_For`-target and `visit_If`-nested binding inside a function body was skipped, and the names
+it binds were never recorded. It therefore reported `x = 1` inside a function as an unbound use of
+`x`, and measured over these nine repositories it returned 101,560 hits for 5,328 distinct names -
 almost all of them ordinary local variables. A tool that reports everything is worse than no tool,
 because the residue it is actually looking for is buried. This script walks with
 `self.generic_visit(node)`, which dispatches correctly, and its control asserts BOTH directions
 rather than only that a planted defect is caught.
+
+That draft was never committed, and it is deliberately not referenced by path here. Naming a
+sibling script that does not exist in the tree is the same defect this tool hunts - a name a
+module references but never binds - one level up, in prose, where nothing detects it.
 
 WHAT IS BOUND, and what counts as bound. `bound` is the UNION of every name bound anywhere in the
 module, across every scope. That is deliberate: the question is "does this module bind this name
