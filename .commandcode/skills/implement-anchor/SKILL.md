@@ -87,7 +87,7 @@ No new check script — reuse only:
 1. `/session-start` — write `tasks/sessions/<session>.json` (template `tasks/sessions/_template.json`:
    `session/program/problem/mode/branch/worktree/paths/started/status`), commit with first change.
 2. `python scripts/session-boundary-check.py` — exit 0 before first edit and before each commit.
-3. `.\scripts\verify-change.ps1 -Paths <changed> -Session <id>` — every changed path must resolve to
+3. `.\scripts\verify-change.py --paths <changed> --session <id>` — every changed path must resolve to
    exactly one owner (`verification-boundaries.v1.json`); `-PlanOnly` previews without running.
 4. Per-task `Verify:` line — focused `dotnet test --filter` + applicable `scripts/guard-*.ps1`.
    Full suite only at: large-feature finish, cross-program change, or right before a live probe.

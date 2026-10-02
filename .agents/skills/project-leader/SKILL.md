@@ -95,7 +95,7 @@ Workers self-verify against the evidence contract. You accept with cheap checks.
 committed artefact, an explicit **NOT-proved** list, and findings routed to their owning todo. A summary is
 not evidence, and a response body is not proof. Read the changed state back through the normal path.
 
-Then, and only then, `.\scripts\verify-change.ps1 -Paths <every changed path> -Session <your-session>` —
+Then, and only then, `.\scripts\verify-change.py --paths <every changed path> --session <your-session>` —
 with every path. Reading the printed numbers, not just the exit code.
 
 Then, and only then, `.\scripts\verify-change.py -Paths <every changed path> -Session <your-session>` —
@@ -114,7 +114,7 @@ with every path. Reading the printed numbers, not just the exit code.
   `FusionRpg.Data`.** If your program needs an exception, it is a plan to fix the debt, not an exception.
 - **A debug API may trigger a real operation, never fabricate its result.** Name the scope you are in
   (Game Injector Debug vs RPG Server Debug) and read the state back through the normal path.
-- **Live probes**: three game slots machine-wide, claimed through `scripts/live-slot.ps1`
+- **Live probes**: three game slots machine-wide, claimed through `scripts/live_slot.py`
   (`-Status` / `-Acquire -Session <id>` / `-Release -Session <id>`). No install path is hardcoded — pool root
   and source install come from `FUSIONRPG_GAME_POOL` / `FUSIONRPG_GAME_SOURCE`. All slots held is a wait,
   never a kill.

@@ -35,7 +35,7 @@ Invoke-RestMethod http://127.0.0.1:5088/health
 ## All-in-one test entry (preferred)
 
 ```powershell
-.\scripts\audit-status-vfx-identity.ps1 -Live -Stress
+.\scripts\audit_status_vfx_identity.py --live --stress
 ```
 
 This calls `Ensure-LiveLabBoard` internally — enter level 1 if needed, `lab-overlay`, assert living zombie, then apply 13 statuses.
@@ -70,7 +70,7 @@ Response fields:
 | `plantPtr` | First living plant hex ptr |
 | `note` | Set when snapshot did not arrive in server poll window |
 
-PowerShell SSOT helper: [`scripts/lib/LiveLawnSetup.ps1`](../../scripts/lib/LiveLawnSetup.ps1) → `Ensure-LiveLabBoard`.
+Python SSOT helper: [`scripts/lib/live_lawn_setup.py`](../../scripts/lib/live_lawn_setup.py) → `Ensure-LiveLabBoard`.
 
 Python SSOT: [`gk-fusion/tools/live_test/live_test/status_apply.py`](../../tools/live_test/live_test/status_apply.py) → `ensure_lab_board()`.
 
@@ -79,7 +79,7 @@ Python SSOT: [`gk-fusion/tools/live_test/live_test/status_apply.py`](../../tools
 When the operator is **already** in Adventure day and only needs fixtures reset:
 
 ```powershell
-.\scripts\setup-lab-run.ps1
+.\scripts\setup_lab_run.py
 ```
 
 This script **does not** enter a level — it throws without `board.start`.
@@ -87,7 +87,7 @@ This script **does not** enter a level — it throws without `board.start`.
 Use `-SkipSetup` on audit when board is already labbed:
 
 ```powershell
-.\scripts\audit-status-vfx-identity.ps1 -Live -TargetPtr <ptr> -SkipSetup
+.\scripts\audit_status_vfx_identity.py --live --target-ptr <ptr> --skip-setup
 ```
 
 ## Failure triage

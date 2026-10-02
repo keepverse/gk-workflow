@@ -201,7 +201,7 @@ other sub-programs' specs for overlap. On `PASS`, commit the map and specs.
 Run the `planning-and-task-breakdown` skill with the `/plan` path rules: `tasks/<program>-plan.md` and
 `tasks/<program>-todo.md`. Within §10's task budget, sliced vertically. Each task has Acceptance, a
 Verify line, its guards, its files and its dependencies. The Verify line follows §8.5:
-`.\scripts\verify-change.ps1 -Paths <every path the task touches, docs and todo included> -Session <program-id>-<n>`.
+`.\scripts\verify-change.py --paths <every path the task touches, docs and todo included> --session <program-id>-<n>`.
 A checkpoint follows each phase; the first is the playable slice.
 **No pre-work gates** (§6, G4). The skill's *human reviews* step is replaced by G4.
 
@@ -246,8 +246,8 @@ the code, the tests and the ticked todo box.
 ### S9 — Test
 
 1. **Full suite** (the end of a feature is one of its three sanctioned points).
-   `.\scripts\test-fast.ps1 -AllDefault` runs only Data, Server, E2E and Core
-   (`scripts/test-fast.ps1`, `$DefaultProjects`). Also run `dotnet test` on every other test project in
+   `.\scripts\test_fast.py --all-default` runs only Data, Server, E2E and Core
+   (`scripts/test_fast.py`, `$DefaultProjects`). Also run `dotnet test` on every other test project in
    `.github/workflows/ci.yml` — Guard.Tests always, the rest when the change reaches them;
    `FusionRpg.Injector.Tests` as §8.1.4 says. List each project run and not run. Trace every failure
    against `BASE` (§8.1.6).
@@ -261,9 +261,9 @@ the code, the tests and the ticked todo box.
    port; real endpoints; the state read back through the normal query path.
 5. **Balance smoke** (§8.3) when combat numbers or choices changed.
 6. **Lawn probe** on the creative install, if the intake gave one (§8.3):
-   `game-lock.ps1 -Acquire`; `deploy-play.py --no-server --server-url <this sub-program's server> --session <id>`
+   `game_lock.py --acquire`; `deploy-play.py --no-server --server-url <this sub-program's server> --session <id>`
    with `FUSIONRPG_ML_GAMEDIR` = the install; probe through debug-mcp with `FUSIONRPG_SERVER_URL` set
-   to the same server; `game-lock.ps1 -Release`.
+   to the same server; `game_lock.py --release`.
 7. **Visual proof** (§8.6): capture every visible acceptance criterion, then a fresh `creative-gate`
    with `PHASE=visual` (GV) judges each screenshot. At most three cycles.
 

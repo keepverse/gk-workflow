@@ -82,13 +82,13 @@ python gk-core/scripts/live_slot.py --release --session <your-session-id>
 A slot's port is `BasePort + slot` (default `5100 + n`), **stored in the pool registry when you acquire and
 derived when you have not** — both halves matter, and reading only the stored field skips every slot that has
 not been claimed since the pool was created. `--status` shows the value it resolved. The owner's server stays
-on **:5088** and no lane touches it. `scripts/lane-server.ps1` runs a slot's own server with its own data
+on **:5088** and no lane touches it. `scripts/lane_server.py` runs a slot's own server with its own data
 directory, which is what lets two lanes probe at the same time:
 
 ```powershell
-pwsh -NoProfile -File scripts/lane-server.ps1 -Start  -Slot <n>   # that slot's server, own <pool>/slot-<n>-data
-pwsh -NoProfile -File scripts/lane-server.ps1 -Status             # per slot: port, pid, /health
-pwsh -NoProfile -File scripts/lane-server.ps1 -Stop   -Slot <n>   # kills only the PID it recorded
+python scripts/lane_server.py -Start  -Slot <n>   # that slot's server, own <pool>/slot-<n>-data
+python scripts/lane_server.py -Status             # per slot: port, pid, /health
+python scripts/lane_server.py -Stop   -Slot <n>   # kills only the PID it recorded
 ```
 
 Why a separate data directory matters as much as the port: two servers sharing one `rpg-hot.sqlite` corrupt each
@@ -108,7 +108,7 @@ server, not the owner's — read `<pool-root>/slot-<n>-server.log`.
 
 ## Killing the game is allowed by default — on the session's own install only
 
-`debug_restart_game` (and `restart-game.ps1`) may be used without asking first, with one hard
+`debug_restart_game` (and `restart_game.py`) may be used without asking first, with one hard
 boundary: they close **only the game running from the session's own install** (path-scoped kill;
 pass `game_dir` + `base_url` + `session` for a clone setup). Killing by bare process/image name
 is forbidden — it would take down the owner's game and every other session's clone. A game lock

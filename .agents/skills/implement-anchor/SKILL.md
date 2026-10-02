@@ -133,7 +133,7 @@ No new check script — reuse only:
    `gk-core/scripts/anchor-ledger.py` — the script stamps time + integrity mark; hand-written lines fail
    `check`. Resume: `python gk-core/scripts/anchor-ledger.py tasks/<program>-ledger.jsonl resume` is the
    first command of every fresh context window on the same session record; `... check` must exit 0 (schema + sequence drift).
-3. `.\scripts\verify-change.ps1 -Paths <changed> -Session <id>` — every changed path must resolve to
+3. `.\scripts\verify-change.py --paths <changed> --session <id>` — every changed path must resolve to
    exactly one owner (`verification-boundaries.v1.json`); `-PlanOnly` previews without running.
 4. Per-task `Verify:` line — focused `dotnet test --filter` + applicable `scripts/guard-*.ps1`.
    Full suite only at: large-feature finish, cross-program change, or right before a live probe.
