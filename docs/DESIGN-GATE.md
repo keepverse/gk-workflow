@@ -248,3 +248,21 @@ Paste and complete before presenting any design work.
 
 **If you cannot tick a box, say so in the proposal.** An honest gap costs a sentence. A hidden one
 costs the owner an hour.
+
+---
+
+## Appendix: a cited line must still MEAN what the sentence says
+
+Appended at the END of this file deliberately. `DESIGN-GATE.md:<line>` is cited positionally from
+dozens of places, so inserting a row anywhere above them silently repoints every citation below the
+insertion — and the citations stay *openable*, which is worse than a dead link, because nothing
+reports them. `guard-citation-stability.py` exists for this: it fingerprints the cited line's
+CONTENT, so a shift reds even where the renumbering is harmless, and it refuses on a NEW citation
+rather than adopting one quietly.
+
+The failure it was built for, recorded here so the rule has a home: three citations asserted "the
+clock's `decisions.md` row exists" while pointing at a blank line. `decision-citations` proved those
+citations resolved; they were still wrong, because that table has no clock row at all.
+
+When you add a checklist row, add it at the bottom of this file. Running the guard afterwards is not
+optional — it is the only thing that will tell you.
