@@ -681,9 +681,26 @@ These hold for every agent that picks up a row. They are not advice.
 
 ## 9. Open owner questions
 
-1. **Is the trademark/IP risk time-sensitive?** Unanswered since first raised, and it is
-   the only open item with a clock on it. `gk-content` and `gk-data` are private for this
-   reason, and G2 and G3 both wait on it. Every other item in this document is sequencing.
+1. ~~**Is the trademark/IP risk time-sensitive?**~~ **ANSWERED 2026-10-03: no, not yet — G2
+   and G3 are unblocked.** It was the only item here with a clock on it, so the ruling is
+   recorded with the state that justified it rather than as a bare yes/no. Both content
+   repositories are private, and that is now measured rather than assumed: `gk-data` always
+   was, and `gk-content` was found PUBLIC on the remote (`gh api` and `gh repo view` both
+   reported `visibility=public`) despite its own README declaring "outside any make-public
+   gate" and its AGENTS.md "private, always … a decision, not an oversight". The owner
+   flipped it, and it is verified private from outside the authenticated session — an
+   unauthenticated GET now returns 404. The licence is AGPL-3.0 deliberately, not MIT. The
+   player-facing names are already original (the Garden Keeper, Hourbloom, the Rotwright),
+   and the five franchise-mark groups that still ship are scoped to `player-name` and
+   `player-prose` with code identifiers explicitly out of scope, under an advisory CI scan
+   (IC-3) that fails only if the scan itself crashes.
+   **What this ruling is not:** it is not a trademark clearance, and none of the repo's own
+   docs claim otherwise — `spec-names-registry.md` says outright that "a web search is not
+   trademark clearance and not legal advice", and `ip-censor-ideal.md` puts a knockout search
+   at roughly $150–500 per mark per class. If a public release is ever dated, this question
+   re-opens with a clock on it, and the clearance belongs before that date rather than after.
+   **Known consequence, not resolved by this ruling:** the shipped ip-censor registry lives in
+   private `gk-data`, so 12 of its tests can never run in CI (ledger row 233).
 2. **KS3.0 / KS6.0 owner charter** — runtimes, models, budget, stop rule, recorded before
    any reconcile worker starts.
 3. **Docs placement (D1)** — 2,145 files currently all route to the root. Host docs going to
