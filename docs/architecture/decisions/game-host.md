@@ -21,4 +21,4 @@ Index: [../decisions.md](../decisions.md). Rows are listed with their original l
 | Overlay implement roadmap | Ordered W0–W12 checklist for P0 Hot, MatchRuntime, UniqueActor, lawn FE, guards — [implementation-roadmap.md](implementation-roadmap.md). Docs checklist; waves pending until code plans ship. | <!-- decisions.md:72 -->
 | LimHealth stickiness | Observe via `stat.limhealth` when `SYS-EMIT-PROOF`; active gate `SYS-LIMHEALTH-GATE` default off until proof | <!-- decisions.md:73 -->
 | Apply once | Entity key + Applied gate so Start + InitHealth cannot double-buff; reapply clears Applied but keeps Y0 | <!-- decisions.md:74 -->
-| Sim vs injector | Live injector heartbeat → sim POST 409. Health `source` is `none` / `sim` / `injector` | <!-- decisions.md:103 -->
+| Sim vs injector | Live injector heartbeat → sim POST 409. Health `source` is `none` / `sim` / `injector` | <!-- decisions.md:104 -->

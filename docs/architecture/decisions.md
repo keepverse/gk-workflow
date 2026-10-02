@@ -78,6 +78,7 @@ Locked for v1. Change here before changing code. **This table is an index**: one
 | Events vs projections | [world](decisions/world.md) |
 | Type catalog | [world](decisions/world.md) |
 | Spawn dump | [world](decisions/world.md) |
+| **Dump snapshot key is two hashes, not one (2026-10-02)** | [world](decisions/world.md) |
 | Plants planted | [world](decisions/world.md) |
 | Players (save identity, R3 + R17, 2026-09-18) | [world](decisions/world.md) |
 | Mid-match switch | [world](decisions/world.md) |
