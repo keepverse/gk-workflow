@@ -1,0 +1,57 @@
+name: session-boundary
+
+# Why this file exists, because three workflows in other repositories claim it does already.
+#
+# `gk-core/.github/workflows/ci.yml`, `gk-core/.github/workflows/nightly.yml` and
+# `gk-fusion/.github/workflows/release.yml` each carry a comment explaining why they do NOT
+# invoke the session-boundary check - the script lives at the workspace root and a CI runner has
+# exactly one checkout - and each then asserts:
+#
+#   "The check is not lost. It runs in the repository that owns the records, in ci.yml,
+#    nightly.yml and release.yml there."
+#
+# That repository is gk-workflow, which is this repository. It had no ci.yml, no nightly.yml and
+# no release.yml - only kvsplit.yml. So the check ran nowhere at all: a guard declared
+# `status: gating, tier: ci` in gk-core's enforcement registry, with `ciEntry: own-step` (which
+# `run_guards.py` skips with a bare `continue`, 29 - 2 = 27), and invoked by no workflow in any of
+# the nine repositories. A gate that cannot run must never look like one that passed; this file is
+# what makes it actually run.
+#
+# The script needs no arguments beyond `--ci` and no repository override: `scripts/` is this
+# repository's, and `--repo-root` already defaults to this tool's own worktree top level, so the
+# step resolves the 263 records in `tasks/sessions/` from this checkout alone. Verified locally on
+# 2026-10-03: `python scripts/session-boundary-check.py --ci` exits 0 and prints
+# `[session-boundary] clean`.
+
+on:
+  push:
+    paths:
+      - "tasks/sessions/**"
+      - "scripts/session-boundary-check.py"
+      - ".github/workflows/session-boundary.yml"
+  pull_request:
+    paths:
+      - "tasks/sessions/**"
+      - "scripts/session-boundary-check.py"
+      - ".github/workflows/session-boundary.yml"
+  workflow_dispatch:
+
+jobs:
+  session-boundary:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The check resolves branches and worktrees by name, so it needs the full history and
+          # the refs, not a shallow clone of one commit.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Session boundary records are valid and do not overlap
+        shell: pwsh
+        run: |
+          python scripts/session-boundary-check.py --ci
+          if ($LASTEXITCODE -ne 0) {
+            throw "session-boundary-check.py exited $LASTEXITCODE"
+          }
