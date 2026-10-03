@@ -404,7 +404,7 @@ that differ (`HolographicPlant`, `DoomZombie`, `EndoFlameZombie`) are recorded a
 **One finding this produced that the enrichment did not anticipate:** the sweep carries **19 rows that
 no anchor claims** — plant type ids **1444–1450, 1452–1461, 5003–5004**. (This wrote the range as
 "1444–1461" until 2026-09-18, which reads as 18 consecutive ids and would make the total 20;
-**1451 is claimed**, by `species/plant/explosive-fungi.json`. The count of 19 was right, the notation
+**1451 is claimed**, by `CherryPuff` in `gk-data/packs/fusion/data/seed/creatures/species/plant/explosive-fungus.json`. The count of 19 was right, the notation
 was not — and a contiguous range is exactly the shape a later session would re-derive from rather
 than re-measure.) Those are game types newer than the
 2026-08-23 almanac snapshot the corpus was classified from — a coverage gap in the *dump*, not in the

@@ -47,7 +47,7 @@ A downstream session reads this document, not its links.
 | Thing | Evidence |
 |---|---|
 | **A complete seed → anchor pipeline at scale** | ~~**408**~~ **502** species files under `gk-data/packs/fusion/data/seed/creatures/species/plant/` plus zombie (**corrected 2026-09-05:** 415 plant + 87 zombie anchors on disk, `zombie/_needs-review.json` excluded; the 408 was the count at the 2026-09-04 write-up), with `_index.json` keyed by species id (840 entries — several game species share one anchor) |
-| **The anchor shape, and it is enums-only** | `aerial-flora.json`: `aptitudePrimary: "Bulwark"`, `attackTempo: "steady"`, `threatBand: "nuisance"`, `reach: "short"`, `rarity: "fused"`, `deployMode: "PlantAvatar"`. **Not one magnitude.** The only number is `gameTypeId: 1204`, an identity key |
+| **The anchor shape, and it is enums-only** | `gk-data/packs/fusion/data/seed/creatures/species/plant/allium-bulb.json`: `aptitudePrimary: "Might"`, `attackTempo: "flurry"`, `threatBand: "nuisance"`, `reach: "long"`, `rarity: "fused"`, `deployMode: "PlantAvatar"`. **Not one magnitude.** The only number is `gameTypeId: 1355`, an identity key (exemplar re-picked 2026-10-04: the corpus was re-bucketed and the file this row originally quoted, `aerial-flora.json`, no longer exists) |
 | **Provenance that makes idempotency checkable** | `_provenance` carries per-field `attempts`, per-field `confidence`, `dumpHash`, `emittedUtc`, `minorityValues`, `promptVersions`, `auditVerdict`, `basis` |
 | **`_derived` declares ownership in-file** | `"_derived": ["basis", "posture", "pure"]` — the anchor states which of its own fields it did not author |
 | **`none` as a real value** | `aptitudeSecondary: "none"`, `elementSecondary: "none"` — absence is a stat, not a missing key |
@@ -157,7 +157,7 @@ buys breadth and ceiling, never power. If a second axis is wanted, **element** i
 
 ## 5. The shape — a structure anchor, mapped from the species anchor
 
-Field-for-field against `aerial-flora.json`, with ownership levels:
+Field-for-field against `gk-data/packs/fusion/data/seed/creatures/species/plant/allium-bulb.json`, with ownership levels:
 
 | Species anchor | Structure anchor | Level | Notes |
 |---|---|---|---|

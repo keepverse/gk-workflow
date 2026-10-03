@@ -69,7 +69,7 @@ localization) that no domain has today, generalized once instead of five times.
   session's own H9/J9 work ran it repeatedly and it correctly skipped every already-accepted node
   on every resume.
 - `_provenance` (pipeline id, model, prompt version, timestamp) is real, written content, in at
-  least two domains: creatures (`gk-data/packs/fusion/data/seed/creatures/species/plant/aerial-flora.json:8-18`) and
+  least two domains: creatures (`gk-data/packs/fusion/data/seed/creatures/species/plant/aerial-plant.json:10-20`; all 904 entries carry one, re-measured 2026-10-04) and
   structures (`gk-data/packs/fusion/data/seed/structures/bank/reliquary.json:7-10`).
 - The web app's general i18n system (Lingui) is real and working for Chrome text (unchanged from
   `passive-tree-i18n-ideal.md`'s own finding — cited here rather than re-derived).
