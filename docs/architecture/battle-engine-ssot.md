@@ -226,8 +226,8 @@ law names a single owner for each mechanism and the code has more than one, or n
 
 | # | Defect | Law broken | Evidence |
 |---|---|---|---|
-| **D1** | **Battle's `EffectBag` never sets `CombatMath`**, so `CombatDamageDispatcher` falls back to `PassThroughCombatMath`, whose `Finalize` returns the amount unchanged. Battle's *basic attack* uses the resolver; every **effect-driven** hit in a battle — DoT tick, on-hit rider, atom damage — applies its authored number verbatim: no hit roll, crit, element matchup, penetration, parry or block | Rule 2 — battle logic with no resolver at all on that path | `BattleEffects.cs:55-64` (never sets it), `CombatDamageDispatcher.cs:28` (fallback), `ICombatMath.cs:15-16` (pass-through). The only production setter is `EffectRuntime.cs:539`, injector-side |
-| **D2** | **Reflect is lawn-only.** Four registered channel families are inert in battle, delve, siege and web match | Rule 4 — a mechanism one mode has and the others do not | `TryReflect` lives inside `DispatchInstant`, which battle never enters; battle's bag also never sets `ActorResolve`, so the `:84` guard would fail anyway. Zero occurrences of "Reflect" under `Battle/` or `Actions/` |
+| **D1** | ✅ **FIXED (solid-remediation T2.5) — retained as a slot, no longer open.** Was: *battle's `EffectBag` never set `CombatMath`, so `CombatDamageDispatcher` fell back to `PassThroughCombatMath`, whose `Finalize` returns the amount unchanged; battle's basic attack used the resolver while every **effect-driven** hit applied its authored number verbatim — no hit roll, crit, element matchup, penetration, parry or block* | Rule 2 — battle logic with no resolver at all on that path | **Fix: `BattleRunState.cs:497`** wires `Host.Bag.CombatMath = OverlayCombatMath.Create(resolveActor, rng: effectCombatRng)`; `:495` wires `Bag.ActorResolve` (which `OverlayCombatMath` resolves both sides through, and which `EffectBag`'s owner-element fallback needs to know what the acting actor is made of) and `:496` wires the battle-seeded `effect-combat` stream, whose `SeededRng.DeriveStream` is what makes a battle's rolls replayable. The pre-fix evidence is still true of the code that was replaced: `BattleEffects.cs:55-64` (never set it), `CombatDamageDispatcher.cs:28` (fallback), `ICombatMath.cs:15-16` (pass-through). ⚠️ `CombatMath` **alone** was measured to move 0 of 13,943 tests — `Finalize` returns the amount unchanged on an empty payload — so `ActorResolve` is not optional beside it |
+| **D2** | **Reflect is lawn-only.** Four registered channel families are inert in battle, delve, siege and web match | Rule 4 — a mechanism one mode has and the others do not | `TryReflect` lives inside `DispatchInstant`, which battle never enters. ⚠️ **This row's second support is now stale:** it also claimed *"battle's bag also never sets `ActorResolve`, so the `:84` guard would fail anyway"* — `ActorResolve` **is** wired since solid-remediation T2.5 (`BattleRunState.cs:495`, the same commit that fixed D1), so that half no longer holds and the defect rests on the `DispatchInstant` half alone. Zero occurrences of "Reflect" under `Battle/` or `Actions/` |
 | **D3** | **9 of 13 atom triggers never fire in battle** — `OnDamageTaken`, `OnDeath`, `OnSpawn`, `OnTimer` and the five match/board-economy triggers. The lawn raises all 13 | Rule 2 — the same authored content behaves differently by mode | Battle raises `OnActivate`, `OnDamageDealt` (`BasicAttack.cs`), `OnGranted`/`OnRemoved` (`EffectBag.cs:277-301`) |
 | **D4** | **Delve and siege compose with no `HubInputs` at all** — the same specimen fights with different numbers depending on the mode | Rule 4 | `Encounter.cs:206-212`, `DistrictAssaultResolver.cs:360-385`; only `WebMatchService.cs:600-609` populates them |
 | **D5** | **The compose paths do not share registration.** `BattleHubCompose` bypasses `ActorHubBootstrap.CreateDefault` and registers neither `RpgProgressionSubsystem` nor `StatusDerivedSubsystem`; the lawn registers no `StarLoyaltySubsystem` | Rule 4 — per-mode stat vocabulary | `BattleHubCompose.cs:15-17,41-64` vs `CheatState.cs:49-81` vs `UniqueActorHubCompose.cs:70-76` |
@@ -248,8 +248,13 @@ law names a single owner for each mechanism and the code has more than one, or n
 > wants — not five copies of a mechanism. Corrected on the owner's ruling the same day. The numbering skips
 > D13 rather than renumbering, so the retraction stays visible.
 
-**D1 is the one to fix first.** It is a single property on an already-constructed object, using components that
-already ship, and it makes the largest share of the existing stat vocabulary start mattering in battle.
+**D1 is fixed, and it was the one to fix first.** It was a single property on an already-constructed
+object, using components that already ship, and it made the largest share of the existing stat
+vocabulary start mattering in battle. `BattleRunState.cs:497` is that one line (with `ActorResolve`
+at `:495` and the seeded stream at `:496`); the wiring is measured, not assumed — see the D1 row.
+**This page kept listing it as the open defect after it was fixed**, which is the one way an SSOT
+here can do real damage: a reader re-deriving battle-engine gaps would budget against a property that
+is already set.
 
 ---
 

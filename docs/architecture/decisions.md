@@ -155,6 +155,7 @@ Locked for v1. Change here before changing code. **This table is an index**: one
 | **No hard-coded model in seedsmith (2026-09-19)** | [content-gen](decisions/content-gen.md) |
 | **Seedsmith authors in two modes: a delegated agent, or an API (2026-10-02)** | [content-gen](decisions/content-gen.md) |
 | **The spine is a generated seed kind with a planned frame (2026-09-19)** | [content-gen](decisions/content-gen.md) |
+| **Status tracks — combat and out-of-combat (2026-10-02)** | [combat](decisions/combat.md) |
 
 ## Why REST and SignalR together
 
