@@ -13,10 +13,71 @@ citation nobody can open is not a citation, whatever it claims.
         says it isn't, and it carries no status banner
     D5  a line-numbered citation into a JSON registry still holds the entry the sentence names
 
+`--parity` is a SEPARATE mode with its own checks, because it compares two repositories rather
+than auditing one document, and it is the opposite shape to D1-D5 - see WHY below before reading
+its verdict:
+
+    P1  a lock-file line that exists in the superseded tree and NOT in the authoritative tree
+    P2  both trees' index lock files declare which tree is authoritative
+    P3  all 14 lock files are tracked in BOTH trees
+
 Gating (spec-doc-citation-gate.md, 2026-09-20): D3 is HIGH outside docs/research/ and prior-art
 sections (an ambiguous line-numbered citation cannot be opened either, so it is no longer a lesser
 finding than D1/D2 there); D4 is always HIGH where it fires. `--strict` fails on D1/D2 HIGH plus
 D3 plus D4.
+
+WHY `--parity` EXISTS, and why it is the opposite shape to the checks above. This repository - the
+`gk-workflow` workspace root - and the pre-split monorepo (`letuhao/plant-vs-zombie-rise-of-
+summoner`) BOTH track all 14 lock files - `decisions.md`, `DESIGN-GATE.md` and the twelve
+`docs/architecture/decisions/<category>.md` - and they diverged silently.
+`keepverse_roots.workspace_root()` answers "the directory holding docs/" with whichever tree the
+calling script sits in, so every citation check ran against one of two documents that both claimed
+to be the same one, and `guard-citation-stability` fingerprinted only the gk-workflow copy.
+An ADR written to close a finding therefore lands in one tree and does not exist in the other.
+
+WHY THIS TOOL LIVES HERE, and why it is the only copy. The tool that checks the documentation was
+itself forked: two copies, 39,210 bytes here and 33,876 in the monorepo before the merge, each with
+a feature the other lacked - the sibling-repository file index here, `--parity` there - and the copy
+outside the authoritative tree ran only when somebody remembered it. The split-topology ADR names
+gk-workflow as the source of truth for "shared guards, verification and migration harnesses,
+orchestration tools, path rules, CI policy", and gk-core's enforcement registry already carries the
+row `doc-citations -> scripts/audit-doc-citations.py`, which `run_guards.py` resolves to this
+repository across the workspace roots by design (its own docstring measures 23 guards in gk-core, 4
+in gk-fusion, and `session-boundary` and `doc-citations` here). So this file is the single copy, it
+carries both feature sets, and it runs from `.github/workflows/lock-file-parity.yml`.
+
+Because this copy IS the authoritative tree, `--parity` names the other side with `--legacy-root`
+rather than assuming it is the tree the script sits in. Left as it was, running from here would
+compare gk-workflow against itself and refuse - the fail-closed shape is preserved deliberately,
+because a guard pointed at one tree is green by construction.
+
+    Measured 2026-10-05: gk-workflow `decisions.md` is 229 lines, the monorepo's is 220. The
+    `Status tracks - combat and out-of-combat (2026-10-02)` index row exists only in gk-workflow.
+    Pointing `guard-citation-stability.py` at the monorepo copy produces 76 drift findings and
+    10 orphaned baseline entries against 0 in place.
+
+The authority is NOT a preference. The split-topology ADR - `gk-workflow` `docs/architecture/
+decisions/world.md:27`, "Repository topology - Keepverse split", owner ruling 2026-09-30 - names
+gk-workflow as the single source of truth for architecture decisions, principles, plans, task
+records and development documentation, and the monorepo's own copy of that same row still carries
+the pre-ruling text. So this guard is deliberately ONE-DIRECTIONAL: it fails when the superseded
+tree holds lock content the authoritative tree lacks, and it says nothing when the superseded tree
+is merely behind - being behind is the declared state, not a defect.
+
+What is canonicalised before comparing, and why each erasure is safe:
+  * post-split path prefixes (`gk-core/`, `gk-fusion/`, `gk-forge/`, `gk-web/`, `gk-content/`,
+    `gk-assets/`, `gk-tests/`, `gk-data/packs/fusion/`) - the legacy tree spells these paths the
+    pre-split way, and that spelling is the whole point of it being the superseded copy;
+  * positional citation renumbering (`decisions.md:N`, `DESIGN-GATE.md:N`) - the authoritative
+    `decisions.md` has grown, so a legacy row citing `decisions.md:103` is not asserting a rule the
+    authoritative tree lacks, it is asserting the same rule at the legacy tree's line 103;
+  * CR bytes - both repositories' `.gitattributes` says `* text=auto eol=lf` and both track these
+    files as LF, so a CRLF working tree is a checkout artefact and treating it as drift would
+    manufacture a finding that is not in the repository. Comparison reads the committed blob.
+
+Everything else must match exactly. An erasure that were too broad would hide a real one-sided
+rule, which is the defect class this guard exists for, so the canonicalisation is deliberately
+limited to the two classes above and to whitespace.
 
 Why this exists (2026-09-18). Two audits spent roughly ninety minutes of agent time re-reading
 documents against code. Between them they found ~40 defects, and almost every one was mechanical:
@@ -41,21 +102,45 @@ Usage (repo root):
     python scripts/audit-doc-citations.py --scope docs/architecture
     python scripts/audit-doc-citations.py --strict        # exit 1 on HIGH findings
 
+    python scripts/audit-doc-citations.py --parity        # the two-tree lock-file check; exit 1 on drift
+    python scripts/audit-doc-citations.py --parity --workspace-root <gk-workflow clone>
+    python scripts/audit-doc-citations.py --parity --json
+
+Run from this repository - the AUTHORITATIVE tree - both roots must be named, because neither is
+implied any more:
+
+    python scripts/audit-doc-citations.py --parity \
+        --workspace-root . --legacy-root <pre-split monorepo clone>
+
+`--legacy-root` falls back to `$KEEPVERSE_LEGACY_ROOT`, then to the tree this script sits in, which
+is what a copy living in the superseded tree needs and why the mode was written that way first.
+
+`--parity` never needs `--strict`: it is a gate by itself and exits 1 on any P1/P2/P3 finding, so a
+green run cannot mean "it reported a drift and carried on".
+
 Exit codes: 0 = report produced (default, even with findings), 1 = HIGH findings and --strict,
-2 = usage error.
+2 = usage error, 3 = --parity could not compare (either tree absent, the two roots resolving to the
+same directory, or a lock file untracked in one of them), which is a refusal rather than a pass.
 """
 import argparse
 import io
+import json
 import os
 import re
 import subprocess
 import sys
 from collections import defaultdict
+from pathlib import Path
+
 # `keepverse_roots` is gk-CORE's, this script is gk-workflow's, so the sibling resolution below needs
 # that directory on the path. The same two-line insert every other tool in this workspace uses, copied
 # from gk-fusion/scripts/guard-single-writer.py:53-54. Without it the import is guarded, returns nothing,
 # and the change reads as a fix that did nothing - which is worse than not making it. `os.path` rather
-# than `pathlib`, because this module uses `os` throughout and imports no `Path`.
+# than `pathlib` for the path arithmetic, because this module uses `os` throughout for it; `pathlib`'s
+# `Path` is imported separately above for `--parity`'s two-root resolution, which is a different job.
+#
+# `scripts/lib/` is tried FIRST and is this repository's own future copy; `../gk-core/scripts/lib` is
+# gk-core's, which is where the module lives today. Both are relative to this file, never a literal.
 _HERE = os.path.dirname(os.path.abspath(__file__))
 for _extra in (os.path.join(_HERE, "lib"),
                os.path.join(os.path.dirname(_HERE), "gk-core", "scripts", "lib")):
@@ -655,13 +740,378 @@ def audit(scope):
     return findings, checked, len(docs)
 
 
+# --- P1/P2/P3: the two-tree lock-file parity check ---------------------------------------------
+#
+# The 14 lock files. `decisions.md` and `DESIGN-GATE.md` are the two INDEXES; the other twelve are
+# the per-category files each index row links to. Declared rather than globbed, for the reason
+# guard-citation-stability declares its own two: ADDING a file to this set has to be an explicit,
+# reviewable edit, because a glob would silently widen what the gate protects - and a thirteenth
+# category file that nobody compares is exactly the silent fork this mode exists to prevent.
+LOCK_FILES = (
+    "docs/architecture/decisions.md",
+    "docs/DESIGN-GATE.md",
+    "docs/architecture/decisions/combat.md",
+    "docs/architecture/decisions/content-gen.md",
+    "docs/architecture/decisions/game-host.md",
+    "docs/architecture/decisions/launcher.md",
+    "docs/architecture/decisions/persistence.md",
+    "docs/architecture/decisions/power-caps.md",
+    "docs/architecture/decisions/presentation.md",
+    "docs/architecture/decisions/progression.md",
+    "docs/architecture/decisions/repo-tooling.md",
+    "docs/architecture/decisions/stats.md",
+    "docs/architecture/decisions/transport.md",
+    "docs/architecture/decisions/world.md",
+)
+
+# The two indexes must both carry this block. It is a fenced block rather than prose because the
+# block's CONTENT DELIBERATELY DIFFERS between the trees - the authoritative one says "this copy is
+# authoritative", the superseded one says "this copy is a superseded snapshot", and comparing those
+# two sentences for equality would be comparing two answers to different questions. So the block is
+# marked out of band: P2 requires it in both trees, and P1 does not compare its contents.
+AUTHORITY_BEGIN = "<!-- lock-file-authority:begin -->"
+AUTHORITY_END = "<!-- lock-file-authority:end -->"
+AUTHORITY_CLAIM = "lock-file-authority: gk-workflow"
+
+# The authority itself, and the reason. Named here so the marker line and the refusal text agree,
+# and so a reader who has never seen this file can check the claim in one hop.
+AUTHORITY_WHY = (
+    "gk-workflow is the single source of truth for architecture decisions, principles, plans, task "
+    "records and development documentation (owner ruling 2026-09-30, recorded in "
+    "gk-workflow docs/architecture/decisions/world.md:27, 'Repository topology - Keepverse split'). "
+    "This copy is a SUPERSEDED SNAPSHOT: it is behind on purpose and that is not a defect. Two trees "
+    "holding a lock file is the defect, and the one direction that matters is a rule that exists "
+    "here and not there - an ADR written to close a finding landing in one tree and silently not "
+    "existing in the other."
+)
+
+# Post-split path prefixes. The legacy tree spells these paths the pre-split way; that spelling is
+# the entire reason it is the superseded copy, so erasing it is erasing the declared difference and
+# not a real one. `gk-data/packs/fusion/` is listed whole because stripping only `gk-data/` would
+# leave `packs/fusion/data/seed/...`, which matches nothing.
+REPO_PREFIXES = (
+    "gk-data/packs/fusion/",
+    "gk-data/packs/keepverse/",
+    "gk-core/",
+    "gk-fusion/",
+    "gk-forge/",
+    "gk-web/",
+    "gk-content/",
+    "gk-assets/",
+    "gk-tests/",
+)
+_PREFIX_RE = re.compile(r"(?:%s)" % "|".join(re.escape(p) for p in REPO_PREFIXES))
+# A positional citation's LINE NUMBER is renumbered by any legitimate growth of the index, so the
+# number is not identity. The basename is.
+_POS_CITE_RE = re.compile(r"(decisions\.md|DESIGN-GATE\.md):\d+")
+
+
+def parity_canon(line: str) -> str:
+    """A lock line's identity for cross-tree comparison.
+
+    Erases exactly three things: CR bytes, the post-split path prefixes, and the line number in a
+    positional citation. Whitespace is collapsed because a re-wrap is not a rule change. Anything
+    else that differs is a DIFFERENCE, deliberately not erased - an over-broad erasure would hide
+    the one-sided rule this is here to catch.
+    """
+    line = line.replace("\r", "").replace("\r\n", "\n")
+    line = " ".join(line.split())
+    prev = None
+    while prev != line:                      # `gk-data/packs/fusion/gk-core/...` is not a real path,
+        prev = line                          # but looping costs nothing and never guesses an order
+        line = _PREFIX_RE.sub("", line)
+    return _POS_CITE_RE.sub(r"\1:LINE", line)
+
+
+def git_blob_lines(root: Path, rel: str) -> tuple[list[str] | None, str]:
+    """The COMMITTED lines of `rel`, plus how they were obtained."""
+    try:
+        raw = subprocess.run(
+            ["git", "-C", str(root), "cat-file", "-p", f"HEAD:{rel}"],
+            capture_output=True, timeout=60, check=True,
+        ).stdout
+    except (subprocess.SubprocessError, OSError) as exc:
+        return None, f"not committed ({exc.__class__.__name__})"
+    return raw.decode("utf-8", errors="replace").splitlines(), "blob"
+
+
+def lock_lines(root: Path, rel: str, committed: bool = False) -> tuple[list[str] | None, str]:
+    """The lines of `rel` in `root`, and where they were read from.
+
+    The WORKING TREE is the default, and that is a correction of the first version of this guard.
+    Reading only the committed blob was defensible - both repositories' `.gitattributes` says
+    `* text=auto eol=lf`, so a CRLF checkout is an artefact - and it did keep the EOL phantom out.
+    But it also meant the guard could not see an uncommitted edit, which is the exact moment this
+    guard has value: an ADR written to the wrong tree should be caught while the author is still
+    holding it, not after it is history. The first mutation control proved that the blob-only guard
+    stayed GREEN through a planted one-sided rule, a deleted authority block and an unterminated
+    fence - three reds it could not raise, because none of them were committed.
+
+    `--committed` restores the blob reading for a CI step that must judge a push rather than a desk.
+    EOL cannot make either reading phantom, because `parity_canon` strips CR before comparing.
+    """
+    if not committed:
+        path = root / rel
+        if path.is_file():
+            return path.read_text(encoding="utf-8", errors="replace").splitlines(), "worktree"
+    return git_blob_lines(root, rel)
+
+
+def find_workspace_root(explicit: str | None) -> Path | None:
+    """The gk-workflow clone, or a NAMED absence. A missing second tree is a refusal, not a pass."""
+    for cand in (explicit, os.environ.get("KEEPVERSE_WORKSPACE_ROOT")):
+        if cand:
+            p = Path(cand)
+            return p if p.is_dir() else None
+    here = Path(__file__).resolve().parent
+    for d in (here, *here.parents):
+        if (d / "gk-core").is_dir() and (d / "gk-data").is_dir() and (d / "docs").is_dir():
+            return d
+        # A legacy clone nested inside the workspace resolves to itself, which is the documented
+        # nearest-match-wins rule rather than a special case for this tool.
+        if (d / "docs").is_dir() and (d / "scripts").is_dir() and (d / "src").is_dir():
+            return None
+    return None
+
+
+def find_legacy_root(explicit: str | None) -> Path | None:
+    """The SUPERSEDED pre-split tree, or a NAMED absence.
+
+    Written AFTER the tool moved to gk-workflow, so the direction the mode was first written in no
+    longer holds: this file now sits in the tree the mode treats as AUTHORITATIVE, and the superseded
+    side has to be named or taken from the environment. Defaulting to "the tree this script sits in"
+    is kept as the LAST fallback because it is what a copy living in the superseded tree needs, and
+    because with no second root named the two sides resolve to one directory - which main() refuses
+    rather than comparing. A guard cannot name both trees and be asked to compare them.
+
+    The absence is NAMED rather than substituted: returning the authoritative tree here would make
+    `--parity` compare gk-workflow against itself, which is green by construction and is the exact
+    shape of defect this mode exists to catch.
+    """
+    for cand in (explicit, os.environ.get("KEEPVERSE_LEGACY_ROOT")):
+        if cand:
+            p = Path(cand)
+            return p if p.is_dir() else None
+    here = Path(__file__).resolve().parent.parent
+    return here if here.is_dir() else None
+
+
+def split_authority_block(lines: list[str]) -> tuple[list[tuple[int, str]], list[str]]:
+    """Separate an authority block from the lock content around it.
+
+    Returns (content lines as (1-based line number, text), authority-block lines). Line numbers are
+    preserved so a P1 finding still names the line a reader would have to open.
+
+    An unterminated block is a finding rather than a shrug: a fence with no end would silently exempt
+    every line after it, which is the one shape that could turn this guard into a no-op.
+    """
+    content: list[tuple[int, str]] = []
+    block: list[str] = []
+    inside = False
+    unterminated = False
+    for i, ln in enumerate(lines, 1):
+        if AUTHORITY_BEGIN in ln:
+            inside = True
+            block.append(ln)
+            continue
+        if AUTHORITY_END in ln:
+            inside = False
+            block.append(ln)
+            continue
+        if inside:
+            block.append(ln)
+        else:
+            content.append((i, ln))
+    if inside:
+        unterminated = True
+    return content, block, unterminated
+
+
+def audit_parity(legacy: Path, workspace: Path, committed: bool = False
+                 ) -> tuple[list[str], list[str], dict]:
+    """One-sided lock content, authority declared on both sides, and a full inventory."""
+    findings: list[str] = []
+    notes: list[str] = []
+    stats = {"files": len(LOCK_FILES), "compared": 0, "legacy_lines": 0, "workspace_lines": 0,
+             "read": "blob" if committed else "worktree"}
+
+    for rel in LOCK_FILES:
+        mine, mine_how = lock_lines(legacy, rel, committed)
+        theirs, theirs_how = lock_lines(workspace, rel, committed)
+        if mine is None or theirs is None:
+            where = []
+            if mine is None:
+                where.append(f"this tree has no committed copy ({mine_how})")
+            if theirs is None:
+                where.append(f"gk-workflow has no committed copy ({theirs_how})")
+            findings.append(
+                f"P3  {rel}: tracked in one tree only - " + "; ".join(where)
+            )
+            continue
+
+        stats["compared"] += 1
+
+        mine_content, _, mine_open = split_authority_block(mine)
+        theirs_content, _, theirs_open = split_authority_block(theirs)
+        for label, flag in (("this tree", mine_open), ("gk-workflow", theirs_open)):
+            if flag:
+                findings.append(
+                    f"P3  {rel} ({label}): {AUTHORITY_BEGIN} has no {AUTHORITY_END}. An unterminated "
+                    f"block would exempt every line after it from comparison, which is the one shape "
+                    f"that turns this guard into a no-op."
+                )
+        stats["legacy_lines"] += len(mine_content)
+        stats["workspace_lines"] += len(theirs_content)
+
+        # P1 - one-sided CONTENT, in the ONE direction that matters.
+        #
+        # A legacy line is accounted for when some gk-workflow line EQUALS it, or CONTAINS it. The
+        # containment case is gk-workflow having since revised or extended that very row, which is
+        # what "superseded" means and is the declared state of this tree - so it is reported as a
+        # NOTE, not a failure. Absence is the failure: a legacy line no gk-workflow line accounts
+        # for is a rule written to the wrong tree, and it is the case that has actually happened.
+        #
+        # The multiset matters even though the match is by containment: without it a legacy tree
+        # passes by duplicating text it invented, and a guard that can be satisfied by copying is
+        # not a guard. It is deliberately NOT enforced against containment matches - gk-workflow
+        # merges rows rather than leaving near-duplicates, so demanding a distinct authoritative
+        # line per legacy line would fail on a legitimate merge.
+        pool: dict[str, int] = defaultdict(int)
+        for _, ln in theirs_content:
+            pool[parity_canon(ln)] += 1
+        revised = 0
+        for i, ln in mine_content:
+            key = parity_canon(ln)
+            if pool.get(key, 0) > 0:
+                pool[key] -= 1
+                continue
+            if key and any(key in other for other in pool if other):
+                revised += 1
+                continue
+            findings.append(
+                f"P1  {rel}:{i} exists in this superseded tree and not in gk-workflow "
+                f"(compared as blob/blob)\n      {ln[:180]}"
+            )
+        if revised:
+            notes.append(
+                f"N1  {rel}: {revised} row(s) in the superseded tree have been REVISED or extended "
+                f"in gk-workflow. Reported every run because that copy is behind by design and a "
+                f"reader who acts on the stale row is wrong; not a failure, because 'behind' is the "
+                f"declared state."
+            )
+
+        if mine_how != theirs_how:
+            findings.append(
+                f"P3  {rel}: this tree was read as {mine_how} and gk-workflow as {theirs_how} - one "
+                f"side has no copy on disk, so the comparison does not prove the two trees track the "
+                f"same content"
+            )
+
+    for rel in ("docs/architecture/decisions.md", "docs/DESIGN-GATE.md"):
+        for label, root in (("this tree", legacy), ("gk-workflow", workspace)):
+            got, _ = lock_lines(root, rel, committed)
+            if got is None:
+                continue          # already reported as P3; do not report the marker as missing too
+            _, block, _ = split_authority_block(got)
+            if not block:
+                findings.append(
+                    f"P2  {rel} ({label}) carries no authority block. Expected {AUTHORITY_BEGIN} .. "
+                    f"{AUTHORITY_END} naming {AUTHORITY_CLAIM!r}, because without it neither tree "
+                    f"says which copy is authoritative and the next reader has to re-derive it."
+                )
+            elif not any(AUTHORITY_CLAIM in ln for ln in block):
+                findings.append(
+                    f"P2  {rel} ({label}) has an authority block that does not name "
+                    f"{AUTHORITY_CLAIM!r} - a block that fails to say which tree wins is worse than "
+                    f"no block, because it looks like it said."
+                )
+    return findings, notes, stats
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("--scope", default="docs/", help="path prefix to audit (default: docs/)")
     ap.add_argument("--summary", action="store_true", help="per-document counts only")
     ap.add_argument("--targets", metavar="CODE", help="bare file:line list for one code (D1-D5)")
     ap.add_argument("--strict", action="store_true", help="exit 1 when HIGH findings exist")
+    ap.add_argument("--parity", action="store_true",
+                    help="compare the 14 lock files against the gk-workflow tree; exit 1 on drift")
+    ap.add_argument("--workspace-root", metavar="PATH",
+                    help="the authoritative gk-workflow tree (default: $KEEPVERSE_WORKSPACE_ROOT, "
+                         "then discovered by walking up for gk-core/ and gk-data/)")
+    ap.add_argument("--legacy-root", metavar="PATH",
+                    help="the SUPERSEDED pre-split tree to compare against (default: "
+                         "$KEEPVERSE_LEGACY_ROOT, then the tree this script sits in)")
+    ap.add_argument("--json", action="store_true", help="machine-readable result")
+    ap.add_argument("--committed", action="store_true",
+                    help="compare the committed blobs instead of the working trees, for a CI step "
+                         "that must judge a push rather than a desk")
     args = ap.parse_args()
+
+    if args.parity:
+        workspace = find_workspace_root(args.workspace_root)
+        if workspace is None:
+            print("REFUSING: --parity needs the authoritative gk-workflow tree and it could "
+                  "not be found.\n  Pass --workspace-root <gk-workflow clone>, or set "
+                  "KEEPVERSE_WORKSPACE_ROOT.\n  One tree alone cannot prove two trees agree, so this "
+                  "is a refusal (exit 3), never a green run.", file=sys.stderr)
+            return 3
+        legacy = find_legacy_root(args.legacy_root)
+        if legacy is None:
+            print("REFUSING: --parity needs the SUPERSEDED pre-split tree and it could not be "
+                  "found.\n  Pass --legacy-root <pre-split monorepo clone>, or set "
+                  "KEEPVERSE_LEGACY_ROOT.\n  Running from gk-workflow, that tree is a SEPARATE clone "
+                  "and is\n  not discovered by walking, so it has to be named. Refusing rather than "
+                  "comparing\n  the authoritative tree against itself.", file=sys.stderr)
+            return 3
+        if workspace.resolve() == legacy.resolve():
+            print("REFUSING: the two roots resolved to the same directory (%s). A guard pointed at "
+                  "one tree reports that tree against itself and is green by construction, which is "
+                  "the exact shape of the defect it exists to catch." % legacy,
+                  file=sys.stderr)
+            return 3
+
+        findings, notes, stats = audit_parity(legacy, workspace, args.committed)
+        result = {
+            "mode": "parity",
+            "legacy_root": str(legacy),
+            "workspace_root": str(workspace),
+            "authoritative": "gk-workflow",
+            "read": stats["read"],
+            "files": stats["files"],
+            "compared": stats["compared"],
+            "findings": findings,
+            "notes": notes,
+            "verdict": "PARITY OK" if not findings else "REFUSING: the lock files have forked",
+        }
+        if args.json:
+            print(json.dumps(result, indent=2, sort_keys=True))
+            return 1 if findings else 0
+
+        print("Doc-citation parity - %d lock files, %d compared (read: %s)\n"
+              % (stats["files"], stats["compared"], stats["read"]))
+        print("  authoritative tree : %s" % workspace)
+        print("  superseded tree    : %s" % legacy)
+        print("  authority          : gk-workflow (owner ruling 2026-09-30, "
+              "decisions/world.md:27)")
+        print("  compared content   : %d lines here vs %d lines in gk-workflow\n"
+              % (stats["legacy_lines"], stats["workspace_lines"]))
+        for note in notes:
+            print("  %s\n" % note)
+        if not findings:
+            print("PARITY OK - every lock line in this superseded tree is accounted for in "
+                  "gk-workflow, every\nlock file is tracked in both, and both declare the "
+                  "authority. Being BEHIND is the\ndeclared state; a rule that exists only here is "
+                  "not.")
+            return 0
+        print("REFUSING: the lock files have forked. %d finding(s):\n" % len(findings))
+        for f in findings:
+            print("  %s" % f)
+        print("\n  A finding here means one of the two trees holds lock content the other does "
+              "not.\n  If the authoritative tree is missing it, fix that tree. If this superseded "
+              "tree\n  holds a rule gk-workflow lacks, that rule was written to the wrong tree "
+              "and the\n  ADR does not exist where every reader of the lock file will look.")
+        return 1
 
     # `.` and `./` are how a caller asks for the whole repository, and until 2026-09-23 they silently
     # meant something else: `docs = [p for p in tracked if p.startswith(scope)]` reads `.` as the
