@@ -227,3 +227,29 @@ See [research/open-questions.md](../research/open-questions.md):
 - Whether `Plant.Start` HP is final
 - Whether `attackDamage` or `Bullet.Damage` is the real ATK
 - Whether SignalR.Client loads in BepInEx (HTTP fallback covers this)
+
+Appended at the END of this file deliberately, for the same reason as the appendix above it: both
+indexes are cited POSITIONALLY (`decisions.md:<line>`, `DESIGN-GATE.md:<line>`), so inserting a row
+anywhere above a citation silently repoints it while leaving it openable. Appending below the last
+cited line moves nothing.
+
+`lock-file-authority: gk-workflow`
+
+**This copy is authoritative.** `gk-workflow` is the single source of truth for architecture
+decisions, principles, plans, task records and development documentation — owner ruling 2026-09-30,
+recorded in [world.md](decisions/world.md) under "Repository topology — Keepverse split". The
+pre-split monorepo tracks a copy of this file and of all twelve category files; that copy is a
+**superseded snapshot**, and it is behind on purpose.
+
+Why this needs a marker rather than a reader knowing it. `keepverse_roots.workspace_root()` answers
+"the directory holding `docs/`" with whichever tree the calling script sits in, so the same accessor
+returns `docs/` from `gk-core` and a different `docs/` from a legacy clone. Every citation check
+therefore ran against one of two documents that both claimed to be the same one, and
+`guard-citation-stability` fingerprinted only this copy. Measured 2026-10-05, with this tree at 229
+lines and the superseded copy at 220: pointing the citation guard at the other copy yields 76 drift
+findings and 10 orphaned baseline entries, against 0 here. An ADR written to close a finding landed
+in one tree and did not exist in the other; four findings were closed on that assumption.
+
+The consequence for an edit: **write the rule here.** A row added to the superseded tree is a rule
+that exists nowhere a reader of the lock file will look, and `scripts/audit-doc-citations.py --parity`
+refuses on exactly that — absence, not being-behind.
