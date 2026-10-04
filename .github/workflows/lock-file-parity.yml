@@ -1,0 +1,90 @@
+name: lock-file-parity
+
+# WHY this file exists, because it is the second time a guard declared in gk-core's registry ran in
+# no workflow at all.
+#
+# `scripts/audit-doc-citations.py` has a `--parity` mode: it compares the 14 lock files across the
+# two trees that track them and fails when the SUPERSEDED tree holds lock content the AUTHORITATIVE
+# tree lacks. That mode was added to the monorepo's copy of the tool, so it existed only there - and
+# the monorepo is the tree declared behind on purpose, so the mode that exists to catch a rule
+# written to the wrong tree was itself in the wrong tree, running only when somebody remembered.
+#
+# The tool has since been reconciled into ONE copy, here, which is the authoritative tree. So this
+# step is the other half of that move: the mode now lives where the registry already resolves the
+# script, and this workflow is what makes it run on a push instead of on somebody's memory. Compare
+# `session-boundary.yml` next to this file, which exists for exactly the same reason and states it.
+#
+# This is NOT a registry row's own step. `doc-citations` stays exactly as the registry has it -
+# `--strict`, no `--parity` - and this workflow does not duplicate it. One guard, one invocation:
+# the registry runs the citation audit inside `run_guards.py`; this runs the two-tree lock-file
+# comparison, which the registry's single `args` shape cannot express because it is a different
+# MODE with a different exit contract (3 for a refusal). Adding `--parity` to the registry row would
+# make `run_guards.py` compare lock files while the runner's own cwd is gk-core, and the mode would
+# refuse (exit 3) - a red build that says nothing about the documents.
+#
+# It also cannot be a registry row without a script the runner can resolve: `run_guards.py` executes
+# every child with gk-core as its working directory, and `--legacy-root` must name a tree that is not
+# a workspace sibling at all. Wiring this into gk-core's registry is therefore a follow-up that needs
+# its own decision; see the handoff note in the commit that landed the reconciled tool.
+
+on:
+  push:
+    paths:
+      - "docs/architecture/decisions.md"
+      - "docs/architecture/decisions/**"
+      - "docs/DESIGN-GATE.md"
+      - "scripts/audit-doc-citations.py"
+      - ".github/workflows/lock-file-parity.yml"
+  pull_request:
+    paths:
+      - "docs/architecture/decisions.md"
+      - "docs/architecture/decisions/**"
+      - "docs/DESIGN-GATE.md"
+      - "scripts/audit-doc-citations.py"
+      - ".github/workflows/lock-file-parity.yml"
+  workflow_dispatch:
+
+jobs:
+  parity:
+    runs-on: windows-latest
+    steps:
+      # Full history: `--committed` judges the committed blobs, and the mode's own default reads the
+      # working tree. On CI the working tree IS the commit, so either would do - but `fetch-depth: 0`
+      # is what lets a future revision of this step compare a range rather than only HEAD.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # The second tree. `letuhao/plant-vs-zombie-rise-of-summoner` is the pre-split monorepo, which
+      # still tracks all 14 lock files and is the declared superseded snapshot. It is public, so this
+      # checkout needs no token - unlike gk-data, whose refusal-on-missing-token step in gk-core's
+      # ci.yml is the pattern to copy if a private repository is ever added here.
+      - name: Checkout the superseded pre-split tree
+        uses: actions/checkout@v4
+        with:
+          repository: letuhao/plant-vs-zombie-rise-of-summoner
+          path: superseded
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      # Both roots are named rather than discovered. This repository is the authoritative tree, so
+      # `--workspace-root .` is the checkout the step already runs in, and `superseded/` is the second
+      # checkout beside it. Nothing here is a literal path - the two are the step's own working
+      # directory and the `path:` the checkout above declares.
+      - name: The 14 lock files agree with the authoritative tree
+        shell: pwsh
+        run: |
+          python scripts/audit-doc-citations.py --parity --committed `
+            --workspace-root . `
+            --legacy-root superseded
+          if ($LASTEXITCODE -eq 3) {
+            throw ("--parity REFUSED (exit 3): one of the two trees could not be read. A refusal is " +
+                   "not a pass - see the message above for which root it could not resolve.")
+          }
+          if ($LASTEXITCODE -ne 0) {
+            throw ("--parity is red: the superseded tree holds lock content this tree lacks. " +
+                   "A rule written to the wrong tree does not exist where every reader of the lock " +
+                   "file will look.")
+          }
