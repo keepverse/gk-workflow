@@ -156,6 +156,12 @@ Locked for v1. Change here before changing code. **This table is an index**: one
 | **Seedsmith authors in two modes: a delegated agent, or an API (2026-10-02)** | [content-gen](decisions/content-gen.md) |
 | **The spine is a generated seed kind with a planned frame (2026-09-19)** | [content-gen](decisions/content-gen.md) |
 | **Status tracks — combat and out-of-combat (2026-10-02)** | [combat](decisions/combat.md) |
+| **One contract predicate per corpus consumer, never a merged one (2026-10-04)** | [content-gen](decisions/content-gen.md) |
+| **Corpus validity is per-consumer, and a fail-fast count is not an extent (2026-10-04)** | [content-gen](decisions/content-gen.md) |
+| **Regeneration replaces, it does not widen; a provenance change is the owner's call (2026-10-04)** | [content-gen](decisions/content-gen.md) |
+| **The stale-generated-artifact cascade is a checklist, not an investigation (2026-10-04)** | [content-gen](decisions/content-gen.md) |
+| **Every generator writer pins its newline; `seedsmith-lf` gates it (2026-10-04)** | [repo-tooling](decisions/repo-tooling.md) |
+| **A guard must be proven to fail on the tree it is about to fix (2026-10-04)** | [repo-tooling](decisions/repo-tooling.md) |
 
 ## Why REST and SignalR together
 
