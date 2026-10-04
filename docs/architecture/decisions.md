@@ -228,6 +228,7 @@ See [research/open-questions.md](../research/open-questions.md):
 - Whether `attackDamage` or `Bullet.Damage` is the real ATK
 - Whether SignalR.Client loads in BepInEx (HTTP fallback covers this)
 
+<!-- lock-file-authority:begin -->
 Appended at the END of this file deliberately, for the same reason as the appendix above it: both
 indexes are cited POSITIONALLY (`decisions.md:<line>`, `DESIGN-GATE.md:<line>`), so inserting a row
 anywhere above a citation silently repoints it while leaving it openable. Appending below the last
@@ -253,3 +254,4 @@ in one tree and did not exist in the other; four findings were closed on that as
 The consequence for an edit: **write the rule here.** A row added to the superseded tree is a rule
 that exists nowhere a reader of the lock file will look, and `scripts/audit-doc-citations.py --parity`
 refuses on exactly that — absence, not being-behind.
+<!-- lock-file-authority:end -->

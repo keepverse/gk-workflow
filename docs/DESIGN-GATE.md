@@ -267,6 +267,7 @@ citations resolved; they were still wrong, because that table has no clock row a
 When you add a checklist row, add it at the bottom of this file. Running the guard afterwards is not
 optional — it is the only thing that will tell you.
 
+<!-- lock-file-authority:begin -->
 Appended at the END of this file deliberately. `DESIGN-GATE.md:<line>` is cited positionally from
 dozens of places, so a row inserted anywhere above them silently repoints every citation below the
 insertion — and the citations stay *openable*, which is worse than a dead link, because nothing
@@ -288,3 +289,4 @@ against a different document than the one the last agent edited.
 What this means when you read a rule in the superseded copy: it may have been revised here. Write
 new rules here; `scripts/audit-doc-citations.py --parity` refuses when the other tree holds a
 lock-file rule this one has never had, and reports the rows it has since revised on every run.
+<!-- lock-file-authority:end -->
