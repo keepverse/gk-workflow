@@ -22,7 +22,7 @@ New: `gk-core/data/tuning/creature-rank.v1.json`, `gk-core/src/FusionRpg.Core/Cr
 - **CS-R1 (filed, `tasks/creature-seed-todo.md`).** `gk-core/data/tuning/creature-rank.v1.json` has **no**
   verification-boundary owner mapping: the same verify-change call *including* that path aborts
   `VERIFICATION BOUNDARY MISSING: gk-core/data/tuning/creature-rank.v1.json`. The registry is per-domain
-  (`tuning-creature-threat` at `gk-core/scripts/verification-boundaries.v1.json:3427-3433` is the sibling row),
+  (`tuning-creature-threat` at `gk-core/scripts/verification-boundaries.v1.json:4412-4421` is the sibling row),
   not a `gk-core/data/tuning/**` glob; `scripts/**` is outside this lane's fence, hence the row.
 - `gk-core/src/FusionRpg.Core/Creatures/CreatureRankTuning.cs` resolves to `core-fallback (module)`, which plans the
   **whole** split Core group (55 projects, 10085 tests) — the registry's own known Core-fallback reading

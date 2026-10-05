@@ -76,8 +76,8 @@ shape.
 
 This is the part that settles the patch, and it is proved, not inferred. Resolving each path through
 the repo's own registry (`Resolve-Owner` over the 449 owner boundaries in
-`gk-core/scripts/verification-boundaries.v1.json:3352`, the `docs-and-assistant-config` entry — its `paths`
-array lists `.commandcode/**/*.md` at `gk-core/scripts/verification-boundaries.v1.json:3358`):
+`gk-core/scripts/verification-boundaries.v1.json:3375`, the `docs-and-assistant-config` entry — its `paths`
+array lists `.commandcode/**/*.md` at `gk-core/scripts/verification-boundaries.v1.json:3379`):
 
 ```
 .commandcode/settings.json                                 => UNMAPPED

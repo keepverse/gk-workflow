@@ -25,7 +25,7 @@ gk-forge/tools/seedsmith/tests/test_power_class_registry.py
 ```
 
 The first two are the row's declared production artifacts; the latter two are the smallest exact test
-fence that proves the registry and C# mirror agree. `gk-core/scripts/verification-boundaries.v1.json:878-885`
+fence that proves the registry and C# mirror agree. `gk-core/scripts/verification-boundaries.v1.json:890-899`
 owns atom tests, and the existing affix tests are under `gk-core/tests/FusionRpg.Core.Atoms.Tests/Atoms/`
 (`AffixValidatorTests.cs`, `AffixLibraryGeneratorTests.cs`). Adding a test to the todo's named Core
 project would split the atom suite without adding coverage.
@@ -173,7 +173,7 @@ $changed = @(
 ```
 
 That registry path selects the seed-items corpus/validator checks
-(`gk-core/scripts/verification-boundaries.v1.json:4953-4973`); the Core source selects the effects-owner
+(`gk-core/scripts/verification-boundaries.v1.json:2862-2912`); the Core source selects the effects-owner
 boundary (`:5995-6003`); the atom test selects `core-atoms` (`:878-885`). No unfiltered suite is needed
 for this row.
 

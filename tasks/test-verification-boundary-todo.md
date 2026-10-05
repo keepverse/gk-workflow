@@ -367,7 +367,7 @@ the split itself still carries is **`TVB-F30`**.
   (module)` where it threw `VERIFICATION BOUNDARY MISSING`, and `guard-verification-boundaries.py` is
   `OK`. Nothing is owed here.
 - [x] **TVB-F2 — `gk-forge/tools/seedsmith/tests/**` is already mapped; the brief's claim is stale** · The
-  registry has `seedsmith-tests` (`gk-core/scripts/verification-boundaries.v1.json:2568-2578`) over
+  registry has `seedsmith-tests` (`gk-core/scripts/verification-boundaries.v1.json:2643-2653`) over
   `gk-forge/tools/seedsmith/tests/**` with `selfSelect: true`, on the `seedsmith` pytest project. No action;
   recorded so the row is not re-opened. — **re-verified 2026-09-23 (lane `tvb60`)**: the boundary is
   still exactly that (`paths: ["gk-forge/tools/seedsmith/tests/**"]`, `project: "seedsmith"`, `selfSelect: true`,
@@ -1137,7 +1137,7 @@ findings briefly shared one id.)*
   - **Measured:** `python gk-core/scripts/guard-verification-boundaries.py`
     prints `VERIFICATION BOUNDARY GUARD FAILED` / `unmapped enforced-root file:
     gk-core/tests/fixtures/rpg-scenarios/first-session-forward.json`, exit 1 — and this guard is a **gating** `ci`-tier
-    row (`gk-core/scripts/enforcement-registry.v1.json:68`) run as its own step
+    row (`gk-core/scripts/enforcement-registry.v1.json:109`) run as its own step
     (`.github/workflows/ci.yml:347`). `verify-change.ps1 -Paths
     'gk-core/tests/fixtures/rpg-scenarios/first-session-forward.json' -PlanOnly` refuses with `VERIFICATION BOUNDARY
     MISSING`.
@@ -1312,7 +1312,7 @@ findings briefly shared one id.)*
     no ambiguity check, so a seam on the owner's own paths is additive by construction (`level` derives to
     `seam`, `scripts/lib/VerificationBoundaries.ps1:231`). Landed: `[Trait("VerificationId",
     "e2e.contract-fixture")]` at `gk-core/tests/FusionRpg.E2E.Tests/ContractFixtureTests.cs:18` + boundary
-    `contracts-fixture-seam` (`gk-core/scripts/verification-boundaries.v1.json:6069-6079`, `kind: seam`, the same
+    `contracts-fixture-seam` (`gk-core/scripts/verification-boundaries.v1.json:6251-6261`, `kind: seam`, the same
     `gk-core/src/FusionRpg.Contracts/**` paths as the owner, `project: e2e`, `level: seam`, appended last so no
     existing registry line shifts). `verify-change -PlanOnly -AllowUnscoped -Paths
     gk-core/src/FusionRpg.Contracts/UniqueActorDtos.cs` now prints both `-> contracts-fallback (module)` /
@@ -1425,7 +1425,7 @@ findings briefly shared one id.)*
   ran `Total: 673, Duration: 9 m 38 s`)*
   `session-and-program-records` owns `tasks/**` with `project: guard` and no selector, so **every** todo
   tick, ledger line or evidence fragment a lane commits plans the entire Guard project
-  (`gk-core/scripts/verification-boundaries.v1.json:3346`). Measured cost for a two-file docs change: `Failed: 1,
+  (`gk-core/scripts/verification-boundaries.v1.json:3460`). Measured cost for a two-file docs change: `Failed: 1,
   Passed: 672, Skipped: 0, Total: 673, Duration: 9 m 38 s`. Measured coupling: of **114** Guard test
   files, **5** mention `tasks/` at all, four of those only in doc-comments; the single real dependency is
   `RepoBoundaryGuardTests.cs:13,114,115` (B3 freezes `tasks/plan.md` + `tasks/todo.md`, both frozen
@@ -1492,7 +1492,7 @@ findings briefly shared one id.)*
   **any** boundary kind (validating the regex and that the trait exists in the project's members). The
   previous revision of this row's blocker said the additive mechanism was whole-project only because
   **0 of 30 seams happened to carry one** — a reading, not a rule. Landed: seam
-  `unique-allocation-reader-seam` (`gk-core/scripts/verification-boundaries.v1.json:6080-6090`, `kind: seam`,
+  `unique-allocation-reader-seam` (`gk-core/scripts/verification-boundaries.v1.json:6262-6272`, `kind: seam`,
   `paths: ["src/**"]`, `project: guard`, `verificationId: guard.unique-allocation-reader`, `level: seam`,
   appended last so no existing registry line shifts).
   `src/**` is the scope the test itself polices — `UniqueAllocationReaderGuardTests.cs:31` enumerates every

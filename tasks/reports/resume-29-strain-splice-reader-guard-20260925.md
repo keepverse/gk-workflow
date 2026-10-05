@@ -17,7 +17,7 @@ python scripts/session-boundary-check.py --session resume-29-strain-splice-reade
 [session-boundary] clean for 'resume-29-strain-splice-reader-guard-20260925'
 ```
 
-The current verification-boundary owner for `gk-core/tests/FusionRpg.Guard.Tests/**` is `guard-tests-fallback` in `gk-core/scripts/verification-boundaries.v1.json:2087-2095`; the manager explicitly granted this lane the protected guard path. No registry or ownership file was edited.
+The current verification-boundary owner for `gk-core/tests/FusionRpg.Guard.Tests/**` is `guard-tests-fallback` in `gk-core/scripts/verification-boundaries.v1.json:2098-2107`; the manager explicitly granted this lane the protected guard path. No registry or ownership file was edited.
 
 ## Contract implemented
 
