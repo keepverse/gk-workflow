@@ -1,8 +1,47 @@
 # Seedsmith content-completeness — `actions`
 
-**Status:** Built 2026-09-08 (Phase 2, Task 7/8). Module 3 of 7 in
-[seedsmith-content-standard-map.md](../seedsmith-content-standard-map.md). Depends on
+**Status:** ⚠ **RETIRED 2026-10-05** (owner ruling). Built 2026-09-08 (Phase 2, Task 7/8). Module 3 of
+7 in [seedsmith-content-standard-map.md](../seedsmith-content-standard-map.md). Depends on
 [spec-content-completeness-core.md](spec-content-completeness-core.md) (built, Phase 0).
+
+**What was retired, and why — the spec below is kept as the record of that decision, not as a
+description of current behaviour.** The `description` field this module added to `action-seed` had
+**no reader anywhere**, verified against the code rather than inferred:
+
+- `FusionRpg.Core.Actions.ActionRow` has no `Description` field — it carries `DescriptionKey` and
+  nothing else, and its own doc comment states the key is "never the sentence itself".
+- `ActionCorpusBriefJson.Parse` reads `descriptionKey` and never a `description` element; it
+  deliberately declines an unknown-key check, so the field was silently discarded at import.
+- `ActionCorpusComposer` forwards only `DescriptionKey`; `ActionCorpusImporter.SamePayload` compares
+  only `DescriptionKey`.
+- The player-visible sentence resolves through `ItemCard.GrantedActionLines` →
+  `LookupString(a.DescriptionKey)` → `__rendered`, against `gk-content/content/display/en.json`.
+
+Measured on the committed tree before removal: **181** rows carried `description`; **25** of those
+`descriptionKey`s exist in the display catalog, and **none** of the 25 matched its catalog row — 0
+verbatim, not 25 paraphrases. So the corpus contradicted the text a player actually reads in 25
+places while being unread in all 181. §1 below reasoned that the prose was "the real English text
+`descriptionKey` will eventually resolve to"; the measurement shows the resolution had already gone
+somewhere else, so the premise the field rested on no longer held.
+
+**Retired with it:** the `description_backfill/` package, `generate_action_descriptions.py`, the
+`ACTIONS_COMPLETENESS_SPEC` registration in `report/cli.py` (`build_registry`), and
+`kinds.py`'s `ACTION_SEED_OPTIONAL` entry. The committed corpus is rewritten by
+`adapters/actions/migrate_retired_description.py` (`--check` is the drift gate) — never by hand.
+`_meta.authored` in `authored-basics.json` was honoured: its `act.attack` row is hand-authored and
+keeps its prose.
+
+**What still guards this.** Nothing was left unguarded — the field that IS read is `descriptionKey`,
+and `FusionRpg.Core.Items.Tests.Items.GrantedActionTextTests` asserts every committed key resolves to
+real prose, is not the key, carries no `{placeholder}`, and is prose rather than a stat line. That
+guard is falsifiable (`The_guard_catches_an_unresolvable_description_key` proves it can fail). The
+retired spec was not: it demanded a field no code path could show a player, and the one thing it
+appeared to enforce — agreement between corpus prose and display prose — was measurably absent.
+
+**A genuine gap this retirement does NOT paper over:** 156 of the 181 committed `descriptionKey`s
+have **no** row in `gk-content/content/display/en.json`, so those actions resolve to no description
+today. That is a gk-content authoring gap, reported by `DisplayRules.MissingDisplayKey`, and it is
+unchanged by this work — the retired field never fixed it, because nothing read it.
 
 Actions is the domain the map calls out as having **nothing today**: no ledger, no `_provenance`,
 no missing-field metric — confirmed again here, directly against the code, before writing a line of
