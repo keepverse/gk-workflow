@@ -6,7 +6,7 @@ boundaries (`:112` filters `kind -eq 'owner'`) — the seam loop (`:119-121`) ap
 check, so a seam on the owner's own paths is additive by construction and `level` derives to `seam`
 (`scripts/lib/VerificationBoundaries.ps1:231`). Landed: `[Trait("VerificationId", "e2e.contract-fixture")]`
 at `gk-core/tests/FusionRpg.E2E.Tests/ContractFixtureTests.cs:18`, and boundary `contracts-fixture-seam` appended
-last in `gk-core/scripts/verification-boundaries.v1.json:6251-6261` — a pure append (6098 -> 6109 lines, no
+last in `gk-core/scripts/verification-boundaries.v1.json#contracts-fixture-seam` — a pure append (6098 -> 6109 lines, no
 existing line shifts, so no registry citation moves).
 
 | Criterion | Command | Result | Artifact |

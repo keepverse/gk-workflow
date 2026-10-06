@@ -106,7 +106,7 @@ a compile error. The temp directory is removed in `finally`, and a failed remova
 an enforcement-catalog row `bench-compile` (`tier: ci`, `status: gating`, `localReason: null`), so
 SE's runner runs it in CI with no `ci.yml` edit, and `boundaries[].guards` names it by that id.
 
-The second consumer of C5 is **`magic-number-audit`** (`verification-boundaries.v1.json:2526-2536`). Its
+The second consumer of C5 is **`magic-number-audit`** (`verification-boundaries.v1.json#magic-number-audit`). Its
 paths are `gk-core/scripts/audit-magic-numbers.py` alone — it also listed a thin PowerShell wrapper, retired
 2026-09-26 — and it names project
 `guard` — but no Guard test reads either script (map G15). Its only honest check is its own guard,

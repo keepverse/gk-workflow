@@ -99,7 +99,7 @@ python scripts/audit-doc-citations.py --scope tasks/base-defense-todo.md
 ## 8. Test plan and verification boundary
 
 Documents only. The citation audit (§6) and the grep in criterion 2 are the verification. `docs/**` maps
-to a documentation boundary (`gk-core/scripts/verification-boundaries.v1.json:3372`), and `tasks/**` edits carry
+to a documentation boundary (`gk-core/scripts/verification-boundaries.v1.json#docs-and-assistant-config`), and `tasks/**` edits carry
 no test. No verify-change mapping gap applies here.
 
 ## 9. Hard edges

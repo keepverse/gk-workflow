@@ -17,7 +17,7 @@ This module makes "N concurrent processes over a complete, disjoint partition" a
 adopts it in CI and in local module-level Data runs.
 
 **User:** CI; any contributor whose change resolves to `data-fallback`
-(`verification-boundaries.v1.json:1698-1710`).
+(`verification-boundaries.v1.json#data-fallback`).
 
 ## Design
 

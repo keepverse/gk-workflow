@@ -1425,7 +1425,7 @@ findings briefly shared one id.)*
   ran `Total: 673, Duration: 9 m 38 s`)*
   `session-and-program-records` owns `tasks/**` with `project: guard` and no selector, so **every** todo
   tick, ledger line or evidence fragment a lane commits plans the entire Guard project
-  (`gk-core/scripts/verification-boundaries.v1.json:3460`). Measured cost for a two-file docs change: `Failed: 1,
+  (`gk-core/scripts/verification-boundaries.v1.json#session-and-program-records`). Measured cost for a two-file docs change: `Failed: 1,
   Passed: 672, Skipped: 0, Total: 673, Duration: 9 m 38 s`. Measured coupling: of **114** Guard test
   files, **5** mention `tasks/` at all, four of those only in doc-comments; the single real dependency is
   `RepoBoundaryGuardTests.cs:13,114,115` (B3 freezes `tasks/plan.md` + `tasks/todo.md`, both frozen

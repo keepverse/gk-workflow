@@ -6,7 +6,7 @@ available: `verify-change.ps1:112` filters the `VERIFICATION BOUNDARY AMBIGUOUS`
 and `guard-verification-boundaries.py:151-161` accepts a `verificationId` on any boundary kind. The old
 blocker ("the only additive mechanism is whole-project") rested on a **reading** — 0 of 30 seams happened
 to carry one — not on a rule. Landed: seam `unique-allocation-reader-seam`
-(`gk-core/scripts/verification-boundaries.v1.json:6262-6272`, `kind: seam`, `paths: ["src/**"]`, `project: guard`,
+(`gk-core/scripts/verification-boundaries.v1.json#unique-allocation-reader-seam`, `kind: seam`, `paths: ["src/**"]`, `project: guard`,
 `verificationId: guard.unique-allocation-reader`, `level: seam`), appended last — a pure append, so no
 existing registry line shifts and no citation into it moves.
 

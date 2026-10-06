@@ -685,7 +685,7 @@ six-field list is a legal subset rather than the whole set.
 | `EventPanel.tsx`'s placeholder comment is still stale (map *Conflicts* item 3, `storylet-card`'s) | `gk-web/web/fusion-rpg-web/src/stages/delve/layers/EventPanel.tsx:8-20` describes the six `EventView` fields as `Pending` because "No adapter exists", and renders three italic fallbacks |
 | party-dungeon's still-open tasks sit in the files NR2.2 moves | transfer note `tasks/party-dungeon-todo.md:3-15`; **D3.3 `:1411`, D3.5 `:1607`, D3.9 `:1818` are all still `[ ]`** — B3's hand-off step is still required |
 | NS2 (the narrative corpus boundary) is still open, so NR0.2's `core-narrative` row is that path's first owner | `tasks/narrative-seed-todo.md:61` `[ ]`; no `gk-data/packs/fusion/data/seed/narrative/**` pattern exists in the registry |
-| The `notify-core-domain` / `notify-contracts` shape NR0.2 copies | `gk-core/scripts/verification-boundaries.v1.json:3913` and `:3935` |
+| The `notify-core-domain` / `notify-contracts` shape NR0.2 copies | `gk-core/scripts/verification-boundaries.v1.json#notify-core-domain` and `gk-core/scripts/verification-boundaries.v1.json#notify-contracts` |
 | Task count and phase table | 94 tasks counted (`NR0` 2, `NR1` 6, `NR2` 32, `NR3` 16, `NR4` 9, `NR5` 17, `NR6` 7, `NRX` 3, + NR-LP1/NR-LP2) — matches the header |
 | Map gate G7 | `docs/architecture/npc-story-events-map.md:312` |
 | `web/**` still has no verification lane | `verify-change.ps1 -PlanOnly` on `gk-web/web/fusion-rpg-web/src/app/TitleScreen.tsx` → `VERIFICATION BOUNDARY MISSING` |

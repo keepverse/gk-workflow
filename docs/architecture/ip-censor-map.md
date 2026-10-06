@@ -79,7 +79,7 @@ Found by audit (`docs/research/ip-censor-spec-audit-2026-09-19.md` A1). `gk-core
 **throws** `VERIFICATION BOUNDARY MISSING` for any path with no owner boundary; the registry's 101
 boundaries cover 12 **C#** projects and contain **zero** entries for `gk-core/tools/ip-censor/**` or
 `gk-data/packs/fusion/data/seed/ip-censor/**` (verified by loading the registry). The nearest precedent,
-`tuning-publish-tool` (`gk-core/scripts/verification-boundaries.v1.json:2550-2565`), maps a `.py` file to a **C#**
+`tuning-publish-tool` (`gk-core/scripts/verification-boundaries.v1.json#tuning-publish-tool`), maps a `.py` file to a **C#**
 test project and runs the tool's real pytest only in a bespoke CI step (R15). And
 `gk-core/tests/FusionRpg.Guard.Tests/CiWiringGuardTests.cs:49` walks `*.Tests.csproj` only, so nothing catches
 a missing Python CI step.
