@@ -127,7 +127,7 @@ A `projects` value may also be an **array** of `.csproj` paths — a group, e.g.
 Every boundary keeps its single `project` field; the id may name a group.
 
 - **Module selection on a group** runs every member, sequentially, each with the default-profile filter.
-  This is what keeps `core-fallback` (`gk-core/src/FusionRpg.Core/**`, `verification-boundaries.v1.json:802-811`)
+  This is what keeps `core-fallback` (`gk-core/src/FusionRpg.Core/**`, `verification-boundaries.v1.json#core-fallback`)
   verifying *all* Core tests while they move into new projects — a split increment must never make a
   Core production change verify less than before.
 - **Focused selection on a group** runs only the members whose directory contains the

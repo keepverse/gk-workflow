@@ -173,7 +173,7 @@ $changed = @(
 ```
 
 That registry path selects the seed-items corpus/validator checks
-(`gk-core/scripts/verification-boundaries.v1.json:2862-2912`); the Core source selects the effects-owner
+(`gk-core/scripts/verification-boundaries.v1.json#seedsmith-items`); the Core source selects the effects-owner
 boundary (`:5995-6003`); the atom test selects `core-atoms` (`:878-885`). No unfiltered suite is needed
 for this row.
 

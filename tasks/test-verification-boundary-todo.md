@@ -1312,7 +1312,7 @@ findings briefly shared one id.)*
     no ambiguity check, so a seam on the owner's own paths is additive by construction (`level` derives to
     `seam`, `scripts/lib/VerificationBoundaries.ps1:231`). Landed: `[Trait("VerificationId",
     "e2e.contract-fixture")]` at `gk-core/tests/FusionRpg.E2E.Tests/ContractFixtureTests.cs:18` + boundary
-    `contracts-fixture-seam` (`gk-core/scripts/verification-boundaries.v1.json:6251-6261`, `kind: seam`, the same
+    `contracts-fixture-seam` (`gk-core/scripts/verification-boundaries.v1.json#contracts-fixture-seam`, `kind: seam`, the same
     `gk-core/src/FusionRpg.Contracts/**` paths as the owner, `project: e2e`, `level: seam`, appended last so no
     existing registry line shifts). `verify-change -PlanOnly -AllowUnscoped -Paths
     gk-core/src/FusionRpg.Contracts/UniqueActorDtos.cs` now prints both `-> contracts-fallback (module)` /
@@ -1492,7 +1492,7 @@ findings briefly shared one id.)*
   **any** boundary kind (validating the regex and that the trait exists in the project's members). The
   previous revision of this row's blocker said the additive mechanism was whole-project only because
   **0 of 30 seams happened to carry one** — a reading, not a rule. Landed: seam
-  `unique-allocation-reader-seam` (`gk-core/scripts/verification-boundaries.v1.json:6262-6272`, `kind: seam`,
+  `unique-allocation-reader-seam` (`gk-core/scripts/verification-boundaries.v1.json#unique-allocation-reader-seam`, `kind: seam`,
   `paths: ["src/**"]`, `project: guard`, `verificationId: guard.unique-allocation-reader`, `level: seam`,
   appended last so no existing registry line shifts).
   `src/**` is the scope the test itself polices — `UniqueAllocationReaderGuardTests.cs:31` enumerates every

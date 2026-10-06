@@ -35,7 +35,7 @@ verification-boundary defect: add/repair its mapping or report it"* — which me
 
 Complicating facts:
 - **There is no Python project lane.** The `projects` registry is entirely `*.csproj`. The closest
-  precedent, `tuning-publish-tool` (`verification-boundaries.v1.json:2550-2565`), maps
+  precedent, `tuning-publish-tool` (`verification-boundaries.v1.json#tuning-publish-tool`), maps
   `gk-core/tools/tuning/publish.py` → `project: "guard"` — a **C#** test project. `verify-change` therefore
   runs `FusionRpg.Guard.Tests` for a change to a Python file; the tool's own pytest is run only by a
   bespoke CI step (R15, `spec-rulings-2026-09-18.md`: *"a `gk-core/tools/tuning` pytest step in

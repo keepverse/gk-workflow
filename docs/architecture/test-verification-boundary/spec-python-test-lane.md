@@ -15,7 +15,7 @@ project emits a `pytest` check, one per project over the union of its selectors
 
 - any path under `gk-forge/tools/seedsmith/**` → `VERIFICATION BOUNDARY MISSING`;
 - `gk-core/tools/tuning/publish.py` and `test_publish_add_key.py` → boundary `tuning-publish-tool`
-  (`verification-boundaries.v1.json:2550-2565`) → `dotnet test` of **Guard.Tests**, which contains no
+  (`verification-boundaries.v1.json#tuning-publish-tool`) → `dotnet test` of **Guard.Tests**, which contains no
   reference to `gk-core/tools/tuning` — the check runs, passes, and proves nothing about the changed file;
 - the generator `--check` and seedsmith corpus gates run only in CI
   (`gk-core/.github/workflows/ci.yml:98`, `:108`, `:118`, `:129`, `:141`, `:466`, `:477`, `:483`, `:589`, `:599`, `:609`, `:619`, `:635`, `:654`, `:679`), so a local change to a generator has no lane;

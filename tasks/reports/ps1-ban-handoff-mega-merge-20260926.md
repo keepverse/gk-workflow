@@ -9,7 +9,7 @@ Reproduce any line with the command shown.
 
 ## 1. A dangling exemption entry — introduced by the ps1-ban delete, in your fenced registry
 
-`gk-core/scripts/enforcement-registry.v1.json:235` still lists a file this program deleted in `406b32f17`:
+`gk-core/scripts/enforcement-registry.v1.json#local-operational-scripts` still lists a file this program deleted in `406b32f17`:
 
 ```
 [local-operational-scripts] 1 of 20 missing

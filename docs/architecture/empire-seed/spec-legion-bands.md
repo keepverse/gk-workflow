@@ -193,7 +193,7 @@ python gk-core/scripts/audit-magic-numbers.py --summary
 covers criterion 4. Fixture pieces are the committed exemplars (`data/seed/legion/_exemplars/`).
 
 **Verification boundary.** Core C# paths map to `core-fallback` / `core-tests-fallback`
-(`gk-core/scripts/verification-boundaries.v1.json:802-811`, `:850-859`). **Gap:** `data/tuning/legion-seed.*`
+(`gk-core/scripts/verification-boundaries.v1.json#core-fallback`, `:850-859`). **Gap:** `data/tuning/legion-seed.*`
 and `data/seed/legion/**` are unmapped (`gk-core/scripts/verify-change.py:771`). The owner of the fix is
 `test-verification-boundary` `python-test-lane`.
 
